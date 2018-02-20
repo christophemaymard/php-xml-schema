@@ -76,4 +76,24 @@ class KeyRefElement extends AbstractCompositeElement
     {
         return $this->isChildElementSet(1);
     }
+    
+    /**
+     * Adds a "field" element to this element.
+     * 
+     * @param   FieldElement    $element    The element to add.
+     */
+    public function addFieldElement(FieldElement $element)
+    {
+        $this->addChildElement(2, $element);
+    }
+    
+    /**
+     * Returns all the "field" child elements.
+     * 
+     * @return  FieldElement[]  An indexed array of FieldElement instances.
+     */
+    public function getFieldElements():array
+    {
+        return $this->getChildElementsByType(2, FieldElement::class);
+    }
 }

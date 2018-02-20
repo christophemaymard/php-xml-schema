@@ -125,4 +125,42 @@ class KeyRefElementTest extends AbstractCompositeElementTestCase
         $this->sut->setSelectorElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
+    
+    /**
+     * Tests that getFieldElements() returns:
+     * - an empty array when no element has been added
+     * - an indexed array of all added FieldElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetFieldElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getFieldElements(), 'No element has been added.');
+        
+        $elements[] = $this->createFieldElementDummy();
+        $this->sut->addFieldElement($elements[0]);
+        self::assertSame($elements, $this->sut->getFieldElements(), 'Added 1 FieldElement element.');
+        
+        $elements[] = $this->createFieldElementDummy();
+        $this->sut->addFieldElement($elements[1]);
+        self::assertSame($elements, $this->sut->getFieldElements(), 'Added 2 FieldElement elements.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 2 (field+).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer2()
+    {
+        $children = [];
+        $children[] = $this->createFieldElementDummy();
+        $children[] = $this->createFieldElementDummy();
+        $this->sut->addFieldElement($children[0]);
+        $this->sut->addFieldElement($children[1]);
+        self::assertSame($children, $this->sut->getElements(), 'Elements in container 2.');
+    }
 }
