@@ -35,6 +35,9 @@ abstract class AbstractCompositeElement implements CompositeElementInterface
         // Creates the container (that holds multiple elements) if it does not exist.
         if (!$this->hasContainer($index)) {
             $this->sequence[$index] = [];
+            
+            // Sorts the containers by index.
+            \ksort($this->sequence);
         }
         
         // Adds the element to the container.
