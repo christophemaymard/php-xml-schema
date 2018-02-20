@@ -15,6 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class AnyElement extends AbstractAnnotatedElement
+class AnyElement extends AbstractAnnotatedElement implements ParticleElementInterface
 {
 }
