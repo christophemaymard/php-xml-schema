@@ -179,4 +179,328 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
         $this->sut->addCompositionAnnotationElement($children[7]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 0.');
     }
+    
+    /**
+     * Tests that getSimpleTypeElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no SimpleTypeElement element has been added
+     * - an indexed array of all added SimpleTypeElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetSimpleTypeElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'No element has been added.');
+        
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addElementElement($this->createElementElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addNotationElement($this->createNotationElementDummy());
+        $this->sut->addDefinitionAnnotationElement($this->createAnnotationElementDummy());
+        self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added elements but no SimpleTypeElement element.');
+        
+        $elements[] = $this->createSimpleTypeElementDummy();
+        $this->sut->addSimpleTypeElement($elements[0]);
+        self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added 1 SimpleTypeElement element.');
+        
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createSimpleTypeElementDummy();
+        $this->sut->addSimpleTypeElement($elements[1]);
+        self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added 2 SimpleTypeElement elements.');
+    }
+    
+    /**
+     * Tests that getComplexTypeElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no ComplexTypeElement element has been added
+     * - an indexed array of all added ComplexTypeElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetComplexTypeElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getComplexTypeElements(), 'No element has been added.');
+        
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addElementElement($this->createElementElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addNotationElement($this->createNotationElementDummy());
+        $this->sut->addDefinitionAnnotationElement($this->createAnnotationElementDummy());
+        self::assertSame($elements, $this->sut->getComplexTypeElements(), 'Added elements but no ComplexTypeElement element.');
+        
+        $elements[] = $this->createComplexTypeElementDummy();
+        $this->sut->addComplexTypeElement($elements[0]);
+        self::assertSame($elements, $this->sut->getComplexTypeElements(), 'Added 1 ComplexTypeElement element.');
+        
+        $this->sut->addGroupElement($this->createGroupElementDummy());
+        self::assertSame($elements, $this->sut->getComplexTypeElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createComplexTypeElementDummy();
+        $this->sut->addComplexTypeElement($elements[1]);
+        self::assertSame($elements, $this->sut->getComplexTypeElements(), 'Added 2 ComplexTypeElement elements.');
+    }
+    
+    /**
+     * Tests that getGroupElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no GroupElement element has been added
+     * - an indexed array of all added GroupElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetGroupElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getGroupElements(), 'No element has been added.');
+        
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addElementElement($this->createElementElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addNotationElement($this->createNotationElementDummy());
+        $this->sut->addDefinitionAnnotationElement($this->createAnnotationElementDummy());
+        self::assertSame($elements, $this->sut->getGroupElements(), 'Added elements but no GroupElement element.');
+        
+        $elements[] = $this->createGroupElementDummy();
+        $this->sut->addGroupElement($elements[0]);
+        self::assertSame($elements, $this->sut->getGroupElements(), 'Added 1 GroupElement element.');
+        
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        self::assertSame($elements, $this->sut->getGroupElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createGroupElementDummy();
+        $this->sut->addGroupElement($elements[1]);
+        self::assertSame($elements, $this->sut->getGroupElements(), 'Added 2 GroupElement elements.');
+    }
+    
+    /**
+     * Tests that getAttributeGroupElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no AttributeGroupElement element has been added
+     * - an indexed array of all added AttributeGroupElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetAttributeGroupElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'No element has been added.');
+        
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addElementElement($this->createElementElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addNotationElement($this->createNotationElementDummy());
+        $this->sut->addDefinitionAnnotationElement($this->createAnnotationElementDummy());
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added elements but no AttributeGroupElement element.');
+        
+        $elements[] = $this->createAttributeGroupElementDummy();
+        $this->sut->addAttributeGroupElement($elements[0]);
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 1 AttributeGroupElement element.');
+        
+        $this->sut->addElementElement($this->createElementElementDummy());
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createAttributeGroupElementDummy();
+        $this->sut->addAttributeGroupElement($elements[1]);
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 2 AttributeGroupElement elements.');
+    }
+    
+    /**
+     * Tests that getElementElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no ElementElement element has been added
+     * - an indexed array of all added ElementElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getElementElements(), 'No element has been added.');
+        
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addNotationElement($this->createNotationElementDummy());
+        $this->sut->addDefinitionAnnotationElement($this->createAnnotationElementDummy());
+        self::assertSame($elements, $this->sut->getElementElements(), 'Added elements but no ElementElement element.');
+        
+        $elements[] = $this->createElementElementDummy();
+        $this->sut->addElementElement($elements[0]);
+        self::assertSame($elements, $this->sut->getElementElements(), 'Added 1 ElementElement element.');
+        
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        self::assertSame($elements, $this->sut->getElementElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createElementElementDummy();
+        $this->sut->addElementElement($elements[1]);
+        self::assertSame($elements, $this->sut->getElementElements(), 'Added 2 ElementElement elements.');
+    }
+    
+    /**
+     * Tests that getAttributeElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no AttributeElement element has been added
+     * - an indexed array of all added AttributeElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetAttributeElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'No element has been added.');
+        
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addElementElement($this->createElementElementDummy());
+        $this->sut->addNotationElement($this->createNotationElementDummy());
+        $this->sut->addDefinitionAnnotationElement($this->createAnnotationElementDummy());
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'Added elements but no AttributeElement element.');
+        
+        $elements[] = $this->createAttributeElementDummy();
+        $this->sut->addAttributeElement($elements[0]);
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 1 AttributeElement element.');
+        
+        $this->sut->addNotationElement($this->createNotationElementDummy());
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createAttributeElementDummy();
+        $this->sut->addAttributeElement($elements[1]);
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 2 AttributeElement elements.');
+    }
+    
+    /**
+     * Tests that getNotationElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no NotationElement element has been added
+     * - an indexed array of all added NotationElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetNotationElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getNotationElements(), 'No element has been added.');
+        
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addElementElement($this->createElementElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addDefinitionAnnotationElement($this->createAnnotationElementDummy());
+        self::assertSame($elements, $this->sut->getNotationElements(), 'Added elements but no NotationElement element.');
+        
+        $elements[] = $this->createNotationElementDummy();
+        $this->sut->addNotationElement($elements[0]);
+        self::assertSame($elements, $this->sut->getNotationElements(), 'Added 1 NotationElement element.');
+        
+        $this->sut->addDefinitionAnnotationElement($this->createAnnotationElementDummy());
+        self::assertSame($elements, $this->sut->getNotationElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createNotationElementDummy();
+        $this->sut->addNotationElement($elements[1]);
+        self::assertSame($elements, $this->sut->getNotationElements(), 'Added 2 NotationElement elements.');
+    }
+    
+    /**
+     * Tests that getDefinitionAnnotationElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no AnnotationElement element has been added
+     * - an indexed array of all added AnnotationElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetDefinitionAnnotationElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getDefinitionAnnotationElements(), 'No element has been added.');
+        
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addElementElement($this->createElementElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addNotationElement($this->createNotationElementDummy());
+        self::assertSame($elements, $this->sut->getDefinitionAnnotationElements(), 'Added elements but no AnnotationElement element.');
+        
+        $elements[] = $this->createAnnotationElementDummy();
+        $this->sut->addDefinitionAnnotationElement($elements[0]);
+        self::assertSame($elements, $this->sut->getDefinitionAnnotationElements(), 'Added 1 AnnotationElement element.');
+        
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        self::assertSame($elements, $this->sut->getDefinitionAnnotationElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createAnnotationElementDummy();
+        $this->sut->addDefinitionAnnotationElement($elements[1]);
+        self::assertSame($elements, $this->sut->getDefinitionAnnotationElements(), 'Added 2 AnnotationElement elements.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 1 ((((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer1()
+    {
+        $children = [];
+        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createComplexTypeElementDummy();
+        $children[] = $this->createGroupElementDummy();
+        $children[] = $this->createAttributeGroupElementDummy();
+        $children[] = $this->createElementElementDummy();
+        $children[] = $this->createAttributeElementDummy();
+        $children[] = $this->createNotationElementDummy();
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createComplexTypeElementDummy();
+        $children[] = $this->createGroupElementDummy();
+        $children[] = $this->createAttributeGroupElementDummy();
+        $children[] = $this->createElementElementDummy();
+        $children[] = $this->createAttributeElementDummy();
+        $children[] = $this->createNotationElementDummy();
+        $children[] = $this->createAnnotationElementDummy();
+        $this->sut->addSimpleTypeElement($children[0]);
+        $this->sut->addComplexTypeElement($children[1]);
+        $this->sut->addGroupElement($children[2]);
+        $this->sut->addAttributeGroupElement($children[3]);
+        $this->sut->addElementElement($children[4]);
+        $this->sut->addAttributeElement($children[5]);
+        $this->sut->addNotationElement($children[6]);
+        $this->sut->addDefinitionAnnotationElement($children[7]);
+        $this->sut->addSimpleTypeElement($children[8]);
+        $this->sut->addComplexTypeElement($children[9]);
+        $this->sut->addGroupElement($children[10]);
+        $this->sut->addAttributeGroupElement($children[11]);
+        $this->sut->addElementElement($children[12]);
+        $this->sut->addAttributeElement($children[13]);
+        $this->sut->addNotationElement($children[14]);
+        $this->sut->addDefinitionAnnotationElement($children[15]);
+        self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
+    }
 }
