@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom;
 
+use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ImportElement;
@@ -29,6 +30,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     public function testGetElementsReturnsEmptyArrayWhenNoElementHasBeenAdded()
     {
         self::assertSame([], $this->sut->getElements(), 'No element has been added.');
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\AnnotationElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createAnnotationElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(AnnotationElement::class)->reveal();
     }
     
     /**
