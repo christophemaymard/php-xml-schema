@@ -162,4 +162,34 @@ class KeyElementTest extends AbstractCompositeElementTestCase
         $this->sut->addFieldElement($children[1]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 2.');
     }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in that order:
+     * - elements from container 0 (annotation?)
+     * - elements from container 1 (selector)
+     * - elements from container 2 (field+)
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOrderedByContainer012()
+    {
+        $children = [];
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createSelectorElementDummy();
+        $children[] = $this->createFieldElementDummy();
+        $children[] = $this->createFieldElementDummy();
+        
+        // Init container 2.
+        $this->sut->addFieldElement($children[2]);
+        $this->sut->addFieldElement($children[3]);
+        
+        // Init container 1.
+        $this->sut->setSelectorElement($children[1]);
+        
+        // Init container 0.
+        $this->sut->setAnnotationElement($children[0]);
+        
+        self::assertSame($children, $this->sut->getElements(), 'Elements ordered by container: 0, 1, 2.');
+    }
 }
