@@ -19,6 +19,7 @@ use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\KeyElement;
+use PhpXmlSchema\Dom\KeyRefElement;
 use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\RedefineElement;
@@ -170,6 +171,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createKeyElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(KeyElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\KeyRefElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createKeyRefElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(KeyRefElement::class)->reveal();
     }
     
     /**
