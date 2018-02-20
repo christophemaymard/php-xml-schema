@@ -16,10 +16,75 @@ namespace PhpXmlSchema\Dom;
 abstract class AbstractCompositeElement implements CompositeElementInterface
 {
     /**
+     * The sequence of containers that hold the child elements.
+     * Each entry is a container that holds multiple elements.
+     * @var array
+     */
+    private $sequence = [];
+    
+    /**
+     * Adds an element to the container located at the specified index.
+     * 
+     * If the container does not exist then it is created.
+     * 
+     * @param   int                 $index      The index of the container.
+     * @param   ElementInterface    $element    The element to add.
+     */
+    protected function addChildElement(int $index, ElementInterface $element)
+    {
+        // Creates the container (that holds multiple elements) if it does not exist.
+        if (!$this->hasContainer($index)) {
+            $this->sequence[$index] = [];
+        }
+        
+        // Adds the element to the container.
+        $this->sequence[$index][] = $element;
+    }
+    
+    /**
+     * Returns a set of elements, from the container located at the 
+     * specified index, which match a class or an interface name.
+     * 
+     * If the container does not exist then it returns an empty array.
+     * 
+     * @param   int     $index  The index of the container.
+     * @param   string  $type   The class or the interface name that the elements must match.
+     * @return  ElementInterface[]
+     */
+    protected function getChildElementsByType(int $index, string $type):array
+    {
+        return $this->hasContainer($index) ?
+            \array_values(\array_filter($this->sequence[$index], function($element) use ($type) {
+                return $element instanceof $type;
+            })) :
+            [];
+    }
+    
+    /**
+     * Indicates whether a container is present in the sequence at the 
+     * specified index.
+     * 
+     * @param   int $index  The index of the container.
+     * @return  bool    TRUE if a container is present, otherwise FALSE.
+     */
+    private function hasContainer(int $index):bool
+    {
+        return \array_key_exists($index, $this->sequence);
+    }
+    
+    /**
      * {@inheritDoc}
      */
     public function getElements():array
     {
-        return [];
+        $children = [];
+        
+        foreach ($this->sequence as $container) {
+            foreach ($container as $element) {
+                $children[] = $element;
+            }
+        }
+        
+        return $children;
     }
 }
