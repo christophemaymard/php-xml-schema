@@ -503,4 +503,71 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
         $this->sut->addDefinitionAnnotationElement($children[15]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in that order:
+     * - elements from container 0 ((include | import | redefine | annotation)*)
+     * - elements from container 1 ((((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*)
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOrderedByContainer01()
+    {
+        $children = [];
+        $children[] = $this->createIncludeElementDummy();
+        $children[] = $this->createImportElementDummy();
+        $children[] = $this->createRedefineElementDummy();
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createIncludeElementDummy();
+        $children[] = $this->createImportElementDummy();
+        $children[] = $this->createRedefineElementDummy();
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createComplexTypeElementDummy();
+        $children[] = $this->createGroupElementDummy();
+        $children[] = $this->createAttributeGroupElementDummy();
+        $children[] = $this->createElementElementDummy();
+        $children[] = $this->createAttributeElementDummy();
+        $children[] = $this->createNotationElementDummy();
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createComplexTypeElementDummy();
+        $children[] = $this->createGroupElementDummy();
+        $children[] = $this->createAttributeGroupElementDummy();
+        $children[] = $this->createElementElementDummy();
+        $children[] = $this->createAttributeElementDummy();
+        $children[] = $this->createNotationElementDummy();
+        $children[] = $this->createAnnotationElementDummy();
+        
+        // Init container 1.
+        $this->sut->addSimpleTypeElement($children[8]);
+        $this->sut->addComplexTypeElement($children[9]);
+        $this->sut->addGroupElement($children[10]);
+        $this->sut->addAttributeGroupElement($children[11]);
+        $this->sut->addElementElement($children[12]);
+        $this->sut->addAttributeElement($children[13]);
+        $this->sut->addNotationElement($children[14]);
+        $this->sut->addDefinitionAnnotationElement($children[15]);
+        $this->sut->addSimpleTypeElement($children[16]);
+        $this->sut->addComplexTypeElement($children[17]);
+        $this->sut->addGroupElement($children[18]);
+        $this->sut->addAttributeGroupElement($children[19]);
+        $this->sut->addElementElement($children[20]);
+        $this->sut->addAttributeElement($children[21]);
+        $this->sut->addNotationElement($children[22]);
+        $this->sut->addDefinitionAnnotationElement($children[23]);
+        
+        // Init container 0.
+        $this->sut->addIncludeElement($children[0]);
+        $this->sut->addImportElement($children[1]);
+        $this->sut->addRedefineElement($children[2]);
+        $this->sut->addCompositionAnnotationElement($children[3]);
+        $this->sut->addIncludeElement($children[4]);
+        $this->sut->addImportElement($children[5]);
+        $this->sut->addRedefineElement($children[6]);
+        $this->sut->addCompositionAnnotationElement($children[7]);
+        
+        self::assertSame($children, $this->sut->getElements(), 'Elements ordered by container: 0, 1.');
+    }
 }
