@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
+use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\RedefineElement;
@@ -75,6 +76,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createDocumentationElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(DocumentationElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\GroupElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createGroupElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(GroupElement::class)->reveal();
     }
     
     /**
