@@ -40,4 +40,34 @@ class AllElement extends AbstractCompositeElement implements ParticleElementInte
     {
         return $this->isChildElementSet(0);
     }
+    
+    /**
+     * Adds an "element" element to this element.
+     * 
+     * @param   ElementElement  $element    The element to add.
+     */
+    public function addElementElement(ElementElement $element)
+    {
+        $this->addChildElement(1, $element);
+    }
+    
+    /**
+     * Returns all the "element" child elements.
+     * 
+     * @return  ElementElement[]    An indexed array of ElementElement instances.
+     */
+    public function getElementElements():array
+    {
+        return $this->getChildElementsByType(1, ElementElement::class);
+    }
+    
+    /**
+     * Returns all the particle child elements.
+     * 
+     * @return  ParticleElementInterface[]  An indexed array of ParticleElementInterface instances.
+     */
+    public function getParticleElements():array
+    {
+        return $this->getChildElementsByType(1, ParticleElementInterface::class);
+    }
 }

@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PhpXmlSchema\Dom\AllElement;
+use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\AllElement} class.
@@ -74,5 +75,68 @@ class AllElementTest extends AbstractCompositeElementTestCase
         $children[] = $this->createAnnotationElementDummy();
         $this->sut->setAnnotationElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 0.');
+    }
+    
+    /**
+     * Tests that getElementElements() returns:
+     * - an empty array when no element has been added
+     * - an indexed array of all added ElementElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getElementElements(), 'No element has been added.');
+        
+        $elements[] = $this->createElementElementDummy();
+        $this->sut->addElementElement($elements[0]);
+        self::assertSame($elements, $this->sut->getElementElements(), 'Added 1 ElementElement element.');
+        
+        $elements[] = $this->createElementElementDummy();
+        $this->sut->addElementElement($elements[1]);
+        self::assertSame($elements, $this->sut->getElementElements(), 'Added 2 ElementElement elements.');
+    }
+    
+    /**
+     * Tests that getParticleElements() returns:
+     * - an empty array when no element has been added
+     * - an indexed array of all added particle elements in container 1 (element*)
+     * 
+     * @group   elt-content
+     */
+    public function testGetParticleElements()
+    {
+        self::assertSame([], $this->sut->getParticleElements(), 'No element has been added.');
+        
+        self::assertSame($this->fillSutContainer1(), $this->sut->getParticleElements(), 'Added particle elements.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 1 (element*).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer1()
+    {
+        self::assertSame($this->fillSutContainer1(), $this->sut->getElements(), 'Elements in container 1.');
+    }
+    
+    /**
+     * Fills the container 1 (element*) of the SUT with a set of elements.
+     * 
+     * @return  ProphecySubjectInterface[]  An indexed array of all the created elements.
+     */
+    private function fillSutContainer1():array
+    {
+        $elements = [];
+        $elements[] = $this->createElementElementDummy();
+        $elements[] = $this->createElementElementDummy();
+        $this->sut->addElementElement($elements[0]);
+        $this->sut->addElementElement($elements[1]);
+        
+        return $elements;
     }
 }
