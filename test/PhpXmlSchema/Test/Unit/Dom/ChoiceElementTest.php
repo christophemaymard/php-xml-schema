@@ -27,4 +27,53 @@ class ChoiceElementTest extends AbstractCompositeElementTestCase
     {
         $this->sut = new ChoiceElement();
     }
+    
+    /**
+     * Tests that hasAnnotationElement() returns a boolean:
+     * - FALSE when no element has been set
+     * - TRUE when an element has been set
+     * 
+     * @group   elt-content
+     */
+    public function testHasAnnotationElement()
+    {
+        self::assertFalse($this->sut->hasAnnotationElement(), 'No element has been set.');
+        
+        $this->sut->setAnnotationElement($this->createAnnotationElementDummy());
+        self::assertTrue($this->sut->hasAnnotationElement(), 'Set with an element: AnnotationElement.');
+    }
+    
+    /**
+     * Tests that getAnnotationElement() returns:
+     * - NULL when no element has been set
+     * - the instance of the element that has been set
+     * 
+     * @group   elt-content
+     */
+    public function testGetAnnotationElement()
+    {
+        self::assertNull($this->sut->getAnnotationElement(), 'No element has been set.');
+        
+        $elt1 = $this->createAnnotationElementDummy();
+        $this->sut->setAnnotationElement($elt1);
+        self::assertSame($elt1, $this->sut->getAnnotationElement(), 'Set with an element: AnnotationElement.');
+        
+        $elt2 = $this->createAnnotationElementDummy();
+        $this->sut->setAnnotationElement($elt2);
+        self::assertSame($elt2, $this->sut->getAnnotationElement(), 'Set with another element: AnnotationElement.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 0 (annotation?).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer0()
+    {
+        $children = [];
+        $children[] = $this->createAnnotationElementDummy();
+        $this->sut->setAnnotationElement($children[0]);
+        self::assertSame($children, $this->sut->getElements(), 'Elements in container 0.');
+    }
 }
