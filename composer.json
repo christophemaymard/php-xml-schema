@@ -1,0 +1,23 @@
+{
+    "name": "cmaymard/php-xml-schema",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christophe Maymard",
+            "email": "christophe.maymard@hotmail.com"
+        }
+    ],
+    "keywords": [ "php", "xml", "schema" ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpXmlSchema\\": "src/PhpXmlSchema/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
