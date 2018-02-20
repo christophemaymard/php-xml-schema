@@ -17,7 +17,9 @@ abstract class AbstractCompositeElement implements CompositeElementInterface
 {
     /**
      * The sequence of containers that hold the child elements.
-     * Each entry is a container that holds multiple elements.
+     * Each entry can be:
+     * - a container that holds multiple elements, or
+     * - a container that holds a single element
      * @var array
      */
     private $sequence = [];
@@ -64,6 +66,44 @@ abstract class AbstractCompositeElement implements CompositeElementInterface
     }
     
     /**
+     * Returns the element of the container located at the specified index.
+     * 
+     * If the container does not exist then it returns NULL.
+     * 
+     * @param   int $index  The index of the container.
+     * @return  ElementInterface|NULL   The instance of the element, otherwise NULL.
+     */
+    protected function getChildElement(int $index)
+    {
+        return $this->hasContainer($index) ? $this->sequence[$index] : NULL;
+    }
+    
+    /**
+     * Sets an element to the container located at the specified index.
+     * 
+     * If the container does not exist then it is created.
+     * 
+     * @param   int                 $index      The index of the container.
+     * @param   ElementInterface    $element    The element to set.
+     */
+    protected function setChildElement(int $index, ElementInterface $element)
+    {
+        $this->sequence[$index] = $element;
+    }
+    
+    /**
+     * Indiates whether an element has been set in the container located at 
+     * the specified index.
+     * 
+     * @param   int $index  The index of the container.
+     * @return  bool    TRUE if an element has been set, otherwise FALSE.
+     */
+    protected function isChildElementSet(int $index):bool
+    {
+        return $this->hasContainer($index) && $this->sequence[$index] instanceof ElementInterface;
+    }
+    
+    /**
      * Indicates whether a container is present in the sequence at the 
      * specified index.
      * 
@@ -83,8 +123,14 @@ abstract class AbstractCompositeElement implements CompositeElementInterface
         $children = [];
         
         foreach ($this->sequence as $container) {
-            foreach ($container as $element) {
-                $children[] = $element;
+            // Is it a container that holds multiple elements?
+            if (\is_array($container)) {
+                foreach ($container as $element) {
+                    $children[] = $element;
+                }
+            } else {
+                // It is container that holds a single element.
+                $children[] = $container;
             }
         }
         
