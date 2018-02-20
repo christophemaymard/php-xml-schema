@@ -19,6 +19,7 @@ use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\RedefineElement;
+use PhpXmlSchema\Dom\SelectorElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
@@ -162,6 +163,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createRedefineElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(RedefineElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\SelectorElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createSelectorElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(SelectorElement::class)->reveal();
     }
     
     /**
