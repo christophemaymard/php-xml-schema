@@ -65,4 +65,29 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
         $this->sut->addSimpleTypeElement($children[1]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in that order:
+     * - elements from container 0 (annotation?)
+     * - elements from container 1 (simpleType*)
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOrderedByContainer01()
+    {
+        $children = [];
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createSimpleTypeElementDummy();
+        
+        // Init container 1.
+        $this->sut->addSimpleTypeElement($children[1]);
+        $this->sut->addSimpleTypeElement($children[2]);
+        
+        // Init container 0.
+        $this->sut->setAnnotationElement($children[0]);
+        
+        self::assertSame($children, $this->sut->getElements(), 'Elements ordered by container: 0, 1.');
+    }
 }
