@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
+use PhpXmlSchema\Dom\AttributeGroupElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\GroupElement;
@@ -54,6 +55,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createAppInfoElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(AppInfoElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\AttributeGroupElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createAttributeGroupElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(AttributeGroupElement::class)->reveal();
     }
     
     /**
