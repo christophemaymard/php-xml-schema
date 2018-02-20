@@ -88,7 +88,15 @@ abstract class AbstractCompositeElement implements CompositeElementInterface
      */
     protected function setChildElement(int $index, ElementInterface $element)
     {
-        $this->sequence[$index] = $element;
+        if (!$this->hasContainer($index)) {
+            // Creates and initializes a container that holds a single element.
+            $this->sequence[$index] = $element;
+            
+            // Sorts the containers by index.
+            \ksort($this->sequence);
+        } else {
+            $this->sequence[$index] = $element;
+        }
     }
     
     /**
