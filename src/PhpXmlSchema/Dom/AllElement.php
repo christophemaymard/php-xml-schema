@@ -15,12 +15,10 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class AllElement extends AbstractCompositeElement
+class AllElement extends AbstractCompositeElement implements ParticleElementInterface
 {
     /**
-     * Returns the "annotation" element.
-     * 
-     * @return  AnnotationElement|NULL  The instance of the element if it has been set, otherwise NULL.
+     * {@inheritDoc}
      */
     public function getAnnotationElement()
     {
@@ -28,9 +26,7 @@ class AllElement extends AbstractCompositeElement
     }
     
     /**
-     * Sets the "annotation" element.
-     * 
-     * @param   AnnotationElement   $element    The element to set.
+     * {@inheritDoc}
      */
     public function setAnnotationElement(AnnotationElement $element)
     {
@@ -38,9 +34,7 @@ class AllElement extends AbstractCompositeElement
     }
     
     /**
-     * Indicates whether an "annotation" element has been set.
-     * 
-     * @return  bool    TRUE if an element has been set, otherwise FALSE.
+     * {@inheritDoc}
      */
     public function hasAnnotationElement():bool
     {
