@@ -17,4 +17,33 @@ namespace PhpXmlSchema\Dom;
  */
 class ElementElement extends AbstractAnnotatedElement
 {
+    /**
+     * Returns the type element.
+     * 
+     * @return  TypeElementInterface|NULL   The instance of the element if it has been set, otherwise NULL.
+     */
+    public function getTypeElement()
+    {
+        return $this->getChildElement(1);
+    }
+    
+    /**
+     * Sets the type element.
+     * 
+     * @param   TypeElementInterface    $element    The element to set.
+     */
+    public function setTypeElement(TypeElementInterface $element)
+    {
+        $this->setChildElement(1, $element);
+    }
+    
+    /**
+     * Indicates whether a type element has been set.
+     * 
+     * @return  bool    TRUE if an element has been set, otherwise FALSE.
+     */
+    public function hasTypeElement():bool
+    {
+        return $this->isChildElementSet(1);
+    }
 }
