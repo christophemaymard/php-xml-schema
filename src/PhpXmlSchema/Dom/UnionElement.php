@@ -17,4 +17,23 @@ namespace PhpXmlSchema\Dom;
  */
 class UnionElement extends AbstractAnnotatedElement
 {
+    /**
+     * Adds a "simpleType" element to this element.
+     * 
+     * @param   SimpleTypeElement   $element    The element to add.
+     */
+    public function addSimpleTypeElement(SimpleTypeElement $element)
+    {
+        $this->addChildElement(1, $element);
+    }
+    
+    /**
+     * Returns all the "simpleType" child elements.
+     * 
+     * @return  SimpleTypeElement[] An indexed array of SimpleTypeElement instances.
+     */
+    public function getSimpleTypeElements():array
+    {
+        return $this->getChildElementsByType(1, SimpleTypeElement::class);
+    }
 }
