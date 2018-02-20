@@ -76,4 +76,53 @@ class AttributeElementTest extends AbstractCompositeElementTestCase
         $this->sut->setAnnotationElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 0.');
     }
+    
+    /**
+     * Tests that hasSimpleTypeElement() returns a boolean:
+     * - FALSE when no element has been set
+     * - TRUE when an element has been set
+     * 
+     * @group   elt-content
+     */
+    public function testHasSimpleTypeElement()
+    {
+        self::assertFalse($this->sut->hasSimpleTypeElement(), 'No element has been set.');
+        
+        $this->sut->setSimpleTypeElement($this->createSimpleTypeElementDummy());
+        self::assertTrue($this->sut->hasSimpleTypeElement(), 'Set with an element: SimpleTypeElement.');
+    }
+    
+    /**
+     * Tests that getSimpleTypeElement() returns:
+     * - NULL when no element has been set
+     * - the instance of the element that has been set
+     * 
+     * @group   elt-content
+     */
+    public function testGetSimpleTypeElement()
+    {
+        self::assertNull($this->sut->getSimpleTypeElement(), 'No element has been set.');
+        
+        $elt1 = $this->createSimpleTypeElementDummy();
+        $this->sut->setSimpleTypeElement($elt1);
+        self::assertSame($elt1, $this->sut->getSimpleTypeElement(), 'Set with an element: SimpleTypeElement.');
+        
+        $elt2 = $this->createSimpleTypeElementDummy();
+        $this->sut->setSimpleTypeElement($elt2);
+        self::assertSame($elt2, $this->sut->getSimpleTypeElement(), 'Set with another element: SimpleTypeElement.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 1 (simpleType?).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer1()
+    {
+        $children = [];
+        $children[] = $this->createSimpleTypeElementDummy();
+        $this->sut->setSimpleTypeElement($children[0]);
+        self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
+    }
 }
