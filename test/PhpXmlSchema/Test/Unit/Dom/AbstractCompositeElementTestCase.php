@@ -17,6 +17,7 @@ use PhpXmlSchema\Dom\ElementElement;
 use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
+use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\RedefineElement;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
@@ -140,6 +141,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createIncludeElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(IncludeElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\NotationElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createNotationElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(NotationElement::class)->reveal();
     }
     
     /**
