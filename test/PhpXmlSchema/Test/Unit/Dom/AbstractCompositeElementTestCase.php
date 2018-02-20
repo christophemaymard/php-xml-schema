@@ -7,6 +7,9 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom;
 
+use PhpXmlSchema\Dom\DocumentationElement;
+use Prophecy\Prophecy\ProphecySubjectInterface;
+
 /**
  * Represents the base class for all the composite element test cases.
  * 
@@ -23,5 +26,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     public function testGetElementsReturnsEmptyArrayWhenNoElementHasBeenAdded()
     {
         self::assertSame([], $this->sut->getElements(), 'No element has been added.');
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\DocumentationElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createDocumentationElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(DocumentationElement::class)->reveal();
     }
 }
