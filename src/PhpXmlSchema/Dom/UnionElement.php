@@ -15,7 +15,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class UnionElement extends AbstractAnnotatedElement
+class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivationElementInterface
 {
     /**
      * Adds a "simpleType" element to this element.
