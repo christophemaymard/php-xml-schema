@@ -46,4 +46,34 @@ class UniqueElement extends AbstractCompositeElement
     {
         return $this->isChildElementSet(0);
     }
+    
+    /**
+     * Returns the "selector" element.
+     * 
+     * @return  SelectorElement|NULL    The instance of the element if it has been set, otherwise NULL.
+     */
+    public function getSelectorElement()
+    {
+        return $this->getChildElement(1);
+    }
+    
+    /**
+     * Sets the "selector" element.
+     * 
+     * @param   SelectorElement $element    The element to set.
+     */
+    public function setSelectorElement(SelectorElement $element)
+    {
+        $this->setChildElement(1, $element);
+    }
+    
+    /**
+     * Indicates whether a "selector" element has been set.
+     * 
+     * @return  bool    TRUE if an element has been set, otherwise FALSE.
+     */
+    public function hasSelectorElement():bool
+    {
+        return $this->isChildElementSet(1);
+    }
 }

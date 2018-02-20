@@ -76,4 +76,53 @@ class UniqueElementTest extends AbstractCompositeElementTestCase
         $this->sut->setAnnotationElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 0.');
     }
+    
+    /**
+     * Tests that hasSelectorElement() returns a boolean:
+     * - FALSE when no element has been set
+     * - TRUE when an element has been set
+     * 
+     * @group   elt-content
+     */
+    public function testHasSelectorElement()
+    {
+        self::assertFalse($this->sut->hasSelectorElement(), 'No element has been set.');
+        
+        $this->sut->setSelectorElement($this->createSelectorElementDummy());
+        self::assertTrue($this->sut->hasSelectorElement(), 'Set with an element: SelectorElement.');
+    }
+    
+    /**
+     * Tests that getSelectorElement() returns:
+     * - NULL when no element has been set
+     * - the instance of the element that has been set
+     * 
+     * @group   elt-content
+     */
+    public function testGetSelectorElement()
+    {
+        self::assertNull($this->sut->getSelectorElement(), 'No element has been set.');
+        
+        $elt1 = $this->createSelectorElementDummy();
+        $this->sut->setSelectorElement($elt1);
+        self::assertSame($elt1, $this->sut->getSelectorElement(), 'Set with an element: SelectorElement.');
+        
+        $elt2 = $this->createSelectorElementDummy();
+        $this->sut->setSelectorElement($elt2);
+        self::assertSame($elt2, $this->sut->getSelectorElement(), 'Set with another element: SelectorElement.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 1 (selector).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer1()
+    {
+        $children = [];
+        $children[] = $this->createSelectorElementDummy();
+        $this->sut->setSelectorElement($children[0]);
+        self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
+    }
 }
