@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\DocumentationElement;
+use PhpXmlSchema\Dom\ImportElement;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
@@ -48,5 +49,15 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createDocumentationElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(DocumentationElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\ImportElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createImportElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(ImportElement::class)->reveal();
     }
 }
