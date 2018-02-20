@@ -12,9 +12,17 @@
     "require": {
         "php": ">=7.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "6.*"
+    },
     "autoload": {
         "psr-4": {
             "PhpXmlSchema\\": "src/PhpXmlSchema/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpXmlSchema\\Test\\": "test/PhpXmlSchema/Test/"
         }
     },
     "config": {
