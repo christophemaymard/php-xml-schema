@@ -125,6 +125,31 @@ class AllElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in that order:
+     * - elements from container 0 (annotation?)
+     * - elements from container 1 (element*)
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOrderedByContainer01()
+    {
+        $children = [];
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createElementElementDummy();
+        $children[] = $this->createElementElementDummy();
+        
+        // Init container 1.
+        $this->sut->addElementElement($children[1]);
+        $this->sut->addElementElement($children[2]);
+        
+        // Init container 0.
+        $this->sut->setAnnotationElement($children[0]);
+        
+        self::assertSame($children, $this->sut->getElements(), 'Elements ordered by container: 0, 1.');
+    }
+    
+    /**
      * Fills the container 1 (element*) of the SUT with a set of elements.
      * 
      * @return  ProphecySubjectInterface[]  An indexed array of all the created elements.
