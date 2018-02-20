@@ -23,6 +23,7 @@ use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SelectorElement;
 use PhpXmlSchema\Dom\SimpleTypeDerivationElementInterface;
 use PhpXmlSchema\Dom\SimpleTypeElement;
+use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
@@ -207,5 +208,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createSimpleTypeElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(SimpleTypeElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleTypeRestrictionElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createSimpleTypeRestrictionElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(SimpleTypeRestrictionElement::class)->reveal();
     }
 }
