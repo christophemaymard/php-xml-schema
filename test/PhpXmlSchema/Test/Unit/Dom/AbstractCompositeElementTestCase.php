@@ -25,6 +25,7 @@ use PhpXmlSchema\Dom\SelectorElement;
 use PhpXmlSchema\Dom\SimpleTypeDerivationElementInterface;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
+use PhpXmlSchema\Dom\UnionElement;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
@@ -230,5 +231,15 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createSimpleTypeRestrictionElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(SimpleTypeRestrictionElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\UnionElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createUnionElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(UnionElement::class)->reveal();
     }
 }
