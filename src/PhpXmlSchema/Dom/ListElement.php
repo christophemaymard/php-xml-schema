@@ -15,6 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class ListElement extends AbstractSimpleTypedElement
+class ListElement extends AbstractSimpleTypedElement implements SimpleTypeDerivationElementInterface
 {
 }
