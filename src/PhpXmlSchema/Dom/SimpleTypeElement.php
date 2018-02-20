@@ -15,7 +15,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class SimpleTypeElement extends AbstractAnnotatedElement
+class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementInterface
 {
     /**
      * Returns the derivation element.
