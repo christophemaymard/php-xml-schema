@@ -15,65 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class ListElement extends AbstractCompositeElement
+class ListElement extends AbstractSimpleTypedElement
 {
-    /**
-     * Returns the "annotation" element.
-     * 
-     * @return  AnnotationElement|NULL  The instance of the element if it has been set, otherwise NULL.
-     */
-    public function getAnnotationElement()
-    {
-        return $this->getChildElement(0);
-    }
-    
-    /**
-     * Sets the "annotation" element.
-     * 
-     * @param   AnnotationElement   $element    The element to set.
-     */
-    public function setAnnotationElement(AnnotationElement $element)
-    {
-        $this->setChildElement(0, $element);
-    }
-    
-    /**
-     * Indicates whether an "annotation" element has been set.
-     * 
-     * @return  bool    TRUE if an element has been set, otherwise FALSE.
-     */
-    public function hasAnnotationElement():bool
-    {
-        return $this->isChildElementSet(0);
-    }
-    
-    /**
-     * Returns the "simpleType" element.
-     * 
-     * @return  SimpleTypeElement|NULL  The instance of the element if it has been set, otherwise NULL.
-     */
-    public function getSimpleTypeElement()
-    {
-        return $this->getChildElement(1);
-    }
-    
-    /**
-     * Sets the "simpleType" element.
-     * 
-     * @param   SimpleTypeElement   $element    The element to set.
-     */
-    public function setSimpleTypeElement(SimpleTypeElement $element)
-    {
-        $this->setChildElement(1, $element);
-    }
-    
-    /**
-     * Indicates whether a "simpleType" element has been set.
-     * 
-     * @return  bool    TRUE if an element has been set, otherwise FALSE.
-     */
-    public function hasSimpleTypeElement():bool
-    {
-        return $this->isChildElementSet(1);
-    }
 }

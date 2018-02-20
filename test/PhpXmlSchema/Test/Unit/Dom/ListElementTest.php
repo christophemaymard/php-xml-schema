@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\ListElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class ListElementTest extends AbstractCompositeElementTestCase
+class ListElementTest extends AbstractSimpleTypedElementTestCase
 {
     /**
      * {@inheritDoc}
@@ -26,126 +26,5 @@ class ListElementTest extends AbstractCompositeElementTestCase
     protected function setUp()
     {
         $this->sut = new ListElement();
-    }
-    
-    /**
-     * Tests that hasAnnotationElement() returns a boolean:
-     * - FALSE when no element has been set
-     * - TRUE when an element has been set
-     * 
-     * @group   elt-content
-     */
-    public function testHasAnnotationElement()
-    {
-        self::assertFalse($this->sut->hasAnnotationElement(), 'No element has been set.');
-        
-        $this->sut->setAnnotationElement($this->createAnnotationElementDummy());
-        self::assertTrue($this->sut->hasAnnotationElement(), 'Set with an element: AnnotationElement.');
-    }
-    
-    /**
-     * Tests that getAnnotationElement() returns:
-     * - NULL when no element has been set
-     * - the instance of the element that has been set
-     * 
-     * @group   elt-content
-     */
-    public function testGetAnnotationElement()
-    {
-        self::assertNull($this->sut->getAnnotationElement(), 'No element has been set.');
-        
-        $elt1 = $this->createAnnotationElementDummy();
-        $this->sut->setAnnotationElement($elt1);
-        self::assertSame($elt1, $this->sut->getAnnotationElement(), 'Set with an element: AnnotationElement.');
-        
-        $elt2 = $this->createAnnotationElementDummy();
-        $this->sut->setAnnotationElement($elt2);
-        self::assertSame($elt2, $this->sut->getAnnotationElement(), 'Set with another element: AnnotationElement.');
-    }
-    
-    /**
-     * Tests that getElements() returns an indexed array of all added 
-     * elements in container 0 (annotation?).
-     * 
-     * @group   elt-content
-     */
-    public function testGetElementsReturnsElementsOfContainer0()
-    {
-        $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $this->sut->setAnnotationElement($children[0]);
-        self::assertSame($children, $this->sut->getElements(), 'Elements in container 0.');
-    }
-    
-    /**
-     * Tests that hasSimpleTypeElement() returns a boolean:
-     * - FALSE when no element has been set
-     * - TRUE when an element has been set
-     * 
-     * @group   elt-content
-     */
-    public function testHasSimpleTypeElement()
-    {
-        self::assertFalse($this->sut->hasSimpleTypeElement(), 'No element has been set.');
-        
-        $this->sut->setSimpleTypeElement($this->createSimpleTypeElementDummy());
-        self::assertTrue($this->sut->hasSimpleTypeElement(), 'Set with an element: SimpleTypeElement.');
-    }
-    
-    /**
-     * Tests that getSimpleTypeElement() returns:
-     * - NULL when no element has been set
-     * - the instance of the element that has been set
-     * 
-     * @group   elt-content
-     */
-    public function testGetSimpleTypeElement()
-    {
-        self::assertNull($this->sut->getSimpleTypeElement(), 'No element has been set.');
-        
-        $elt1 = $this->createSimpleTypeElementDummy();
-        $this->sut->setSimpleTypeElement($elt1);
-        self::assertSame($elt1, $this->sut->getSimpleTypeElement(), 'Set with an element: SimpleTypeElement.');
-        
-        $elt2 = $this->createSimpleTypeElementDummy();
-        $this->sut->setSimpleTypeElement($elt2);
-        self::assertSame($elt2, $this->sut->getSimpleTypeElement(), 'Set with another element: SimpleTypeElement.');
-    }
-    
-    /**
-     * Tests that getElements() returns an indexed array of all added 
-     * elements in container 1 (simpleType?).
-     * 
-     * @group   elt-content
-     */
-    public function testGetElementsReturnsElementsOfContainer1()
-    {
-        $children = [];
-        $children[] = $this->createSimpleTypeElementDummy();
-        $this->sut->setSimpleTypeElement($children[0]);
-        self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
-    }
-    
-    /**
-     * Tests that getElements() returns an indexed array of all added 
-     * elements in that order:
-     * - elements from container 0 (annotation?)
-     * - elements from container 1 (simpleType?)
-     * 
-     * @group   elt-content
-     */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
-    {
-        $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createSimpleTypeElementDummy();
-        
-        // Init container 1.
-        $this->sut->setSimpleTypeElement($children[1]);
-        
-        // Init container 0.
-        $this->sut->setAnnotationElement($children[0]);
-        
-        self::assertSame($children, $this->sut->getElements(), 'Elements ordered by container: 0, 1.');
     }
 }
