@@ -15,7 +15,9 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class GroupElement extends AbstractAnnotatedElement implements ParticleElementInterface
+class GroupElement extends AbstractAnnotatedElement implements
+    ParticleElementInterface, 
+    TypeDefinitionParticleElementInterface
 {
     /**
      * Returns the model group element.
