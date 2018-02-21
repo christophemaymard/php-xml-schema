@@ -43,6 +43,7 @@ use PhpXmlSchema\Dom\SimpleTypeDerivationElementInterface;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use PhpXmlSchema\Dom\TotalDigitsElement;
+use PhpXmlSchema\Dom\TypeDefinitionParticleElementInterface;
 use PhpXmlSchema\Dom\TypeElementInterface;
 use PhpXmlSchema\Dom\UnionElement;
 use PhpXmlSchema\Dom\UniqueElement;
@@ -442,6 +443,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createTotalDigitsElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(TotalDigitsElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\TypeDefinitionParticleElementInterface} 
+     * interface.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createTypeDefinitionParticleElementInterfaceDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(TypeDefinitionParticleElementInterface::class)->reveal();
     }
     
     /**
