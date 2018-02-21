@@ -90,4 +90,34 @@ class AttributeGroupElement extends AbstractCompositeElement implements Attribut
     {
         return $this->getChildElementsByType(1, AttributeDeclarationElementInterface::class);
     }
+    
+    /**
+     * Returns the "anyAttribute" element.
+     * 
+     * @return  AnyAttributeElement|NULL    The instance of the element if it has been set, otherwise NULL.
+     */
+    public function getAnyAttributeElement()
+    {
+        return $this->getChildElement(2);
+    }
+    
+    /**
+     * Sets the "anyAttribute" element.
+     * 
+     * @param   AnyAttributeElement $element    The element to set.
+     */
+    public function setAnyAttributeElement(AnyAttributeElement $element)
+    {
+        $this->setChildElement(2, $element);
+    }
+    
+    /**
+     * Indicates whether an "anyAttribute" element has been set.
+     * 
+     * @return  bool    TRUE if an element has been set, otherwise FALSE.
+     */
+    public function hasAnyAttributeElement():bool
+    {
+        return $this->isChildElementSet(2);
+    }
 }
