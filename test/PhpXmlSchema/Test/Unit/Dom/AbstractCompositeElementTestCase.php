@@ -25,6 +25,7 @@ use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SelectorElement;
+use PhpXmlSchema\Dom\SequenceElement;
 use PhpXmlSchema\Dom\SimpleTypeDerivationElementInterface;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
@@ -233,6 +234,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createSelectorElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(SelectorElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\SequenceElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createSequenceElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(SequenceElement::class)->reveal();
     }
     
     /**
