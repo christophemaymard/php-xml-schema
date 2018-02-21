@@ -15,6 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class MaxLengthElement extends AbstractAnnotatedElement
+class MaxLengthElement extends AbstractAnnotatedElement implements FacetElementInterface
 {
 }
