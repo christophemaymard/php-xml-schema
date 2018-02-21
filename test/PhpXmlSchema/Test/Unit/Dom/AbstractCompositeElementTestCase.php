@@ -24,6 +24,7 @@ use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\KeyElement;
 use PhpXmlSchema\Dom\KeyRefElement;
+use PhpXmlSchema\Dom\LengthElement;
 use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\MaxInclusiveElement;
@@ -233,6 +234,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createKeyRefElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(KeyRefElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\LengthElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createLengthElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(LengthElement::class)->reveal();
     }
     
     /**
