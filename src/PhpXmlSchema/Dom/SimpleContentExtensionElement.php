@@ -16,6 +16,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class SimpleContentExtensionElement extends AbstractAttributeNamingElement
+class SimpleContentExtensionElement extends AbstractAttributeNamingElement implements
+    SimpleContentDerivationElementInterface
 {
 }
