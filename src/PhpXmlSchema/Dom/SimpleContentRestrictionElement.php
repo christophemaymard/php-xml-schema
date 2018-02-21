@@ -16,12 +16,11 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class SimpleContentRestrictionElement extends AbstractValueRestrictionElement
+class SimpleContentRestrictionElement extends AbstractValueRestrictionElement implements
+    SimpleContentDerivationElementInterface
 {
     /**
-     * Adds an "attribute" element to this element.
-     * 
-     * @param   AttributeElement    $element    The element to add.
+     * {@inheritDoc}
      */
     public function addAttributeElement(AttributeElement $element)
     {
@@ -29,9 +28,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement
     }
     
     /**
-     * Returns all the "attribute" child elements.
-     * 
-     * @return  AttributeElement[]  An indexed array of AttributeElement instances.
+     * {@inheritDoc}
      */
     public function getAttributeElements():array
     {
@@ -39,9 +36,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement
     }
     
     /**
-     * Adds an "attributeGroup" element to this element.
-     * 
-     * @param   AttributeGroupElement   $element    The element to add.
+     * {@inheritDoc}
      */
     public function addAttributeGroupElement(AttributeGroupElement $element)
     {
@@ -49,9 +44,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement
     }
     
     /**
-     * Returns all the "attributeGroup" child elements.
-     * 
-     * @return  AttributeGroupElement[] An indexed array of AttributeGroupElement instances.
+     * {@inheritDoc}
      */
     public function getAttributeGroupElements():array
     {
@@ -59,9 +52,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement
     }
     
     /**
-     * Returns all the attribute declaration child elements.
-     * 
-     * @return  AttributeDeclarationElementInterface[]  An indexed array of AttributeDeclarationElementInterface instances.
+     * {@inheritDoc}
      */
     public function getAttributeDeclarationElements():array
     {
@@ -69,9 +60,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement
     }
     
     /**
-     * Returns the "anyAttribute" element.
-     * 
-     * @return  AnyAttributeElement|NULL    The instance of the element if it has been set, otherwise NULL.
+     * {@inheritDoc}
      */
     public function getAnyAttributeElement()
     {
@@ -79,9 +68,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement
     }
     
     /**
-     * Sets the "anyAttribute" element.
-     * 
-     * @param   AnyAttributeElement $element    The element to set.
+     * {@inheritDoc}
      */
     public function setAnyAttributeElement(AnyAttributeElement $element)
     {
@@ -89,9 +76,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement
     }
     
     /**
-     * Indicates whether an "anyAttribute" element has been set.
-     * 
-     * @return  bool    TRUE if an element has been set, otherwise FALSE.
+     * {@inheritDoc}
      */
     public function hasAnyAttributeElement():bool
     {
