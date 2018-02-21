@@ -15,6 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class WhiteSpaceElement extends AbstractAnnotatedElement
+class WhiteSpaceElement extends AbstractAnnotatedElement implements FacetElementInterface
 {
 }
