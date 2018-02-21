@@ -30,6 +30,7 @@ use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\MaxInclusiveElement;
 use PhpXmlSchema\Dom\MaxLengthElement;
+use PhpXmlSchema\Dom\MinExclusiveElement;
 use PhpXmlSchema\Dom\MinInclusiveElement;
 use PhpXmlSchema\Dom\MinLengthElement;
 use PhpXmlSchema\Dom\ModelGroupElementInterface;
@@ -303,6 +304,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createMaxLengthElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(MaxLengthElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\MinExclusiveElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createMinExclusiveElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(MinExclusiveElement::class)->reveal();
     }
     
     /**
