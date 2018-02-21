@@ -24,6 +24,7 @@ use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\KeyElement;
 use PhpXmlSchema\Dom\KeyRefElement;
 use PhpXmlSchema\Dom\ListElement;
+use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\MinInclusiveElement;
 use PhpXmlSchema\Dom\ModelGroupElementInterface;
 use PhpXmlSchema\Dom\NotationElement;
@@ -228,6 +229,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createListElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(ListElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\MaxExclusiveElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createMaxExclusiveElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(MaxExclusiveElement::class)->reveal();
     }
     
     /**
