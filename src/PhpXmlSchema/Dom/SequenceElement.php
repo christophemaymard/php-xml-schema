@@ -15,6 +15,8 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class SequenceElement extends AbstractExplicitModelGroupElement implements ParticleElementInterface
+class SequenceElement extends AbstractExplicitModelGroupElement implements
+    ParticleElementInterface, 
+    TypeDefinitionParticleElementInterface
 {
 }
