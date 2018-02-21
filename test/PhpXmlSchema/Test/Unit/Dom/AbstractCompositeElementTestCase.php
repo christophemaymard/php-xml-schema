@@ -18,6 +18,7 @@ use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementElement;
 use PhpXmlSchema\Dom\FieldElement;
+use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
@@ -171,6 +172,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createFieldElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(FieldElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\FractionDigitsElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createFractionDigitsElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(FractionDigitsElement::class)->reveal();
     }
     
     /**
