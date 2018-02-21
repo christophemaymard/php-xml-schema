@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
+use PhpXmlSchema\Dom\ChoiceElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementElement;
@@ -90,6 +91,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createAttributeGroupElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(AttributeGroupElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\ChoiceElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createChoiceElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(ChoiceElement::class)->reveal();
     }
     
     /**
