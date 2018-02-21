@@ -47,4 +47,54 @@ class SimpleContentExtensionElement extends AbstractCompositeElement
     {
         return $this->isChildElementSet(0);
     }
+    
+    /**
+     * Adds an "attribute" element to this element.
+     * 
+     * @param   AttributeElement    $element    The element to add.
+     */
+    public function addAttributeElement(AttributeElement $element)
+    {
+        $this->addChildElement(1, $element);
+    }
+    
+    /**
+     * Returns all the "attribute" child elements.
+     * 
+     * @return  AttributeElement[]  An indexed array of AttributeElement instances.
+     */
+    public function getAttributeElements():array
+    {
+        return $this->getChildElementsByType(1, AttributeElement::class);
+    }
+    
+    /**
+     * Adds an "attributeGroup" element to this element.
+     * 
+     * @param   AttributeGroupElement   $element    The element to add.
+     */
+    public function addAttributeGroupElement(AttributeGroupElement $element)
+    {
+        $this->addChildElement(1, $element);
+    }
+    
+    /**
+     * Returns all the "attributeGroup" child elements.
+     * 
+     * @return  AttributeGroupElement[] An indexed array of AttributeGroupElement instances.
+     */
+    public function getAttributeGroupElements():array
+    {
+        return $this->getChildElementsByType(1, AttributeGroupElement::class);
+    }
+    
+    /**
+     * Returns all the attribute declaration child elements.
+     * 
+     * @return  AttributeDeclarationElementInterface[]  An indexed array of AttributeDeclarationElementInterface instances.
+     */
+    public function getAttributeDeclarationElements():array
+    {
+        return $this->getChildElementsByType(1, AttributeDeclarationElementInterface::class);
+    }
 }
