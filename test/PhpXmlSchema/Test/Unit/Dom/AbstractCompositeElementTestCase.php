@@ -41,6 +41,7 @@ use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SelectorElement;
 use PhpXmlSchema\Dom\SequenceElement;
 use PhpXmlSchema\Dom\SimpleContentDerivationElementInterface;
+use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
 use PhpXmlSchema\Dom\SimpleTypeDerivationElementInterface;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
@@ -423,6 +424,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createSimpleContentDerivationElementInterfaceDummy():ProphecySubjectInterface
     {
         return $this->prophesize(SimpleContentDerivationElementInterface::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleContentRestrictionElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createSimpleContentRestrictionElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(SimpleContentRestrictionElement::class)->reveal();
     }
     
     /**
