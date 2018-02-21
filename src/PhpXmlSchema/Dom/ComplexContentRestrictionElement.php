@@ -47,4 +47,34 @@ class ComplexContentRestrictionElement extends AbstractCompositeElement
     {
         return $this->isChildElementSet(0);
     }
+    
+    /**
+     * Returns the type definition particle element.
+     * 
+     * @return  TypeDefinitionParticleElementInterface|NULL The instance of the element if it has been set, otherwise NULL.
+     */
+    public function getTypeDefinitionParticleElement()
+    {
+        return $this->getChildElement(1);
+    }
+    
+    /**
+     * Sets the type definition particle element.
+     * 
+     * @param   TypeDefinitionParticleElementInterface  $element    The element to set.
+     */
+    public function setTypeDefinitionParticleElement(TypeDefinitionParticleElementInterface $element)
+    {
+        $this->setChildElement(1, $element);
+    }
+    
+    /**
+     * Indicates whether a type definition particle element has been set.
+     * 
+     * @return  bool    TRUE if an element has been set, otherwise FALSE.
+     */
+    public function hasTypeDefinitionParticleElement():bool
+    {
+        return $this->isChildElementSet(1);
+    }
 }
