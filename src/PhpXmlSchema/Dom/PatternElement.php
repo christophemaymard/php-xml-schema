@@ -15,6 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class PatternElement extends AbstractAnnotatedElement
+class PatternElement extends AbstractAnnotatedElement implements FacetElementInterface
 {
 }
