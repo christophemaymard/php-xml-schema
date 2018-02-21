@@ -133,4 +133,108 @@ class ComplexContentRestrictionElementTest extends AbstractCompositeElementTestC
         $this->sut->setTypeDefinitionParticleElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
+    
+    /**
+     * Tests that getAttributeElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no AttributeElement element has been added
+     * - an indexed array of all added AttributeElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetAttributeElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'No element has been added.');
+        
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'Added elements but no AttributeElement element.');
+        
+        $elements[] = $this->createAttributeElementDummy();
+        $this->sut->addAttributeElement($elements[0]);
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 1 AttributeElement element.');
+        
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createAttributeElementDummy();
+        $this->sut->addAttributeElement($elements[1]);
+        self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 2 AttributeElement elements.');
+    }
+    
+    /**
+     * Tests that getAttributeGroupElements() returns:
+     * - an empty array when no element has been added
+     * - an empty array when no AttributeGroupElement element has been added
+     * - an indexed array of all added AttributeGroupElement elements
+     * 
+     * @group   elt-content
+     */
+    public function testGetAttributeGroupElements()
+    {
+        $elements = [];
+        
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'No element has been added.');
+        
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added elements but no AttributeGroupElement element.');
+        
+        $elements[] = $this->createAttributeGroupElementDummy();
+        $this->sut->addAttributeGroupElement($elements[0]);
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 1 AttributeGroupElement element.');
+        
+        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 1 element between.');
+        
+        $elements[] = $this->createAttributeGroupElementDummy();
+        $this->sut->addAttributeGroupElement($elements[1]);
+        self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 2 AttributeGroupElement elements.');
+    }
+    
+    /**
+     * Tests that getAttributeDeclarationElements() returns:
+     * - an empty array when no element has been added
+     * - an indexed array of all added attribute declaration elements in container 2 ((attribute | attributeGroup)*)
+     * 
+     * @group   elt-content
+     */
+    public function testGetAttributeDeclarationElements()
+    {
+        self::assertSame([], $this->sut->getAttributeDeclarationElements(), 'No element has been added.');
+        
+        self::assertSame($this->fillSutContainer2(), $this->sut->getAttributeDeclarationElements(), 'Added attribute declaration elements.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 2 ((attribute | attributeGroup)*).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer2()
+    {
+        self::assertSame($this->fillSutContainer2(), $this->sut->getElements(), 'Elements in container 2.');
+    }
+    
+    /**
+     * Fills the container 2 ((attribute | attributeGroup)*) of the SUT with 
+     * a set of elements.
+     * 
+     * @return  ProphecySubjectInterface[]  An indexed array of all the created elements.
+     */
+    private function fillSutContainer2():array
+    {
+        $elements = [];
+        $elements[] = $this->createAttributeElementDummy();
+        $elements[] = $this->createAttributeGroupElementDummy();
+        $elements[] = $this->createAttributeElementDummy();
+        $elements[] = $this->createAttributeGroupElementDummy();
+        $this->sut->addAttributeElement($elements[0]);
+        $this->sut->addAttributeGroupElement($elements[1]);
+        $this->sut->addAttributeElement($elements[2]);
+        $this->sut->addAttributeGroupElement($elements[3]);
+        
+        return $elements;
+    }
 }
