@@ -35,6 +35,7 @@ use PhpXmlSchema\Dom\SequenceElement;
 use PhpXmlSchema\Dom\SimpleTypeDerivationElementInterface;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
+use PhpXmlSchema\Dom\TotalDigitsElement;
 use PhpXmlSchema\Dom\TypeElementInterface;
 use PhpXmlSchema\Dom\UnionElement;
 use PhpXmlSchema\Dom\UniqueElement;
@@ -347,6 +348,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createSimpleTypeRestrictionElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(SimpleTypeRestrictionElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\TotalDigitsElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createTotalDigitsElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(TotalDigitsElement::class)->reveal();
     }
     
     /**
