@@ -17,6 +17,7 @@ use PhpXmlSchema\Dom\ChoiceElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementElement;
+use PhpXmlSchema\Dom\EnumerationElement;
 use PhpXmlSchema\Dom\FieldElement;
 use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\GroupElement;
@@ -165,6 +166,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createElementElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(ElementElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\EnumerationElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createEnumerationElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(EnumerationElement::class)->reveal();
     }
     
     /**
