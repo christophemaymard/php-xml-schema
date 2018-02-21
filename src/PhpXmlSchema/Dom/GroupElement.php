@@ -15,29 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class GroupElement extends AbstractCompositeElement implements ParticleElementInterface
+class GroupElement extends AbstractAnnotatedElement implements ParticleElementInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function getAnnotationElement()
-    {
-        return $this->getChildElement(0);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function setAnnotationElement(AnnotationElement $element)
-    {
-        $this->setChildElement(0, $element);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function hasAnnotationElement():bool
-    {
-        return $this->isChildElementSet(0);
-    }
 }
