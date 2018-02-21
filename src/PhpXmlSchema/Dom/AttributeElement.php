@@ -15,6 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class AttributeElement extends AbstractSimpleTypedElement
+class AttributeElement extends AbstractSimpleTypedElement implements AttributeDeclarationElementInterface
 {
 }
