@@ -44,6 +44,7 @@ use PhpXmlSchema\Dom\TotalDigitsElement;
 use PhpXmlSchema\Dom\TypeElementInterface;
 use PhpXmlSchema\Dom\UnionElement;
 use PhpXmlSchema\Dom\UniqueElement;
+use PhpXmlSchema\Dom\WhiteSpaceElement;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
@@ -449,5 +450,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createUniqueElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(UniqueElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\WhiteSpaceElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createWhiteSpaceElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(WhiteSpaceElement::class)->reveal();
     }
 }
