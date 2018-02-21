@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PhpXmlSchema\Dom\AllElement;
 use PhpXmlSchema\Dom\AnnotationElement;
+use PhpXmlSchema\Dom\AnyAttributeElement;
 use PhpXmlSchema\Dom\AnyElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
@@ -87,6 +88,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createAnnotationElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(AnnotationElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\AnyAttributeElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createAnyAttributeElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(AnyAttributeElement::class)->reveal();
     }
     
     /**
