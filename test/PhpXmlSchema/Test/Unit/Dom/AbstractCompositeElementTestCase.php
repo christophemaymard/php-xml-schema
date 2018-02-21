@@ -34,6 +34,7 @@ use PhpXmlSchema\Dom\MinInclusiveElement;
 use PhpXmlSchema\Dom\MinLengthElement;
 use PhpXmlSchema\Dom\ModelGroupElementInterface;
 use PhpXmlSchema\Dom\NotationElement;
+use PhpXmlSchema\Dom\PatternElement;
 use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SelectorElement;
 use PhpXmlSchema\Dom\SequenceElement;
@@ -345,6 +346,16 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createNotationElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(NotationElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\PatternElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createPatternElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(PatternElement::class)->reveal();
     }
     
     /**
