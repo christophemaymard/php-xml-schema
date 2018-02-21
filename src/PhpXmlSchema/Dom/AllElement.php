@@ -15,6 +15,8 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class AllElement extends AbstractModelGroupElement implements ParticleElementInterface
+class AllElement extends AbstractModelGroupElement implements
+    ParticleElementInterface, 
+    TypeDefinitionParticleElementInterface
 {
 }
