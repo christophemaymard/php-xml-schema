@@ -218,6 +218,55 @@ class ComplexContentRestrictionElementTest extends AbstractCompositeElementTestC
     }
     
     /**
+     * Tests that hasAnyAttributeElement() returns a boolean:
+     * - FALSE when no element has been set
+     * - TRUE when an element has been set
+     * 
+     * @group   elt-content
+     */
+    public function testHasAnyAttributeElement()
+    {
+        self::assertFalse($this->sut->hasAnyAttributeElement(), 'No element has been set.');
+        
+        $this->sut->setAnyAttributeElement($this->createAnyAttributeElementDummy());
+        self::assertTrue($this->sut->hasAnyAttributeElement(), 'Set with an element: AnyAttributeElement.');
+    }
+    
+    /**
+     * Tests that getAnyAttributeElement() returns:
+     * - NULL when no element has been set
+     * - the instance of the element that has been set
+     * 
+     * @group   elt-content
+     */
+    public function testGetAnyAttributeElement()
+    {
+        self::assertNull($this->sut->getAnyAttributeElement(), 'No element has been set.');
+        
+        $elt1 = $this->createAnyAttributeElementDummy();
+        $this->sut->setAnyAttributeElement($elt1);
+        self::assertSame($elt1, $this->sut->getAnyAttributeElement(), 'Set with an element: AnyAttributeElement.');
+        
+        $elt2 = $this->createAnyAttributeElementDummy();
+        $this->sut->setAnyAttributeElement($elt2);
+        self::assertSame($elt2, $this->sut->getAnyAttributeElement(), 'Set with another element: AnyAttributeElement.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 3 (anyAttribute?).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer3()
+    {
+        $children = [];
+        $children[] = $this->createAnyAttributeElementDummy();
+        $this->sut->setAnyAttributeElement($children[0]);
+        self::assertSame($children, $this->sut->getElements(), 'Elements in container 3.');
+    }
+    
+    /**
      * Fills the container 2 ((attribute | attributeGroup)*) of the SUT with 
      * a set of elements.
      * 
