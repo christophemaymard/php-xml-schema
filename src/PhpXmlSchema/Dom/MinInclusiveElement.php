@@ -15,6 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class MinInclusiveElement extends AbstractAnnotatedElement
+class MinInclusiveElement extends AbstractAnnotatedElement implements FacetElementInterface
 {
 }
