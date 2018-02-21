@@ -15,6 +15,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class TotalDigitsElement extends AbstractAnnotatedElement
+class TotalDigitsElement extends AbstractAnnotatedElement implements FacetElementInterface
 {
 }
