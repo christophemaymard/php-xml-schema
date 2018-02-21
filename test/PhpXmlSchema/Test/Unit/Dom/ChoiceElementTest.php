@@ -264,6 +264,47 @@ class ChoiceElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in that order:
+     * - elements from container 0 (annotation?)
+     * - elements from container 1 ((element | group | choice | sequence | any)*)
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOrderedByContainer01()
+    {
+        $children = [];
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createElementElementDummy();
+        $children[] = $this->createGroupElementDummy();
+        $children[] = $this->createChoiceElementDummy();
+        $children[] = $this->createSequenceElementDummy();
+        $children[] = $this->createAnyElementDummy();
+        $children[] = $this->createElementElementDummy();
+        $children[] = $this->createGroupElementDummy();
+        $children[] = $this->createChoiceElementDummy();
+        $children[] = $this->createSequenceElementDummy();
+        $children[] = $this->createAnyElementDummy();
+        
+        // Init container 1.
+        $this->sut->addElementElement($children[1]);
+        $this->sut->addGroupElement($children[2]);
+        $this->sut->addChoiceElement($children[3]);
+        $this->sut->addSequenceElement($children[4]);
+        $this->sut->addAnyElement($children[5]);
+        $this->sut->addElementElement($children[6]);
+        $this->sut->addGroupElement($children[7]);
+        $this->sut->addChoiceElement($children[8]);
+        $this->sut->addSequenceElement($children[9]);
+        $this->sut->addAnyElement($children[10]);
+        
+        // Init container 0.
+        $this->sut->setAnnotationElement($children[0]);
+        
+        self::assertSame($children, $this->sut->getElements(), 'Elements ordered by container: 0, 1.');
+    }
+    
+    /**
      * Fills the container 1 ((element | group | choice | sequence | any)*) 
      * of the SUT with a set of elements.
      * 
