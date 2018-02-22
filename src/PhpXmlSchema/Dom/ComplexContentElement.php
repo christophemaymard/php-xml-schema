@@ -15,7 +15,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class ComplexContentElement extends AbstractAnnotatedElement
+class ComplexContentElement extends AbstractAnnotatedElement implements ContentElementInterface
 {
     /**
      * Returns the derivation element.
