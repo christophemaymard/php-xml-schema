@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * Attributes (version 1.0):
  * - default = string
+ * - fixed = string
  * 
  * Content (version 1.0):
  * (annotation?, simpleType?)
@@ -25,6 +26,12 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * @var string|NULL
      */
     private $defaultAttr;
+    
+    /**
+     * The value of the "fixed" attribute.
+     * @var string|NULL
+     */
+    private $fixedAttr;
     
     /**
      * Returns the value of the "default" attribute.
@@ -54,5 +61,35 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     public function hasDefault():bool
     {
         return $this->defaultAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "fixed" attribute.
+     * 
+     * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getFixed()
+    {
+        return $this->fixedAttr;
+    }
+    
+    /**
+     * Sets the value of the "fixed" attribute.
+     * 
+     * @param   string  $value  The value to set.
+     */
+    public function setFixed(string $value)
+    {
+        $this->fixedAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "fixed" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasFixed():bool
+    {
+        return $this->fixedAttr !== NULL;
     }
 }
