@@ -10,11 +10,14 @@ namespace PhpXmlSchema\Dom;
 /**
  * Represents the XML schema "maxLength" element.
  * 
+ * Attributes (version 1.0):
+ * - fixed = boolean
+ * 
  * Content (version 1.0):
  * (annotation?)
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class MaxLengthElement extends AbstractAnnotatedElement implements FacetElementInterface
+class MaxLengthElement extends AbstractFixedFacetElement
 {
 }

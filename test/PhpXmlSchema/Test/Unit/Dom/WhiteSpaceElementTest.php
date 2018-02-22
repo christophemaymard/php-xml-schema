@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\WhiteSpaceElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class WhiteSpaceElementTest extends AbstractAnnotatedElementTestCase
+class WhiteSpaceElementTest extends AbstractFixedFacetElementTestCase
 {
     /**
      * {@inheritDoc}

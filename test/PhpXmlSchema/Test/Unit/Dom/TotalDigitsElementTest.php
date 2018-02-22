@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\TotalDigitsElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class TotalDigitsElementTest extends AbstractAnnotatedElementTestCase
+class TotalDigitsElementTest extends AbstractFixedFacetElementTestCase
 {
     /**
      * {@inheritDoc}

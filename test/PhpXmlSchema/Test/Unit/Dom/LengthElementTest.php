@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\LengthElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class LengthElementTest extends AbstractAnnotatedElementTestCase
+class LengthElementTest extends AbstractFixedFacetElementTestCase
 {
     /**
      * {@inheritDoc}

@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\MinLengthElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class MinLengthElementTest extends AbstractAnnotatedElementTestCase
+class MinLengthElementTest extends AbstractFixedFacetElementTestCase
 {
     /**
      * {@inheritDoc}

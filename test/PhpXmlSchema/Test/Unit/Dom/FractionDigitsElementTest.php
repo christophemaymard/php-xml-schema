@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\FractionDigitsElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class FractionDigitsElementTest extends AbstractAnnotatedElementTestCase
+class FractionDigitsElementTest extends AbstractFixedFacetElementTestCase
 {
     /**
      * {@inheritDoc}

@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\MaxInclusiveElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class MaxInclusiveElementTest extends AbstractAnnotatedElementTestCase
+class MaxInclusiveElementTest extends AbstractFixedFacetElementTestCase
 {
     /**
      * {@inheritDoc}
