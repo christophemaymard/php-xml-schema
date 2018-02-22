@@ -20,6 +20,8 @@ use PhpXmlSchema\Dom\ComplexTypeElement;
  */
 class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
 {
+    use AbstractAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */

@@ -10,6 +10,9 @@ namespace PhpXmlSchema\Dom;
 /**
  * Represents the XML schema "element" element.
  * 
+ * Attributes (version 1.0):
+ * - abstract = boolean
+ * 
  * Content (version 1.0):
  * (annotation?, ((simpleType | complexType)?, (unique | key | keyref)*))
  * 
@@ -17,6 +20,42 @@ namespace PhpXmlSchema\Dom;
  */
 class ElementElement extends AbstractAnnotatedElement implements ParticleElementInterface
 {
+    /**
+     * The value of the "abstract" attribute.
+     * @var bool|NULL
+     */
+    private $abstractAttr;
+    
+    /**
+     * Returns the value of the "abstract" attribute.
+     * 
+     * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getAbstract()
+    {
+        return $this->abstractAttr;
+    }
+    
+    /**
+     * Sets the value of the "abstract" attribute.
+     * 
+     * @param   bool    $value  The value to set.
+     */
+    public function setAbstract(bool $value)
+    {
+        $this->abstractAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "abstract" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasAbstract():bool
+    {
+        return $this->abstractAttr !== NULL;
+    }
+    
     /**
      * Returns the type element.
      * 
