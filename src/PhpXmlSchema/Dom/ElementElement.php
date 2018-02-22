@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * Attributes (version 1.0):
  * - abstract = boolean
+ * - nillable = boolean
  * 
  * Content (version 1.0):
  * (annotation?, ((simpleType | complexType)?, (unique | key | keyref)*))
@@ -25,6 +26,42 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * @var bool|NULL
      */
     private $abstractAttr;
+    
+    /**
+     * The value of the "nillable" attribute.
+     * @var bool|NULL
+     */
+    private $nillableAttr;
+    
+    /**
+     * Returns the value of the "nillable" attribute.
+     * 
+     * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getNillable()
+    {
+        return $this->nillableAttr;
+    }
+    
+    /**
+     * Sets the value of the "nillable" attribute.
+     * 
+     * @param   bool    $value  The value to set.
+     */
+    public function setNillable(bool $value)
+    {
+        $this->nillableAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "nillable" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasNillable():bool
+    {
+        return $this->nillableAttr !== NULL;
+    }
     
     /**
      * Returns the value of the "abstract" attribute.

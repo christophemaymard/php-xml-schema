@@ -258,4 +258,37 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
         
         self::assertSame($children, $this->sut->getElements(), 'Elements ordered by container: 0, 1, 2.');
     }
+    
+    /**
+     * Tests that hasNillable() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasNillable()
+    {
+        self::assertFalse($this->sut->hasNillable(), 'The attribute has not been set.');
+        
+        $this->sut->setNillable(TRUE);
+        self::assertTrue($this->sut->hasNillable(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getNillable() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetNillable()
+    {
+        self::assertNull($this->sut->getNillable(), 'The attribute has not been set.');
+        
+        $this->sut->setNillable(TRUE);
+        self::assertTrue($this->sut->getNillable(), 'Set the attribute with a value: TRUE.');
+        
+        $this->sut->setNillable(FALSE);
+        self::assertFalse($this->sut->getNillable(), 'Set the attribute with another value: FALSE.');
+    }
 }
