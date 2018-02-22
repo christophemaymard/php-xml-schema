@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * Attributes (version 1.0):
  * - abstract = boolean
+ * - mixed = boolean
  * 
  * Content (version 1.0):
  * (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, ((attribute | attributeGroup)*, anyAttribute?))))
@@ -25,6 +26,12 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * @var bool|NULL
      */
     private $abstractAttr;
+    
+    /**
+     * The value of the "mixed" attribute.
+     * @var bool|NULL
+     */
+    private $mixedAttr;
     
     /**
      * Returns the value of the "abstract" attribute.
@@ -54,6 +61,36 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
     public function hasAbstract():bool
     {
         return $this->abstractAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "mixed" attribute.
+     * 
+     * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getMixed()
+    {
+        return $this->mixedAttr;
+    }
+    
+    /**
+     * Sets the value of the "mixed" attribute.
+     * 
+     * @param   bool    $value  The value to set.
+     */
+    public function setMixed(bool $value)
+    {
+        $this->mixedAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "mixed" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasMixed():bool
+    {
+        return $this->mixedAttr !== NULL;
     }
     
     /**

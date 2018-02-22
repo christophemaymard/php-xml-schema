@@ -20,6 +20,8 @@ use PhpXmlSchema\Dom\ComplexContentElement;
  */
 class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
 {
+    use MixedAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */
