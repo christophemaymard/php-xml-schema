@@ -16,6 +16,7 @@ use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
 use PhpXmlSchema\Dom\ChoiceElement;
 use PhpXmlSchema\Dom\ComplexContentDerivationElementInterface;
+use PhpXmlSchema\Dom\ComplexContentExtensionElement;
 use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
@@ -166,6 +167,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createComplexContentDerivationElementInterfaceDummy():ProphecySubjectInterface
     {
         return $this->prophesize(ComplexContentDerivationElementInterface::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\ComplexContentExtensionElement} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createComplexContentExtensionElementDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(ComplexContentExtensionElement::class)->reveal();
     }
     
     /**
