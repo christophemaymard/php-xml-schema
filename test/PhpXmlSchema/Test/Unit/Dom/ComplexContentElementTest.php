@@ -27,4 +27,53 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
     {
         $this->sut = new ComplexContentElement();
     }
+    
+    /**
+     * Tests that hasDerivationElement() returns a boolean:
+     * - FALSE when no element has been set
+     * - TRUE when an element has been set
+     * 
+     * @group   elt-content
+     */
+    public function testHasDerivationElement()
+    {
+        self::assertFalse($this->sut->hasDerivationElement(), 'No element has been set.');
+        
+        $this->sut->setDerivationElement($this->createComplexContentDerivationElementInterfaceDummy());
+        self::assertTrue($this->sut->hasDerivationElement(), 'Set with an element: ComplexContentDerivationElementInterface.');
+    }
+    
+    /**
+     * Tests that getDerivationElement() returns:
+     * - NULL when no element has been set
+     * - the instance of the element that has been set
+     * 
+     * @group   elt-content
+     */
+    public function testGetDerivationElement()
+    {
+        self::assertNull($this->sut->getDerivationElement(), 'No element has been set.');
+        
+        $elt1 = $this->createComplexContentRestrictionElementDummy();
+        $this->sut->setDerivationElement($elt1);
+        self::assertSame($elt1, $this->sut->getDerivationElement(), 'Set with an element: ComplexContentRestrictionElement.');
+        
+        $elt2 = $this->createComplexContentExtensionElementDummy();
+        $this->sut->setDerivationElement($elt2);
+        self::assertSame($elt2, $this->sut->getDerivationElement(), 'Set with another element: ComplexContentExtensionElement.');
+    }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in container 1 ((restriction | extension)).
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOfContainer1()
+    {
+        $children = [];
+        $children[] = $this->createComplexContentDerivationElementInterfaceDummy();
+        $this->sut->setDerivationElement($children[0]);
+        self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
+    }
 }

@@ -17,4 +17,33 @@ namespace PhpXmlSchema\Dom;
  */
 class ComplexContentElement extends AbstractAnnotatedElement
 {
+    /**
+     * Returns the derivation element.
+     * 
+     * @return  ComplexContentDerivationElementInterface|NULL   The instance of the element if it has been set, otherwise NULL.
+     */
+    public function getDerivationElement()
+    {
+        return $this->getChildElement(1);
+    }
+    
+    /**
+     * Sets the derivation element.
+     * 
+     * @param   ComplexContentDerivationElementInterface    $element    The element to set.
+     */
+    public function setDerivationElement(ComplexContentDerivationElementInterface $element)
+    {
+        $this->setChildElement(1, $element);
+    }
+    
+    /**
+     * Indicates whether a derivation element has been set.
+     * 
+     * @return  bool    TRUE if an element has been set, otherwise FALSE.
+     */
+    public function hasDerivationElement():bool
+    {
+        return $this->isChildElementSet(1);
+    }
 }
