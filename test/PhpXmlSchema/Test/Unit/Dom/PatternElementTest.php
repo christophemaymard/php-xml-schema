@@ -27,4 +27,37 @@ class PatternElementTest extends AbstractAnnotatedElementTestCase
     {
         $this->sut = new PatternElement();
     }
+    
+    /**
+     * Tests that hasValue() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasValue()
+    {
+        self::assertFalse($this->sut->hasValue(), 'The attribute has not been set.');
+        
+        $this->sut->setValue('foo');
+        self::assertTrue($this->sut->hasValue(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getValue() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetValue()
+    {
+        self::assertNull($this->sut->getValue(), 'The attribute has not been set.');
+        
+        $this->sut->setValue('foo');
+        self::assertSame('foo', $this->sut->getValue(), 'Set the attribute with a value: foo.');
+        
+        $this->sut->setValue('bar');
+        self::assertSame('bar', $this->sut->getValue(), 'Set the attribute with another value: bar.');
+    }
 }
