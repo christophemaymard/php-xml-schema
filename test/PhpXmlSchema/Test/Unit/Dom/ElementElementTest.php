@@ -21,6 +21,7 @@ use PhpXmlSchema\Dom\ElementElement;
 class ElementElementTest extends AbstractAnnotatedElementTestCase
 {
     use AbstractAttributeTestCaseTrait;
+    use DefaultAttributeTestCaseTrait;
     
     /**
      * {@inheritDoc}

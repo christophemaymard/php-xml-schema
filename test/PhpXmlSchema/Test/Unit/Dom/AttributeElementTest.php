@@ -20,6 +20,8 @@ use PhpXmlSchema\Dom\AttributeElement;
  */
 class AttributeElementTest extends AbstractSimpleTypedElementTestCase
 {
+    use DefaultAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */

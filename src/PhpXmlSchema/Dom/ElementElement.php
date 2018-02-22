@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * Attributes (version 1.0):
  * - abstract = boolean
+ * - default = string
  * - nillable = boolean
  * 
  * Content (version 1.0):
@@ -26,6 +27,12 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * @var bool|NULL
      */
     private $abstractAttr;
+    
+    /**
+     * The value of the "default" attribute.
+     * @var string|NULL
+     */
+    private $defaultAttr;
     
     /**
      * The value of the "nillable" attribute.
@@ -91,6 +98,36 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     public function hasAbstract():bool
     {
         return $this->abstractAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "default" attribute.
+     * 
+     * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getDefault()
+    {
+        return $this->defaultAttr;
+    }
+    
+    /**
+     * Sets the value of the "default" attribute.
+     * 
+     * @param   string  $value  The value to set.
+     */
+    public function setDefault(string $value)
+    {
+        $this->defaultAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "default" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasDefault():bool
+    {
+        return $this->defaultAttr !== NULL;
     }
     
     /**

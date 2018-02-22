@@ -10,6 +10,9 @@ namespace PhpXmlSchema\Dom;
 /**
  * Represents the XML schema "attribute" element.
  * 
+ * Attributes (version 1.0):
+ * - default = string
+ * 
  * Content (version 1.0):
  * (annotation?, simpleType?)
  * 
@@ -17,4 +20,39 @@ namespace PhpXmlSchema\Dom;
  */
 class AttributeElement extends AbstractSimpleTypedElement implements AttributeDeclarationElementInterface
 {
+    /**
+     * The value of the "default" attribute.
+     * @var string|NULL
+     */
+    private $defaultAttr;
+    
+    /**
+     * Returns the value of the "default" attribute.
+     * 
+     * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getDefault()
+    {
+        return $this->defaultAttr;
+    }
+    
+    /**
+     * Sets the value of the "default" attribute.
+     * 
+     * @param   string  $value  The value to set.
+     */
+    public function setDefault(string $value)
+    {
+        $this->defaultAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "default" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasDefault():bool
+    {
+        return $this->defaultAttr !== NULL;
+    }
 }
