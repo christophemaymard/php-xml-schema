@@ -19,6 +19,7 @@ use PhpXmlSchema\Dom\ComplexContentDerivationElementInterface;
 use PhpXmlSchema\Dom\ComplexContentExtensionElement;
 use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
+use PhpXmlSchema\Dom\ContentElementInterface;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementElement;
 use PhpXmlSchema\Dom\EnumerationElement;
@@ -200,6 +201,17 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
     protected function createComplexTypeElementDummy():ProphecySubjectInterface
     {
         return $this->prophesize(ComplexTypeElement::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\ContentElementInterface} 
+     * interface.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createContentElementInterfaceDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(ContentElementInterface::class)->reveal();
     }
     
     /**
