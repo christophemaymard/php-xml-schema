@@ -16,6 +16,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class ComplexContentExtensionElement extends AbstractTypeNamingElement
+class ComplexContentExtensionElement extends AbstractTypeNamingElement implements
+    ComplexContentDerivationElementInterface
 {
 }
