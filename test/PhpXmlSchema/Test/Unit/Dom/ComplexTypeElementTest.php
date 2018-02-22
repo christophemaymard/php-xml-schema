@@ -76,4 +76,48 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
         $this->sut->setContentElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
+    
+    /**
+     * Tests that getElements() returns an indexed array of all added 
+     * elements in that order:
+     * - elements from container 0 (annotation?)
+     * - elements from container 1 ((simpleContent | complexContent))
+     * - elements from container 2 ((group | all | choice | sequence)?)
+     * - elements from container 3 ((attribute | attributeGroup)*)
+     * - elements from container 4 (anyAttribute?)
+     * 
+     * @group   elt-content
+     */
+    public function testGetElementsReturnsElementsOrderedByContainer01234()
+    {
+        $children = [];
+        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createContentElementInterfaceDummy();
+        $children[] = $this->createTypeDefinitionParticleElementInterfaceDummy();
+        $children[] = $this->createAttributeElementDummy();
+        $children[] = $this->createAttributeGroupElementDummy();
+        $children[] = $this->createAttributeElementDummy();
+        $children[] = $this->createAttributeGroupElementDummy();
+        $children[] = $this->createAnyAttributeElementDummy();
+        
+        // Init container 4.
+        $this->sut->setAnyAttributeElement($children[7]);
+        
+        // Init container 3.
+        $this->sut->addAttributeElement($children[3]);
+        $this->sut->addAttributeGroupElement($children[4]);
+        $this->sut->addAttributeElement($children[5]);
+        $this->sut->addAttributeGroupElement($children[6]);
+        
+        // Init container 2.
+        $this->sut->setTypeDefinitionParticleElement($children[2]);
+        
+        // Init container 1.
+        $this->sut->setContentElement($children[1]);
+        
+        // Init container 0.
+        $this->sut->setAnnotationElement($children[0]);
+        
+        self::assertSame($children, $this->sut->getElements(), 'Elements ordered by container: 0, 1, 2, 3, 4.');
+    }
 }
