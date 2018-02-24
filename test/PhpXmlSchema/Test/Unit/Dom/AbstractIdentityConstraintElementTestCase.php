@@ -16,6 +16,8 @@ namespace PhpXmlSchema\Test\Unit\Dom;
  */
 abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotatedElementTestCase
 {
+    use NameAttributeTestCaseTrait;
+    
     /**
      * Tests that hasSelectorElement() returns a boolean:
      * - FALSE when no element has been set

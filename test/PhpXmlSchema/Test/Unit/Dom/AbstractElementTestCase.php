@@ -8,7 +8,9 @@
 namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
+use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Dom\ElementInterface;
+use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
  * Represents the base class for all the element test cases.
@@ -29,5 +31,15 @@ abstract class AbstractElementTestCase extends TestCase
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Datatype\NCNameType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createNCNameTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(NCNameType::class)->reveal();
     }
 }

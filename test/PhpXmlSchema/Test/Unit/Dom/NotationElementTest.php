@@ -20,6 +20,8 @@ use PhpXmlSchema\Dom\NotationElement;
  */
 class NotationElementTest extends AbstractAnnotatedElementTestCase
 {
+    use NameAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */

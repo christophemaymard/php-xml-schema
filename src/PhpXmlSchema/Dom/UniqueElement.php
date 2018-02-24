@@ -10,6 +10,9 @@ namespace PhpXmlSchema\Dom;
 /**
  * Represents the XML schema "unique" element.
  * 
+ * Attributes (version 1.0):
+ * - name = NCName
+ * 
  * Content (version 1.0):
  * (annotation?, (selector, field+))
  * 

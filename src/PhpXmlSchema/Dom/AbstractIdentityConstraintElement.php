@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\NCNameType;
+
 /**
  * Represents the base class for a XML schema element that provides for 
  * uniqueness and reference constraints with respect to the contents of 
@@ -19,6 +21,42 @@ namespace PhpXmlSchema\Dom;
  */
 abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElement implements IdentityConstraintElementInterface
 {
+    /**
+     * The value of the "name" attribute.
+     * @var NCNameType|NULL
+     */
+    private $nameAttr;
+    
+    /**
+     * Returns the value of the "name" attribute.
+     * 
+     * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getName()
+    {
+        return $this->nameAttr;
+    }
+    
+    /**
+     * Sets the value of the "name" attribute.
+     * 
+     * @param   NCNameType  $value  The value to set.
+     */
+    public function setName(NCNameType $value)
+    {
+        $this->nameAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "name" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasName():bool
+    {
+        return $this->nameAttr !== NULL;
+    }
+    
     /**
      * {@inheritDoc}
      */

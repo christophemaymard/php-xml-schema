@@ -20,6 +20,8 @@ use PhpXmlSchema\Dom\GroupElement;
  */
 class GroupElementTest extends AbstractAnnotatedElementTestCase
 {
+    use NameAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */
