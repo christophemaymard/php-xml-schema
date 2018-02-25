@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * Attributes (version 1.0):
  * - fixed = boolean
+ * - id = ID
  * 
  * Content (version 1.0):
  * (annotation?)

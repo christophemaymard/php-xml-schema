@@ -10,6 +10,9 @@ namespace PhpXmlSchema\Dom;
 /**
  * Represents the XML schema "schema" element.
  * 
+ * Attributes (version 1.0):
+ * - id = ID
+ * 
  * Content (version 1.0):
  * ((include | import | redefine | annotation)*, (((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*)
  * 

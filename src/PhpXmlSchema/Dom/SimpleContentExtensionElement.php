@@ -11,6 +11,9 @@ namespace PhpXmlSchema\Dom;
  * Represents the XML schema "extension" element held in the XML schema  
  * "simpleContent" element ({@see PhpXmlSchema\Dom\SimpleContentElement}).
  * 
+ * Attributes (version 1.0):
+ * - id = ID
+ * 
  * Content (version 1.0):
  * (annotation?, ((attribute | attributeGroup)*, anyAttribute?))
  * 

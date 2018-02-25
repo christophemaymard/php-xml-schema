@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\IDType;
+
 /**
  * Represents the base class for all the XML schema elements that contain a 
  * sequence of XML schema elements as content.
@@ -16,6 +18,12 @@ namespace PhpXmlSchema\Dom;
 abstract class AbstractCompositeElement implements CompositeElementInterface
 {
     /**
+     * The value of the "id" attribute.
+     * @var IDType|NULL
+     */
+    private $idAttr;
+    
+    /**
      * The sequence of containers that hold the child elements.
      * Each entry can be:
      * - a container that holds multiple elements, or
@@ -23,6 +31,36 @@ abstract class AbstractCompositeElement implements CompositeElementInterface
      * @var array
      */
     private $sequence = [];
+    
+    /**
+     * Returns the value of the "id" attribute.
+     * 
+     * @return  IDType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getId()
+    {
+        return $this->idAttr;
+    }
+    
+    /**
+     * Sets the value of the "id" attribute.
+     * 
+     * @param   IDType  $value  The value to set.
+     */
+    public function setId(IDType $value)
+    {
+        $this->idAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "id" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasId():bool
+    {
+        return $this->idAttr !== NULL;
+    }
     
     /**
      * Adds an element to the container located at the specified index.

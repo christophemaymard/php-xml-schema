@@ -11,6 +11,7 @@ namespace PhpXmlSchema\Dom;
  * Represents the XML schema "pattern" element.
  * 
  * Attributes (version 1.0):
+ * - id = ID
  * - value = string
  * 
  * Content (version 1.0):

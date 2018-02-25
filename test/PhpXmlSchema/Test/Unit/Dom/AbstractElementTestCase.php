@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
+use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Dom\ElementInterface;
 use Prophecy\Prophecy\ProphecySubjectInterface;
@@ -31,6 +32,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Datatype\IDType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createIDTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(IDType::class)->reveal();
     }
     
     /**

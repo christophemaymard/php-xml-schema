@@ -13,6 +13,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * Represents the XML schema "notation" element.
  * 
  * Attributes (version 1.0):
+ * - id = ID
  * - name = NCName
  * 
  * Content (version 1.0):

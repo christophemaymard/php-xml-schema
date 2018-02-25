@@ -11,6 +11,9 @@ namespace PhpXmlSchema\Dom;
  * Represents the XML schema "restriction" element held in the XML schema 
  * "complexContent" element ({@see PhpXmlSchema\Dom\ComplexContentElement}).
  * 
+ * Attributes (version 1.0):
+ * - id = ID
+ * 
  * Content (version 1.0):
  * (annotation?, (group | all | choice | sequence)?, ((attribute | attributeGroup)*, anyAttribute?))
  * 

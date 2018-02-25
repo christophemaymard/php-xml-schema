@@ -16,6 +16,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * - abstract = boolean
  * - default = string
  * - fixed = string
+ * - id = ID
  * - name = NCName
  * - nillable = boolean
  * 

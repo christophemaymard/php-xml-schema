@@ -10,6 +10,9 @@ namespace PhpXmlSchema\Dom;
 /**
  * Represents the XML schema "selector" element.
  * 
+ * Attributes (version 1.0):
+ * - id = ID
+ * 
  * Content (version 1.0):
  * (annotation?)
  * 

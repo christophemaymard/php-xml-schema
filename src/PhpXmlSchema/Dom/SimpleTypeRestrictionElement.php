@@ -11,6 +11,9 @@ namespace PhpXmlSchema\Dom;
  * Represents the XML schema "restriction" element held in the XML schema 
  * "simpleType" element ({@see PhpXmlSchema\Dom\SimpleTypeElement}).
  * 
+ * Attributes (version 1.0):
+ * - id = ID
+ * 
  * Content (version 1.0):
  * (annotation?, (simpleType?, (minExclusive | minInclusive | maxExclusive | maxInclusive | totalDigits | fractionDigits | length | minLength | maxLength | enumeration | whiteSpace | pattern)*))
  * 

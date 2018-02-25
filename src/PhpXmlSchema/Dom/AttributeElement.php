@@ -15,6 +15,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * Attributes (version 1.0):
  * - default = string
  * - fixed = string
+ * - id = ID
  * - name = NCName
  * 
  * Content (version 1.0):

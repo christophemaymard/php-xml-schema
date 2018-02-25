@@ -14,6 +14,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * 
  * Attributes (version 1.0):
  * - abstract = boolean
+ * - id = ID
  * - mixed = boolean
  * - name = NCName
  * 

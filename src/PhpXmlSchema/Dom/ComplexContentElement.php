@@ -11,6 +11,7 @@ namespace PhpXmlSchema\Dom;
  * Represents the XML schema "complexContent" element.
  * 
  * Attributes (version 1.0):
+ * - id = ID
  * - mixed = boolean
  * 
  * Content (version 1.0):

@@ -11,6 +11,7 @@ namespace PhpXmlSchema\Dom;
  * Represents the XML schema "key" element.
  * 
  * Attributes (version 1.0):
+ * - id = ID
  * - name = NCName
  * 
  * Content (version 1.0):
