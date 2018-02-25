@@ -8,7 +8,7 @@
 namespace PhpXmlSchema\Datatype;
 
 /**
- * Represents the "NCName" datatype.
+ * Represents the "ID" datatype.
  * 
  * It is a XML "non-colonized" name; it matches the "NCName" production of 
  * "Namespaces in XML" defined as below:
@@ -20,6 +20,6 @@ namespace PhpXmlSchema\Datatype;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class NCNameType extends AbstractNCNameType
+class IDType extends AbstractNCNameType
 {
 }

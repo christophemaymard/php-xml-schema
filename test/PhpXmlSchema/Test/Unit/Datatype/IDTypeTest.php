@@ -7,11 +7,11 @@
  */
 namespace PhpXmlSchema\Test\Unit\Datatype;
 
-use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
- * Represents the unit tests for the {@see PhpXmlSchema\Datatype\NCNameType} 
+ * Represents the unit tests for the {@see PhpXmlSchema\Datatype\IDType} 
  * class.
  * 
  * @group   type
@@ -19,19 +19,19 @@ use PhpXmlSchema\Exception\InvalidValueException;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class NCNameTypeTest extends AbstractNCNameTypeTestCase
+class IDTypeTest extends AbstractNCNameTypeTestCase
 {
     /**
      * Creates the SUT with the specified value.
      * 
      * @param   string  The value to test.
-     * @return  NCNameType  The instance of the SUT.
+     * @return  IDType  The instance of the SUT.
      * 
-     * @throws  InvalidValueException   When the value is an invalid NCName.
+     * @throws  InvalidValueException   When the value is an invalid ID.
      */
     protected function createSut(string $value)
     {
-        return new NCNameType($value);
+        return new IDType($value);
     }
     
     /**
@@ -39,6 +39,6 @@ class NCNameTypeTest extends AbstractNCNameTypeTestCase
      */
     protected function getTypeName():string
     {
-        return 'NCName';
+        return 'ID';
     }
 }
