@@ -20,6 +20,7 @@ use PhpXmlSchema\Datatype\QNameType;
  * - id = ID
  * - name = NCName
  * - nillable = boolean
+ * - substitutionGroup = QName
  * - type = QName
  * 
  * Content (version 1.0):
@@ -58,6 +59,12 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * @var bool|NULL
      */
     private $nillableAttr;
+    
+    /**
+     * The value of the "substitutionGroup" attribute.
+     * @var QNameType|NULL
+     */
+    private $substitutionGroupAttr;
     
     /**
      * The value of the "type" attribute.
@@ -213,6 +220,36 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     public function hasName():bool
     {
         return $this->nameAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "substitutionGroup" attribute.
+     * 
+     * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getSubstitutionGroup()
+    {
+        return $this->substitutionGroupAttr;
+    }
+    
+    /**
+     * Sets the value of the "substitutionGroup" attribute.
+     * 
+     * @param   QNameType   $value  The value to set.
+     */
+    public function setSubstitutionGroup(QNameType $value)
+    {
+        $this->substitutionGroupAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "substitutionGroup" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasSubstitutionGroup():bool
+    {
+        return $this->substitutionGroupAttr !== NULL;
     }
     
     /**

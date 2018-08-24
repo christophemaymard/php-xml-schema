@@ -34,6 +34,41 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     }
     
     /**
+     * Tests that hasSubstitutionGroup() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasSubstitutionGroup()
+    {
+        self::assertFalse($this->sut->hasSubstitutionGroup(), 'The attribute has not been set.');
+        
+        $this->sut->setSubstitutionGroup($this->createQNameTypeDummy());
+        self::assertTrue($this->sut->hasSubstitutionGroup(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getSubstitutionGroup() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetSubstitutionGroup()
+    {
+        self::assertNull($this->sut->getSubstitutionGroup(), 'The attribute has not been set.');
+        
+        $qname1 = $this->createQNameTypeDummy();
+        $this->sut->setSubstitutionGroup($qname1);
+        self::assertSame($qname1, $this->sut->getSubstitutionGroup(), 'Set the attribute with a value: QNameType.');
+        
+        $qname2 = $this->createQNameTypeDummy();
+        $this->sut->setSubstitutionGroup($qname2);
+        self::assertSame($qname2, $this->sut->getSubstitutionGroup(), 'Set the attribute with another value: QNameType.');
+    }
+    
+    /**
      * Tests that hasType() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
