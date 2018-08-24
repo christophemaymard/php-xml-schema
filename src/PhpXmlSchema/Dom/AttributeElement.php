@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\QNameType;
 
 /**
  * Represents the XML schema "attribute" element.
@@ -17,6 +18,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * - fixed = string
  * - id = ID
  * - name = NCName
+ * - type = QName
  * 
  * Content (version 1.0):
  * (annotation?, simpleType?)
@@ -42,6 +44,12 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * @var NCNameType|NULL
      */
     private $nameAttr;
+    
+    /**
+     * The value of the "type" attribute.
+     * @var QNameType|NULL
+     */
+    private $typeAttr;
     
     /**
      * Returns the value of the "default" attribute.
@@ -131,5 +139,35 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     public function hasName():bool
     {
         return $this->nameAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "type" attribute.
+     * 
+     * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getType()
+    {
+        return $this->typeAttr;
+    }
+    
+    /**
+     * Sets the value of the "type" attribute.
+     * 
+     * @param   QNameType   $value  The value to set.
+     */
+    public function setType(QNameType $value)
+    {
+        $this->typeAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "type" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasType():bool
+    {
+        return $this->typeAttr !== NULL;
     }
 }

@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\QNameType;
 
 /**
  * Represents the XML schema "element" element.
@@ -19,6 +20,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * - id = ID
  * - name = NCName
  * - nillable = boolean
+ * - type = QName
  * 
  * Content (version 1.0):
  * (annotation?, ((simpleType | complexType)?, (unique | key | keyref)*))
@@ -56,6 +58,12 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * @var bool|NULL
      */
     private $nillableAttr;
+    
+    /**
+     * The value of the "type" attribute.
+     * @var QNameType|NULL
+     */
+    private $typeAttr;
     
     /**
      * Returns the value of the "nillable" attribute.
@@ -205,6 +213,36 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     public function hasName():bool
     {
         return $this->nameAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "type" attribute.
+     * 
+     * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getType()
+    {
+        return $this->typeAttr;
+    }
+    
+    /**
+     * Sets the value of the "type" attribute.
+     * 
+     * @param   QNameType   $value  The value to set.
+     */
+    public function setType(QNameType $value)
+    {
+        $this->typeAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "type" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasType():bool
+    {
+        return $this->typeAttr !== NULL;
     }
     
     /**
