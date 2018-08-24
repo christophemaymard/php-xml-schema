@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\NCNameType;
 
 /**
@@ -15,6 +16,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * Attributes (version 1.0):
  * - id = ID
  * - name = NCName
+ * - system = anyURI
  * 
  * Content (version 1.0):
  * (annotation?)
@@ -28,6 +30,12 @@ class NotationElement extends AbstractAnnotatedElement
      * @var NCNameType|NULL
      */
     private $nameAttr;
+    
+    /**
+     * The value of the "system" attribute.
+     * @var AnyUriType|NULL
+     */
+    private $systemAttr;
     
     /**
      * Returns the value of the "name" attribute.
@@ -57,5 +65,35 @@ class NotationElement extends AbstractAnnotatedElement
     public function hasName():bool
     {
         return $this->nameAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "system" attribute.
+     * 
+     * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getSystem()
+    {
+        return $this->systemAttr;
+    }
+    
+    /**
+     * Sets the value of the "system" attribute.
+     * 
+     * @param   AnyUriType  $value  The value to set.
+     */
+    public function setSystem(AnyUriType $value)
+    {
+        $this->systemAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "system" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasSystem():bool
+    {
+        return $this->systemAttr !== NULL;
     }
 }

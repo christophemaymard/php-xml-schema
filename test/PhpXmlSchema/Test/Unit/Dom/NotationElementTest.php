@@ -29,4 +29,39 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
     {
         $this->sut = new NotationElement();
     }
+    
+    /**
+     * Tests that hasSystem() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasSystem()
+    {
+        self::assertFalse($this->sut->hasSystem(), 'The attribute has not been set.');
+        
+        $this->sut->setSystem($this->createAnyUriTypeDummy());
+        self::assertTrue($this->sut->hasSystem(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getSystem() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetSystem()
+    {
+        self::assertNull($this->sut->getSystem(), 'The attribute has not been set.');
+        
+        $value1 = $this->createAnyUriTypeDummy();
+        $this->sut->setSystem($value1);
+        self::assertSame($value1, $this->sut->getSystem(), 'Set the attribute with a value: AnyUriType.');
+        
+        $value2 = $this->createAnyUriTypeDummy();
+        $this->sut->setSystem($value2);
+        self::assertSame($value2, $this->sut->getSystem(), 'Set the attribute with another value: AnyUriType.');
+    }
 }
