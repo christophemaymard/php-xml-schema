@@ -7,11 +7,14 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\AnyUriType;
+
 /**
  * Represents the XML schema "include" element.
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - schemaLocation = anyURI
  * 
  * Content (version 1.0):
  * (annotation?)
@@ -20,4 +23,39 @@ namespace PhpXmlSchema\Dom;
  */
 class IncludeElement extends AbstractAnnotatedElement
 {
+    /**
+     * The value of the "schemaLocation" attribute.
+     * @var AnyUriType|NULL
+     */
+    private $schemaLocationAttr;
+    
+    /**
+     * Returns the value of the "schemaLocation" attribute.
+     * 
+     * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getSchemaLocation()
+    {
+        return $this->schemaLocationAttr;
+    }
+    
+    /**
+     * Sets the value of the "schemaLocation" attribute.
+     * 
+     * @param   AnyUriType  $value  The value to set.
+     */
+    public function setSchemaLocation(AnyUriType $value)
+    {
+        $this->schemaLocationAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "schemaLocation" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasSchemaLocation():bool
+    {
+        return $this->schemaLocationAttr !== NULL;
+    }
 }
