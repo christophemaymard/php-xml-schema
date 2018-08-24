@@ -27,4 +27,39 @@ class AppInfoElementTest extends AbstractLeafElementTestCase
     {
         $this->sut = new AppInfoElement();
     }
+    
+    /**
+     * Tests that hasSource() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasSource()
+    {
+        self::assertFalse($this->sut->hasSource(), 'The attribute has not been set.');
+        
+        $this->sut->setSource($this->createAnyUriTypeDummy());
+        self::assertTrue($this->sut->hasSource(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getSource() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetSource()
+    {
+        self::assertNull($this->sut->getSource(), 'The attribute has not been set.');
+        
+        $value1 = $this->createAnyUriTypeDummy();
+        $this->sut->setSource($value1);
+        self::assertSame($value1, $this->sut->getSource(), 'Set the attribute with a value: AnyUriType.');
+        
+        $value2 = $this->createAnyUriTypeDummy();
+        $this->sut->setSource($value2);
+        self::assertSame($value2, $this->sut->getSource(), 'Set the attribute with another value: AnyUriType.');
+    }
 }

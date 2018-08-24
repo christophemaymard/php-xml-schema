@@ -7,8 +7,13 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\AnyUriType;
+
 /**
  * Represents the XML schema "documentation" element.
+ * 
+ * Attributes (version 1.0):
+ * - source = anyURI
  * 
  * Content (version 1.0):
  * ({any}*)
@@ -17,4 +22,39 @@ namespace PhpXmlSchema\Dom;
  */
 class DocumentationElement extends AbstractLeafElement
 {
+    /**
+     * The value of the "source" attribute.
+     * @var AnyUriType|NULL
+     */
+    private $sourceAttr;
+    
+    /**
+     * Returns the value of the "source" attribute.
+     * 
+     * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getSource()
+    {
+        return $this->sourceAttr;
+    }
+    
+    /**
+     * Sets the value of the "source" attribute.
+     * 
+     * @param   AnyUriType  $value  The value to set.
+     */
+    public function setSource(AnyUriType $value)
+    {
+        $this->sourceAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "source" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasSource():bool
+    {
+        return $this->sourceAttr !== NULL;
+    }
 }

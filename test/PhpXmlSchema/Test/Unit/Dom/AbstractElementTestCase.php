@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
+use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Dom\ElementInterface;
@@ -32,6 +33,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Datatype\AnyUriType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createAnyUriTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(AnyUriType::class)->reveal();
     }
     
     /**
