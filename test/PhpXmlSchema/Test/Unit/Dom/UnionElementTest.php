@@ -29,6 +29,43 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
     }
     
     /**
+     * Tests that hasMemberTypes() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasMemberTypes()
+    {
+        self::assertFalse($this->sut->hasMemberTypes(), 'The attribute has not been set.');
+        
+        $this->sut->addMemberType($this->createQNameTypeDummy());
+        self::assertTrue($this->sut->hasMemberTypes(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getMemberTypes() returns:
+     * - an empty array when no QName has been added
+     * - an indexed array of all added QName
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetMemberTypes()
+    {
+        $qnames = [];
+        
+        self::assertSame($qnames, $this->sut->getMemberTypes(), 'No QName has been added.');
+        
+        $qnames[] = $this->createQNameTypeDummy();
+        $this->sut->addMemberType($qnames[0]);
+        self::assertSame($qnames, $this->sut->getMemberTypes(), 'Added 1 instance of QName.');
+        
+        $qnames[] = $this->createQNameTypeDummy();
+        $this->sut->addMemberType($qnames[1]);
+        self::assertSame($qnames, $this->sut->getMemberTypes(), 'Added 2 instances of QName.');
+    }
+    
+    /**
      * Tests that getSimpleTypeElements() returns:
      * - an empty array when no element has been added
      * - an indexed array of all added SimpleTypeElement elements
