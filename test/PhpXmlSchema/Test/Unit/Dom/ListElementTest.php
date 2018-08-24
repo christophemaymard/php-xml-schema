@@ -27,4 +27,39 @@ class ListElementTest extends AbstractSimpleTypedElementTestCase
     {
         $this->sut = new ListElement();
     }
+    
+    /**
+     * Tests that hasItemType() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasItemType()
+    {
+        self::assertFalse($this->sut->hasItemType(), 'The attribute has not been set.');
+        
+        $this->sut->setItemType($this->createQNameTypeDummy());
+        self::assertTrue($this->sut->hasItemType(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getItemType() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetItemType()
+    {
+        self::assertNull($this->sut->getItemType(), 'The attribute has not been set.');
+        
+        $qname1 = $this->createQNameTypeDummy();
+        $this->sut->setItemType($qname1);
+        self::assertSame($qname1, $this->sut->getItemType(), 'Set the attribute with a value: QNameType.');
+        
+        $qname2 = $this->createQNameTypeDummy();
+        $this->sut->setItemType($qname2);
+        self::assertSame($qname2, $this->sut->getItemType(), 'Set the attribute with another value: QNameType.');
+    }
 }
