@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\QNameType;
 
 /**
  * Represents the XML schema "attributeGroup" element.
@@ -15,6 +16,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * Attributes (version 1.0):
  * - id = ID
  * - name = NCName
+ * - ref = QName
  * 
  * Content (version 1.0):
  * (annotation?, ((attribute | attributeGroup)*, anyAttribute?))
@@ -28,6 +30,12 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
      * @var NCNameType|NULL
      */
     private $nameAttr;
+    
+    /**
+     * The value of the "ref" attribute.
+     * @var QNameType|NULL
+     */
+    private $refAttr;
     
     /**
      * Returns the value of the "name" attribute.
@@ -57,5 +65,35 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
     public function hasName():bool
     {
         return $this->nameAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "ref" attribute.
+     * 
+     * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getRef()
+    {
+        return $this->refAttr;
+    }
+    
+    /**
+     * Sets the value of the "ref" attribute.
+     * 
+     * @param   QNameType   $value  The value to set.
+     */
+    public function setRef(QNameType $value)
+    {
+        $this->refAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "ref" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasRef():bool
+    {
+        return $this->refAttr !== NULL;
     }
 }

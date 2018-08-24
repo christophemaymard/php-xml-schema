@@ -21,6 +21,7 @@ use PhpXmlSchema\Dom\GroupElement;
 class GroupElementTest extends AbstractAnnotatedElementTestCase
 {
     use NameAttributeTestCaseTrait;
+    use RefAttributeTestCaseTrait;
     
     /**
      * {@inheritDoc}

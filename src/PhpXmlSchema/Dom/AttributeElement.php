@@ -18,6 +18,7 @@ use PhpXmlSchema\Datatype\QNameType;
  * - fixed = string
  * - id = ID
  * - name = NCName
+ * - ref = QName
  * - type = QName
  * 
  * Content (version 1.0):
@@ -44,6 +45,12 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * @var NCNameType|NULL
      */
     private $nameAttr;
+    
+    /**
+     * The value of the "ref" attribute.
+     * @var QNameType|NULL
+     */
+    private $refAttr;
     
     /**
      * The value of the "type" attribute.
@@ -139,6 +146,36 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     public function hasName():bool
     {
         return $this->nameAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "ref" attribute.
+     * 
+     * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getRef()
+    {
+        return $this->refAttr;
+    }
+    
+    /**
+     * Sets the value of the "ref" attribute.
+     * 
+     * @param   QNameType   $value  The value to set.
+     */
+    public function setRef(QNameType $value)
+    {
+        $this->refAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "ref" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasRef():bool
+    {
+        return $this->refAttr !== NULL;
     }
     
     /**

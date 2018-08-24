@@ -23,6 +23,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
     use DefaultAttributeTestCaseTrait;
     use FixedAttributeTestCaseTrait;
     use NameAttributeTestCaseTrait;
+    use RefAttributeTestCaseTrait;
     
     /**
      * {@inheritDoc}

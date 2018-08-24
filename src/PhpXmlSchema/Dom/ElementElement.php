@@ -20,6 +20,7 @@ use PhpXmlSchema\Datatype\QNameType;
  * - id = ID
  * - name = NCName
  * - nillable = boolean
+ * - ref = QName
  * - substitutionGroup = QName
  * - type = QName
  * 
@@ -59,6 +60,12 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * @var bool|NULL
      */
     private $nillableAttr;
+    
+    /**
+     * The value of the "ref" attribute.
+     * @var QNameType|NULL
+     */
+    private $refAttr;
     
     /**
      * The value of the "substitutionGroup" attribute.
@@ -220,6 +227,36 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     public function hasName():bool
     {
         return $this->nameAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "ref" attribute.
+     * 
+     * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getRef()
+    {
+        return $this->refAttr;
+    }
+    
+    /**
+     * Sets the value of the "ref" attribute.
+     * 
+     * @param   QNameType   $value  The value to set.
+     */
+    public function setRef(QNameType $value)
+    {
+        $this->refAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "ref" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasRef():bool
+    {
+        return $this->refAttr !== NULL;
     }
     
     /**

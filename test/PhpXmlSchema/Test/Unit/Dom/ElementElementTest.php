@@ -24,6 +24,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     use DefaultAttributeTestCaseTrait;
     use FixedAttributeTestCaseTrait;
     use NameAttributeTestCaseTrait;
+    use RefAttributeTestCaseTrait;
     
     /**
      * {@inheritDoc}
