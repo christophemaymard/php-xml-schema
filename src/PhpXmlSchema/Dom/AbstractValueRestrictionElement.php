@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\QNameType;
+
 /**
  * Represents the base class for a XML schema element that is a derivation 
  * by restriction and constrains the value space of a datatype with a set of 
@@ -17,6 +19,42 @@ namespace PhpXmlSchema\Dom;
 abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElement implements
     ValueRestrictionElementInterface
 {
+    /**
+     * The value of the "base" attribute.
+     * @var QNameType|NULL
+     */
+    private $baseAttr;
+    
+    /**
+     * Returns the value of the "base" attribute.
+     * 
+     * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getBase()
+    {
+        return $this->baseAttr;
+    }
+    
+    /**
+     * Sets the value of the "base" attribute.
+     * 
+     * @param   QNameType   $value  The value to set.
+     */
+    public function setBase(QNameType $value)
+    {
+        $this->baseAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "base" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasBase():bool
+    {
+        return $this->baseAttr !== NULL;
+    }
+    
     /**
      * {@inheritDoc}
      */

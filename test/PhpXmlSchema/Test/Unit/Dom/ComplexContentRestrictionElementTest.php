@@ -20,6 +20,8 @@ use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
  */
 class ComplexContentRestrictionElementTest extends AbstractTypeNamingElementTestCase
 {
+    use BaseAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */

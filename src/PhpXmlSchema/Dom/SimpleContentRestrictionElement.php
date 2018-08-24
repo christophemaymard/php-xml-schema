@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * "simpleContent" element ({@see PhpXmlSchema\Dom\SimpleContentElement}).
  * 
  * Attributes (version 1.0):
+ * - base = QName
  * - id = ID
  * 
  * Content (version 1.0):

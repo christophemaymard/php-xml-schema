@@ -15,6 +15,8 @@ namespace PhpXmlSchema\Test\Unit\Dom;
  */
 abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractAbstractSimpleTypedElementTestCase
 {
+    use BaseAttributeTestCaseTrait;
+    
     /**
      * Tests that getMinExclusiveElements() returns:
      * - an empty array when no element has been added

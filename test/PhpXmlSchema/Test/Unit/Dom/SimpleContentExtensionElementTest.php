@@ -20,6 +20,8 @@ use PhpXmlSchema\Dom\SimpleContentExtensionElement;
  */
 class SimpleContentExtensionElementTest extends AbstractAttributeNamingElementTestCase
 {
+    use BaseAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */
