@@ -14,6 +14,7 @@ use PhpXmlSchema\Datatype\AnyUriType;
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - namespace = anyURI
  * - schemaLocation = anyURI
  * 
  * Content (version 1.0):
@@ -24,10 +25,46 @@ use PhpXmlSchema\Datatype\AnyUriType;
 class ImportElement extends AbstractAnnotatedElement
 {
     /**
+     * The value of the "namespace" attribute.
+     * @var AnyUriType|NULL
+     */
+    private $namespaceAttr;
+    
+    /**
      * The value of the "schemaLocation" attribute.
      * @var AnyUriType|NULL
      */
     private $schemaLocationAttr;
+    
+    /**
+     * Returns the value of the "namespace" attribute.
+     * 
+     * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getNamespace()
+    {
+        return $this->namespaceAttr;
+    }
+    
+    /**
+     * Sets the value of the "namespace" attribute.
+     * 
+     * @param   AnyUriType  $value  The value to set.
+     */
+    public function setNamespace(AnyUriType $value)
+    {
+        $this->namespaceAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "namespace" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasNamespace():bool
+    {
+        return $this->namespaceAttr !== NULL;
+    }
     
     /**
      * Returns the value of the "schemaLocation" attribute.

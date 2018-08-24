@@ -29,6 +29,41 @@ class ImportElementTest extends AbstractAnnotatedElementTestCase
     }
     
     /**
+     * Tests that hasNamespace() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasNamespace()
+    {
+        self::assertFalse($this->sut->hasNamespace(), 'The attribute has not been set.');
+        
+        $this->sut->setNamespace($this->createAnyUriTypeDummy());
+        self::assertTrue($this->sut->hasNamespace(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getNamespace() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetNamespace()
+    {
+        self::assertNull($this->sut->getNamespace(), 'The attribute has not been set.');
+        
+        $value1 = $this->createAnyUriTypeDummy();
+        $this->sut->setNamespace($value1);
+        self::assertSame($value1, $this->sut->getNamespace(), 'Set the attribute with a value: AnyUriType.');
+        
+        $value2 = $this->createAnyUriTypeDummy();
+        $this->sut->setNamespace($value2);
+        self::assertSame($value2, $this->sut->getNamespace(), 'Set the attribute with another value: AnyUriType.');
+    }
+    
+    /**
      * Tests that hasSchemaLocation() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
