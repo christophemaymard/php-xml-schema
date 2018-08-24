@@ -7,11 +7,14 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\AnyUriType;
+
 /**
  * Represents the XML schema "schema" element.
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - targetNamespace = anyURI
  * 
  * Content (version 1.0):
  * ((include | import | redefine | annotation)*, (((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*)
@@ -20,6 +23,42 @@ namespace PhpXmlSchema\Dom;
  */
 class SchemaElement extends AbstractCompositeElement
 {
+    /**
+     * The value of the "targetNamespace" attribute.
+     * @var AnyUriType|NULL
+     */
+    private $targetNamespaceAttr;
+    
+    /**
+     * Returns the value of the "targetNamespace" attribute.
+     * 
+     * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getTargetNamespace()
+    {
+        return $this->targetNamespaceAttr;
+    }
+    
+    /**
+     * Sets the value of the "targetNamespace" attribute.
+     * 
+     * @param   AnyUriType  $value  The value to set.
+     */
+    public function setTargetNamespace(AnyUriType $value)
+    {
+        $this->targetNamespaceAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "targetNamespace" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasTargetNamespace():bool
+    {
+        return $this->targetNamespaceAttr !== NULL;
+    }
+    
     /**
      * Adds an "include" element to this element.
      * 

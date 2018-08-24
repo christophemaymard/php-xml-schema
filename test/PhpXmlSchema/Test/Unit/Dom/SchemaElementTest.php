@@ -29,6 +29,41 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * Tests that hasTargetNamespace() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasTargetNamespace()
+    {
+        self::assertFalse($this->sut->hasTargetNamespace(), 'The attribute has not been set.');
+        
+        $this->sut->setTargetNamespace($this->createAnyUriTypeDummy());
+        self::assertTrue($this->sut->hasTargetNamespace(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getTargetNamespace() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetTargetNamespace()
+    {
+        self::assertNull($this->sut->getTargetNamespace(), 'The attribute has not been set.');
+        
+        $value1 = $this->createAnyUriTypeDummy();
+        $this->sut->setTargetNamespace($value1);
+        self::assertSame($value1, $this->sut->getTargetNamespace(), 'Set the attribute with a value: AnyUriType.');
+        
+        $value2 = $this->createAnyUriTypeDummy();
+        $this->sut->setTargetNamespace($value2);
+        self::assertSame($value2, $this->sut->getTargetNamespace(), 'Set the attribute with another value: AnyUriType.');
+    }
+    
+    /**
      * Tests that getIncludeElements() returns:
      * - an empty array when no element has been added
      * - an empty array when no IncludeElement element has been added
