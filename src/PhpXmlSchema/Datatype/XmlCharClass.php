@@ -16,6 +16,13 @@ namespace PhpXmlSchema\Datatype;
 class XmlCharClass
 {
     /**
+     * The "Char" character class.
+     * 
+     * Char ::= #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
+     */
+    const CHAR = "\u{0009}\u{000A}\u{000D}\u{0020}-\u{D7FF}\u{E000}-\u{FFFD}\u{10000}-\u{10FFFF}";
+    
+    /**
      * The "NCNameChar" character class.
      * 
      * NCNameChar ::= Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
