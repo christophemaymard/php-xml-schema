@@ -12,6 +12,7 @@ use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Datatype\QNameType;
+use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Dom\ElementInterface;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
@@ -74,5 +75,15 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createQNameTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(QNameType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Datatype\StringType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createStringTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(StringType::class)->reveal();
     }
 }

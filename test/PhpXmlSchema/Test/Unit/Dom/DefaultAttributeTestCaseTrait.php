@@ -29,7 +29,7 @@ trait DefaultAttributeTestCaseTrait
     {
         self::assertFalse($this->sut->hasDefault(), 'The attribute has not been set.');
         
-        $this->sut->setDefault('foo');
+        $this->sut->setDefault($this->createStringTypeDummy());
         self::assertTrue($this->sut->hasDefault(), 'The attribute has been set.');
     }
     
@@ -44,10 +44,12 @@ trait DefaultAttributeTestCaseTrait
     {
         self::assertNull($this->sut->getDefault(), 'The attribute has not been set.');
         
-        $this->sut->setDefault('foo');
-        self::assertSame('foo', $this->sut->getDefault(), 'Set the attribute with a value: foo.');
+        $string1 = $this->createStringTypeDummy();
+        $this->sut->setDefault($string1);
+        self::assertSame($string1, $this->sut->getDefault(), 'Set the attribute with a value: StringType.');
         
-        $this->sut->setDefault('bar');
-        self::assertSame('bar', $this->sut->getDefault(), 'Set the attribute with another value: bar.');
+        $string2 = $this->createStringTypeDummy();
+        $this->sut->setDefault($string2);
+        self::assertSame($string2, $this->sut->getDefault(), 'Set the attribute with another value: StringType.');
     }
 }

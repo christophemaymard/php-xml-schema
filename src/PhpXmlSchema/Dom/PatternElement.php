@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\StringType;
+
 /**
  * Represents the XML schema "pattern" element.
  * 
@@ -23,14 +25,14 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
 {
     /**
      * The value of the "value" attribute.
-     * @var string|NULL
+     * @var StringType|NULL
      */
     private $valueAttr;
     
     /**
      * Returns the value of the "value" attribute.
      * 
-     * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.
+     * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
     public function getValue()
     {
@@ -40,9 +42,9 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
     /**
      * Sets the value of the "value" attribute.
      * 
-     * @param   string  $value  The value to set.
+     * @param   StringType  $value  The value to set.
      */
-    public function setValue(string $value)
+    public function setValue(StringType $value)
     {
         $this->valueAttr = $value;
     }

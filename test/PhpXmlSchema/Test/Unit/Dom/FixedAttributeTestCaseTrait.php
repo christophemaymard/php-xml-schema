@@ -29,7 +29,7 @@ trait FixedAttributeTestCaseTrait
     {
         self::assertFalse($this->sut->hasFixed(), 'The attribute has not been set.');
         
-        $this->sut->setFixed('foo');
+        $this->sut->setFixed($this->createStringTypeDummy());
         self::assertTrue($this->sut->hasFixed(), 'The attribute has been set.');
     }
     
@@ -44,10 +44,12 @@ trait FixedAttributeTestCaseTrait
     {
         self::assertNull($this->sut->getFixed(), 'The attribute has not been set.');
         
-        $this->sut->setFixed('foo');
-        self::assertSame('foo', $this->sut->getFixed(), 'Set the attribute with a value: foo.');
+        $string1 = $this->createStringTypeDummy();
+        $this->sut->setFixed($string1);
+        self::assertSame($string1, $this->sut->getFixed(), 'Set the attribute with a value: StringType.');
         
-        $this->sut->setFixed('bar');
-        self::assertSame('bar', $this->sut->getFixed(), 'Set the attribute with another value: bar.');
+        $string2 = $this->createStringTypeDummy();
+        $this->sut->setFixed($string2);
+        self::assertSame($string2, $this->sut->getFixed(), 'Set the attribute with another value: StringType.');
     }
 }

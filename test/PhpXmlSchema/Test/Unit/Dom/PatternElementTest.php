@@ -39,7 +39,7 @@ class PatternElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertFalse($this->sut->hasValue(), 'The attribute has not been set.');
         
-        $this->sut->setValue('foo');
+        $this->sut->setValue($this->createStringTypeDummy());
         self::assertTrue($this->sut->hasValue(), 'The attribute has been set.');
     }
     
@@ -54,10 +54,12 @@ class PatternElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertNull($this->sut->getValue(), 'The attribute has not been set.');
         
-        $this->sut->setValue('foo');
-        self::assertSame('foo', $this->sut->getValue(), 'Set the attribute with a value: foo.');
+        $string1 = $this->createStringTypeDummy();
+        $this->sut->setValue($string1);
+        self::assertSame($string1, $this->sut->getValue(), 'Set the attribute with a value: StringType.');
         
-        $this->sut->setValue('bar');
-        self::assertSame('bar', $this->sut->getValue(), 'Set the attribute with another value: bar.');
+        $string2 = $this->createStringTypeDummy();
+        $this->sut->setValue($string2);
+        self::assertSame($string2, $this->sut->getValue(), 'Set the attribute with another value: StringType.');
     }
 }

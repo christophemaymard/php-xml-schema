@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Datatype\QNameType;
+use PhpXmlSchema\Datatype\StringType;
 
 /**
  * Represents the XML schema "attribute" element.
@@ -30,13 +31,13 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
 {
     /**
      * The value of the "default" attribute.
-     * @var string|NULL
+     * @var StringType|NULL
      */
     private $defaultAttr;
     
     /**
      * The value of the "fixed" attribute.
-     * @var string|NULL
+     * @var StringType|NULL
      */
     private $fixedAttr;
     
@@ -61,7 +62,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     /**
      * Returns the value of the "default" attribute.
      * 
-     * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.
+     * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
     public function getDefault()
     {
@@ -71,9 +72,9 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     /**
      * Sets the value of the "default" attribute.
      * 
-     * @param   string  $value  The value to set.
+     * @param   StringType  $value  The value to set.
      */
-    public function setDefault(string $value)
+    public function setDefault(StringType $value)
     {
         $this->defaultAttr = $value;
     }
@@ -91,7 +92,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     /**
      * Returns the value of the "fixed" attribute.
      * 
-     * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.
+     * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
     public function getFixed()
     {
@@ -101,9 +102,9 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     /**
      * Sets the value of the "fixed" attribute.
      * 
-     * @param   string  $value  The value to set.
+     * @param   StringType  $value  The value to set.
      */
-    public function setFixed(string $value)
+    public function setFixed(StringType $value)
     {
         $this->fixedAttr = $value;
     }
