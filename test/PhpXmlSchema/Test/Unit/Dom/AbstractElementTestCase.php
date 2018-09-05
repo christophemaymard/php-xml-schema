@@ -14,6 +14,7 @@ use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Dom\ElementInterface;
+use PhpXmlSchema\Dom\FormType;
 use PhpXmlSchema\Dom\ProcessingModeType;
 use PhpXmlSchema\Dom\UseType;
 use PhpXmlSchema\Dom\WhiteSpaceType;
@@ -48,6 +49,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createAnyUriTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(AnyUriType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\FormType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createFormTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(FormType::class)->reveal();
     }
     
     /**
