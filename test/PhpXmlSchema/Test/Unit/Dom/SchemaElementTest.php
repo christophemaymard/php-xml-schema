@@ -64,6 +64,41 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * Tests that hasElementFormDefault() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasElementFormDefault()
+    {
+        self::assertFalse($this->sut->hasElementFormDefault(), 'The attribute has not been set.');
+        
+        $this->sut->setElementFormDefault($this->createFormTypeDummy());
+        self::assertTrue($this->sut->hasElementFormDefault(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getElementFormDefault() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetElementFormDefault()
+    {
+        self::assertNull($this->sut->getElementFormDefault(), 'The attribute has not been set.');
+        
+        $form1 = $this->createFormTypeDummy();
+        $this->sut->setElementFormDefault($form1);
+        self::assertSame($form1, $this->sut->getElementFormDefault(), 'Set the attribute with a value: FormType.');
+        
+        $form2 = $this->createFormTypeDummy();
+        $this->sut->setElementFormDefault($form2);
+        self::assertSame($form2, $this->sut->getElementFormDefault(), 'Set the attribute with another value: FormType.');
+    }
+    
+    /**
      * Tests that hasTargetNamespace() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

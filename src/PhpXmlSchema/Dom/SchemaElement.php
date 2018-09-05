@@ -14,6 +14,7 @@ use PhpXmlSchema\Datatype\AnyUriType;
  * 
  * Attributes (version 1.0):
  * - attributeFormDefault = (qualified | unqualified)
+ * - elementFormDefault = (qualified | unqualified)
  * - id = ID
  * - targetNamespace = anyURI
  * 
@@ -29,6 +30,12 @@ class SchemaElement extends AbstractCompositeElement
      * @var FormType|NULL
      */
     private $attributeFormDefaultAttr;
+    
+    /**
+     * The value of the "elementFormDefault" attribute.
+     * @var FormType|NULL
+     */
+    private $elementFormDefaultAttr;
     
     /**
      * The value of the "targetNamespace" attribute.
@@ -64,6 +71,36 @@ class SchemaElement extends AbstractCompositeElement
     public function hasAttributeFormDefault():bool
     {
         return $this->attributeFormDefaultAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "elementFormDefault" attribute.
+     * 
+     * @return  FormType|NULL   The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getElementFormDefault()
+    {
+        return $this->elementFormDefaultAttr;
+    }
+    
+    /**
+     * Sets the value of the "elementFormDefault" attribute.
+     * 
+     * @param   FormType    $value  The value to set.
+     */
+    public function setElementFormDefault(FormType $value)
+    {
+        $this->elementFormDefaultAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "elementFormDefault" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasElementFormDefault():bool
+    {
+        return $this->elementFormDefaultAttr !== NULL;
     }
     
     /**
