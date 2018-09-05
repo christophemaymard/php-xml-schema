@@ -21,6 +21,7 @@ use PhpXmlSchema\Datatype\StringType;
  * - name = NCName
  * - ref = QName
  * - type = QName
+ * - use = (optional | prohibited | required) : optional
  * 
  * Content (version 1.0):
  * (annotation?, simpleType?)
@@ -58,6 +59,12 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * @var QNameType|NULL
      */
     private $typeAttr;
+    
+    /**
+     * The value of the "use" attribute.
+     * @var UseType|NULL
+     */
+    private $useAttr;
     
     /**
      * Returns the value of the "default" attribute.
@@ -207,5 +214,35 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     public function hasType():bool
     {
         return $this->typeAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "use" attribute.
+     * 
+     * @return  UseType|NULL    The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getUse()
+    {
+        return $this->useAttr;
+    }
+    
+    /**
+     * Sets the value of the "use" attribute.
+     * 
+     * @param   UseType $value  The value to set.
+     */
+    public function setUse(UseType $value)
+    {
+        $this->useAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "use" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasUse():bool
+    {
+        return $this->useAttr !== NULL;
     }
 }
