@@ -14,6 +14,7 @@ use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Dom\ElementInterface;
+use PhpXmlSchema\Dom\ProcessingModeType;
 use PhpXmlSchema\Dom\UseType;
 use PhpXmlSchema\Dom\WhiteSpaceType;
 use Prophecy\Prophecy\ProphecySubjectInterface;
@@ -67,6 +68,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createNCNameTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(NCNameType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\ProcessingModeType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createProcessingModeTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(ProcessingModeType::class)->reveal();
     }
     
     /**
