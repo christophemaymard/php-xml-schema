@@ -18,6 +18,7 @@ use PhpXmlSchema\Datatype\StringType;
  * - abstract = boolean
  * - default = string
  * - fixed = string
+ * - form = (qualified | unqualified)
  * - id = ID
  * - name = NCName
  * - nillable = boolean
@@ -49,6 +50,12 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * @var string|NULL
      */
     private $fixedAttr;
+    
+    /**
+     * The value of the "form" attribute.
+     * @var FormType|NULL
+     */
+    private $formAttr;
     
     /**
      * The value of the "name" attribute.
@@ -198,6 +205,36 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     public function hasFixed():bool
     {
         return $this->fixedAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "form" attribute.
+     * 
+     * @return  FormType|NULL   The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getForm()
+    {
+        return $this->formAttr;
+    }
+    
+    /**
+     * Sets the value of the "form" attribute.
+     * 
+     * @param   FormType    $value  The value to set.
+     */
+    public function setForm(FormType $value)
+    {
+        $this->formAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "form" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasForm():bool
+    {
+        return $this->formAttr !== NULL;
     }
     
     /**
