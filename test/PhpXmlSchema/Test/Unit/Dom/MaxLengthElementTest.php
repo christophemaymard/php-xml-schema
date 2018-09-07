@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\MaxLengthElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class MaxLengthElementTest extends AbstractFixedFacetElementTestCase
+class MaxLengthElementTest extends AbstractNumericFacetElementTestCase
 {
     /**
      * {@inheritDoc}
