@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\LanguageType;
+use PhpXmlSchema\Datatype\TokenType;
 
 /**
  * Represents the XML schema "schema" element.
@@ -18,6 +19,7 @@ use PhpXmlSchema\Datatype\LanguageType;
  * - elementFormDefault = (qualified | unqualified)
  * - id = ID
  * - targetNamespace = anyURI
+ * - version = token
  * - xml:lang = language
  * 
  * Content (version 1.0):
@@ -50,6 +52,12 @@ class SchemaElement extends AbstractCompositeElement
      * @var AnyUriType|NULL
      */
     private $targetNamespaceAttr;
+    
+    /**
+     * The value of the "version" attribute.
+     * @var TokenType|NULL
+     */
+    private $versionAttr;
     
     /**
      * Returns the value of the "attributeFormDefault" attribute.
@@ -169,6 +177,36 @@ class SchemaElement extends AbstractCompositeElement
     public function hasTargetNamespace():bool
     {
         return $this->targetNamespaceAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "version" attribute.
+     * 
+     * @return  TokenType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getVersion()
+    {
+        return $this->versionAttr;
+    }
+    
+    /**
+     * Sets the value of the "version" attribute.
+     * 
+     * @param   TokenType   $value  The value to set.
+     */
+    public function setVersion(TokenType $value)
+    {
+        $this->versionAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "version" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasVersion():bool
+    {
+        return $this->versionAttr !== NULL;
     }
     
     /**

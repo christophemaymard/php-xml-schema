@@ -169,6 +169,41 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * Tests that hasVersion() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasVersion()
+    {
+        self::assertFalse($this->sut->hasVersion(), 'The attribute has not been set.');
+        
+        $this->sut->setVersion($this->createTokenTypeDummy());
+        self::assertTrue($this->sut->hasVersion(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getVersion() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetVersion()
+    {
+        self::assertNull($this->sut->getVersion(), 'The attribute has not been set.');
+        
+        $token1 = $this->createTokenTypeDummy();
+        $this->sut->setVersion($token1);
+        self::assertSame($token1, $this->sut->getVersion(), 'Set the attribute with a value: TokenType.');
+        
+        $token2 = $this->createTokenTypeDummy();
+        $this->sut->setVersion($token2);
+        self::assertSame($token2, $this->sut->getVersion(), 'Set the attribute with another value: TokenType.');
+    }
+    
+    /**
      * Tests that getIncludeElements() returns:
      * - an empty array when no element has been added
      * - an empty array when no IncludeElement element has been added
