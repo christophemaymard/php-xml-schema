@@ -18,8 +18,6 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class ChoiceElement extends AbstractExplicitModelGroupElement implements
-    ParticleElementInterface, 
-    TypeDefinitionParticleElementInterface
+class ChoiceElement extends AbstractExplicitModelGroupElement
 {
 }

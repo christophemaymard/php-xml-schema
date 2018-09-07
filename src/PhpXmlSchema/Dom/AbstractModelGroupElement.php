@@ -14,7 +14,10 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implements ModelGroupElementInterface
+abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implements 
+    ModelGroupElementInterface,
+    ParticleElementInterface, 
+    TypeDefinitionParticleElementInterface
 {
     /**
      * {@inheritDoc}
