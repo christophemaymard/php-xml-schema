@@ -14,6 +14,7 @@ use PhpXmlSchema\Datatype\LanguageType;
 use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
+use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\FormType;
 use PhpXmlSchema\Dom\ProcessingModeType;
@@ -120,6 +121,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createStringTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(StringType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Datatype\TokenType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createTokenTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(TokenType::class)->reveal();
     }
     
     /**
