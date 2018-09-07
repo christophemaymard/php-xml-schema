@@ -31,6 +31,41 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
     }
     
     /**
+     * Tests that hasPublic() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasPublic()
+    {
+        self::assertFalse($this->sut->hasPublic(), 'The attribute has not been set.');
+        
+        $this->sut->setPublic($this->createTokenTypeDummy());
+        self::assertTrue($this->sut->hasPublic(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getPublic() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetPublic()
+    {
+        self::assertNull($this->sut->getPublic(), 'The attribute has not been set.');
+        
+        $token1 = $this->createTokenTypeDummy();
+        $this->sut->setPublic($token1);
+        self::assertSame($token1, $this->sut->getPublic(), 'Set the attribute with a value: TokenType.');
+        
+        $token2 = $this->createTokenTypeDummy();
+        $this->sut->setPublic($token2);
+        self::assertSame($token2, $this->sut->getPublic(), 'Set the attribute with another value: TokenType.');
+    }
+    
+    /**
      * Tests that hasSystem() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

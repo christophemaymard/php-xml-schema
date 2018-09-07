@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\TokenType;
 
 /**
  * Represents the XML schema "notation" element.
@@ -16,6 +17,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * Attributes (version 1.0):
  * - id = ID
  * - name = NCName
+ * - public = token
  * - system = anyURI
  * 
  * Content (version 1.0):
@@ -30,6 +32,12 @@ class NotationElement extends AbstractAnnotatedElement
      * @var NCNameType|NULL
      */
     private $nameAttr;
+    
+    /**
+     * The value of the "public" attribute.
+     * @var TokenType|NULL
+     */
+    private $publicAttr;
     
     /**
      * The value of the "system" attribute.
@@ -65,6 +73,36 @@ class NotationElement extends AbstractAnnotatedElement
     public function hasName():bool
     {
         return $this->nameAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "public" attribute.
+     * 
+     * @return  TokenType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getPublic()
+    {
+        return $this->publicAttr;
+    }
+    
+    /**
+     * Sets the value of the "public" attribute.
+     * 
+     * @param   TokenType   $value  The value to set.
+     */
+    public function setPublic(TokenType $value)
+    {
+        $this->publicAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "public" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasPublic():bool
+    {
+        return $this->publicAttr !== NULL;
     }
     
     /**
