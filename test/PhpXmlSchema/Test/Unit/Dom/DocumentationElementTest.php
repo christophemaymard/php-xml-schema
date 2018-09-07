@@ -29,6 +29,41 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
     }
     
     /**
+     * Tests that hasLang() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasLang()
+    {
+        self::assertFalse($this->sut->hasLang(), 'The attribute has not been set.');
+        
+        $this->sut->setLang($this->createLanguageTypeDummy());
+        self::assertTrue($this->sut->hasLang(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getLang() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetLang()
+    {
+        self::assertNull($this->sut->getLang(), 'The attribute has not been set.');
+        
+        $lang1 = $this->createLanguageTypeDummy();
+        $this->sut->setLang($lang1);
+        self::assertSame($lang1, $this->sut->getLang(), 'Set the attribute with a value: LanguageType.');
+        
+        $lang2 = $this->createLanguageTypeDummy();
+        $this->sut->setLang($lang2);
+        self::assertSame($lang2, $this->sut->getLang(), 'Set the attribute with another value: LanguageType.');
+    }
+    
+    /**
      * Tests that hasSource() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

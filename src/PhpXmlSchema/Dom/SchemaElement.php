@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\AnyUriType;
+use PhpXmlSchema\Datatype\LanguageType;
 
 /**
  * Represents the XML schema "schema" element.
@@ -17,6 +18,7 @@ use PhpXmlSchema\Datatype\AnyUriType;
  * - elementFormDefault = (qualified | unqualified)
  * - id = ID
  * - targetNamespace = anyURI
+ * - xml:lang = language
  * 
  * Content (version 1.0):
  * ((include | import | redefine | annotation)*, (((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*)
@@ -36,6 +38,12 @@ class SchemaElement extends AbstractCompositeElement
      * @var FormType|NULL
      */
     private $elementFormDefaultAttr;
+    
+    /**
+     * The value of the "xml:lang" attribute.
+     * @var LanguageType|NULL
+     */
+    private $langAttr;
     
     /**
      * The value of the "targetNamespace" attribute.
@@ -101,6 +109,36 @@ class SchemaElement extends AbstractCompositeElement
     public function hasElementFormDefault():bool
     {
         return $this->elementFormDefaultAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "xml:lang" attribute.
+     * 
+     * @return  LanguageType|NULL   The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getLang()
+    {
+        return $this->langAttr;
+    }
+    
+    /**
+     * Sets the value of the "xml:lang" attribute.
+     * 
+     * @param   LanguageType    $value  The value to set.
+     */
+    public function setLang(LanguageType $value)
+    {
+        $this->langAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "xml:lang" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasLang():bool
+    {
+        return $this->langAttr !== NULL;
     }
     
     /**

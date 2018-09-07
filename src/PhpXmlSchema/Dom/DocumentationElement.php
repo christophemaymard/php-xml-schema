@@ -8,12 +8,14 @@
 namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\AnyUriType;
+use PhpXmlSchema\Datatype\LanguageType;
 
 /**
  * Represents the XML schema "documentation" element.
  * 
  * Attributes (version 1.0):
  * - source = anyURI
+ * - xml:lang = language
  * 
  * Content (version 1.0):
  * ({any}*)
@@ -23,10 +25,46 @@ use PhpXmlSchema\Datatype\AnyUriType;
 class DocumentationElement extends AbstractLeafElement
 {
     /**
+     * The value of the "xml:lang" attribute.
+     * @var LanguageType|NULL
+     */
+    private $langAttr;
+    
+    /**
      * The value of the "source" attribute.
      * @var AnyUriType|NULL
      */
     private $sourceAttr;
+    
+    /**
+     * Returns the value of the "xml:lang" attribute.
+     * 
+     * @return  LanguageType|NULL   The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getLang()
+    {
+        return $this->langAttr;
+    }
+    
+    /**
+     * Sets the value of the "xml:lang" attribute.
+     * 
+     * @param   LanguageType    $value  The value to set.
+     */
+    public function setLang(LanguageType $value)
+    {
+        $this->langAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "xml:lang" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasLang():bool
+    {
+        return $this->langAttr !== NULL;
+    }
     
     /**
      * Returns the value of the "source" attribute.
