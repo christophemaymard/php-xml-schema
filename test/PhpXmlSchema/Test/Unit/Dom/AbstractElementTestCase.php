@@ -12,6 +12,7 @@ use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\LanguageType;
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\PositiveIntegerType;
 use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Datatype\TokenType;
@@ -91,6 +92,17 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createNCNameTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(NCNameType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Datatype\PositiveIntegerType} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createPositiveIntegerTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(PositiveIntegerType::class)->reveal();
     }
     
     /**
