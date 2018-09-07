@@ -8,13 +8,12 @@
 namespace PhpXmlSchema\Dom;
 
 /**
- * Interface for a XML schema element that provides an "annotation" element 
- * ({@see PhpXmlSchema\Dom\AnnotationElement}) and a "simpleType" element 
+ * Interface for a XML schema element that provides a "simpleType" element 
  * ({@see PhpXmlSchema\Dom\SimpleTypeElement}).
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-interface SimpleTypedElementInterface extends AnnotatedElementInterface
+interface SimpleTypedElementInterface
 {
     /**
      * Returns the "simpleType" element.

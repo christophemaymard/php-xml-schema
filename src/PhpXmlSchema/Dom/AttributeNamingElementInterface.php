@@ -15,7 +15,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-interface AttributeNamingElementInterface extends AnnotatedElementInterface
+interface AttributeNamingElementInterface
 {
     /**
      * Adds an "attribute" element to this element.

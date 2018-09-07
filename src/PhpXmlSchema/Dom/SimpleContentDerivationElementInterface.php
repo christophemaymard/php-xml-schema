@@ -13,6 +13,8 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-interface SimpleContentDerivationElementInterface extends AttributeNamingElementInterface
+interface SimpleContentDerivationElementInterface extends
+    AnnotatedElementInterface,
+    AttributeNamingElementInterface
 {
 }

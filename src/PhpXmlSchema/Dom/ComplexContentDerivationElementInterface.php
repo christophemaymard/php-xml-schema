@@ -13,6 +13,8 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-interface ComplexContentDerivationElementInterface extends TypeNamingElementInterface
+interface ComplexContentDerivationElementInterface extends
+    AnnotatedElementInterface,
+    TypeNamingElementInterface
 {
 }
