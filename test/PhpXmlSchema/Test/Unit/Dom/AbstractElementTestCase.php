@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
+use PhpXmlSchema\Datatype\LanguageType;
 use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
@@ -69,6 +70,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createIDTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(IDType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Datatype\LanguageType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createLanguageTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(LanguageType::class)->reveal();
     }
     
     /**
