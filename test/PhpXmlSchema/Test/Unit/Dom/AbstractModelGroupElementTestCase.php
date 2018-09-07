@@ -15,6 +15,8 @@ namespace PhpXmlSchema\Test\Unit\Dom;
  */
 abstract class AbstractModelGroupElementTestCase extends AbstractAnnotatedElementTestCase
 {
+    use MinOccursAttributeTestCaseTrait;
+    
     /**
      * Tests that getElementElements() returns:
      * - an empty array when no element has been added

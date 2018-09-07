@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\NonNegativeIntegerType;
+
 /**
  * Represents the base class for a XML schema element that specifies an 
  * interpretation of the particles base on:
@@ -19,6 +21,36 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     ParticleElementInterface, 
     TypeDefinitionParticleElementInterface
 {
+    /**
+     * The value of the "minOccurs" attribute.
+     * @var NonNegativeIntegerType|NULL
+     */
+    private $minOccursAttr;
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getMinOccurs()
+    {
+        return $this->minOccursAttr;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function setMinOccurs(NonNegativeIntegerType $value)
+    {
+        $this->minOccursAttr = $value;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function hasMinOccurs():bool
+    {
+        return $this->minOccursAttr !== NULL;
+    }
+    
     /**
      * {@inheritDoc}
      */

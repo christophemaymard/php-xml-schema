@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\NonNegativeIntegerType;
+
 /**
  * Interface for a XML schema element that contributes to the definition of 
  * content models.
@@ -15,4 +17,24 @@ namespace PhpXmlSchema\Dom;
  */
 interface ParticleElementInterface extends AnnotatedElementInterface
 {
+    /**
+     * Returns the value of the "minOccurs" attribute.
+     * 
+     * @return  NonNegativeIntegerType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getMinOccurs();
+    
+    /**
+     * Sets the value of the "minOccurs" attribute.
+     * 
+     * @param   NonNegativeIntegerType  $value  The value to set.
+     */
+    public function setMinOccurs(NonNegativeIntegerType $value);
+    
+    /**
+     * Indicates whether the "minOccurs" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasMinOccurs():bool;
 }

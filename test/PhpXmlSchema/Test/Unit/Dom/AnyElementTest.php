@@ -19,6 +19,8 @@ use PhpXmlSchema\Dom\AnyElement;
  */
 class AnyElementTest extends AbstractAnnotatedElementTestCase
 {
+    use MinOccursAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */

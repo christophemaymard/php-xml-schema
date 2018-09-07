@@ -7,11 +7,14 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\NonNegativeIntegerType;
+
 /**
  * Represents the XML schema "any" element.
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - minOccurs = nonNegativeInteger
  * - processContents = (lax | skip | strict)
  * 
  * Content (version 1.0):
@@ -22,10 +25,40 @@ namespace PhpXmlSchema\Dom;
 class AnyElement extends AbstractAnnotatedElement implements ParticleElementInterface
 {
     /**
+     * The value of the "minOccurs" attribute.
+     * @var NonNegativeIntegerType|NULL
+     */
+    private $minOccursAttr;
+    
+    /**
      * The value of the "processContents" attribute.
      * @var ProcessingModeType|NULL
      */
     private $processContentsAttr;
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getMinOccurs()
+    {
+        return $this->minOccursAttr;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function setMinOccurs(NonNegativeIntegerType $value)
+    {
+        $this->minOccursAttr = $value;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function hasMinOccurs():bool
+    {
+        return $this->minOccursAttr !== NULL;
+    }
     
     /**
      * Returns the value of the "processContents" attribute.

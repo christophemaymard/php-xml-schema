@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\NonNegativeIntegerType;
 use PhpXmlSchema\Datatype\QNameType;
 
 /**
@@ -15,6 +16,7 @@ use PhpXmlSchema\Datatype\QNameType;
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - minOccurs = nonNegativeInteger
  * - name = NCName
  * - ref = QName
  * 
@@ -28,6 +30,12 @@ class GroupElement extends AbstractAnnotatedElement implements
     TypeDefinitionParticleElementInterface
 {
     /**
+     * The value of the "minOccurs" attribute.
+     * @var NonNegativeIntegerType|NULL
+     */
+    private $minOccursAttr;
+    
+    /**
      * The value of the "name" attribute.
      * @var NCNameType|NULL
      */
@@ -38,6 +46,30 @@ class GroupElement extends AbstractAnnotatedElement implements
      * @var QNameType|NULL
      */
     private $refAttr;
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getMinOccurs()
+    {
+        return $this->minOccursAttr;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function setMinOccurs(NonNegativeIntegerType $value)
+    {
+        $this->minOccursAttr = $value;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function hasMinOccurs():bool
+    {
+        return $this->minOccursAttr !== NULL;
+    }
     
     /**
      * Returns the value of the "name" attribute.

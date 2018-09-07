@@ -23,6 +23,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     use AbstractAttributeTestCaseTrait;
     use DefaultAttributeTestCaseTrait;
     use FixedAttributeTestCaseTrait;
+    use MinOccursAttributeTestCaseTrait;
     use NameAttributeTestCaseTrait;
     use RefAttributeTestCaseTrait;
     
