@@ -19,6 +19,7 @@ use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\FormType;
+use PhpXmlSchema\Dom\NonNegativeIntegerLimitType;
 use PhpXmlSchema\Dom\ProcessingModeType;
 use PhpXmlSchema\Dom\UseType;
 use PhpXmlSchema\Dom\WhiteSpaceType;
@@ -93,6 +94,17 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createNCNameTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(NCNameType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\NonNegativeIntegerLimitType} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createNonNegativeIntegerLimitTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(NonNegativeIntegerLimitType::class)->reveal();
     }
     
     /**
