@@ -15,6 +15,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
  */
 abstract class AbstractModelGroupElementTestCase extends AbstractAnnotatedElementTestCase
 {
+    use MaxOccursAttributeTestCaseTrait;
     use MinOccursAttributeTestCaseTrait;
     
     /**

@@ -21,6 +21,7 @@ use PhpXmlSchema\Datatype\StringType;
  * - fixed = string
  * - form = (qualified | unqualified)
  * - id = ID
+ * - maxOccurs = (nonNegativeInteger | unbounded)
  * - minOccurs = nonNegativeInteger
  * - name = NCName
  * - nillable = boolean
@@ -58,6 +59,12 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * @var FormType|NULL
      */
     private $formAttr;
+    
+    /**
+     * The value of the "maxOccurs" attribute.
+     * @var NonNegativeIntegerLimitType|NULL
+     */
+    private $maxOccursAttr;
     
     /**
      * The value of the "minOccurs" attribute.
@@ -243,6 +250,30 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     public function hasForm():bool
     {
         return $this->formAttr !== NULL;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getMaxOccurs()
+    {
+        return $this->maxOccursAttr;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function setMaxOccurs(NonNegativeIntegerLimitType $value)
+    {
+        $this->maxOccursAttr = $value;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function hasMaxOccurs():bool
+    {
+        return $this->maxOccursAttr !== NULL;
     }
     
     /**

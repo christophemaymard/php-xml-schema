@@ -18,6 +18,27 @@ use PhpXmlSchema\Datatype\NonNegativeIntegerType;
 interface ParticleElementInterface extends AnnotatedElementInterface
 {
     /**
+     * Returns the value of the "maxOccurs" attribute.
+     * 
+     * @return  NonNegativeIntegerLimitType|NULL    The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getMaxOccurs();
+    
+    /**
+     * Sets the value of the "maxOccurs" attribute.
+     * 
+     * @param   NonNegativeIntegerLimitType $value  The value to set.
+     */
+    public function setMaxOccurs(NonNegativeIntegerLimitType $value);
+    
+    /**
+     * Indicates whether the "maxOccurs" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasMaxOccurs():bool;
+    
+    /**
      * Returns the value of the "minOccurs" attribute.
      * 
      * @return  NonNegativeIntegerType|NULL The value of the attribute if it has been set, otherwise NULL.

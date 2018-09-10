@@ -14,6 +14,7 @@ use PhpXmlSchema\Datatype\NonNegativeIntegerType;
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - maxOccurs = (nonNegativeInteger | unbounded)
  * - minOccurs = nonNegativeInteger
  * - processContents = (lax | skip | strict)
  * 
@@ -25,6 +26,12 @@ use PhpXmlSchema\Datatype\NonNegativeIntegerType;
 class AnyElement extends AbstractAnnotatedElement implements ParticleElementInterface
 {
     /**
+     * The value of the "maxOccurs" attribute.
+     * @var NonNegativeIntegerLimitType|NULL
+     */
+    private $maxOccursAttr;
+    
+    /**
      * The value of the "minOccurs" attribute.
      * @var NonNegativeIntegerType|NULL
      */
@@ -35,6 +42,30 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
      * @var ProcessingModeType|NULL
      */
     private $processContentsAttr;
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getMaxOccurs()
+    {
+        return $this->maxOccursAttr;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function setMaxOccurs(NonNegativeIntegerLimitType $value)
+    {
+        $this->maxOccursAttr = $value;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function hasMaxOccurs():bool
+    {
+        return $this->maxOccursAttr !== NULL;
+    }
     
     /**
      * {@inheritDoc}

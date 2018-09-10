@@ -16,6 +16,7 @@ use PhpXmlSchema\Datatype\QNameType;
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - maxOccurs = (nonNegativeInteger | unbounded)
  * - minOccurs = nonNegativeInteger
  * - name = NCName
  * - ref = QName
@@ -29,6 +30,12 @@ class GroupElement extends AbstractAnnotatedElement implements
     ParticleElementInterface, 
     TypeDefinitionParticleElementInterface
 {
+    /**
+     * The value of the "maxOccurs" attribute.
+     * @var NonNegativeIntegerLimitType|NULL
+     */
+    private $maxOccursAttr;
+    
     /**
      * The value of the "minOccurs" attribute.
      * @var NonNegativeIntegerType|NULL
@@ -46,6 +53,30 @@ class GroupElement extends AbstractAnnotatedElement implements
      * @var QNameType|NULL
      */
     private $refAttr;
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getMaxOccurs()
+    {
+        return $this->maxOccursAttr;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function setMaxOccurs(NonNegativeIntegerLimitType $value)
+    {
+        $this->maxOccursAttr = $value;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function hasMaxOccurs():bool
+    {
+        return $this->maxOccursAttr !== NULL;
+    }
     
     /**
      * {@inheritDoc}

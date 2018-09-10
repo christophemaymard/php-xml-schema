@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - maxOccurs = 1
  * - minOccurs = nonNegativeInteger
  * 
  * Content (version 1.0):

@@ -19,6 +19,7 @@ use PhpXmlSchema\Dom\AnyElement;
  */
 class AnyElementTest extends AbstractAnnotatedElementTestCase
 {
+    use MaxOccursAttributeTestCaseTrait;
     use MinOccursAttributeTestCaseTrait;
     
     /**
