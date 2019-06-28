@@ -17,6 +17,7 @@ use PhpXmlSchema\Datatype\PositiveIntegerType;
 use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Datatype\TokenType;
+use PhpXmlSchema\Dom\DerivationType;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\FormType;
 use PhpXmlSchema\Dom\NonNegativeIntegerLimitType;
@@ -54,6 +55,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createAnyUriTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(AnyUriType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\DerivationType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createDerivationTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(DerivationType::class)->reveal();
     }
     
     /**
