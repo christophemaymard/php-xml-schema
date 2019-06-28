@@ -14,6 +14,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * 
  * Attributes (version 1.0):
  * - abstract = boolean
+ * - block = (#all | List of (extension | restriction))
  * - id = ID
  * - mixed = boolean
  * - name = NCName
@@ -30,6 +31,12 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * @var bool|NULL
      */
     private $abstractAttr;
+    
+    /**
+     * The value of the "block" attribute.
+     * @var DerivationType|NULL
+     */
+    private $blockAttr;
     
     /**
      * The value of the "mixed" attribute.
@@ -71,6 +78,36 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
     public function hasAbstract():bool
     {
         return $this->abstractAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "block" attribute.
+     * 
+     * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getBlock()
+    {
+        return $this->blockAttr;
+    }
+    
+    /**
+     * Sets the value of the "block" attribute.
+     * 
+     * @param   DerivationType  $value  The value to set.
+     */
+    public function setBlock(DerivationType $value)
+    {
+        $this->blockAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "block" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasBlock():bool
+    {
+        return $this->blockAttr !== NULL;
     }
     
     /**

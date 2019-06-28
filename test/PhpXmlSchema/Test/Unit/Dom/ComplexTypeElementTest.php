@@ -21,6 +21,7 @@ use PhpXmlSchema\Dom\ComplexTypeElement;
 class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
 {
     use AbstractAttributeTestCaseTrait;
+    use BlockAttributeTestCaseTrait;
     use MixedAttributeTestCaseTrait;
     use NameAttributeTestCaseTrait;
     
