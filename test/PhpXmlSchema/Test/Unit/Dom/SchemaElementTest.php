@@ -64,6 +64,41 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * Tests that hasBlockDefault() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasBlockDefault()
+    {
+        self::assertFalse($this->sut->hasBlockDefault(), 'The attribute has not been set.');
+        
+        $this->sut->setBlockDefault($this->createDerivationTypeDummy());
+        self::assertTrue($this->sut->hasBlockDefault(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getBlockDefault() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetBlockDefault()
+    {
+        self::assertNull($this->sut->getBlockDefault(), 'The attribute has not been set.');
+        
+        $derivation1 = $this->createDerivationTypeDummy();
+        $this->sut->setBlockDefault($derivation1);
+        self::assertSame($derivation1, $this->sut->getBlockDefault(), 'Set the attribute with a value: DerivationType.');
+        
+        $derivation2 = $this->createDerivationTypeDummy();
+        $this->sut->setBlockDefault($derivation2);
+        self::assertSame($derivation2, $this->sut->getBlockDefault(), 'Set the attribute with another value: DerivationType.');
+    }
+    
+    /**
      * Tests that hasElementFormDefault() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

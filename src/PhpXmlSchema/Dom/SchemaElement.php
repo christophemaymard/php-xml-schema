@@ -16,6 +16,7 @@ use PhpXmlSchema\Datatype\TokenType;
  * 
  * Attributes (version 1.0):
  * - attributeFormDefault = (qualified | unqualified)
+ * - blockDefault = (#all | List of (extension | restriction | substitution))  : ''
  * - elementFormDefault = (qualified | unqualified)
  * - id = ID
  * - targetNamespace = anyURI
@@ -34,6 +35,12 @@ class SchemaElement extends AbstractCompositeElement
      * @var FormType|NULL
      */
     private $attributeFormDefaultAttr;
+    
+    /**
+     * The value of the "blockDefault" attribute.
+     * @var DerivationType|NULL
+     */
+    private $blockDefaultAttr;
     
     /**
      * The value of the "elementFormDefault" attribute.
@@ -87,6 +94,36 @@ class SchemaElement extends AbstractCompositeElement
     public function hasAttributeFormDefault():bool
     {
         return $this->attributeFormDefaultAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "blockDefault" attribute.
+     * 
+     * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getBlockDefault()
+    {
+        return $this->blockDefaultAttr;
+    }
+    
+    /**
+     * Sets the value of the "blockDefault" attribute.
+     * 
+     * @param   DerivationType  $value  The value to set.
+     */
+    public function setBlockDefault(DerivationType $value)
+    {
+        $this->blockDefaultAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "blockDefault" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasBlockDefault():bool
+    {
+        return $this->blockDefaultAttr !== NULL;
     }
     
     /**
