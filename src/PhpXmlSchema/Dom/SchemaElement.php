@@ -18,6 +18,7 @@ use PhpXmlSchema\Datatype\TokenType;
  * - attributeFormDefault = (qualified | unqualified)
  * - blockDefault = (#all | List of (extension | restriction | substitution))  : ''
  * - elementFormDefault = (qualified | unqualified)
+ * - finalDefault = (#all | List of (extension | restriction | list | union))  : ''
  * - id = ID
  * - targetNamespace = anyURI
  * - version = token
@@ -47,6 +48,12 @@ class SchemaElement extends AbstractCompositeElement
      * @var FormType|NULL
      */
     private $elementFormDefaultAttr;
+    
+    /**
+     * The value of the "finalDefault" attribute.
+     * @var DerivationType|NULL
+     */
+    private $finalDefaultAttr;
     
     /**
      * The value of the "xml:lang" attribute.
@@ -154,6 +161,36 @@ class SchemaElement extends AbstractCompositeElement
     public function hasElementFormDefault():bool
     {
         return $this->elementFormDefaultAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "finalDefault" attribute.
+     * 
+     * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getFinalDefault()
+    {
+        return $this->finalDefaultAttr;
+    }
+    
+    /**
+     * Sets the value of the "finalDefault" attribute.
+     * 
+     * @param   DerivationType  $value  The value to set.
+     */
+    public function setFinalDefault(DerivationType $value)
+    {
+        $this->finalDefaultAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "finalDefault" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasFinalDefault():bool
+    {
+        return $this->finalDefaultAttr !== NULL;
     }
     
     /**

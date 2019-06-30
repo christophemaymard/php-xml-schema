@@ -134,6 +134,41 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * Tests that hasFinalDefault() returns a boolean:
+     * - FALSE when the attribute has not been set
+     * - TRUE when the attribute has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testHasFinalDefault()
+    {
+        self::assertFalse($this->sut->hasFinalDefault(), 'The attribute has not been set.');
+        
+        $this->sut->setFinalDefault($this->createDerivationTypeDummy());
+        self::assertTrue($this->sut->hasFinalDefault(), 'The attribute has been set.');
+    }
+    
+    /**
+     * Tests that getFinalDefault() returns:
+     * - NULL when the attribute has not been set
+     * - the value of the attribute that has been set
+     * 
+     * @group   elt-attribute
+     */
+    public function testGetFinalDefault()
+    {
+        self::assertNull($this->sut->getFinalDefault(), 'The attribute has not been set.');
+        
+        $derivation1 = $this->createDerivationTypeDummy();
+        $this->sut->setFinalDefault($derivation1);
+        self::assertSame($derivation1, $this->sut->getFinalDefault(), 'Set the attribute with a value: DerivationType.');
+        
+        $derivation2 = $this->createDerivationTypeDummy();
+        $this->sut->setFinalDefault($derivation2);
+        self::assertSame($derivation2, $this->sut->getFinalDefault(), 'Set the attribute with another value: DerivationType.');
+    }
+    
+    /**
      * Tests that hasLang() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
