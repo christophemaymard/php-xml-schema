@@ -22,6 +22,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
 {
     use AbstractAttributeTestCaseTrait;
     use BlockAttributeTestCaseTrait;
+    use FinalAttributeTestCaseTrait;
     use MixedAttributeTestCaseTrait;
     use NameAttributeTestCaseTrait;
     

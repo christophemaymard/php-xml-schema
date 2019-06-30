@@ -20,6 +20,7 @@ use PhpXmlSchema\Dom\SimpleTypeElement;
  */
 class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
 {
+    use FinalAttributeTestCaseTrait;
     use NameAttributeTestCaseTrait;
     
     /**

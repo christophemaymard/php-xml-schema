@@ -13,6 +13,7 @@ use PhpXmlSchema\Datatype\NCNameType;
  * Represents the XML schema "simpleType" element.
  * 
  * Attributes (version 1.0):
+ * - final = (#all | List of (list | union | restriction))
  * - id = ID
  * - name = NCName
  * 
@@ -24,10 +25,46 @@ use PhpXmlSchema\Datatype\NCNameType;
 class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementInterface
 {
     /**
+     * The value of the "final" attribute.
+     * @var DerivationType|NULL
+     */
+    private $finalAttr;
+    
+    /**
      * The value of the "name" attribute.
      * @var NCNameType|NULL
      */
     private $nameAttr;
+    
+    /**
+     * Returns the value of the "final" attribute.
+     * 
+     * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getFinal()
+    {
+        return $this->finalAttr;
+    }
+    
+    /**
+     * Sets the value of the "final" attribute.
+     * 
+     * @param   DerivationType  $value  The value to set.
+     */
+    public function setFinal(DerivationType $value)
+    {
+        $this->finalAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "final" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasFinal():bool
+    {
+        return $this->finalAttr !== NULL;
+    }
     
     /**
      * Returns the value of the "name" attribute.

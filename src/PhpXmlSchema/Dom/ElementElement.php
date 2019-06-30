@@ -19,6 +19,7 @@ use PhpXmlSchema\Datatype\StringType;
  * - abstract = boolean
  * - block = (#all | List of (extension | restriction | substitution))
  * - default = string
+ * - final = (#all | List of (extension | restriction))
  * - fixed = string
  * - form = (qualified | unqualified)
  * - id = ID
@@ -54,6 +55,12 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * @var StringType|NULL
      */
     private $defaultAttr;
+    
+    /**
+     * The value of the "final" attribute.
+     * @var DerivationType|NULL
+     */
+    private $finalAttr;
     
     /**
      * The value of the "fixed" attribute.
@@ -227,6 +234,36 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     public function hasDefault():bool
     {
         return $this->defaultAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "final" attribute.
+     * 
+     * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getFinal()
+    {
+        return $this->finalAttr;
+    }
+    
+    /**
+     * Sets the value of the "final" attribute.
+     * 
+     * @param   DerivationType  $value  The value to set.
+     */
+    public function setFinal(DerivationType $value)
+    {
+        $this->finalAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "final" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasFinal():bool
+    {
+        return $this->finalAttr !== NULL;
     }
     
     /**
