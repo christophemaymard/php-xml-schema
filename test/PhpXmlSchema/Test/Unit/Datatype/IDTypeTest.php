@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Datatype;
 
+use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Exception\InvalidValueException;
 
@@ -19,26 +20,54 @@ use PhpXmlSchema\Exception\InvalidValueException;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class IDTypeTest extends AbstractNCNameTypeTestCase
+class IDTypeTest extends TestCase
 {
     /**
-     * Creates the SUT with the specified value.
+     * Returns a set of invalid ID values.
      * 
-     * @param   string  The value to test.
-     * @return  IDType  The instance of the SUT.
-     * 
-     * @throws  InvalidValueException   When the value is an invalid ID.
+     * @return  array[]
      */
-    protected function createSut(string $value)
+    public static function getInvalidIDValues():array
     {
-        return new IDType($value);
+        return NCNameTypeTest::getInvalidNCNameValues();
     }
     
     /**
-     * {@inheritDoc}
+     * Returns a set of valid ID values.
+     * 
+     * @return  array[]
      */
-    protected function getTypeName():string
+    public static function getValidIDValues():array
     {
-        return 'ID';
+        return NCNameTypeTest::getValidNCNameValues();
+    }
+    
+    /**
+     * Tests that __construct() throws an exception when the specified ID 
+     * is invalid.
+     * 
+     * @param   string  $id The ID to test.
+     * 
+     * @dataProvider    getInvalidIDValues
+     */
+    public function test__constructThrowsExceptionWhenIDIsInvalid(string $id)
+    {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid ID.', $id));
+        
+        $sut = new IDType($id);
+    }
+    
+    /**
+     * Tests that __construct() stores the ID when it is valid.
+     * 
+     * @param   string  $id The ID to test.
+     * 
+     * @dataProvider    getValidIDValues
+     */
+    public function test__constructStoresIDWhenItIsValid(string $id)
+    {
+        $sut = new IDType($id);
+        self::assertSame($id, $sut->getId());
     }
 }
