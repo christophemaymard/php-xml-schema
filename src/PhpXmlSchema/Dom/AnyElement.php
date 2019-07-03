@@ -16,6 +16,7 @@ use PhpXmlSchema\Datatype\NonNegativeIntegerType;
  * - id = ID
  * - maxOccurs = (nonNegativeInteger | unbounded)
  * - minOccurs = nonNegativeInteger
+ * - namespace = ((##any | ##other) | List of (anyURI | (##targetNamespace | ##local))) : ##any
  * - processContents = (lax | skip | strict)
  * 
  * Content (version 1.0):
@@ -36,6 +37,12 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
      * @var NonNegativeIntegerType|NULL
      */
     private $minOccursAttr;
+    
+    /**
+     * The value of the "namespace" attribute.
+     * @var NamespaceListType|NULL
+     */
+    private $namespaceAttr;
     
     /**
      * The value of the "processContents" attribute.
@@ -89,6 +96,36 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     public function hasMinOccurs():bool
     {
         return $this->minOccursAttr !== NULL;
+    }
+    
+    /**
+     * Returns the value of the "namespace" attribute.
+     * 
+     * @return  NamespaceListType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getNamespace()
+    {
+        return $this->namespaceAttr;
+    }
+    
+    /**
+     * Sets the value of the "namespace" attribute.
+     * 
+     * @param   NamespaceListType   $value  The value to set.
+     */
+    public function setNamespace(NamespaceListType $value)
+    {
+        $this->namespaceAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "namespace" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasNamespace():bool
+    {
+        return $this->namespaceAttr !== NULL;
     }
     
     /**

@@ -20,6 +20,8 @@ use PhpXmlSchema\Dom\AnyAttributeElement;
  */
 class AnyAttributeElementTest extends AbstractAnnotatedElementTestCase
 {
+    use NamespaceAttributeTestCaseTrait;
+    
     /**
      * {@inheritDoc}
      */

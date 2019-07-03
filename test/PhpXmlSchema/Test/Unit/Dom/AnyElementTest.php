@@ -21,6 +21,7 @@ class AnyElementTest extends AbstractAnnotatedElementTestCase
 {
     use MaxOccursAttributeTestCaseTrait;
     use MinOccursAttributeTestCaseTrait;
+    use NamespaceAttributeTestCaseTrait;
     
     /**
      * {@inheritDoc}

@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - namespace = ((##any | ##other) | List of (anyURI | (##targetNamespace | ##local))) : ##any
  * - processContents = (lax | skip | strict)
  * 
  * Content (version 1.0):
@@ -22,10 +23,46 @@ namespace PhpXmlSchema\Dom;
 class AnyAttributeElement extends AbstractAnnotatedElement
 {
     /**
+     * The value of the "namespace" attribute.
+     * @var NamespaceListType|NULL
+     */
+    private $namespaceAttr;
+    
+    /**
      * The value of the "processContents" attribute.
      * @var ProcessingModeType|NULL
      */
     private $processContentsAttr;
+    
+    /**
+     * Returns the value of the "namespace" attribute.
+     * 
+     * @return  NamespaceListType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getNamespace()
+    {
+        return $this->namespaceAttr;
+    }
+    
+    /**
+     * Sets the value of the "namespace" attribute.
+     * 
+     * @param   NamespaceListType   $value  The value to set.
+     */
+    public function setNamespace(NamespaceListType $value)
+    {
+        $this->namespaceAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "namespace" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasNamespace():bool
+    {
+        return $this->namespaceAttr !== NULL;
+    }
     
     /**
      * Returns the value of the "processContents" attribute.
