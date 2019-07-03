@@ -20,6 +20,7 @@ use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Dom\DerivationType;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\FormType;
+use PhpXmlSchema\Dom\NamespaceListType;
 use PhpXmlSchema\Dom\NonNegativeIntegerLimitType;
 use PhpXmlSchema\Dom\ProcessingModeType;
 use PhpXmlSchema\Dom\UseType;
@@ -95,6 +96,17 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createLanguageTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(LanguageType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\NamespaceListType} 
+     * class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createNamespaceListTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(NamespaceListType::class)->reveal();
     }
     
     /**
