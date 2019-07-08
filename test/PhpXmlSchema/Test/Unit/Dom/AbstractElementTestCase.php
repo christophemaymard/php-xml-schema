@@ -23,6 +23,7 @@ use PhpXmlSchema\Dom\FormType;
 use PhpXmlSchema\Dom\NamespaceListType;
 use PhpXmlSchema\Dom\NonNegativeIntegerLimitType;
 use PhpXmlSchema\Dom\ProcessingModeType;
+use PhpXmlSchema\Dom\SelectorXPathType;
 use PhpXmlSchema\Dom\UseType;
 use PhpXmlSchema\Dom\WhiteSpaceType;
 use Prophecy\Prophecy\ProphecySubjectInterface;
@@ -160,6 +161,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createProcessingModeTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(ProcessingModeType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\SelectorXPathType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createSelectorXPathTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(SelectorXPathType::class)->reveal();
     }
     
     /**
