@@ -12,6 +12,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * Attributes (version 1.0):
  * - id = ID
+ * - xpath = a XPath expression ({@see PhpXmlSchema\Dom\SelectorXPathType})
  * 
  * Content (version 1.0):
  * (annotation?)
@@ -20,4 +21,39 @@ namespace PhpXmlSchema\Dom;
  */
 class SelectorElement extends AbstractAnnotatedElement
 {
+    /**
+     * The value of the "xpath" attribute.
+     * @var SelectorXPathType|NULL
+     */
+    private $xpathAttr;
+    
+    /**
+     * Returns the value of the "xpath" attribute.
+     * 
+     * @return  SelectorXPathType|NULL  The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getXPath()
+    {
+        return $this->xpathAttr;
+    }
+    
+    /**
+     * Sets the value of the "xpath" attribute.
+     * 
+     * @param   SelectorXPathType   $value  The value to set.
+     */
+    public function setXPath(SelectorXPathType $value)
+    {
+        $this->xpathAttr = $value;
+    }
+    
+    /**
+     * Indicates whether the "xpath" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasXPath():bool
+    {
+        return $this->xpathAttr !== NULL;
+    }
 }
