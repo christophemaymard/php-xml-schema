@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\MinExclusiveElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class MinExclusiveElementTest extends AbstractFixedFacetElementTestCase
+class MinExclusiveElementTest extends AbstractAbstractAnyFacetElementTestCase
 {
     /**
      * {@inheritDoc}

@@ -18,7 +18,7 @@ use PhpXmlSchema\Dom\MinInclusiveElement;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class MinInclusiveElementTest extends AbstractFixedFacetElementTestCase
+class MinInclusiveElementTest extends AbstractAbstractAnyFacetElementTestCase
 {
     /**
      * {@inheritDoc}

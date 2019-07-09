@@ -7,26 +7,13 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom;
 
-use PhpXmlSchema\Dom\EnumerationElement;
-
 /**
- * Represents the unit tests for the {@see PhpXmlSchema\Dom\EnumerationElement} 
+ * Represents the base class to unit test the {@see PhpXmlSchema\Dom\AbstractAnyFacetElement} 
  * class.
- * 
- * @group   element
- * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class EnumerationElementTest extends AbstractAnnotatedElementTestCase
+abstract class AbstractAbstractAnyFacetElementTestCase extends AbstractFixedFacetElementTestCase
 {
     use AnySimpleTypeValueAttributeTestCaseTrait;
-    
-    /**
-     * {@inheritDoc}
-     */
-    protected function setUp()
-    {
-        $this->sut = new EnumerationElement();
-    }
 }

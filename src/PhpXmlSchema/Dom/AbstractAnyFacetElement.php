@@ -8,18 +8,12 @@
 namespace PhpXmlSchema\Dom;
 
 /**
- * Represents the XML schema "enumeration" element.
- * 
- * Attributes (version 1.0):
- * - id = ID
- * - value = anySimpleType
- * 
- * Content (version 1.0):
- * (annotation?)
+ * Represents the base class for a fixed facet element that holds the "value" 
+ * attribute (anySimpleType).
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class EnumerationElement extends AbstractAnnotatedElement implements FacetElementInterface
+abstract class AbstractAnyFacetElement extends AbstractFixedFacetElement
 {
     /**
      * The value of the "value" attribute.
