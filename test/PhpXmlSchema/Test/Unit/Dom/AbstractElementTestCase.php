@@ -19,6 +19,7 @@ use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Dom\DerivationType;
 use PhpXmlSchema\Dom\ElementInterface;
+use PhpXmlSchema\Dom\FieldXPathType;
 use PhpXmlSchema\Dom\FormType;
 use PhpXmlSchema\Dom\NamespaceListType;
 use PhpXmlSchema\Dom\NonNegativeIntegerLimitType;
@@ -67,6 +68,16 @@ abstract class AbstractElementTestCase extends TestCase
     protected function createDerivationTypeDummy():ProphecySubjectInterface
     {
         return $this->prophesize(DerivationType::class)->reveal();
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\FieldXPathType} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createFieldXPathTypeDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(FieldXPathType::class)->reveal();
     }
     
     /**
