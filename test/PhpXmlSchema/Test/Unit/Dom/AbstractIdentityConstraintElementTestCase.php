@@ -23,7 +23,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * - FALSE when no element has been set
      * - TRUE when an element has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testHasSelectorElement()
     {
@@ -38,7 +38,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * - NULL when no element has been set
      * - the instance of the element that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetSelectorElement()
     {
@@ -57,7 +57,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 1 (selector).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer1()
     {
@@ -72,7 +72,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * - an empty array when no element has been added
      * - an indexed array of all added FieldElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetFieldElements()
     {
@@ -93,7 +93,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 2 (field+).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer2()
     {
@@ -112,7 +112,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * - elements from container 1 (selector)
      * - elements from container 2 (field+)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer012()
     {

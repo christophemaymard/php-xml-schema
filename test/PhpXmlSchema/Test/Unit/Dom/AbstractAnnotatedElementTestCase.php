@@ -20,7 +20,7 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
      * - FALSE when no element has been set
      * - TRUE when an element has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testHasAnnotationElement()
     {
@@ -35,7 +35,7 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
      * - NULL when no element has been set
      * - the instance of the element that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAnnotationElement()
     {
@@ -54,7 +54,7 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 0 (annotation?).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer0()
     {

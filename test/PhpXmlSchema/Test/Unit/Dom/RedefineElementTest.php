@@ -69,7 +69,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no AnnotationElement element has been added
      * - an indexed array of all added AnnotationElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAnnotationElements()
     {
@@ -101,7 +101,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no SimpleTypeElement element has been added
      * - an indexed array of all added SimpleTypeElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetSimpleTypeElements()
     {
@@ -133,7 +133,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no ComplexTypeElement element has been added
      * - an indexed array of all added ComplexTypeElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetComplexTypeElements()
     {
@@ -165,7 +165,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no GroupElement element has been added
      * - an indexed array of all added GroupElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetGroupElements()
     {
@@ -197,7 +197,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no AttributeGroupElement element has been added
      * - an indexed array of all added AttributeGroupElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAttributeGroupElements()
     {
@@ -227,7 +227,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 0 ((annotation | (simpleType | complexType | group | attributeGroup))*).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer0()
     {

@@ -279,7 +279,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no IncludeElement element has been added
      * - an indexed array of all added IncludeElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetIncludeElements()
     {
@@ -310,7 +310,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no ImportElement element has been added
      * - an indexed array of all added ImportElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetImportElements()
     {
@@ -341,7 +341,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no RedefineElement element has been added
      * - an indexed array of all added RedefineElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetRedefineElements()
     {
@@ -372,7 +372,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no AnnotationElement element has been added
      * - an indexed array of all added AnnotationElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetCompositionAnnotationElements()
     {
@@ -401,7 +401,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 0 ((include | import | redefine | annotation)*).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer0()
     {
@@ -431,7 +431,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no SimpleTypeElement element has been added
      * - an indexed array of all added SimpleTypeElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetSimpleTypeElements()
     {
@@ -466,7 +466,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no ComplexTypeElement element has been added
      * - an indexed array of all added ComplexTypeElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetComplexTypeElements()
     {
@@ -501,7 +501,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no GroupElement element has been added
      * - an indexed array of all added GroupElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetGroupElements()
     {
@@ -536,7 +536,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no AttributeGroupElement element has been added
      * - an indexed array of all added AttributeGroupElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAttributeGroupElements()
     {
@@ -571,7 +571,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no ElementElement element has been added
      * - an indexed array of all added ElementElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementElements()
     {
@@ -606,7 +606,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no AttributeElement element has been added
      * - an indexed array of all added AttributeElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAttributeElements()
     {
@@ -641,7 +641,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no NotationElement element has been added
      * - an indexed array of all added NotationElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetNotationElements()
     {
@@ -676,7 +676,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no AnnotationElement element has been added
      * - an indexed array of all added AnnotationElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetDefinitionAnnotationElements()
     {
@@ -709,7 +709,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 1 ((((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer1()
     {
@@ -755,7 +755,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - elements from container 0 ((include | import | redefine | annotation)*)
      * - elements from container 1 ((((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {

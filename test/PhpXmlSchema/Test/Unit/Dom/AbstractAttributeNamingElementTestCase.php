@@ -23,7 +23,7 @@ abstract class AbstractAttributeNamingElementTestCase extends AbstractAbstractAt
      * - elements from container 3 ((attribute | attributeGroup)*)
      * - elements from container 4 (anyAttribute?)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer034()
     {

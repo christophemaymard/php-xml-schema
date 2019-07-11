@@ -39,7 +39,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
      * - FALSE when no element has been set
      * - TRUE when an element has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testHasContentElement()
     {
@@ -54,7 +54,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
      * - NULL when no element has been set
      * - the instance of the element that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetContentElement()
     {
@@ -73,7 +73,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 1 ((simpleContent | complexContent)).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer1()
     {
@@ -92,7 +92,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
      * - elements from container 3 ((attribute | attributeGroup)*)
      * - elements from container 4 (anyAttribute?)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer01234()
     {

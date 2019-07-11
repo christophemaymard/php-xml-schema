@@ -24,7 +24,7 @@ trait AttributeNamingElementTestCaseTrait
      * - an empty array when no AttributeElement element has been added
      * - an indexed array of all added AttributeElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAttributeElements()
     {
@@ -53,7 +53,7 @@ trait AttributeNamingElementTestCaseTrait
      * - an empty array when no AttributeGroupElement element has been added
      * - an indexed array of all added AttributeGroupElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAttributeGroupElements()
     {
@@ -81,7 +81,7 @@ trait AttributeNamingElementTestCaseTrait
      * - an empty array when no element has been added
      * - an indexed array of all added attribute declaration elements in container 3 ((attribute | attributeGroup)*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAttributeDeclarationElements()
     {
@@ -94,7 +94,7 @@ trait AttributeNamingElementTestCaseTrait
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 3 ((attribute | attributeGroup)*).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer3()
     {
@@ -106,7 +106,7 @@ trait AttributeNamingElementTestCaseTrait
      * - FALSE when no element has been set
      * - TRUE when an element has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testHasAnyAttributeElement()
     {
@@ -121,7 +121,7 @@ trait AttributeNamingElementTestCaseTrait
      * - NULL when no element has been set
      * - the instance of the element that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAnyAttributeElement()
     {
@@ -140,7 +140,7 @@ trait AttributeNamingElementTestCaseTrait
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 4 (anyAttribute?).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer4()
     {

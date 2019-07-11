@@ -19,7 +19,7 @@ abstract class AbstractLeafElementTestCase extends AbstractElementTestCase
      * - an empty string when no content has been set
      * - the string of the content that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetContent()
     {

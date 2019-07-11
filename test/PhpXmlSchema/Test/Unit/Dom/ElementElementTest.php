@@ -148,7 +148,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - FALSE when no element has been set
      * - TRUE when an element has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testHasTypeElement()
     {
@@ -163,7 +163,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - NULL when no element has been set
      * - the instance of the element that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetTypeElement()
     {
@@ -182,7 +182,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 1 ((simpleType | complexType)?).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer1()
     {
@@ -198,7 +198,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - an empty array when no UniqueElement element has been added
      * - an indexed array of all added UniqueElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetUniqueElements()
     {
@@ -228,7 +228,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - an empty array when no KeyElement element has been added
      * - an indexed array of all added KeyElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetKeyElements()
     {
@@ -258,7 +258,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - an empty array when no KeyRefElement element has been added
      * - an indexed array of all added KeyRefElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetKeyRefElements()
     {
@@ -287,7 +287,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - an empty array when no element has been added
      * - an indexed array of all added identity-constraint elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetIdentityConstraintElements()
     {
@@ -314,7 +314,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 2 ((unique | key | keyref)*).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer2()
     {
@@ -341,7 +341,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - elements from container 1 ((simpleType | complexType)?)
      * - elements from container 2 ((unique | key | keyref)*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer012()
     {

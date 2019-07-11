@@ -33,7 +33,7 @@ class SimpleContentElementTest extends AbstractAnnotatedElementTestCase
      * - FALSE when no element has been set
      * - TRUE when an element has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testHasDerivationElement()
     {
@@ -48,7 +48,7 @@ class SimpleContentElementTest extends AbstractAnnotatedElementTestCase
      * - NULL when no element has been set
      * - the instance of the element that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetDerivationElement()
     {
@@ -67,7 +67,7 @@ class SimpleContentElementTest extends AbstractAnnotatedElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 1 ((restriction | extension)).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer1()
     {
@@ -83,7 +83,7 @@ class SimpleContentElementTest extends AbstractAnnotatedElementTestCase
      * - elements from container 0 (annotation?)
      * - elements from container 1 ((restriction | extension))
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {

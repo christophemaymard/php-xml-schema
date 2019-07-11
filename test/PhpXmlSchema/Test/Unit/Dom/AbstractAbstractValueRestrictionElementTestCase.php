@@ -23,7 +23,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no MinExclusiveElement element has been added
      * - an indexed array of all added MinExclusiveElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetMinExclusiveElements()
     {
@@ -62,7 +62,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no MinInclusiveElement element has been added
      * - an indexed array of all added MinInclusiveElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetMinInclusiveElements()
     {
@@ -101,7 +101,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no MaxExclusiveElement element has been added
      * - an indexed array of all added MaxExclusiveElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetMaxExclusiveElements()
     {
@@ -140,7 +140,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no MaxInclusiveElement element has been added
      * - an indexed array of all added MaxInclusiveElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetMaxInclusiveElements()
     {
@@ -179,7 +179,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no TotalDigitsElement element has been added
      * - an indexed array of all added TotalDigitsElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetTotalDigitsElements()
     {
@@ -218,7 +218,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no FractionDigitsElement element has been added
      * - an indexed array of all added FractionDigitsElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetFractionDigitsElements()
     {
@@ -257,7 +257,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no LengthElement element has been added
      * - an indexed array of all added LengthElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetLengthElements()
     {
@@ -296,7 +296,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no MinLengthElement element has been added
      * - an indexed array of all added MinLengthElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetMinLengthElements()
     {
@@ -335,7 +335,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no MaxLengthElement element has been added
      * - an indexed array of all added MaxLengthElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetMaxLengthElements()
     {
@@ -374,7 +374,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no EnumerationElement element has been added
      * - an indexed array of all added EnumerationElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetEnumerationElements()
     {
@@ -413,7 +413,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no WhiteSpaceElement element has been added
      * - an indexed array of all added WhiteSpaceElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetWhiteSpaceElements()
     {
@@ -452,7 +452,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no PatternElement element has been added
      * - an indexed array of all added PatternElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetPatternElements()
     {
@@ -490,7 +490,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * - an empty array when no element has been added
      * - an indexed array of all added facet elements in container 2 ((minExclusive | minInclusive | maxExclusive | maxInclusive | totalDigits | fractionDigits | length | minLength | maxLength | enumeration | whiteSpace | pattern)*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetFacetElements()
     {
@@ -503,7 +503,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 2 ((minExclusive | minInclusive | maxExclusive | maxInclusive | totalDigits | fractionDigits | length | minLength | maxLength | enumeration | whiteSpace | pattern)*).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer2()
     {

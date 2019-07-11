@@ -70,7 +70,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * - an empty array when no element has been added
      * - an indexed array of all added SimpleTypeElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetSimpleTypeElements()
     {
@@ -91,7 +91,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 1 (simpleType*).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer1()
     {
@@ -109,7 +109,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * - elements from container 0 (annotation?)
      * - elements from container 1 (simpleType*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {

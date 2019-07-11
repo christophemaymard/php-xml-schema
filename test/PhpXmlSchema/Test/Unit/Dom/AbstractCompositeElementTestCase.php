@@ -71,7 +71,7 @@ abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
      * Tests that getElements() returns an empty array when no element has 
      * been added.
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsEmptyArrayWhenNoElementHasBeenAdded()
     {

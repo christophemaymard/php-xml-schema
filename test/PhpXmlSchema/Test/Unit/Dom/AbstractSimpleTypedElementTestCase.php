@@ -21,7 +21,7 @@ abstract class AbstractSimpleTypedElementTestCase extends AbstractAbstractSimple
      * - elements from container 0 (annotation?)
      * - elements from container 1 (simpleType?)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {

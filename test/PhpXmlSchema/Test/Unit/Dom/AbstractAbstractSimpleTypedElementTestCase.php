@@ -20,7 +20,7 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
      * - FALSE when no element has been set
      * - TRUE when an element has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testHasSimpleTypeElement()
     {
@@ -35,7 +35,7 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
      * - NULL when no element has been set
      * - the instance of the element that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetSimpleTypeElement()
     {
@@ -54,7 +54,7 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 1 (simpleType?).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer1()
     {

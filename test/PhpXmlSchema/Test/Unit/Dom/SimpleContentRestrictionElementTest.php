@@ -40,7 +40,7 @@ class SimpleContentRestrictionElementTest extends AbstractAbstractValueRestricti
      * - elements from container 3 ((attribute | attributeGroup)*)
      * - elements from container 4 (anyAttribute?)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer01234()
     {

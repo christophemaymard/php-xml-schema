@@ -33,7 +33,7 @@ class AllElementTest extends AbstractModelGroupElementTestCase
      * - an empty array when no element has been added
      * - an indexed array of all added ElementElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementElements()
     {
@@ -56,7 +56,7 @@ class AllElementTest extends AbstractModelGroupElementTestCase
      * - elements from container 0 (annotation?)
      * - elements from container 1 (element*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {

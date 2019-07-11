@@ -34,7 +34,7 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no AppInfoElement element has been added
      * - an indexed array of all added AppInfoElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAppInfoElements()
     {
@@ -63,7 +63,7 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
      * - an empty array when no DocumentationElement element has been added
      * - an indexed array of all added DocumentationElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetDocumentationElements()
     {
@@ -90,7 +90,7 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 0 ((appinfo | documentation)*).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer0()
     {

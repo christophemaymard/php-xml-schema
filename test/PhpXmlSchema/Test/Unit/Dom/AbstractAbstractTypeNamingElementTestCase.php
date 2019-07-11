@@ -20,7 +20,7 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
      * - FALSE when no element has been set
      * - TRUE when an element has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testHasTypeDefinitionParticleElement()
     {
@@ -35,7 +35,7 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
      * - NULL when no element has been set
      * - the instance of the element that has been set
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetTypeDefinitionParticleElement()
     {
@@ -62,7 +62,7 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 2 ((group | all | choice | sequence)?).
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer2()
     {

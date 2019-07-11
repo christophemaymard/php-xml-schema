@@ -35,7 +35,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractValueRestrictionE
      * - elements from container 1 (simpleType?)
      * - elements from container 2 ((minExclusive | minInclusive | maxExclusive | maxInclusive | totalDigits | fractionDigits | length | minLength | maxLength | enumeration | whiteSpace | pattern)*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer012()
     {

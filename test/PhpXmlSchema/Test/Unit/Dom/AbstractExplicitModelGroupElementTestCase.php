@@ -22,7 +22,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * - an empty array when no ElementElement element has been added
      * - an indexed array of all added ElementElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementElements()
     {
@@ -54,7 +54,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * - an empty array when no GroupElement element has been added
      * - an indexed array of all added GroupElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetGroupElements()
     {
@@ -86,7 +86,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * - an empty array when no ChoiceElement element has been added
      * - an indexed array of all added ChoiceElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetChoiceElements()
     {
@@ -118,7 +118,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * - an empty array when no SequenceElement element has been added
      * - an indexed array of all added SequenceElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetSequenceElements()
     {
@@ -150,7 +150,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * - an empty array when no AnyElement element has been added
      * - an indexed array of all added AnyElement elements
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetAnyElements()
     {
@@ -182,7 +182,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * - elements from container 0 (annotation?)
      * - elements from container 1 ((element | group | choice | sequence | any)*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {

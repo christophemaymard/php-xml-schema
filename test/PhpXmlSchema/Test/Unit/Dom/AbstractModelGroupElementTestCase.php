@@ -31,7 +31,7 @@ abstract class AbstractModelGroupElementTestCase extends AbstractAnnotatedElemen
      * - an empty array when no element has been added
      * - an indexed array of all added particle elements in container 1 (element*)
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetParticleElements()
     {
@@ -44,7 +44,7 @@ abstract class AbstractModelGroupElementTestCase extends AbstractAnnotatedElemen
      * Tests that getElements() returns an indexed array of all added 
      * elements in container 1.
      * 
-     * @group   elt-content
+     * @group   content
      */
     public function testGetElementsReturnsElementsOfContainer1()
     {
