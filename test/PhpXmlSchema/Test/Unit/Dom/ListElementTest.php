@@ -33,7 +33,7 @@ class ListElementTest extends AbstractSimpleTypedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasItemType()
     {
@@ -48,7 +48,7 @@ class ListElementTest extends AbstractSimpleTypedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetItemType()
     {

@@ -36,7 +36,7 @@ class AnyElementTest extends AbstractAnnotatedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasProcessContents()
     {
@@ -51,7 +51,7 @@ class AnyElementTest extends AbstractAnnotatedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetProcessContents()
     {

@@ -33,7 +33,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasLang()
     {
@@ -48,7 +48,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetLang()
     {
@@ -68,7 +68,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasSource()
     {
@@ -83,7 +83,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetSource()
     {

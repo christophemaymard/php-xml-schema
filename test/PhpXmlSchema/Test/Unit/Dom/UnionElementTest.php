@@ -33,7 +33,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasMemberTypes()
     {
@@ -48,7 +48,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * - an empty array when no QName has been added
      * - an indexed array of all added QName
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetMemberTypes()
     {

@@ -23,7 +23,7 @@ trait NameAttributeTestCaseTrait
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasName()
     {
@@ -38,7 +38,7 @@ trait NameAttributeTestCaseTrait
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetName()
     {

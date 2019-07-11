@@ -43,7 +43,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasForm()
     {
@@ -58,7 +58,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetForm()
     {
@@ -78,7 +78,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasSubstitutionGroup()
     {
@@ -93,7 +93,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetSubstitutionGroup()
     {
@@ -113,7 +113,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasType()
     {
@@ -128,7 +128,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetType()
     {
@@ -377,7 +377,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasNillable()
     {
@@ -392,7 +392,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetNillable()
     {

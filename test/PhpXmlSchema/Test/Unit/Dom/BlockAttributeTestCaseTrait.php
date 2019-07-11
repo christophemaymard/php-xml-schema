@@ -23,7 +23,7 @@ trait BlockAttributeTestCaseTrait
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasBlock()
     {
@@ -38,7 +38,7 @@ trait BlockAttributeTestCaseTrait
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetBlock()
     {

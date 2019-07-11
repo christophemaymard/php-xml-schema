@@ -33,7 +33,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasAttributeFormDefault()
     {
@@ -48,7 +48,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetAttributeFormDefault()
     {
@@ -68,7 +68,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasBlockDefault()
     {
@@ -83,7 +83,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetBlockDefault()
     {
@@ -103,7 +103,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasElementFormDefault()
     {
@@ -118,7 +118,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetElementFormDefault()
     {
@@ -138,7 +138,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasFinalDefault()
     {
@@ -153,7 +153,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetFinalDefault()
     {
@@ -173,7 +173,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasLang()
     {
@@ -188,7 +188,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetLang()
     {
@@ -208,7 +208,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasTargetNamespace()
     {
@@ -223,7 +223,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetTargetNamespace()
     {
@@ -243,7 +243,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasVersion()
     {
@@ -258,7 +258,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetVersion()
     {

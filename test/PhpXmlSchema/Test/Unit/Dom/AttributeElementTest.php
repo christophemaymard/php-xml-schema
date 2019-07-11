@@ -38,7 +38,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasForm()
     {
@@ -53,7 +53,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetForm()
     {
@@ -73,7 +73,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasType()
     {
@@ -88,7 +88,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetType()
     {
@@ -108,7 +108,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testHasUse()
     {
@@ -123,7 +123,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * - NULL when the attribute has not been set
      * - the value of the attribute that has been set
      * 
-     * @group   elt-attribute
+     * @group   attribute
      */
     public function testGetUse()
     {
