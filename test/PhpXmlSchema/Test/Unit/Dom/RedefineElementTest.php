@@ -29,6 +29,14 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('redefine', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasSchemaLocation() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

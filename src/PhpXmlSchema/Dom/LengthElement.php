@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class LengthElement extends AbstractNumericFacetElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'length';
+    }
 }

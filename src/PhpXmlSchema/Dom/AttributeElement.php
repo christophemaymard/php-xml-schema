@@ -74,6 +74,14 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     private $useAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'attribute';
+    }
+    
+    /**
      * Returns the value of the "default" attribute.
      * 
      * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.

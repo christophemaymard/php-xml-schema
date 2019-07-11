@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class SequenceElement extends AbstractExplicitModelGroupElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'sequence';
+    }
 }

@@ -29,6 +29,14 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractValueRestrictionE
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('restriction', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that getElements() returns an indexed array of all added 
      * elements in that order:
      * - elements from container 0 (annotation?)

@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class MaxLengthElement extends AbstractNumericFacetElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'maxLength';
+    }
 }

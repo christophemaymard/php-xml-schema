@@ -53,6 +53,14 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
+    public function getLocalName():string
+    {
+        return 'any';
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getMaxOccurs()
     {
         return $this->maxOccursAttr;

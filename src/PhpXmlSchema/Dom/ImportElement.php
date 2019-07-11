@@ -37,6 +37,14 @@ class ImportElement extends AbstractAnnotatedElement
     private $schemaLocationAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'import';
+    }
+    
+    /**
      * Returns the value of the "namespace" attribute.
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.

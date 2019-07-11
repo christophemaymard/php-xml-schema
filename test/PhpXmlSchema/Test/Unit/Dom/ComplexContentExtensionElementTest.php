@@ -29,4 +29,12 @@ class ComplexContentExtensionElementTest extends AbstractTypeNamingElementTestCa
     {
         $this->sut = new ComplexContentExtensionElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('extension', $this->sut->getLocalName());
+    }
 }

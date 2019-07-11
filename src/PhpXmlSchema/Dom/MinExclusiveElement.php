@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class MinExclusiveElement extends AbstractAnyFacetElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'minExclusive';
+    }
 }

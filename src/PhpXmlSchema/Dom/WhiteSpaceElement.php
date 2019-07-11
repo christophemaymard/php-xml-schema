@@ -29,6 +29,14 @@ class WhiteSpaceElement extends AbstractFixedFacetElement
     private $valueAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'whiteSpace';
+    }
+    
+    /**
      * Returns the value of the "value" attribute.
      * 
      * @return  WhiteSpaceType|NULL The value of the attribute if it has been set, otherwise NULL.

@@ -74,6 +74,14 @@ class SchemaElement extends AbstractCompositeElement
     private $versionAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'schema';
+    }
+    
+    /**
      * Returns the value of the "attributeFormDefault" attribute.
      * 
      * @return  FormType|NULL   The value of the attribute if it has been set, otherwise NULL.

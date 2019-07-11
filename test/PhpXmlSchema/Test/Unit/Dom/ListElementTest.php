@@ -29,6 +29,14 @@ class ListElementTest extends AbstractSimpleTypedElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('list', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasItemType() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

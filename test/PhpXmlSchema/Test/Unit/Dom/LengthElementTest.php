@@ -27,4 +27,12 @@ class LengthElementTest extends AbstractNumericFacetElementTestCase
     {
         $this->sut = new LengthElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('length', $this->sut->getLocalName());
+    }
 }

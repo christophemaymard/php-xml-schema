@@ -29,6 +29,14 @@ class KeyRefElementTest extends AbstractIdentityConstraintElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('keyref', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasRefer() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

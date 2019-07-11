@@ -30,4 +30,12 @@ class AttributeGroupElementTest extends AbstractAttributeNamingElementTestCase
     {
         $this->sut = new AttributeGroupElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('attributeGroup', $this->sut->getLocalName());
+    }
 }

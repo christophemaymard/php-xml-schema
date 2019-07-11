@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class FractionDigitsElement extends AbstractNumericFacetElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'fractionDigits';
+    }
 }

@@ -30,6 +30,14 @@ class ListElement extends AbstractSimpleTypedElement implements SimpleTypeDeriva
     private $itemTypeAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'list';
+    }
+    
+    /**
      * Returns the value of the "itemType" attribute.
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.

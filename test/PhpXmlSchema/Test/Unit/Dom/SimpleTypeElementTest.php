@@ -32,6 +32,14 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('simpleType', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasDerivationElement() returns a boolean:
      * - FALSE when no element has been set
      * - TRUE when an element has been set

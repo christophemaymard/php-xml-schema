@@ -29,6 +29,14 @@ class WhiteSpaceElementTest extends AbstractFixedFacetElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('whiteSpace', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasValue() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

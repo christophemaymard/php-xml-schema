@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class AllElement extends AbstractModelGroupElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'all';
+    }
 }

@@ -32,6 +32,14 @@ class ComplexContentRestrictionElement extends AbstractTypeNamingElement impleme
     private $baseAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'restriction';
+    }
+    
+    /**
      * Returns the value of the "base" attribute.
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.

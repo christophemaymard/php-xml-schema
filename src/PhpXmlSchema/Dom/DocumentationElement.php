@@ -37,6 +37,14 @@ class DocumentationElement extends AbstractLeafElement
     private $sourceAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'documentation';
+    }
+    
+    /**
      * Returns the value of the "xml:lang" attribute.
      * 
      * @return  LanguageType|NULL   The value of the attribute if it has been set, otherwise NULL.

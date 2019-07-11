@@ -30,6 +30,14 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
     private $memberTypesAttr = [];
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'union';
+    }
+    
+    /**
      * Adds the value of the "memberTypes" attribute.
      * 
      * @param   QNameType   $value  The value to set.

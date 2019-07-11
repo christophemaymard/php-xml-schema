@@ -28,6 +28,14 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
     private $mixedAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'complexContent';
+    }
+    
+    /**
      * Returns the value of the "mixed" attribute.
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.

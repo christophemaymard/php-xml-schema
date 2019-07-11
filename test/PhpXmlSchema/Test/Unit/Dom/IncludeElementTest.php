@@ -29,6 +29,14 @@ class IncludeElementTest extends AbstractAnnotatedElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('include', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasSchemaLocation() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

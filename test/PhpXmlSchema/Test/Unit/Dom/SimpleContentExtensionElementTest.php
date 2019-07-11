@@ -29,4 +29,12 @@ class SimpleContentExtensionElementTest extends AbstractAttributeNamingElementTe
     {
         $this->sut = new SimpleContentExtensionElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('extension', $this->sut->getLocalName());
+    }
 }

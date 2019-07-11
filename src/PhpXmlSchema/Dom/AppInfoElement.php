@@ -29,6 +29,14 @@ class AppInfoElement extends AbstractLeafElement
     private $sourceAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'appinfo';
+    }
+    
+    /**
      * Returns the value of the "source" attribute.
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.

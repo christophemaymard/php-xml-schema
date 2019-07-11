@@ -32,6 +32,14 @@ class SimpleContentExtensionElement extends AbstractAttributeNamingElement imple
     private $baseAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'extension';
+    }
+    
+    /**
      * Returns the value of the "base" attribute.
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.

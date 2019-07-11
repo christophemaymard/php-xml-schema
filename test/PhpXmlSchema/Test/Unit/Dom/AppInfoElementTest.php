@@ -29,6 +29,14 @@ class AppInfoElementTest extends AbstractLeafElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('appinfo', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasSource() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

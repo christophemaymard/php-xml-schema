@@ -21,6 +21,14 @@ namespace PhpXmlSchema\Dom;
 class SimpleContentElement extends AbstractAnnotatedElement implements ContentElementInterface
 {
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'simpleContent';
+    }
+    
+    /**
      * Returns the derivation element.
      * 
      * @return  SimpleContentDerivationElementInterface|NULL    The instance of the element if it has been set, otherwise NULL.

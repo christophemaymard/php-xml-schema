@@ -51,6 +51,11 @@ abstract class AbstractElementTestCase extends TestCase
     }
     
     /**
+     * Tests that getLocalName() returns a specific string.
+     */
+    abstract public function testGetLocalNameReturnsSpecificString();
+    
+    /**
      * Creates a dummy for the {@see PhpXmlSchema\Datatype\AnyUriType} class.
      * 
      * @return  ProphecySubjectInterface

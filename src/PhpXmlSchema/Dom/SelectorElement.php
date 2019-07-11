@@ -28,6 +28,14 @@ class SelectorElement extends AbstractAnnotatedElement
     private $xpathAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'selector';
+    }
+    
+    /**
      * Returns the value of the "xpath" attribute.
      * 
      * @return  SelectorXPathType|NULL  The value of the attribute if it has been set, otherwise NULL.

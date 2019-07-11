@@ -58,6 +58,14 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
     private $nameAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'complexType';
+    }
+    
+    /**
      * Returns the value of the "abstract" attribute.
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.

@@ -27,4 +27,12 @@ class MinExclusiveElementTest extends AbstractAbstractAnyFacetElementTestCase
     {
         $this->sut = new MinExclusiveElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('minExclusive', $this->sut->getLocalName());
+    }
 }

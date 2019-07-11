@@ -21,4 +21,11 @@ namespace PhpXmlSchema\Dom;
  */
 class KeyElement extends AbstractIdentityConstraintElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'key';
+    }
 }

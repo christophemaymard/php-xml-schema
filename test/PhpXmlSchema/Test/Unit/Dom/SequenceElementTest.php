@@ -27,4 +27,12 @@ class SequenceElementTest extends AbstractExplicitModelGroupElementTestCase
     {
         $this->sut = new SequenceElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('sequence', $this->sut->getLocalName());
+    }
 }

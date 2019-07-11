@@ -29,6 +29,14 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('schema', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasAttributeFormDefault() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

@@ -29,4 +29,12 @@ class EnumerationElementTest extends AbstractAnnotatedElementTestCase
     {
         $this->sut = new EnumerationElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('enumeration', $this->sut->getLocalName());
+    }
 }

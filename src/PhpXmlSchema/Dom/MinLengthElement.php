@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class MinLengthElement extends AbstractNumericFacetElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'minLength';
+    }
 }

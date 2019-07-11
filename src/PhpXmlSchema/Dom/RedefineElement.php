@@ -30,6 +30,14 @@ class RedefineElement extends AbstractCompositeElement
     private $schemaLocationAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'redefine';
+    }
+    
+    /**
      * Returns the value of the "schemaLocation" attribute.
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.

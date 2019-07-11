@@ -21,6 +21,14 @@ namespace PhpXmlSchema\Dom;
 class AnnotationElement extends AbstractCompositeElement
 {
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'annotation';
+    }
+    
+    /**
      * Adds an "appinfo" element to this element.
      * 
      * @param   AppInfoElement  $element    The element to add.

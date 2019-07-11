@@ -35,6 +35,14 @@ class AnyAttributeElement extends AbstractAnnotatedElement
     private $processContentsAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'anyAttribute';
+    }
+    
+    /**
      * Returns the value of the "namespace" attribute.
      * 
      * @return  NamespaceListType|NULL  The value of the attribute if it has been set, otherwise NULL.

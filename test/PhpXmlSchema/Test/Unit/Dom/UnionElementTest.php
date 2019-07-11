@@ -29,6 +29,14 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('union', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasMemberTypes() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

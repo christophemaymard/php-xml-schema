@@ -26,6 +26,14 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
+    public function getLocalName():string
+    {
+        return 'restriction';
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function addAttributeElement(AttributeElement $element)
     {
         $this->addChildElement(3, $element);

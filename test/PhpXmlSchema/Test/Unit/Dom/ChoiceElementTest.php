@@ -27,4 +27,12 @@ class ChoiceElementTest extends AbstractExplicitModelGroupElementTestCase
     {
         $this->sut = new ChoiceElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('choice', $this->sut->getLocalName());
+    }
 }

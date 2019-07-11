@@ -31,6 +31,14 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('notation', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasPublic() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

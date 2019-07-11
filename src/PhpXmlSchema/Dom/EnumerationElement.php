@@ -28,6 +28,14 @@ class EnumerationElement extends AbstractAnnotatedElement implements FacetElemen
     private $valueAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'enumeration';
+    }
+    
+    /**
      * Returns the value of the "value" attribute.
      * 
      * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.

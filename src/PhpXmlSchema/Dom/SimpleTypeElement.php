@@ -37,6 +37,14 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
     private $nameAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'simpleType';
+    }
+    
+    /**
      * Returns the value of the "final" attribute.
      * 
      * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.

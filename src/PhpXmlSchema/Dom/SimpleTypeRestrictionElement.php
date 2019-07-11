@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class SimpleTypeRestrictionElement extends AbstractValueRestrictionElement implements SimpleTypeDerivationElementInterface
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'restriction';
+    }
 }

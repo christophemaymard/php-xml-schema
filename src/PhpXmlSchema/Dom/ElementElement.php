@@ -117,6 +117,14 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     private $typeAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'element';
+    }
+    
+    /**
      * Returns the value of the "nillable" attribute.
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.

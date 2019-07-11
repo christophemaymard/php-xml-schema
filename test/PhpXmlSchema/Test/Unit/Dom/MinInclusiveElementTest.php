@@ -27,4 +27,12 @@ class MinInclusiveElementTest extends AbstractAbstractAnyFacetElementTestCase
     {
         $this->sut = new MinInclusiveElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('minInclusive', $this->sut->getLocalName());
+    }
 }

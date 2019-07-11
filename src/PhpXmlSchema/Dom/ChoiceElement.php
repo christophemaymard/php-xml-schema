@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class ChoiceElement extends AbstractExplicitModelGroupElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'choice';
+    }
 }

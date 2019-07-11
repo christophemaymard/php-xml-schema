@@ -29,6 +29,14 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('documentation', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasLang() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

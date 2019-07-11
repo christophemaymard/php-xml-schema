@@ -38,6 +38,14 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
     private $refAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'attributeGroup';
+    }
+    
+    /**
      * Returns the value of the "name" attribute.
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.

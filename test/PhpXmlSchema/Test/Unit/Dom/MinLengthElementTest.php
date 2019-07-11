@@ -27,4 +27,12 @@ class MinLengthElementTest extends AbstractNumericFacetElementTestCase
     {
         $this->sut = new MinLengthElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('minLength', $this->sut->getLocalName());
+    }
 }

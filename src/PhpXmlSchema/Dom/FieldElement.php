@@ -28,6 +28,14 @@ class FieldElement extends AbstractAnnotatedElement
     private $xpathAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'field';
+    }
+    
+    /**
      * Returns the value of the "xpath" attribute.
      * 
      * @return  FieldXPathType|NULL The value of the attribute if it has been set, otherwise NULL.

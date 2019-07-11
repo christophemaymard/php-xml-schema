@@ -26,4 +26,12 @@ class KeyElementTest extends AbstractIdentityConstraintElementTestCase
     {
         $this->sut = new KeyElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('key', $this->sut->getLocalName());
+    }
 }

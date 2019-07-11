@@ -57,6 +57,14 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
+    public function getLocalName():string
+    {
+        return 'group';
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getMaxOccurs()
     {
         return $this->maxOccursAttr;

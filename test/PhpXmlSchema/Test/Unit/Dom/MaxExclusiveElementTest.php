@@ -27,4 +27,12 @@ class MaxExclusiveElementTest extends AbstractAbstractAnyFacetElementTestCase
     {
         $this->sut = new MaxExclusiveElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('maxExclusive', $this->sut->getLocalName());
+    }
 }

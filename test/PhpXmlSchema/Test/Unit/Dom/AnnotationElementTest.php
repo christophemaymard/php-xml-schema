@@ -29,6 +29,14 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('annotation', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that getAppInfoElements() returns:
      * - an empty array when no element has been added
      * - an empty array when no AppInfoElement element has been added

@@ -21,4 +21,11 @@ namespace PhpXmlSchema\Dom;
  */
 class UniqueElement extends AbstractIdentityConstraintElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'unique';
+    }
 }

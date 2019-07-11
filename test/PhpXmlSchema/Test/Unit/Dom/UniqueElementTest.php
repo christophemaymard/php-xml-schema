@@ -27,4 +27,12 @@ class UniqueElementTest extends AbstractIdentityConstraintElementTestCase
     {
         $this->sut = new UniqueElement();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('unique', $this->sut->getLocalName());
+    }
 }

@@ -22,4 +22,11 @@ namespace PhpXmlSchema\Dom;
  */
 class MaxInclusiveElement extends AbstractAnyFacetElement
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'maxInclusive';
+    }
 }

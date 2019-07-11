@@ -46,6 +46,14 @@ class NotationElement extends AbstractAnnotatedElement
     private $systemAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'notation';
+    }
+    
+    /**
      * Returns the value of the "name" attribute.
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.

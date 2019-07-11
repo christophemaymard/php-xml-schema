@@ -35,6 +35,14 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('complexType', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasContentElement() returns a boolean:
      * - FALSE when no element has been set
      * - TRUE when an element has been set

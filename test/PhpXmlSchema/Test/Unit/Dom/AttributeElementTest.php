@@ -34,6 +34,14 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('attribute', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that hasForm() returns a boolean:
      * - FALSE when the attribute has not been set
      * - TRUE when the attribute has been set

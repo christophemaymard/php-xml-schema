@@ -29,6 +29,14 @@ class AllElementTest extends AbstractModelGroupElementTestCase
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function testGetLocalNameReturnsSpecificString()
+    {
+        self::assertSame('all', $this->sut->getLocalName());
+    }
+    
+    /**
      * Tests that getElementElements() returns:
      * - an empty array when no element has been added
      * - an indexed array of all added ElementElement elements

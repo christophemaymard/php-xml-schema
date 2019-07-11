@@ -30,6 +30,14 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
     private $valueAttr;
     
     /**
+     * {@inheritDoc}
+     */
+    public function getLocalName():string
+    {
+        return 'pattern';
+    }
+    
+    /**
      * Returns the value of the "value" attribute.
      * 
      * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.

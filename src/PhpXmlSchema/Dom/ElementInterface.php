@@ -14,4 +14,10 @@ namespace PhpXmlSchema\Dom;
  */
 interface ElementInterface
 {
+    /**
+     * Returns the local name of this element.
+     * 
+     * @return  string
+     */
+    public function getLocalName():string;
 }
