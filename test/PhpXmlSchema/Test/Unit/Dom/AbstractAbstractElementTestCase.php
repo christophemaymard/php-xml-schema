@@ -34,7 +34,7 @@ use Prophecy\Prophecy\ProphecySubjectInterface;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-abstract class AbstractElementTestCase extends TestCase
+abstract class AbstractAbstractElementTestCase extends TestCase
 {
     /**
      * The element to test.

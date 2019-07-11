@@ -65,7 +65,7 @@ use Prophecy\Prophecy\ProphecySubjectInterface;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-abstract class AbstractCompositeElementTestCase extends AbstractElementTestCase
+abstract class AbstractCompositeElementTestCase extends AbstractAbstractElementTestCase
 {
     /**
      * Tests that getElements() returns an empty array when no element has 

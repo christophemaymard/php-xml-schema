@@ -10,7 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 /**
  * Represents the unit tests for the "ref" attribute in a XML schema element.
  * 
- * It must be used in a class that extends the {@see PhpXmlSchema\Test\Unit\Dom\AbstractElementTestCase} 
+ * It must be used in a class that extends the {@see PhpXmlSchema\Test\Unit\Dom\AbstractAbstractElementTestCase} 
  * class.
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>

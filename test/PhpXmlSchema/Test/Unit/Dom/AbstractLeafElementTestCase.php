@@ -12,7 +12,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-abstract class AbstractLeafElementTestCase extends AbstractElementTestCase
+abstract class AbstractLeafElementTestCase extends AbstractAbstractElementTestCase
 {
     /**
      * Tests that getContent() returns:
