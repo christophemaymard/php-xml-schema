@@ -8,10 +8,7 @@
 namespace PhpXmlSchema\Test\Unit\Datatype;
 
 use PHPUnit\Framework\TestCase;
-use PhpXmlSchema\Datatype\AnyUriType;
-use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Datatype\QNameType;
-use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Datatype\QNameType} 
@@ -24,6 +21,8 @@ use Prophecy\Prophecy\ProphecySubjectInterface;
  */
 class QNameTest extends TestCase
 {
+    use DatatypeDummyFactoryTrait;
+    
     /**
      * Tests that __construct() stores the local part.
      */
@@ -68,25 +67,5 @@ class QNameTest extends TestCase
             $this->createAnyUriTypeDummy()
         );
         self::assertTrue($sut->hasNamespace());
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Datatype\AnyUriType} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    private function createAnyUriTypeDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(AnyUriType::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Datatype\NCNameType} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    private function createNCNameTypeDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(NCNameType::class)->reveal();
     }
 }
