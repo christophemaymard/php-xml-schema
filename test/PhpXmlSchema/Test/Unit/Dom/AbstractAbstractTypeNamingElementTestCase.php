@@ -26,7 +26,7 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
     {
         self::assertFalse($this->sut->hasTypeDefinitionParticleElement(), 'No element has been set.');
         
-        $this->sut->setTypeDefinitionParticleElement($this->createTypeDefinitionParticleElementInterfaceDummy());
+        $this->sut->setTypeDefinitionParticleElement($this->createAllElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasTypeDefinitionParticleElement(), 'Set with an element: TypeDefinitionParticleElementInterface.');
     }
     
@@ -41,19 +41,19 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
     {
         self::assertNull($this->sut->getTypeDefinitionParticleElement(), 'No element has been set.');
         
-        $elt1 = $this->createGroupElementDummy();
+        $elt1 = $this->createGroupElementHasParentFalse1TimeMock();
         $this->sut->setTypeDefinitionParticleElement($elt1);
         self::assertSame($elt1, $this->sut->getTypeDefinitionParticleElement(), 'Set with an element: GroupElement.');
         
-        $elt2 = $this->createAllElementDummy();
+        $elt2 = $this->createAllElementHasParentFalse1TimeMock();
         $this->sut->setTypeDefinitionParticleElement($elt2);
         self::assertSame($elt2, $this->sut->getTypeDefinitionParticleElement(), 'Set with another element: AllElement.');
         
-        $elt3 = $this->createChoiceElementDummy();
+        $elt3 = $this->createChoiceElementHasParentFalse1TimeMock();
         $this->sut->setTypeDefinitionParticleElement($elt3);
         self::assertSame($elt3, $this->sut->getTypeDefinitionParticleElement(), 'Set with another element: ChoiceElement.');
         
-        $elt4 = $this->createSequenceElementDummy();
+        $elt4 = $this->createSequenceElementHasParentFalse1TimeMock();
         $this->sut->setTypeDefinitionParticleElement($elt4);
         self::assertSame($elt4, $this->sut->getTypeDefinitionParticleElement(), 'Set with another element: SequenceElement.');
     }
@@ -67,7 +67,7 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
     public function testGetElementsReturnsElementsOfContainer2()
     {
         $children = [];
-        $children[] = $this->createTypeDefinitionParticleElementInterfaceDummy();
+        $children[] = $this->createChoiceElementHasParentFalse1TimeMock();
         $this->sut->setTypeDefinitionParticleElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 2.');
     }

@@ -162,7 +162,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertFalse($this->sut->hasTypeElement(), 'No element has been set.');
         
-        $this->sut->setTypeElement($this->createTypeElementInterfaceDummy());
+        $this->sut->setTypeElement($this->createSimpleTypeElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasTypeElement(), 'Set with an element: TypeElementInterface.');
     }
     
@@ -177,11 +177,11 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertNull($this->sut->getTypeElement(), 'No element has been set.');
         
-        $elt1 = $this->createSimpleTypeElementDummy();
+        $elt1 = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->setTypeElement($elt1);
         self::assertSame($elt1, $this->sut->getTypeElement(), 'Set with an element: SimpleTypeElement.');
         
-        $elt2 = $this->createComplexTypeElementDummy();
+        $elt2 = $this->createComplexTypeElementHasParentFalse1TimeMock();
         $this->sut->setTypeElement($elt2);
         self::assertSame($elt2, $this->sut->getTypeElement(), 'Set with another element: ComplexTypeElement.');
     }
@@ -195,7 +195,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOfContainer1()
     {
         $children = [];
-        $children[] = $this->createTypeElementInterfaceDummy();
+        $children[] = $this->createComplexTypeElementHasParentFalse1TimeMock();
         $this->sut->setTypeElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
@@ -214,18 +214,18 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
         
         self::assertSame($elements, $this->sut->getUniqueElements(), 'No element has been added.');
         
-        $this->sut->addKeyElement($this->createKeyElementDummy());
-        $this->sut->addKeyRefElement($this->createKeyRefElementDummy());
+        $this->sut->addKeyElement($this->createKeyElementHasParentFalse1TimeMock());
+        $this->sut->addKeyRefElement($this->createKeyRefElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getUniqueElements(), 'Added elements but no UniqueElement element.');
         
-        $elements[] = $this->createUniqueElementDummy();
+        $elements[] = $this->createUniqueElementHasParentFalse1TimeMock();
         $this->sut->addUniqueElement($elements[0]);
         self::assertSame($elements, $this->sut->getUniqueElements(), 'Added 1 UniqueElement element.');
         
-        $this->sut->addKeyElement($this->createKeyElementDummy());
+        $this->sut->addKeyElement($this->createKeyElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getUniqueElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createUniqueElementDummy();
+        $elements[] = $this->createUniqueElementHasParentFalse1TimeMock();
         $this->sut->addUniqueElement($elements[1]);
         self::assertSame($elements, $this->sut->getUniqueElements(), 'Added 2 UniqueElement elements.');
     }
@@ -244,18 +244,18 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
         
         self::assertSame($elements, $this->sut->getKeyElements(), 'No element has been added.');
         
-        $this->sut->addUniqueElement($this->createUniqueElementDummy());
-        $this->sut->addKeyRefElement($this->createKeyRefElementDummy());
+        $this->sut->addUniqueElement($this->createUniqueElementHasParentFalse1TimeMock());
+        $this->sut->addKeyRefElement($this->createKeyRefElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getKeyElements(), 'Added elements but no KeyElement element.');
         
-        $elements[] = $this->createKeyElementDummy();
+        $elements[] = $this->createKeyElementHasParentFalse1TimeMock();
         $this->sut->addKeyElement($elements[0]);
         self::assertSame($elements, $this->sut->getKeyElements(), 'Added 1 KeyElement element.');
         
-        $this->sut->addKeyRefElement($this->createKeyRefElementDummy());
+        $this->sut->addKeyRefElement($this->createKeyRefElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getKeyElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createKeyElementDummy();
+        $elements[] = $this->createKeyElementHasParentFalse1TimeMock();
         $this->sut->addKeyElement($elements[1]);
         self::assertSame($elements, $this->sut->getKeyElements(), 'Added 2 KeyElement elements.');
     }
@@ -274,18 +274,18 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
         
         self::assertSame($elements, $this->sut->getKeyRefElements(), 'No element has been added.');
         
-        $this->sut->addUniqueElement($this->createUniqueElementDummy());
-        $this->sut->addKeyElement($this->createKeyElementDummy());
+        $this->sut->addUniqueElement($this->createUniqueElementHasParentFalse1TimeMock());
+        $this->sut->addKeyElement($this->createKeyElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getKeyRefElements(), 'Added elements but no KeyRefElement element.');
         
-        $elements[] = $this->createKeyRefElementDummy();
+        $elements[] = $this->createKeyRefElementHasParentFalse1TimeMock();
         $this->sut->addKeyRefElement($elements[0]);
         self::assertSame($elements, $this->sut->getKeyRefElements(), 'Added 1 KeyRefElement element.');
         
-        $this->sut->addUniqueElement($this->createUniqueElementDummy());
+        $this->sut->addUniqueElement($this->createUniqueElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getKeyRefElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createKeyRefElementDummy();
+        $elements[] = $this->createKeyRefElementHasParentFalse1TimeMock();
         $this->sut->addKeyRefElement($elements[1]);
         self::assertSame($elements, $this->sut->getKeyRefElements(), 'Added 2 KeyRefElement elements.');
     }
@@ -303,12 +303,12 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
         
         self::assertSame($elements, $this->sut->getIdentityConstraintElements(), 'No element has been added.');
         
-        $elements[] = $this->createUniqueElementDummy();
-        $elements[] = $this->createKeyElementDummy();
-        $elements[] = $this->createKeyRefElementDummy();
-        $elements[] = $this->createUniqueElementDummy();
-        $elements[] = $this->createKeyElementDummy();
-        $elements[] = $this->createKeyRefElementDummy();
+        $elements[] = $this->createUniqueElementHasParentFalse1TimeMock();
+        $elements[] = $this->createKeyElementHasParentFalse1TimeMock();
+        $elements[] = $this->createKeyRefElementHasParentFalse1TimeMock();
+        $elements[] = $this->createUniqueElementHasParentFalse1TimeMock();
+        $elements[] = $this->createKeyElementHasParentFalse1TimeMock();
+        $elements[] = $this->createKeyRefElementHasParentFalse1TimeMock();
         $this->sut->addUniqueElement($elements[0]);
         $this->sut->addKeyElement($elements[1]);
         $this->sut->addKeyRefElement($elements[2]);
@@ -327,12 +327,12 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOfContainer2()
     {
         $children = [];
-        $children[] = $this->createUniqueElementDummy();
-        $children[] = $this->createKeyElementDummy();
-        $children[] = $this->createKeyRefElementDummy();
-        $children[] = $this->createUniqueElementDummy();
-        $children[] = $this->createKeyElementDummy();
-        $children[] = $this->createKeyRefElementDummy();
+        $children[] = $this->createUniqueElementHasParentFalse1TimeMock();
+        $children[] = $this->createKeyElementHasParentFalse1TimeMock();
+        $children[] = $this->createKeyRefElementHasParentFalse1TimeMock();
+        $children[] = $this->createUniqueElementHasParentFalse1TimeMock();
+        $children[] = $this->createKeyElementHasParentFalse1TimeMock();
+        $children[] = $this->createKeyRefElementHasParentFalse1TimeMock();
         $this->sut->addUniqueElement($children[0]);
         $this->sut->addKeyElement($children[1]);
         $this->sut->addKeyRefElement($children[2]);
@@ -354,14 +354,14 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOrderedByContainer012()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createTypeElementInterfaceDummy();
-        $children[] = $this->createUniqueElementDummy();
-        $children[] = $this->createKeyElementDummy();
-        $children[] = $this->createKeyRefElementDummy();
-        $children[] = $this->createUniqueElementDummy();
-        $children[] = $this->createKeyElementDummy();
-        $children[] = $this->createKeyRefElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
+        $children[] = $this->createUniqueElementHasParentFalse1TimeMock();
+        $children[] = $this->createKeyElementHasParentFalse1TimeMock();
+        $children[] = $this->createKeyRefElementHasParentFalse1TimeMock();
+        $children[] = $this->createUniqueElementHasParentFalse1TimeMock();
+        $children[] = $this->createKeyElementHasParentFalse1TimeMock();
+        $children[] = $this->createKeyRefElementHasParentFalse1TimeMock();
         
         // Init container 2.
         $this->sut->addUniqueElement($children[2]);

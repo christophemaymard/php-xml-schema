@@ -15,7 +15,7 @@ use PhpXmlSchema\Datatype\IDType;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-abstract class AbstractCompositeElement implements CompositeElementInterface
+abstract class AbstractCompositeElement extends AbstractElement implements CompositeElementInterface
 {
     /**
      * The value of the "id" attribute.
@@ -68,10 +68,12 @@ abstract class AbstractCompositeElement implements CompositeElementInterface
      * If the container does not exist then it is created.
      * 
      * @param   int                 $index      The index of the container.
-     * @param   ElementInterface    $element    The element to add.
+     * @param   AbstractElement     $element    The element to add.
      */
-    protected function addChildElement(int $index, ElementInterface $element)
+    protected function addChildElement(int $index, AbstractElement $element)
     {
+        $element->setParent($this);
+        
         // Creates the container (that holds multiple elements) if it does not exist.
         if (!$this->hasContainer($index)) {
             $this->sequence[$index] = [];
@@ -122,10 +124,12 @@ abstract class AbstractCompositeElement implements CompositeElementInterface
      * If the container does not exist then it is created.
      * 
      * @param   int                 $index      The index of the container.
-     * @param   ElementInterface    $element    The element to set.
+     * @param   AbstractElement     $element    The element to set.
      */
-    protected function setChildElement(int $index, ElementInterface $element)
+    protected function setChildElement(int $index, AbstractElement $element)
     {
+        $element->setParent($this);
+        
         if (!$this->hasContainer($index)) {
             // Creates and initializes a container that holds a single element.
             $this->sequence[$index] = $element;

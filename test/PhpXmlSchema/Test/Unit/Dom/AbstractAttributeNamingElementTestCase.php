@@ -28,12 +28,12 @@ abstract class AbstractAttributeNamingElementTestCase extends AbstractAbstractAt
     public function testGetElementsReturnsElementsOrderedByContainer034()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createAttributeElementDummy();
-        $children[] = $this->createAttributeGroupElementDummy();
-        $children[] = $this->createAttributeElementDummy();
-        $children[] = $this->createAttributeGroupElementDummy();
-        $children[] = $this->createAnyAttributeElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAnyAttributeElementHasParentFalse1TimeMock();
         
         // Init container 4.
         $this->sut->setAnyAttributeElement($children[5]);

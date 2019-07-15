@@ -26,8 +26,8 @@ abstract class AbstractSimpleTypedElementTestCase extends AbstractAbstractSimple
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         
         // Init container 1.
         $this->sut->setSimpleTypeElement($children[1]);

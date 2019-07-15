@@ -30,20 +30,20 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
         
         self::assertSame($elements, $this->sut->getElementElements(), 'No element has been added.');
         
-        $this->sut->addGroupElement($this->createGroupElementDummy());
-        $this->sut->addChoiceElement($this->createChoiceElementDummy());
-        $this->sut->addSequenceElement($this->createSequenceElementDummy());
-        $this->sut->addAnyElement($this->createAnyElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
+        $this->sut->addChoiceElement($this->createChoiceElementHasParentFalse1TimeMock());
+        $this->sut->addSequenceElement($this->createSequenceElementHasParentFalse1TimeMock());
+        $this->sut->addAnyElement($this->createAnyElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getElementElements(), 'Added elements but no ElementElement element.');
         
-        $elements[] = $this->createElementElementDummy();
+        $elements[] = $this->createElementElementHasParentFalse1TimeMock();
         $this->sut->addElementElement($elements[0]);
         self::assertSame($elements, $this->sut->getElementElements(), 'Added 1 ElementElement element.');
         
-        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getElementElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createElementElementDummy();
+        $elements[] = $this->createElementElementHasParentFalse1TimeMock();
         $this->sut->addElementElement($elements[1]);
         self::assertSame($elements, $this->sut->getElementElements(), 'Added 2 ElementElement elements.');
     }
@@ -62,20 +62,20 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
         
         self::assertSame($elements, $this->sut->getGroupElements(), 'No element has been added.');
         
-        $this->sut->addElementElement($this->createElementElementDummy());
-        $this->sut->addChoiceElement($this->createChoiceElementDummy());
-        $this->sut->addSequenceElement($this->createSequenceElementDummy());
-        $this->sut->addAnyElement($this->createAnyElementDummy());
+        $this->sut->addElementElement($this->createElementElementHasParentFalse1TimeMock());
+        $this->sut->addChoiceElement($this->createChoiceElementHasParentFalse1TimeMock());
+        $this->sut->addSequenceElement($this->createSequenceElementHasParentFalse1TimeMock());
+        $this->sut->addAnyElement($this->createAnyElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getGroupElements(), 'Added elements but no GroupElement element.');
         
-        $elements[] = $this->createGroupElementDummy();
+        $elements[] = $this->createGroupElementHasParentFalse1TimeMock();
         $this->sut->addGroupElement($elements[0]);
         self::assertSame($elements, $this->sut->getGroupElements(), 'Added 1 GroupElement element.');
         
-        $this->sut->addChoiceElement($this->createChoiceElementDummy());
+        $this->sut->addChoiceElement($this->createChoiceElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getGroupElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createGroupElementDummy();
+        $elements[] = $this->createGroupElementHasParentFalse1TimeMock();
         $this->sut->addGroupElement($elements[1]);
         self::assertSame($elements, $this->sut->getGroupElements(), 'Added 2 GroupElement elements.');
     }
@@ -94,20 +94,20 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
         
         self::assertSame($elements, $this->sut->getChoiceElements(), 'No element has been added.');
         
-        $this->sut->addElementElement($this->createElementElementDummy());
-        $this->sut->addGroupElement($this->createGroupElementDummy());
-        $this->sut->addSequenceElement($this->createSequenceElementDummy());
-        $this->sut->addAnyElement($this->createAnyElementDummy());
+        $this->sut->addElementElement($this->createElementElementHasParentFalse1TimeMock());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
+        $this->sut->addSequenceElement($this->createSequenceElementHasParentFalse1TimeMock());
+        $this->sut->addAnyElement($this->createAnyElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getChoiceElements(), 'Added elements but no ChoiceElement element.');
         
-        $elements[] = $this->createChoiceElementDummy();
+        $elements[] = $this->createChoiceElementHasParentFalse1TimeMock();
         $this->sut->addChoiceElement($elements[0]);
         self::assertSame($elements, $this->sut->getChoiceElements(), 'Added 1 ChoiceElement element.');
         
-        $this->sut->addSequenceElement($this->createSequenceElementDummy());
+        $this->sut->addSequenceElement($this->createSequenceElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getChoiceElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createChoiceElementDummy();
+        $elements[] = $this->createChoiceElementHasParentFalse1TimeMock();
         $this->sut->addChoiceElement($elements[1]);
         self::assertSame($elements, $this->sut->getChoiceElements(), 'Added 2 ChoiceElement elements.');
     }
@@ -126,20 +126,20 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
         
         self::assertSame($elements, $this->sut->getSequenceElements(), 'No element has been added.');
         
-        $this->sut->addElementElement($this->createElementElementDummy());
-        $this->sut->addGroupElement($this->createGroupElementDummy());
-        $this->sut->addChoiceElement($this->createChoiceElementDummy());
-        $this->sut->addAnyElement($this->createAnyElementDummy());
+        $this->sut->addElementElement($this->createElementElementHasParentFalse1TimeMock());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
+        $this->sut->addChoiceElement($this->createChoiceElementHasParentFalse1TimeMock());
+        $this->sut->addAnyElement($this->createAnyElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getSequenceElements(), 'Added elements but no SequenceElement element.');
         
-        $elements[] = $this->createSequenceElementDummy();
+        $elements[] = $this->createSequenceElementHasParentFalse1TimeMock();
         $this->sut->addSequenceElement($elements[0]);
         self::assertSame($elements, $this->sut->getSequenceElements(), 'Added 1 SequenceElement element.');
         
-        $this->sut->addAnyElement($this->createAnyElementDummy());
+        $this->sut->addAnyElement($this->createAnyElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getSequenceElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createSequenceElementDummy();
+        $elements[] = $this->createSequenceElementHasParentFalse1TimeMock();
         $this->sut->addSequenceElement($elements[1]);
         self::assertSame($elements, $this->sut->getSequenceElements(), 'Added 2 SequenceElement elements.');
     }
@@ -158,20 +158,20 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
         
         self::assertSame($elements, $this->sut->getAnyElements(), 'No element has been added.');
         
-        $this->sut->addElementElement($this->createElementElementDummy());
-        $this->sut->addGroupElement($this->createGroupElementDummy());
-        $this->sut->addChoiceElement($this->createChoiceElementDummy());
-        $this->sut->addSequenceElement($this->createSequenceElementDummy());
+        $this->sut->addElementElement($this->createElementElementHasParentFalse1TimeMock());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
+        $this->sut->addChoiceElement($this->createChoiceElementHasParentFalse1TimeMock());
+        $this->sut->addSequenceElement($this->createSequenceElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAnyElements(), 'Added elements but no AnyElement element.');
         
-        $elements[] = $this->createAnyElementDummy();
+        $elements[] = $this->createAnyElementHasParentFalse1TimeMock();
         $this->sut->addAnyElement($elements[0]);
         self::assertSame($elements, $this->sut->getAnyElements(), 'Added 1 AnyElement element.');
         
-        $this->sut->addElementElement($this->createElementElementDummy());
+        $this->sut->addElementElement($this->createElementElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAnyElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createAnyElementDummy();
+        $elements[] = $this->createAnyElementHasParentFalse1TimeMock();
         $this->sut->addAnyElement($elements[1]);
         self::assertSame($elements, $this->sut->getAnyElements(), 'Added 2 AnyElement elements.');
     }
@@ -187,17 +187,17 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createElementElementDummy();
-        $children[] = $this->createGroupElementDummy();
-        $children[] = $this->createChoiceElementDummy();
-        $children[] = $this->createSequenceElementDummy();
-        $children[] = $this->createAnyElementDummy();
-        $children[] = $this->createElementElementDummy();
-        $children[] = $this->createGroupElementDummy();
-        $children[] = $this->createChoiceElementDummy();
-        $children[] = $this->createSequenceElementDummy();
-        $children[] = $this->createAnyElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createElementElementHasParentFalse1TimeMock();
+        $children[] = $this->createGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createChoiceElementHasParentFalse1TimeMock();
+        $children[] = $this->createSequenceElementHasParentFalse1TimeMock();
+        $children[] = $this->createAnyElementHasParentFalse1TimeMock();
+        $children[] = $this->createElementElementHasParentFalse1TimeMock();
+        $children[] = $this->createGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createChoiceElementHasParentFalse1TimeMock();
+        $children[] = $this->createSequenceElementHasParentFalse1TimeMock();
+        $children[] = $this->createAnyElementHasParentFalse1TimeMock();
         
         // Init container 1.
         $this->sut->addElementElement($children[1]);
@@ -226,16 +226,16 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
     protected function fillSutContainer1():array
     {
         $elements = [];
-        $elements[] = $this->createElementElementDummy();
-        $elements[] = $this->createGroupElementDummy();
-        $elements[] = $this->createChoiceElementDummy();
-        $elements[] = $this->createSequenceElementDummy();
-        $elements[] = $this->createAnyElementDummy();
-        $elements[] = $this->createElementElementDummy();
-        $elements[] = $this->createGroupElementDummy();
-        $elements[] = $this->createChoiceElementDummy();
-        $elements[] = $this->createSequenceElementDummy();
-        $elements[] = $this->createAnyElementDummy();
+        $elements[] = $this->createElementElementHasParentFalse1TimeMock();
+        $elements[] = $this->createGroupElementHasParentFalse1TimeMock();
+        $elements[] = $this->createChoiceElementHasParentFalse1TimeMock();
+        $elements[] = $this->createSequenceElementHasParentFalse1TimeMock();
+        $elements[] = $this->createAnyElementHasParentFalse1TimeMock();
+        $elements[] = $this->createElementElementHasParentFalse1TimeMock();
+        $elements[] = $this->createGroupElementHasParentFalse1TimeMock();
+        $elements[] = $this->createChoiceElementHasParentFalse1TimeMock();
+        $elements[] = $this->createSequenceElementHasParentFalse1TimeMock();
+        $elements[] = $this->createAnyElementHasParentFalse1TimeMock();
         $this->sut->addElementElement($elements[0]);
         $this->sut->addGroupElement($elements[1]);
         $this->sut->addChoiceElement($elements[2]);

@@ -48,32 +48,32 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractValueRestrictionE
     public function testGetElementsReturnsElementsOrderedByContainer012()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createSimpleTypeElementDummy();
-        $children[] = $this->createMinExclusiveElementDummy();
-        $children[] = $this->createMinInclusiveElementDummy();
-        $children[] = $this->createMaxExclusiveElementDummy();
-        $children[] = $this->createMaxInclusiveElementDummy();
-        $children[] = $this->createTotalDigitsElementDummy();
-        $children[] = $this->createFractionDigitsElementDummy();
-        $children[] = $this->createLengthElementDummy();
-        $children[] = $this->createMinLengthElementDummy();
-        $children[] = $this->createMaxLengthElementDummy();
-        $children[] = $this->createEnumerationElementDummy();
-        $children[] = $this->createWhiteSpaceElementDummy();
-        $children[] = $this->createPatternElementDummy();
-        $children[] = $this->createMinExclusiveElementDummy();
-        $children[] = $this->createMinInclusiveElementDummy();
-        $children[] = $this->createMaxExclusiveElementDummy();
-        $children[] = $this->createMaxInclusiveElementDummy();
-        $children[] = $this->createTotalDigitsElementDummy();
-        $children[] = $this->createFractionDigitsElementDummy();
-        $children[] = $this->createLengthElementDummy();
-        $children[] = $this->createMinLengthElementDummy();
-        $children[] = $this->createMaxLengthElementDummy();
-        $children[] = $this->createEnumerationElementDummy();
-        $children[] = $this->createWhiteSpaceElementDummy();
-        $children[] = $this->createPatternElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
+        $children[] = $this->createMinExclusiveElementHasParentFalse1TimeMock();
+        $children[] = $this->createMinInclusiveElementHasParentFalse1TimeMock();
+        $children[] = $this->createMaxExclusiveElementHasParentFalse1TimeMock();
+        $children[] = $this->createMaxInclusiveElementHasParentFalse1TimeMock();
+        $children[] = $this->createTotalDigitsElementHasParentFalse1TimeMock();
+        $children[] = $this->createFractionDigitsElementHasParentFalse1TimeMock();
+        $children[] = $this->createLengthElementHasParentFalse1TimeMock();
+        $children[] = $this->createMinLengthElementHasParentFalse1TimeMock();
+        $children[] = $this->createMaxLengthElementHasParentFalse1TimeMock();
+        $children[] = $this->createEnumerationElementHasParentFalse1TimeMock();
+        $children[] = $this->createWhiteSpaceElementHasParentFalse1TimeMock();
+        $children[] = $this->createPatternElementHasParentFalse1TimeMock();
+        $children[] = $this->createMinExclusiveElementHasParentFalse1TimeMock();
+        $children[] = $this->createMinInclusiveElementHasParentFalse1TimeMock();
+        $children[] = $this->createMaxExclusiveElementHasParentFalse1TimeMock();
+        $children[] = $this->createMaxInclusiveElementHasParentFalse1TimeMock();
+        $children[] = $this->createTotalDigitsElementHasParentFalse1TimeMock();
+        $children[] = $this->createFractionDigitsElementHasParentFalse1TimeMock();
+        $children[] = $this->createLengthElementHasParentFalse1TimeMock();
+        $children[] = $this->createMinLengthElementHasParentFalse1TimeMock();
+        $children[] = $this->createMaxLengthElementHasParentFalse1TimeMock();
+        $children[] = $this->createEnumerationElementHasParentFalse1TimeMock();
+        $children[] = $this->createWhiteSpaceElementHasParentFalse1TimeMock();
+        $children[] = $this->createPatternElementHasParentFalse1TimeMock();
         
         // Init container 2.
         $this->sut->addMinExclusiveElement($children[2]);

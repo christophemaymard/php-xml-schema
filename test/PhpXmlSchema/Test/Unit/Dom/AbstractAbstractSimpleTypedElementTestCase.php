@@ -26,7 +26,7 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
     {
         self::assertFalse($this->sut->hasSimpleTypeElement(), 'No element has been set.');
         
-        $this->sut->setSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->setSimpleTypeElement($this->createSimpleTypeElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasSimpleTypeElement(), 'Set with an element: SimpleTypeElement.');
     }
     
@@ -41,11 +41,11 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
     {
         self::assertNull($this->sut->getSimpleTypeElement(), 'No element has been set.');
         
-        $elt1 = $this->createSimpleTypeElementDummy();
+        $elt1 = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->setSimpleTypeElement($elt1);
         self::assertSame($elt1, $this->sut->getSimpleTypeElement(), 'Set with an element: SimpleTypeElement.');
         
-        $elt2 = $this->createSimpleTypeElementDummy();
+        $elt2 = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->setSimpleTypeElement($elt2);
         self::assertSame($elt2, $this->sut->getSimpleTypeElement(), 'Set with another element: SimpleTypeElement.');
     }
@@ -59,7 +59,7 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
     public function testGetElementsReturnsElementsOfContainer1()
     {
         $children = [];
-        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->setSimpleTypeElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }

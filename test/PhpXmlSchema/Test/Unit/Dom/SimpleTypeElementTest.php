@@ -50,7 +50,7 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertFalse($this->sut->hasDerivationElement(), 'No element has been set.');
         
-        $this->sut->setDerivationElement($this->createSimpleTypeDerivationElementInterfaceDummy());
+        $this->sut->setDerivationElement($this->createSimpleTypeRestrictionElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasDerivationElement(), 'Set with an element: SimpleTypeDerivationElementInterface.');
     }
     
@@ -65,15 +65,15 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertNull($this->sut->getDerivationElement(), 'No element has been set.');
         
-        $elt1 = $this->createSimpleTypeRestrictionElementDummy();
+        $elt1 = $this->createSimpleTypeRestrictionElementHasParentFalse1TimeMock();
         $this->sut->setDerivationElement($elt1);
         self::assertSame($elt1, $this->sut->getDerivationElement(), 'Set with an element: SimpleTypeRestrictionElement.');
         
-        $elt2 = $this->createListElementDummy();
+        $elt2 = $this->createListElementHasParentFalse1TimeMock();
         $this->sut->setDerivationElement($elt2);
         self::assertSame($elt2, $this->sut->getDerivationElement(), 'Set with another element: ListElement.');
         
-        $elt3 = $this->createUnionElementDummy();
+        $elt3 = $this->createUnionElementHasParentFalse1TimeMock();
         $this->sut->setDerivationElement($elt3);
         self::assertSame($elt3, $this->sut->getDerivationElement(), 'Set with another element: UnionElement.');
     }
@@ -87,7 +87,7 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOfContainer1()
     {
         $children = [];
-        $children[] = $this->createSimpleTypeDerivationElementInterfaceDummy();
+        $children[] = $this->createListElementHasParentFalse1TimeMock();
         $this->sut->setDerivationElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
@@ -103,8 +103,8 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createSimpleTypeDerivationElementInterfaceDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createUnionElementHasParentFalse1TimeMock();
         
         // Init container 1.
         $this->sut->setDerivationElement($children[1]);

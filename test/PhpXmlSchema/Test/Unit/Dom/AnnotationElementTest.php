@@ -50,17 +50,17 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
         
         self::assertSame($elements, $this->sut->getAppInfoElements(), 'No element has been added.');
         
-        $this->sut->addDocumentationElement($this->createDocumentationElementDummy());
+        $this->sut->addDocumentationElement($this->createDocumentationElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAppInfoElements(), 'Added elements but no AppInfoElement element.');
         
-        $elements[] = $this->createAppInfoElementDummy();
+        $elements[] = $this->createAppInfoElementHasParentFalse1TimeMock();
         $this->sut->addAppInfoElement($elements[0]);
         self::assertSame($elements, $this->sut->getAppInfoElements(), 'Added 1 AppInfoElement element.');
         
-        $this->sut->addDocumentationElement($this->createDocumentationElementDummy());
+        $this->sut->addDocumentationElement($this->createDocumentationElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAppInfoElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createAppInfoElementDummy();
+        $elements[] = $this->createAppInfoElementHasParentFalse1TimeMock();
         $this->sut->addAppInfoElement($elements[1]);
         self::assertSame($elements, $this->sut->getAppInfoElements(), 'Added 2 AppInfoElement elements.');
     }
@@ -79,17 +79,17 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
         
         self::assertSame($elements, $this->sut->getDocumentationElements(), 'No element has been added.');
         
-        $this->sut->addAppInfoElement($this->createAppInfoElementDummy());
+        $this->sut->addAppInfoElement($this->createAppInfoElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getDocumentationElements(), 'Added elements but no DocumentationElement element.');
         
-        $elements[] = $this->createDocumentationElementDummy();
+        $elements[] = $this->createDocumentationElementHasParentFalse1TimeMock();
         $this->sut->addDocumentationElement($elements[0]);
         self::assertSame($elements, $this->sut->getDocumentationElements(), 'Added 1 DocumentationElement element.');
         
-        $this->sut->addAppInfoElement($this->createAppInfoElementDummy());
+        $this->sut->addAppInfoElement($this->createAppInfoElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getDocumentationElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createDocumentationElementDummy();
+        $elements[] = $this->createDocumentationElementHasParentFalse1TimeMock();
         $this->sut->addDocumentationElement($elements[1]);
         self::assertSame($elements, $this->sut->getDocumentationElements(), 'Added 2 DocumentationElement elements.');
     }
@@ -103,10 +103,10 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
     public function testGetElementsReturnsElementsOfContainer0()
     {
         $children = [];
-        $children[] = $this->createAppInfoElementDummy();
-        $children[] = $this->createDocumentationElementDummy();
-        $children[] = $this->createAppInfoElementDummy();
-        $children[] = $this->createDocumentationElementDummy();
+        $children[] = $this->createAppInfoElementHasParentFalse1TimeMock();
+        $children[] = $this->createDocumentationElementHasParentFalse1TimeMock();
+        $children[] = $this->createAppInfoElementHasParentFalse1TimeMock();
+        $children[] = $this->createDocumentationElementHasParentFalse1TimeMock();
         $this->sut->addAppInfoElement($children[0]);
         $this->sut->addDocumentationElement($children[1]);
         $this->sut->addAppInfoElement($children[2]);

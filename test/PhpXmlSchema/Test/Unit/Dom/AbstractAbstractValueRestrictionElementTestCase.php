@@ -31,27 +31,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getMinExclusiveElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMinExclusiveElements(), 'Added elements but no MinExclusiveElement element.');
         
-        $elements[] = $this->createMinExclusiveElementDummy();
+        $elements[] = $this->createMinExclusiveElementHasParentFalse1TimeMock();
         $this->sut->addMinExclusiveElement($elements[0]);
         self::assertSame($elements, $this->sut->getMinExclusiveElements(), 'Added 1 MinExclusiveElement element.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMinExclusiveElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createMinExclusiveElementDummy();
+        $elements[] = $this->createMinExclusiveElementHasParentFalse1TimeMock();
         $this->sut->addMinExclusiveElement($elements[1]);
         self::assertSame($elements, $this->sut->getMinExclusiveElements(), 'Added 2 MinExclusiveElement elements.');
     }
@@ -70,27 +70,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getMinInclusiveElements(), 'No element has been added.');
         
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMinInclusiveElements(), 'Added elements but no MinInclusiveElement element.');
         
-        $elements[] = $this->createMinInclusiveElementDummy();
+        $elements[] = $this->createMinInclusiveElementHasParentFalse1TimeMock();
         $this->sut->addMinInclusiveElement($elements[0]);
         self::assertSame($elements, $this->sut->getMinInclusiveElements(), 'Added 1 MinInclusiveElement element.');
         
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMinInclusiveElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createMinInclusiveElementDummy();
+        $elements[] = $this->createMinInclusiveElementHasParentFalse1TimeMock();
         $this->sut->addMinInclusiveElement($elements[1]);
         self::assertSame($elements, $this->sut->getMinInclusiveElements(), 'Added 2 MinInclusiveElement elements.');
     }
@@ -109,27 +109,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getMaxExclusiveElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMaxExclusiveElements(), 'Added elements but no MaxExclusiveElement element.');
         
-        $elements[] = $this->createMaxExclusiveElementDummy();
+        $elements[] = $this->createMaxExclusiveElementHasParentFalse1TimeMock();
         $this->sut->addMaxExclusiveElement($elements[0]);
         self::assertSame($elements, $this->sut->getMaxExclusiveElements(), 'Added 1 MaxExclusiveElement element.');
         
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMaxExclusiveElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createMaxExclusiveElementDummy();
+        $elements[] = $this->createMaxExclusiveElementHasParentFalse1TimeMock();
         $this->sut->addMaxExclusiveElement($elements[1]);
         self::assertSame($elements, $this->sut->getMaxExclusiveElements(), 'Added 2 MaxExclusiveElement elements.');
     }
@@ -148,27 +148,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getMaxInclusiveElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMaxInclusiveElements(), 'Added elements but no MaxInclusiveElement element.');
         
-        $elements[] = $this->createMaxInclusiveElementDummy();
+        $elements[] = $this->createMaxInclusiveElementHasParentFalse1TimeMock();
         $this->sut->addMaxInclusiveElement($elements[0]);
         self::assertSame($elements, $this->sut->getMaxInclusiveElements(), 'Added 1 MaxInclusiveElement element.');
         
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMaxInclusiveElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createMaxInclusiveElementDummy();
+        $elements[] = $this->createMaxInclusiveElementHasParentFalse1TimeMock();
         $this->sut->addMaxInclusiveElement($elements[1]);
         self::assertSame($elements, $this->sut->getMaxInclusiveElements(), 'Added 2 MaxInclusiveElement elements.');
     }
@@ -187,27 +187,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getTotalDigitsElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getTotalDigitsElements(), 'Added elements but no TotalDigitsElement element.');
         
-        $elements[] = $this->createTotalDigitsElementDummy();
+        $elements[] = $this->createTotalDigitsElementHasParentFalse1TimeMock();
         $this->sut->addTotalDigitsElement($elements[0]);
         self::assertSame($elements, $this->sut->getTotalDigitsElements(), 'Added 1 TotalDigitsElement element.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getTotalDigitsElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createTotalDigitsElementDummy();
+        $elements[] = $this->createTotalDigitsElementHasParentFalse1TimeMock();
         $this->sut->addTotalDigitsElement($elements[1]);
         self::assertSame($elements, $this->sut->getTotalDigitsElements(), 'Added 2 TotalDigitsElement elements.');
     }
@@ -226,27 +226,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getFractionDigitsElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getFractionDigitsElements(), 'Added elements but no FractionDigitsElement element.');
         
-        $elements[] = $this->createFractionDigitsElementDummy();
+        $elements[] = $this->createFractionDigitsElementHasParentFalse1TimeMock();
         $this->sut->addFractionDigitsElement($elements[0]);
         self::assertSame($elements, $this->sut->getFractionDigitsElements(), 'Added 1 FractionDigitsElement element.');
         
-        $this->sut->addLengthElement($this->createLengthElementDummy());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getFractionDigitsElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createFractionDigitsElementDummy();
+        $elements[] = $this->createFractionDigitsElementHasParentFalse1TimeMock();
         $this->sut->addFractionDigitsElement($elements[1]);
         self::assertSame($elements, $this->sut->getFractionDigitsElements(), 'Added 2 FractionDigitsElement elements.');
     }
@@ -265,27 +265,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getLengthElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getLengthElements(), 'Added elements but no LengthElement element.');
         
-        $elements[] = $this->createLengthElementDummy();
+        $elements[] = $this->createLengthElementHasParentFalse1TimeMock();
         $this->sut->addLengthElement($elements[0]);
         self::assertSame($elements, $this->sut->getLengthElements(), 'Added 1 LengthElement element.');
         
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getLengthElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createLengthElementDummy();
+        $elements[] = $this->createLengthElementHasParentFalse1TimeMock();
         $this->sut->addLengthElement($elements[1]);
         self::assertSame($elements, $this->sut->getLengthElements(), 'Added 2 LengthElement elements.');
     }
@@ -304,27 +304,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getMinLengthElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMinLengthElements(), 'Added elements but no MinLengthElement element.');
         
-        $elements[] = $this->createMinLengthElementDummy();
+        $elements[] = $this->createMinLengthElementHasParentFalse1TimeMock();
         $this->sut->addMinLengthElement($elements[0]);
         self::assertSame($elements, $this->sut->getMinLengthElements(), 'Added 1 MinLengthElement element.');
         
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMinLengthElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createMinLengthElementDummy();
+        $elements[] = $this->createMinLengthElementHasParentFalse1TimeMock();
         $this->sut->addMinLengthElement($elements[1]);
         self::assertSame($elements, $this->sut->getMinLengthElements(), 'Added 2 MinLengthElement elements.');
     }
@@ -343,27 +343,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getMaxLengthElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMaxLengthElements(), 'Added elements but no MaxLengthElement element.');
         
-        $elements[] = $this->createMaxLengthElementDummy();
+        $elements[] = $this->createMaxLengthElementHasParentFalse1TimeMock();
         $this->sut->addMaxLengthElement($elements[0]);
         self::assertSame($elements, $this->sut->getMaxLengthElements(), 'Added 1 MaxLengthElement element.');
         
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getMaxLengthElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createMaxLengthElementDummy();
+        $elements[] = $this->createMaxLengthElementHasParentFalse1TimeMock();
         $this->sut->addMaxLengthElement($elements[1]);
         self::assertSame($elements, $this->sut->getMaxLengthElements(), 'Added 2 MaxLengthElement elements.');
     }
@@ -382,27 +382,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getEnumerationElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getEnumerationElements(), 'Added elements but no EnumerationElement element.');
         
-        $elements[] = $this->createEnumerationElementDummy();
+        $elements[] = $this->createEnumerationElementHasParentFalse1TimeMock();
         $this->sut->addEnumerationElement($elements[0]);
         self::assertSame($elements, $this->sut->getEnumerationElements(), 'Added 1 EnumerationElement element.');
         
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getEnumerationElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createEnumerationElementDummy();
+        $elements[] = $this->createEnumerationElementHasParentFalse1TimeMock();
         $this->sut->addEnumerationElement($elements[1]);
         self::assertSame($elements, $this->sut->getEnumerationElements(), 'Added 2 EnumerationElement elements.');
     }
@@ -421,27 +421,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getWhiteSpaceElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getWhiteSpaceElements(), 'Added elements but no WhiteSpaceElement element.');
         
-        $elements[] = $this->createWhiteSpaceElementDummy();
+        $elements[] = $this->createWhiteSpaceElementHasParentFalse1TimeMock();
         $this->sut->addWhiteSpaceElement($elements[0]);
         self::assertSame($elements, $this->sut->getWhiteSpaceElements(), 'Added 1 WhiteSpaceElement element.');
         
-        $this->sut->addPatternElement($this->createPatternElementDummy());
+        $this->sut->addPatternElement($this->createPatternElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getWhiteSpaceElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createWhiteSpaceElementDummy();
+        $elements[] = $this->createWhiteSpaceElementHasParentFalse1TimeMock();
         $this->sut->addWhiteSpaceElement($elements[1]);
         self::assertSame($elements, $this->sut->getWhiteSpaceElements(), 'Added 2 WhiteSpaceElement elements.');
     }
@@ -460,27 +460,27 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
         
         self::assertSame($elements, $this->sut->getPatternElements(), 'No element has been added.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
-        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementDummy());
-        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementDummy());
-        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementDummy());
-        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementDummy());
-        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementDummy());
-        $this->sut->addLengthElement($this->createLengthElementDummy());
-        $this->sut->addMinLengthElement($this->createMinLengthElementDummy());
-        $this->sut->addMaxLengthElement($this->createMaxLengthElementDummy());
-        $this->sut->addEnumerationElement($this->createEnumerationElementDummy());
-        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMinExclusiveElement($this->createMinExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxExclusiveElement($this->createMaxExclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addMaxInclusiveElement($this->createMaxInclusiveElementHasParentFalse1TimeMock());
+        $this->sut->addTotalDigitsElement($this->createTotalDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addFractionDigitsElement($this->createFractionDigitsElementHasParentFalse1TimeMock());
+        $this->sut->addLengthElement($this->createLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMinLengthElement($this->createMinLengthElementHasParentFalse1TimeMock());
+        $this->sut->addMaxLengthElement($this->createMaxLengthElementHasParentFalse1TimeMock());
+        $this->sut->addEnumerationElement($this->createEnumerationElementHasParentFalse1TimeMock());
+        $this->sut->addWhiteSpaceElement($this->createWhiteSpaceElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getPatternElements(), 'Added elements but no PatternElement element.');
         
-        $elements[] = $this->createPatternElementDummy();
+        $elements[] = $this->createPatternElementHasParentFalse1TimeMock();
         $this->sut->addPatternElement($elements[0]);
         self::assertSame($elements, $this->sut->getPatternElements(), 'Added 1 PatternElement element.');
         
-        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementDummy());
+        $this->sut->addMinInclusiveElement($this->createMinInclusiveElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getPatternElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createPatternElementDummy();
+        $elements[] = $this->createPatternElementHasParentFalse1TimeMock();
         $this->sut->addPatternElement($elements[1]);
         self::assertSame($elements, $this->sut->getPatternElements(), 'Added 2 PatternElement elements.');
     }
@@ -519,30 +519,30 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
     private function fillSutContainer2():array
     {
         $elements = [];
-        $elements[] = $this->createMinExclusiveElementDummy();
-        $elements[] = $this->createMinInclusiveElementDummy();
-        $elements[] = $this->createMaxExclusiveElementDummy();
-        $elements[] = $this->createMaxInclusiveElementDummy();
-        $elements[] = $this->createTotalDigitsElementDummy();
-        $elements[] = $this->createFractionDigitsElementDummy();
-        $elements[] = $this->createLengthElementDummy();
-        $elements[] = $this->createMinLengthElementDummy();
-        $elements[] = $this->createMaxLengthElementDummy();
-        $elements[] = $this->createEnumerationElementDummy();
-        $elements[] = $this->createWhiteSpaceElementDummy();
-        $elements[] = $this->createPatternElementDummy();
-        $elements[] = $this->createMinExclusiveElementDummy();
-        $elements[] = $this->createMinInclusiveElementDummy();
-        $elements[] = $this->createMaxExclusiveElementDummy();
-        $elements[] = $this->createMaxInclusiveElementDummy();
-        $elements[] = $this->createTotalDigitsElementDummy();
-        $elements[] = $this->createFractionDigitsElementDummy();
-        $elements[] = $this->createLengthElementDummy();
-        $elements[] = $this->createMinLengthElementDummy();
-        $elements[] = $this->createMaxLengthElementDummy();
-        $elements[] = $this->createEnumerationElementDummy();
-        $elements[] = $this->createWhiteSpaceElementDummy();
-        $elements[] = $this->createPatternElementDummy();
+        $elements[] = $this->createMinExclusiveElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMinInclusiveElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMaxExclusiveElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMaxInclusiveElementHasParentFalse1TimeMock();
+        $elements[] = $this->createTotalDigitsElementHasParentFalse1TimeMock();
+        $elements[] = $this->createFractionDigitsElementHasParentFalse1TimeMock();
+        $elements[] = $this->createLengthElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMinLengthElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMaxLengthElementHasParentFalse1TimeMock();
+        $elements[] = $this->createEnumerationElementHasParentFalse1TimeMock();
+        $elements[] = $this->createWhiteSpaceElementHasParentFalse1TimeMock();
+        $elements[] = $this->createPatternElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMinExclusiveElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMinInclusiveElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMaxExclusiveElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMaxInclusiveElementHasParentFalse1TimeMock();
+        $elements[] = $this->createTotalDigitsElementHasParentFalse1TimeMock();
+        $elements[] = $this->createFractionDigitsElementHasParentFalse1TimeMock();
+        $elements[] = $this->createLengthElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMinLengthElementHasParentFalse1TimeMock();
+        $elements[] = $this->createMaxLengthElementHasParentFalse1TimeMock();
+        $elements[] = $this->createEnumerationElementHasParentFalse1TimeMock();
+        $elements[] = $this->createWhiteSpaceElementHasParentFalse1TimeMock();
+        $elements[] = $this->createPatternElementHasParentFalse1TimeMock();
         $this->sut->addMinExclusiveElement($elements[0]);
         $this->sut->addMinInclusiveElement($elements[1]);
         $this->sut->addMaxExclusiveElement($elements[2]);

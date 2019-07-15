@@ -1,0 +1,60 @@
+<?php
+/**
+ * This file is part of the PhpXmlSchema library.
+ * 
+ * @copyright   2018-2019, Christophe Maymard <christophe.maymard@hotmail.com>
+ * @license     http://opensource.org/licenses/MIT  MIT
+ */
+namespace PhpXmlSchema\Test\Integration\Dom;
+
+use PhpXmlSchema\Dom\AnnotationElement;
+use PhpXmlSchema\Dom\DocumentationElement;
+
+/**
+ * Represents the integration tests for the {@see PhpXmlSchema\Dom\DocumentationElement} class.
+ * 
+ * @group   element
+ * @group   dom
+ * 
+ * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
+ */
+class DocumentationElementTest extends AbstractAbstractElementTestCase
+{
+    /**
+     * {@inheritDoc}
+     */
+    protected function setUp()
+    {
+        $this->sut = new DocumentationElement();
+    }
+    
+    /**
+     * Tests hasParent() and getParent() when the element is added to 
+     * AnnotationElement.
+     * 
+     * @group   content
+     */
+    public function testDocumentationElementWhenAddedToAnnotationElement()
+    {
+        $parent = new AnnotationElement();
+        $parent->addDocumentationElement($this->sut);
+        self::assertTrue($this->sut->hasParent());
+        self::assertSame($parent, $this->sut->getParent());
+    }
+    
+    /**
+     * Tests that an exception is thrown when adding an element, that already 
+     * belongs to another element, with AnnotationElement::addDocumentationElement().
+     * 
+     * @group   content
+     */
+    public function testDocumentationElementWithParentThrowsExceptionWhenAnnotationElementAddDocumentationElement()
+    {
+        $parent1 = new AnnotationElement();
+        $parent1->addDocumentationElement($this->sut);
+        
+        $parent2 = new AnnotationElement();
+        $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
+        $parent2->addDocumentationElement($this->sut);
+    }
+}

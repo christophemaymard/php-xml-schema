@@ -1,0 +1,91 @@
+<?php
+/**
+ * This file is part of the PhpXmlSchema library.
+ * 
+ * @copyright   2018-2019, Christophe Maymard <christophe.maymard@hotmail.com>
+ * @license     http://opensource.org/licenses/MIT  MIT
+ */
+namespace PhpXmlSchema\Test\Integration\Dom;
+
+use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
+use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
+use PhpXmlSchema\Dom\TotalDigitsElement;
+
+/**
+ * Represents the integration tests for the {@see PhpXmlSchema\Dom\TotalDigitsElement} class.
+ * 
+ * @group   element
+ * @group   dom
+ * 
+ * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
+ */
+class TotalDigitsElementTest extends AbstractAbstractElementTestCase
+{
+    /**
+     * {@inheritDoc}
+     */
+    protected function setUp()
+    {
+        $this->sut = new TotalDigitsElement();
+    }
+    
+    /**
+     * Tests hasParent() and getParent() when the element is added to 
+     * SimpleContentRestrictionElement.
+     * 
+     * @group   content
+     */
+    public function testTotalDigitsElementWhenAddedToSimpleContentRestrictionElement()
+    {
+        $parent = new SimpleContentRestrictionElement();
+        $parent->addTotalDigitsElement($this->sut);
+        self::assertTrue($this->sut->hasParent());
+        self::assertSame($parent, $this->sut->getParent());
+    }
+    
+    /**
+     * Tests that an exception is thrown when adding an element, that already 
+     * belongs to another element, with SimpleContentRestrictionElement::addTotalDigitsElement().
+     * 
+     * @group   content
+     */
+    public function testTotalDigitsElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddTotalDigitsElement()
+    {
+        $parent1 = new SimpleContentRestrictionElement();
+        $parent1->addTotalDigitsElement($this->sut);
+        
+        $parent2 = new SimpleContentRestrictionElement();
+        $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
+        $parent2->addTotalDigitsElement($this->sut);
+    }
+    
+    /**
+     * Tests hasParent() and getParent() when the element is added to 
+     * SimpleTypeRestrictionElement.
+     * 
+     * @group   content
+     */
+    public function testTotalDigitsElementWhenAddedToSimpleTypeRestrictionElement()
+    {
+        $parent = new SimpleTypeRestrictionElement();
+        $parent->addTotalDigitsElement($this->sut);
+        self::assertTrue($this->sut->hasParent());
+        self::assertSame($parent, $this->sut->getParent());
+    }
+    
+    /**
+     * Tests that an exception is thrown when adding an element, that already 
+     * belongs to another element, with SimpleTypeRestrictionElement::addTotalDigitsElement().
+     * 
+     * @group   content
+     */
+    public function testTotalDigitsElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddTotalDigitsElement()
+    {
+        $parent1 = new SimpleTypeRestrictionElement();
+        $parent1->addTotalDigitsElement($this->sut);
+        
+        $parent2 = new SimpleTypeRestrictionElement();
+        $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
+        $parent2->addTotalDigitsElement($this->sut);
+    }
+}

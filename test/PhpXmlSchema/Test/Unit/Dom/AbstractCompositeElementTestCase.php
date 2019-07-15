@@ -15,12 +15,10 @@ use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
 use PhpXmlSchema\Dom\ChoiceElement;
-use PhpXmlSchema\Dom\ComplexContentDerivationElementInterface;
 use PhpXmlSchema\Dom\ComplexContentElement;
 use PhpXmlSchema\Dom\ComplexContentExtensionElement;
 use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
-use PhpXmlSchema\Dom\ContentElementInterface;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementElement;
 use PhpXmlSchema\Dom\EnumerationElement;
@@ -39,22 +37,17 @@ use PhpXmlSchema\Dom\MaxLengthElement;
 use PhpXmlSchema\Dom\MinExclusiveElement;
 use PhpXmlSchema\Dom\MinInclusiveElement;
 use PhpXmlSchema\Dom\MinLengthElement;
-use PhpXmlSchema\Dom\ModelGroupElementInterface;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\PatternElement;
 use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SelectorElement;
 use PhpXmlSchema\Dom\SequenceElement;
-use PhpXmlSchema\Dom\SimpleContentDerivationElementInterface;
 use PhpXmlSchema\Dom\SimpleContentElement;
 use PhpXmlSchema\Dom\SimpleContentExtensionElement;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
-use PhpXmlSchema\Dom\SimpleTypeDerivationElementInterface;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use PhpXmlSchema\Dom\TotalDigitsElement;
-use PhpXmlSchema\Dom\TypeDefinitionParticleElementInterface;
-use PhpXmlSchema\Dom\TypeElementInterface;
 use PhpXmlSchema\Dom\UnionElement;
 use PhpXmlSchema\Dom\UniqueElement;
 use PhpXmlSchema\Dom\WhiteSpaceElement;
@@ -114,542 +107,478 @@ abstract class AbstractCompositeElementTestCase extends AbstractAbstractElementT
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\AllElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\AllElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAllElementDummy():ProphecySubjectInterface
+    protected function createAllElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(AllElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(AllElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\AnnotationElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\AnnotationElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAnnotationElementDummy():ProphecySubjectInterface
+    protected function createAnnotationElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(AnnotationElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(AnnotationElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\AnyAttributeElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\AnyAttributeElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAnyAttributeElementDummy():ProphecySubjectInterface
+    protected function createAnyAttributeElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(AnyAttributeElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(AnyAttributeElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\AnyElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\AnyElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAnyElementDummy():ProphecySubjectInterface
+    protected function createAnyElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(AnyElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(AnyElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\AppInfoElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\AppInfoElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAppInfoElementDummy():ProphecySubjectInterface
+    protected function createAppInfoElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(AppInfoElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(AppInfoElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\AttributeElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\AttributeElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAttributeElementDummy():ProphecySubjectInterface
+    protected function createAttributeElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(AttributeElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(AttributeElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\AttributeGroupElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\AttributeGroupElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAttributeGroupElementDummy():ProphecySubjectInterface
+    protected function createAttributeGroupElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(AttributeGroupElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(AttributeGroupElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ChoiceElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\ChoiceElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createChoiceElementDummy():ProphecySubjectInterface
+    protected function createChoiceElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(ChoiceElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(ChoiceElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ComplexContentDerivationElementInterface} 
-     * interface.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createComplexContentDerivationElementInterfaceDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(ComplexContentDerivationElementInterface::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ComplexContentElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\ComplexContentElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createComplexContentElementDummy():ProphecySubjectInterface
+    protected function createComplexContentElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(ComplexContentElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(ComplexContentElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ComplexContentExtensionElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\ComplexContentExtensionElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createComplexContentExtensionElementDummy():ProphecySubjectInterface
+    protected function createComplexContentExtensionElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(ComplexContentExtensionElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(ComplexContentExtensionElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ComplexContentRestrictionElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\ComplexContentRestrictionElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createComplexContentRestrictionElementDummy():ProphecySubjectInterface
+    protected function createComplexContentRestrictionElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(ComplexContentRestrictionElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(ComplexContentRestrictionElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ComplexTypeElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\ComplexTypeElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createComplexTypeElementDummy():ProphecySubjectInterface
+    protected function createComplexTypeElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(ComplexTypeElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(ComplexTypeElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ContentElementInterface} 
-     * interface.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createContentElementInterfaceDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(ContentElementInterface::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\DocumentationElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\DocumentationElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createDocumentationElementDummy():ProphecySubjectInterface
+    protected function createDocumentationElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(DocumentationElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(DocumentationElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ElementElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\ElementElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createElementElementDummy():ProphecySubjectInterface
+    protected function createElementElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(ElementElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(ElementElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\EnumerationElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\EnumerationElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createEnumerationElementDummy():ProphecySubjectInterface
+    protected function createEnumerationElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(EnumerationElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(EnumerationElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\FieldElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\FieldElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createFieldElementDummy():ProphecySubjectInterface
+    protected function createFieldElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(FieldElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(FieldElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\FractionDigitsElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\FractionDigitsElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createFractionDigitsElementDummy():ProphecySubjectInterface
+    protected function createFractionDigitsElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(FractionDigitsElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(FractionDigitsElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\GroupElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\GroupElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createGroupElementDummy():ProphecySubjectInterface
+    protected function createGroupElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(GroupElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(GroupElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ImportElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\ImportElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createImportElementDummy():ProphecySubjectInterface
+    protected function createImportElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(ImportElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(ImportElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\IncludeElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\IncludeElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createIncludeElementDummy():ProphecySubjectInterface
+    protected function createIncludeElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(IncludeElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(IncludeElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\KeyElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\KeyElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createKeyElementDummy():ProphecySubjectInterface
+    protected function createKeyElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(KeyElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(KeyElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\KeyRefElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\KeyRefElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createKeyRefElementDummy():ProphecySubjectInterface
+    protected function createKeyRefElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(KeyRefElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(KeyRefElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\LengthElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\LengthElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createLengthElementDummy():ProphecySubjectInterface
+    protected function createLengthElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(LengthElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(LengthElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ListElement} class.
+     * Creates a mock for the {@see PhpXmlSchema\Dom\ListElement} class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createListElementDummy():ProphecySubjectInterface
+    protected function createListElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(ListElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(ListElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\MaxExclusiveElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\MaxExclusiveElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMaxExclusiveElementDummy():ProphecySubjectInterface
+    protected function createMaxExclusiveElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(MaxExclusiveElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(MaxExclusiveElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\MaxInclusiveElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\MaxInclusiveElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMaxInclusiveElementDummy():ProphecySubjectInterface
+    protected function createMaxInclusiveElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(MaxInclusiveElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(MaxInclusiveElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\MaxLengthElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\MaxLengthElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createMaxLengthElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(MaxLengthElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\MinExclusiveElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMaxLengthElementDummy():ProphecySubjectInterface
+    protected function createMinExclusiveElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(MaxLengthElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(MinExclusiveElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\MinExclusiveElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\MinInclusiveElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMinExclusiveElementDummy():ProphecySubjectInterface
+    protected function createMinInclusiveElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(MinExclusiveElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(MinInclusiveElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\MinInclusiveElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\MinLengthElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMinInclusiveElementDummy():ProphecySubjectInterface
+    protected function createMinLengthElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(MinInclusiveElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(MinLengthElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\MinLengthElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\NotationElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createNotationElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(NotationElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\PatternElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createPatternElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(PatternElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\RedefineElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createRedefineElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(RedefineElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\SelectorElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createSelectorElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(SelectorElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\SequenceElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createSequenceElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(SequenceElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\SimpleContentElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMinLengthElementDummy():ProphecySubjectInterface
+    protected function createSimpleContentElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(MinLengthElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(SimpleContentElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\ModelGroupElementInterface} 
-     * interface.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createModelGroupElementInterfaceDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(ModelGroupElementInterface::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\NotationElement} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createNotationElementDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(NotationElement::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\PatternElement} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createPatternElementDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(PatternElement::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\RedefineElement} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createRedefineElementDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(RedefineElement::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SelectorElement} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createSelectorElementDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(SelectorElement::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SequenceElement} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createSequenceElementDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(SequenceElement::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleContentDerivationElementInterface} 
-     * interface.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createSimpleContentDerivationElementInterfaceDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(SimpleContentDerivationElementInterface::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleContentElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\SimpleContentExtensionElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleContentElementDummy():ProphecySubjectInterface
+    protected function createSimpleContentExtensionElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(SimpleContentElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(SimpleContentExtensionElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleContentExtensionElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\SimpleContentRestrictionElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleContentExtensionElementDummy():ProphecySubjectInterface
+    protected function createSimpleContentRestrictionElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(SimpleContentExtensionElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(SimpleContentRestrictionElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleContentRestrictionElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\SimpleTypeElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createSimpleTypeElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(SimpleTypeElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\SimpleTypeRestrictionElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleContentRestrictionElementDummy():ProphecySubjectInterface
+    protected function createSimpleTypeRestrictionElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(SimpleContentRestrictionElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(SimpleTypeRestrictionElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleTypeDerivationElementInterface} 
-     * interface.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createSimpleTypeDerivationElementInterfaceDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(SimpleTypeDerivationElementInterface::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleTypeElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\TotalDigitsElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleTypeElementDummy():ProphecySubjectInterface
+    protected function createTotalDigitsElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(SimpleTypeElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(TotalDigitsElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\SimpleTypeRestrictionElement} 
+     * Creates a mock for the {@see PhpXmlSchema\Dom\UnionElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createUnionElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(UnionElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\UniqueElement} class.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    protected function createUniqueElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    {
+        return $this->createElementHasParentFalse1TimeMock(UniqueElement::class);
+    }
+    
+    /**
+     * Creates a mock for the {@see PhpXmlSchema\Dom\WhiteSpaceElement} 
      * class.
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleTypeRestrictionElementDummy():ProphecySubjectInterface
+    protected function createWhiteSpaceElementHasParentFalse1TimeMock():ProphecySubjectInterface
     {
-        return $this->prophesize(SimpleTypeRestrictionElement::class)->reveal();
+        return $this->createElementHasParentFalse1TimeMock(WhiteSpaceElement::class);
     }
     
     /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\TotalDigitsElement} 
-     * class.
+     * Creates a mock for an element, with the specified class name, where 
+     * hasParent() returns FALSE and should be called once.
      * 
+     * @param   string  $className  The element class name used to create a mock.
      * @return  ProphecySubjectInterface
      */
-    protected function createTotalDigitsElementDummy():ProphecySubjectInterface
+    protected function createElementHasParentFalse1TimeMock(string $className):ProphecySubjectInterface
     {
-        return $this->prophesize(TotalDigitsElement::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\TypeDefinitionParticleElementInterface} 
-     * interface.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createTypeDefinitionParticleElementInterfaceDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(TypeDefinitionParticleElementInterface::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\TypeElementInterface} 
-     * interface.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createTypeElementInterfaceDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(TypeElementInterface::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\UnionElement} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createUnionElementDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(UnionElement::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\UniqueElement} class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createUniqueElementDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(UniqueElement::class)->reveal();
-    }
-    
-    /**
-     * Creates a dummy for the {@see PhpXmlSchema\Dom\WhiteSpaceElement} 
-     * class.
-     * 
-     * @return  ProphecySubjectInterface
-     */
-    protected function createWhiteSpaceElementDummy():ProphecySubjectInterface
-    {
-        return $this->prophesize(WhiteSpaceElement::class)->reveal();
+        $p = $this->prophesize($className);
+        $p->hasParent()->willReturn(FALSE)->shouldBeCalledTimes(1);
+        
+        return $p->reveal();
     }
 }

@@ -29,7 +29,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
     {
         self::assertFalse($this->sut->hasSelectorElement(), 'No element has been set.');
         
-        $this->sut->setSelectorElement($this->createSelectorElementDummy());
+        $this->sut->setSelectorElement($this->createSelectorElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasSelectorElement(), 'Set with an element: SelectorElement.');
     }
     
@@ -44,11 +44,11 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
     {
         self::assertNull($this->sut->getSelectorElement(), 'No element has been set.');
         
-        $elt1 = $this->createSelectorElementDummy();
+        $elt1 = $this->createSelectorElementHasParentFalse1TimeMock();
         $this->sut->setSelectorElement($elt1);
         self::assertSame($elt1, $this->sut->getSelectorElement(), 'Set with an element: SelectorElement.');
         
-        $elt2 = $this->createSelectorElementDummy();
+        $elt2 = $this->createSelectorElementHasParentFalse1TimeMock();
         $this->sut->setSelectorElement($elt2);
         self::assertSame($elt2, $this->sut->getSelectorElement(), 'Set with another element: SelectorElement.');
     }
@@ -62,7 +62,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
     public function testGetElementsReturnsElementsOfContainer1()
     {
         $children = [];
-        $children[] = $this->createSelectorElementDummy();
+        $children[] = $this->createSelectorElementHasParentFalse1TimeMock();
         $this->sut->setSelectorElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
@@ -80,11 +80,11 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
         
         self::assertSame($elements, $this->sut->getFieldElements(), 'No element has been added.');
         
-        $elements[] = $this->createFieldElementDummy();
+        $elements[] = $this->createFieldElementHasParentFalse1TimeMock();
         $this->sut->addFieldElement($elements[0]);
         self::assertSame($elements, $this->sut->getFieldElements(), 'Added 1 FieldElement element.');
         
-        $elements[] = $this->createFieldElementDummy();
+        $elements[] = $this->createFieldElementHasParentFalse1TimeMock();
         $this->sut->addFieldElement($elements[1]);
         self::assertSame($elements, $this->sut->getFieldElements(), 'Added 2 FieldElement elements.');
     }
@@ -98,8 +98,8 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
     public function testGetElementsReturnsElementsOfContainer2()
     {
         $children = [];
-        $children[] = $this->createFieldElementDummy();
-        $children[] = $this->createFieldElementDummy();
+        $children[] = $this->createFieldElementHasParentFalse1TimeMock();
+        $children[] = $this->createFieldElementHasParentFalse1TimeMock();
         $this->sut->addFieldElement($children[0]);
         $this->sut->addFieldElement($children[1]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 2.');
@@ -117,10 +117,10 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
     public function testGetElementsReturnsElementsOrderedByContainer012()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createSelectorElementDummy();
-        $children[] = $this->createFieldElementDummy();
-        $children[] = $this->createFieldElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSelectorElementHasParentFalse1TimeMock();
+        $children[] = $this->createFieldElementHasParentFalse1TimeMock();
+        $children[] = $this->createFieldElementHasParentFalse1TimeMock();
         
         // Init container 2.
         $this->sut->addFieldElement($children[2]);

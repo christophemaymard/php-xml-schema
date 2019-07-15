@@ -49,7 +49,7 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertFalse($this->sut->hasDerivationElement(), 'No element has been set.');
         
-        $this->sut->setDerivationElement($this->createComplexContentDerivationElementInterfaceDummy());
+        $this->sut->setDerivationElement($this->createComplexContentRestrictionElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasDerivationElement(), 'Set with an element: ComplexContentDerivationElementInterface.');
     }
     
@@ -64,11 +64,11 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertNull($this->sut->getDerivationElement(), 'No element has been set.');
         
-        $elt1 = $this->createComplexContentRestrictionElementDummy();
+        $elt1 = $this->createComplexContentRestrictionElementHasParentFalse1TimeMock();
         $this->sut->setDerivationElement($elt1);
         self::assertSame($elt1, $this->sut->getDerivationElement(), 'Set with an element: ComplexContentRestrictionElement.');
         
-        $elt2 = $this->createComplexContentExtensionElementDummy();
+        $elt2 = $this->createComplexContentExtensionElementHasParentFalse1TimeMock();
         $this->sut->setDerivationElement($elt2);
         self::assertSame($elt2, $this->sut->getDerivationElement(), 'Set with another element: ComplexContentExtensionElement.');
     }
@@ -82,7 +82,7 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOfContainer1()
     {
         $children = [];
-        $children[] = $this->createComplexContentDerivationElementInterfaceDummy();
+        $children[] = $this->createComplexContentExtensionElementHasParentFalse1TimeMock();
         $this->sut->setDerivationElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
@@ -98,8 +98,8 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createComplexContentDerivationElementInterfaceDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createComplexContentRestrictionElementHasParentFalse1TimeMock();
         
         // Init container 1.
         $this->sut->setDerivationElement($children[1]);

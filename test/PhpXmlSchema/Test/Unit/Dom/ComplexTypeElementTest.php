@@ -53,7 +53,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
     {
         self::assertFalse($this->sut->hasContentElement(), 'No element has been set.');
         
-        $this->sut->setContentElement($this->createContentElementInterfaceDummy());
+        $this->sut->setContentElement($this->createSimpleContentElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasContentElement(), 'Set with an element: ContentElementInterface.');
     }
     
@@ -68,11 +68,11 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
     {
         self::assertNull($this->sut->getContentElement(), 'No element has been set.');
         
-        $elt1 = $this->createSimpleContentElementDummy();
+        $elt1 = $this->createSimpleContentElementHasParentFalse1TimeMock();
         $this->sut->setContentElement($elt1);
         self::assertSame($elt1, $this->sut->getContentElement(), 'Set with an element: SimpleContentElement.');
         
-        $elt2 = $this->createComplexContentElementDummy();
+        $elt2 = $this->createComplexContentElementHasParentFalse1TimeMock();
         $this->sut->setContentElement($elt2);
         self::assertSame($elt2, $this->sut->getContentElement(), 'Set with another element: ComplexContentElement.');
     }
@@ -86,7 +86,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
     public function testGetElementsReturnsElementsOfContainer1()
     {
         $children = [];
-        $children[] = $this->createContentElementInterfaceDummy();
+        $children[] = $this->createComplexContentElementHasParentFalse1TimeMock();
         $this->sut->setContentElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
@@ -105,14 +105,14 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
     public function testGetElementsReturnsElementsOrderedByContainer01234()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createContentElementInterfaceDummy();
-        $children[] = $this->createTypeDefinitionParticleElementInterfaceDummy();
-        $children[] = $this->createAttributeElementDummy();
-        $children[] = $this->createAttributeGroupElementDummy();
-        $children[] = $this->createAttributeElementDummy();
-        $children[] = $this->createAttributeGroupElementDummy();
-        $children[] = $this->createAnyAttributeElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleContentElementHasParentFalse1TimeMock();
+        $children[] = $this->createSequenceElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAnyAttributeElementHasParentFalse1TimeMock();
         
         // Init container 4.
         $this->sut->setAnyAttributeElement($children[7]);

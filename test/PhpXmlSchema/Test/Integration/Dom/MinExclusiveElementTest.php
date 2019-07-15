@@ -1,0 +1,91 @@
+<?php
+/**
+ * This file is part of the PhpXmlSchema library.
+ * 
+ * @copyright   2018-2019, Christophe Maymard <christophe.maymard@hotmail.com>
+ * @license     http://opensource.org/licenses/MIT  MIT
+ */
+namespace PhpXmlSchema\Test\Integration\Dom;
+
+use PhpXmlSchema\Dom\MinExclusiveElement;
+use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
+use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
+
+/**
+ * Represents the integration tests for the {@see PhpXmlSchema\Dom\MinExclusiveElement} class.
+ * 
+ * @group   element
+ * @group   dom
+ * 
+ * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
+ */
+class MinExclusiveElementTest extends AbstractAbstractElementTestCase
+{
+    /**
+     * {@inheritDoc}
+     */
+    protected function setUp()
+    {
+        $this->sut = new MinExclusiveElement();
+    }
+    
+    /**
+     * Tests hasParent() and getParent() when the element is added to 
+     * SimpleContentRestrictionElement.
+     * 
+     * @group   content
+     */
+    public function testMinExclusiveElementWhenAddedToSimpleContentRestrictionElement()
+    {
+        $parent = new SimpleContentRestrictionElement();
+        $parent->addMinExclusiveElement($this->sut);
+        self::assertTrue($this->sut->hasParent());
+        self::assertSame($parent, $this->sut->getParent());
+    }
+    
+    /**
+     * Tests that an exception is thrown when adding an element, that already 
+     * belongs to another element, with SimpleContentRestrictionElement::addMinExclusiveElement().
+     * 
+     * @group   content
+     */
+    public function testMinExclusiveElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMinExclusiveElement()
+    {
+        $parent1 = new SimpleContentRestrictionElement();
+        $parent1->addMinExclusiveElement($this->sut);
+        
+        $parent2 = new SimpleContentRestrictionElement();
+        $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
+        $parent2->addMinExclusiveElement($this->sut);
+    }
+    
+    /**
+     * Tests hasParent() and getParent() when the element is added to 
+     * SimpleTypeRestrictionElement.
+     * 
+     * @group   content
+     */
+    public function testMinExclusiveElementWhenAddedToSimpleTypeRestrictionElement()
+    {
+        $parent = new SimpleTypeRestrictionElement();
+        $parent->addMinExclusiveElement($this->sut);
+        self::assertTrue($this->sut->hasParent());
+        self::assertSame($parent, $this->sut->getParent());
+    }
+    
+    /**
+     * Tests that an exception is thrown when adding an element, that already 
+     * belongs to another element, with SimpleTypeRestrictionElement::addMinExclusiveElement().
+     * 
+     * @group   content
+     */
+    public function testMinExclusiveElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMinExclusiveElement()
+    {
+        $parent1 = new SimpleTypeRestrictionElement();
+        $parent1->addMinExclusiveElement($this->sut);
+        
+        $parent2 = new SimpleTypeRestrictionElement();
+        $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
+        $parent2->addMinExclusiveElement($this->sut);
+    }
+}

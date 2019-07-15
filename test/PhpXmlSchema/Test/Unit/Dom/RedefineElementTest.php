@@ -85,20 +85,20 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
         
         self::assertSame($elements, $this->sut->getAnnotationElements(), 'No element has been added.');
         
-        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
-        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
-        $this->sut->addGroupElement($this->createGroupElementDummy());
-        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementHasParentFalse1TimeMock());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementHasParentFalse1TimeMock());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAnnotationElements(), 'Added elements but no AnnotationElement element.');
         
-        $elements[] = $this->createAnnotationElementDummy();
+        $elements[] = $this->createAnnotationElementHasParentFalse1TimeMock();
         $this->sut->addAnnotationElement($elements[0]);
         self::assertSame($elements, $this->sut->getAnnotationElements(), 'Added 1 AnnotationElement element.');
         
-        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAnnotationElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createAnnotationElementDummy();
+        $elements[] = $this->createAnnotationElementHasParentFalse1TimeMock();
         $this->sut->addAnnotationElement($elements[1]);
         self::assertSame($elements, $this->sut->getAnnotationElements(), 'Added 2 AnnotationElement elements.');
     }
@@ -117,20 +117,20 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
         
         self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'No element has been added.');
         
-        $this->sut->addAnnotationElement($this->createAnnotationElementDummy());
-        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
-        $this->sut->addGroupElement($this->createGroupElementDummy());
-        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addAnnotationElement($this->createAnnotationElementHasParentFalse1TimeMock());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementHasParentFalse1TimeMock());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added elements but no SimpleTypeElement element.');
         
-        $elements[] = $this->createSimpleTypeElementDummy();
+        $elements[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->addSimpleTypeElement($elements[0]);
         self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added 1 SimpleTypeElement element.');
         
-        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createSimpleTypeElementDummy();
+        $elements[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->addSimpleTypeElement($elements[1]);
         self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added 2 SimpleTypeElement elements.');
     }
@@ -149,20 +149,20 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
         
         self::assertSame($elements, $this->sut->getComplexTypeElements(), 'No element has been added.');
         
-        $this->sut->addAnnotationElement($this->createAnnotationElementDummy());
-        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
-        $this->sut->addGroupElement($this->createGroupElementDummy());
-        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addAnnotationElement($this->createAnnotationElementHasParentFalse1TimeMock());
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementHasParentFalse1TimeMock());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getComplexTypeElements(), 'Added elements but no ComplexTypeElement element.');
         
-        $elements[] = $this->createComplexTypeElementDummy();
+        $elements[] = $this->createComplexTypeElementHasParentFalse1TimeMock();
         $this->sut->addComplexTypeElement($elements[0]);
         self::assertSame($elements, $this->sut->getComplexTypeElements(), 'Added 1 ComplexTypeElement element.');
         
-        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getComplexTypeElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createComplexTypeElementDummy();
+        $elements[] = $this->createComplexTypeElementHasParentFalse1TimeMock();
         $this->sut->addComplexTypeElement($elements[1]);
         self::assertSame($elements, $this->sut->getComplexTypeElements(), 'Added 2 ComplexTypeElement elements.');
     }
@@ -181,20 +181,20 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
         
         self::assertSame($elements, $this->sut->getGroupElements(), 'No element has been added.');
         
-        $this->sut->addAnnotationElement($this->createAnnotationElementDummy());
-        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
-        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
-        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addAnnotationElement($this->createAnnotationElementHasParentFalse1TimeMock());
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementHasParentFalse1TimeMock());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementHasParentFalse1TimeMock());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getGroupElements(), 'Added elements but no GroupElement element.');
         
-        $elements[] = $this->createGroupElementDummy();
+        $elements[] = $this->createGroupElementHasParentFalse1TimeMock();
         $this->sut->addGroupElement($elements[0]);
         self::assertSame($elements, $this->sut->getGroupElements(), 'Added 1 GroupElement element.');
         
-        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getGroupElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createGroupElementDummy();
+        $elements[] = $this->createGroupElementHasParentFalse1TimeMock();
         $this->sut->addGroupElement($elements[1]);
         self::assertSame($elements, $this->sut->getGroupElements(), 'Added 2 GroupElement elements.');
     }
@@ -213,20 +213,20 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
         
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'No element has been added.');
         
-        $this->sut->addAnnotationElement($this->createAnnotationElementDummy());
-        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementDummy());
-        $this->sut->addComplexTypeElement($this->createComplexTypeElementDummy());
-        $this->sut->addGroupElement($this->createGroupElementDummy());
+        $this->sut->addAnnotationElement($this->createAnnotationElementHasParentFalse1TimeMock());
+        $this->sut->addSimpleTypeElement($this->createSimpleTypeElementHasParentFalse1TimeMock());
+        $this->sut->addComplexTypeElement($this->createComplexTypeElementHasParentFalse1TimeMock());
+        $this->sut->addGroupElement($this->createGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added elements but no AttributeGroupElement element.');
         
-        $elements[] = $this->createAttributeGroupElementDummy();
+        $elements[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
         $this->sut->addAttributeGroupElement($elements[0]);
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 1 AttributeGroupElement element.');
         
-        $this->sut->addAnnotationElement($this->createAnnotationElementDummy());
+        $this->sut->addAnnotationElement($this->createAnnotationElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createAttributeGroupElementDummy();
+        $elements[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
         $this->sut->addAttributeGroupElement($elements[1]);
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 2 AttributeGroupElement elements.');
     }
@@ -240,16 +240,16 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
     public function testGetElementsReturnsElementsOfContainer0()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createSimpleTypeElementDummy();
-        $children[] = $this->createComplexTypeElementDummy();
-        $children[] = $this->createGroupElementDummy();
-        $children[] = $this->createAttributeGroupElementDummy();
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createSimpleTypeElementDummy();
-        $children[] = $this->createComplexTypeElementDummy();
-        $children[] = $this->createGroupElementDummy();
-        $children[] = $this->createAttributeGroupElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
+        $children[] = $this->createComplexTypeElementHasParentFalse1TimeMock();
+        $children[] = $this->createGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
+        $children[] = $this->createComplexTypeElementHasParentFalse1TimeMock();
+        $children[] = $this->createGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
         $this->sut->addAnnotationElement($children[0]);
         $this->sut->addSimpleTypeElement($children[1]);
         $this->sut->addComplexTypeElement($children[2]);

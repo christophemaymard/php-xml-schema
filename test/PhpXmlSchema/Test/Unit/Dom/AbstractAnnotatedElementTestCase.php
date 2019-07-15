@@ -26,7 +26,7 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
     {
         self::assertFalse($this->sut->hasAnnotationElement(), 'No element has been set.');
         
-        $this->sut->setAnnotationElement($this->createAnnotationElementDummy());
+        $this->sut->setAnnotationElement($this->createAnnotationElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasAnnotationElement(), 'Set with an element: AnnotationElement.');
     }
     
@@ -41,11 +41,11 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
     {
         self::assertNull($this->sut->getAnnotationElement(), 'No element has been set.');
         
-        $elt1 = $this->createAnnotationElementDummy();
+        $elt1 = $this->createAnnotationElementHasParentFalse1TimeMock();
         $this->sut->setAnnotationElement($elt1);
         self::assertSame($elt1, $this->sut->getAnnotationElement(), 'Set with an element: AnnotationElement.');
         
-        $elt2 = $this->createAnnotationElementDummy();
+        $elt2 = $this->createAnnotationElementHasParentFalse1TimeMock();
         $this->sut->setAnnotationElement($elt2);
         self::assertSame($elt2, $this->sut->getAnnotationElement(), 'Set with another element: AnnotationElement.');
     }
@@ -59,7 +59,7 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
     public function testGetElementsReturnsElementsOfContainer0()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
         $this->sut->setAnnotationElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 0.');
     }

@@ -86,11 +86,11 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
         
         self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'No element has been added.');
         
-        $elements[] = $this->createSimpleTypeElementDummy();
+        $elements[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->addSimpleTypeElement($elements[0]);
         self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added 1 SimpleTypeElement element.');
         
-        $elements[] = $this->createSimpleTypeElementDummy();
+        $elements[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->addSimpleTypeElement($elements[1]);
         self::assertSame($elements, $this->sut->getSimpleTypeElements(), 'Added 2 SimpleTypeElement elements.');
     }
@@ -104,8 +104,8 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOfContainer1()
     {
         $children = [];
-        $children[] = $this->createSimpleTypeElementDummy();
-        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         $this->sut->addSimpleTypeElement($children[0]);
         $this->sut->addSimpleTypeElement($children[1]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
@@ -122,9 +122,9 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createSimpleTypeElementDummy();
-        $children[] = $this->createSimpleTypeElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
+        $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
         
         // Init container 1.
         $this->sut->addSimpleTypeElement($children[1]);

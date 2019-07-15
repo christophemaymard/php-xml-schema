@@ -32,17 +32,17 @@ trait AttributeNamingElementTestCaseTrait
         
         self::assertSame($elements, $this->sut->getAttributeElements(), 'No element has been added.');
         
-        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAttributeElements(), 'Added elements but no AttributeElement element.');
         
-        $elements[] = $this->createAttributeElementDummy();
+        $elements[] = $this->createAttributeElementHasParentFalse1TimeMock();
         $this->sut->addAttributeElement($elements[0]);
         self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 1 AttributeElement element.');
         
-        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementDummy());
+        $this->sut->addAttributeGroupElement($this->createAttributeGroupElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createAttributeElementDummy();
+        $elements[] = $this->createAttributeElementHasParentFalse1TimeMock();
         $this->sut->addAttributeElement($elements[1]);
         self::assertSame($elements, $this->sut->getAttributeElements(), 'Added 2 AttributeElement elements.');
     }
@@ -61,17 +61,17 @@ trait AttributeNamingElementTestCaseTrait
         
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'No element has been added.');
         
-        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added elements but no AttributeGroupElement element.');
         
-        $elements[] = $this->createAttributeGroupElementDummy();
+        $elements[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
         $this->sut->addAttributeGroupElement($elements[0]);
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 1 AttributeGroupElement element.');
         
-        $this->sut->addAttributeElement($this->createAttributeElementDummy());
+        $this->sut->addAttributeElement($this->createAttributeElementHasParentFalse1TimeMock());
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 1 element between.');
         
-        $elements[] = $this->createAttributeGroupElementDummy();
+        $elements[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
         $this->sut->addAttributeGroupElement($elements[1]);
         self::assertSame($elements, $this->sut->getAttributeGroupElements(), 'Added 2 AttributeGroupElement elements.');
     }
@@ -112,7 +112,7 @@ trait AttributeNamingElementTestCaseTrait
     {
         self::assertFalse($this->sut->hasAnyAttributeElement(), 'No element has been set.');
         
-        $this->sut->setAnyAttributeElement($this->createAnyAttributeElementDummy());
+        $this->sut->setAnyAttributeElement($this->createAnyAttributeElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasAnyAttributeElement(), 'Set with an element: AnyAttributeElement.');
     }
     
@@ -127,11 +127,11 @@ trait AttributeNamingElementTestCaseTrait
     {
         self::assertNull($this->sut->getAnyAttributeElement(), 'No element has been set.');
         
-        $elt1 = $this->createAnyAttributeElementDummy();
+        $elt1 = $this->createAnyAttributeElementHasParentFalse1TimeMock();
         $this->sut->setAnyAttributeElement($elt1);
         self::assertSame($elt1, $this->sut->getAnyAttributeElement(), 'Set with an element: AnyAttributeElement.');
         
-        $elt2 = $this->createAnyAttributeElementDummy();
+        $elt2 = $this->createAnyAttributeElementHasParentFalse1TimeMock();
         $this->sut->setAnyAttributeElement($elt2);
         self::assertSame($elt2, $this->sut->getAnyAttributeElement(), 'Set with another element: AnyAttributeElement.');
     }
@@ -145,7 +145,7 @@ trait AttributeNamingElementTestCaseTrait
     public function testGetElementsReturnsElementsOfContainer4()
     {
         $children = [];
-        $children[] = $this->createAnyAttributeElementDummy();
+        $children[] = $this->createAnyAttributeElementHasParentFalse1TimeMock();
         $this->sut->setAnyAttributeElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 4.');
     }
@@ -159,10 +159,10 @@ trait AttributeNamingElementTestCaseTrait
     private function fillSutContainer3():array
     {
         $elements = [];
-        $elements[] = $this->createAttributeElementDummy();
-        $elements[] = $this->createAttributeGroupElementDummy();
-        $elements[] = $this->createAttributeElementDummy();
-        $elements[] = $this->createAttributeGroupElementDummy();
+        $elements[] = $this->createAttributeElementHasParentFalse1TimeMock();
+        $elements[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
+        $elements[] = $this->createAttributeElementHasParentFalse1TimeMock();
+        $elements[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
         $this->sut->addAttributeElement($elements[0]);
         $this->sut->addAttributeGroupElement($elements[1]);
         $this->sut->addAttributeElement($elements[2]);

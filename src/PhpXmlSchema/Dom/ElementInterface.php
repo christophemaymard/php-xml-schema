@@ -20,4 +20,18 @@ interface ElementInterface
      * @return  string
      */
     public function getLocalName():string;
+    
+    /**
+     * Returns the instance of the element that holds this element.
+     * 
+     * @return  ElementInterface|NULL   The instance of the element that holds this element, otherwise NULL.
+     */
+    public function getParent();
+    
+    /**
+     * Indicates whether this element belongs to another element.
+     * 
+     * @return  bool    TRUE if this element belongs to another element, otherwise FALSE.
+     */
+    public function hasParent():bool;
 }

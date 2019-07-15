@@ -52,7 +52,7 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertFalse($this->sut->hasModelGroupElement(), 'No element has been set.');
         
-        $this->sut->setModelGroupElement($this->createModelGroupElementInterfaceDummy());
+        $this->sut->setModelGroupElement($this->createAllElementHasParentFalse1TimeMock());
         self::assertTrue($this->sut->hasModelGroupElement(), 'Set with an element: ModelGroupElementInterface.');
     }
     
@@ -67,15 +67,15 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
     {
         self::assertNull($this->sut->getModelGroupElement(), 'No element has been set.');
         
-        $elt1 = $this->createAllElementDummy();
+        $elt1 = $this->createAllElementHasParentFalse1TimeMock();
         $this->sut->setModelGroupElement($elt1);
         self::assertSame($elt1, $this->sut->getModelGroupElement(), 'Set with an element: AllElement.');
         
-        $elt2 = $this->createChoiceElementDummy();
+        $elt2 = $this->createChoiceElementHasParentFalse1TimeMock();
         $this->sut->setModelGroupElement($elt2);
         self::assertSame($elt2, $this->sut->getModelGroupElement(), 'Set with another element: ChoiceElement.');
         
-        $elt3 = $this->createSequenceElementDummy();
+        $elt3 = $this->createSequenceElementHasParentFalse1TimeMock();
         $this->sut->setModelGroupElement($elt3);
         self::assertSame($elt3, $this->sut->getModelGroupElement(), 'Set with another element: SequenceElement.');
     }
@@ -89,7 +89,7 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOfContainer1()
     {
         $children = [];
-        $children[] = $this->createModelGroupElementInterfaceDummy();
+        $children[] = $this->createChoiceElementHasParentFalse1TimeMock();
         $this->sut->setModelGroupElement($children[0]);
         self::assertSame($children, $this->sut->getElements(), 'Elements in container 1.');
     }
@@ -105,8 +105,8 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createModelGroupElementInterfaceDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createSequenceElementHasParentFalse1TimeMock();
         
         // Init container 1.
         $this->sut->setModelGroupElement($children[1]);

@@ -13,7 +13,7 @@ namespace PhpXmlSchema\Dom;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-abstract class AbstractLeafElement implements LeafElementInterface
+abstract class AbstractLeafElement extends AbstractElement implements LeafElementInterface
 {
     /**
      * The content of the element (default to an empty string).

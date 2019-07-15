@@ -28,13 +28,13 @@ abstract class AbstractTypeNamingElementTestCase extends AbstractAbstractTypeNam
     public function testGetElementsReturnsElementsOrderedByContainer0234()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createTypeDefinitionParticleElementInterfaceDummy();
-        $children[] = $this->createAttributeElementDummy();
-        $children[] = $this->createAttributeGroupElementDummy();
-        $children[] = $this->createAttributeElementDummy();
-        $children[] = $this->createAttributeGroupElementDummy();
-        $children[] = $this->createAnyAttributeElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeElementHasParentFalse1TimeMock();
+        $children[] = $this->createAttributeGroupElementHasParentFalse1TimeMock();
+        $children[] = $this->createAnyAttributeElementHasParentFalse1TimeMock();
         
         // Init container 4.
         $this->sut->setAnyAttributeElement($children[6]);

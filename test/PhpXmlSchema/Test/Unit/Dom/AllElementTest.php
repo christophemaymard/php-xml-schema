@@ -49,11 +49,11 @@ class AllElementTest extends AbstractModelGroupElementTestCase
         
         self::assertSame($elements, $this->sut->getElementElements(), 'No element has been added.');
         
-        $elements[] = $this->createElementElementDummy();
+        $elements[] = $this->createElementElementHasParentFalse1TimeMock();
         $this->sut->addElementElement($elements[0]);
         self::assertSame($elements, $this->sut->getElementElements(), 'Added 1 ElementElement element.');
         
-        $elements[] = $this->createElementElementDummy();
+        $elements[] = $this->createElementElementHasParentFalse1TimeMock();
         $this->sut->addElementElement($elements[1]);
         self::assertSame($elements, $this->sut->getElementElements(), 'Added 2 ElementElement elements.');
     }
@@ -69,9 +69,9 @@ class AllElementTest extends AbstractModelGroupElementTestCase
     public function testGetElementsReturnsElementsOrderedByContainer01()
     {
         $children = [];
-        $children[] = $this->createAnnotationElementDummy();
-        $children[] = $this->createElementElementDummy();
-        $children[] = $this->createElementElementDummy();
+        $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
+        $children[] = $this->createElementElementHasParentFalse1TimeMock();
+        $children[] = $this->createElementElementHasParentFalse1TimeMock();
         
         // Init container 1.
         $this->sut->addElementElement($children[1]);
@@ -91,8 +91,8 @@ class AllElementTest extends AbstractModelGroupElementTestCase
     protected function fillSutContainer1():array
     {
         $elements = [];
-        $elements[] = $this->createElementElementDummy();
-        $elements[] = $this->createElementElementDummy();
+        $elements[] = $this->createElementElementHasParentFalse1TimeMock();
+        $elements[] = $this->createElementElementHasParentFalse1TimeMock();
         $this->sut->addElementElement($elements[0]);
         $this->sut->addElementElement($elements[1]);
         
