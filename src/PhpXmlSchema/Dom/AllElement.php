@@ -25,6 +25,14 @@ class AllElement extends AbstractModelGroupElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_ALL;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'all';

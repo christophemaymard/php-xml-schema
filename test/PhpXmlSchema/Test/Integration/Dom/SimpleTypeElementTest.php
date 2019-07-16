@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\ElementElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SchemaElement;
@@ -34,6 +35,14 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new SimpleTypeElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_SIMPLETYPE, $this->sut->getElementId());
     }
     
     /**

@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\ComplexContentElement;
 use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
+use PhpXmlSchema\Dom\ElementId;
 
 /**
  * Represents the integration tests for the {@see PhpXmlSchema\Dom\ComplexContentRestrictionElement} class.
@@ -26,6 +27,14 @@ class ComplexContentRestrictionElementTest extends AbstractAbstractElementTestCa
     protected function setUp()
     {
         $this->sut = new ComplexContentRestrictionElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_COMPLEXCONTENT_RESTRICTION, $this->sut->getElementId());
     }
     
     /**

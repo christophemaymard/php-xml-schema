@@ -36,6 +36,12 @@ abstract class AbstractAbstractElementTestCase extends TestCase
     protected $sut;
     
     /**
+     * Tests that getElementId() returns an integer that matches a specific 
+     * constant of the {@see PhpXmlSchema\Dom\ElementId} class.
+     */
+    abstract public function testGetElementIdReturnsSpecificElementIdConstant();
+    
+    /**
      * Tests that hasParent() returns FALSE and getParent() returns NULL when 
      * the element is instantiated.
      * 

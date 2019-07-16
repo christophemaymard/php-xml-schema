@@ -25,6 +25,14 @@ class ChoiceElement extends AbstractExplicitModelGroupElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_CHOICE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'choice';

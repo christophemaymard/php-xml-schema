@@ -23,6 +23,14 @@ class SimpleContentElement extends AbstractAnnotatedElement implements ContentEl
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_SIMPLECONTENT;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'simpleContent';

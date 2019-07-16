@@ -20,6 +20,7 @@ use PhpXmlSchema\Dom\ComplexContentExtensionElement;
 use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\ElementElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\EnumerationElement;
 use PhpXmlSchema\Dom\FieldElement;
 use PhpXmlSchema\Dom\FractionDigitsElement;
@@ -68,6 +69,14 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new AnnotationElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_ANNOTATION, $this->sut->getElementId());
     }
     
     /**

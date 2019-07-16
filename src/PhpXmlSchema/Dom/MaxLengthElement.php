@@ -25,6 +25,14 @@ class MaxLengthElement extends AbstractNumericFacetElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_MAXLENGTH;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'maxLength';

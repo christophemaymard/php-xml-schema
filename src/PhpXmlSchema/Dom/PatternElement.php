@@ -32,6 +32,14 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_PATTERN;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'pattern';

@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\AllElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\TypeNamingElementInterface;
 
@@ -27,6 +28,14 @@ class AllElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new AllElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_ALL, $this->sut->getElementId());
     }
     
     /**

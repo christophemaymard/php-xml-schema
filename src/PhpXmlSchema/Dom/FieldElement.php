@@ -30,6 +30,14 @@ class FieldElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_FIELD;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'field';

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\ElementElement;
 use PhpXmlSchema\Dom\UniqueElement;
 
@@ -26,6 +27,14 @@ class UniqueElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new UniqueElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_UNIQUE, $this->sut->getElementId());
     }
     
     /**

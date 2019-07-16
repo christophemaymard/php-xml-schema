@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
@@ -26,6 +27,14 @@ class NotationElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new NotationElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_NOTATION, $this->sut->getElementId());
     }
     
     /**

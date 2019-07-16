@@ -32,6 +32,14 @@ class IncludeElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_INCLUDE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'include';

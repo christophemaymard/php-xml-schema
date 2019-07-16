@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\ChoiceElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SchemaElement;
@@ -30,6 +31,14 @@ class GroupElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new GroupElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_GROUP, $this->sut->getElementId());
     }
     
     /**

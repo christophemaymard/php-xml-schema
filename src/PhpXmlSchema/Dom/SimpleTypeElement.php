@@ -39,6 +39,14 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_SIMPLETYPE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'simpleType';

@@ -25,6 +25,14 @@ class MaxInclusiveElement extends AbstractAnyFacetElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_MAXINCLUSIVE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'maxInclusive';

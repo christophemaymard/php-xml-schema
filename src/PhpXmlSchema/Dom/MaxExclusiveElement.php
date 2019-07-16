@@ -25,6 +25,14 @@ class MaxExclusiveElement extends AbstractAnyFacetElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_MAXEXCLUSIVE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'maxExclusive';

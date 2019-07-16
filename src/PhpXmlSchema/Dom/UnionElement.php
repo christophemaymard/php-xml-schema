@@ -32,6 +32,14 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_UNION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'union';

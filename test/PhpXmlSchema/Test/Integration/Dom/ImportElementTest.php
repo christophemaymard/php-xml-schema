@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
@@ -26,6 +27,14 @@ class ImportElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new ImportElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_IMPORT, $this->sut->getElementId());
     }
     
     /**

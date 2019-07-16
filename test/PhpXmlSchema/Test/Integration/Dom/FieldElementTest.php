@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\FieldElement;
 use PhpXmlSchema\Dom\KeyElement;
 use PhpXmlSchema\Dom\KeyRefElement;
@@ -28,6 +29,14 @@ class FieldElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new FieldElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_FIELD, $this->sut->getElementId());
     }
     
     /**

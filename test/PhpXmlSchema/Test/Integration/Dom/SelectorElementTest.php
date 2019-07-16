@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\KeyElement;
 use PhpXmlSchema\Dom\KeyRefElement;
 use PhpXmlSchema\Dom\SelectorElement;
@@ -28,6 +29,14 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new SelectorElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_SELECTOR, $this->sut->getElementId());
     }
     
     /**

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
@@ -27,6 +28,14 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new MaxExclusiveElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_MAXEXCLUSIVE, $this->sut->getElementId());
     }
     
     /**

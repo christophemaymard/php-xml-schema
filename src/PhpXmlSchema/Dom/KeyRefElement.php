@@ -33,6 +33,14 @@ class KeyRefElement extends AbstractIdentityConstraintElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_KEYREF;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'keyref';

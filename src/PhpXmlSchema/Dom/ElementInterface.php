@@ -15,6 +15,13 @@ namespace PhpXmlSchema\Dom;
 interface ElementInterface
 {
     /**
+     * Returns the identifier of this element.
+     * 
+     * @return  int
+     */
+    public function getElementId():int;
+    
+    /**
      * Returns the local name of this element.
      * 
      * @return  string

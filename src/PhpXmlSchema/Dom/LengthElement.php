@@ -25,6 +25,14 @@ class LengthElement extends AbstractNumericFacetElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_LENGTH;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'length';

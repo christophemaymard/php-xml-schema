@@ -34,6 +34,14 @@ class ComplexContentRestrictionElement extends AbstractTypeNamingElement impleme
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_COMPLEXCONTENT_RESTRICTION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'restriction';

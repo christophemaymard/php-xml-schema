@@ -32,6 +32,14 @@ class RedefineElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_REDEFINE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'redefine';

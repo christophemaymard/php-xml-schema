@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SimpleContentElement;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
 
@@ -26,6 +27,14 @@ class SimpleContentRestrictionElementTest extends AbstractAbstractElementTestCas
     protected function setUp()
     {
         $this->sut = new SimpleContentRestrictionElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_SIMPLECONTENT_RESTRICTION, $this->sut->getElementId());
     }
     
     /**

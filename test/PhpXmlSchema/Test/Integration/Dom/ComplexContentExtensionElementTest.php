@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\ComplexContentElement;
 use PhpXmlSchema\Dom\ComplexContentExtensionElement;
+use PhpXmlSchema\Dom\ElementId;
 
 /**
  * Represents the integration tests for the {@see PhpXmlSchema\Dom\ComplexContentExtensionElement} class.
@@ -26,6 +27,14 @@ class ComplexContentExtensionElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new ComplexContentExtensionElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_COMPLEXCONTENT_EXTENSION, $this->sut->getElementId());
     }
     
     /**

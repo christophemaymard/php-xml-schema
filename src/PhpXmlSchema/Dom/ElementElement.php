@@ -119,6 +119,14 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_ELEMENT;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'element';

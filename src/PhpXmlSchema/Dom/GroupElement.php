@@ -57,6 +57,14 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_GROUP;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'group';

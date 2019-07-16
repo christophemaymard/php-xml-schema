@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\AnyElement;
 use PhpXmlSchema\Dom\ChoiceElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SequenceElement;
 
 /**
@@ -27,6 +28,14 @@ class AnyElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new AnyElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_ANY, $this->sut->getElementId());
     }
     
     /**

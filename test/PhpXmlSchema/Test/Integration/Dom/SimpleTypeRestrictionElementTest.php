@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 
@@ -26,6 +27,14 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new SimpleTypeRestrictionElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_SIMPLETYPE_RESTRICTION, $this->sut->getElementId());
     }
     
     /**

@@ -39,6 +39,14 @@ class DocumentationElement extends AbstractLeafElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_DOCUMENTATION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'documentation';

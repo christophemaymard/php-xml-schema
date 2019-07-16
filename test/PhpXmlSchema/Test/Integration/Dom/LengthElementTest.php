@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\LengthElement;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
@@ -27,6 +28,14 @@ class LengthElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new LengthElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_LENGTH, $this->sut->getElementId());
     }
     
     /**

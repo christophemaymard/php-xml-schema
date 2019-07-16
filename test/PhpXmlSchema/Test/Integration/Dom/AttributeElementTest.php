@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeNamingElementInterface;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SchemaElement;
 
 /**
@@ -27,6 +28,14 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new AttributeElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_ATTRIBUTE, $this->sut->getElementId());
     }
     
     /**

@@ -31,6 +31,14 @@ class AppInfoElement extends AbstractLeafElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_APPINFO;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'appinfo';

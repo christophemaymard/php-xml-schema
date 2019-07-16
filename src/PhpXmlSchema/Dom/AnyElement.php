@@ -53,6 +53,14 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_ANY;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'any';

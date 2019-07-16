@@ -34,6 +34,14 @@ class ComplexContentExtensionElement extends AbstractTypeNamingElement implement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_COMPLEXCONTENT_EXTENSION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'extension';

@@ -24,6 +24,14 @@ class UniqueElement extends AbstractIdentityConstraintElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_UNIQUE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'unique';

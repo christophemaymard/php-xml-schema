@@ -25,6 +25,14 @@ class MinExclusiveElement extends AbstractAnyFacetElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_MINEXCLUSIVE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'minExclusive';

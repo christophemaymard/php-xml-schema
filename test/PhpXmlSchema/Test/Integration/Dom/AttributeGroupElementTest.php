@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\AttributeGroupElement;
 use PhpXmlSchema\Dom\AttributeNamingElementInterface;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
@@ -28,6 +29,14 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new AttributeGroupElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_ATTRIBUTEGROUP, $this->sut->getElementId());
     }
     
     /**

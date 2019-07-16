@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
@@ -26,6 +27,14 @@ class RedefineElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new RedefineElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_REDEFINE, $this->sut->getElementId());
     }
     
     /**

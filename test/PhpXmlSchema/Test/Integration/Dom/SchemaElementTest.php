@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SchemaElement;
 
 /**
@@ -25,5 +26,13 @@ class SchemaElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new SchemaElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_SCHEMA, $this->sut->getElementId());
     }
 }

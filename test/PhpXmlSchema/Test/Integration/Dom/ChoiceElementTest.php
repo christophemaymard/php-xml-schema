@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\ChoiceElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\SequenceElement;
 use PhpXmlSchema\Dom\TypeNamingElementInterface;
@@ -28,6 +29,14 @@ class ChoiceElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new ChoiceElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_CHOICE, $this->sut->getElementId());
     }
     
     /**

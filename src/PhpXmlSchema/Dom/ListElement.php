@@ -32,6 +32,14 @@ class ListElement extends AbstractSimpleTypedElement implements SimpleTypeDeriva
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_LIST;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'list';

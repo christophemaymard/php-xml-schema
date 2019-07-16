@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use PhpXmlSchema\Dom\WhiteSpaceElement;
@@ -27,6 +28,14 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new WhiteSpaceElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_WHITESPACE, $this->sut->getElementId());
     }
     
     /**

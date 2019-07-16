@@ -25,6 +25,14 @@ class MinInclusiveElement extends AbstractAnyFacetElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_MININCLUSIVE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'minInclusive';

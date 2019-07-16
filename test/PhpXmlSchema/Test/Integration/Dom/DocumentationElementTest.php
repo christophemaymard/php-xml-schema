@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\DocumentationElement;
+use PhpXmlSchema\Dom\ElementId;
 
 /**
  * Represents the integration tests for the {@see PhpXmlSchema\Dom\DocumentationElement} class.
@@ -26,6 +27,14 @@ class DocumentationElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new DocumentationElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_DOCUMENTATION, $this->sut->getElementId());
     }
     
     /**

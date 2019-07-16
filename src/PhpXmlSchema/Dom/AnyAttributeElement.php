@@ -37,6 +37,14 @@ class AnyAttributeElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_ANYATTRIBUTE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'anyAttribute';

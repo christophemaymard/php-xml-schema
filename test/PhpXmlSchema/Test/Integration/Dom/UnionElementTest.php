@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\UnionElement;
 
@@ -26,6 +27,14 @@ class UnionElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new UnionElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_UNION, $this->sut->getElementId());
     }
     
     /**

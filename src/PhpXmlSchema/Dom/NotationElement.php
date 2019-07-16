@@ -48,6 +48,14 @@ class NotationElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_NOTATION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'notation';

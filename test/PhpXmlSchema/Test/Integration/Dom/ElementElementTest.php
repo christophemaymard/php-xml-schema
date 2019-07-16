@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 use PhpXmlSchema\Dom\AllElement;
 use PhpXmlSchema\Dom\ChoiceElement;
 use PhpXmlSchema\Dom\ElementElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SequenceElement;
 
@@ -29,6 +30,14 @@ class ElementElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new ElementElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_ELEMENT, $this->sut->getElementId());
     }
     
     /**

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
@@ -27,6 +28,14 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new FractionDigitsElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_FRACTIONDIGITS, $this->sut->getElementId());
     }
     
     /**

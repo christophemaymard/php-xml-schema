@@ -39,6 +39,14 @@ class ImportElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_IMPORT;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'import';

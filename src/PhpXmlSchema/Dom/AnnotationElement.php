@@ -23,6 +23,14 @@ class AnnotationElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_ANNOTATION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'annotation';

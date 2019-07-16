@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\ElementElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\KeyRefElement;
 
 /**
@@ -26,6 +27,14 @@ class KeyRefElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new KeyRefElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_KEYREF, $this->sut->getElementId());
     }
     
     /**

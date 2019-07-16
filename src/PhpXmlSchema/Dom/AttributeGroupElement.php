@@ -40,6 +40,14 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_ATTRIBUTEGROUP;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'attributeGroup';

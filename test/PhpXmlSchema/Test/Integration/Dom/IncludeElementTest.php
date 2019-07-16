@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
@@ -26,6 +27,14 @@ class IncludeElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new IncludeElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_INCLUDE, $this->sut->getElementId());
     }
     
     /**

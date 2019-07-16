@@ -30,6 +30,14 @@ class EnumerationElement extends AbstractAnnotatedElement implements FacetElemen
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_ENUMERATION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'enumeration';

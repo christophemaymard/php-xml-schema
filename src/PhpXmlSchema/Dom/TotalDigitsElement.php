@@ -33,6 +33,14 @@ class TotalDigitsElement extends AbstractFixedFacetElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_TOTALDIGITS;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'totalDigits';

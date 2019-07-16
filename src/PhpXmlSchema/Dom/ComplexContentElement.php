@@ -30,6 +30,14 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_COMPLEXCONTENT;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'complexContent';

@@ -76,6 +76,14 @@ class SchemaElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_SCHEMA;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'schema';

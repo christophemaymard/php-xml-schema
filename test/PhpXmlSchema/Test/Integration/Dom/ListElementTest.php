@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 
@@ -26,6 +27,14 @@ class ListElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new ListElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_LIST, $this->sut->getElementId());
     }
     
     /**

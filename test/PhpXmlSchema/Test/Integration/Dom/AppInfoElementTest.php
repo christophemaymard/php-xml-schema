@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
+use PhpXmlSchema\Dom\ElementId;
 
 /**
  * Represents the integration tests for the {@see PhpXmlSchema\Dom\AppInfoElement} class.
@@ -26,6 +27,14 @@ class AppInfoElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new AppInfoElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_APPINFO, $this->sut->getElementId());
     }
     
     /**

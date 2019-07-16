@@ -34,6 +34,14 @@ class SimpleContentExtensionElement extends AbstractAttributeNamingElement imple
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_SIMPLECONTENT_EXTENSION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'extension';

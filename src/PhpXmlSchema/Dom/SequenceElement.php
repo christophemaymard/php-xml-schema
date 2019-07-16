@@ -25,6 +25,14 @@ class SequenceElement extends AbstractExplicitModelGroupElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_SEQUENCE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'sequence';

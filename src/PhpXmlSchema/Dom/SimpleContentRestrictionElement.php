@@ -26,6 +26,14 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_SIMPLECONTENT_RESTRICTION;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'restriction';

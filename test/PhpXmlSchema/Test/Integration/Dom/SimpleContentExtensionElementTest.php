@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Integration\Dom;
 
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\SimpleContentElement;
 use PhpXmlSchema\Dom\SimpleContentExtensionElement;
 
@@ -26,6 +27,14 @@ class SimpleContentExtensionElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new SimpleContentExtensionElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_SIMPLECONTENT_EXTENSION, $this->sut->getElementId());
     }
     
     /**

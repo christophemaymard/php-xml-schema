@@ -76,6 +76,14 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_ATTRIBUTE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'attribute';

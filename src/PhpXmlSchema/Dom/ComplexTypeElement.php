@@ -60,6 +60,14 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_COMPLEXTYPE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'complexType';

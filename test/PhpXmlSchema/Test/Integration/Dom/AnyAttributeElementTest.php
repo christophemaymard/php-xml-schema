@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\AnyAttributeElement;
 use PhpXmlSchema\Dom\AttributeNamingElementInterface;
+use PhpXmlSchema\Dom\ElementId;
 
 /**
  * Represents the integration tests for the {@see PhpXmlSchema\Dom\AnyAttributeElement} class.
@@ -26,6 +27,14 @@ class AnyAttributeElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new AnyAttributeElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_ANYATTRIBUTE, $this->sut->getElementId());
     }
     
     /**

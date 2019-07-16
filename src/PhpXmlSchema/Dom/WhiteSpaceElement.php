@@ -31,6 +31,14 @@ class WhiteSpaceElement extends AbstractFixedFacetElement
     /**
      * {@inheritDoc}
      */
+    public function getElementId():int
+    {
+        return ElementId::ELT_WHITESPACE;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function getLocalName():string
     {
         return 'whiteSpace';

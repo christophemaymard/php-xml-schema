@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Integration\Dom;
 
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\ElementElement;
+use PhpXmlSchema\Dom\ElementId;
 use PhpXmlSchema\Dom\RedefineElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
@@ -28,6 +29,14 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
     protected function setUp()
     {
         $this->sut = new ComplexTypeElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function testGetElementIdReturnsSpecificElementIdConstant()
+    {
+        self::assertSame(ElementId::ELT_COMPLEXTYPE, $this->sut->getElementId());
     }
     
     /**
