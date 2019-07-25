@@ -1,0 +1,4 @@
+<x:root xmlns:x="http://example.org">
+  <!-- Comment -->
+  <first>foo</first>
+</x:root>
