@@ -9,7 +9,6 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\Parser;
-use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Exception\InvalidOperationException;
 
@@ -23,23 +22,7 @@ use PhpXmlSchema\Exception\InvalidOperationException;
  */
 class ParserTest extends TestCase
 {
-    /**
-     * Asserts that the specified "schema" element is empty.
-     * 
-     * @param   SchemaElement   $sut    The element to test.
-     */
-    private static function assertEmptySchemaElement(SchemaElement $sut)
-    {
-        self::assertFalse($sut->hasAttributeFormDefault());
-        self::assertFalse($sut->hasBlockDefault());
-        self::assertFalse($sut->hasElementFormDefault());
-        self::assertFalse($sut->hasFinalDefault());
-        self::assertFalse($sut->hasId());
-        self::assertFalse($sut->hasTargetNamespace());
-        self::assertFalse($sut->hasVersion());
-        self::assertFalse($sut->hasLang());
-        self::assertSame([], $sut->getElements());
-    }
+    use ElementAssertTrait;
     
     /**
      * Tests that parse() throws an expcetion when the provided XML Schema is 
@@ -92,7 +75,7 @@ class ParserTest extends TestCase
     {
         $sut = new Parser();
         $sch = $sut->parse($this->getSchemaXs('schema_0001.xsd'));
-        self::assertEmptySchemaElement($sch);
+        self::assertSchemaElementEmpty($sch);
     }
     
     /**
@@ -102,7 +85,7 @@ class ParserTest extends TestCase
     {
         $sut = new Parser();
         $sch = $sut->parse($this->getSchemaXs('schema_0002.xsd'));
-        self::assertEmptySchemaElement($sch);
+        self::assertSchemaElementEmpty($sch);
     }
     
     /**

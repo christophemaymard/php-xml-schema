@@ -8,7 +8,6 @@
 namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
-use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 
 /**
@@ -22,23 +21,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
  */
 class SchemaElementBuilderTest extends TestCase
 {
-    /**
-     * Asserts that the specified "schema" element is empty.
-     * 
-     * @param   SchemaElement   $sut    The element to test.
-     */
-    private static function assertEmptySchemaElement(SchemaElement $sut)
-    {
-        self::assertFalse($sut->hasAttributeFormDefault());
-        self::assertFalse($sut->hasBlockDefault());
-        self::assertFalse($sut->hasElementFormDefault());
-        self::assertFalse($sut->hasFinalDefault());
-        self::assertFalse($sut->hasId());
-        self::assertFalse($sut->hasTargetNamespace());
-        self::assertFalse($sut->hasVersion());
-        self::assertFalse($sut->hasLang());
-        self::assertSame([], $sut->getElements());
-    }
+    use ElementAssertTrait;
     
     /**
      * Tests that getSchema() returns the same instance of SchemaElement when 
@@ -48,7 +31,7 @@ class SchemaElementBuilderTest extends TestCase
     {
         $sut = new SchemaElementBuilder();
         $sch1 = $sut->getSchema();
-        self::assertEmptySchemaElement($sch1);
+        self::assertSchemaElementEmpty($sch1);
         $sch2 = $sut->getSchema();
         self::assertSame($sch1, $sch2, 'Same instance of SchemaElement.');
     }
@@ -63,7 +46,7 @@ class SchemaElementBuilderTest extends TestCase
         $sch1 = $sut->getSchema();
         $sut->buildSchemaElement();
         $sch2 = $sut->getSchema();
-        self::assertEmptySchemaElement($sch2);
+        self::assertSchemaElementEmpty($sch2);
         self::assertNotSame($sch2, $sch1, 'Not same instance of SchemaElement.');
     }
 }
