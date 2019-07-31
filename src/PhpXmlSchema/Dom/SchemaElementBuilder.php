@@ -7,6 +7,9 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Exception\Message;
+
 /**
  * Represents a builder of "schema" element.
  * 
@@ -26,6 +29,27 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function __construct()
     {
         $this->buildSchemaElement();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function buildAttributeFormDefaultAttribute(string $value)
+    {
+        if ($value == 'qualified') {
+            $attr = FormType::createQualified();
+        } elseif ($value == 'unqualified') {
+            $attr = FormType::createUnqualified();
+        } else {
+            throw new InvalidValueException(Message::invalidAttributeValue(
+                $value, 
+                'attributeFormDefault', 
+                '', 
+                [ 'qualified', 'unqualified', ]
+            ));
+        }
+        
+        $this->schemaElement->setAttributeFormDefault($attr);
     }
     
     /**
