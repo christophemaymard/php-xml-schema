@@ -55,6 +55,14 @@ class Parser
         
         $this->builder->buildSchemaElement();
         
+        // Builds the attributes.
+        $this->xt->moveToFirstAttribute();
+        
+        if ($this->xt->getNamespace() == '' && 
+            $this->xt->getLocalName() == 'attributeFormDefault') {
+            $this->builder->buildAttributeFormDefaultAttribute($this->xt->getValue());
+        }
+        
         return $this->builder->getSchema();
     }
     

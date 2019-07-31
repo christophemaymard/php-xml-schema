@@ -89,6 +89,51 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "attributeFormDefault" attribute with 
+     * "qualified" value.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessAttributeFormDefaultAttributeWithQualifiedInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('attr_attrfd_0001.xsd'));
+        self::assertTrue($sch->getAttributeFormDefault()->isQualified());
+    }
+    
+    /**
+     * Tests that parse() processes "attributeFormDefault" attribute with 
+     * "unqualified" value.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessAttributeFormDefaultAttributeWithUnqualifiedInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('attr_attrfd_0002.xsd'));
+        self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
+    }
+    
+    /**
+     * Tests that parse() throws an exception when the value of the 
+     * "attributeFormDefault" attribute is invalid.
+     * 
+     * @group   attribute
+     */
+    public function testParseThrowsExceptionWhenAttributeFormDefaultIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"foo" is an invalid value for the "attributeFormDefault" '.
+            'attribute (from no namespace), expected: "qualified" or '.
+            '"unqualified".'
+        );
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs('attr_attrfd_0003.xsd'));
+    }
+    
+    /**
      * Returns the content of the specified filename located at the "schema" 
      * directory.
      * 
