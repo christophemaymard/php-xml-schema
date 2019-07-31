@@ -99,6 +99,15 @@ class ParserTest extends TestCase
         $sut = new Parser();
         $sch = $sut->parse($this->getSchemaXs('attr_attrfd_0001.xsd'));
         self::assertTrue($sch->getAttributeFormDefault()->isQualified());
+        
+        self::assertFalse($sch->hasBlockDefault());
+        self::assertFalse($sch->hasElementFormDefault());
+        self::assertFalse($sch->hasFinalDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
     }
     
     /**
@@ -112,7 +121,16 @@ class ParserTest extends TestCase
         $sut = new Parser();
         $sch = $sut->parse($this->getSchemaXs('attr_attrfd_0002.xsd'));
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
-    }
+        
+        self::assertFalse($sch->hasBlockDefault());
+        self::assertFalse($sch->hasElementFormDefault());
+        self::assertFalse($sch->hasFinalDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+     }
     
     /**
      * Tests that parse() throws an exception when the value of the 
