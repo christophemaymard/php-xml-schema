@@ -134,6 +134,121 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "blockDefault" attribute in a "schema" 
+     * element.
+     * 
+     * @param   string  $fileName       The name of the file used for the test.
+     * @param   bool    $restriction    The expected value for the "restriction" flag.
+     * @param   bool    $extension      The expected value for the "extension" flag.
+     * @param   bool    $substitution   The expected value for the "substitution" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidBlockDefaultAttributes
+     */
+    public function testParseProcessBlockDefaultAttributeInSchemaElement(
+        string $fileName,
+        bool $restriction, 
+        bool $extension, 
+        bool $substitution
+    ) {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs($fileName));
+        
+        self::assertSame($extension, $sch->getBlockDefault()->byExtension());
+        self::assertFalse($sch->getBlockDefault()->byList());
+        self::assertSame($restriction, $sch->getBlockDefault()->byRestriction());
+        self::assertSame($substitution, $sch->getBlockDefault()->bySubstitution());
+        self::assertFalse($sch->getBlockDefault()->byUnion());
+        
+        self::assertFalse($sch->hasAttributeFormDefault());
+        self::assertFalse($sch->hasElementFormDefault());
+        self::assertFalse($sch->hasFinalDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that parse() throws an exception when the value of the 
+     * "blockDefault" attribute is invalid in a "schema" element.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $value      The invalid value.
+     * 
+     * @group           attribute
+     * @dataProvider    getInvalidBlockDefaultAttributes
+     */
+    public function testParseThrowsExceptionWhenBlockDefaultIsInvalidInSchemaElement(
+        string $fileName,
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "blockDefault" '.
+            'attribute (from no namespace), expected: "#all" or '.
+            '"List of (extension | restriction | substitution)".'
+        );
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs($fileName));
+    }
+    
+    /**
+     * Returns a set of valid "blockDefault" attribute in a "schema" element.
+     * 
+     * @return  array[]
+     */
+    public function getValidBlockDefaultAttributes():array
+    {
+        // [ $fileName, $restriction, $extension, $substitution, ]
+        return [
+            'Empty' => [ 
+                'attr_blockd_0001.xsd', FALSE, FALSE, FALSE, 
+            ],
+            ' #all ' => [ 
+                'attr_blockd_0002.xsd', TRUE, TRUE, TRUE, 
+            ],
+            '    substitution    extension     restriction     ' => [ 
+                'attr_blockd_0003.xsd', TRUE, TRUE, TRUE, 
+            ],
+            'restriction' => [ 
+                'attr_blockd_0004.xsd', TRUE, FALSE, FALSE, 
+            ],
+            'extension' => [ 
+                'attr_blockd_0005.xsd', FALSE, TRUE, FALSE, 
+            ],
+            'substitution' => [ 
+                'attr_blockd_0006.xsd', FALSE, FALSE, TRUE, 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "blockDefault" attribute in a "schema" element.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidBlockDefaultAttributes():array
+    {
+        return [
+            '  foo  ' => [ 
+                'attr_blockd_0007.xsd', '  foo  ', 
+            ],
+            '#ALL' => [ 
+                'attr_blockd_0008.xsd', '#ALL', 
+            ],
+            'subStitution exTension Restriction' => [ 
+                'attr_blockd_0009.xsd', 'subStitution exTension Restriction', 
+            ],
+            '#all substitution extension restriction' => [ 
+                'attr_blockd_0010.xsd', '#all substitution extension restriction', 
+            ],
+        ];
+    }
+    
+    /**
      * Returns the content of the specified filename located at the "schema" 
      * directory.
      * 

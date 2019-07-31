@@ -55,13 +55,10 @@ class Parser
         
         $this->builder->buildSchemaElement();
         
-        // Builds the attributes.
+        // Parses the attributes.
         $this->xt->moveToFirstAttribute();
         
-        if ($this->xt->getNamespace() == '' && 
-            $this->xt->getLocalName() == 'attributeFormDefault') {
-            $this->builder->buildAttributeFormDefaultAttribute($this->xt->getValue());
-        }
+        $this->parseAttributeNode();
         
         return $this->builder->getSchema();
     }
@@ -87,5 +84,21 @@ class Parser
         }
         
         $this->builder = new SchemaElementBuilder();
+    }
+    
+    /**
+     * Parses the current node as an attribute.
+     */
+    private function parseAttributeNode()
+    {
+        if ($this->xt->getNamespace() == '') {
+            $localName = $this->xt->getLocalName();
+            
+            if ($localName == 'attributeFormDefault') {
+                $this->builder->buildAttributeFormDefaultAttribute($this->xt->getValue());
+            } elseif ($localName == 'blockDefault') {
+                $this->builder->buildBlockDefaultAttribute($this->xt->getValue());
+            }
+        }
     }
 }
