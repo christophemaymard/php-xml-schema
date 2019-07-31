@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Exception\InvalidValueException;
+
 /**
  * Interface for building a XML Schema.
  * 
@@ -14,6 +16,15 @@ namespace PhpXmlSchema\Dom;
  */
 interface SchemaBuilderInterface
 {
+    /**
+     * Builds an "attributeFormDefault" attribute in the "schema" element.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the value is invalid for the attribute.
+     */
+    public function buildAttributeFormDefaultAttribute(string $value);
+    
     /**
      * Builds a "schema" element.
      * 
