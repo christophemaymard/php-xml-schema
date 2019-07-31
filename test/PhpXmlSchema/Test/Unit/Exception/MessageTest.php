@@ -85,4 +85,74 @@ class MessageTest extends TestCase
             'No namespace.'
         );
     }
+    
+    /**
+     * Tests that invalidAttributeValue() returns a message with no expected 
+     * values when no value is expected.
+     */
+    public function testInvalidAttributeValueReturnsEmptyWhenExpectNoValue()
+    {
+        self::assertSame(
+            '"foo" is an invalid value for the "bar" attribute (from baz namespace).', 
+            Message::invalidAttributeValue('foo', 'bar', 'baz', []),
+            'Expect no value.'
+        );
+    }
+    
+    /**
+     * Tests that invalidAttributeValue() returns a message with 1 value when 
+     * 1 value is expected.
+     */
+    public function testInvalidAttributeValueReturns1ValueWhenExpect1Value()
+    {
+        self::assertSame(
+            '"foo" is an invalid value for the "bar" attribute (from baz '.
+            'namespace), expected: "qux".', 
+            Message::invalidAttributeValue('foo', 'bar', 'baz', [ 'qux', ]),
+            'Expect 1 value.'
+        );
+    }
+    
+    /**
+     * Tests that invalidAttributeValue() returns a message with 2 values 
+     * that are separated by "or" when 2 values are expected.
+     */
+    public function testInvalidAttributeValueReturns1ValueOr1ValueWhenExpect2Values()
+    {
+        self::assertSame(
+            '"foo" is an invalid value for the "bar" attribute (from baz '.
+            'namespace), expected: "qux" or "quux".', 
+            Message::invalidAttributeValue('foo', 'bar', 'baz', [ 'qux','quux', ]),
+            'Expect 2 values.'
+        );
+    }
+    
+    /**
+     * Tests that invalidAttributeValue() returns a message with 3 values 
+     * that are separated by a comma (for the first and the second) and by 
+     * "or" (for the second and the third) when 3 values are expected.
+     */
+    public function testInvalidAttributeValueReturns1ValueComma1ValueOr1ValueWhenExpect3Values()
+    {
+        self::assertSame(
+            '"foo" is an invalid value for the "bar" attribute (from baz '.
+            'namespace), expected: "qux", "quux" or "quuux".', 
+            Message::invalidAttributeValue('foo', 'bar', 'baz', [ 'qux','quux', 'quuux', ]),
+            'Expect 3 values.'
+        );
+    }
+    
+    /**
+     * Tests that invalidAttributeValue() returns a message with "no" 
+     * namespace when the attribute has an empty namespace.
+     */
+    public function testInvalidAttributeValueReturnsNoNamespaceWhenNamespaceIsEmptyString()
+    {
+        self::assertSame(
+            '"foo" is an invalid value for the "bar" attribute (from no '.
+            'namespace), expected: "qux", "quux" or "quuux".', 
+            Message::invalidAttributeValue('foo', 'bar', '', [ 'qux','quux', 'quuux', ]),
+            'No namespace.'
+        );
+    }
 }

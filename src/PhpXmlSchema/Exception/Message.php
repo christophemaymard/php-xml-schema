@@ -28,9 +28,7 @@ class Message
         if (empty($names)) {
             $expectedElements = 'none';
         } else {
-            $last = '"'.\array_pop($names).'"';
-            $expectedElements = (empty($names)) ? $last :
-                '"'.implode('", "', $names).'" or '.$last;
+            $expectedElements = self::formatCommaOrList($names);
         }
         
         return \sprintf(
@@ -39,5 +37,54 @@ class Message
             $ns == '' ? 'no' : $ns,
             $expectedElements
         );
+    }
+    
+    /**
+     * Formats a message when a value of an attribute, from a namespace, is 
+     * invalid and list the expected values.
+     * 
+     * @param   string      $invalidValue   The invalid value.
+     * @param   string      $name           The local name of the attribute.
+     * @param   string      $ns             The namespace of the attribute.
+     * @param   string[]    $values         The expected values.
+     * @return  string
+     */
+    public static function invalidAttributeValue(
+        string $invalidValue, 
+        string $name, 
+        string $ns, 
+        array $values
+    ):string {
+        if (empty($values)) {
+            $expected = '';
+        } else {
+            $expected = ', expected: '.self::formatCommaOrList($values);
+        }
+        
+        return \sprintf(
+            '"%s" is an invalid value for the "%s" attribute (from %s '.
+            'namespace)%s.', 
+            $invalidValue, 
+            $name, 
+            $ns == '' ? 'no' : $ns, 
+            $expected
+        );
+    }
+    
+    /**
+     * Formats a list with specified items.
+     * 
+     * Items are surrounded with double quote and separated by comma or "or".
+     * 
+     * @param   string[]    $items  The items used to format a list.
+     * @return  string
+     */
+    private static function formatCommaOrList(array $items)
+    {
+        $last = '"'.\array_pop($items).'"';
+        
+        return (empty($items)) ? 
+            $last : 
+            '"'.implode('", "', $items).'" or '.$last;
     }
 }
