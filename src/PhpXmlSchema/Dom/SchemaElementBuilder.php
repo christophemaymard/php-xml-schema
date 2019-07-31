@@ -55,6 +55,23 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildBlockDefaultAttribute(string $value)
+    {
+        if (NULL === $attr = $this->parseBlockSetValue($value)) {
+            throw new InvalidValueException(Message::invalidAttributeValue(
+                $value, 
+                'blockDefault', 
+                '', 
+                [ '#all', 'List of (extension | restriction | substitution)', ]
+            ));
+        }
+        
+        $this->schemaElement->setBlockDefault($attr);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaElement()
     {
         $this->schemaElement = new SchemaElement();
@@ -68,5 +85,73 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function getSchema():SchemaElement
     {
         return $this->schemaElement;
+    }
+    
+    /**
+     * Parses the specified value in "blockSet" DerivationType value.
+     * 
+     * Before parsing the value, the white space characters (i.e. TAB, LF, CR 
+     * and SPACE) are collapsed.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  DerivationType|NULL A created instance of DerivationType if the value is valid, otherwise NULL.
+     */
+    private function parseBlockSetValue(string $value)
+    {
+        $cvalue = $this->collapseWhiteSpace($value);
+        $rest = $ext = $sub = FALSE;
+        
+        if ($cvalue == '#all') {
+            $rest = $ext = $sub = TRUE;
+        } else {
+            foreach (\array_filter(\explode(' ', $cvalue), 'strlen') as $flag) {
+                if ($flag == 'restriction') {
+                    $rest = TRUE;
+                } elseif ($flag == 'extension') {
+                    $ext = TRUE;
+                } elseif ($flag == 'substitution') {
+                    $sub = TRUE;
+                } else {
+                    return NULL;
+                }
+            }
+        }
+        
+        return new DerivationType($rest, $ext, $sub, FALSE, FALSE);
+    }
+    
+    /**
+     * Replaces all the occurrences of TAB, LINE FEED and CARRIAGE RETURN 
+     * with SPACE, collapses to a single SPACE contiguous sequences of 
+     * SPACEs and removes leading and trailing SPACEs.
+     * 
+     * @param   string  $value  The value to process.
+     * @return  string
+     */
+    private function collapseWhiteSpace(string $value):string
+    {
+        return \implode(
+            ' ', 
+            \array_filter(
+                \explode(' ', $this->replaceWhiteSpace($value)),
+                'strlen'
+            )
+        );
+    }
+    
+    /**
+     * Replaces all the occurrences of TAB, LINE FEED and CARRIAGE RETURN 
+     * with SPACE.
+     * 
+     * @param   string  $value  The value to process.
+     * @return  string
+     */
+    private function replaceWhiteSpace(string $value):string
+    {
+        return \str_replace(
+            [ "\t", "\n", "\r", ],
+            ' ',
+            $value
+        );
     }
 }

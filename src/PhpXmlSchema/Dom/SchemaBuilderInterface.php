@@ -26,6 +26,18 @@ interface SchemaBuilderInterface
     public function buildAttributeFormDefaultAttribute(string $value);
     
     /**
+     * Builds a "blockDefault" attribute in the "schema" element.
+     * 
+     * Before creating the attribute, the white space characters (i.e. TAB, 
+     * LF, CR and SPACE) of the value are collapsed.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the value is invalid for the attribute.
+     */
+    public function buildBlockDefaultAttribute(string $value);
+    
+    /**
      * Builds a "schema" element.
      * 
      * An new instance is created and replaces the current "schema" element 

@@ -120,6 +120,66 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildBlockDefaultAttribute() creates and sets a 
+     * DerivationType value in the "schema" element.
+     * 
+     * @param   string  $value          The value to test.
+     * @param   bool    $restriction    The expected value for the "restriction" flag.
+     * @param   bool    $extension      The expected value for the "extension" flag.
+     * @param   bool    $substitution   The expected value for the "substitution" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidBlockSetValues
+     */
+    public function testBuildBlockDefaultAttribute(
+        string $value,
+        bool $restriction, 
+        bool $extension, 
+        bool $substitution
+    ) {
+        $sut = new SchemaElementBuilder();
+        $sut->buildBlockDefaultAttribute($value);
+        $sch = $sut->getSchema();
+        
+        self::assertSame($extension, $sch->getBlockDefault()->byExtension());
+        self::assertFalse($sch->getBlockDefault()->byList());
+        self::assertSame($restriction, $sch->getBlockDefault()->byRestriction());
+        self::assertSame($substitution, $sch->getBlockDefault()->bySubstitution());
+        self::assertFalse($sch->getBlockDefault()->byUnion());
+        
+        self::assertFalse($sch->hasAttributeFormDefault());
+        self::assertFalse($sch->hasElementFormDefault());
+        self::assertFalse($sch->hasFinalDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that buildBlockDefaultAttribute() throws an exception when the 
+     * value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @dataProvider    getInvalidBlockSetValues
+     */
+    public function testBuildBlockDefaultAttributeThrowsExceptionWhenValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "blockDefault" '.
+            'attribute (from no namespace), expected: "#all" or '.
+            '"List of (extension | restriction | substitution)".'
+        );
+        $sut = new SchemaElementBuilder();
+        $sut->buildBlockDefaultAttribute($value);
+    }
+    
+    /**
      * Returns a set of invalid FormeType values.
      * 
      * @return  array[]
@@ -132,6 +192,77 @@ class SchemaElementBuilderTest extends TestCase
             ],
             '"Unqualified"' => [ 
                 'Unqualified', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "blockSet" values.
+     * 
+     * @return  array[]
+     */
+    public function getValidBlockSetValues():array
+    {
+        // [ $value, $restriction, $extension, $substitution, ]
+        return [
+            '' => [ 
+                "", FALSE, FALSE, FALSE, 
+            ],
+            '#all' => [ 
+                '#all', TRUE, TRUE, TRUE, 
+            ],
+            
+            'restriction' => [ 
+                "\t \r \n  restriction  ", TRUE, FALSE, FALSE, 
+            ],
+            'extension' => [ 
+                " extension\r", FALSE, TRUE, FALSE, 
+            ],
+            'substitution' => [ 
+                "   substitution   ", FALSE, FALSE, TRUE, 
+            ],
+            
+            'restriction extension' => [ 
+                "\t\t\t restriction \n   \rextension\n ", TRUE, TRUE, FALSE, 
+            ],
+            'substitution restriction' => [ 
+                "\n\n\nsubstitution restriction", TRUE, FALSE, TRUE, 
+            ],
+            'extension substitution' => [ 
+                "extension\t\t\tsubstitution\n\n\n", FALSE, TRUE, TRUE, 
+            ],
+            'restriction restriction' => [ 
+                "    restriction      restriction   ", TRUE, FALSE, FALSE, 
+            ],
+            'extension extension' => [ 
+                "extension extension", FALSE, TRUE, FALSE, 
+            ],
+            'substitution substitution' => [ 
+                "substitution substitution", FALSE, FALSE, TRUE, 
+            ],
+            
+            'substitution extension restriction' => [ 
+                "substitution\t \r \nextension\t \r \nrestriction", TRUE, TRUE, TRUE, 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "blockSet" values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidBlockSetValues():array
+    {
+        return [
+            '#ALL' => [ 
+                '#ALL', 
+            ],
+            'subStitution exTension Restriction' => [ 
+                'subStitution exTension Restriction', 
+            ],
+            '#all substitution extension restriction' => [ 
+                '#all substitution extension restriction', 
             ],
         ];
     }
