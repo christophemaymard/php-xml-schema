@@ -214,6 +214,69 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "elementFormDefault" attribute in a 
+     * "schema" element with "qualified" value.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessElementFormDefaultAttributeWithQualifiedInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('attr_eltfd_0001.xsd'));
+        self::assertTrue($sch->getElementFormDefault()->isQualified());
+        
+        self::assertFalse($sch->hasAttributeFormDefault());
+        self::assertFalse($sch->hasBlockDefault());
+        self::assertFalse($sch->hasFinalDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that parse() processes "elementFormDefault" attribute in a 
+     * "schema" element with "unqualified" value.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessElementFormDefaultAttributeWithUnqualifiedInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('attr_eltfd_0002.xsd'));
+        self::assertTrue($sch->getElementFormDefault()->isUnqualified());
+        
+        self::assertFalse($sch->hasAttributeFormDefault());
+        self::assertFalse($sch->hasBlockDefault());
+        self::assertFalse($sch->hasFinalDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that parse() throws an exception when the value of the 
+     * "elementFormDefault" attribute in a "schema" element is invalid.
+     * 
+     * @group   attribute
+     */
+    public function testParseThrowsExceptionWhenElementFormDefaultAttributeInSchemaElementIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"foo" is an invalid value for the "elementFormDefault" '.
+            'attribute (from no namespace), expected: "qualified" or '.
+            '"unqualified".'
+        );
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs('attr_eltfd_0003.xsd'));
+    }
+    
+    /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.
      * 
      * @return  array[]
