@@ -63,14 +63,9 @@ class SchemaElementBuilderTest extends TestCase
         $sut = new SchemaElementBuilder();
         $sut->buildAttributeFormDefaultAttribute('qualified');
         $sch = $sut->getSchema();
+        
         self::assertTrue($sch->getAttributeFormDefault()->isQualified());
-        self::assertFalse($sch->hasBlockDefault());
-        self::assertFalse($sch->hasElementFormDefault());
-        self::assertFalse($sch->hasFinalDefault());
-        self::assertFalse($sch->hasId());
-        self::assertFalse($sch->hasTargetNamespace());
-        self::assertFalse($sch->hasVersion());
-        self::assertFalse($sch->hasLang());
+        self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
     
@@ -86,14 +81,9 @@ class SchemaElementBuilderTest extends TestCase
         $sut = new SchemaElementBuilder();
         $sut->buildAttributeFormDefaultAttribute('unqualified');
         $sch = $sut->getSchema();
+        
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
-        self::assertFalse($sch->hasBlockDefault());
-        self::assertFalse($sch->hasElementFormDefault());
-        self::assertFalse($sch->hasFinalDefault());
-        self::assertFalse($sch->hasId());
-        self::assertFalse($sch->hasTargetNamespace());
-        self::assertFalse($sch->hasVersion());
-        self::assertFalse($sch->hasLang());
+        self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
     
@@ -123,37 +113,26 @@ class SchemaElementBuilderTest extends TestCase
      * Tests that buildBlockDefaultAttribute() creates and sets a 
      * DerivationType value in the "schema" element.
      * 
-     * @param   string  $value          The value to test.
-     * @param   bool    $restriction    The expected value for the "restriction" flag.
-     * @param   bool    $extension      The expected value for the "extension" flag.
-     * @param   bool    $substitution   The expected value for the "substitution" flag.
+     * @param   string  $value  The value to test.
+     * @param   bool    $res    The expected value for the "restriction" flag.
+     * @param   bool    $ext    The expected value for the "extension" flag.
+     * @param   bool    $sub    The expected value for the "substitution" flag.
      * 
      * @group           attribute
      * @dataProvider    getValidBlockSetValues
      */
     public function testBuildBlockDefaultAttribute(
-        string $value,
-        bool $restriction, 
-        bool $extension, 
-        bool $substitution
+        string $value, 
+        bool $res, 
+        bool $ext, 
+        bool $sub
     ) {
         $sut = new SchemaElementBuilder();
         $sut->buildBlockDefaultAttribute($value);
         $sch = $sut->getSchema();
         
-        self::assertSame($extension, $sch->getBlockDefault()->byExtension());
-        self::assertFalse($sch->getBlockDefault()->byList());
-        self::assertSame($restriction, $sch->getBlockDefault()->byRestriction());
-        self::assertSame($substitution, $sch->getBlockDefault()->bySubstitution());
-        self::assertFalse($sch->getBlockDefault()->byUnion());
-        
-        self::assertFalse($sch->hasAttributeFormDefault());
-        self::assertFalse($sch->hasElementFormDefault());
-        self::assertFalse($sch->hasFinalDefault());
-        self::assertFalse($sch->hasId());
-        self::assertFalse($sch->hasTargetNamespace());
-        self::assertFalse($sch->hasVersion());
-        self::assertFalse($sch->hasLang());
+        self::assertSchemaElementBlockDefaultAttribute($res, $ext, $sub, $sch);
+        self::assertSchemaElementHasOnlyBlockDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
     
@@ -191,15 +170,9 @@ class SchemaElementBuilderTest extends TestCase
         $sut = new SchemaElementBuilder();
         $sut->buildElementFormDefaultAttribute('qualified');
         $sch = $sut->getSchema();
-        self::assertTrue($sch->getElementFormDefault()->isQualified());
         
-        self::assertFalse($sch->hasAttributeFormDefault());
-        self::assertFalse($sch->hasBlockDefault());
-        self::assertFalse($sch->hasFinalDefault());
-        self::assertFalse($sch->hasId());
-        self::assertFalse($sch->hasTargetNamespace());
-        self::assertFalse($sch->hasVersion());
-        self::assertFalse($sch->hasLang());
+        self::assertTrue($sch->getElementFormDefault()->isQualified());
+        self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
     
@@ -215,15 +188,9 @@ class SchemaElementBuilderTest extends TestCase
         $sut = new SchemaElementBuilder();
         $sut->buildElementFormDefaultAttribute('unqualified');
         $sch = $sut->getSchema();
-        self::assertTrue($sch->getElementFormDefault()->isUnqualified());
         
-        self::assertFalse($sch->hasAttributeFormDefault());
-        self::assertFalse($sch->hasBlockDefault());
-        self::assertFalse($sch->hasFinalDefault());
-        self::assertFalse($sch->hasId());
-        self::assertFalse($sch->hasTargetNamespace());
-        self::assertFalse($sch->hasVersion());
-        self::assertFalse($sch->hasLang());
+        self::assertTrue($sch->getElementFormDefault()->isUnqualified());
+        self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
     
@@ -253,39 +220,28 @@ class SchemaElementBuilderTest extends TestCase
      * Tests that buildFinalDefaultAttribute() creates and sets a 
      * DerivationType value in the "schema" element.
      * 
-     * @param   string  $value          The value to test.
-     * @param   bool    $extension      The expected value for the "extension" flag.
-     * @param   bool    $restriction    The expected value for the "restriction" flag.
-     * @param   bool    $list           The expected value for the "list" flag.
-     * @param   bool    $union          The expected value for the "union" flag.
+     * @param   string  $value  The value to test.
+     * @param   bool    $ext    The expected value for the "extension" flag.
+     * @param   bool    $res    The expected value for the "restriction" flag.
+     * @param   bool    $lst    The expected value for the "list" flag.
+     * @param   bool    $unn    The expected value for the "union" flag.
      * 
      * @group           attribute
      * @dataProvider    getValidFullDerivationSetValues
      */
     public function testBuildFinalDefaultAttribute(
         string $value,
-        bool $extension, 
-        bool $restriction, 
-        bool $list, 
-        bool $union
+        bool $ext, 
+        bool $res, 
+        bool $lst, 
+        bool $unn
     ) {
         $sut = new SchemaElementBuilder();
         $sut->buildFinalDefaultAttribute($value);
         $sch = $sut->getSchema();
         
-        self::assertSame($extension, $sch->getFinalDefault()->byExtension());
-        self::assertSame($restriction, $sch->getFinalDefault()->byRestriction());
-        self::assertSame($list, $sch->getFinalDefault()->byList());
-        self::assertSame($union, $sch->getFinalDefault()->byUnion());
-        self::assertFalse($sch->getFinalDefault()->bySubstitution());
-        
-        self::assertFalse($sch->hasAttributeFormDefault());
-        self::assertFalse($sch->hasBlockDefault());
-        self::assertFalse($sch->hasElementFormDefault());
-        self::assertFalse($sch->hasId());
-        self::assertFalse($sch->hasTargetNamespace());
-        self::assertFalse($sch->hasVersion());
-        self::assertFalse($sch->hasLang());
+        self::assertSchemaElementFinalDefaultAttribute($ext, $res, $lst, $unn, $sch);
+        self::assertSchemaElementHasOnlyFinalDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
     
