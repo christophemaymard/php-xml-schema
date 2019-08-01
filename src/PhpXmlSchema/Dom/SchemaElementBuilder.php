@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Exception\Message;
@@ -106,6 +107,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildIdAttribute(string $value)
     {
         $this->schemaElement->setId(new IDType($this->collapseWhiteSpace($value)));
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function buildTargetNamespaceAttribute(string $value)
+    {
+        $this->schemaElement->setTargetNamespace(
+            new AnyUriType($this->collapseWhiteSpace($value))
+        );
     }
     
     /**

@@ -104,6 +104,8 @@ class Parser
                 $this->builder->buildFinalDefaultAttribute($this->xt->getValue());
             } elseif ($localName == 'id') {
                 $this->builder->buildIdAttribute($this->xt->getValue());
+            } elseif ($localName == 'targetNamespace') {
+                $this->builder->buildTargetNamespaceAttribute($this->xt->getValue());
             }
         }
     }

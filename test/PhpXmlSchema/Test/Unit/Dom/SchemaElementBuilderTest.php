@@ -303,6 +303,41 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildTargetNamespaceAttribute() creates and sets an 
+     * AnyUriType value in the "targetNamespace" attribute of the "schema" 
+     * element.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $uri    The expected value for the URI.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidAnyUriValues
+     */
+    public function testBuildTargetNamespaceAttribute(string $value, string $uri)
+    {
+        $sut = new SchemaElementBuilder();
+        $sut->buildTargetNamespaceAttribute($value);
+        $sch = $sut->getSchema();
+        
+        self::assertSame($uri, $sch->getTargetNamespace()->getUri());
+        self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that buildTargetNamespaceAttribute() throws an exception when 
+     * the value is invalid.
+     * 
+     * @group   attribute
+     */
+    public function testBuildTargetNamespaceAttributeThrowsExceptionWhenValueIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        $sut = new SchemaElementBuilder();
+        $sut->buildTargetNamespaceAttribute(':');
+    }
+    
+    /**
      * Returns a set of invalid FormeType values.
      * 
      * @return  array[]
@@ -516,6 +551,23 @@ class SchemaElementBuilderTest extends TestCase
             ],
             '  bar  ' => [ 
                 '  bar  ', 'bar', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "anyURI" values.
+     * 
+     * @return  array[]
+     */
+    public function getValidAnyUriValues():array
+    {
+        return [
+            'http://example.org' => [ 
+                'http://example.org', 'http://example.org', 
+            ],
+            '  http://example.org  ' => [ 
+                '  http://example.org  ', 'http://example.org', 
             ],
         ];
     }

@@ -325,6 +325,36 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "targetNamespace" attribute in a "schema" 
+     * element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessTargetNamespaceAttributeInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('attr_target_0001.xsd'));
+        
+        self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
+        self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that parse() throws an exception when the value of the 
+     * "id" attribute is invalid in a "schema" element.
+     * 
+     * @group   attribute
+     */
+    public function testParseThrowsExceptionWhenTargetNamespaceAttributeIsInvalidInSchemaElement()
+    {
+        $this->expectException(InvalidValueException::class);
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs('attr_target_0002.xsd'));
+    }
+    
+    /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.
      * 
      * @return  array[]

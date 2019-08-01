@@ -187,4 +187,23 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasVersion());
         self::assertFalse($sut->hasLang());
     }
+    
+    /**
+     * Asserts that the specified "schema" element has only the 
+     * "targetNamespace" attribute.
+     * 
+     * @param   SchemaElement   $sut    The element to test.
+     */
+    public static function assertSchemaElementHasOnlyTargetNamespaceAttribute(
+        SchemaElement $sut
+    ) {
+        self::assertFalse($sut->hasAttributeFormDefault());
+        self::assertFalse($sut->hasBlockDefault());
+        self::assertFalse($sut->hasElementFormDefault());
+        self::assertFalse($sut->hasFinalDefault());
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasTargetNamespace());
+        self::assertFalse($sut->hasVersion());
+        self::assertFalse($sut->hasLang());
+    }
 }

@@ -8,4 +8,5 @@
 - [x] Parse **elementFormDefault** attribute.
 - [x] Parse **finalDefault** attribute (collapsing white spaces).
 - [x] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **targetNamespace** attribute (collapsing white spaces).
 
