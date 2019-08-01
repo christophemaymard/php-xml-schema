@@ -277,6 +277,70 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "finalDefault" attribute in a "schema" 
+     * element.
+     * 
+     * @param   string  $fileName       The name of the file used for the test.
+     * @param   bool    $extension      The expected value for the "extension" flag.
+     * @param   bool    $restriction    The expected value for the "restriction" flag.
+     * @param   bool    $list           The expected value for the "list" flag.
+     * @param   bool    $union          The expected value for the "union" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFinalDefaultAttributes
+     */
+    public function testParseProcessFinalDefaultAttributeInSchemaElement(
+        string $fileName,
+        bool $extension, 
+        bool $restriction, 
+        bool $list, 
+        bool $union
+    ) {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs($fileName));
+        
+        self::assertSame($extension, $sch->getFinalDefault()->byExtension());
+        self::assertSame($restriction, $sch->getFinalDefault()->byRestriction());
+        self::assertSame($list, $sch->getFinalDefault()->byList());
+        self::assertSame($union, $sch->getFinalDefault()->byUnion());
+        self::assertFalse($sch->getFinalDefault()->bySubstitution());
+        
+        self::assertFalse($sch->hasAttributeFormDefault());
+        self::assertFalse($sch->hasBlockDefault());
+        self::assertFalse($sch->hasElementFormDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that parse() throws an exception when the value of the 
+     * "finalDefault" attribute is invalid in a "schema" element.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $value      The invalid value.
+     * 
+     * @group           attribute
+     * @dataProvider    getInvalidFinalDefaultAttributes
+     */
+    public function testParseThrowsExceptionWhenFinalDefaultIsInvalidInSchemaElement(
+        string $fileName,
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "finalDefault" '.
+            'attribute (from no namespace), expected: "#all" or '.
+            '"List of (extension | restriction | list | union)".'
+        );
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs($fileName));
+    }
+    
+    /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.
      * 
      * @return  array[]
@@ -325,6 +389,56 @@ class ParserTest extends TestCase
             ],
             '#all substitution extension restriction' => [ 
                 'attr_blockd_0010.xsd', '#all substitution extension restriction', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "finalDefault" attribute in a "schema" element.
+     * 
+     * @return  array[]
+     */
+    public function getValidFinalDefaultAttributes():array
+    {
+        // [ $fileName, $extension, $restriction, $list, $union, ]
+        return [
+            'Empty' => [ 
+                'attr_finald_0001.xsd', FALSE, FALSE, FALSE, FALSE, 
+            ],
+            '#all' => [ 
+                'attr_finald_0002.xsd', TRUE, TRUE, TRUE, TRUE, 
+            ],
+            'list restriction union extension' => [ 
+                'attr_finald_0003.xsd', TRUE, TRUE, TRUE, TRUE, 
+            ],
+            'restriction restriction restriction' => [ 
+                'attr_finald_0004.xsd', FALSE, TRUE, FALSE, FALSE, 
+            ],
+            '    union     list    ' => [ 
+                'attr_finald_0005.xsd', FALSE, FALSE, TRUE, TRUE, 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "finalDefault" attribute in a "schema" element.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidFinalDefaultAttributes():array
+    {
+        return [
+            'foo' => [ 
+                'attr_finald_0006.xsd', 'foo', 
+            ],
+            '#ALL' => [ 
+                'attr_finald_0007.xsd', '#ALL', 
+            ],
+            'extension liSt' => [ 
+                'attr_finald_0008.xsd', 'extension liSt', 
+            ],
+            '#all extension restriction list union' => [ 
+                'attr_finald_0009.xsd', '#all extension restriction list union', 
             ],
         ];
     }

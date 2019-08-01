@@ -100,6 +100,8 @@ class Parser
                 $this->builder->buildBlockDefaultAttribute($this->xt->getValue());
             } elseif ($localName == 'elementFormDefault') {
                 $this->builder->buildElementFormDefaultAttribute($this->xt->getValue());
+            } elseif ($localName == 'finalDefault') {
+                $this->builder->buildFinalDefaultAttribute($this->xt->getValue());
             }
         }
     }
