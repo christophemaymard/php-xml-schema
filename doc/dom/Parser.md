@@ -6,5 +6,5 @@
 - [x] Parse **attributeFormDefault** attribute.
 - [x] Parse **blockDefault** attribute (collapsing white spaces).
 - [x] Parse **elementFormDefault** attribute.
-- [x] Parse **finalDefault** attribute.
+- [x] Parse **finalDefault** attribute (collapsing white spaces).
 
