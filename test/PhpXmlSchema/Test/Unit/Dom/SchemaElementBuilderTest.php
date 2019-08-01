@@ -250,6 +250,68 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildFinalDefaultAttribute() creates and sets a 
+     * DerivationType value in the "schema" element.
+     * 
+     * @param   string  $value          The value to test.
+     * @param   bool    $extension      The expected value for the "extension" flag.
+     * @param   bool    $restriction    The expected value for the "restriction" flag.
+     * @param   bool    $list           The expected value for the "list" flag.
+     * @param   bool    $union          The expected value for the "union" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFullDerivationSetValues
+     */
+    public function testBuildFinalDefaultAttribute(
+        string $value,
+        bool $extension, 
+        bool $restriction, 
+        bool $list, 
+        bool $union
+    ) {
+        $sut = new SchemaElementBuilder();
+        $sut->buildFinalDefaultAttribute($value);
+        $sch = $sut->getSchema();
+        
+        self::assertSame($extension, $sch->getFinalDefault()->byExtension());
+        self::assertSame($restriction, $sch->getFinalDefault()->byRestriction());
+        self::assertSame($list, $sch->getFinalDefault()->byList());
+        self::assertSame($union, $sch->getFinalDefault()->byUnion());
+        self::assertFalse($sch->getFinalDefault()->bySubstitution());
+        
+        self::assertFalse($sch->hasAttributeFormDefault());
+        self::assertFalse($sch->hasBlockDefault());
+        self::assertFalse($sch->hasElementFormDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that buildFinalDefaultAttribute() throws an exception when the 
+     * value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @dataProvider    getInvalidFullDerivationSetValues
+     */
+    public function testBuildFinalDefaultAttributeThrowsExceptionWhenValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "finalDefault" '.
+            'attribute (from no namespace), expected: "#all" or '.
+            '"List of (extension | restriction | list | union)".'
+        );
+        $sut = new SchemaElementBuilder();
+        $sut->buildFinalDefaultAttribute($value);
+    }
+    
+    /**
      * Returns a set of invalid FormeType values.
      * 
      * @return  array[]
@@ -333,6 +395,119 @@ class SchemaElementBuilderTest extends TestCase
             ],
             '#all substitution extension restriction' => [ 
                 '#all substitution extension restriction', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "fullDerivationSet" values.
+     * 
+     * @return  array[]
+     */
+    public function getValidFullDerivationSetValues():array
+    {
+        // [ $value, $extension, $restriction, $list, $union, ]
+        return [
+            '' => [ 
+                "", FALSE, FALSE, FALSE, FALSE, 
+            ],
+            '#all' => [ 
+                '#all', TRUE, TRUE, TRUE, TRUE, 
+            ],
+            
+            'extension' => [ 
+                "\t \r \n  extension  ", TRUE, FALSE, FALSE, FALSE, 
+            ],
+            'restriction' => [ 
+                " restriction\r", FALSE, TRUE, FALSE, FALSE, 
+            ],
+            'list' => [ 
+                "   list   ", FALSE, FALSE, TRUE, FALSE, 
+            ],
+            'union' => [ 
+                "   union   ", FALSE, FALSE, FALSE, TRUE, 
+            ],
+            
+            'extension extension' => [ 
+                "\t extension\r \n  extension  ", TRUE, FALSE, FALSE, FALSE, 
+            ],
+            'restriction restriction' => [ 
+                "restriction restriction\r", FALSE, TRUE, FALSE, FALSE, 
+            ],
+            'list list' => [ 
+                "  list list   ", FALSE, FALSE, TRUE, FALSE, 
+            ],
+            'union union' => [ 
+                "   union union  ", FALSE, FALSE, FALSE, TRUE, 
+            ],
+            
+            'extension restriction' => [ 
+                "\t \r \n  extension   restriction\r", TRUE, TRUE, FALSE, FALSE, 
+            ],
+            'extension list' => [ 
+                "\t \r \n  extension     list   ", TRUE, FALSE, TRUE, FALSE, 
+            ],
+            'extension union' => [ 
+                "\t \r \n  extension     union   ", TRUE, FALSE, FALSE, TRUE, 
+            ],
+            'restriction extension' => [ 
+                " restriction\r\t \r \n  extension  ", TRUE, TRUE, FALSE, FALSE, 
+            ],
+            'restriction list' => [ 
+                " restriction\r   list   ", FALSE, TRUE, TRUE, FALSE, 
+            ],
+            'restriction union' => [ 
+                " restriction\r   union   ", FALSE, TRUE, FALSE, TRUE, 
+            ],
+            'list extension' => [ 
+                "   list \t \r \n  extension    ", TRUE, FALSE, TRUE, FALSE, 
+            ],
+            'list restriction' => [ 
+                "   list  restriction\r  ", FALSE, TRUE, TRUE, FALSE, 
+            ],
+            'list union' => [ 
+                "   list   union    ", FALSE, FALSE, TRUE, TRUE, 
+            ],
+            'union extension' => [ 
+                "   union \r \n  extension  ", TRUE, FALSE, FALSE, TRUE, 
+            ],
+            'union restriction' => [ 
+                "   union  restriction\r   ", FALSE, TRUE, FALSE, TRUE, 
+            ],
+            'union list' => [ 
+                "   union \r \n list  ", FALSE, FALSE, TRUE, TRUE, 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "fullDerivationSet" values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidFullDerivationSetValues():array
+    {
+        return [
+            '#ALL' => [ 
+                '#ALL', 
+            ],
+            'substitution' => [ 
+                'substitution', 
+            ],
+            'list exTension union restriction' => [ 
+                'list exTension union restriction', 
+            ],
+            'liSt extension union restriction' => [ 
+                'liSt extension union restriction', 
+            ],
+            'list extension uniOn restriction' => [ 
+                'list extension uniOn restriction', 
+            ],
+            'list extension union resTriction' => [ 
+                'list extension union resTriction', 
+            ],
+            '#all extension restriction list union' => [ 
+                '#all extension restriction list union', 
             ],
         ];
     }

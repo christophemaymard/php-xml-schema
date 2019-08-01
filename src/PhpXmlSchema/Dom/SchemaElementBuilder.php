@@ -85,6 +85,23 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildFinalDefaultAttribute(string $value)
+    {
+        if (NULL === $attr = $this->parseFullDerivationSetValue($value)) {
+            throw new InvalidValueException(Message::invalidAttributeValue(
+                $value, 
+                'finalDefault', 
+                '', 
+                [ '#all', 'List of (extension | restriction | list | union)', ]
+            ));
+        }
+        
+        $this->schemaElement->setFinalDefault($attr);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaElement()
     {
         $this->schemaElement = new SchemaElement();
@@ -131,6 +148,41 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return new DerivationType($rest, $ext, $sub, FALSE, FALSE);
+    }
+    
+    /**
+     * Parses the specified value in "fullDerivationSet" DerivationType value.
+     * 
+     * Before parsing the value, the white space characters (i.e. TAB, LF, CR 
+     * and SPACE) are collapsed.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  DerivationType|NULL A created instance of DerivationType if the value is valid, otherwise NULL.
+     */
+    private function parseFullDerivationSetValue(string $value)
+    {
+        $cvalue = $this->collapseWhiteSpace($value);
+        $ext = $rest = $list = $union = FALSE;
+        
+        if ($cvalue == '#all') {
+            $ext = $rest = $list = $union = TRUE;
+        } else {
+            foreach (\array_filter(\explode(' ', $cvalue), 'strlen') as $flag) {
+                if ($flag == 'extension') {
+                    $ext = TRUE;
+                } elseif ($flag == 'restriction') {
+                    $rest = TRUE;
+                } elseif ($flag == 'list') {
+                    $list = TRUE;
+                } elseif ($flag == 'union') {
+                    $union = TRUE;
+                } else {
+                    return NULL;
+                }
+            }
+        }
+        
+        return new DerivationType($rest, $ext, FALSE, $list, $union);
     }
     
     /**
