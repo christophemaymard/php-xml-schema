@@ -268,6 +268,41 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildIdAttribute() creates and sets an IDType value in the 
+     * "id" attribute of the "schema" element.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidIdValues
+     */
+    public function testBuildIdAttribute(string $value, string $id)
+    {
+        $sut = new SchemaElementBuilder();
+        $sut->buildIdAttribute($value);
+        $sch = $sut->getSchema();
+        
+        self::assertSame($id, $sch->getId()->getId());
+        self::assertSchemaElementHasOnlyIdAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() throws an exception when the value is 
+     * invalid.
+     * 
+     * @group   attribute
+     */
+    public function testBuildIdAttributeThrowsExceptionWhenValueIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage('"foo:bar" is an invalid ID.');
+        $sut = new SchemaElementBuilder();
+        $sut->buildIdAttribute('foo:bar');
+    }
+    
+    /**
      * Returns a set of invalid FormeType values.
      * 
      * @return  array[]
@@ -464,6 +499,23 @@ class SchemaElementBuilderTest extends TestCase
             ],
             '#all extension restriction list union' => [ 
                 '#all extension restriction list union', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of valid ID values.
+     * 
+     * @return  array[]
+     */
+    public function getValidIdValues():array
+    {
+        return [
+            'foo' => [ 
+                'foo', 'foo', 
+            ],
+            '  bar  ' => [ 
+                '  bar  ', 'bar', 
             ],
         ];
     }

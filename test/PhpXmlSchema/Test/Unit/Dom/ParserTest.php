@@ -295,6 +295,36 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "id" attribute in a "schema" element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessIdAttributeInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('attr_id_0001.xsd'));
+        
+        self::assertSame('foo', $sch->getId()->getId());
+        self::assertSchemaElementHasOnlyIdAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that parse() throws an exception when the value of the 
+     * "id" attribute is invalid in a "schema" element.
+     * 
+     * @group   attribute
+     */
+    public function testParseThrowsExceptionWhenIdIsInvalidInSchemaElement()
+    {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage('"foo:bar" is an invalid ID.');
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs('attr_id_0002.xsd'));
+    }
+    
+    /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.
      * 
      * @return  array[]
