@@ -106,6 +106,8 @@ class Parser
                 $this->builder->buildIdAttribute($this->xt->getValue());
             } elseif ($localName == 'targetNamespace') {
                 $this->builder->buildTargetNamespaceAttribute($this->xt->getValue());
+            } elseif ($localName == 'version') {
+                $this->builder->buildVersionAttribute($this->xt->getValue());
             }
         }
     }

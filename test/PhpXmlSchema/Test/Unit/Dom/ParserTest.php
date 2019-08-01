@@ -355,6 +355,21 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "version" attribute in a "schema" element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessVersionAttributeInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('attr_version_0001.xsd'));
+        
+        self::assertSame('foo bar baz qux', $sch->getVersion()->getString());
+        self::assertSchemaElementHasOnlyVersionAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.
      * 
      * @return  array[]

@@ -74,6 +74,15 @@ interface SchemaBuilderInterface
     public function buildTargetNamespaceAttribute(string $value);
     
     /**
+     * Builds a "version" attribute in the "schema" element.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the value is invalid for the attribute.
+     */
+    public function buildVersionAttribute(string $value);
+    
+    /**
      * Builds a "schema" element.
      * 
      * An new instance is created and replaces the current "schema" element 

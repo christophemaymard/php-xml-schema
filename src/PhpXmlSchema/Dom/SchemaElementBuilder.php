@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
+use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Exception\Message;
 
@@ -116,6 +117,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         $this->schemaElement->setTargetNamespace(
             new AnyUriType($this->collapseWhiteSpace($value))
+        );
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function buildVersionAttribute(string $value)
+    {
+        $this->schemaElement->setVersion(
+            new TokenType($this->collapseWhiteSpace($value))
         );
     }
     

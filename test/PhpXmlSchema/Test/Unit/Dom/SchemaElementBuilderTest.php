@@ -338,6 +338,42 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildVersionAttribute() creates and sets a TokenType value 
+     * in the "version" attribute of the "schema" element.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $version    The expected value for the version.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidTokenValues
+     */
+    public function testBuildVersionAttribute(string $value, string $version)
+    {
+        $sut = new SchemaElementBuilder();
+        $sut->buildVersionAttribute($value);
+        $sch = $sut->getSchema();
+        
+        self::assertSame($version, $sch->getVersion()->getString());
+        self::assertSchemaElementHasOnlyVersionAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that buildVersionAttribute() throws an exception when the value 
+     * is invalid.
+     * 
+     * @group   attribute
+     */
+    public function testBuildVersionAttributeThrowsExceptionWhenValueIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage("\"\u{001F}\" is an invalid token.");
+        
+        $sut = new SchemaElementBuilder();
+        $sut->buildVersionAttribute("\u{001F}");
+    }
+    
+    /**
      * Returns a set of invalid FormeType values.
      * 
      * @return  array[]
@@ -568,6 +604,23 @@ class SchemaElementBuilderTest extends TestCase
             ],
             '  http://example.org  ' => [ 
                 '  http://example.org  ', 'http://example.org', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "token" values.
+     * 
+     * @return  array[]
+     */
+    public function getValidTokenValues():array
+    {
+        return [
+            'foo bar baz qux' => [ 
+                'foo bar baz qux', 'foo bar baz qux', 
+            ],
+            '     foo       bar      baz      qux     ' => [ 
+                '     foo       bar      baz      qux     ', 'foo bar baz qux', 
             ],
         ];
     }
