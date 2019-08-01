@@ -36,11 +36,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildAttributeFormDefaultAttribute(string $value)
     {
-        if ($value == 'qualified') {
-            $attr = FormType::createQualified();
-        } elseif ($value == 'unqualified') {
-            $attr = FormType::createUnqualified();
-        } else {
+        if (NULL === $attr = $this->parseFormType($value)) {
             throw new InvalidValueException(Message::invalidAttributeValue(
                 $value, 
                 'attributeFormDefault', 
@@ -67,6 +63,23 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         $this->schemaElement->setBlockDefault($attr);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function buildElementFormDefaultAttribute(string $value)
+    {
+        if (NULL === $attr = $this->parseFormType($value)) {
+            throw new InvalidValueException(Message::invalidAttributeValue(
+                $value, 
+                'elementFormDefault', 
+                '', 
+                [ 'qualified', 'unqualified', ]
+            ));
+        }
+        
+        $this->schemaElement->setElementFormDefault($attr);
     }
     
     /**
@@ -118,6 +131,25 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return new DerivationType($rest, $ext, $sub, FALSE, FALSE);
+    }
+    
+    /**
+     * Parses the specified value in FormType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  FormType|NULL   A created instance of FormType if the value is valid, otherwise NULL.
+     */
+    private function parseFormType(string $value)
+    {
+        $ft = NULL;
+        
+        if ($value == 'qualified') {
+            $ft = FormType::createQualified();
+        } elseif ($value == 'unqualified') {
+            $ft = FormType::createUnqualified();
+        }
+        
+        return $ft;
     }
     
     /**

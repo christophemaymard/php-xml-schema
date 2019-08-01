@@ -38,6 +38,15 @@ interface SchemaBuilderInterface
     public function buildBlockDefaultAttribute(string $value);
     
     /**
+     * Builds an "elementFormDefault" attribute in the "schema" element.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the value is invalid for the attribute.
+     */
+    public function buildElementFormDefaultAttribute(string $value);
+    
+    /**
      * Builds a "schema" element.
      * 
      * An new instance is created and replaces the current "schema" element 

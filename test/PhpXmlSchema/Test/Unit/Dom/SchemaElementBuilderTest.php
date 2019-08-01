@@ -180,6 +180,76 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildElementFormDefaultAttribute() creates and sets a 
+     * "qualified" FormType value in the "schema" element when the value is 
+     * "qualified".
+     * 
+     * @group   attribute
+     */
+    public function testBuildElementFormDefaultAttributeWhenValueIsQualified()
+    {
+        $sut = new SchemaElementBuilder();
+        $sut->buildElementFormDefaultAttribute('qualified');
+        $sch = $sut->getSchema();
+        self::assertTrue($sch->getElementFormDefault()->isQualified());
+        
+        self::assertFalse($sch->hasAttributeFormDefault());
+        self::assertFalse($sch->hasBlockDefault());
+        self::assertFalse($sch->hasFinalDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that buildElementFormDefaultAttribute() creates and sets a 
+     * "unqualified" FormType value in the "schema" element when the value is 
+     * "unqualified".
+     * 
+     * @group   attribute
+     */
+    public function testBuildElementFormDefaultAttributeWhenValueIsUnqualified()
+    {
+        $sut = new SchemaElementBuilder();
+        $sut->buildElementFormDefaultAttribute('unqualified');
+        $sch = $sut->getSchema();
+        self::assertTrue($sch->getElementFormDefault()->isUnqualified());
+        
+        self::assertFalse($sch->hasAttributeFormDefault());
+        self::assertFalse($sch->hasBlockDefault());
+        self::assertFalse($sch->hasFinalDefault());
+        self::assertFalse($sch->hasId());
+        self::assertFalse($sch->hasTargetNamespace());
+        self::assertFalse($sch->hasVersion());
+        self::assertFalse($sch->hasLang());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that buildElementFormDefaultAttribute() throws an exception when 
+     * the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @dataProvider    getInvalidFormeTypeValues
+     */
+    public function testBuildElementFormDefaultAttributeThrowsExceptionWhenValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "elementFormDefault" '.
+            'attribute (from no namespace), expected: "qualified" or '.
+            '"unqualified".'
+        );
+        $sut = new SchemaElementBuilder();
+        $sut->buildElementFormDefaultAttribute($value);
+    }
+    
+    /**
      * Returns a set of invalid FormeType values.
      * 
      * @return  array[]
