@@ -60,6 +60,13 @@ class Parser
             do {
                 $this->parseAttributeNode();
             } while ($this->xt->moveToNextAttribute());
+            
+            // Moves to parent element node.
+            $this->xt->moveToParentNode();
+        }
+        
+        while ($this->findNextNode()) {
+            $this->parseNode();
         }
         
         return $this->builder->getSchema();
@@ -86,6 +93,33 @@ class Parser
         }
         
         $this->builder = new SchemaElementBuilder();
+    }
+    
+    /**
+     * Parses the current node.
+     * 
+     * @throws  InvalidOperationException   When the node is not allowed.
+     */
+    private function parseNode()
+    {
+        if ($this->xt->isWhiteSpaceNode() || $this->xt->isCommentNode()) {
+            // Nothing to do.
+        } else {
+            throw new InvalidOperationException(\sprintf(
+                'The node is not allowed ("%s").',
+                $this->xt->getValue()
+            ));
+        }
+    }
+    
+    /**
+     * Finds the next node to parse.
+     * 
+     * @return  bool    TRUE if a node has been found, otherwise FALSE.
+     */
+    private function findNextNode():bool
+    {
+        return $this->xt->moveToFirstChildNode() || $this->xt->moveToNextNode();
     }
     
     /**

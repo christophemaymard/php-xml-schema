@@ -451,6 +451,20 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() throws an exception when processing all child nodes of a 
+     * "schema" element and there is, at least, 1 node that is not a white 
+     * space neither a comment node.
+     */
+    public function testParseThrowsExceptionWhenProcessingAllChildNodesWithTextNodeInSchemaElement()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The node is not allowed ("foo").');
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs('schema_0010.xsd'));
+    }
+    
+    /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.
      * 
      * @return  array[]
