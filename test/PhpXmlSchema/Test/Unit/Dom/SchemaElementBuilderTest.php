@@ -374,6 +374,52 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildLangAttribute() creates and sets a LanguageType value 
+     * in the "xml:lang" attribute of the "schema" element.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $version    The expected value for the version.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidLanguageValues
+     */
+    public function testBuildLangAttribute(
+        string $value, 
+        string $primary,
+        array $subtags
+    ) {
+        $sut = new SchemaElementBuilder();
+        $sut->buildLangAttribute($value);
+        $sch = $sut->getSchema();
+        
+        self::assertSame($primary, $sch->getLang()->getPrimarySubtag());
+        self::assertSame($subtags, $sch->getLang()->getSubtags());
+        self::assertSchemaElementHasOnlyLangAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that buildLangAttribute() throws an exception when the value is 
+     * invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected message.
+     * 
+     * @group           attribute
+     * @dataProvider    getInvalidLanguageValues
+     */
+    public function testBuildLangAttributeThrowsExceptionWhenValueIsInvalid(
+        string $value,
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $sut = new SchemaElementBuilder();
+        $sut->buildLangAttribute($value);
+    }
+    
+    /**
      * Returns a set of invalid FormeType values.
      * 
      * @return  array[]
@@ -622,6 +668,68 @@ class SchemaElementBuilderTest extends TestCase
             '     foo       bar      baz      qux     ' => [ 
                 '     foo       bar      baz      qux     ', 'foo bar baz qux', 
             ],
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "language" values.
+     * 
+     * @return  array[]
+     */
+    public function getValidLanguageValues():array
+    {
+        return [
+            'fr' => [ 
+                'fr', 'fr', [], 
+            ],
+            'en-us' => [ 
+                'en-us', 'en', [ 'us', ], 
+            ],
+            'foo-bar1-baz2-qux3' => [ 
+                'foo-bar1-baz2-qux3', 'foo', [ 'bar1', 'baz2', 'qux3', ], 
+            ],
+            '    foo-bar1-baz2-qux3    ' => [ 
+                '    foo-bar1-baz2-qux3    ', 'foo', [ 'bar1', 'baz2', 'qux3', ], 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "language" values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidLanguageValues():array
+    {
+        return [
+            '' => [ 
+                '', 
+                '"" is an invalid primary subtag.', 
+            ], 
+            ' ' => [ 
+                ' ', 
+                '"" is an invalid primary subtag.', 
+            ], 
+            'foo9' => [ 
+                'foo9', 
+                '"foo9" is an invalid primary subtag.', 
+            ], 
+            'foo+' => [ 
+                'foo+', 
+                '"foo+" is an invalid primary subtag.', 
+            ], 
+            'veryverylongprimarytag' => [ 
+                'veryverylongprimarytag', 
+                '"veryverylongprimarytag" is an invalid primary subtag.', 
+            ], 
+            'foo-bar1-veryverylongsubtag' => [ 
+                'foo-bar1-veryverylongsubtag', 
+                '"veryverylongsubtag" is an invalid subtag.', 
+            ],
+            'foo-bar1-baz+' => [ 
+                'foo-bar1-baz+', 
+                '"baz+" is an invalid subtag.', 
+            ], 
         ];
     }
 }

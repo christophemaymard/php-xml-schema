@@ -91,9 +91,9 @@ class Parser
      */
     private function parseAttributeNode()
     {
+        $localName = $this->xt->getLocalName();
+        
         if ($this->xt->getNamespace() == '') {
-            $localName = $this->xt->getLocalName();
-            
             if ($localName == 'attributeFormDefault') {
                 $this->builder->buildAttributeFormDefaultAttribute($this->xt->getValue());
             } elseif ($localName == 'blockDefault') {
@@ -108,6 +108,10 @@ class Parser
                 $this->builder->buildTargetNamespaceAttribute($this->xt->getValue());
             } elseif ($localName == 'version') {
                 $this->builder->buildVersionAttribute($this->xt->getValue());
+            }
+        } elseif ($this->xt->getNamespace() == XmlNamespace::XML_1_0) {
+            if ($localName == 'lang') {
+                $this->builder->buildLangAttribute($this->xt->getValue());
             }
         }
     }

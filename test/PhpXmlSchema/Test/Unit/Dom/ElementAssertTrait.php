@@ -225,4 +225,23 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasVersion());
         self::assertFalse($sut->hasLang());
     }
+    
+    /**
+     * Asserts that the specified "schema" element has only the "xml:lang" 
+     * attribute.
+     * 
+     * @param   SchemaElement   $sut    The element to test.
+     */
+    public static function assertSchemaElementHasOnlyLangAttribute(
+        SchemaElement $sut
+    ) {
+        self::assertFalse($sut->hasAttributeFormDefault());
+        self::assertFalse($sut->hasBlockDefault());
+        self::assertFalse($sut->hasElementFormDefault());
+        self::assertFalse($sut->hasFinalDefault());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasTargetNamespace());
+        self::assertFalse($sut->hasVersion());
+        self::assertTrue($sut->hasLang());
+    }
 }

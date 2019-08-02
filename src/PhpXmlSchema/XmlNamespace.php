@@ -15,6 +15,11 @@ namespace PhpXmlSchema;
 class XmlNamespace
 {
     /**
+     * The XML 1.0 namespace.
+     */
+    const XML_1_0 = 'http://www.w3.org/XML/1998/namespace';
+    
+    /**
      * The XML Schema 1.0 namespace.
      */
     const XML_SCHEMA_1_0 = 'http://www.w3.org/2001/XMLSchema';

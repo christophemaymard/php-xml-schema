@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Dom;
 
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
+use PhpXmlSchema\Datatype\LanguageType;
 use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Exception\Message;
@@ -127,6 +128,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         $this->schemaElement->setVersion(
             new TokenType($this->collapseWhiteSpace($value))
+        );
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function buildLangAttribute(string $value)
+    {
+        $tags = \explode('-', $this->collapseWhiteSpace($value));
+        
+        $this->schemaElement->setLang(
+            new LanguageType(\array_shift($tags), $tags)
         );
     }
     

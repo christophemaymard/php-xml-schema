@@ -370,6 +370,44 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "xml:lang" attribute in a "schema" 
+     * element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessLangAttributeInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('attr_lang_0001.xsd'));
+        
+        self::assertSame('Foo', $sch->getLang()->getPrimarySubtag());
+        self::assertSame([ 'Bar1', 'baZ2', 'qUx3', ], $sch->getLang()->getSubtags());
+        self::assertSchemaElementHasOnlyLangAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that parse() throws an exception when the value of the 
+     * "xml:lang" attribute is invalid in a "schema" element.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @dataProvider    getInvalidLangAttributes
+     */
+    public function testParseThrowsExceptionWhenLangAttributeIsInvalidInSchemaElement(
+        string $fileName, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs($fileName));
+    }
+    
+    /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.
      * 
      * @return  array[]
@@ -468,6 +506,45 @@ class ParserTest extends TestCase
             ],
             '#all extension restriction list union' => [ 
                 'attr_finald_0009.xsd', '#all extension restriction list union', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "finalDefault" attribute in a "schema" element.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidLangAttributes():array
+    {
+        return [
+            '' => [ 
+                'attr_lang_0002.xsd', 
+                '"" is an invalid primary subtag.', 
+            ],
+            ' ' => [ 
+                'attr_lang_0003.xsd', 
+                '"" is an invalid primary subtag.', 
+            ],
+            'foo9' => [ 
+                'attr_lang_0004.xsd', 
+                '"foo9" is an invalid primary subtag.', 
+            ],
+            'foo+' => [ 
+                'attr_lang_0005.xsd', 
+                '"foo+" is an invalid primary subtag.', 
+            ],
+            'veryverylongprimarytag' => [ 
+                'attr_lang_0006.xsd', 
+                '"veryverylongprimarytag" is an invalid primary subtag.', 
+            ],
+            'foo-bar1-veryverylongsubtag' => [ 
+                'attr_lang_0007.xsd', 
+                '"veryverylongsubtag" is an invalid subtag.', 
+            ],
+            'foo-bar1-baz+' => [ 
+                'attr_lang_0008.xsd', 
+                '"baz+" is an invalid subtag.', 
             ],
         ];
     }
