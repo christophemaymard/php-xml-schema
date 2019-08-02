@@ -36,7 +36,7 @@ class ParserTest extends TestCase
         $this->expectExceptionMessage('The source is an invalid XML.');
         
         $sut = new Parser();
-        $sut->parse($this->getSchemaXs('error_0001.xsd'));
+        $sut->parse($this->getSchemaXs('schema_0001.xsd'));
     }
     
     /**
@@ -50,7 +50,7 @@ class ParserTest extends TestCase
             'the XML Schema 1.0 namespace.');
         
         $sut = new Parser();
-        $sut->parse($this->getSchemaXs('error_0002.xsd'));
+        $sut->parse($this->getSchemaXs('schema_0002.xsd'));
     }
     
     /**
@@ -65,7 +65,7 @@ class ParserTest extends TestCase
             'unexpected, expected: "schema".');
         
         $sut = new Parser();
-        $sut->parse($this->getSchemaXs('error_0003.xsd'));
+        $sut->parse($this->getSchemaXs('schema_0003.xsd'));
     }
     
     /**
@@ -74,7 +74,7 @@ class ParserTest extends TestCase
     public function testParseReturnsEmptySchema()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('schema_0001.xsd'));
+        $sch = $sut->parse($this->getSchemaXs('schema_0004.xsd'));
         self::assertSchemaElementEmpty($sch);
     }
     
@@ -84,7 +84,7 @@ class ParserTest extends TestCase
     public function testParseSkipAllNodesBeforeRootElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('schema_0002.xsd'));
+        $sch = $sut->parse($this->getSchemaXs('schema_0005.xsd'));
         self::assertSchemaElementEmpty($sch);
     }
     
