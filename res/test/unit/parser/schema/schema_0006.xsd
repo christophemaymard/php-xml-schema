@@ -1,0 +1,9 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    attributeFormDefault="unqualified" 
+    blockDefault="extension" 
+    elementFormDefault="qualified" 
+    finalDefault="restriction" 
+    id="schema" 
+    targetNamespace="http://example.org" 
+    version="1.0" 
+    xml:lang="en-us"></xs:schema>

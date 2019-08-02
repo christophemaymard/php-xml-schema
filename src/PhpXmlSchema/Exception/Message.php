@@ -72,6 +72,22 @@ class Message
     }
     
     /**
+     * Formats a message when an attribute, from a namespace, is not supported.
+     * 
+     * @param   string  $name   The local name of the unsupported attribute.
+     * @param   string  $ns     The namespace of the unsupported attribute.
+     * @return  string
+     */
+    public static function unsupportedAttribute(string $name, string $ns):string
+    {
+        return \sprintf(
+            'The "%s" attribute (from %s namespace) is not supported.',
+            $name, 
+            $ns == '' ? 'no' : $ns
+        );
+    }
+    
+    /**
      * Formats a list with specified items.
      * 
      * Items are surrounded with double quote and separated by comma or "or".

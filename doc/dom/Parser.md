@@ -11,4 +11,5 @@
 - [x] Parse **targetNamespace** attribute (collapsing white spaces).
 - [x] Parse **version** attribute (collapsing white spaces).
 - [x] Parse **xml:lang** attribute (collapsing white spaces).
+- [x] Other attributes are not supported.
 

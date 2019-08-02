@@ -155,4 +155,30 @@ class MessageTest extends TestCase
             'No namespace.'
         );
     }
+    
+    /**
+     * Tests that unsupportedAttribute() returns a message with the local 
+     * name and the namespace of the unsupported attribute.
+     */
+    public function testUnsupportedAttributeReturnsNameAndNamespace()
+    {
+        self::assertSame(
+            'The "foo" attribute (from bar namespace) is not supported.', 
+            Message::unsupportedAttribute('foo', 'bar'),
+            'Name and namespace.'
+        );
+    }
+    
+    /**
+     * Tests that unsupportedAttribute() returns a message with "no" namespace 
+     * when the unsupported attribute has an empty namespace.
+     */
+    public function testUnsupportedAttributeReturnsNoNamespaceWhenNamespaceIsEmptyString()
+    {
+        self::assertSame(
+            'The "foo" attribute (from no namespace) is not supported.', 
+            Message::unsupportedAttribute('foo', ''),
+            'No namespace.'
+        );
+    }
 }

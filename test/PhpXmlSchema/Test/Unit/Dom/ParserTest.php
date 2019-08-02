@@ -408,6 +408,49 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes all the attributes in a "schema" element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessAllAttributesInSchemaElement()
+    {
+        $sut = new Parser();
+        $sch = $sut->parse($this->getSchemaXs('schema_0006.xsd'));
+        
+        self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
+        self::assertSchemaElementBlockDefaultAttribute(FALSE, TRUE, FALSE, $sch);
+        self::assertTrue($sch->getElementFormDefault()->isQualified());
+        self::assertSchemaElementFinalDefaultAttribute(FALSE, TRUE, FALSE, FALSE, $sch);
+        self::assertSame('schema', $sch->getId()->getId());
+        self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
+        self::assertSame('1.0', $sch->getVersion()->getString());
+        self::assertSame('en', $sch->getLang()->getPrimarySubtag());
+        self::assertSame([ 'us', ], $sch->getLang()->getSubtags());
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests that parse() throws an exception when an attribute is not 
+     * supported in a "schema" element.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @dataProvider    getSchemaElementUnsupportedAttributes
+     */
+    public function testParseThrowsExceptionWhenAttributeNotSupportedInSchemaElement(
+        string $fileName, 
+        string $message
+    ) {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage($message);
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs($fileName));
+    }
+    
+    /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.
      * 
      * @return  array[]
@@ -545,6 +588,32 @@ class ParserTest extends TestCase
             'foo-bar1-baz+' => [ 
                 'attr_lang_0008.xsd', 
                 '"baz+" is an invalid subtag.', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of unsupported attributes in a "schema" element.
+     * 
+     * @return  array[]
+     */
+    public function getSchemaElementUnsupportedAttributes():array
+    {
+        return [
+            'No namespace' => [ 
+                'schema_0007.xsd', 
+                'The "foo" attribute (from no namespace) is not supported.', 
+            ],
+            'XML 1.0 namespace' => [ 
+                'schema_0008.xsd', 
+                'The "foo" attribute (from '.
+                    'http://www.w3.org/XML/1998/namespace namespace) is not '.
+                    'supported.', 
+            ],
+            'Other namespace' => [ 
+                'schema_0009.xsd', 
+                'The "bar" attribute (from '.
+                    'http://example.org namespace) is not supported.', 
             ],
         ];
     }

@@ -56,9 +56,11 @@ class Parser
         $this->builder->buildSchemaElement();
         
         // Parses the attributes.
-        $this->xt->moveToFirstAttribute();
-        
-        $this->parseAttributeNode();
+        if ($this->xt->moveToFirstAttribute()) {
+            do {
+                $this->parseAttributeNode();
+            } while ($this->xt->moveToNextAttribute());
+        }
         
         return $this->builder->getSchema();
     }
@@ -88,12 +90,17 @@ class Parser
     
     /**
      * Parses the current node as an attribute.
+     * 
+     * @throws  InvalidOperationException   When the attribute is not supported.
+     * @throws  InvalidOperationException   When the attribute is not supported.
+     * @throws  InvalidOperationException   When the attribute is not supported.
      */
     private function parseAttributeNode()
     {
         $localName = $this->xt->getLocalName();
+        $namespace = $this->xt->getNamespace();
         
-        if ($this->xt->getNamespace() == '') {
+        if ($namespace == '') {
             if ($localName == 'attributeFormDefault') {
                 $this->builder->buildAttributeFormDefaultAttribute($this->xt->getValue());
             } elseif ($localName == 'blockDefault') {
@@ -108,11 +115,17 @@ class Parser
                 $this->builder->buildTargetNamespaceAttribute($this->xt->getValue());
             } elseif ($localName == 'version') {
                 $this->builder->buildVersionAttribute($this->xt->getValue());
+            } else {
+                throw new InvalidOperationException(Message::unsupportedAttribute($localName, $namespace));
             }
-        } elseif ($this->xt->getNamespace() == XmlNamespace::XML_1_0) {
+        } elseif ($namespace == XmlNamespace::XML_1_0) {
             if ($localName == 'lang') {
                 $this->builder->buildLangAttribute($this->xt->getValue());
+            } else {
+                throw new InvalidOperationException(Message::unsupportedAttribute($localName, $namespace));
             }
+        } else {
+            throw new InvalidOperationException(Message::unsupportedAttribute($localName, $namespace));
         }
     }
 }
