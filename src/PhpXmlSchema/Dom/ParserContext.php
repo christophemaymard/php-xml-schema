@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Dom\SchemaBuilderInterface;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Validation\DFA;
 
 /**
@@ -50,6 +52,14 @@ class ParserContext
     private function initDFA()
     {
         $this->fa = new DFA($this->spec->getInitialState());
+        
+        foreach ($this->spec->getNextStateTransitions() as list($state, $sym)) {
+            $this->fa->addTransition(
+                $state, 
+                $sym, 
+                $this->spec->getTransitionNextState($state, $sym)
+            );
+        }
     }
     
     /**
@@ -94,5 +104,54 @@ class ParserContext
         return ($this->isComposite()) ? 
             $this->spec->getTransitionElementNames($this->fa->getCurrentState()) : 
             [];
+    }
+    
+    /**
+     * Creates the element with the specified local name.
+     * 
+     * @param   string                  $name       The local name of the element to create.
+     * @param   SchemaBuilderInterface  $builder    The instance used to build the element.
+     * @return  int The symbol of the element that has been created.
+     * 
+     * @throws  InvalidOperationException   When this context is defined for a leaf element.
+     * @throws  InvalidOperationException   When the element to create is not supported in the current state.
+     * @throws  InvalidOperationException   When the method to create the element is not part of the builder instance.
+     */
+    public function createElement(string $name, SchemaBuilderInterface $builder):int
+    {
+        if (!$this->isComposite()) {
+            throw new InvalidOperationException(\sprintf(
+                'The "%s" element cannot be created because this context is defined for a leaf element.',
+                $name
+            ));
+        }
+        
+        $cs = $this->fa->getCurrentState();
+        $sym = $this->spec->findTransitionElementNameSymbol($cs, $name);
+        
+        if (NULL === $sym || !$this->spec->hasTransitionElementBuilder($cs, $sym)) {
+            throw new InvalidOperationException(\sprintf(
+                'The "%s" element cannot be created because it is not supported in the current state.',
+                $name
+            ));
+        }
+        
+        $methodName = $this->spec->getTransitionElementBuilder($cs, $sym);
+        $builderDirector = [ $builder, $methodName ];
+        
+        if (!\is_callable($builderDirector)) {
+            throw new InvalidOperationException(\sprintf(
+                'The "%s" element cannot be created because the "%s" method is not part of the builder instance.',
+                $name, 
+                $methodName
+            ));
+        }
+        
+        // Creates the element.
+        $builderDirector();
+        
+        $this->fa->addSymbol($sym);
+        
+        return $sym;
     }
 }

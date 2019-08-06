@@ -63,7 +63,7 @@ class Parser
             ));
         }
         
-        $this->builder->buildSchemaElement();
+        $this->ctx->createElement($this->xt->getLocalName(), $this->builder);
         
         // Parses the attributes.
         if ($this->xt->moveToFirstAttribute()) {

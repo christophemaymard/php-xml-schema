@@ -35,6 +35,18 @@ class Specification
     private $transitionElementNames = [];
     
     /**
+     * The map that associates a state and a symbol with a next state.
+     * @var array[]
+     */
+    private $transitionNextStates = [];
+    
+    /**
+     * The map that associates a state and a symbol with a method name.
+     * @var array[]
+     */
+    private $transitionElementBuilders = [];
+    
+    /**
      * Constructor.
      * 
      * @param   int $cid    The context ID of this specification.
@@ -160,5 +172,121 @@ class Specification
             (FALSE !== $sym = \array_search($name, $this->transitionElementNames[$state], TRUE))) ? 
             $sym : 
             NULL;
+    }
+    
+    /**
+     * Returns the next state associated with the transition with the 
+     * specified state and symbol.
+     * 
+     * @param   int $state  The state of the transition.
+     * @param   int $sym    The symbol of the transition.
+     * @return  int The next state associated with the transition.
+     * 
+     * @throws  InvalidOperationException   When no next state is associated with the transition.
+     */
+    public function getTransitionNextState(int $state, int $sym):int
+    {
+        if (!$this->hasTransitionNextState($state, $sym)) {
+            throw new InvalidOperationException(\sprintf(
+                'There is no next state associated with the transition with the state %s and the symbol %s in the context ID %s.', 
+                $state, 
+                $sym, 
+                $this->cid
+            ));
+        }
+        
+        return $this->transitionNextStates[$state][$sym];
+    }
+    
+    /**
+     * Associates a next state with a transition.
+     * 
+     * @param   int $state      The state of the transition.
+     * @param   int $sym        The symbol of the transition.
+     * @param   int $nextState  The next state to associate with the transition.
+     */
+    public function setTransitionNextState(int $state, int $sym, int $nextState)
+    {
+        $this->transitionNextStates[$state][$sym] = $nextState;
+    }
+    
+    /**
+     * Indicates whether a next state is associated with a transition with 
+     * the specified state and symbol.
+     * 
+     * @param   int $state  The state of the transition.
+     * @param   int $sym    The symbol of the transition.
+     * @return  bool    TRUE if a next state is associated with a transition, otherwise FALSE.
+     */
+    public function hasTransitionNextState(int $state, int $sym):bool
+    {
+        return isset($this->transitionNextStates[$state][$sym]);
+    }
+    
+    /**
+     * Returns all the transitions that are associated with next states.
+     * 
+     * @return  array[] An indexed array of indexed array of 2 values: the first is the state, the second is the symbol.
+     */
+    public function getNextStateTransitions():array
+    {
+        $transitions = [];
+        
+        foreach ($this->transitionNextStates as $state => $symNextMap) {
+            foreach (\array_keys($symNextMap) as $sym) {
+                $transitions[] = [ $state, $sym, ];
+            }
+        }
+        
+        return $transitions;
+    }
+    
+    /**
+     * Returns the method name associated with the transition with the 
+     * specified state and symbol.
+     * 
+     * @param   int $state  The state of the transition.
+     * @param   int $sym    The symbol of the transition.
+     * @return  string  The method name associated with the transition.
+     * 
+     * @throws  InvalidOperationException   When no method name is associated with the transition.
+     */
+    public function getTransitionElementBuilder(int $state, int $sym):string
+    {
+        if (!$this->hasTransitionElementBuilder($state, $sym)) {
+            throw new InvalidOperationException(\sprintf(
+                'There is no method name associated with the transition with the state %s and the symbol %s in the context ID %s.', 
+                $state, 
+                $sym, 
+                $this->cid
+            ));
+        }
+        
+        return $this->transitionElementBuilders[$state][$sym];
+    }
+    
+    /**
+     * Associates a method name with a transition.
+     * 
+     * @param   int     $state  The state of the transition.
+     * @param   int     $sym    The symbol of the transition.
+     * @param   string  $name   The method name to associate with the transition.
+     */
+    public function setTransitionElementBuilder(int $state, int $sym, string $name)
+    {
+        $this->transitionElementBuilders[$state][$sym] = $name;
+    }
+    
+    /**
+     * Indicates whether a method name is associated with a transition with 
+     * the specified state and symbol.
+     * 
+     * @param   int $state  The state of the transition.
+     * @param   int $sym    The symbol of the transition.
+     * @return  bool    TRUE if a method name is associated with a transition, otherwise FALSE.
+     */
+    public function hasTransitionElementBuilder(int $state, int $sym):bool
+    {
+        return isset($this->transitionElementBuilders[$state][$sym]);
     }
 }

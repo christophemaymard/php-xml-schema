@@ -40,6 +40,31 @@ class SpecificationFactory
     ];
     
     /**
+     * The map that associates a state and a symbol with a method used to 
+     * create an element.
+     * @var array[]
+     */
+    private $transitionElementBuilders = [
+        ContextId::ELT_ROOT => [
+            0 => [
+                ContextId::ELT_SCHEMA => 'buildSchemaElement', 
+            ], 
+        ], 
+    ];
+    
+    /**
+     * The map that associates a state and a symbol with a next state.
+     * @var array[]
+     */
+    private $transitionNextStates = [
+        ContextId::ELT_ROOT => [
+            0 => [
+                ContextId::ELT_SCHEMA => 1, 
+            ], 
+        ], 
+    ];
+    
+    /**
      * Creates the specification for the specified context ID.
      * 
      * @param   int $cid    The context ID to create the specification for.
@@ -65,6 +90,20 @@ class SpecificationFactory
         foreach ($this->transitionElementNames[$cid] as $state => $symNameMap) {
             foreach ($symNameMap as $sym => $name) {
                 $spec->setTransitionElementName($state, $sym, $name);
+            }
+        }
+        
+        // Associates transitions with element builders.
+        foreach ($this->transitionElementBuilders[$cid] as $state => $symBuilderMap) {
+            foreach ($symBuilderMap as $sym => $builder) {
+                $spec->setTransitionElementBuilder($state, $sym, $builder);
+            }
+        }
+        
+        // Associates transitions with next states.
+        foreach ($this->transitionNextStates[$cid] as $state => $symNextStateMap) {
+            foreach ($symNextStateMap as $sym => $nextState) {
+                $spec->setTransitionNextState($state, $sym, $nextState);
             }
         }
         

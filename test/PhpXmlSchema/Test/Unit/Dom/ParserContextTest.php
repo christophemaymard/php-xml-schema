@@ -9,8 +9,11 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\ParserContext;
+use PhpXmlSchema\Dom\SchemaBuilderInterface;
 use PhpXmlSchema\Dom\Specification;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use Prophecy\Prophecy\ObjectProphecy;
+use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\ParserContext} 
@@ -117,6 +120,177 @@ class ParserContextTest extends TestCase
     }
     
     /**
+     * Tests that createElement() throws an exception when the context is for 
+     * a leaf element.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testCreateElementThrowsExceptionWhenLEC()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" element cannot be created '.
+            'because this context is defined for a leaf element.');
+        
+        $specMock = $this->createLESpecificationProphecy()->reveal();
+        $builderDummy = $this->createSchemaBuilderInterfaceDummy();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createElement('foo', $builderDummy);
+    }
+    
+    /**
+     * Tests that createElement() throws an exception when:
+     * - the defined context is for a composite element, and 
+     * - findTransitionElementNameSymbol() returns NULL.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testCreateElementThrowsExceptionWhenCECElementNotAccepted()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" element cannot be created '.
+            'because it is not supported in the current state.');
+        
+        $specProphecy = $this->createCESpecificationProphecy(0);
+        $specProphecy->findTransitionElementNameSymbol(0, 'foo')
+            ->willReturn(NULL)
+            ->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $builderDummy = $this->createSchemaBuilderInterfaceDummy();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createElement('foo', $builderDummy);
+    }
+    
+    /**
+     * Tests that createElement() throws an exception when:
+     * - the defined context is for a composite element, and 
+     * - findTransitionElementNameSymbol() returns an integer, and 
+     * - no transition, with the current state and the found symbol, mapped.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testCreateElementThrowsExceptionWhenCECNoElementBuilder()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" element cannot be created '.
+            'because it is not supported in the current state.');
+        
+        $specProphecy = $this->createCESpecificationProphecy(0);
+        $specProphecy->findTransitionElementNameSymbol(0, 'foo')
+            ->willReturn(1)
+            ->shouldBeCalled();
+        $specProphecy->hasTransitionElementBuilder(0, 1)
+            ->willReturn(FALSE)
+            ->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $builderDummy = $this->createSchemaBuilderInterfaceDummy();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createElement('foo', $builderDummy);
+    }
+    
+    /**
+     * Tests that createElement() throws an exception when:
+     * - the defined context is for a composite element, and 
+     * - findTransitionElementNameSymbol() returns an integer, and 
+     * - a transition with a method name, and 
+     * - the method is not part of the instance.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testCreateElementThrowsExceptionWhenCECNotCallable()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" element cannot be created '.
+            'because the "buildFoo" method is not part of the builder instance.');
+        
+        $specProphecy = $this->createCESpecificationProphecy(0);
+        $specProphecy->findTransitionElementNameSymbol(0, 'foo')
+            ->willReturn(1)
+            ->shouldBeCalled();
+        $specProphecy->hasTransitionElementBuilder(0, 1)
+            ->willReturn(TRUE)
+            ->shouldBeCalled();
+        $specProphecy->getTransitionElementBuilder(0, 1)
+            ->willReturn('buildFoo')
+            ->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $builderDummy = $this->createSchemaBuilderConcreteDummy();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createElement('foo', $builderDummy);
+    }
+    
+    /**
+     * Tests that createElement() returns an integer when:
+     * - the defined context is for a composite element, and 
+     * - findTransitionElementNameSymbol() returns an integer, and 
+     * - a transition with a method name, and 
+     * - the method is part of the instance.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testCreateElementReturnsInt()
+    {
+        $sym = 10;
+        $name = 'schema';
+        
+        $specProphecy = $this->createCESpecificationProphecy(
+            0,
+            [
+                [ 0, $sym ], 
+                
+                // This is used to test that the symbol has been to the DFA.
+                [ 2, 0 ], 
+                [ 2, 1 ], 
+            ], 
+            [
+                [ 2, 0, $sym, ], 
+                
+                // This is used to test that the symbol has been to the DFA.
+                [ 3, 2, 0, ], 
+                [ 3, 2, 1, ], 
+            ]
+        );
+        $specProphecy->findTransitionElementNameSymbol(0, $name)
+            ->willReturn($sym)->shouldBeCalled();
+        $specProphecy->hasTransitionElementBuilder(0, $sym)
+            ->willReturn(TRUE)->shouldBeCalled();
+        $specProphecy->getTransitionElementBuilder(0, $sym)
+            ->willReturn('buildSchemaElement')->shouldBeCalled();
+        
+        // This is used to test that the symbol has been to the DFA using 
+        // getAcceptedElements().
+        $specProphecy->getTransitionElementNames(2)
+            ->willReturn([ 'foo', 'bar', ])
+            ->shouldBeCalled();
+        
+        $specMock = $specProphecy->reveal();
+
+        $builderProphecy = $this->prophesize(SchemaBuilderInterface::class);
+        $builderProphecy->buildSchemaElement()->shouldBeCalledOnce();
+        $builderMock = $builderProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        self::assertSame($sym, $sut->createElement($name, $builderMock));
+        self::assertSame([ 'foo', 'bar', ], $sut->getAcceptedElements());
+    }
+    
+    /**
      * Creates a prophecy of the {@see PhpXmlSchema\Dom\Specification} class, 
      * for the sepcification of a leaf element, where:
      * - hasInitialState() will return FALSE and should be called.
@@ -138,15 +312,67 @@ class ParserContextTest extends TestCase
      * - getInitialState() will return the specified value and should be 
      * called.
      * 
-     * @param   int $initialState   The value that getInitialState() will return.
+     * @param   int     $initialState           The value that getInitialState() will return.
+     * @param   array[] $transitions            The value that getNextStateTransitions() will return (optional)(default to an empty array).
+     * @param   array[] $transitionNextStates   The input and return values that getTransitionNextState()s will have (optional)(default to an empty array).
      * @return  ObjectProphecy
      */
-    private function createCESpecificationProphecy(int $initialState):ObjectProphecy
-    {
+    private function createCESpecificationProphecy(
+        int $initialState,
+        array $transitions = [], 
+        array $transitionNextStates = []
+    ):ObjectProphecy {
         $prophecy = $this->prophesize(Specification::class);
         $prophecy->hasInitialState()->willReturn(TRUE)->shouldBeCalled();
         $prophecy->getInitialState()->willReturn($initialState)->shouldBeCalled();
+        $prophecy->getNextStateTransitions()
+            ->willReturn($transitions)
+            ->shouldBeCalled();
+        
+        foreach ($transitionNextStates as $tns) {
+            $prophecy->getTransitionNextState($tns[1], $tns[2])
+                ->willReturn($tns[0])
+                ->shouldBeCalled();
+        }
         
         return $prophecy;
+    }
+    
+    /**
+     * Creates a dummy for the {@see PhpXmlSchema\Dom\SchemaBuilderInterface} 
+     * interface.
+     * 
+     * @return  ProphecySubjectInterface
+     */
+    private function createSchemaBuilderInterfaceDummy():ProphecySubjectInterface
+    {
+        return $this->prophesize(SchemaBuilderInterface::class)->reveal();
+    }
+    
+    /**
+     * Creates a concrete dummy of the {@see PhpXmlSchema\Dom\SchemaBuilderInterface} 
+     * interface.
+     * 
+     * This method has been created because the __call() magic method is 
+     * implemented so the test, that checks a method does not exits, cannot 
+     * fail.
+     * 
+     * @return  SchemaBuilderInterface
+     */
+    private function createSchemaBuilderConcreteDummy():SchemaBuilderInterface
+    {
+        return new class() implements SchemaBuilderInterface
+        {
+            public function buildAttributeFormDefaultAttribute(string $value) {}
+            public function buildBlockDefaultAttribute(string $value) {}
+            public function buildElementFormDefaultAttribute(string $value) {}
+            public function buildFinalDefaultAttribute(string $value) {}
+            public function buildIdAttribute(string $value) {}
+            public function buildTargetNamespaceAttribute(string $value) {}
+            public function buildVersionAttribute(string $value) {}
+            public function buildLangAttribute(string $value) {}
+            
+            public function buildSchemaElement() {}
+        };
     }
 }

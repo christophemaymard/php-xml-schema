@@ -158,5 +158,108 @@ class SpecificationTest extends TestCase
         self::assertSame(['qux', 'baz'], $this->sut->getTransitionElementNames(0));
     }
     
+    /**
+     * Tests that hasTransitionElementBuilder() returns a boolean.
+     */
+    public function testHasTransitionElementBuilderReturnsBool()
+    {
+        self::assertFalse($this->sut->hasTransitionElementBuilder(0, 1));
+        
+        $this->sut->setTransitionElementBuilder(0, 1, 'buildFoo');
+        self::assertTrue($this->sut->hasTransitionElementBuilder(0, 1));
+    }
     
+    /**
+     * Tests that getTransitionElementBuilder() returns the method name that 
+     * is associated with a state and a symbol.
+     */
+    public function testGetTransitionElementBuilderReturnsString()
+    {
+        $this->sut->setTransitionElementBuilder(3, 4, 'buildFoo');
+        self::assertSame('buildFoo', $this->sut->getTransitionElementBuilder(3, 4));
+        
+        $this->sut->setTransitionElementBuilder(3, 6, 'buildBar');
+        self::assertSame('buildBar', $this->sut->getTransitionElementBuilder(3, 6));
+        
+        $this->sut->setTransitionElementBuilder(3, 4, 'buildNewFoo');
+        self::assertSame('buildNewFoo', $this->sut->getTransitionElementBuilder(3, 4));
+    }
+    
+    /**
+     * Tests that getTransitionElementBuilder() throws an exception when no 
+     * method name is associated with the transition.
+     */
+    public function testGetTransitionElementBuilderThrowsExceptionWhenNotSet()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('There is no method name associated with '.
+            'the transition with the state 3 and the symbol 1 in the context ID 9.');
+        
+        $this->sut->getTransitionElementBuilder(3, 1);
+    }
+    
+    /**
+     * Tests that hasTransitionNextState() returns a boolean.
+     */
+    public function testHasTransitionNextStateReturnsBool()
+    {
+        self::assertFalse($this->sut->hasTransitionNextState(0, 1));
+        
+        $this->sut->setTransitionNextState(0, 1, 2);
+        self::assertTrue($this->sut->hasTransitionNextState(0, 1));
+    }
+    
+    /**
+     * Tests that getTransitionNextState() returns the next state that is 
+     * associated with a state and a symbol.
+     */
+    public function testGetTransitionNextStateReturnsInt()
+    {
+        $this->sut->setTransitionNextState(0, 1, 2);
+        self::assertSame(2, $this->sut->getTransitionNextState(0, 1));
+        
+        $this->sut->setTransitionNextState(0, 2, 3);
+        self::assertSame(3, $this->sut->getTransitionNextState(0, 2));
+        
+        $this->sut->setTransitionNextState(0, 1, 9);
+        self::assertSame(9, $this->sut->getTransitionNextState(0, 1));
+    }
+    
+    /**
+     * Tests that getTransitionNextState() throws an exception when no next 
+     * state is associated with the transition.
+     */
+    public function testGetTransitionNextStateThrowsExceptionWhenNotSet()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('There is no next state associated with '.
+            'the transition with the state 2 and the symbol 4 in the context ID 9.');
+        
+        $this->sut->getTransitionNextState(2, 4);
+    }
+    
+    /**
+     * Tests that getNextStateTransitions() returns an array of array.
+     */
+    public function testGetNextStateTransitionsReturnsArray()
+    {
+        self::assertSame([], $this->sut->getNextStateTransitions());
+        
+        $this->sut->setTransitionNextState(0, 1, 10);
+        $this->sut->setTransitionNextState(2, 5, 2500);
+        $this->sut->setTransitionNextState(2, 3, 2300);
+        $this->sut->setTransitionNextState(0, 7, 70);
+        $this->sut->setTransitionNextState(0, 0, 0);
+        $this->sut->setTransitionNextState(0, 1, 10000);
+        self::assertSame(
+            [
+                [ 0, 1, ], 
+                [ 0, 7, ], 
+                [ 0, 0, ], 
+                [ 2, 5, ], 
+                [ 2, 3, ], 
+            ], 
+            $this->sut->getNextStateTransitions()
+        );
+    }
 }

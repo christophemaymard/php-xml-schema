@@ -93,6 +93,50 @@ class SpecificationFactoryTest extends TestCase
     }
     
     /**
+     * Tests that getTransitionElementBuilder(), of the instance created by 
+     * create(), returns the method name that is associated with a state and 
+     * a symbol.
+     * 
+     * @param   int     $cid        The context ID used to create the specification.
+     * @param   int     $state      The state of the transition to test.
+     * @param   int     $sym        The symbol of the transition to test.
+     * @param   string  $method     The expected method.
+     * 
+     * @dataProvider    getTransitionElementBuilders
+     */
+    public function testCreateGetTransitionElementBuilder(
+        int $cid, 
+        int $state, 
+        int $sym, 
+        string $method
+    ) {
+        $spec = $this->sut->create($cid);
+        self::assertSame($method, $spec->getTransitionElementBuilder($state, $sym));
+    }
+    
+    /**
+     * Tests that getTransitionNextState(), of the instance created by 
+     * create(), returns the next state that is associated with a state and a 
+     * symbol.
+     * 
+     * @param   int     $cid        The context ID used to create the specification.
+     * @param   int     $state      The state of the transition to test.
+     * @param   int     $sym        The symbol of the transition to test.
+     * @param   int     $nextState  The expected next state.
+     * 
+     * @dataProvider    getTransitionNextStates
+     */
+    public function testCreateGetTransitionNextState(
+        int $cid, 
+        int $state, 
+        int $sym, 
+        int $nextState
+    ) {
+        $spec = $this->sut->create($cid);
+        self::assertSame($nextState, $spec->getTransitionNextState($state, $sym));
+    }
+    
+    /**
      * Returns a set of initial states with the context IDs.
      * 
      * @return  array[]
@@ -122,6 +166,34 @@ class SpecificationFactoryTest extends TestCase
                     ], 
                 ], 
             ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of method names that are associated with a state and a 
+     * symbol for each context ID.
+     * 
+     * @return  array[]
+     */
+    public function getTransitionElementBuilders():array
+    {
+        return [
+            // Context: ELT_ROOT
+            [ 0, 0, 1, 'buildSchemaElement', ], // ELT_SCHEMA
+        ];
+    }
+    
+    /**
+     * Returns a set of next states that are associated with a state and a 
+     * symbol for each context ID.
+     * 
+     * @return  array[]
+     */
+    public function getTransitionNextStates():array
+    {
+        return [
+            // Context: ELT_ROOT
+            [ 0, 0, 1, 1, ], // ELT_SCHEMA
         ];
     }
 }
