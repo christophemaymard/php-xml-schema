@@ -463,6 +463,20 @@ class ParserTest extends TestCase
         $sut = new Parser();
         $sut->parse($this->getSchemaXs('schema_0010.xsd'));
     }
+   
+    /**
+     * Tests that parse() throws an exception when child element is not 
+     * supported in the "schema" element.
+     */
+    public function testParseThrowsExceptionWhenChildElementNotSupportedInSchemaElement()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" element '.
+            '(from no namespace) is unexpected, expected: none.');
+        
+        $sut = new Parser();
+        $sut->parse($this->getSchemaXs('schema_0011.xsd'));
+    }
     
     /**
      * Returns a set of valid "blockDefault" attribute in a "schema" element.

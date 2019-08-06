@@ -48,39 +48,14 @@ class Parser
      * 
      * @param   string  $src    The source to parse.
      * @return  SchemaElement   A new instance that represents the XML Schema document.
-     * 
-     * @throws  InvalidOperationException   When an element is unexpected.
      */
     public function parse(string $src):SchemaElement
     {
         $this->initParser($src);
         
-        if (!$this->ctx->isElementAccepted($this->xt->getLocalName())) {
-            throw new InvalidOperationException(Message::unexpectedElement(
-                $this->xt->getLocalName(), 
-                $this->xt->getNamespace(), 
-                $this->ctx->getAcceptedElements()
-            ));
-        }
-        
-        $cid = $this->ctx->createElement($this->xt->getLocalName(), $this->builder);
-        
-        // Creates a context for the created element.
-        $this->ctx = new ParserContext($this->specFactory->create($cid));
-        
-        // Parses the attributes.
-        if ($this->xt->moveToFirstAttribute()) {
-            do {
-                $this->parseAttributeNode();
-            } while ($this->xt->moveToNextAttribute());
-            
-            // Moves to parent element node.
-            $this->xt->moveToParentNode();
-        }
-        
-        while ($this->findNextNode()) {
+        do {
             $this->parseNode();
-        }
+        } while ($this->findNextNode());
         
         return $this->builder->getSchema();
     }
@@ -117,7 +92,9 @@ class Parser
      */
     private function parseNode()
     {
-        if ($this->xt->isWhiteSpaceNode() || $this->xt->isCommentNode()) {
+        if ($this->xt->isElementNode()) {
+            $this->parseElementNode();
+        } elseif ($this->xt->isWhiteSpaceNode() || $this->xt->isCommentNode()) {
             // Nothing to do.
         } else {
             throw new InvalidOperationException(\sprintf(
@@ -135,6 +112,37 @@ class Parser
     private function findNextNode():bool
     {
         return $this->xt->moveToFirstChildNode() || $this->xt->moveToNextNode();
+    }
+    
+    /**
+     * Parses the current node as an element.
+     * 
+     * @throws  InvalidOperationException   When an element is unexpected.
+     */
+    private function parseElementNode()
+    {
+        if (!$this->ctx->isElementAccepted($this->xt->getLocalName())) {
+            throw new InvalidOperationException(Message::unexpectedElement(
+                $this->xt->getLocalName(), 
+                $this->xt->getNamespace(), 
+                $this->ctx->getAcceptedElements()
+            ));
+        }
+        
+        $cid = $this->ctx->createElement($this->xt->getLocalName(), $this->builder);
+        
+        // Creates a context for the created element.
+        $this->ctx = new ParserContext($this->specFactory->create($cid));
+        
+        // Parses the attributes.
+        if ($this->xt->moveToFirstAttribute()) {
+            do {
+                $this->parseAttributeNode();
+            } while ($this->xt->moveToNextAttribute());
+            
+            // Moves to parent element node.
+            $this->xt->moveToParentNode();
+        }
     }
     
     /**
