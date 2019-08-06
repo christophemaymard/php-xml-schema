@@ -26,6 +26,18 @@ class Parser
     private $xt;
     
     /**
+     * The factory of specifications used when parsing a document.
+     * @var SpecificationFactory|NULL
+     */
+    private $specFactory;
+    
+    /**
+     * The context used to parse an element.
+     * @var ParserContext|NULL
+     */
+    private $ctx;
+    
+    /**
      * The instance of SchemaElementBuilder used when parsing a document.
      * @var SchemaElementBuilder|NULL
      */
@@ -43,13 +55,11 @@ class Parser
     {
         $this->initParser($src);
         
-        $localName = $this->xt->getLocalName();
-        
-        if ($localName != 'schema') {
+        if (!$this->ctx->isElementAccepted($this->xt->getLocalName())) {
             throw new InvalidOperationException(Message::unexpectedElement(
-                $localName, 
+                $this->xt->getLocalName(), 
                 $this->xt->getNamespace(), 
-                [ 'schema', ]
+                $this->ctx->getAcceptedElements()
             ));
         }
         
@@ -93,6 +103,8 @@ class Parser
         }
         
         $this->builder = new SchemaElementBuilder();
+        $this->specFactory = new SpecificationFactory();
+        $this->ctx = new ParserContext($this->specFactory->create(ContextId::ELT_ROOT));
     }
     
     /**
