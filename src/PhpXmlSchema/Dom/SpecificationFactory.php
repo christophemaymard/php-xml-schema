@@ -98,7 +98,7 @@ class SpecificationFactory
         
         // Initializes the initial state.
         if (isset($this->initialStates[$cid])) {
-            $spec->setInitialState($cid, $this->initialStates[$cid]);
+            $spec->setInitialState($this->initialStates[$cid]);
         }
         
         // Associates transitions with element names.
