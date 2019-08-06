@@ -34,9 +34,7 @@ class SpecificationFactory
      */
     private $transitionElementNames = [
         ContextId::ELT_ROOT => [
-            0 => [
-                ContextId::ELT_SCHEMA => 'schema', 
-            ], 
+            [ 0, ContextId::ELT_SCHEMA, 'schema', ], 
         ], 
     ];
     
@@ -47,9 +45,7 @@ class SpecificationFactory
      */
     private $transitionElementBuilders = [
         ContextId::ELT_ROOT => [
-            0 => [
-                ContextId::ELT_SCHEMA => 'buildSchemaElement', 
-            ], 
+            [ 0, ContextId::ELT_SCHEMA, 'buildSchemaElement', ], 
         ], 
     ];
     
@@ -59,9 +55,7 @@ class SpecificationFactory
      */
     private $transitionNextStates = [
         ContextId::ELT_ROOT => [
-            0 => [
-                ContextId::ELT_SCHEMA => 1, 
-            ], 
+            [ 0, ContextId::ELT_SCHEMA, 1, ], 
         ], 
     ];
     
@@ -109,28 +103,22 @@ class SpecificationFactory
         
         // Associates transitions with element names.
         if (isset($this->transitionElementNames[$cid])) {
-            foreach ($this->transitionElementNames[$cid] as $state => $symNameMap) {
-                foreach ($symNameMap as $sym => $name) {
-                    $spec->setTransitionElementName($state, $sym, $name);
-                }
+            foreach ($this->transitionElementNames[$cid] as list($state, $sym, $name)) {
+                $spec->setTransitionElementName($state, $sym, $name);
             }
         }
         
         // Associates transitions with element builders.
         if (isset($this->transitionElementBuilders[$cid])) {
-            foreach ($this->transitionElementBuilders[$cid] as $state => $symBuilderMap) {
-                foreach ($symBuilderMap as $sym => $builder) {
-                    $spec->setTransitionElementBuilder($state, $sym, $builder);
-                }
+            foreach ($this->transitionElementBuilders[$cid] as list($state, $sym, $builder)) {
+                $spec->setTransitionElementBuilder($state, $sym, $builder);
             }
         }
         
         // Associates transitions with next states.
         if (isset($this->transitionNextStates[$cid])) {
-            foreach ($this->transitionNextStates[$cid] as $state => $symNextStateMap) {
-                foreach ($symNextStateMap as $sym => $nextState) {
-                    $spec->setTransitionNextState($state, $sym, $nextState);
-                }
+            foreach ($this->transitionNextStates[$cid] as list($state, $sym, $nextState)) {
+                $spec->setTransitionNextState($state, $sym, $nextState);
             }
         }
         

@@ -77,19 +77,20 @@ class SpecificationFactoryTest extends TestCase
      * symbol.
      * 
      * @param   int     $cid    The context ID used to create the specification.
-     * @param   array[] $map    The expected state.
+     * @param   int     $state  The state of the transition to test.
+     * @param   int     $sym    The symbol of the transition to test.
+     * @param   string  $name   The expected name.
      * 
      * @dataProvider    getTransitionElementNames
      */
-    public function testCreateGetTransitionElementName(int $cid, array $map)
-    {
+    public function testCreateGetTransitionElementName(
+        int $cid, 
+        int $state, 
+        int $sym, 
+        string $name
+    ) {
         $spec = $this->sut->create($cid);
-        
-        foreach ($map as $state => $symNameMap) {
-            foreach ($symNameMap as $sym => $name) {
-                self::assertSame($name, $spec->getTransitionElementName($state, $sym));
-            }
-        }
+        self::assertSame($name, $spec->getTransitionElementName($state, $sym));
     }
     
     /**
@@ -178,15 +179,8 @@ class SpecificationFactoryTest extends TestCase
     public function getTransitionElementNames():array
     {
         return [
-            // ELT_ROOT
-            [
-                0, 
-                [
-                    0 => [
-                        1 => 'schema',
-                    ], 
-                ], 
-            ], 
+            // Context: ELT_ROOT
+            [ 0, 0, 1, 'schema', ], 
         ];
     }
     
