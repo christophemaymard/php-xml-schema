@@ -154,4 +154,60 @@ class ParserContext
         
         return $sym;
     }
+    
+    /**
+     * Determines whether the attribute with the specified local name and 
+     * namespace is supported.
+     * 
+     * @param   string  $name  The local name of the attribute.
+     * @param   string  $ns    The namespace of the attribute.
+     * @return  bool    TRUE if the attribute is supported, otherwise FALSE.
+     */
+    public function isAttributeSupported(string $name, string $ns):bool
+    {
+        return $this->spec->hasAttributeBuilder($name, $ns);
+    }
+    
+    /**
+     * Creates an attribute.
+     * 
+     * @param   string                  $name       The local name of the attribute.
+     * @param   string                  $ns         The namespace of the attribute.
+     * @param   string                  $value      The value of the attribute.
+     * @param   SchemaBuilderInterface  $builder    The instance used to build the attribute.
+     * 
+     * @throws  InvalidOperationException   When the attribute is not supported.
+     */
+    public function createAttribute(
+        string $name, 
+        string $ns, 
+        string $value, 
+        SchemaBuilderInterface $builder
+    ) {
+        if (!$this->spec->hasAttributeBuilder($name, $ns)) {
+            throw new InvalidOperationException(\sprintf(
+                'The attribute with the local name "%s" and the namespace '.
+                '"%s" cannot be created because it is not supported.', 
+                $name, 
+                $ns
+            ));
+        }
+        
+        $methodName = $this->spec->getAttributeBuilder($name, $ns);
+        $builderDirector = [ $builder, $methodName ];
+        
+        if (!\is_callable($builderDirector)) {
+            throw new InvalidOperationException(\sprintf(
+                'The attribute with the local name "%s" and the namespace '.
+                '"%s" cannot be created because the "%s" method is not '.
+                'part of the builder instance.',
+                $name, 
+                $ns, 
+                $methodName
+            ));
+        }
+        
+        // Creates the attribute.
+        $builderDirector($value);
+    }
 }

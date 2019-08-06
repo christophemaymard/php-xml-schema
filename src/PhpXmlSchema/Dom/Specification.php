@@ -47,6 +47,12 @@ class Specification
     private $transitionElementBuilders = [];
     
     /**
+     * The map that associates an attribute with a method name.
+     * @var array[]
+     */
+    private $attributeBuilders = [];
+    
+    /**
      * Constructor.
      * 
      * @param   int $cid    The context ID of this specification.
@@ -288,5 +294,55 @@ class Specification
     public function hasTransitionElementBuilder(int $state, int $sym):bool
     {
         return isset($this->transitionElementBuilders[$state][$sym]);
+    }
+    
+    /**
+     * Returns the method name associated with the attribute with the 
+     * specified local name and namespace.
+     * 
+     * @param   string  $name   The local name of the attribute.
+     * @param   string  $ns     The namespace of the attribute.
+     * @return  string  The method name associated with the attribute.
+     * 
+     * @throws  InvalidOperationException   When no method name is associated with the attribute.
+     */
+    public function getAttributeBuilder(string $name, string $ns):string
+    {
+        if (!$this->hasAttributeBuilder($name, $ns)) {
+            throw new InvalidOperationException(\sprintf(
+                'There is no method name associated with the attribute with '.
+                'the local name "%s" and the namespace "%s" in the context ID 9.', 
+                $name, 
+                $ns, 
+                $this->cid
+            ));
+        }
+        
+        return $this->attributeBuilders[$ns][$name];
+    }
+    
+    /**
+     * Associates a method name with an attribute.
+     * 
+     * @param   string  $name   The local name of the attribute.
+     * @param   string  $ns     The namespace of the attribute.
+     * @param   string  $method The method name to associate with the attribute.
+     */
+    public function setAttributeBuilder(string $name, string $ns, string $method)
+    {
+        $this->attributeBuilders[$ns][$name] = $method;
+    }
+    
+    /**
+     * Indicates whether a method name is associated with an attribute with 
+     * the specified local name and namespace.
+     * 
+     * @param   string  $name  The local name of the attribute.
+     * @param   string  $ns    The namespace of the attribute.
+     * @return  bool    TRUE if a method name is associated with an attribute, otherwise FALSE.
+     */
+    public function hasAttributeBuilder(string $name, string $ns):bool
+    {
+        return isset($this->attributeBuilders[$ns][$name]);
     }
 }

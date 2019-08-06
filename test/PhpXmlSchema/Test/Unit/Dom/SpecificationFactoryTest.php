@@ -137,6 +137,27 @@ class SpecificationFactoryTest extends TestCase
     }
     
     /**
+     * Tests that getAttributeBuilder(), of the instance created by 
+     * create(), returns the method name that is associated with an attribute.
+     * 
+     * @param   int     $cid    The context ID used to create the specification.
+     * @param   string  $name   The local name of the attribute to test.
+     * @param   string  $ns     The namespace of the attribute to test.
+     * @param   string  $method The expected method name.
+     * 
+     * @dataProvider    getAttributeBuilders
+     */
+    public function testCreateGetAttributeBuilder(
+        int $cid, 
+        string $name, 
+        string $ns, 
+        string $method
+    ) {
+        $spec = $this->sut->create($cid);
+        self::assertSame($method, $spec->getAttributeBuilder($name, $ns));
+    }
+    
+    /**
      * Returns a set of initial states with the context IDs.
      * 
      * @return  array[]
@@ -194,6 +215,26 @@ class SpecificationFactoryTest extends TestCase
         return [
             // Context: ELT_ROOT
             [ 0, 0, 1, 1, ], // ELT_SCHEMA
+        ];
+    }
+    
+    /**
+     * Returns a set of method names that are associated with attributes.
+     * 
+     * @return  array[]
+     */
+    public function getAttributeBuilders():array
+    {
+        return [
+            // Context: ELT_SCHEMA
+            [ 1, 'attributeFormDefault', '', 'buildAttributeFormDefaultAttribute', ], 
+            [ 1, 'blockDefault', '', 'buildBlockDefaultAttribute', ], 
+            [ 1, 'elementFormDefault', '', 'buildElementFormDefaultAttribute', ], 
+            [ 1, 'finalDefault', '', 'buildFinalDefaultAttribute', ], 
+            [ 1, 'id', '', 'buildIdAttribute', ], 
+            [ 1, 'targetNamespace', '', 'buildTargetNamespaceAttribute', ], 
+            [ 1, 'version', '', 'buildVersionAttribute', ], 
+            [ 1, 'lang', 'http://www.w3.org/XML/1998/namespace', 'buildLangAttribute', ], 
         ];
     }
 }

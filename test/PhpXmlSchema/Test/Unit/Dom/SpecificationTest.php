@@ -262,4 +262,53 @@ class SpecificationTest extends TestCase
             $this->sut->getNextStateTransitions()
         );
     }
+    
+    /**
+     * Tests that hasAttributeBuilder() returns a boolean.
+     */
+    public function testHasAttributeBuilderReturnsBool()
+    {
+        self::assertFalse($this->sut->hasAttributeBuilder('foo', ''));
+        
+        $this->sut->setAttributeBuilder('foo', '', 'buildFooAttribute');
+        self::assertTrue($this->sut->hasAttributeBuilder('foo', ''));
+    }
+    
+    /**
+     * Tests that getAttributeBuilder() returns the method name that 
+     * is associated with an attribute.
+     */
+    public function testGetAttributeBuilderReturnsString()
+    {
+        $this->sut->setAttributeBuilder('foo', '', 'buildFooAttribute');
+        self::assertSame(
+            'buildFooAttribute', 
+            $this->sut->getAttributeBuilder('foo', '')
+        );
+        
+        $this->sut->setAttributeBuilder('bar', '', 'buildBarAttribute');
+        self::assertSame(
+            'buildBarAttribute', 
+            $this->sut->getAttributeBuilder('bar', '')
+        );
+        
+        $this->sut->setAttributeBuilder('foo', '', 'buildNewFooAttribute');
+        self::assertSame(
+            'buildNewFooAttribute', 
+            $this->sut->getAttributeBuilder('foo', '')
+        );
+    }
+    
+    /**
+     * Tests that getAttributeBuilder() throws an exception when no 
+     * method name is associated with the attribute.
+     */
+    public function testGetAttributeBuilderThrowsExceptionWhenNotSet()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('There is no method name associated with '.
+            'the attribute with the local name "foo" and the namespace "" in the context ID 9.');
+        
+        $this->sut->getAttributeBuilder('foo', '');
+    }
 }

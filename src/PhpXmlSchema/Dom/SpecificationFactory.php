@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\XmlNamespace;
 use PhpXmlSchema\Exception\InvalidOperationException;
 
 /**
@@ -65,6 +66,24 @@ class SpecificationFactory
     ];
     
     /**
+     * The map that associates an attribute with a method used to create an 
+     * attribute.
+     * @var array[]
+     */
+    private $attributeBuilders = [
+        ContextId::ELT_SCHEMA => [
+            [ 'attributeFormDefault', '', 'buildAttributeFormDefaultAttribute', ], 
+            [ 'blockDefault', '', 'buildBlockDefaultAttribute', ], 
+            [ 'elementFormDefault', '', 'buildElementFormDefaultAttribute', ], 
+            [ 'finalDefault', '', 'buildFinalDefaultAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
+            [ 'targetNamespace', '', 'buildTargetNamespaceAttribute', ], 
+            [ 'version', '', 'buildVersionAttribute', ], 
+            [ 'lang', XmlNamespace::XML_1_0, 'buildLangAttribute', ], 
+        ], 
+    ];
+    
+    /**
      * Creates the specification for the specified context ID.
      * 
      * @param   int $cid    The context ID to create the specification for.
@@ -74,7 +93,7 @@ class SpecificationFactory
      */
     public function create(int $cid):Specification
     {
-        if (!isset($this->initialStates[$cid])) {
+        if (!isset($this->initialStates[$cid]) && !isset($this->attributeBuilders[$cid])) {
             throw new InvalidOperationException(\sprintf(
                 'The specification cannot be created because the context ID %s is not supported.',
                 $cid
@@ -84,26 +103,41 @@ class SpecificationFactory
         $spec = new Specification($cid);
         
         // Initializes the initial state.
-        $spec->setInitialState($cid, $this->initialStates[$cid]);
+        if (isset($this->initialStates[$cid])) {
+            $spec->setInitialState($cid, $this->initialStates[$cid]);
+        }
         
         // Associates transitions with element names.
-        foreach ($this->transitionElementNames[$cid] as $state => $symNameMap) {
-            foreach ($symNameMap as $sym => $name) {
-                $spec->setTransitionElementName($state, $sym, $name);
+        if (isset($this->transitionElementNames[$cid])) {
+            foreach ($this->transitionElementNames[$cid] as $state => $symNameMap) {
+                foreach ($symNameMap as $sym => $name) {
+                    $spec->setTransitionElementName($state, $sym, $name);
+                }
             }
         }
         
         // Associates transitions with element builders.
-        foreach ($this->transitionElementBuilders[$cid] as $state => $symBuilderMap) {
-            foreach ($symBuilderMap as $sym => $builder) {
-                $spec->setTransitionElementBuilder($state, $sym, $builder);
+        if (isset($this->transitionElementBuilders[$cid])) {
+            foreach ($this->transitionElementBuilders[$cid] as $state => $symBuilderMap) {
+                foreach ($symBuilderMap as $sym => $builder) {
+                    $spec->setTransitionElementBuilder($state, $sym, $builder);
+                }
             }
         }
         
         // Associates transitions with next states.
-        foreach ($this->transitionNextStates[$cid] as $state => $symNextStateMap) {
-            foreach ($symNextStateMap as $sym => $nextState) {
-                $spec->setTransitionNextState($state, $sym, $nextState);
+        if (isset($this->transitionNextStates[$cid])) {
+            foreach ($this->transitionNextStates[$cid] as $state => $symNextStateMap) {
+                foreach ($symNextStateMap as $sym => $nextState) {
+                    $spec->setTransitionNextState($state, $sym, $nextState);
+                }
+            }
+        }
+        
+        // Associates attributes with attribute builders.
+        if (isset($this->attributeBuilders[$cid])) {
+            foreach ($this->attributeBuilders[$cid] as list($name, $ns, $method)) {
+                $spec->setAttributeBuilder($name, $ns, $method);
             }
         }
         

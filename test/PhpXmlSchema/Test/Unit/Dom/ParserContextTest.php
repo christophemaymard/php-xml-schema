@@ -291,6 +291,111 @@ class ParserContextTest extends TestCase
     }
     
     /**
+     * Tests that isAttributeSupported() returns FALSE when the attribute is 
+     * not associated with a builder.
+     */
+    public function testIsAttributeSupportedReturnsFalseWhenNoAttributeBuilder()
+    {
+        $specProphecy = $this->createLESpecificationProphecy();
+        $specProphecy->hasAttributeBuilder('foo', '')
+            ->willReturn(FALSE)
+            ->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        self::assertFalse($sut->isAttributeSupported('foo', ''));
+    }
+    
+    /**
+     * Tests that isAttributeSupported() returns TRUE when the attribute is 
+     * associated with a builder.
+     */
+    public function testIsAttributeSupportedReturnsTrueWhenAttributeBuilderSet()
+    {
+        $specProphecy = $this->createCESpecificationProphecy(0);
+        $specProphecy->hasAttributeBuilder('foo', '')
+            ->willReturn(TRUE)
+            ->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        self::assertTrue($sut->isAttributeSupported('foo', ''));
+    }
+    
+    /**
+     * Tests that createAttribute() throws an exception when the element is 
+     * not supported.
+     */
+    public function testCreateAttributeThrowsExceptionWhenAttributeNotSupported()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The attribute with the local name '.
+            '"foo" and the namespace "" cannot be created because it is '.
+            'not supported.');
+        
+        $specProphecy = $this->createLESpecificationProphecy();
+        $specProphecy->hasAttributeBuilder('foo', '')
+            ->willReturn(FALSE)
+            ->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $builderDummy = $this->createSchemaBuilderInterfaceDummy();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createAttribute('foo', '', 'bar', $builderDummy);
+    }
+    
+    /**
+     * Tests that createAttribute() throws an exception the method is not 
+     * part of the builder instance.
+     */
+    public function testCreateAttributeThrowsExceptionWhenNotCallable()
+    {
+        // 'The "%s" element cannot be created because the "%s" method is not part of the builder instance.'
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The attribute with the local name '.
+            '"foo" and the namespace "" cannot be created because the '.
+            '"buildFooAttribute" method is not part of the builder instance.');
+        
+        $specProphecy = $this->createLESpecificationProphecy();
+        $specProphecy->hasAttributeBuilder('foo', '')
+            ->willReturn(TRUE)
+            ->shouldBeCalled();
+        $specProphecy->getAttributeBuilder('foo', '')
+            ->willReturn('buildFooAttribute')
+            ->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $builderDummy = $this->createSchemaBuilderConcreteDummy();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createAttribute('foo', '', 'bar', $builderDummy);
+    }
+    
+    /**
+     * Tests that createAttribute() calls a method of the builder instance.
+     */
+    public function testCreateAttributeCallsMethod()
+    {
+        $specProphecy = $this->createLESpecificationProphecy();
+        $specProphecy->hasAttributeBuilder('attributeFormDefault', '')
+            ->willReturn(TRUE)
+            ->shouldBeCalled();
+        $specProphecy->getAttributeBuilder('attributeFormDefault', '')
+            ->willReturn('buildAttributeFormDefaultAttribute')
+            ->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $builderProphecy = $this->prophesize(SchemaBuilderInterface::class);
+        $builderProphecy->buildAttributeFormDefaultAttribute('qualified')
+            ->shouldBeCalledOnce();
+        $builderMock = $builderProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createAttribute('attributeFormDefault', '', 'qualified', $builderMock);
+    }
+    
+    /**
      * Creates a prophecy of the {@see PhpXmlSchema\Dom\Specification} class, 
      * for the sepcification of a leaf element, where:
      * - hasInitialState() will return FALSE and should be called.

@@ -63,7 +63,10 @@ class Parser
             ));
         }
         
-        $this->ctx->createElement($this->xt->getLocalName(), $this->builder);
+        $cid = $this->ctx->createElement($this->xt->getLocalName(), $this->builder);
+        
+        // Creates a context for the created element.
+        $this->ctx = new ParserContext($this->specFactory->create($cid));
         
         // Parses the attributes.
         if ($this->xt->moveToFirstAttribute()) {
@@ -138,40 +141,24 @@ class Parser
      * Parses the current node as an attribute.
      * 
      * @throws  InvalidOperationException   When the attribute is not supported.
-     * @throws  InvalidOperationException   When the attribute is not supported.
-     * @throws  InvalidOperationException   When the attribute is not supported.
      */
     private function parseAttributeNode()
     {
         $localName = $this->xt->getLocalName();
         $namespace = $this->xt->getNamespace();
         
-        if ($namespace == '') {
-            if ($localName == 'attributeFormDefault') {
-                $this->builder->buildAttributeFormDefaultAttribute($this->xt->getValue());
-            } elseif ($localName == 'blockDefault') {
-                $this->builder->buildBlockDefaultAttribute($this->xt->getValue());
-            } elseif ($localName == 'elementFormDefault') {
-                $this->builder->buildElementFormDefaultAttribute($this->xt->getValue());
-            } elseif ($localName == 'finalDefault') {
-                $this->builder->buildFinalDefaultAttribute($this->xt->getValue());
-            } elseif ($localName == 'id') {
-                $this->builder->buildIdAttribute($this->xt->getValue());
-            } elseif ($localName == 'targetNamespace') {
-                $this->builder->buildTargetNamespaceAttribute($this->xt->getValue());
-            } elseif ($localName == 'version') {
-                $this->builder->buildVersionAttribute($this->xt->getValue());
-            } else {
-                throw new InvalidOperationException(Message::unsupportedAttribute($localName, $namespace));
-            }
-        } elseif ($namespace == XmlNamespace::XML_1_0) {
-            if ($localName == 'lang') {
-                $this->builder->buildLangAttribute($this->xt->getValue());
-            } else {
-                throw new InvalidOperationException(Message::unsupportedAttribute($localName, $namespace));
-            }
-        } else {
-            throw new InvalidOperationException(Message::unsupportedAttribute($localName, $namespace));
+        if (!$this->ctx->isAttributeSupported($localName, $namespace)) {
+            throw new InvalidOperationException(Message::unsupportedAttribute(
+                $localName, 
+                $namespace
+            ));
         }
+        
+        $this->ctx->createAttribute(
+            $localName, 
+            $namespace, 
+            $this->xt->getValue(),
+            $this->builder
+        );
     }
 }
