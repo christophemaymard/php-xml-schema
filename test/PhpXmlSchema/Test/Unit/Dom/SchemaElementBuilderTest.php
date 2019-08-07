@@ -25,15 +25,37 @@ class SchemaElementBuilderTest extends TestCase
     use ElementAssertTrait;
     
     /**
+     * The system under test.
+     * @var SchemaElementBuilder
+     */
+    private $sut;
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected function setUp()
+    {
+        $this->sut = new SchemaElementBuilder();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected function tearDown()
+    {
+        $this->sut = NULL;
+    }
+    
+    /**
      * Tests that getSchema() returns the same instance of SchemaElement when 
      * instantiated.
      */
     public function testGetSchemaReturnsSameInstanceOfEmptySchemaElementWhenInstantiated()
     {
-        $sut = new SchemaElementBuilder();
-        $sch1 = $sut->getSchema();
-        self::assertSchemaElementEmpty($sch1);
-        $sch2 = $sut->getSchema();
+        $sch1 = $this->sut->getSchema();
+        self::assertSchemaElementHasNoAttribute($sch1);
+        self::assertSame([], $sch1->getElements());
+        $sch2 = $this->sut->getSchema();
         self::assertSame($sch1, $sch2, 'Same instance of SchemaElement.');
     }
     
@@ -43,11 +65,11 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildSchemaElementCreateNewInstanceOfEmptySchemaElement()
     {
-        $sut = new SchemaElementBuilder();
-        $sch1 = $sut->getSchema();
-        $sut->buildSchemaElement();
-        $sch2 = $sut->getSchema();
-        self::assertSchemaElementEmpty($sch2);
+        $sch1 = $this->sut->getSchema();
+        $this->sut->buildSchemaElement();
+        $sch2 = $this->sut->getSchema();
+        self::assertSchemaElementHasNoAttribute($sch2);
+        self::assertSame([], $sch2->getElements());
         self::assertNotSame($sch2, $sch1, 'Not same instance of SchemaElement.');
     }
     
@@ -60,9 +82,8 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildAttributeFormDefaultAttributeWhenValueIsQualified()
     {
-        $sut = new SchemaElementBuilder();
-        $sut->buildAttributeFormDefaultAttribute('qualified');
-        $sch = $sut->getSchema();
+        $this->sut->buildAttributeFormDefaultAttribute('qualified');
+        $sch = $this->sut->getSchema();
         
         self::assertTrue($sch->getAttributeFormDefault()->isQualified());
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
@@ -78,9 +99,8 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildAttributeFormDefaultAttributeWhenValueIsUnqualified()
     {
-        $sut = new SchemaElementBuilder();
-        $sut->buildAttributeFormDefaultAttribute('unqualified');
-        $sch = $sut->getSchema();
+        $this->sut->buildAttributeFormDefaultAttribute('unqualified');
+        $sch = $this->sut->getSchema();
         
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
@@ -105,8 +125,7 @@ class SchemaElementBuilderTest extends TestCase
             'attribute (from no namespace), expected: "qualified" or '.
             '"unqualified".'
         );
-        $sut = new SchemaElementBuilder();
-        $sut->buildAttributeFormDefaultAttribute($value);
+        $this->sut->buildAttributeFormDefaultAttribute($value);
     }
     
     /**
@@ -127,9 +146,8 @@ class SchemaElementBuilderTest extends TestCase
         bool $ext, 
         bool $sub
     ) {
-        $sut = new SchemaElementBuilder();
-        $sut->buildBlockDefaultAttribute($value);
-        $sch = $sut->getSchema();
+        $this->sut->buildBlockDefaultAttribute($value);
+        $sch = $this->sut->getSchema();
         
         self::assertSchemaElementBlockDefaultAttribute($res, $ext, $sub, $sch);
         self::assertSchemaElementHasOnlyBlockDefaultAttribute($sch);
@@ -154,8 +172,8 @@ class SchemaElementBuilderTest extends TestCase
             'attribute (from no namespace), expected: "#all" or '.
             '"List of (extension | restriction | substitution)".'
         );
-        $sut = new SchemaElementBuilder();
-        $sut->buildBlockDefaultAttribute($value);
+        
+        $this->sut->buildBlockDefaultAttribute($value);
     }
     
     /**
@@ -167,9 +185,8 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildElementFormDefaultAttributeWhenValueIsQualified()
     {
-        $sut = new SchemaElementBuilder();
-        $sut->buildElementFormDefaultAttribute('qualified');
-        $sch = $sut->getSchema();
+        $this->sut->buildElementFormDefaultAttribute('qualified');
+        $sch = $this->sut->getSchema();
         
         self::assertTrue($sch->getElementFormDefault()->isQualified());
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
@@ -185,9 +202,8 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildElementFormDefaultAttributeWhenValueIsUnqualified()
     {
-        $sut = new SchemaElementBuilder();
-        $sut->buildElementFormDefaultAttribute('unqualified');
-        $sch = $sut->getSchema();
+        $this->sut->buildElementFormDefaultAttribute('unqualified');
+        $sch = $this->sut->getSchema();
         
         self::assertTrue($sch->getElementFormDefault()->isUnqualified());
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
@@ -212,8 +228,8 @@ class SchemaElementBuilderTest extends TestCase
             'attribute (from no namespace), expected: "qualified" or '.
             '"unqualified".'
         );
-        $sut = new SchemaElementBuilder();
-        $sut->buildElementFormDefaultAttribute($value);
+        
+        $this->sut->buildElementFormDefaultAttribute($value);
     }
     
     /**
@@ -236,9 +252,8 @@ class SchemaElementBuilderTest extends TestCase
         bool $lst, 
         bool $unn
     ) {
-        $sut = new SchemaElementBuilder();
-        $sut->buildFinalDefaultAttribute($value);
-        $sch = $sut->getSchema();
+        $this->sut->buildFinalDefaultAttribute($value);
+        $sch = $this->sut->getSchema();
         
         self::assertSchemaElementFinalDefaultAttribute($ext, $res, $lst, $unn, $sch);
         self::assertSchemaElementHasOnlyFinalDefaultAttribute($sch);
@@ -263,8 +278,8 @@ class SchemaElementBuilderTest extends TestCase
             'attribute (from no namespace), expected: "#all" or '.
             '"List of (extension | restriction | list | union)".'
         );
-        $sut = new SchemaElementBuilder();
-        $sut->buildFinalDefaultAttribute($value);
+        
+        $this->sut->buildFinalDefaultAttribute($value);
     }
     
     /**
@@ -279,9 +294,8 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildIdAttribute(string $value, string $id)
     {
-        $sut = new SchemaElementBuilder();
-        $sut->buildIdAttribute($value);
-        $sch = $sut->getSchema();
+        $this->sut->buildIdAttribute($value);
+        $sch = $this->sut->getSchema();
         
         self::assertSame($id, $sch->getId()->getId());
         self::assertSchemaElementHasOnlyIdAttribute($sch);
@@ -298,8 +312,8 @@ class SchemaElementBuilderTest extends TestCase
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('"foo:bar" is an invalid ID.');
-        $sut = new SchemaElementBuilder();
-        $sut->buildIdAttribute('foo:bar');
+        
+        $this->sut->buildIdAttribute('foo:bar');
     }
     
     /**
@@ -315,9 +329,8 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildTargetNamespaceAttribute(string $value, string $uri)
     {
-        $sut = new SchemaElementBuilder();
-        $sut->buildTargetNamespaceAttribute($value);
-        $sch = $sut->getSchema();
+        $this->sut->buildTargetNamespaceAttribute($value);
+        $sch = $this->sut->getSchema();
         
         self::assertSame($uri, $sch->getTargetNamespace()->getUri());
         self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
@@ -333,8 +346,8 @@ class SchemaElementBuilderTest extends TestCase
     public function testBuildTargetNamespaceAttributeThrowsExceptionWhenValueIsInvalid()
     {
         $this->expectException(InvalidValueException::class);
-        $sut = new SchemaElementBuilder();
-        $sut->buildTargetNamespaceAttribute(':');
+        
+        $this->sut->buildTargetNamespaceAttribute(':');
     }
     
     /**
@@ -349,9 +362,8 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildVersionAttribute(string $value, string $version)
     {
-        $sut = new SchemaElementBuilder();
-        $sut->buildVersionAttribute($value);
-        $sch = $sut->getSchema();
+        $this->sut->buildVersionAttribute($value);
+        $sch = $this->sut->getSchema();
         
         self::assertSame($version, $sch->getVersion()->getString());
         self::assertSchemaElementHasOnlyVersionAttribute($sch);
@@ -369,8 +381,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage("\"\u{001F}\" is an invalid token.");
         
-        $sut = new SchemaElementBuilder();
-        $sut->buildVersionAttribute("\u{001F}");
+        $this->sut->buildVersionAttribute("\u{001F}");
     }
     
     /**
@@ -388,9 +399,8 @@ class SchemaElementBuilderTest extends TestCase
         string $primary,
         array $subtags
     ) {
-        $sut = new SchemaElementBuilder();
-        $sut->buildLangAttribute($value);
-        $sch = $sut->getSchema();
+        $this->sut->buildLangAttribute($value);
+        $sch = $this->sut->getSchema();
         
         self::assertSame($primary, $sch->getLang()->getPrimarySubtag());
         self::assertSame($subtags, $sch->getLang()->getSubtags());
@@ -415,8 +425,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
-        $sut = new SchemaElementBuilder();
-        $sut->buildLangAttribute($value);
+        $this->sut->buildLangAttribute($value);
     }
     
     /**

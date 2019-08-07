@@ -10,7 +10,6 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\Parser;
 use PhpXmlSchema\Exception\InvalidValueException;
-use PhpXmlSchema\Exception\InvalidOperationException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\Parser} class.
@@ -36,36 +35,7 @@ class ParserTest extends TestCase
         $this->expectExceptionMessage('The source is an invalid XML.');
         
         $sut = new Parser();
-        $sut->parse($this->getSchemaXs('schema_0001.xsd'));
-    }
-    
-    /**
-     * Tests that parse() throws an expcetion when the root element is not 
-     * part of the XML Schema 1.0 namespace.
-     */
-    public function testParseThrowsExceptionWhenRootNotPartOfXs10()
-    {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage('The root element must belong to '.
-            'the XML Schema 1.0 namespace.');
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs('schema_0002.xsd'));
-    }
-    
-    /**
-     * Tests that parse() throws an expcetion when the root element is not 
-     * the "schema" element.
-     */
-    public function testParseThrowsExceptionWhenRootNotSchemaElement()
-    {
-        $this->expectException(InvalidOperationException::class);
-        $this->expectExceptionMessage('The "foo" element '.
-            '(from http://www.w3.org/2001/XMLSchema namespace) is '.
-            'unexpected, expected: "schema".');
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs('schema_0003.xsd'));
+        $sut->parse($this->getXs('schema', 'schema_0001.xsd'));
     }
     
     /**
@@ -74,8 +44,9 @@ class ParserTest extends TestCase
     public function testParseReturnsEmptySchema()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('schema_0004.xsd'));
-        self::assertSchemaElementEmpty($sch);
+        $sch = $sut->parse($this->getXs('schema', 'schema_0004.xsd'));
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertSame([], $sch->getElements());
     }
     
     /**
@@ -84,8 +55,9 @@ class ParserTest extends TestCase
     public function testParseSkipAllNodesBeforeRootElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('schema_0005.xsd'));
-        self::assertSchemaElementEmpty($sch);
+        $sch = $sut->parse($this->getXs('schema', 'schema_0005.xsd'));
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertSame([], $sch->getElements());
     }
     
     /**
@@ -97,7 +69,7 @@ class ParserTest extends TestCase
     public function testParseProcessAttributeFormDefaultAttributeWithQualifiedInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('attr_attrfd_0001.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'attr_attrfd_0001.xsd'));
         
         self::assertTrue($sch->getAttributeFormDefault()->isQualified());
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
@@ -113,30 +85,11 @@ class ParserTest extends TestCase
     public function testParseProcessAttributeFormDefaultAttributeWithUnqualifiedInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('attr_attrfd_0002.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'attr_attrfd_0002.xsd'));
         
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
-     }
-    
-    /**
-     * Tests that parse() throws an exception when the value of the 
-     * "attributeFormDefault" attribute is invalid.
-     * 
-     * @group   attribute
-     */
-    public function testParseThrowsExceptionWhenAttributeFormDefaultIsInvalid()
-    {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"foo" is an invalid value for the "attributeFormDefault" '.
-            'attribute (from no namespace), expected: "qualified" or '.
-            '"unqualified".'
-        );
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs('attr_attrfd_0003.xsd'));
     }
     
     /**
@@ -158,36 +111,11 @@ class ParserTest extends TestCase
         bool $sub
     ) {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs($fileName));
+        $sch = $sut->parse($this->getXs('schema', $fileName));
         
         self::assertSchemaElementBlockDefaultAttribute($res, $ext, $sub, $sch);
         self::assertSchemaElementHasOnlyBlockDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
-    }
-    
-    /**
-     * Tests that parse() throws an exception when the value of the 
-     * "blockDefault" attribute is invalid in a "schema" element.
-     * 
-     * @param   string  $fileName   The name of the file used for the test.
-     * @param   string  $value      The invalid value.
-     * 
-     * @group           attribute
-     * @dataProvider    getInvalidBlockDefaultAttributes
-     */
-    public function testParseThrowsExceptionWhenBlockDefaultIsInvalidInSchemaElement(
-        string $fileName,
-        string $value
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "blockDefault" '.
-            'attribute (from no namespace), expected: "#all" or '.
-            '"List of (extension | restriction | substitution)".'
-        );
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs($fileName));
     }
     
     /**
@@ -199,7 +127,7 @@ class ParserTest extends TestCase
     public function testParseProcessElementFormDefaultAttributeWithQualifiedInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('attr_eltfd_0001.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'attr_eltfd_0001.xsd'));
         
         self::assertTrue($sch->getElementFormDefault()->isQualified());
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
@@ -215,30 +143,11 @@ class ParserTest extends TestCase
     public function testParseProcessElementFormDefaultAttributeWithUnqualifiedInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('attr_eltfd_0002.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'attr_eltfd_0002.xsd'));
         
         self::assertTrue($sch->getElementFormDefault()->isUnqualified());
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
-    }
-    
-    /**
-     * Tests that parse() throws an exception when the value of the 
-     * "elementFormDefault" attribute in a "schema" element is invalid.
-     * 
-     * @group   attribute
-     */
-    public function testParseThrowsExceptionWhenElementFormDefaultAttributeInSchemaElementIsInvalid()
-    {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"foo" is an invalid value for the "elementFormDefault" '.
-            'attribute (from no namespace), expected: "qualified" or '.
-            '"unqualified".'
-        );
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs('attr_eltfd_0003.xsd'));
     }
     
     /**
@@ -262,36 +171,11 @@ class ParserTest extends TestCase
         bool $unn
     ) {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs($fileName));
+        $sch = $sut->parse($this->getXs('schema', $fileName));
         
         self::assertSchemaElementFinalDefaultAttribute($ext, $res, $lst, $unn, $sch);
         self::assertSchemaElementHasOnlyFinalDefaultAttribute($sch);
         self::assertSame([], $sch->getElements());
-    }
-    
-    /**
-     * Tests that parse() throws an exception when the value of the 
-     * "finalDefault" attribute is invalid in a "schema" element.
-     * 
-     * @param   string  $fileName   The name of the file used for the test.
-     * @param   string  $value      The invalid value.
-     * 
-     * @group           attribute
-     * @dataProvider    getInvalidFinalDefaultAttributes
-     */
-    public function testParseThrowsExceptionWhenFinalDefaultIsInvalidInSchemaElement(
-        string $fileName,
-        string $value
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "finalDefault" '.
-            'attribute (from no namespace), expected: "#all" or '.
-            '"List of (extension | restriction | list | union)".'
-        );
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs($fileName));
     }
     
     /**
@@ -302,26 +186,11 @@ class ParserTest extends TestCase
     public function testParseProcessIdAttributeInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('attr_id_0001.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'attr_id_0001.xsd'));
         
         self::assertSame('foo', $sch->getId()->getId());
         self::assertSchemaElementHasOnlyIdAttribute($sch);
         self::assertSame([], $sch->getElements());
-    }
-    
-    /**
-     * Tests that parse() throws an exception when the value of the 
-     * "id" attribute is invalid in a "schema" element.
-     * 
-     * @group   attribute
-     */
-    public function testParseThrowsExceptionWhenIdIsInvalidInSchemaElement()
-    {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage('"foo:bar" is an invalid ID.');
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs('attr_id_0002.xsd'));
     }
     
     /**
@@ -333,25 +202,11 @@ class ParserTest extends TestCase
     public function testParseProcessTargetNamespaceAttributeInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('attr_target_0001.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'attr_target_0001.xsd'));
         
         self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
         self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
         self::assertSame([], $sch->getElements());
-    }
-    
-    /**
-     * Tests that parse() throws an exception when the value of the 
-     * "id" attribute is invalid in a "schema" element.
-     * 
-     * @group   attribute
-     */
-    public function testParseThrowsExceptionWhenTargetNamespaceAttributeIsInvalidInSchemaElement()
-    {
-        $this->expectException(InvalidValueException::class);
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs('attr_target_0002.xsd'));
     }
     
     /**
@@ -362,7 +217,7 @@ class ParserTest extends TestCase
     public function testParseProcessVersionAttributeInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('attr_version_0001.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'attr_version_0001.xsd'));
         
         self::assertSame('foo bar baz qux', $sch->getVersion()->getString());
         self::assertSchemaElementHasOnlyVersionAttribute($sch);
@@ -378,33 +233,12 @@ class ParserTest extends TestCase
     public function testParseProcessLangAttributeInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('attr_lang_0001.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'attr_lang_0001.xsd'));
         
         self::assertSame('Foo', $sch->getLang()->getPrimarySubtag());
         self::assertSame([ 'Bar1', 'baZ2', 'qUx3', ], $sch->getLang()->getSubtags());
         self::assertSchemaElementHasOnlyLangAttribute($sch);
         self::assertSame([], $sch->getElements());
-    }
-    
-    /**
-     * Tests that parse() throws an exception when the value of the 
-     * "xml:lang" attribute is invalid in a "schema" element.
-     * 
-     * @param   string  $fileName   The name of the file used for the test.
-     * @param   string  $message    The expected exception message.
-     * 
-     * @group           attribute
-     * @dataProvider    getInvalidLangAttributes
-     */
-    public function testParseThrowsExceptionWhenLangAttributeIsInvalidInSchemaElement(
-        string $fileName, 
-        string $message
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs($fileName));
     }
     
     /**
@@ -415,7 +249,7 @@ class ParserTest extends TestCase
     public function testParseProcessAllAttributesInSchemaElement()
     {
         $sut = new Parser();
-        $sch = $sut->parse($this->getSchemaXs('schema_0006.xsd'));
+        $sch = $sut->parse($this->getXs('schema', 'schema_0006.xsd'));
         
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
         self::assertSchemaElementBlockDefaultAttribute(FALSE, TRUE, FALSE, $sch);
@@ -430,52 +264,52 @@ class ParserTest extends TestCase
     }
     
     /**
-     * Tests that parse() throws an exception when an attribute is not 
-     * supported in a "schema" element.
+     * Tests that parse() throws an exception when the content is invalid.
      * 
+     * @param   string  $dir        The directory of the file to test.
      * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $exception  The expected exception class name.
      * @param   string  $message    The expected exception message.
      * 
-     * @group           attribute
-     * @dataProvider    getSchemaElementUnsupportedAttributes
+     * @group           content
+     * @group           element
+     * @dataProvider    getInvalidContents
      */
-    public function testParseThrowsExceptionWhenAttributeNotSupportedInSchemaElement(
+    public function testParseThrowsExceptionWhenContentIsInvalid(
+        string $dir, 
         string $fileName, 
+        string $exception, 
         string $message
     ) {
-        $this->expectException(InvalidOperationException::class);
+        $this->expectException($exception);
         $this->expectExceptionMessage($message);
         
         $sut = new Parser();
-        $sut->parse($this->getSchemaXs($fileName));
+        $sut->parse($this->getXs($dir, $fileName));
     }
     
     /**
-     * Tests that parse() throws an exception when processing all child nodes of a 
-     * "schema" element and there is, at least, 1 node that is not a white 
-     * space neither a comment node.
+     * Tests that parse() throws an exception when the attribute is invalid.
+     * 
+     * @param   string  $dir        The directory of the file to test.
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $exception  The expected exception class name.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @dataProvider    getInvalidAttributeValues
      */
-    public function testParseThrowsExceptionWhenProcessingAllChildNodesWithTextNodeInSchemaElement()
-    {
-        $this->expectException(InvalidOperationException::class);
-        $this->expectExceptionMessage('The node is not allowed ("foo").');
+    public function testParseThrowsExceptionWhenAttributeValueIsInvalid(
+        string $dir, 
+        string $fileName, 
+        string $exception, 
+        string $message
+    ) {
+        $this->expectException($exception);
+        $this->expectExceptionMessage($message);
         
         $sut = new Parser();
-        $sut->parse($this->getSchemaXs('schema_0010.xsd'));
-    }
-   
-    /**
-     * Tests that parse() throws an exception when child element is not 
-     * supported in the "schema" element.
-     */
-    public function testParseThrowsExceptionWhenChildElementNotSupportedInSchemaElement()
-    {
-        $this->expectException(InvalidOperationException::class);
-        $this->expectExceptionMessage('The "foo" element '.
-            '(from no namespace) is unexpected, expected: none.');
-        
-        $sut = new Parser();
-        $sut->parse($this->getSchemaXs('schema_0011.xsd'));
+        $sut->parse($this->getXs($dir, $fileName));
     }
     
     /**
@@ -509,29 +343,6 @@ class ParserTest extends TestCase
     }
     
     /**
-     * Returns a set of invalid "blockDefault" attribute in a "schema" element.
-     * 
-     * @return  array[]
-     */
-    public function getInvalidBlockDefaultAttributes():array
-    {
-        return [
-            '  foo  ' => [ 
-                'attr_blockd_0007.xsd', '  foo  ', 
-            ],
-            '#ALL' => [ 
-                'attr_blockd_0008.xsd', '#ALL', 
-            ],
-            'subStitution exTension Restriction' => [ 
-                'attr_blockd_0009.xsd', 'subStitution exTension Restriction', 
-            ],
-            '#all substitution extension restriction' => [ 
-                'attr_blockd_0010.xsd', '#all substitution extension restriction', 
-            ],
-        ];
-    }
-    
-    /**
      * Returns a set of valid "finalDefault" attribute in a "schema" element.
      * 
      * @return  array[]
@@ -559,104 +370,65 @@ class ParserTest extends TestCase
     }
     
     /**
-     * Returns a set of invalid "finalDefault" attribute in a "schema" element.
+     * Returns a set of tests related to invalid content.
      * 
      * @return  array[]
      */
-    public function getInvalidFinalDefaultAttributes():array
+    public function getInvalidContents():array
     {
-        return [
-            'foo' => [ 
-                'attr_finald_0006.xsd', 'foo', 
-            ],
-            '#ALL' => [ 
-                'attr_finald_0007.xsd', '#ALL', 
-            ],
-            'extension liSt' => [ 
-                'attr_finald_0008.xsd', 'extension liSt', 
-            ],
-            '#all extension restriction list union' => [ 
-                'attr_finald_0009.xsd', '#all extension restriction list union', 
-            ],
-        ];
+        return $this->createDataSets('content');
     }
     
     /**
-     * Returns a set of invalid "finalDefault" attribute in a "schema" element.
+     * Returns a set of tests related to invalid attribute.
      * 
      * @return  array[]
      */
-    public function getInvalidLangAttributes():array
+    public function getInvalidAttributeValues():array
     {
-        return [
-            '' => [ 
-                'attr_lang_0002.xsd', 
-                '"" is an invalid primary subtag.', 
-            ],
-            ' ' => [ 
-                'attr_lang_0003.xsd', 
-                '"" is an invalid primary subtag.', 
-            ],
-            'foo9' => [ 
-                'attr_lang_0004.xsd', 
-                '"foo9" is an invalid primary subtag.', 
-            ],
-            'foo+' => [ 
-                'attr_lang_0005.xsd', 
-                '"foo+" is an invalid primary subtag.', 
-            ],
-            'veryverylongprimarytag' => [ 
-                'attr_lang_0006.xsd', 
-                '"veryverylongprimarytag" is an invalid primary subtag.', 
-            ],
-            'foo-bar1-veryverylongsubtag' => [ 
-                'attr_lang_0007.xsd', 
-                '"veryverylongsubtag" is an invalid subtag.', 
-            ],
-            'foo-bar1-baz+' => [ 
-                'attr_lang_0008.xsd', 
-                '"baz+" is an invalid subtag.', 
-            ],
-        ];
+        return $this->createDataSets('attribute');
     }
     
     /**
-     * Returns a set of unsupported attributes in a "schema" element.
      * 
-     * @return  array[]
+     * @param   string  $group
      */
-    public function getSchemaElementUnsupportedAttributes():array
+    private function createDataSets(string $group):array
     {
-        return [
-            'No namespace' => [ 
-                'schema_0007.xsd', 
-                'The "foo" attribute (from no namespace) is not supported.', 
-            ],
-            'XML 1.0 namespace' => [ 
-                'schema_0008.xsd', 
-                'The "foo" attribute (from '.
-                    'http://www.w3.org/XML/1998/namespace namespace) is not '.
-                    'supported.', 
-            ],
-            'Other namespace' => [ 
-                'schema_0009.xsd', 
-                'The "bar" attribute (from '.
-                    'http://example.org namespace) is not supported.', 
-            ],
-        ];
+        $sxe = \simplexml_load_file(
+            __DIR__.'/../../../../../res/test/unit/parser/parser_test_set.xml'
+        );
+        
+        $datasets = [];
+        
+        foreach($sxe->children() as $test) {
+            if ($test['group'] != $group) {
+                continue;
+            }
+            
+            $datasets[(string)$test['name']] = [ 
+                (string)$test->schema['dir'], 
+                (string)$test->schema['fileName'], 
+                (string)$test->schema->exception, 
+                (string)$test->schema->message, 
+            ];
+        }
+        
+        return $datasets;
     }
     
     /**
-     * Returns the content of the specified filename located at the "schema" 
+     * Returns the content of the specified filename located at the specified  
      * directory.
      * 
-     * @param   string  $fileName
+     * @param   string  $dir        The directory of the file.
+     * @param   string  $fileName   The name of the file.
      * @return  string
      */
-    private function getSchemaXs(string $fileName):string
+    private function getXs(string $dir, string $fileName):string
     {
         return \file_get_contents(
-            __DIR__.'/../../../../../res/test/unit/parser/schema/'.$fileName
+            __DIR__.'/../../../../../res/test/unit/parser/'.$dir.'/'.$fileName
         );
     }
 }

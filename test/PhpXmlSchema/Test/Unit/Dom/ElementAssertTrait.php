@@ -20,11 +20,11 @@ use PhpXmlSchema\Dom\SchemaElement;
 trait ElementAssertTrait
 {
     /**
-     * Asserts that the specified "schema" element is empty.
+     * Asserts that the specified "schema" element has no attribute.
      * 
      * @param   SchemaElement   $sut    The element to test.
      */
-    public static function assertSchemaElementEmpty(SchemaElement $sut)
+    public static function assertSchemaElementHasNoAttribute(SchemaElement $sut)
     {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
@@ -34,7 +34,6 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasTargetNamespace());
         self::assertFalse($sut->hasVersion());
         self::assertFalse($sut->hasLang());
-        self::assertSame([], $sut->getElements());
     }
     
     /**
