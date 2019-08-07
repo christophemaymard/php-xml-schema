@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Datatype\IDType;
+
 /**
  * Interface for a XML schema element that contains a sequence of XML schema 
  * elements as content.
@@ -15,6 +17,27 @@ namespace PhpXmlSchema\Dom;
  */
 interface CompositeElementInterface extends ElementInterface
 {
+    /**
+     * Returns the value of the "id" attribute.
+     * 
+     * @return  IDType|NULL The value of the attribute if it has been set, otherwise NULL.
+     */
+    public function getId();
+    
+    /**
+     * Sets the value of the "id" attribute.
+     * 
+     * @param   IDType  $value  The value to set.
+     */
+    public function setId(IDType $value);
+    
+    /**
+     * Indicates whether the "id" attribute has been set.
+     * 
+     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     */
+    public function hasId():bool;
+    
     /**
      * Returns all the child elements that belong to this element.
      * 

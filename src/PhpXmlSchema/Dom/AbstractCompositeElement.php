@@ -33,9 +33,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
     private $sequence = [];
     
     /**
-     * Returns the value of the "id" attribute.
-     * 
-     * @return  IDType|NULL The value of the attribute if it has been set, otherwise NULL.
+     * {@inheritDoc}
      */
     public function getId()
     {
@@ -43,9 +41,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
     }
     
     /**
-     * Sets the value of the "id" attribute.
-     * 
-     * @param   IDType  $value  The value to set.
+     * {@inheritDoc}
      */
     public function setId(IDType $value)
     {
@@ -53,9 +49,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
     }
     
     /**
-     * Indicates whether the "id" attribute has been set.
-     * 
-     * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
+     * {@inheritDoc}
      */
     public function hasId():bool
     {
