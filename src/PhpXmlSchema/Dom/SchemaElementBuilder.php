@@ -22,6 +22,12 @@ use PhpXmlSchema\Exception\Message;
 class SchemaElementBuilder implements SchemaBuilderInterface
 {
     /**
+     * The instance of the current element that is being built.
+     * @var ElementInterface|NULL
+     */
+    private $currentElement;
+    
+    /**
      * The instance of the "schema" element that is being built.
      * @var SchemaElement
      */
@@ -40,16 +46,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildAttributeFormDefaultAttribute(string $value)
     {
-        if (NULL === $attr = $this->parseFormType($value)) {
-            throw new InvalidValueException(Message::invalidAttributeValue(
-                $value, 
-                'attributeFormDefault', 
-                '', 
-                [ 'qualified', 'unqualified', ]
-            ));
+        if ($this->currentElement instanceof SchemaElement) {
+            if (NULL === $attr = $this->parseFormType($value)) {
+                throw new InvalidValueException(Message::invalidAttributeValue(
+                    $value, 
+                    'attributeFormDefault', 
+                    '', 
+                    [ 'qualified', 'unqualified', ]
+                ));
+            }
+            
+            $this->currentElement->setAttributeFormDefault($attr);
         }
-        
-        $this->schemaElement->setAttributeFormDefault($attr);
     }
     
     /**
@@ -57,16 +65,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildBlockDefaultAttribute(string $value)
     {
-        if (NULL === $attr = $this->parseBlockSetValue($value)) {
-            throw new InvalidValueException(Message::invalidAttributeValue(
-                $value, 
-                'blockDefault', 
-                '', 
-                [ '#all', 'List of (extension | restriction | substitution)', ]
-            ));
+        if ($this->currentElement instanceof SchemaElement) {
+            if (NULL === $attr = $this->parseBlockSetValue($value)) {
+                throw new InvalidValueException(Message::invalidAttributeValue(
+                    $value, 
+                    'blockDefault', 
+                    '', 
+                    [ '#all', 'List of (extension | restriction | substitution)', ]
+                ));
+            }
+            
+            $this->currentElement->setBlockDefault($attr);
         }
-        
-        $this->schemaElement->setBlockDefault($attr);
     }
     
     /**
@@ -74,16 +84,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildElementFormDefaultAttribute(string $value)
     {
-        if (NULL === $attr = $this->parseFormType($value)) {
-            throw new InvalidValueException(Message::invalidAttributeValue(
-                $value, 
-                'elementFormDefault', 
-                '', 
-                [ 'qualified', 'unqualified', ]
-            ));
+        if ($this->currentElement instanceof SchemaElement) {
+            if (NULL === $attr = $this->parseFormType($value)) {
+                throw new InvalidValueException(Message::invalidAttributeValue(
+                    $value, 
+                    'elementFormDefault', 
+                    '', 
+                    [ 'qualified', 'unqualified', ]
+                ));
+            }
+            
+            $this->currentElement->setElementFormDefault($attr);
         }
-        
-        $this->schemaElement->setElementFormDefault($attr);
     }
     
     /**
@@ -91,16 +103,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildFinalDefaultAttribute(string $value)
     {
-        if (NULL === $attr = $this->parseFullDerivationSetValue($value)) {
-            throw new InvalidValueException(Message::invalidAttributeValue(
-                $value, 
-                'finalDefault', 
-                '', 
-                [ '#all', 'List of (extension | restriction | list | union)', ]
-            ));
+        if ($this->currentElement instanceof SchemaElement) {
+            if (NULL === $attr = $this->parseFullDerivationSetValue($value)) {
+                throw new InvalidValueException(Message::invalidAttributeValue(
+                    $value, 
+                    'finalDefault', 
+                    '', 
+                    [ '#all', 'List of (extension | restriction | list | union)', ]
+                ));
+            }
+            
+            $this->currentElement->setFinalDefault($attr);
         }
-        
-        $this->schemaElement->setFinalDefault($attr);
     }
     
     /**
@@ -108,7 +122,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildIdAttribute(string $value)
     {
-        $this->schemaElement->setId(new IDType($this->collapseWhiteSpace($value)));
+        if ($this->currentElement instanceof SchemaElement) {
+            $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
+        }
     }
     
     /**
@@ -116,9 +132,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildTargetNamespaceAttribute(string $value)
     {
-        $this->schemaElement->setTargetNamespace(
-            new AnyUriType($this->collapseWhiteSpace($value))
-        );
+        if ($this->currentElement instanceof SchemaElement) {
+            $this->currentElement->setTargetNamespace(
+                new AnyUriType($this->collapseWhiteSpace($value))
+            );
+        }
     }
     
     /**
@@ -126,9 +144,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildVersionAttribute(string $value)
     {
-        $this->schemaElement->setVersion(
-            new TokenType($this->collapseWhiteSpace($value))
-        );
+        if ($this->currentElement instanceof SchemaElement) {
+            $this->currentElement->setVersion(
+                new TokenType($this->collapseWhiteSpace($value))
+            );
+        }
     }
     
     /**
@@ -136,11 +156,13 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildLangAttribute(string $value)
     {
-        $tags = \explode('-', $this->collapseWhiteSpace($value));
-        
-        $this->schemaElement->setLang(
-            new LanguageType(\array_shift($tags), $tags)
-        );
+        if ($this->currentElement instanceof SchemaElement) {
+            $tags = \explode('-', $this->collapseWhiteSpace($value));
+            
+            $this->currentElement->setLang(
+                new LanguageType(\array_shift($tags), $tags)
+            );
+        }
     }
     
     /**
@@ -148,7 +170,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildSchemaElement()
     {
-        $this->schemaElement = new SchemaElement();
+        $this->schemaElement = $this->currentElement = new SchemaElement();
     }
     
     /**
@@ -159,6 +181,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function getSchema():SchemaElement
     {
         return $this->schemaElement;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function endElement()
+    {
+        if ($this->currentElement instanceof ElementInterface) {
+            $this->currentElement = $this->currentElement->getParent();
+        }
     }
     
     /**

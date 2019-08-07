@@ -478,6 +478,8 @@ class ParserContextTest extends TestCase
             public function buildLangAttribute(string $value) {}
             
             public function buildSchemaElement() {}
+            
+            public function endElement() {}
         };
     }
 }

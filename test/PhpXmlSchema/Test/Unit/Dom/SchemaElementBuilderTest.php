@@ -429,6 +429,62 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests building methods when the current element is NULL.
+     */
+    public function testBuildMethodsWhenCurrentElementIsNull()
+    {
+        $this->sut->endElement();
+        $this->sut->endElement();
+        
+        // Uses methods, with invalid values, that must not build attributes.
+        $this->sut->buildAttributeFormDefaultAttribute('foo');
+        $this->sut->buildBlockDefaultAttribute('foo');
+        $this->sut->buildElementFormDefaultAttribute('foo');
+        $this->sut->buildFinalDefaultAttribute('foo');
+        $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildTargetNamespaceAttribute(':');
+        $this->sut->buildVersionAttribute("\u{001F}");
+        $this->sut->buildLangAttribute(':');
+        $sch = $this->sut->getSchema();
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * Tests building methods when the current element is a "schema" element.
+     */
+    public function testBuildMethodsWhenCurrentElementIsSchema()
+    {
+        // Uses methods, with valid values, that must build attributes.
+        $this->sut->buildAttributeFormDefaultAttribute('qualified');
+        $this->sut->buildBlockDefaultAttribute('extension');
+        $this->sut->buildElementFormDefaultAttribute('unqualified');
+        $this->sut->buildFinalDefaultAttribute('restriction');
+        $this->sut->buildIdAttribute('schema');
+        $this->sut->buildTargetNamespaceAttribute('http://example.org');
+        $this->sut->buildVersionAttribute('1.0');
+        $this->sut->buildLangAttribute('en-us');
+        
+        $sch = $this->sut->getSchema();
+        
+        // Asserts attributes.
+        self::assertTrue($sch->getAttributeFormDefault()->isQualified());
+        self::assertSchemaElementBlockDefaultAttribute(FALSE, TRUE, FALSE, $sch);
+        self::assertTrue($sch->getElementFormDefault()->isUnqualified());
+        self::assertSchemaElementFinalDefaultAttribute(FALSE, TRUE, FALSE, FALSE, $sch);
+        self::assertSame('schema', $sch->getId()->getId());
+        self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
+        self::assertSame('1.0', $sch->getVersion()->getString());
+        self::assertSame('en', $sch->getLang()->getPrimarySubtag());
+        self::assertSame(['us'], $sch->getLang()->getSubtags());
+        
+        // Asserts content.
+        $elts = $sch->getElements();
+        self::assertCount(0, $elts);
+    }
+    
+    /**
      * Returns a set of invalid FormeType values.
      * 
      * @return  array[]
