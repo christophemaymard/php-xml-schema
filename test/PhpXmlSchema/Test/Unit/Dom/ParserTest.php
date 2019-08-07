@@ -24,6 +24,28 @@ class ParserTest extends TestCase
     use ElementAssertTrait;
     
     /**
+     * The system under test.
+     * @var Parser
+     */
+    private $sut;
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected function setUp()
+    {
+        $this->sut = new Parser();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected function tearDown()
+    {
+        $this->sut = NULL;
+    }
+    
+    /**
      * Tests that parse() throws an expcetion when the provided XML Schema is 
      * not an XML.
      * 
@@ -34,8 +56,7 @@ class ParserTest extends TestCase
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('The source is an invalid XML.');
         
-        $sut = new Parser();
-        $sut->parse($this->getXs('schema', 'schema_0001.xsd'));
+        $this->sut->parse($this->getXs('schema', 'schema_0001.xsd'));
     }
     
     /**
@@ -43,8 +64,7 @@ class ParserTest extends TestCase
      */
     public function testParseReturnsEmptySchema()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'schema_0004.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'schema_0004.xsd'));
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
@@ -54,8 +74,7 @@ class ParserTest extends TestCase
      */
     public function testParseSkipAllNodesBeforeRootElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'schema_0005.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'schema_0005.xsd'));
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
@@ -68,8 +87,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessAttributeFormDefaultAttributeWithQualifiedInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'attr_attrfd_0001.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'attr_attrfd_0001.xsd'));
         
         self::assertTrue($sch->getAttributeFormDefault()->isQualified());
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
@@ -84,8 +102,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessAttributeFormDefaultAttributeWithUnqualifiedInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'attr_attrfd_0002.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'attr_attrfd_0002.xsd'));
         
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
@@ -110,8 +127,7 @@ class ParserTest extends TestCase
         bool $ext, 
         bool $sub
     ) {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', $fileName));
+        $sch = $this->sut->parse($this->getXs('schema', $fileName));
         
         self::assertSchemaElementBlockDefaultAttribute($res, $ext, $sub, $sch);
         self::assertSchemaElementHasOnlyBlockDefaultAttribute($sch);
@@ -126,8 +142,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessElementFormDefaultAttributeWithQualifiedInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'attr_eltfd_0001.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'attr_eltfd_0001.xsd'));
         
         self::assertTrue($sch->getElementFormDefault()->isQualified());
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
@@ -142,8 +157,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessElementFormDefaultAttributeWithUnqualifiedInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'attr_eltfd_0002.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'attr_eltfd_0002.xsd'));
         
         self::assertTrue($sch->getElementFormDefault()->isUnqualified());
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
@@ -170,8 +184,7 @@ class ParserTest extends TestCase
         bool $lst, 
         bool $unn
     ) {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', $fileName));
+        $sch = $this->sut->parse($this->getXs('schema', $fileName));
         
         self::assertSchemaElementFinalDefaultAttribute($ext, $res, $lst, $unn, $sch);
         self::assertSchemaElementHasOnlyFinalDefaultAttribute($sch);
@@ -185,8 +198,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessIdAttributeInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'attr_id_0001.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'attr_id_0001.xsd'));
         
         self::assertSame('foo', $sch->getId()->getId());
         self::assertSchemaElementHasOnlyIdAttribute($sch);
@@ -201,8 +213,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessTargetNamespaceAttributeInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'attr_target_0001.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'attr_target_0001.xsd'));
         
         self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
         self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
@@ -216,8 +227,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessVersionAttributeInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'attr_version_0001.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'attr_version_0001.xsd'));
         
         self::assertSame('foo bar baz qux', $sch->getVersion()->getString());
         self::assertSchemaElementHasOnlyVersionAttribute($sch);
@@ -232,8 +242,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessLangAttributeInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'attr_lang_0001.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'attr_lang_0001.xsd'));
         
         self::assertSame('Foo', $sch->getLang()->getPrimarySubtag());
         self::assertSame([ 'Bar1', 'baZ2', 'qUx3', ], $sch->getLang()->getSubtags());
@@ -248,8 +257,7 @@ class ParserTest extends TestCase
      */
     public function testParseProcessAllAttributesInSchemaElement()
     {
-        $sut = new Parser();
-        $sch = $sut->parse($this->getXs('schema', 'schema_0006.xsd'));
+        $sch = $this->sut->parse($this->getXs('schema', 'schema_0006.xsd'));
         
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
         self::assertSchemaElementBlockDefaultAttribute(FALSE, TRUE, FALSE, $sch);
@@ -284,8 +292,7 @@ class ParserTest extends TestCase
         $this->expectException($exception);
         $this->expectExceptionMessage($message);
         
-        $sut = new Parser();
-        $sut->parse($this->getXs($dir, $fileName));
+        $this->sut->parse($this->getXs($dir, $fileName));
     }
     
     /**
@@ -308,8 +315,7 @@ class ParserTest extends TestCase
         $this->expectException($exception);
         $this->expectExceptionMessage($message);
         
-        $sut = new Parser();
-        $sut->parse($this->getXs($dir, $fileName));
+        $this->sut->parse($this->getXs($dir, $fileName));
     }
     
     /**
