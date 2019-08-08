@@ -356,4 +356,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasSchemaLocation());
     }
+    
+    /**
+     * Asserts that the specified "import" element has only the "namespace" 
+     * attribute.
+     * 
+     * @param   ImportElement   $sut    The element to test.
+     */
+    public static function assertImportElementHasOnlyNamespaceAttribute(
+        ImportElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasNamespace());
+        self::assertFalse($sut->hasSchemaLocation());
+    }
 }

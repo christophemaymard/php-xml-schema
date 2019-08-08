@@ -259,6 +259,7 @@ class SpecificationFactoryTest extends TestCase
             [ 4, 'lang', 'http://www.w3.org/XML/1998/namespace', 'buildLangAttribute', ], 
             // Context: ELT_IMPORT
             [ 5, 'id', '', 'buildIdAttribute', ], 
+            [ 5, 'namespace', '', 'buildNamespaceAttribute', ], 
         ];
     }
 }

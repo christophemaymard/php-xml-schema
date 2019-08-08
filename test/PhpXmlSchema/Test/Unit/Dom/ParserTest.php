@@ -470,6 +470,25 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "namespace" attribute in an "import" 
+     * element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessNamespaceAttributeInImportElement()
+    {
+        $sch = $this->sut->parse($this->getXs('extern', 'import_0005.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $imp = $sch->getImportElements()[0];
+        self::assertImportElementHasOnlyNamespaceAttribute($imp);
+        self::assertSame('http://example.org', $imp->getNamespace()->getUri());
+        self::assertSame([], $imp->getElements());
+    }
+    
+    /**
      * Tests that parse() throws an exception when the content is invalid.
      * 
      * @param   string  $dir        The directory of the file to test.

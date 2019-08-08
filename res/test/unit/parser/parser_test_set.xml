@@ -265,6 +265,13 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- import::namespace -->
+  <test group="attribute" name="[import][attribute::namespace]">
+    <schema dir="extern" fileName="import_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema dir="schema" fileName=".xsd">
