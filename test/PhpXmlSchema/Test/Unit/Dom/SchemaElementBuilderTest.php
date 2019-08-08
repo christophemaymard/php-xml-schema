@@ -465,6 +465,42 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildNamespaceAttribute() creates and sets an AnyUriType 
+     * value in the "namespace" attribute of the "import" element.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $uri    The expected value for the URI.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidAnyUriValues
+     */
+    public function testBuildNamespaceAttributeInImportElement(
+        string $value, 
+        string $uri
+    ) {
+        $this->sut->buildImportElement();
+        $this->sut->buildNamespaceAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        $imp = $sch->getImportElements()[0];
+        self::assertSame($uri, $imp->getNamespace()->getUri());
+    }
+    
+    /**
+     * Tests that buildNamespaceAttribute() throws an exception when the 
+     * value is invalid in an "import" element.
+     * 
+     * @group   attribute
+     */
+    public function testBuildNamespaceAttributeThrowsExceptionWhenValueIsInvalidInImportElement()
+    {
+        $this->expectException(InvalidValueException::class);
+        
+        $this->sut->buildImportElement();
+        $this->sut->buildNamespaceAttribute(':');
+    }
+    
+    /**
      * Tests building methods when the current element is NULL.
      */
     public function testBuildMethodsWhenCurrentElementIsNull()
@@ -478,6 +514,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildNamespaceAttribute(':');
         $this->sut->buildSourceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
@@ -505,6 +542,7 @@ class SchemaElementBuilderTest extends TestCase
     public function testBuildMethodsWhenCurrentElementIsSchema()
     {
         // Uses methods, with invalid values, that must not build attributes.
+        $this->sut->buildNamespaceAttribute(':');
         $this->sut->buildSourceAttribute(':');
         
         // Uses methods that must not build elements.
@@ -570,6 +608,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildBlockDefaultAttribute('foo');
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
+        $this->sut->buildNamespaceAttribute(':');
         $this->sut->buildSourceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
@@ -629,6 +668,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildNamespaceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         $this->sut->buildLangAttribute(':');
@@ -678,6 +718,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildNamespaceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         
@@ -741,6 +782,7 @@ class SchemaElementBuilderTest extends TestCase
         
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildIdAttribute('id');
+        $this->sut->buildNamespaceAttribute('http://example.org');
         
         $sch = $this->sut->getSchema();
         
@@ -750,8 +792,9 @@ class SchemaElementBuilderTest extends TestCase
         
         // Asserts "import".
         $imp = $sch->getImportElements()[0];
-        self::assertImportElementHasOnlyIdAttribute($imp);
+        self::assertFalse($imp->hasSchemaLocation());
         self::assertSame('id', $imp->getId()->getId());
+        self::assertSame('http://example.org', $imp->getNamespace()->getUri());
     }
     
     /**

@@ -135,6 +135,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildNamespaceAttribute(string $value)
+    {
+        if ($this->currentElement instanceof ImportElement) {
+            $this->currentElement->setNamespace(
+                new AnyUriType($this->collapseWhiteSpace($value))
+            );
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSourceAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {
