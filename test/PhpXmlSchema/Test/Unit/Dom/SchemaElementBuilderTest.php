@@ -501,6 +501,44 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildSchemaLocationAttribute() creates and sets an 
+     * AnyUriType value in the "schemaLocation" attribute of the "import" 
+     * element.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $uri    The expected value for the URI.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidAnyUriValues
+     */
+    public function testBuildSchemaLocationAttributeInImportElement(
+        string $value, 
+        string $uri
+    ) {
+        $this->sut->buildImportElement();
+        $this->sut->buildSchemaLocationAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        $imp = $sch->getImportElements()[0];
+        self::assertImportElementHasOnlySchemaLocationAttribute($imp);
+        self::assertSame($uri, $imp->getSchemaLocation()->getUri());
+    }
+    
+    /**
+     * Tests that buildSchemaLocationAttribute() throws an exception when the 
+     * value is invalid in an "import" element.
+     * 
+     * @group   attribute
+     */
+    public function testBuildSchemaLocationAttributeThrowsExceptionWhenValueIsInvalidInImportElement()
+    {
+        $this->expectException(InvalidValueException::class);
+        
+        $this->sut->buildImportElement();
+        $this->sut->buildSchemaLocationAttribute(':');
+    }
+    
+    /**
      * Tests building methods when the current element is NULL.
      */
     public function testBuildMethodsWhenCurrentElementIsNull()
@@ -515,6 +553,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildIdAttribute('foo:bar');
         $this->sut->buildNamespaceAttribute(':');
+        $this->sut->buildSchemaLocationAttribute(':');
         $this->sut->buildSourceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
@@ -543,6 +582,7 @@ class SchemaElementBuilderTest extends TestCase
     {
         // Uses methods, with invalid values, that must not build attributes.
         $this->sut->buildNamespaceAttribute(':');
+        $this->sut->buildSchemaLocationAttribute(':');
         $this->sut->buildSourceAttribute(':');
         
         // Uses methods that must not build elements.
@@ -609,6 +649,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildNamespaceAttribute(':');
+        $this->sut->buildSchemaLocationAttribute(':');
         $this->sut->buildSourceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
@@ -669,6 +710,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildIdAttribute('foo:bar');
         $this->sut->buildNamespaceAttribute(':');
+        $this->sut->buildSchemaLocationAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         $this->sut->buildLangAttribute(':');
@@ -719,6 +761,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildIdAttribute('foo:bar');
         $this->sut->buildNamespaceAttribute(':');
+        $this->sut->buildSchemaLocationAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         
@@ -783,6 +826,7 @@ class SchemaElementBuilderTest extends TestCase
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildIdAttribute('id');
         $this->sut->buildNamespaceAttribute('http://example.org');
+        $this->sut->buildSchemaLocationAttribute('http://example.org/schemaLocation');
         
         $sch = $this->sut->getSchema();
         
@@ -792,9 +836,12 @@ class SchemaElementBuilderTest extends TestCase
         
         // Asserts "import".
         $imp = $sch->getImportElements()[0];
-        self::assertFalse($imp->hasSchemaLocation());
         self::assertSame('id', $imp->getId()->getId());
         self::assertSame('http://example.org', $imp->getNamespace()->getUri());
+        self::assertSame(
+            'http://example.org/schemaLocation', 
+            $imp->getSchemaLocation()->getUri()
+        );
     }
     
     /**

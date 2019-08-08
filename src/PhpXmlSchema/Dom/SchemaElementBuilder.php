@@ -147,6 +147,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildSchemaLocationAttribute(string $value)
+    {
+        if ($this->currentElement instanceof ImportElement) {
+            $this->currentElement->setSchemaLocation(
+                new AnyUriType($this->collapseWhiteSpace($value))
+            );
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSourceAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {
