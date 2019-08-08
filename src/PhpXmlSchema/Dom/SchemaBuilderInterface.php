@@ -116,6 +116,14 @@ interface SchemaBuilderInterface
     public function buildLangAttribute(string $value);
     
     /**
+     * Builds an "annotation" element (composition).
+     * 
+     * If the current element does not support the element then it is not 
+     * built.
+     */
+    public function buildCompositionAnnotationElement();
+    
+    /**
      * Builds a "schema" element.
      * 
      * A new instance is created that replaces the "schema" element and the 

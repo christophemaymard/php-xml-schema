@@ -2,6 +2,21 @@
 
 ## Element: "schema"
 
+```
+<schema
+  attributeFormDefault = (qualified | unqualified)
+  blockDefault = (#all | List of (extension | restriction | substitution))
+  elementFormDefault = (qualified | unqualified)
+  finalDefault = (#all | List of (extension | restriction | list | union))
+  id = ID
+  targetNamespace = anyURI
+  version = token
+  xml:lang = language
+>
+  Content: ((include | import | redefine | annotation)*, (((simpleType | complexType | group | attributeGroup) | element | attribute | notation), annotation*)*)
+</schema>
+```
+
 - [x] Parse **schema** element.
 - [x] Parse **attributeFormDefault** attribute.
 - [x] Parse **blockDefault** attribute (collapsing white spaces).
@@ -12,4 +27,32 @@
 - [x] Parse **version** attribute (collapsing white spaces).
 - [x] Parse **xml:lang** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
+- [ ] Parse **include** elements.
+- [ ] Parse **import** elements.
+- [ ] Parse **redefine** elements.
+- [x] Parse **annotation** elements (composition).
+- [ ] Parse **simpleType** elements.
+- [ ] Parse **complexType** elements.
+- [ ] Parse **group** elements.
+- [ ] Parse **attributeGroup** elements.
+- [ ] Parse **element** elements.
+- [ ] Parse **attribute** elements.
+- [ ] Parse **notation** elements.
+- [ ] Parse **annotation** elements (definition).
+
+## Element: "annotation"
+
+```
+<annotation
+  id = ID
+>
+  Content: (appinfo | documentation)*
+</annotation>
+```
+
+- [x] Parse **annotation** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **appinfo** elements.
+- [ ] Parse **documentation** elements.
 

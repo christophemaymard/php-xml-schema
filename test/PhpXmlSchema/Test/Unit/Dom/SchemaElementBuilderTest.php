@@ -445,8 +445,13 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         $this->sut->buildLangAttribute(':');
+        
+        // Uses methods that must not build elements.
+        $this->sut->buildCompositionAnnotationElement();
+        
         $sch = $this->sut->getSchema();
         
+        // Asserts "schema".
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
@@ -466,9 +471,13 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildVersionAttribute('1.0');
         $this->sut->buildLangAttribute('en-us');
         
+        // Uses methods that must build elements.
+        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->endElement();
+        
         $sch = $this->sut->getSchema();
         
-        // Asserts attributes.
+        // Asserts "schema".
         self::assertTrue($sch->getAttributeFormDefault()->isQualified());
         self::assertSchemaElementBlockDefaultAttribute(FALSE, TRUE, FALSE, $sch);
         self::assertTrue($sch->getElementFormDefault()->isUnqualified());
@@ -478,10 +487,47 @@ class SchemaElementBuilderTest extends TestCase
         self::assertSame('1.0', $sch->getVersion()->getString());
         self::assertSame('en', $sch->getLang()->getPrimarySubtag());
         self::assertSame(['us'], $sch->getLang()->getSubtags());
+        self::assertCount(1, $sch->getElements());
         
-        // Asserts content.
-        $elts = $sch->getElements();
-        self::assertCount(0, $elts);
+        // Asserts "annotation" (composition).
+        self::assertCount(1, $sch->getCompositionAnnotationElements());
+        $ann1 = $sch->getCompositionAnnotationElements()[0];
+        self::assertAnnotationElementHasNoAttribute($ann1);
+        self::assertSame([], $ann1->getElements());
+    }
+    
+    /**
+     * Tests building methods when the current element is an "annotation" 
+     * element.
+     */
+    public function testBuildMethodsWhenCurrentElementIsAnnotation()
+    {
+        $this->sut->buildCompositionAnnotationElement();
+        
+        // Uses methods, with invalid values, that must not build attributes.
+        $this->sut->buildAttributeFormDefaultAttribute('foo');
+        $this->sut->buildBlockDefaultAttribute('foo');
+        $this->sut->buildElementFormDefaultAttribute('foo');
+        $this->sut->buildFinalDefaultAttribute('foo');
+        $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildTargetNamespaceAttribute(':');
+        $this->sut->buildVersionAttribute("\u{001F}");
+        $this->sut->buildLangAttribute(':');
+        
+        // Uses methods that must not build elements.
+        $this->sut->buildCompositionAnnotationElement();
+        
+        $sch = $this->sut->getSchema();
+        
+        // Asserts "schema".
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        // Asserts "annotation" (composition).
+        self::assertCount(1, $sch->getCompositionAnnotationElements());
+        $ann = $sch->getCompositionAnnotationElements()[0];
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertCount(0, $ann->getElements());
     }
     
     /**

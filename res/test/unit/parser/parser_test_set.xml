@@ -24,7 +24,7 @@
   <test group="content" name="schema foo child element is not supported in the schema element">
     <schema dir="schema" fileName="schema_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation".</message>
     </schema>
   </test>
   <test group="attribute" name="schema unsupported attribute: no namespace">
@@ -164,6 +164,22 @@
     <schema dir="schema" fileName="attr_lang_0008.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"baz+" is an invalid subtag.</message>
+    </schema>
+  </test>
+  <!-- ################################################################### -->
+  <!-- ################################################################### -->
+  <!-- ################################################################### -->
+  <!-- annotation -->
+  <test group="content" name="[annotation][composition][schema] not part of the XML Schema 1.0 namespace">
+    <schema dir="annotation" fileName="schema_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
+    </schema>
+  </test>
+  <test group="content" name="[annotation][composition][schema] node not white space neither comment">
+    <schema dir="annotation" fileName="schema_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The node is not allowed ("foo").</message>
     </schema>
   </test>
   <!-- TEMPLATE

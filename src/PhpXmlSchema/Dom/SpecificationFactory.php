@@ -26,6 +26,8 @@ class SpecificationFactory
      */
     private $initialStates = [
         ContextId::ELT_ROOT => 0, 
+        ContextId::ELT_SCHEMA => 0, 
+        ContextId::ELT_COMPOSITION_ANNOTATION => 0, 
     ];
     
     /**
@@ -35,6 +37,9 @@ class SpecificationFactory
     private $transitionElementNames = [
         ContextId::ELT_ROOT => [
             [ 0, ContextId::ELT_SCHEMA, 'schema', ], 
+        ], 
+        ContextId::ELT_SCHEMA => [
+            [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 'annotation', ], 
         ], 
     ];
     
@@ -47,6 +52,9 @@ class SpecificationFactory
         ContextId::ELT_ROOT => [
             [ 0, ContextId::ELT_SCHEMA, 'buildSchemaElement', ], 
         ], 
+        ContextId::ELT_SCHEMA => [
+            [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 'buildCompositionAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -56,6 +64,9 @@ class SpecificationFactory
     private $transitionNextStates = [
         ContextId::ELT_ROOT => [
             [ 0, ContextId::ELT_SCHEMA, 1, ], 
+        ], 
+        ContextId::ELT_SCHEMA => [
+            [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 0, ], 
         ], 
     ];
     

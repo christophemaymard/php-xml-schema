@@ -16,4 +16,5 @@ class ContextId
 {
     const ELT_ROOT = 0;
     const ELT_SCHEMA = 1;
+    const ELT_COMPOSITION_ANNOTATION = 2;
 }

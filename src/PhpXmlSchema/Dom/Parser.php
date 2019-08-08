@@ -38,6 +38,11 @@ class Parser
     private $ctx;
     
     /**
+     * @var ParserContext[]
+     */
+    private $ctxStack = [];
+    
+    /**
      * The instance of SchemaElementBuilder used when parsing a document.
      * @var SchemaElementBuilder|NULL
      */
@@ -82,6 +87,7 @@ class Parser
         
         $this->builder = new SchemaElementBuilder();
         $this->specFactory = new SpecificationFactory();
+        $this->ctxStack = [];
         $this->ctx = new ParserContext($this->specFactory->create(ContextId::ELT_ROOT));
     }
     
@@ -111,7 +117,40 @@ class Parser
      */
     private function findNextNode():bool
     {
-        return $this->xt->moveToFirstChildNode() || $this->xt->moveToNextNode();
+        if ($this->xt->isElementNode()) {
+            if ($this->xt->moveToFirstChildNode()) {
+                return TRUE;
+            }
+            
+            $this->finishParsingElement();
+        }
+        
+        if ($this->xt->moveToNextNode()) {
+            return TRUE;
+        }
+        
+        // Moves to the first available next node of ancestors.
+        while ($this->xt->moveToParentNode()) {
+            if ($this->xt->isElementNode()) {
+                $this->finishParsingElement();
+            }
+            
+            if ($this->xt->moveToNextNode()) {
+                return TRUE;
+            }
+        }
+        
+        return FALSE;
+    }
+    
+    /**
+     * Finish parsing the current element.
+     */
+    private function finishParsingElement()
+    {
+        $this->builder->endElement();
+        
+        $this->ctx = \array_pop($this->ctxStack);
     }
     
     /**
@@ -121,7 +160,8 @@ class Parser
      */
     private function parseElementNode()
     {
-        if (!$this->ctx->isElementAccepted($this->xt->getLocalName())) {
+        if ($this->xt->getNamespace() != XmlNamespace::XML_SCHEMA_1_0 || 
+            !$this->ctx->isElementAccepted($this->xt->getLocalName())) {
             throw new InvalidOperationException(Message::unexpectedElement(
                 $this->xt->getLocalName(), 
                 $this->xt->getNamespace(), 
@@ -131,7 +171,8 @@ class Parser
         
         $cid = $this->ctx->createElement($this->xt->getLocalName(), $this->builder);
         
-        // Creates a context for the created element.
+        // Pushes the current context and creates a new one for the created element.
+        $this->ctxStack[] = $this->ctx;
         $this->ctx = new ParserContext($this->specFactory->create($cid));
         
         // Parses the attributes.

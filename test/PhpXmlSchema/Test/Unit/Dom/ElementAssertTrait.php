@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom;
 
+use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
 /**
@@ -242,5 +243,15 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasTargetNamespace());
         self::assertFalse($sut->hasVersion());
         self::assertTrue($sut->hasLang());
+    }
+    
+    /**
+     * Asserts that the specified "annotation" element has no attribute.
+     * 
+     * @param   AnnotationElement   $sut    The element to test.
+     */
+    public static function assertAnnotationElementHasNoAttribute(AnnotationElement $sut)
+    {
+        self::assertFalse($sut->hasId());
     }
 }
