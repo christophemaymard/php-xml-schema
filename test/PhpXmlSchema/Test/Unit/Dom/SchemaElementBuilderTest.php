@@ -667,7 +667,6 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildIdAttribute('foo:bar');
-        $this->sut->buildSourceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         $this->sut->buildLangAttribute(':');
@@ -676,6 +675,9 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
         $this->sut->buildDocumentationElement();
+        
+        // Uses methods, with valid values, that must build attributes.
+        $this->sut->buildSourceAttribute('http://example.org');
         
         // Uses method that must build content.
         $this->sut->buildLeafElementContent('foo bar baz');
@@ -693,7 +695,8 @@ class SchemaElementBuilderTest extends TestCase
         
         // Asserts "documentation".
         $doc = $ann->getDocumentationElements()[0];
-        self::assertDocumentationElementHasNoAttribute($doc);
+        self::assertDocumentationElementHasOnlySourceAttribute($doc);
+        self::assertSame('http://example.org', $doc->getSource()->getUri());
         self::assertSame('foo bar baz', $doc->getContent());
     }
     

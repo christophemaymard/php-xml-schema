@@ -136,10 +136,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildSourceAttribute(string $value)
     {
-        if ($this->currentElement instanceof AppInfoElement) {
-            $this->currentElement->setSource(
-                new AnyUriType($this->collapseWhiteSpace($value))
-            );
+        if ($this->currentElement instanceof ElementInterface) {
+            $eid = $this->currentElement->getElementId();
+            
+            if ($eid == ElementId::ELT_APPINFO || $eid == ElementId::ELT_DOCUMENTATION) {
+                $this->currentElement->setSource(
+                    new AnyUriType($this->collapseWhiteSpace($value))
+                );
+            }
         }
     }
     

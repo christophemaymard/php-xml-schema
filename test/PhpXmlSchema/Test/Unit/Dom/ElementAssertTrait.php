@@ -302,4 +302,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasSource());
         self::assertFalse($sut->hasLang());
     }
+    
+    /**
+     * Asserts that the specified "documentation" element has only the 
+     * "source" attribute.
+     * 
+     * @param   DocumentationElement    $sut    The element to test.
+     */
+    public static function assertDocumentationElementHasOnlySourceAttribute(
+        DocumentationElement $sut
+    ) {
+        self::assertTrue($sut->hasSource());
+        self::assertFalse($sut->hasLang());
+    }
 }
