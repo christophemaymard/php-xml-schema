@@ -126,6 +126,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch($this->currentElement->getElementId()) {
                 case ElementId::ELT_SCHEMA:
                 case ElementId::ELT_ANNOTATION:
+                case ElementId::ELT_IMPORT:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }

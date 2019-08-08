@@ -342,4 +342,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasSchemaLocation());
     }
+    
+    /**
+     * Asserts that the specified "import" element has only the "id" 
+     * attribute.
+     * 
+     * @param   ImportElement   $sut    The element to test.
+     */
+    public static function assertImportElementHasOnlyIdAttribute(
+        ImportElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasNamespace());
+        self::assertFalse($sut->hasSchemaLocation());
+    }
 }

@@ -725,7 +725,6 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildBlockDefaultAttribute('foo');
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
-        $this->sut->buildIdAttribute('foo:bar');
         $this->sut->buildSourceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
@@ -740,6 +739,9 @@ class SchemaElementBuilderTest extends TestCase
         // Uses method that must not build content.
         $this->sut->buildLeafElementContent('foo bar baz');
         
+        // Uses methods, with valid values, that must build attributes.
+        $this->sut->buildIdAttribute('id');
+        
         $sch = $this->sut->getSchema();
         
         // Asserts "schema".
@@ -748,7 +750,8 @@ class SchemaElementBuilderTest extends TestCase
         
         // Asserts "import".
         $imp = $sch->getImportElements()[0];
-        self::assertImportElementHasNoAttribute($imp);
+        self::assertImportElementHasOnlyIdAttribute($imp);
+        self::assertSame('id', $imp->getId()->getId());
     }
     
     /**
