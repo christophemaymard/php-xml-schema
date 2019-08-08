@@ -217,6 +217,13 @@
       <message>The "appinfo" element (from no namespace) is unexpected, expected: "appinfo".</message>
     </schema>
   </test>
+  <!-- appinfo::source -->
+  <test group="attribute" name="[appinfo][attribute::source]">
+    <schema dir="annotation" fileName="appinfo_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema dir="schema" fileName=".xsd">

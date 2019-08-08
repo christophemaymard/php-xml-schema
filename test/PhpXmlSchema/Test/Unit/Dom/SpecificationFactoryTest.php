@@ -245,6 +245,8 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 'lang', 'http://www.w3.org/XML/1998/namespace', 'buildLangAttribute', ], 
             // Context: ELT_COMPOSITION_ANNOTATION
             [ 2, 'id', '', 'buildIdAttribute', ], 
+            // Context: ELT_APPINFO
+            [ 3, 'source', '', 'buildSourceAttribute', ], 
         ];
     }
 }

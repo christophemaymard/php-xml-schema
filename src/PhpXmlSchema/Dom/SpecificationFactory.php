@@ -99,6 +99,7 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
         ], 
         ContextId::ELT_APPINFO => [
+            [ 'source', '', 'buildSourceAttribute', ], 
         ], 
     ];
     

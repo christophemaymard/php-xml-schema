@@ -67,7 +67,7 @@
 ```
 
 - [x] Parse **appinfo** element.
-- [ ] Parse **source** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Parse **source** attribute (collapsing white spaces).
+- [x] Other attributes are not supported.
 - [x] Parse content.
 
