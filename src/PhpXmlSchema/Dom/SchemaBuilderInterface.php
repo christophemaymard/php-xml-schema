@@ -144,6 +144,17 @@ interface SchemaBuilderInterface
     public function buildSchemaElement();
     
     /**
+     * Builds the content of a leaf element.
+     * 
+     * If the current element is not a leaf element then it is not built.
+     * 
+     * In any case, the current element does not change.
+     * 
+     * @param   string  $content    The content to set in the element.
+     */
+    public function buildLeafElementContent(string $content);
+    
+    /**
      * Updates the current element with the parent element of the current 
      * element that is being built.
      * 

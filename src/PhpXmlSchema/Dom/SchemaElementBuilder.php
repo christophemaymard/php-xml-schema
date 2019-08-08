@@ -202,6 +202,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function buildLeafElementContent(string $content)
+    {
+        if ($this->currentElement instanceof LeafElementInterface) {
+            $this->currentElement->setContent($content);
+        }
+    }
+    
+    /**
      * Returns the instance of the "schema" element that has been built.
      * 
      * @return  SchemaElement

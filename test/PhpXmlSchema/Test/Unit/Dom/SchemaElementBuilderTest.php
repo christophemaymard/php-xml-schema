@@ -450,6 +450,9 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
         
+        // Uses method that must not build content.
+        $this->sut->buildLeafElementContent('foo bar baz');
+        
         $sch = $this->sut->getSchema();
         
         // Asserts "schema".
@@ -464,6 +467,9 @@ class SchemaElementBuilderTest extends TestCase
     {
         // Uses methods that must not build elements.
         $this->sut->buildAppInfoElement();
+        
+        // Uses method that must not build content.
+        $this->sut->buildLeafElementContent('foo bar baz');
         
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildAttributeFormDefaultAttribute('qualified');
@@ -520,6 +526,9 @@ class SchemaElementBuilderTest extends TestCase
         // Uses methods that must not build elements.
         $this->sut->buildCompositionAnnotationElement();
         
+        // Uses method that must not build content.
+        $this->sut->buildLeafElementContent('foo bar baz');
+        
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildIdAttribute('id');
         
@@ -568,6 +577,9 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
         
+        // Uses method that must build content.
+        $this->sut->buildLeafElementContent('foo bar baz');
+        
         $sch = $this->sut->getSchema();
         
         // Asserts "schema".
@@ -582,7 +594,7 @@ class SchemaElementBuilderTest extends TestCase
         // Asserts "appinfo".
         $appinfo = $ann->getAppInfoElements()[0];
         self::assertAppInfoElementHasNoAttribute($appinfo);
-        self::assertSame('', $appinfo->getContent());
+        self::assertSame('foo bar baz', $appinfo->getContent());
     }
     
     /**

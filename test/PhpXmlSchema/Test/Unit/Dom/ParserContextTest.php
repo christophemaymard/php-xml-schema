@@ -481,6 +481,8 @@ class ParserContextTest extends TestCase
             public function buildAppInfoElement() {}
             public function buildSchemaElement() {}
             
+            public function buildLeafElementContent(string $content) {}
+            
             public function endElement() {}
         };
     }
