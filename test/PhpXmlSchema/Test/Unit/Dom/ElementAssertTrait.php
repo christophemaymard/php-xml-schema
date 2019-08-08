@@ -315,4 +315,17 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasSource());
         self::assertFalse($sut->hasLang());
     }
+    
+    /**
+     * Asserts that the specified "documentation" element has only the 
+     * "xml:lang" attribute.
+     * 
+     * @param   DocumentationElement    $sut    The element to test.
+     */
+    public static function assertDocumentationElementHasOnlyLangAttribute(
+        DocumentationElement $sut
+    ) {
+        self::assertFalse($sut->hasSource());
+        self::assertTrue($sut->hasLang());
+    }
 }

@@ -176,12 +176,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildLangAttribute(string $value)
     {
-        if ($this->currentElement instanceof SchemaElement) {
-            $tags = \explode('-', $this->collapseWhiteSpace($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            $eid = $this->currentElement->getElementId();
             
-            $this->currentElement->setLang(
-                new LanguageType(\array_shift($tags), $tags)
-            );
+            if ($eid == ElementId::ELT_SCHEMA || $eid == ElementId::ELT_DOCUMENTATION) {
+                $tags = \explode('-', $this->collapseWhiteSpace($value));
+
+                $this->currentElement->setLang(
+                    new LanguageType(\array_shift($tags), $tags)
+                );
+            }
         }
     }
     
