@@ -489,6 +489,25 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "schemaLocation" attribute in an "import" 
+     * element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessSchemaLocationAttributeInImportElement()
+    {
+        $sch = $this->sut->parse($this->getXs('extern', 'import_0007.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $imp = $sch->getImportElements()[0];
+        self::assertImportElementHasOnlySchemaLocationAttribute($imp);
+        self::assertSame('http://example.org', $imp->getSchemaLocation()->getUri());
+        self::assertSame([], $imp->getElements());
+    }
+    
+    /**
      * Tests that parse() throws an exception when the content is invalid.
      * 
      * @param   string  $dir        The directory of the file to test.

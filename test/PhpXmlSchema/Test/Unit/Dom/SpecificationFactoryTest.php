@@ -260,6 +260,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_IMPORT
             [ 5, 'id', '', 'buildIdAttribute', ], 
             [ 5, 'namespace', '', 'buildNamespaceAttribute', ], 
+            [ 5, 'schemaLocation', '', 'buildSchemaLocationAttribute', ], 
         ];
     }
 }

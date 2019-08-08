@@ -115,6 +115,7 @@ class SpecificationFactory
         ContextId::ELT_IMPORT => [
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'namespace', '', 'buildNamespaceAttribute', ], 
+            [ 'schemaLocation', '', 'buildSchemaLocationAttribute', ], 
         ],
     ];
     

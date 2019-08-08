@@ -272,6 +272,13 @@
       <message>"" is an invalid scheme.</message>
     </schema>
   </test>
+  <!-- import::schemaLocation -->
+  <test group="attribute" name="[import][attribute::schemaLocation]">
+    <schema dir="extern" fileName="import_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema dir="schema" fileName=".xsd">
