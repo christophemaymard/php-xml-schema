@@ -187,6 +187,7 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 'annotation', ], // ELT_COMPOSITION_ANNOTATION
             // Context: ELT_COMPOSITION_ANNOTATION
             [ 2, 0, 3, 'appinfo', ], // ELT_APPINFO
+            [ 2, 0, 4, 'documentation', ], // ELT_DOCUMENTATION
         ];
     }
     
@@ -205,6 +206,7 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 'buildCompositionAnnotationElement', ], // ELT_COMPOSITION_ANNOTATION
             // Context: ELT_COMPOSITION_ANNOTATION
             [ 2, 0, 3, 'buildAppInfoElement', ], // ELT_APPINFO
+            [ 2, 0, 4, 'buildDocumentationElement', ], // ELT_DOCUMENTATION
         ];
     }
     
@@ -223,6 +225,7 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 0, ], // ELT_COMPOSITION_ANNOTATION
             // Context: ELT_COMPOSITION_ANNOTATION
             [ 2, 0, 3, 0, ], // ELT_APPINFO
+            [ 2, 0, 4, 0, ], // ELT_DOCUMENTATION
         ];
     }
     

@@ -43,6 +43,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_COMPOSITION_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'appinfo', ], 
+            [ 0, ContextId::ELT_DOCUMENTATION, 'documentation', ], 
         ], 
     ];
     
@@ -60,6 +61,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_COMPOSITION_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'buildAppInfoElement', ], 
+            [ 0, ContextId::ELT_DOCUMENTATION, 'buildDocumentationElement', ], 
         ], 
     ];
     
@@ -76,6 +78,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_COMPOSITION_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 0, ], 
+            [ 0, ContextId::ELT_DOCUMENTATION, 0, ], 
         ], 
     ];
     
@@ -100,6 +103,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_APPINFO => [
             [ 'source', '', 'buildSourceAttribute', ], 
+        ], 
+        ContextId::ELT_DOCUMENTATION => [
         ], 
     ];
     

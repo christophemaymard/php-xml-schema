@@ -1,0 +1,6 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>foo</xs:documentation>
+    <xs:documentation>bar</xs:documentation>
+  </xs:annotation>
+</xs:schema>

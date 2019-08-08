@@ -214,7 +214,7 @@
   <test group="content" name="[appinfo] not part of the XML Schema 1.0 namespace">
     <schema dir="annotation" fileName="appinfo_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "appinfo" element (from no namespace) is unexpected, expected: "appinfo".</message>
+      <message>The "appinfo" element (from no namespace) is unexpected, expected: "appinfo" or "documentation".</message>
     </schema>
   </test>
   <!-- appinfo::source -->
@@ -222,6 +222,16 @@
     <schema dir="annotation" fileName="appinfo_0004.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
+  <!-- ################################################################### -->
+  <!-- ################################################################### -->
+  <!-- ################################################################### -->
+  <!-- documentation -->
+  <test group="content" name="[documentation] not part of the XML Schema 1.0 namespace">
+    <schema dir="annotation" fileName="documentation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "documentation" element (from no namespace) is unexpected, expected: "appinfo" or "documentation".</message>
     </schema>
   </test>
   <!-- TEMPLATE

@@ -54,7 +54,7 @@
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **appinfo** elements.
-- [ ] Parse **documentation** elements.
+- [x] Parse **documentation** elements.
 
 ## Element: "appinfo"
 
@@ -69,5 +69,22 @@
 - [x] Parse **appinfo** element.
 - [x] Parse **source** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
+- [x] Parse content.
+
+## Element: "documentation"
+
+```
+<documentation
+  source = anyURI
+  xml:lang = language
+>
+  Content: ({any})*
+</documentation>
+```
+
+- [x] Parse **documentation** element.
+- [ ] Parse **source** attribute (collapsing white spaces).
+- [ ] Parse **xml:lang** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
 - [x] Parse content.
 
