@@ -406,6 +406,30 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "xml:lang" attribute in a "documentation" 
+     * element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessLangAttributeInDocumentationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('annotation', 'documentation_0005.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ann = $sch->getCompositionAnnotationElements()[0];
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertCount(1, $ann->getElements());
+        
+        $doc = $ann->getDocumentationElements()[0];
+        self::assertDocumentationElementHasOnlyLangAttribute($doc);
+        self::assertSame('Foo', $doc->getLang()->getPrimarySubtag());
+        self::assertSame([ 'Bar1', 'baZ2', 'qUx3', ], $doc->getLang()->getSubtags());
+        self::assertSame('', $doc->getContent());
+    }
+    
+    /**
      * Tests that parse() throws an exception when the content is invalid.
      * 
      * @param   string  $dir        The directory of the file to test.

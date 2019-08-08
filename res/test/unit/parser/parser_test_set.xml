@@ -241,6 +241,13 @@
       <message>"" is an invalid scheme.</message>
     </schema>
   </test>
+  <!-- documentation::xml:lang -->
+  <test group="attribute" name="[documentation][attribute::xml:lang]">
+    <schema dir="annotation" fileName="documentation_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>":" is an invalid primary subtag.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema dir="schema" fileName=".xsd">

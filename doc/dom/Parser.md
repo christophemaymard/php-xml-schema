@@ -84,7 +84,7 @@
 
 - [x] Parse **documentation** element.
 - [x] Parse **source** attribute (collapsing white spaces).
-- [ ] Parse **xml:lang** attribute (collapsing white spaces).
+- [x] Parse **xml:lang** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse content.
 

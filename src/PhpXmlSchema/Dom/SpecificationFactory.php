@@ -106,6 +106,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_DOCUMENTATION => [
             [ 'source', '', 'buildSourceAttribute', ], 
+            [ 'lang', XmlNamespace::XML_1_0, 'buildLangAttribute', ], 
         ], 
     ];
     
