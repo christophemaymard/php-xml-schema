@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\DocumentationElement;
+use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
 /**
@@ -327,5 +328,18 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasSource());
         self::assertTrue($sut->hasLang());
+    }
+    
+    /**
+     * Asserts that the specified "import" element has no attribute.
+     * 
+     * @param   ImportElement   $sut    The element to test.
+     */
+    public static function assertImportElementHasNoAttribute(
+        ImportElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasNamespace());
+        self::assertFalse($sut->hasSchemaLocation());
     }
 }

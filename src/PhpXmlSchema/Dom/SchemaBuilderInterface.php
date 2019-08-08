@@ -158,6 +158,16 @@ interface SchemaBuilderInterface
     public function buildDocumentationElement();
     
     /**
+     * Builds an "import" element.
+     * 
+     * If the current element supports the element then:
+     * - a new instance is created, and 
+     * - the created instance is added or set to the current element, and 
+     * - the created instance becomes the current element.
+     */
+    public function buildImportElement();
+    
+    /**
      * Builds a "schema" element.
      * 
      * A new instance is created that replaces the "schema" element and the 

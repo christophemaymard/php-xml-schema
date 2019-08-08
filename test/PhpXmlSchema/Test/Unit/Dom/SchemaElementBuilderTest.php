@@ -487,6 +487,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
         $this->sut->buildDocumentationElement();
+        $this->sut->buildImportElement();
         
         // Uses method that must not build content.
         $this->sut->buildLeafElementContent('foo bar baz');
@@ -526,6 +527,8 @@ class SchemaElementBuilderTest extends TestCase
         // Uses methods that must build elements.
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->endElement();
+        $this->sut->buildImportElement();
+        $this->sut->endElement();
         
         $sch = $this->sut->getSchema();
         
@@ -539,13 +542,19 @@ class SchemaElementBuilderTest extends TestCase
         self::assertSame('1.0', $sch->getVersion()->getString());
         self::assertSame('en', $sch->getLang()->getPrimarySubtag());
         self::assertSame(['us'], $sch->getLang()->getSubtags());
-        self::assertCount(1, $sch->getElements());
+        self::assertCount(2, $sch->getElements());
         
         // Asserts "annotation" (composition).
         self::assertCount(1, $sch->getCompositionAnnotationElements());
-        $ann1 = $sch->getCompositionAnnotationElements()[0];
+        $ann1 = $sch->getElements()[0];
         self::assertAnnotationElementHasNoAttribute($ann1);
         self::assertSame([], $ann1->getElements());
+        
+        // Asserts "import".
+        self::assertCount(1, $sch->getImportElements());
+        $imp = $sch->getElements()[1];
+        self::assertImportElementHasNoAttribute($imp);
+        self::assertSame([], $imp->getElements());
     }
     
     /**
@@ -568,6 +577,7 @@ class SchemaElementBuilderTest extends TestCase
         
         // Uses methods that must not build elements.
         $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildImportElement();
         
         // Uses method that must not build content.
         $this->sut->buildLeafElementContent('foo bar baz');
@@ -627,6 +637,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
         $this->sut->buildDocumentationElement();
+        $this->sut->buildImportElement();
         
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildSourceAttribute('http://example.org');
@@ -674,6 +685,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
         $this->sut->buildDocumentationElement();
+        $this->sut->buildImportElement();
         
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildSourceAttribute('http://example.org');
@@ -699,6 +711,44 @@ class SchemaElementBuilderTest extends TestCase
         self::assertSame('en', $doc->getLang()->getPrimarySubtag());
         self::assertSame([ 'us' ], $doc->getLang()->getSubtags());
         self::assertSame('foo bar baz', $doc->getContent());
+    }
+    
+    /**
+     * Tests building methods when the current element is an "import" element.
+     */
+    public function testBuildMethodsWhenCurrentElementIsImport()
+    {
+        $this->sut->buildImportElement();
+        
+        // Uses methods, with invalid values, that must not build attributes.
+        $this->sut->buildAttributeFormDefaultAttribute('foo');
+        $this->sut->buildBlockDefaultAttribute('foo');
+        $this->sut->buildElementFormDefaultAttribute('foo');
+        $this->sut->buildFinalDefaultAttribute('foo');
+        $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildSourceAttribute(':');
+        $this->sut->buildTargetNamespaceAttribute(':');
+        $this->sut->buildVersionAttribute("\u{001F}");
+        $this->sut->buildLangAttribute(':');
+        
+        // Uses methods that must not build elements.
+        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildAppInfoElement();
+        $this->sut->buildDocumentationElement();
+        $this->sut->buildImportElement();
+        
+        // Uses method that must not build content.
+        $this->sut->buildLeafElementContent('foo bar baz');
+        
+        $sch = $this->sut->getSchema();
+        
+        // Asserts "schema".
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        // Asserts "import".
+        $imp = $sch->getImportElements()[0];
+        self::assertImportElementHasNoAttribute($imp);
     }
     
     /**

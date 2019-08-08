@@ -228,6 +228,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildImportElement()
+    {
+        if ($this->currentElement instanceof SchemaElement) {
+            $elt = new ImportElement();
+            $this->currentElement->addImportElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaElement()
     {
         $this->schemaElement = $this->currentElement = new SchemaElement();
