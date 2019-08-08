@@ -277,4 +277,16 @@ trait ElementAssertTrait
     {
         self::assertFalse($sut->hasSource());
     }
+    
+    /**
+     * Asserts that the specified "appinfo" element has only the "source" 
+     * attribute.
+     * 
+     * @param   AppInfoElement  $sut    The element to test.
+     */
+    public static function assertAppInfoElementHasOnlySourceAttribute(
+        AppInfoElement $sut
+    ) {
+        self::assertTrue($sut->hasSource());
+    }
 }

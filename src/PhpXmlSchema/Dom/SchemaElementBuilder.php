@@ -134,6 +134,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildSourceAttribute(string $value)
+    {
+        if ($this->currentElement instanceof AppInfoElement) {
+            $this->currentElement->setSource(
+                new AnyUriType($this->collapseWhiteSpace($value))
+            );
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildTargetNamespaceAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {

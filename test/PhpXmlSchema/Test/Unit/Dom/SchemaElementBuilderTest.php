@@ -429,6 +429,42 @@ class SchemaElementBuilderTest extends TestCase
     }
     
     /**
+     * Tests that buildSourceAttribute() creates and sets an AnyUriType value 
+     * in the "source" attribute of the "appinfo" element.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $uri    The expected value for the URI.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidAnyUriValues
+     */
+    public function testBuildSourceAttribute(string $value, string $uri)
+    {
+        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildAppInfoElement();
+        $this->sut->buildSourceAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        $appinfo = $sch->getCompositionAnnotationElements()[0]->getAppInfoElements()[0];
+        self::assertSame($uri, $appinfo->getSource()->getUri());
+    }
+    
+    /**
+     * Tests that buildSourceAttribute() throws an exception when the value 
+     * is invalid.
+     * 
+     * @group   attribute
+     */
+    public function testBuildSourceAttributeThrowsExceptionWhenValueIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        
+        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildAppInfoElement();
+        $this->sut->buildSourceAttribute(':');
+    }
+    
+    /**
      * Tests building methods when the current element is NULL.
      */
     public function testBuildMethodsWhenCurrentElementIsNull()
@@ -442,6 +478,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildSourceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         $this->sut->buildLangAttribute(':');
@@ -465,6 +502,9 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildMethodsWhenCurrentElementIsSchema()
     {
+        // Uses methods, with invalid values, that must not build attributes.
+        $this->sut->buildSourceAttribute(':');
+        
         // Uses methods that must not build elements.
         $this->sut->buildAppInfoElement();
         
@@ -519,6 +559,7 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildBlockDefaultAttribute('foo');
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
+        $this->sut->buildSourceAttribute(':');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         $this->sut->buildLangAttribute(':');
@@ -577,6 +618,9 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
         
+        // Uses methods, with valid values, that must build attributes.
+        $this->sut->buildSourceAttribute('http://example.org');
+        
         // Uses method that must build content.
         $this->sut->buildLeafElementContent('foo bar baz');
         
@@ -593,7 +637,8 @@ class SchemaElementBuilderTest extends TestCase
         
         // Asserts "appinfo".
         $appinfo = $ann->getAppInfoElements()[0];
-        self::assertAppInfoElementHasNoAttribute($appinfo);
+        self::assertAppInfoElementHasOnlySourceAttribute($appinfo);
+        self::assertSame('http://example.org', $appinfo->getSource()->getUri());
         self::assertSame('foo bar baz', $appinfo->getContent());
     }
     
