@@ -112,6 +112,9 @@ class SpecificationFactory
             [ 'source', '', 'buildSourceAttribute', ], 
             [ 'lang', XmlNamespace::XML_1_0, 'buildLangAttribute', ], 
         ], 
+        ContextId::ELT_IMPORT => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ],
     ];
     
     /**

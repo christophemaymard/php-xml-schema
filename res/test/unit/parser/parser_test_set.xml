@@ -258,6 +258,13 @@
       <message>The "import" element (from no namespace) is unexpected, expected: "annotation" or "import".</message>
     </schema>
   </test>
+  <!-- import::id -->
+  <test group="attribute" name="[import][attribute::id]">
+    <schema dir="extern" fileName="import_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo:bar" is an invalid ID.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema dir="schema" fileName=".xsd">

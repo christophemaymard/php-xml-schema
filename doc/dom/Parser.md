@@ -101,8 +101,8 @@
 ```
 
 - [x] Parse **import** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **namespace** attribute (collapsing white spaces).
 - [ ] Parse **schemaLocation** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Others attributes are not supported.
 - [ ] Parse **annotation** element.

@@ -452,6 +452,24 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "id" attribute in an "import" element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessIdAttributeInImportElement()
+    {
+        $sch = $this->sut->parse($this->getXs('extern', 'import_0003.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $imp = $sch->getImportElements()[0];
+        self::assertSame('import_id', $imp->getId()->getId());
+        self::assertImportElementHasOnlyIdAttribute($imp);
+        self::assertSame([], $imp->getElements());
+    }
+    
+    /**
      * Tests that parse() throws an exception when the content is invalid.
      * 
      * @param   string  $dir        The directory of the file to test.

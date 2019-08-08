@@ -257,6 +257,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_DOCUMENTATION
             [ 4, 'source', '', 'buildSourceAttribute', ], 
             [ 4, 'lang', 'http://www.w3.org/XML/1998/namespace', 'buildLangAttribute', ], 
+            // Context: ELT_IMPORT
+            [ 5, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
