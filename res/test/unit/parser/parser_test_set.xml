@@ -24,7 +24,7 @@
   <test group="content" name="schema foo child element is not supported in the schema element">
     <schema dir="schema" fileName="schema_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation" or "import".</message>
     </schema>
   </test>
   <test group="attribute" name="schema unsupported attribute: no namespace">
@@ -173,7 +173,7 @@
   <test group="content" name="[annotation][composition][schema] not part of the XML Schema 1.0 namespace">
     <schema dir="annotation" fileName="schema_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation" or "import".</message>
     </schema>
   </test>
   <test group="content" name="[annotation][composition][schema] node not white space neither comment">
@@ -246,6 +246,16 @@
     <schema dir="annotation" fileName="documentation_0006.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>":" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <!-- ################################################################### -->
+  <!-- ################################################################### -->
+  <!-- ################################################################### -->
+  <!-- import -->
+  <test group="content" name="[import] not part of the XML Schema 1.0 namespace">
+    <schema dir="extern" fileName="import_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "import" element (from no namespace) is unexpected, expected: "annotation" or "import".</message>
     </schema>
   </test>
   <!-- TEMPLATE

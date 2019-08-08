@@ -28,6 +28,7 @@ class SpecificationFactory
         ContextId::ELT_ROOT => 0, 
         ContextId::ELT_SCHEMA => 0, 
         ContextId::ELT_COMPOSITION_ANNOTATION => 0, 
+        ContextId::ELT_IMPORT => 0, 
     ];
     
     /**
@@ -40,6 +41,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SCHEMA => [
             [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 'annotation', ], 
+            [ 0, ContextId::ELT_IMPORT, 'import', ], 
         ], 
         ContextId::ELT_COMPOSITION_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'appinfo', ], 
@@ -58,6 +60,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SCHEMA => [
             [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 'buildCompositionAnnotationElement', ], 
+            [ 0, ContextId::ELT_IMPORT, 'buildImportElement', ], 
         ], 
         ContextId::ELT_COMPOSITION_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'buildAppInfoElement', ], 
@@ -75,6 +78,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SCHEMA => [
             [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 0, ], 
+            [ 0, ContextId::ELT_IMPORT, 0, ], 
         ], 
         ContextId::ELT_COMPOSITION_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 0, ], 

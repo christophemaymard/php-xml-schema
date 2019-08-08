@@ -28,7 +28,7 @@
 - [x] Parse **xml:lang** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **include** elements.
-- [ ] Parse **import** elements.
+- [x] Parse **import** elements.
 - [ ] Parse **redefine** elements.
 - [x] Parse **annotation** elements (composition).
 - [ ] Parse **simpleType** elements.
@@ -88,3 +88,21 @@
 - [x] Other attributes are not supported.
 - [x] Parse content.
 
+## Element: "import"
+
+```
+<import
+  id = ID
+  namespace = anyURI
+  schemaLocation = anyURI
+>
+  Content: (annotation?)
+</import>
+```
+
+- [x] Parse **import** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **namespace** attribute (collapsing white spaces).
+- [ ] Parse **schemaLocation** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.

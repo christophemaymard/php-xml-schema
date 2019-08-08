@@ -19,4 +19,5 @@ class ContextId
     const ELT_COMPOSITION_ANNOTATION = 2;
     const ELT_APPINFO = 3;
     const ELT_DOCUMENTATION = 4;
+    const ELT_IMPORT = 5;
 }
