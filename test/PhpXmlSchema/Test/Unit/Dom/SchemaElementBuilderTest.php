@@ -448,6 +448,7 @@ class SchemaElementBuilderTest extends TestCase
         
         // Uses methods that must not build elements.
         $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildAppInfoElement();
         
         $sch = $this->sut->getSchema();
         
@@ -461,6 +462,9 @@ class SchemaElementBuilderTest extends TestCase
      */
     public function testBuildMethodsWhenCurrentElementIsSchema()
     {
+        // Uses methods that must not build elements.
+        $this->sut->buildAppInfoElement();
+        
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildAttributeFormDefaultAttribute('qualified');
         $this->sut->buildBlockDefaultAttribute('extension');
@@ -519,6 +523,10 @@ class SchemaElementBuilderTest extends TestCase
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildIdAttribute('id');
         
+        // Uses methods that must build elements.
+        $this->sut->buildAppInfoElement();
+        $this->sut->endElement();
+        
         $sch = $this->sut->getSchema();
         
         // Asserts "schema".
@@ -530,7 +538,51 @@ class SchemaElementBuilderTest extends TestCase
         $ann = $sch->getCompositionAnnotationElements()[0];
         self::assertAnnotationElementHasOnlyIdAttribute($ann);
         self::assertSame('id', $ann->getId()->getId());
-        self::assertSame([], $ann->getElements());
+        self::assertCount(1, $ann->getElements());
+        
+        // Asserts "appinfo".
+        $appinfo = $ann->getAppInfoElements()[0];
+        self::assertAppInfoElementHasNoAttribute($appinfo);
+        self::assertSame('', $appinfo->getContent());
+    }
+    
+    /**
+     * Tests building methods when the current element is an "appinfo".
+     */
+    public function testBuildMethodsWhenCurrentElementIsAppInfo()
+    {
+        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildAppInfoElement();
+        
+        // Uses methods, with invalid values, that must not build attributes.
+        $this->sut->buildAttributeFormDefaultAttribute('foo');
+        $this->sut->buildBlockDefaultAttribute('foo');
+        $this->sut->buildElementFormDefaultAttribute('foo');
+        $this->sut->buildFinalDefaultAttribute('foo');
+        $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildTargetNamespaceAttribute(':');
+        $this->sut->buildVersionAttribute("\u{001F}");
+        $this->sut->buildLangAttribute(':');
+        
+        // Uses methods that must not build elements.
+        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildAppInfoElement();
+        
+        $sch = $this->sut->getSchema();
+        
+        // Asserts "schema".
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        // Asserts "annotation" (composition).
+        $ann = $sch->getCompositionAnnotationElements()[0];
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertCount(1, $ann->getElements());
+        
+        // Asserts "appinfo".
+        $appinfo = $ann->getAppInfoElements()[0];
+        self::assertAppInfoElementHasNoAttribute($appinfo);
+        self::assertSame('', $appinfo->getContent());
     }
     
     /**

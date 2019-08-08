@@ -184,6 +184,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildAppInfoElement()
+    {
+        if ($this->currentElement instanceof AnnotationElement) {
+            $elt = new AppInfoElement();
+            $this->currentElement->addAppInfoElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaElement()
     {
         $this->schemaElement = $this->currentElement = new SchemaElement();

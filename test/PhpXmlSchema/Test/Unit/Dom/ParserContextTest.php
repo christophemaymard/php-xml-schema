@@ -478,6 +478,7 @@ class ParserContextTest extends TestCase
             public function buildLangAttribute(string $value) {}
             
             public function buildCompositionAnnotationElement() {}
+            public function buildAppInfoElement() {}
             public function buildSchemaElement() {}
             
             public function endElement() {}
