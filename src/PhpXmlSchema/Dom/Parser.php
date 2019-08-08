@@ -118,7 +118,7 @@ class Parser
     private function findNextNode():bool
     {
         if ($this->xt->isElementNode()) {
-            if ($this->xt->moveToFirstChildNode()) {
+            if ($this->ctx->isComposite() && $this->xt->moveToFirstChildNode()) {
                 return TRUE;
             }
             
@@ -183,6 +183,11 @@ class Parser
             
             // Moves to parent element node.
             $this->xt->moveToParentNode();
+        }
+        
+        // Parses the content of a leaf element.
+        if (!$this->ctx->isComposite()) {
+            $this->builder->buildLeafElementContent($this->xt->getValue());
         }
     }
     

@@ -53,6 +53,21 @@
 - [x] Parse **annotation** element.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
-- [ ] Parse **appinfo** elements.
+- [x] Parse **appinfo** elements.
 - [ ] Parse **documentation** elements.
+
+## Element: "appinfo"
+
+```
+<appinfo
+  source = anyURI
+>
+  Content: ({any})*
+</appinfo>
+```
+
+- [x] Parse **appinfo** element.
+- [ ] Parse **source** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [x] Parse content.
 

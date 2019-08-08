@@ -207,6 +207,16 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- ################################################################### -->
+  <!-- ################################################################### -->
+  <!-- ################################################################### -->
+  <!-- appinfo -->
+  <test group="content" name="[appinfo] not part of the XML Schema 1.0 namespace">
+    <schema dir="annotation" fileName="appinfo_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "appinfo" element (from no namespace) is unexpected, expected: "appinfo".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema dir="schema" fileName=".xsd">

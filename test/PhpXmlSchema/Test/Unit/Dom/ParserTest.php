@@ -310,6 +310,31 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "appinfo" elements in an "annotation" 
+     * element (composition).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAppInfoElementInCompositionAnnotationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('annotation', 'appinfo_0002.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ann = $sch->getCompositionAnnotationElements()[0];
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertCount(2, $ann->getElements());
+        
+        $appinfos = $ann->getAppInfoElements();
+        self::assertAppInfoElementHasNoAttribute($appinfos[0]);
+        self::assertSame('foo', $appinfos[0]->getContent());
+        self::assertAppInfoElementHasNoAttribute($appinfos[1]);
+        self::assertSame('bar', $appinfos[1]->getContent());
+    }
+    
+    /**
      * Tests that parse() throws an exception when the content is invalid.
      * 
      * @param   string  $dir        The directory of the file to test.
