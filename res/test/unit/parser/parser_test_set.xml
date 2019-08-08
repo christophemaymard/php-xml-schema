@@ -182,6 +182,31 @@
       <message>The node is not allowed ("foo").</message>
     </schema>
   </test>
+  <test group="attribute" name="[annotation][composition] unsupported attribute: no namespace">
+    <schema dir="annotation" fileName="schema_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from no namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[annotation][composition] unsupported attribute: XML 1.0 namespace">
+    <schema dir="annotation" fileName="schema_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from http://www.w3.org/XML/1998/namespace namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[annotation][composition] unsupported attribute: other namespace">
+    <schema dir="annotation" fileName="schema_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "bar" attribute (from http://example.org namespace) is not supported.</message>
+    </schema>
+  </test>
+  <!-- annotation::id -->
+  <test group="attribute" name="[annotation][composition][attribute::id]">
+    <schema dir="annotation" fileName="attr_id_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo:bar" is an invalid ID.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema dir="schema" fileName=".xsd">

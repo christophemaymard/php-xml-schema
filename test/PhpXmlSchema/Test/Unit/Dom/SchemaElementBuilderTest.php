@@ -509,13 +509,15 @@ class SchemaElementBuilderTest extends TestCase
         $this->sut->buildBlockDefaultAttribute('foo');
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('foo');
-        $this->sut->buildIdAttribute('foo:bar');
         $this->sut->buildTargetNamespaceAttribute(':');
         $this->sut->buildVersionAttribute("\u{001F}");
         $this->sut->buildLangAttribute(':');
         
         // Uses methods that must not build elements.
         $this->sut->buildCompositionAnnotationElement();
+        
+        // Uses methods, with valid values, that must build attributes.
+        $this->sut->buildIdAttribute('id');
         
         $sch = $this->sut->getSchema();
         
@@ -526,8 +528,9 @@ class SchemaElementBuilderTest extends TestCase
         // Asserts "annotation" (composition).
         self::assertCount(1, $sch->getCompositionAnnotationElements());
         $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertCount(0, $ann->getElements());
+        self::assertAnnotationElementHasOnlyIdAttribute($ann);
+        self::assertSame('id', $ann->getId()->getId());
+        self::assertSame([], $ann->getElements());
     }
     
     /**

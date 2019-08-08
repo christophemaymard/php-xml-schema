@@ -86,6 +86,9 @@ class SpecificationFactory
             [ 'version', '', 'buildVersionAttribute', ], 
             [ 'lang', XmlNamespace::XML_1_0, 'buildLangAttribute', ], 
         ], 
+        ContextId::ELT_COMPOSITION_ANNOTATION => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**

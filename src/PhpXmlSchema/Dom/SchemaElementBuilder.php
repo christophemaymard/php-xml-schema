@@ -122,8 +122,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildIdAttribute(string $value)
     {
-        if ($this->currentElement instanceof SchemaElement) {
-            $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_SCHEMA:
+                case ElementId::ELT_ANNOTATION:
+                    $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
+            }
         }
     }
     

@@ -254,4 +254,16 @@ trait ElementAssertTrait
     {
         self::assertFalse($sut->hasId());
     }
+    
+    /**
+     * Asserts that the specified "annotation" element has only the "id" 
+     * attribute.
+     * 
+     * @param   AnnotationElement   $sut    The element to test.
+     */
+    public static function assertAnnotationElementHasOnlyIdAttribute(
+        AnnotationElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+    }
 }
