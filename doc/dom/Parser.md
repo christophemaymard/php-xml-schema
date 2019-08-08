@@ -83,8 +83,8 @@
 ```
 
 - [x] Parse **documentation** element.
-- [ ] Parse **source** attribute (collapsing white spaces).
+- [x] Parse **source** attribute (collapsing white spaces).
 - [ ] Parse **xml:lang** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [x] Parse content.
 

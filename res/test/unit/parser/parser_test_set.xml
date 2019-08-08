@@ -234,6 +234,13 @@
       <message>The "documentation" element (from no namespace) is unexpected, expected: "appinfo" or "documentation".</message>
     </schema>
   </test>
+  <!-- documentation::source -->
+  <test group="attribute" name="[documentation][attribute::source]">
+    <schema dir="annotation" fileName="documentation_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema dir="schema" fileName=".xsd">

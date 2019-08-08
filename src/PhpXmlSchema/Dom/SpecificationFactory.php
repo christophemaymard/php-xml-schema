@@ -105,6 +105,7 @@ class SpecificationFactory
             [ 'source', '', 'buildSourceAttribute', ], 
         ], 
         ContextId::ELT_DOCUMENTATION => [
+            [ 'source', '', 'buildSourceAttribute', ], 
         ], 
     ];
     

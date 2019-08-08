@@ -383,6 +383,29 @@ class ParserTest extends TestCase
     }
     
     /**
+     * Tests that parse() processes "source" attribute in a "documentation" 
+     * element.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessSourceAttributeInDocumentationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('annotation', 'documentation_0003.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ann = $sch->getCompositionAnnotationElements()[0];
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertCount(1, $ann->getElements());
+        
+        $doc = $ann->getDocumentationElements()[0];
+        self::assertDocumentationElementHasOnlySourceAttribute($doc);
+        self::assertSame('http://example.org', $doc->getSource()->getUri());
+        self::assertSame('', $doc->getContent());
+    }
+    
+    /**
      * Tests that parse() throws an exception when the content is invalid.
      * 
      * @param   string  $dir        The directory of the file to test.

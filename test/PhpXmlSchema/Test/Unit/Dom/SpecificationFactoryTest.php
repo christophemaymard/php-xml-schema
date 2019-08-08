@@ -250,6 +250,8 @@ class SpecificationFactoryTest extends TestCase
             [ 2, 'id', '', 'buildIdAttribute', ], 
             // Context: ELT_APPINFO
             [ 3, 'source', '', 'buildSourceAttribute', ], 
+            // Context: ELT_DOCUMENTATION
+            [ 4, 'source', '', 'buildSourceAttribute', ], 
         ];
     }
 }
