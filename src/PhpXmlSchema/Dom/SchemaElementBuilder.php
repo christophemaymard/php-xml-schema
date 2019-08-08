@@ -208,6 +208,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildDocumentationElement()
+    {
+        if ($this->currentElement instanceof AnnotationElement) {
+            $elt = new DocumentationElement();
+            $this->currentElement->addDocumentationElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaElement()
     {
         $this->schemaElement = $this->currentElement = new SchemaElement();

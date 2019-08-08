@@ -486,6 +486,7 @@ class SchemaElementBuilderTest extends TestCase
         // Uses methods that must not build elements.
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
+        $this->sut->buildDocumentationElement();
         
         // Uses method that must not build content.
         $this->sut->buildLeafElementContent('foo bar baz');
@@ -507,6 +508,7 @@ class SchemaElementBuilderTest extends TestCase
         
         // Uses methods that must not build elements.
         $this->sut->buildAppInfoElement();
+        $this->sut->buildDocumentationElement();
         
         // Uses method that must not build content.
         $this->sut->buildLeafElementContent('foo bar baz');
@@ -576,6 +578,8 @@ class SchemaElementBuilderTest extends TestCase
         // Uses methods that must build elements.
         $this->sut->buildAppInfoElement();
         $this->sut->endElement();
+        $this->sut->buildDocumentationElement();
+        $this->sut->endElement();
         
         $sch = $this->sut->getSchema();
         
@@ -588,12 +592,17 @@ class SchemaElementBuilderTest extends TestCase
         $ann = $sch->getCompositionAnnotationElements()[0];
         self::assertAnnotationElementHasOnlyIdAttribute($ann);
         self::assertSame('id', $ann->getId()->getId());
-        self::assertCount(1, $ann->getElements());
+        self::assertCount(2, $ann->getElements());
         
         // Asserts "appinfo".
-        $appinfo = $ann->getAppInfoElements()[0];
+        $appinfo = $ann->getElements()[0];
         self::assertAppInfoElementHasNoAttribute($appinfo);
         self::assertSame('', $appinfo->getContent());
+        
+        // Asserts "documentation".
+        $doc = $ann->getElements()[1];
+        self::assertDocumentationElementHasNoAttribute($doc);
+        self::assertSame('', $doc->getContent());
     }
     
     /**
@@ -617,6 +626,7 @@ class SchemaElementBuilderTest extends TestCase
         // Uses methods that must not build elements.
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->buildAppInfoElement();
+        $this->sut->buildDocumentationElement();
         
         // Uses methods, with valid values, that must build attributes.
         $this->sut->buildSourceAttribute('http://example.org');
@@ -640,6 +650,51 @@ class SchemaElementBuilderTest extends TestCase
         self::assertAppInfoElementHasOnlySourceAttribute($appinfo);
         self::assertSame('http://example.org', $appinfo->getSource()->getUri());
         self::assertSame('foo bar baz', $appinfo->getContent());
+    }
+    
+    /**
+     * Tests building methods when the current element is a "documentation" 
+     * element.
+     */
+    public function testBuildMethodsWhenCurrentElementIsDocumentation()
+    {
+        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildDocumentationElement();
+        
+        // Uses methods, with invalid values, that must not build attributes.
+        $this->sut->buildAttributeFormDefaultAttribute('foo');
+        $this->sut->buildBlockDefaultAttribute('foo');
+        $this->sut->buildElementFormDefaultAttribute('foo');
+        $this->sut->buildFinalDefaultAttribute('foo');
+        $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildSourceAttribute(':');
+        $this->sut->buildTargetNamespaceAttribute(':');
+        $this->sut->buildVersionAttribute("\u{001F}");
+        $this->sut->buildLangAttribute(':');
+        
+        // Uses methods that must not build elements.
+        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildAppInfoElement();
+        $this->sut->buildDocumentationElement();
+        
+        // Uses method that must build content.
+        $this->sut->buildLeafElementContent('foo bar baz');
+        
+        $sch = $this->sut->getSchema();
+        
+        // Asserts "schema".
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        // Asserts "annotation" (composition).
+        $ann = $sch->getCompositionAnnotationElements()[0];
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertCount(1, $ann->getElements());
+        
+        // Asserts "documentation".
+        $doc = $ann->getDocumentationElements()[0];
+        self::assertDocumentationElementHasNoAttribute($doc);
+        self::assertSame('foo bar baz', $doc->getContent());
     }
     
     /**

@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
+use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
 /**
@@ -288,5 +289,17 @@ trait ElementAssertTrait
         AppInfoElement $sut
     ) {
         self::assertTrue($sut->hasSource());
+    }
+    
+    /**
+     * Asserts that the specified "documentation" element has no attribute.
+     * 
+     * @param   DocumentationElement    $sut    The element to test.
+     */
+    public static function assertDocumentationElementHasNoAttribute(
+        DocumentationElement $sut
+    ) {
+        self::assertFalse($sut->hasSource());
+        self::assertFalse($sut->hasLang());
     }
 }
