@@ -371,18 +371,31 @@ trait ValueProviderTrait
     public function getValidLanguageValues():array
     {
         return [
-            'fr' => [ 
-                'fr', 'fr', [], 
-            ],
-            'en-us' => [ 
-                'en-us', 'en', [ 'us', ], 
-            ],
-            'foo-bar1-baz2-qux3' => [ 
-                'foo-bar1-baz2-qux3', 'foo', [ 'bar1', 'baz2', 'qux3', ], 
-            ],
-            '    foo-bar1-baz2-qux3    ' => [ 
-                '    foo-bar1-baz2-qux3    ', 'foo', [ 'bar1', 'baz2', 'qux3', ], 
-            ],
+            'Primary subtag of 1 character' => [
+                'f', 
+                'f', 
+                [], 
+            ], 
+            'Primary subtag of 8 characters' => [
+                'foobarba', 
+                'foobarba', 
+                [], 
+            ], 
+            'Subtag of 1 character' => [
+                'foo-b', 
+                'foo', 
+                [ 'b', ], 
+            ], 
+            'Subtag with number' => [
+                'foo-bar1', 
+                'foo', 
+                [ 'bar1', ], 
+            ], 
+            'Language with white spaces' => [
+                '    foo-bar1-baz2-qux3    ', 
+                'foo', 
+                [ 'bar1', 'baz2', 'qux3', ], 
+            ], 
         ];
     }
     
@@ -394,33 +407,33 @@ trait ValueProviderTrait
     public function getInvalidLanguageValues():array
     {
         return [
-            '' => [ 
+            'Empty string' => [
                 '', 
                 '"" is an invalid primary subtag.', 
             ], 
-            ' ' => [ 
-                ' ', 
+            'Only white spaces' => [
+                '       ', 
                 '"" is an invalid primary subtag.', 
             ], 
-            'foo9' => [ 
+            'Primary subtag contains number' => [ 
                 'foo9', 
                 '"foo9" is an invalid primary subtag.', 
             ], 
-            'foo+' => [ 
+            'Primary subtag contains invalid character' => [ 
                 'foo+', 
                 '"foo+" is an invalid primary subtag.', 
             ], 
-            'veryverylongprimarytag' => [ 
-                'veryverylongprimarytag', 
-                '"veryverylongprimarytag" is an invalid primary subtag.', 
+            'Primary subtag length is greater than 8' => [ 
+                'verylongp', 
+                '"verylongp" is an invalid primary subtag.', 
             ], 
-            'foo-bar1-veryverylongsubtag' => [ 
-                'foo-bar1-veryverylongsubtag', 
-                '"veryverylongsubtag" is an invalid subtag.', 
-            ],
-            'foo-bar1-baz+' => [ 
+            'Subtag contains invalid character' => [ 
                 'foo-bar1-baz+', 
                 '"baz+" is an invalid subtag.', 
+            ], 
+            'Subtag length is greater than 8' => [ 
+                'foo-bar1-verylongs', 
+                '"verylongs" is an invalid subtag.', 
             ], 
         ];
     }
