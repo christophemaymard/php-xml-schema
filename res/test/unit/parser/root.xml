@@ -1,0 +1,22 @@
+<testSet>
+  <test group="content" name="[root] schema root element is not part of the XML Schema 1.0 namespace">
+    <schema fileName="schema_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The root element must belong to the XML Schema 1.0 namespace.</message>
+    </schema>
+  </test>
+  <test group="content" name="[root] schema root element is not the schema element">
+    <schema fileName="schema_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "schema".</message>
+    </schema>
+  </test>
+  <!-- TEMPLATE
+  <test group="attribute|content" name="">
+    <schema fileName=".xsd">
+      <exception></exception>
+      <message></message>
+    </schema>
+  </test>
+  -->
+</testSet>

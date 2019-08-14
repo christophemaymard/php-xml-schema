@@ -1,0 +1,36 @@
+<testSet>
+  <!-- appinfo -->
+  <test group="attribute" name="[appinfo] unsupported attribute from no namespace">
+    <schema fileName="appinfo_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from no namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[appinfo] unsupported attribute from XML 1.0 namespace">
+    <schema fileName="appinfo_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from http://www.w3.org/XML/1998/namespace namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[appinfo] unsupported attribute from other namespace">
+    <schema fileName="appinfo_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "bar" attribute (from http://example.org namespace) is not supported.</message>
+    </schema>
+  </test>
+  <!-- appinfo::source -->
+  <test group="attribute" name="[appinfo][attribute::source]">
+    <schema fileName="appinfo_src_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
+  <!-- TEMPLATE
+  <test group="attribute|content" name="">
+    <schema fileName=".xsd">
+      <exception></exception>
+      <message></message>
+    </schema>
+  </test>
+  -->
+</testSet>

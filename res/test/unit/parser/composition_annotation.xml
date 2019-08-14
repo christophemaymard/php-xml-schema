@@ -1,0 +1,98 @@
+<testSet>
+  <!-- annotation -->
+  <test group="attribute" name="[composition_annotation] unsupported attribute from no namespace">
+    <schema fileName="composition_annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from no namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[composition_annotation] unsupported attribute from XML 1.0 namespace">
+    <schema fileName="composition_annotation_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from http://www.w3.org/XML/1998/namespace namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[composition_annotation] unsupported attribute from other namespace">
+    <schema fileName="composition_annotation_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "bar" attribute (from http://example.org namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="content" name="[composition_annotation] node not white space neither comment">
+    <schema fileName="composition_annotation_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The node is not allowed ("foo").</message>
+    </schema>
+  </test>
+  <test group="content" name="[composition_annotation] foo child element is not supported">
+    <schema fileName="composition_annotation_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "appinfo" or "documentation".</message>
+    </schema>
+  </test>
+  <!-- annotation::id -->
+  <test group="attribute" name="[composition_annotation][attribute::id] Empty string">
+    <schema fileName="composition_annotation_id_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[composition_annotation][attribute::id] Only white spaces">
+    <schema fileName="composition_annotation_id_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[composition_annotation][attribute::id] Separated by whitespaces">
+    <schema fileName="composition_annotation_id_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[composition_annotation][attribute::id] Starts with digit">
+    <schema fileName="composition_annotation_id_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[composition_annotation][attribute::id] Starts with .">
+    <schema fileName="composition_annotation_id_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[composition_annotation][attribute::id] Starts with -">
+    <schema fileName="composition_annotation_id_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[composition_annotation][attribute::id] Contains invalid character">
+    <schema fileName="composition_annotation_id_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo:bar" is an invalid ID.</message>
+    </schema>
+  </test>
+  <!-- appinfo -->
+  <test group="content" name="[composition_annotation][appinfo] not part of the XML Schema 1.0 namespace">
+    <schema fileName="appinfo_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "appinfo" element (from no namespace) is unexpected, expected: "appinfo" or "documentation".</message>
+    </schema>
+  </test>
+  <!-- documentation -->
+  <test group="content" name="[composition_annotation][documentation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="documentation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "documentation" element (from no namespace) is unexpected, expected: "appinfo" or "documentation".</message>
+    </schema>
+  </test>
+  <!-- TEMPLATE
+  <test group="attribute|content" name="">
+    <schema fileName=".xsd">
+      <exception></exception>
+      <message></message>
+    </schema>
+  </test>
+  -->
+</testSet>

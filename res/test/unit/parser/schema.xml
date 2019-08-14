@@ -1,0 +1,368 @@
+<testSet>
+  <!-- schema -->
+  <test group="attribute" name="[schema] unsupported attribute from no namespace">
+    <schema fileName="schema_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from no namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema] unsupported attribute from XML 1.0 namespace">
+    <schema fileName="schema_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from http://www.w3.org/XML/1998/namespace namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema] unsupported attribute from other namespace">
+    <schema fileName="schema_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "bar" attribute (from http://example.org namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="content" name="[schema] node not white space neither comment">
+    <schema fileName="schema_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The node is not allowed ("foo").</message>
+    </schema>
+  </test>
+  <test group="content" name="[schema] foo child element is not supported">
+    <schema fileName="schema_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation" or "import".</message>
+    </schema>
+  </test>
+  <!-- schema::attributeFormDefault -->
+  <test group="attribute" name="[schema][attribute::attributeFormDefault] Empty string">
+    <schema fileName="schema_attrfd_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid value for the "attributeFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::attributeFormDefault] Only white spaces">
+    <schema fileName="schema_attrfd_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"       " is an invalid value for the "attributeFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::attributeFormDefault] Not qualified neither unqualified">
+    <schema fileName="schema_attrfd_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo" is an invalid value for the "attributeFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::attributeFormDefault] qualified with whitespaces">
+    <schema fileName="schema_attrfd_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    qualified     " is an invalid value for the "attributeFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::attributeFormDefault] unqualified with whitespaces">
+    <schema fileName="schema_attrfd_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    unqualified     " is an invalid value for the "attributeFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::attributeFormDefault] qualified (uppercase)">
+    <schema fileName="schema_attrfd_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Qualified" is an invalid value for the "attributeFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::attributeFormDefault] unqualified (uppercase)">
+    <schema fileName="schema_attrfd_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Unqualified" is an invalid value for the "attributeFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::attributeFormDefault] qualified and unqualified">
+    <schema fileName="schema_attrfd_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"qualified unqualified" is an invalid value for the "attributeFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <!-- schema::blockDefault -->
+  <test group="attribute" name="[schema][attribute::blockDefault] Not substitution neither extension neither restriction">
+    <schema fileName="schema_blockd_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] #all (uppercase)">
+    <schema fileName="schema_blockd_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#ALL" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] substitution (uppercase)">
+    <schema fileName="schema_blockd_0016.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"subStitution" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] extension (uppercase)">
+    <schema fileName="schema_blockd_0017.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"exTension" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] restriction (uppercase)">
+    <schema fileName="schema_blockd_0018.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] #all with substitution">
+    <schema fileName="schema_blockd_0019.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#all substitution" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] #all with extension">
+    <schema fileName="schema_blockd_0020.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"extension #all" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] #all with restriction">
+    <schema fileName="schema_blockd_0021.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#all restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] Value not substitution neither extension neither restriction in list">
+    <schema fileName="schema_blockd_0022.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"substitution extension foo restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <!-- schema::elementFormDefault -->
+  <test group="attribute" name="[schema][attribute::elementFormDefault] Empty string">
+    <schema fileName="schema_eltfd_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid value for the "elementFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::elementFormDefault] Only white spaces">
+    <schema fileName="schema_eltfd_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"       " is an invalid value for the "elementFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::elementFormDefault] Not qualified neither unqualified">
+    <schema fileName="schema_eltfd_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo" is an invalid value for the "elementFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::elementFormDefault] qualified with whitespaces">
+    <schema fileName="schema_eltfd_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    qualified     " is an invalid value for the "elementFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::elementFormDefault] unqualified with whitespaces">
+    <schema fileName="schema_eltfd_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    unqualified     " is an invalid value for the "elementFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::elementFormDefault] qualified (uppercase)">
+    <schema fileName="schema_eltfd_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Qualified" is an invalid value for the "elementFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::elementFormDefault] unqualified (uppercase)">
+    <schema fileName="schema_eltfd_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Unqualified" is an invalid value for the "elementFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::elementFormDefault] qualified and unqualified">
+    <schema fileName="schema_eltfd_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"qualified unqualified" is an invalid value for the "elementFormDefault" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+    </schema>
+  </test>
+  <!-- schema::finalDefault -->
+  <test group="attribute" name="[schema][attribute::finalDefault] Not extension neither restriction neither list neither union">
+    <schema fileName="schema_finald_0018.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] #all (uppercase)">
+    <schema fileName="schema_finald_0019.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#ALL" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] extension (uppercase)">
+    <schema fileName="schema_finald_0020.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Extension" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] restriction (uppercase)">
+    <schema fileName="schema_finald_0021.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] list (uppercase)">
+    <schema fileName="schema_finald_0022.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"List" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] union (uppercase)">
+    <schema fileName="schema_finald_0023.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Union" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] #all with extension">
+    <schema fileName="schema_finald_0024.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#all extension" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] #all with restriction">
+    <schema fileName="schema_finald_0025.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#all restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] #all with list">
+    <schema fileName="schema_finald_0026.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#all list" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] #all with union">
+    <schema fileName="schema_finald_0027.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#all union" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] Value not extension neither restriction neither list neither union">
+    <schema fileName="schema_finald_0028.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"extension restriction foo list restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <!-- schema::id -->
+  <test group="attribute" name="[schema][attribute::id] Empty string">
+    <schema fileName="schema_id_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::id] Only white spaces">
+    <schema fileName="schema_id_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::id] Separated by whitespaces">
+    <schema fileName="schema_id_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::id] Starts with digit">
+    <schema fileName="schema_id_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::id] Starts with .">
+    <schema fileName="schema_id_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::id] Starts with -">
+    <schema fileName="schema_id_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::id] Contains invalid character">
+    <schema fileName="schema_id_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo:bar" is an invalid ID.</message>
+    </schema>
+  </test>
+  <!-- schema::targetNamespace -->
+  <test group="attribute" name="[schema][attribute::targetNamespace]">
+    <schema fileName="schema_target_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
+  <!-- schema::xml::lang -->
+  <test group="attribute" name="[schema][attribute::xml:lang] Empty string">
+    <schema fileName="schema_lang_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::xml:lang] Only white spaces">
+    <schema fileName="schema_lang_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::xml:lang] Primary subtag contains number">
+    <schema fileName="schema_lang_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo9" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::xml:lang] Primary subtag contains invalid character">
+    <schema fileName="schema_lang_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::xml:lang] Primary subtag length is greater than 8">
+    <schema fileName="schema_lang_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"verylongp" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::xml:lang] Subtag contains invalid character">
+    <schema fileName="schema_lang_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"baz+" is an invalid subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::xml:lang] Subtag length is greater than 8">
+    <schema fileName="schema_lang_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"verylongs" is an invalid subtag.</message>
+    </schema>
+  </test>
+  <!-- annotation -->
+  <test group="content" name="[schema][composition_annotation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="composition_annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation" or "import".</message>
+    </schema>
+  </test>
+  <!-- import -->
+  <test group="content" name="[schema][import] not part of the XML Schema 1.0 namespace">
+    <schema fileName="import_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "import" element (from no namespace) is unexpected, expected: "annotation" or "import".</message>
+    </schema>
+  </test>
+  <!-- TEMPLATE
+  <test group="attribute|content" name="">
+    <schema fileName=".xsd">
+      <exception></exception>
+      <message></message>
+    </schema>
+  </test>
+  -->
+</testSet>

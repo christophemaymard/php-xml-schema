@@ -1,0 +1,79 @@
+<testSet>
+  <!-- documentation -->
+  <test group="attribute" name="[documentation] unsupported attribute from no namespace">
+    <schema fileName="documentation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from no namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[documentation] unsupported attribute from XML 1.0 namespace">
+    <schema fileName="documentation_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from http://www.w3.org/XML/1998/namespace namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[documentation] unsupported attribute from other namespace">
+    <schema fileName="documentation_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "bar" attribute (from http://example.org namespace) is not supported.</message>
+    </schema>
+  </test>
+  <!-- documentation::source -->
+  <test group="attribute" name="[documentation][attribute::source]">
+    <schema fileName="documentation_src_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
+  <!-- documentation::xml:lang -->
+  <test group="attribute" name="[documentation][attribute::xml:lang] Empty string">
+    <schema fileName="documentation_lang_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[documentation][attribute::xml:lang] Only white spaces">
+    <schema fileName="documentation_lang_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[documentation][attribute::xml:lang] Primary subtag contains number">
+    <schema fileName="documentation_lang_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo9" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[documentation][attribute::xml:lang] Primary subtag contains invalid character">
+    <schema fileName="documentation_lang_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[documentation][attribute::xml:lang] Primary subtag length is greater than 8">
+    <schema fileName="documentation_lang_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"verylongp" is an invalid primary subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[documentation][attribute::xml:lang] Subtag contains invalid character">
+    <schema fileName="documentation_lang_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"baz+" is an invalid subtag.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[documentation][attribute::xml:lang] Subtag length is greater than 8">
+    <schema fileName="documentation_lang_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"verylongs" is an invalid subtag.</message>
+    </schema>
+  </test>
+  <!-- TEMPLATE
+  <test group="attribute|content" name="">
+    <schema fileName=".xsd">
+      <exception></exception>
+      <message></message>
+    </schema>
+  </test>
+  -->
+</testSet>

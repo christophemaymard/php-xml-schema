@@ -1,4 +1,3 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <!-- Comment -->
-  <foo></foo>
+    <xs:annotation id="-foo"></xs:annotation>
 </xs:schema>

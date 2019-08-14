@@ -1,2 +1,1 @@
-<xs:foo xmlns:xs="http://www.w3.org/2001/XMLSchema">
-</xs:foo>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:foo="http://example.org" foo:bar="baz"></xs:schema>

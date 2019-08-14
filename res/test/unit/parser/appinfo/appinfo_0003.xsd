@@ -1,0 +1,5 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:foo="http://example.org">
+  <xs:annotation>
+    <xs:appinfo foo:bar="baz"></xs:appinfo>
+  </xs:annotation>
+</xs:schema>
