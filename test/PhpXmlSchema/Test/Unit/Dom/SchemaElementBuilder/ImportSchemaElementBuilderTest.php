@@ -120,15 +120,21 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * Tests that buildIdAttribute() throws an exception when the current 
      * element is the "import" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidIdValues
      */
-    public function testBuildIdAttributeThrowsExceptionWhenImportAndValueIsInvalid()
-    {
+    public function testBuildIdAttributeThrowsExceptionWhenImportAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage('"foo:bar" is an invalid ID.');
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildIdAttribute('foo:bar');
+        $this->sut->buildIdAttribute($value);
     }
     
     /**

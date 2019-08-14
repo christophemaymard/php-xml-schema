@@ -263,12 +263,69 @@ trait ValueProviderTrait
     public function getValidIdValues():array
     {
         return [
-            'foo' => [ 
+            'Starts with _' => [ 
+                '_foo', '_foo', 
+            ], 
+            'Starts with letter' => [ 
+                'f', 'f', 
+            ], 
+            'Contains letter' => [ 
                 'foo', 'foo', 
-            ],
-            '  bar  ' => [ 
-                '  bar  ', 'bar', 
-            ],
+            ], 
+            'Contains digit' => [ 
+                'f00', 'f00', 
+            ], 
+            'Contains .' => [ 
+                'f.bar', 'f.bar', 
+            ], 
+            'Contains -' => [ 
+                'f-bar', 'f-bar', 
+            ], 
+            'Contains _' => [ 
+                'f_bar', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [ 
+                "  \t  \n  \r  foo_bar  \t  \n  \r  ", 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid ID values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidIdValues():array
+    {
+        return [
+            'Empty string' => [
+                '', 
+                '"" is an invalid ID.', 
+            ], 
+            'Only white spaces' => [
+                '       ', 
+                '"" is an invalid ID.', 
+            ], 
+            'Separated by whitespaces' => [
+                'foo bar', 
+                '"foo bar" is an invalid ID.', 
+            ], 
+            'Starts with digit' => [
+                '8foo', 
+                '"8foo" is an invalid ID.', 
+            ], 
+            'Starts with .' => [
+                '.foo', 
+                '".foo" is an invalid ID.', 
+            ], 
+            'Starts with -' => [
+                '-foo', 
+                '"-foo" is an invalid ID.', 
+            ], 
+            'Contains invalid character' => [
+                'foo:bar', 
+                '"foo:bar" is an invalid ID.', 
+            ], 
         ];
     }
     
