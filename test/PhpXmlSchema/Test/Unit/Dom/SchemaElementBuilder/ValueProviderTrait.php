@@ -23,12 +23,30 @@ trait ValueProviderTrait
     public function getInvalidFormChoiceValues():array
     {
         return [
-            'Qualified' => [ 
+            'Empty string' => [
+                '', 
+            ], 
+            'Only white spaces' => [
+                '       ', 
+            ], 
+            'Not qualified neither unqualified' => [ 
+                'foo', 
+            ], 
+            'qualified with whitespaces' => [
+                '    qualified     ', 
+            ], 
+            'unqualified with whitespaces' => [
+                '    unqualified     ', 
+            ], 
+            'qualified (uppercase)' => [ 
                 'Qualified', 
-            ],
-            'Unqualified' => [ 
+            ], 
+            'unqualified (uppercase)' => [ 
                 'Unqualified', 
-            ],
+            ], 
+            'qualified and unqualified' => [ 
+                'qualified unqualified', 
+            ], 
         ];
     }
     
