@@ -518,4 +518,29 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertImportElementHasNoAttribute($imports[1]);
         self::assertSame([], $imports[1]->getElements());
     }
+    
+    /**
+     * Tests that buildIncludeElement() creates the element when the current 
+     * element is the "schema" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildIncludeElementCreateEltWhenSchema()
+    {
+        $this->sut->buildIncludeElement();
+        $this->sut->endElement();
+        $this->sut->buildIncludeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $incs = $sch->getIncludeElements();
+        self::assertCount(2, $incs);
+        self::assertIncludeElementHasNoAttribute($incs[0]);
+        self::assertSame([], $incs[0]->getElements());
+        self::assertIncludeElementHasNoAttribute($incs[1]);
+        self::assertSame([], $incs[1]->getElements());
+    }
 }

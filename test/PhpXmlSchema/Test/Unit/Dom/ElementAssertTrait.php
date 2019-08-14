@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ImportElement;
+use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
 /**
@@ -383,5 +384,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasNamespace());
         self::assertTrue($sut->hasSchemaLocation());
+    }
+    
+    /**
+     * Asserts that the specified "include" element has no attribute.
+     * 
+     * @param   IncludeElement  $sut    The element to test.
+     */
+    public static function assertIncludeElementHasNoAttribute(
+        IncludeElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasSchemaLocation());
     }
 }
