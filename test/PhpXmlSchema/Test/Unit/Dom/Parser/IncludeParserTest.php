@@ -51,6 +51,24 @@ class IncludeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "schemaLocation" attribute.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessSchemaLocationAttribute()
+    {
+        $sch = $this->sut->parse($this->getXs('include_schloc_0001.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $inc = $sch->getIncludeElements()[0];
+        self::assertIncludeElementHasOnlySchemaLocationAttribute($inc);
+        self::assertSame('http://example.org', $inc->getSchemaLocation()->getUri());
+        self::assertSame([], $inc->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

@@ -132,6 +132,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_INCLUDE => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'schemaLocation', '', 'buildSchemaLocationAttribute', ], 
         ],
     ];
     

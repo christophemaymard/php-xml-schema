@@ -73,6 +73,13 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- include::schemaLocation -->
+  <test group="attribute" name="[include][attribute::schemaLocation]">
+    <schema fileName="include_schloc_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

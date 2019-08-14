@@ -120,6 +120,6 @@
 
 - [x] Parse **include** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **schemaLocation** attribute (collapsing white spaces).
+- [x] Parse **schemaLocation** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
 - [ ] Parse **annotation** element.
