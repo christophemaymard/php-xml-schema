@@ -150,10 +150,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildSchemaLocationAttribute(string $value)
     {
-        if ($this->currentElement instanceof ImportElement) {
-            $this->currentElement->setSchemaLocation(
-                new AnyUriType($this->collapseWhiteSpace($value))
-            );
+        if ($this->currentElement instanceof ElementInterface) {
+            switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_IMPORT:
+                case ElementId::ELT_INCLUDE:
+                    $this->currentElement->setSchemaLocation(
+                        new AnyUriType($this->collapseWhiteSpace($value))
+                    );
+            }
         }
     }
     

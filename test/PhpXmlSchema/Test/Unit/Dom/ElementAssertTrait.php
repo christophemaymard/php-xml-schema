@@ -410,4 +410,17 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasSchemaLocation());
     }
+    
+    /**
+     * Asserts that the specified "include" element has only the 
+     * "schemaLocation" attribute.
+     * 
+     * @param   IncludeElement  $sut    The element to test.
+     */
+    public static function assertIncludeElementHasOnlySchemaLocationAttribute(
+        IncludeElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasSchemaLocation());
+    }
 }

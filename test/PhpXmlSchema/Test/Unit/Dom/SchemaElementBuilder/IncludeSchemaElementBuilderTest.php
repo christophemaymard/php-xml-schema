@@ -37,7 +37,6 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildDocumentationElementDoesNotCreateElementTestTrait;
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     
@@ -139,5 +138,45 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildSchemaLocationAttribute() creates the attribute when the 
+     * current element is the "include" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $uri    The expected value for the URI.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidAnyUriValues
+     */
+    public function testBuildSchemaLocationAttributeCreatesAttrWhenIncludeAndValueIsValid(
+        string $value, 
+        string $uri
+    ) {
+        $this->sut->buildSchemaLocationAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $inc = self::getCurrentElement($sch);
+        self::assertIncludeElementHasOnlySchemaLocationAttribute($inc);
+        self::assertSame($uri, $inc->getSchemaLocation()->getUri());
+        self::assertSame([], $inc->getElements());
+    }
+    
+    /**
+     * Tests that buildSchemaLocationAttribute() throws an exception when the 
+     * current element is the "include" element and the value is invalid.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildSchemaLocationAttributeThrowsExceptionWhenIncludeAndValueIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        
+        $this->sut->buildSchemaLocationAttribute(':');
     }
 }
