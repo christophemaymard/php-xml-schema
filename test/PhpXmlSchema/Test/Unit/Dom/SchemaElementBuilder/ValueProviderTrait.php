@@ -151,74 +151,59 @@ trait ValueProviderTrait
     {
         // [ $value, $extension, $restriction, $list, $union, ]
         return [
-            '' => [ 
-                "", FALSE, FALSE, FALSE, FALSE, 
+            'Empty string' => [ 
+                '', FALSE, FALSE, FALSE, FALSE, 
+            ],
+            'Only white spaces' => [ 
+                "\t    \r    \n", FALSE, FALSE, FALSE, FALSE, 
             ],
             '#all' => [ 
                 '#all', TRUE, TRUE, TRUE, TRUE, 
             ],
-            
-            'extension' => [ 
-                "\t \r \n  extension  ", TRUE, FALSE, FALSE, FALSE, 
+            'extension, restriction, list and union with white spaces' => [ 
+                "\t \r \n  extension   restriction \t \r \n  list  \t \r \n  union  ", TRUE, TRUE, TRUE, TRUE, 
             ],
-            'restriction' => [ 
-                " restriction\r", FALSE, TRUE, FALSE, FALSE, 
+            'extension with white spaces' => [ 
+                "\t \r \n  extension  \t \r \n  ", TRUE, FALSE, FALSE, FALSE, 
             ],
-            'list' => [ 
-                "   list   ", FALSE, FALSE, TRUE, FALSE, 
+            'restriction with white spaces' => [ 
+                "\t \r \n  restriction  \t \r \n  ", FALSE, TRUE, FALSE, FALSE, 
             ],
-            'union' => [ 
-                "   union   ", FALSE, FALSE, FALSE, TRUE, 
+            'list with white spaces' => [ 
+                "\t \r \n  list  \t \r \n  ", FALSE, FALSE, TRUE, FALSE, 
             ],
-            
-            'extension extension' => [ 
-                "\t extension\r \n  extension  ", TRUE, FALSE, FALSE, FALSE, 
+            'union with white spaces' => [ 
+                "\t \r \n  union  \t \r \n  ", FALSE, FALSE, FALSE, TRUE, 
             ],
-            'restriction restriction' => [ 
-                "restriction restriction\r", FALSE, TRUE, FALSE, FALSE, 
+            'extension and restriction with white spaces' => [ 
+                "\t \r \n  extension  \t \r \n restriction   ", TRUE, TRUE, FALSE, FALSE, 
+            ], 
+            'list and union with white spaces' => [ 
+                "\t \r \n  list  \t \r \n union   ", FALSE, FALSE, TRUE, TRUE, 
+            ], 
+            'extension and union with white spaces' => [ 
+                "\t \r \n  union  \t \r \n extension   ", TRUE, FALSE, FALSE, TRUE, 
+            ], 
+            'restriction and list with white spaces' => [ 
+                "\t \r \n  list  \t \r \n restriction   ", FALSE, TRUE, TRUE, FALSE, 
+            ], 
+            'extension and list with white spaces' => [ 
+                "\t \r \n  extension  \t \r \n list   ", TRUE, FALSE, TRUE, FALSE, 
+            ], 
+            'restriction and union with white spaces' => [ 
+                "\t \r \n  restriction  \t \r \n union   ", FALSE, TRUE, FALSE, TRUE, 
+            ], 
+            'Duplicated extension' => [ 
+                'extension extension', TRUE, FALSE, FALSE, FALSE, 
             ],
-            'list list' => [ 
-                "  list list   ", FALSE, FALSE, TRUE, FALSE, 
+            'Duplicated restriction' => [ 
+                'restriction restriction', FALSE, TRUE, FALSE, FALSE, 
             ],
-            'union union' => [ 
-                "   union union  ", FALSE, FALSE, FALSE, TRUE, 
+            'Duplicated list' => [ 
+                'list list', FALSE, FALSE, TRUE, FALSE, 
             ],
-            
-            'extension restriction' => [ 
-                "\t \r \n  extension   restriction\r", TRUE, TRUE, FALSE, FALSE, 
-            ],
-            'extension list' => [ 
-                "\t \r \n  extension     list   ", TRUE, FALSE, TRUE, FALSE, 
-            ],
-            'extension union' => [ 
-                "\t \r \n  extension     union   ", TRUE, FALSE, FALSE, TRUE, 
-            ],
-            'restriction extension' => [ 
-                " restriction\r\t \r \n  extension  ", TRUE, TRUE, FALSE, FALSE, 
-            ],
-            'restriction list' => [ 
-                " restriction\r   list   ", FALSE, TRUE, TRUE, FALSE, 
-            ],
-            'restriction union' => [ 
-                " restriction\r   union   ", FALSE, TRUE, FALSE, TRUE, 
-            ],
-            'list extension' => [ 
-                "   list \t \r \n  extension    ", TRUE, FALSE, TRUE, FALSE, 
-            ],
-            'list restriction' => [ 
-                "   list  restriction\r  ", FALSE, TRUE, TRUE, FALSE, 
-            ],
-            'list union' => [ 
-                "   list   union    ", FALSE, FALSE, TRUE, TRUE, 
-            ],
-            'union extension' => [ 
-                "   union \r \n  extension  ", TRUE, FALSE, FALSE, TRUE, 
-            ],
-            'union restriction' => [ 
-                "   union  restriction\r   ", FALSE, TRUE, FALSE, TRUE, 
-            ],
-            'union list' => [ 
-                "   union \r \n list  ", FALSE, FALSE, TRUE, TRUE, 
+            'Duplicated extension' => [ 
+                'union union', FALSE, FALSE, FALSE, TRUE, 
             ],
         ];
     }
@@ -231,39 +216,42 @@ trait ValueProviderTrait
     public function getInvalidFullDerivationSetValues():array
     {
         return [
-            '#ALL' => [ 
+            'Not extension neither restriction neither list neither union' => [ 
+                'foo', 
+            ],
+            '#all (uppercase)' => [ 
                 '#ALL', 
+            ],
+            '#all with white spaces' => [ 
+                '    #all    ', 
             ], 
-            
-            'substitution' => [ 
-                'substitution', 
-            ], 
-            
-            'extensiOn' => [ 
-                'extensiOn', 
-            ], 
-            'resTriction' => [ 
-                'resTriction', 
-            ], 
-            'lIst' => [ 
-                'lIst', 
-            ], 
-            'uNion' => [ 
-                'uNion', 
-            ], 
-            
-            '#all extension' => [ 
+            'extension (uppercase)' => [ 
+                'Extension', 
+            ],
+            'restriction (uppercase)' => [ 
+                'Restriction', 
+            ],
+            'list (uppercase)' => [ 
+                'List', 
+            ],
+            'union (uppercase)' => [ 
+                'Union', 
+            ],
+            '#all with extension' => [ 
                 '#all extension', 
-            ], 
-            'restriction #all' => [ 
-                'restriction #all', 
-            ], 
-            '#all list' => [ 
+            ],
+            '#all with restriction' => [ 
+                '#all restriction', 
+            ],
+            '#all with list' => [ 
                 '#all list', 
-            ], 
-            'union #all' => [ 
-                'union #all', 
-            ], 
+            ],
+            '#all with union' => [ 
+                '#all union', 
+            ],
+            'Value not extension neither restriction neither list neither union' => [ 
+                'extension restriction foo list restriction', 
+            ],
         ];
     }
     
