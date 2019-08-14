@@ -271,6 +271,8 @@ class SpecificationFactoryTest extends TestCase
             [ 5, 'id', '', 'buildIdAttribute', ], 
             [ 5, 'namespace', '', 'buildNamespaceAttribute', ], 
             [ 5, 'schemaLocation', '', 'buildSchemaLocationAttribute', ], 
+            // Context: ELT_INCLUDE
+            [ 6, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
