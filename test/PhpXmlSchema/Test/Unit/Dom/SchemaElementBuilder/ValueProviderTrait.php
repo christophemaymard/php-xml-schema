@@ -59,44 +59,44 @@ trait ValueProviderTrait
     {
         // [ $value, $restriction, $extension, $substitution, ]
         return [
-            '' => [ 
+            'Empty string' => [ 
                 '', FALSE, FALSE, FALSE, 
+            ],
+            'Only white spaces' => [ 
+                "\t    \r    \n", FALSE, FALSE, FALSE, 
             ],
             '#all' => [ 
                 '#all', TRUE, TRUE, TRUE, 
             ],
-            
-            'restriction' => [ 
+            'extension, restriction and substitution with white spaces' => [ 
+                " substitution\t \r \nextension\t \r \nrestriction  ", TRUE, TRUE, TRUE, 
+            ],
+            'restriction with white spaces' => [ 
                 "\t \r \n  restriction  ", TRUE, FALSE, FALSE, 
             ],
-            'extension' => [ 
+            'extension with white spaces' => [ 
                 " extension\r", FALSE, TRUE, FALSE, 
             ],
-            'substitution' => [ 
+            'substitution with white spaces' => [ 
                 "   substitution   ", FALSE, FALSE, TRUE, 
             ],
-            
-            'restriction extension' => [ 
+            'restriction and extension with white spaces' => [ 
                 "\t\t\t restriction \n   \rextension\n ", TRUE, TRUE, FALSE, 
             ],
-            'substitution restriction' => [ 
+            'substitution and restriction with white spaces' => [ 
                 "\n\n\nsubstitution restriction", TRUE, FALSE, TRUE, 
             ],
-            'extension substitution' => [ 
+            'extension and substitution with white spaces' => [ 
                 "extension\t\t\tsubstitution\n\n\n", FALSE, TRUE, TRUE, 
             ],
-            'restriction restriction' => [ 
-                "    restriction      restriction   ", TRUE, FALSE, FALSE, 
+            'Duplicated restriction' => [ 
+                'restriction restriction', TRUE, FALSE, FALSE, 
             ],
-            'extension extension' => [ 
-                "extension extension", FALSE, TRUE, FALSE, 
+            'Duplicated extension' => [ 
+                'extension extension', FALSE, TRUE, FALSE, 
             ],
-            'substitution substitution' => [ 
-                "substitution substitution", FALSE, FALSE, TRUE, 
-            ],
-            
-            'substitution extension restriction' => [ 
-                "substitution\t \r \nextension\t \r \nrestriction", TRUE, TRUE, TRUE, 
+            'Duplicated substitution' => [ 
+                'substitution substitution', FALSE, FALSE, TRUE, 
             ],
         ];
     }
@@ -109,28 +109,35 @@ trait ValueProviderTrait
     public function getInvalidBlockSetValues():array
     {
         return [
-            '#ALL' => [ 
+            'Not substitution neither extension neither restriction' => [ 
+                'foo', 
+            ],
+            '#all (uppercase)' => [ 
                 '#ALL', 
             ],
-            
-            'subStitution' => [ 
+            '#all with white spaces' => [ 
+                '    #all    ', 
+            ], 
+            'substitution (uppercase)' => [ 
                 'subStitution', 
             ],
-            'exTension' => [ 
+            'extension (uppercase)' => [ 
                 'exTension', 
             ],
-            'Restriction' => [ 
+            'restriction (uppercase)' => [ 
                 'Restriction', 
             ],
-            
-            '#all substitution' => [ 
+            '#all with substitution' => [ 
                 '#all substitution', 
             ],
-            'extension #all' => [ 
+            '#all with extension' => [ 
                 'extension #all', 
             ],
-            '#all restriction' => [ 
+            '#all with restriction' => [ 
                 '#all restriction', 
+            ],
+            'Value not substitution neither extension neither restriction in list' => [ 
+                'substitution extension foo restriction', 
             ],
         ];
     }

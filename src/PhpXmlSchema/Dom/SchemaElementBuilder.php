@@ -303,21 +303,20 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * Parses the specified value in "blockSet" DerivationType value.
      * 
-     * Before parsing the value, the white space characters (i.e. TAB, LF, CR 
-     * and SPACE) are collapsed.
+     * If the value is not '#all' then white space characters (i.e. TAB, LF, 
+     * CR and SPACE) are collapsed before parsing.
      * 
      * @param   string  $value  The value to parse.
      * @return  DerivationType|NULL A created instance of DerivationType if the value is valid, otherwise NULL.
      */
     private function parseBlockSetValue(string $value)
     {
-        $cvalue = $this->collapseWhiteSpace($value);
         $rest = $ext = $sub = FALSE;
         
-        if ($cvalue == '#all') {
+        if ($value == '#all') {
             $rest = $ext = $sub = TRUE;
         } else {
-            foreach (\array_filter(\explode(' ', $cvalue), 'strlen') as $flag) {
+            foreach (\array_filter(\explode(' ', $this->collapseWhiteSpace($value)), 'strlen') as $flag) {
                 if ($flag == 'restriction') {
                     $rest = TRUE;
                 } elseif ($flag == 'extension') {
