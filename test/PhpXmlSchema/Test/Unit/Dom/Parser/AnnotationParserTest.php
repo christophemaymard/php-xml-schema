@@ -9,14 +9,14 @@ namespace PhpXmlSchema\Test\Unit\Dom\Parser;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\Parser} class 
- * when the context is {@see PhpXmlSchema\Dom\ContextId::ELT_COMPOSITION_ANNOTATION}.
+ * when the context is {@see PhpXmlSchema\Dom\ContextId::ELT_ANNOTATION}.
  * 
  * @group   parsing
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class CompositionAnnotationParserTest extends AbstractParserTestCase
+class AnnotationParserTest extends AbstractParserTestCase
 {
     use ParseThrowsExceptionWhenAttributeValueIsInvalidTrait;
     use ParseThrowsExceptionWhenContentIsInvalidTrait;
@@ -26,7 +26,7 @@ class CompositionAnnotationParserTest extends AbstractParserTestCase
      */
     protected function getContextName():string
     {
-        return 'composition_annotation';
+        return 'annotation';
     }
     
     /**
@@ -108,28 +108,28 @@ class CompositionAnnotationParserTest extends AbstractParserTestCase
     {
         return [
             'Starts with _' => [
-                'composition_annotation_id_0001.xsd', '_foo', 
+                'annotation_id_0001.xsd', '_foo', 
             ], 
             'Starts with letter' => [
-                'composition_annotation_id_0002.xsd', 'f', 
+                'annotation_id_0002.xsd', 'f', 
             ], 
             'Contains letter' => [
-                'composition_annotation_id_0003.xsd', 'foo', 
+                'annotation_id_0003.xsd', 'foo', 
             ], 
             'Contains digit' => [
-                'composition_annotation_id_0004.xsd', 'f00', 
+                'annotation_id_0004.xsd', 'f00', 
             ], 
             'Contains .' => [
-                'composition_annotation_id_0005.xsd', 'f.bar', 
+                'annotation_id_0005.xsd', 'f.bar', 
             ], 
             'Contains -' => [
-                'composition_annotation_id_0006.xsd', 'f-bar', 
+                'annotation_id_0006.xsd', 'f-bar', 
             ], 
             'Contains _' => [
-                'composition_annotation_id_0007.xsd', 'f_bar', 
+                'annotation_id_0007.xsd', 'f_bar', 
             ], 
             'Surrounded by whitespaces' => [
-                'composition_annotation_id_0008.xsd', 'foo_bar', 
+                'annotation_id_0008.xsd', 'foo_bar', 
             ], 
         ];
     }

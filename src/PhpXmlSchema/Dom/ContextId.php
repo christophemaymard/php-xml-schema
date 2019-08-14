@@ -16,7 +16,7 @@ class ContextId
 {
     const ELT_ROOT = 0;
     const ELT_SCHEMA = 1;
-    const ELT_COMPOSITION_ANNOTATION = 2;
+    const ELT_ANNOTATION = 2;
     const ELT_APPINFO = 3;
     const ELT_DOCUMENTATION = 4;
     const ELT_IMPORT = 5;

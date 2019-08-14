@@ -27,7 +27,7 @@ class SpecificationFactory
     private $initialStates = [
         ContextId::ELT_ROOT => 0, 
         ContextId::ELT_SCHEMA => 0, 
-        ContextId::ELT_COMPOSITION_ANNOTATION => 0, 
+        ContextId::ELT_ANNOTATION => 0, 
         ContextId::ELT_IMPORT => 0, 
     ];
     
@@ -40,10 +40,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_SCHEMA, 'schema', ], 
         ], 
         ContextId::ELT_SCHEMA => [
-            [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 'annotation', ], 
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_IMPORT, 'import', ], 
         ], 
-        ContextId::ELT_COMPOSITION_ANNOTATION => [
+        ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'appinfo', ], 
             [ 0, ContextId::ELT_DOCUMENTATION, 'documentation', ], 
         ], 
@@ -59,10 +59,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_SCHEMA, 'buildSchemaElement', ], 
         ], 
         ContextId::ELT_SCHEMA => [
-            [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 'buildCompositionAnnotationElement', ], 
+            [ 0, ContextId::ELT_ANNOTATION, 'buildCompositionAnnotationElement', ], 
             [ 0, ContextId::ELT_IMPORT, 'buildImportElement', ], 
         ], 
-        ContextId::ELT_COMPOSITION_ANNOTATION => [
+        ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'buildAppInfoElement', ], 
             [ 0, ContextId::ELT_DOCUMENTATION, 'buildDocumentationElement', ], 
         ], 
@@ -77,10 +77,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_SCHEMA, 1, ], 
         ], 
         ContextId::ELT_SCHEMA => [
-            [ 0, ContextId::ELT_COMPOSITION_ANNOTATION, 0, ], 
+            [ 0, ContextId::ELT_ANNOTATION, 0, ], 
             [ 0, ContextId::ELT_IMPORT, 0, ], 
         ], 
-        ContextId::ELT_COMPOSITION_ANNOTATION => [
+        ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 0, ], 
             [ 0, ContextId::ELT_DOCUMENTATION, 0, ], 
         ], 
@@ -102,7 +102,7 @@ class SpecificationFactory
             [ 'version', '', 'buildVersionAttribute', ], 
             [ 'lang', XmlNamespace::XML_1_0, 'buildLangAttribute', ], 
         ], 
-        ContextId::ELT_COMPOSITION_ANNOTATION => [
+        ContextId::ELT_ANNOTATION => [
             [ 'id', '', 'buildIdAttribute', ], 
         ], 
         ContextId::ELT_APPINFO => [

@@ -357,7 +357,7 @@
   </test>
   <!-- annotation -->
   <test group="content" name="[schema][composition_annotation] not part of the XML Schema 1.0 namespace">
-    <schema fileName="composition_annotation_0001.xsd">
+    <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
       <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation" or "import".</message>
     </schema>

@@ -223,7 +223,7 @@ class SchemaParserTest extends AbstractParserTestCase
      */
     public function testParseProcessCompositionAnnotationElement()
     {
-        $sch = $this->sut->parse($this->getXs('composition_annotation_0002.xsd'));
+        $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
