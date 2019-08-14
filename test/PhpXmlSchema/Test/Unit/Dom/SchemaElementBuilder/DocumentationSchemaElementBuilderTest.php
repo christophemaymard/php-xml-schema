@@ -36,6 +36,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

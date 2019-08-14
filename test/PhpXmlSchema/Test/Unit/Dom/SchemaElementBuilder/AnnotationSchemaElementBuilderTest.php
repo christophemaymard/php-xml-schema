@@ -14,14 +14,14 @@ use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is the "annotation" element (composition).
+ * class when the current element is the "annotation" element.
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -60,7 +60,10 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     {
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
-        self::assertCount(1, $sch->getCompositionAnnotationElements());
+        
+        $import = $sch->getImportElements()[0];
+        self::assertImportElementHasNoAttribute($import);
+        self::assertCount(1, $import->getElements());
     }
     
     /**
@@ -71,7 +74,8 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
      */
     private static function getCurrentElement(SchemaElement $sch):AnnotationElement
     {
-        return $sch->getCompositionAnnotationElements()[0];
+        return $sch->getImportElements()[0]
+            ->getAnnotationElement();
     }
     
     /**
@@ -80,7 +84,8 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     protected function setUp()
     {
         $this->sut = new SchemaElementBuilder();
-        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildImportElement();
+        $this->sut->buildAnnotationElement();
     }
     
     /**
@@ -93,8 +98,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     
     /**
      * Tests that buildIdAttribute() creates the attribute when the current 
-     * element is the "annotation" element (composition) and the value is 
-     * valid.
+     * element is the "annotation" element and the value is valid.
      * 
      * @param   string  $value  The value to test.
      * @param   string  $id     The expected value for the ID.
@@ -103,7 +107,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
      * @group           parsing
      * @dataProvider    getValidIdValues
      */
-    public function testBuildIdAttributeCreatesAttrWhenCompositionAnnotationAndValueIsValid(
+    public function testBuildIdAttributeCreatesAttrWhenAnnotationAndValueIsValid(
         string $value, 
         string $id
     ) {
@@ -120,8 +124,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     
     /**
      * Tests that buildIdAttribute() throws an exception when the current 
-     * element is the "annotation" element (composition) and the value is 
-     * invalid.
+     * element is the "annotation" element and the value is invalid.
      * 
      * @param   string  $value      The value to test.
      * @param   string  $message    The expected exception message.
@@ -130,7 +133,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
      * @group           parsing
      * @dataProvider    getInvalidIdValues
      */
-    public function testBuildIdAttributeThrowsExceptionWhenCompositionAnnotationAndValueIsInvalid(
+    public function testBuildIdAttributeThrowsExceptionWhenAnnotationAndValueIsInvalid(
         string $value, 
         string $message
     ) {
@@ -142,12 +145,12 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     
     /**
      * Tests that buildAppInfoElement() creates the element when the current 
-     * element is the "annotation" element (composition).
+     * element is the "annotation" element.
      * 
      * @group   content
      * @group   element
      */
-    public function testBuildAppInfoElementCreateEltWhenCompositionAnnotation()
+    public function testBuildAppInfoElementCreateEltWhenAnnotation()
     {
         $this->sut->buildAppInfoElement();
         $this->sut->endElement();
@@ -168,12 +171,12 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     
     /**
      * Tests that buildDocumentationElement() creates the element when the 
-     * current element is the "annotation" element (composition).
+     * current element is the "annotation" element.
      * 
      * @group   content
      * @group   element
      */
-    public function testBuildDocumentationElementCreateEltWhenCompositionAnnotation()
+    public function testBuildDocumentationElementCreateEltWhenAnnotation()
     {
         $this->sut->buildDocumentationElement();
         $this->sut->endElement();

@@ -37,6 +37,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

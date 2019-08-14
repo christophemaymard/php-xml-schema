@@ -216,4 +216,27 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         
         $this->sut->buildSchemaLocationAttribute(':');
     }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "import" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenImport()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $import = self::getCurrentElement($sch);
+        self::assertImportElementHasNoAttribute($import);
+        self::assertCount(1, $import->getElements());
+        
+        $ann = $import->getAnnotationElement();
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
+    }
 }
