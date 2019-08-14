@@ -202,56 +202,62 @@
       <message>"#ALL" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
-  <test group="attribute" name="[schema][attribute::finalDefault] extension (uppercase)">
+  <test group="attribute" name="[schema][attribute::finalDefault] #all with white spaces">
     <schema fileName="schema_finald_0020.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    #all    " is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::finalDefault] extension (uppercase)">
+    <schema fileName="schema_finald_0021.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"Extension" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] restriction (uppercase)">
-    <schema fileName="schema_finald_0021.xsd">
+    <schema fileName="schema_finald_0022.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"Restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] list (uppercase)">
-    <schema fileName="schema_finald_0022.xsd">
+    <schema fileName="schema_finald_0023.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"List" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] union (uppercase)">
-    <schema fileName="schema_finald_0023.xsd">
+    <schema fileName="schema_finald_0024.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"Union" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with extension">
-    <schema fileName="schema_finald_0024.xsd">
+    <schema fileName="schema_finald_0025.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"#all extension" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with restriction">
-    <schema fileName="schema_finald_0025.xsd">
+    <schema fileName="schema_finald_0026.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"#all restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with list">
-    <schema fileName="schema_finald_0026.xsd">
+    <schema fileName="schema_finald_0027.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"#all list" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with union">
-    <schema fileName="schema_finald_0027.xsd">
+    <schema fileName="schema_finald_0028.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"#all union" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] Value not extension neither restriction neither list neither union">
-    <schema fileName="schema_finald_0028.xsd">
+    <schema fileName="schema_finald_0029.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"extension restriction foo list restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
     </schema>
