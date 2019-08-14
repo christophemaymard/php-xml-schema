@@ -293,35 +293,35 @@ class SchemaParserTest extends AbstractParserTestCase
             '#all' => [
                 'schema_blockd_0003.xsd', TRUE, TRUE, TRUE, 
             ], 
+            'extension, restriction and substitution with white spaces' => [
+                'schema_blockd_0004.xsd', TRUE, TRUE, TRUE, 
+            ], 
             'restriction with white spaces' => [
-                'schema_blockd_0004.xsd', TRUE, FALSE, FALSE, 
+                'schema_blockd_0005.xsd', TRUE, FALSE, FALSE, 
             ], 
             'extension with white spaces' => [
-                'schema_blockd_0005.xsd', FALSE, TRUE, FALSE, 
+                'schema_blockd_0006.xsd', FALSE, TRUE, FALSE, 
             ], 
             'substitution with white spaces' => [
-                'schema_blockd_0006.xsd', FALSE, FALSE, TRUE, 
+                'schema_blockd_0007.xsd', FALSE, FALSE, TRUE, 
             ], 
             'restriction and extension with white spaces' => [
-                'schema_blockd_0007.xsd', TRUE, TRUE, FALSE, 
+                'schema_blockd_0008.xsd', TRUE, TRUE, FALSE, 
             ], 
             'substitution and restriction with white spaces' => [
-                'schema_blockd_0008.xsd', TRUE, FALSE, TRUE, 
+                'schema_blockd_0009.xsd', TRUE, FALSE, TRUE, 
             ], 
             'extension and substitution with white spaces' => [
-                'schema_blockd_0009.xsd', FALSE, TRUE, TRUE, 
+                'schema_blockd_0010.xsd', FALSE, TRUE, TRUE, 
             ], 
             'Duplicated restriction' => [
-                'schema_blockd_0010.xsd', TRUE, FALSE, FALSE, 
+                'schema_blockd_0011.xsd', TRUE, FALSE, FALSE, 
             ], 
             'Duplicated extension' => [
-                'schema_blockd_0011.xsd', FALSE, TRUE, FALSE, 
+                'schema_blockd_0012.xsd', FALSE, TRUE, FALSE, 
             ], 
             'Duplicated substitution' => [
-                'schema_blockd_0012.xsd', FALSE, FALSE, TRUE, 
-            ], 
-            'substitution, extension and restriction with white spaces' => [
-                'schema_blockd_0013.xsd', TRUE, TRUE, TRUE, 
+                'schema_blockd_0013.xsd', FALSE, FALSE, TRUE, 
             ], 
         ];
     }

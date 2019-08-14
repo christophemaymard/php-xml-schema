@@ -1,1 +1,1 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" blockDefault="exTension"></xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" blockDefault="subStitution"></xs:schema>

@@ -1,1 +1,2 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" blockDefault=" extension"></xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" blockDefault="	  
+  restriction  "></xs:schema>

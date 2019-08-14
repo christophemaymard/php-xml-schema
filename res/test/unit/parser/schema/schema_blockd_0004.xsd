@@ -1,2 +1,3 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" blockDefault="	  
-  restriction  "></xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" blockDefault=" substitution	  
+extension	  
+restriction  "></xs:schema>

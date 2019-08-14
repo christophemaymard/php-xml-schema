@@ -92,44 +92,50 @@
       <message>"#ALL" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
     </schema>
   </test>
-  <test group="attribute" name="[schema][attribute::blockDefault] substitution (uppercase)">
+  <test group="attribute" name="[schema][attribute::blockDefault] #all with white spaces">
     <schema fileName="schema_blockd_0016.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    #all    " is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[schema][attribute::blockDefault] substitution (uppercase)">
+    <schema fileName="schema_blockd_0017.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"subStitution" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] extension (uppercase)">
-    <schema fileName="schema_blockd_0017.xsd">
+    <schema fileName="schema_blockd_0018.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"exTension" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] restriction (uppercase)">
-    <schema fileName="schema_blockd_0018.xsd">
+    <schema fileName="schema_blockd_0019.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"Restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] #all with substitution">
-    <schema fileName="schema_blockd_0019.xsd">
+    <schema fileName="schema_blockd_0020.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"#all substitution" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] #all with extension">
-    <schema fileName="schema_blockd_0020.xsd">
+    <schema fileName="schema_blockd_0021.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"extension #all" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] #all with restriction">
-    <schema fileName="schema_blockd_0021.xsd">
+    <schema fileName="schema_blockd_0022.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"#all restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] Value not substitution neither extension neither restriction in list">
-    <schema fileName="schema_blockd_0022.xsd">
+    <schema fileName="schema_blockd_0023.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"substitution extension foo restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
     </schema>
