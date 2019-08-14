@@ -37,7 +37,6 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildDocumentationElementDoesNotCreateElementTestTrait;
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     
     /**
@@ -178,5 +177,28 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         $this->expectException(InvalidValueException::class);
         
         $this->sut->buildSchemaLocationAttribute(':');
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "include" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenInclude()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $inc = self::getCurrentElement($sch);
+        self::assertIncludeElementHasNoAttribute($inc);
+        self::assertCount(1, $inc->getElements());
+        
+        $ann = $inc->getAnnotationElement();
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }

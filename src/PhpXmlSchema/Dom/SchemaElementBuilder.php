@@ -224,10 +224,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildAnnotationElement()
     {
-        if ($this->currentElement instanceof ImportElement) {
-            $elt = new AnnotationElement();
-            $this->currentElement->setAnnotationElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_IMPORT:
+                case ElementId::ELT_INCLUDE:
+                    $elt = new AnnotationElement();
+                    $this->currentElement->setAnnotationElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     
