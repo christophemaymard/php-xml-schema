@@ -88,6 +88,28 @@ class ImportParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "annotation" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAnnotationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $import = $sch->getImportElements()[0];
+        self::assertImportElementHasNoAttribute($import);
+        self::assertCount(1, $import->getElements());
+        
+        $ann = $import->getAnnotationElement();
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

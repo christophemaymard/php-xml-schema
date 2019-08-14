@@ -47,6 +47,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_APPINFO, 'appinfo', ], 
             [ 0, ContextId::ELT_DOCUMENTATION, 'documentation', ], 
         ], 
+        ContextId::ELT_IMPORT => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -66,6 +69,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_APPINFO, 'buildAppInfoElement', ], 
             [ 0, ContextId::ELT_DOCUMENTATION, 'buildDocumentationElement', ], 
         ], 
+        ContextId::ELT_IMPORT => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -83,6 +89,9 @@ class SpecificationFactory
         ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 0, ], 
             [ 0, ContextId::ELT_DOCUMENTATION, 0, ], 
+        ], 
+        ContextId::ELT_IMPORT => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
