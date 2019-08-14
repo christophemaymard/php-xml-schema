@@ -27,7 +27,7 @@
 - [x] Parse **version** attribute (collapsing white spaces).
 - [x] Parse **xml:lang** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
-- [ ] Parse **include** elements.
+- [x] Parse **include** elements.
 - [x] Parse **import** elements.
 - [ ] Parse **redefine** elements.
 - [x] Parse **annotation** elements (composition).
@@ -106,3 +106,20 @@
 - [x] Parse **schemaLocation** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "include"
+
+```
+<include
+  id = ID
+  schemaLocation = anyURI
+>
+  Content: (annotation?)
+</include>
+```
+
+- [x] Parse **include** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **schemaLocation** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.

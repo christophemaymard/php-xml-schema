@@ -170,6 +170,7 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, ], // ELT_SCHEMA
             [ 2, 0, ], // ELT_ANNOTATION
             [ 5, 0, ], // ELT_IMPORT
+            [ 6, 0, ], // ELT_INCLUDE
         ];
     }
     
@@ -187,6 +188,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_SCHEMA
             [ 1, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 1, 0, 5, 'import', ], // ELT_IMPORT
+            [ 1, 0, 6, 'include', ], // ELT_INCLUDE
             // Context: ELT_ANNOTATION
             [ 2, 0, 3, 'appinfo', ], // ELT_APPINFO
             [ 2, 0, 4, 'documentation', ], // ELT_DOCUMENTATION
@@ -209,6 +211,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_SCHEMA
             [ 1, 0, 2, 'buildCompositionAnnotationElement', ], // ELT_ANNOTATION
             [ 1, 0, 5, 'buildImportElement', ], // ELT_IMPORT
+            [ 1, 0, 6, 'buildIncludeElement', ], // ELT_INCLUDE
             // Context: ELT_ANNOTATION
             [ 2, 0, 3, 'buildAppInfoElement', ], // ELT_APPINFO
             [ 2, 0, 4, 'buildDocumentationElement', ], // ELT_DOCUMENTATION
@@ -231,6 +234,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_SCHEMA
             [ 1, 0, 2, 0, ], // ELT_ANNOTATION
             [ 1, 0, 5, 0, ], // ELT_IMPORT
+            [ 1, 0, 6, 0 ], // ELT_INCLUDE
             // Context: ELT_ANNOTATION
             [ 2, 0, 3, 0, ], // ELT_APPINFO
             [ 2, 0, 4, 0, ], // ELT_DOCUMENTATION

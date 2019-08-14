@@ -20,4 +20,5 @@ class ContextId
     const ELT_APPINFO = 3;
     const ELT_DOCUMENTATION = 4;
     const ELT_IMPORT = 5;
+    const ELT_INCLUDE = 6;
 }

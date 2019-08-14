@@ -258,6 +258,27 @@ class SchemaParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "include" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessIncludeElement()
+    {
+        $sch = $this->sut->parse($this->getXs('include_0002.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $incs = $sch->getIncludeElements();
+        self::assertCount(2, $incs);
+        self::assertIncludeElementHasNoAttribute($incs[0]);
+        self::assertSame([], $incs[0]->getElements());
+        self::assertIncludeElementHasNoAttribute($incs[1]);
+        self::assertSame([], $incs[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "attributeFormDefault" attributes.
      * 
      * @return  array[]
