@@ -194,6 +194,8 @@ class SpecificationFactoryTest extends TestCase
             [ 2, 0, 4, 'documentation', ], // ELT_DOCUMENTATION
             // Context: ELT_IMPORT
             [ 5, 0, 2, 'annotation', ], // ELT_ANNOTATION
+            // Context: ELT_INCLUDE
+            [ 6, 0, 2, 'annotation', ], // ELT_ANNOTATION
         ];
     }
     
@@ -217,6 +219,8 @@ class SpecificationFactoryTest extends TestCase
             [ 2, 0, 4, 'buildDocumentationElement', ], // ELT_DOCUMENTATION
             // Context: ELT_IMPORT
             [ 5, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
+            // Context: ELT_INCLUDE
+            [ 6, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
         ];
     }
     
@@ -240,6 +244,8 @@ class SpecificationFactoryTest extends TestCase
             [ 2, 0, 4, 0, ], // ELT_DOCUMENTATION
             // Context: ELT_IMPORT
             [ 5, 0, 2, 1, ], // ELT_ANNOTATION
+            // Context: ELT_INCLUDE
+            [ 6, 0, 2, 1, ], // ELT_ANNOTATION
         ];
     }
     

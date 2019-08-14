@@ -19,6 +19,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\Parser;
 class IncludeParserTest extends AbstractParserTestCase
 {
     use ParseThrowsExceptionWhenAttributeValueIsInvalidTrait;
+    use ParseThrowsExceptionWhenContentIsInvalidTrait;
     
     /**
      * {@inheritDoc}
@@ -66,6 +67,28 @@ class IncludeParserTest extends AbstractParserTestCase
         self::assertIncludeElementHasOnlySchemaLocationAttribute($inc);
         self::assertSame('http://example.org', $inc->getSchemaLocation()->getUri());
         self::assertSame([], $inc->getElements());
+    }
+    
+    /**
+     * Tests that parse() processes "annotation" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAnnotationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $inc = $sch->getIncludeElements()[0];
+        self::assertIncludeElementHasNoAttribute($inc);
+        self::assertCount(1, $inc->getElements());
+        
+        $ann = $inc->getAnnotationElement();
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
     
     /**

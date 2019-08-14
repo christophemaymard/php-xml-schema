@@ -27,7 +27,7 @@
   <test group="content" name="[include] foo child element is not supported">
     <schema fileName="include_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation".</message>
     </schema>
   </test>
   <!-- include::id -->
@@ -78,6 +78,19 @@
     <schema fileName="include_schloc_0002.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
+  <!-- annotation -->
+  <test group="content" name="[include][annotation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
+    </schema>
+  </test>
+  <test group="content" name="[include][annotation] annotation?">
+    <schema fileName="annotation_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
   <!-- TEMPLATE
