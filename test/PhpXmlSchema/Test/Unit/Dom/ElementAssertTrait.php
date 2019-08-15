@@ -438,4 +438,19 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasPublic());
         self::assertFalse($sut->hasSystem());
     }
+    
+    /**
+     * Asserts that the specified "notation" element has only the "id" 
+     * attribute.
+     * 
+     * @param   NotationElement $sut    The element to test.
+     */
+    public static function assertNotationElementHasOnlyIdAttribute(
+        NotationElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasPublic());
+        self::assertFalse($sut->hasSystem());
+    }
 }
