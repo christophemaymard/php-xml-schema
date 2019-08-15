@@ -149,7 +149,10 @@ class SpecificationFactory
         ContextId::ELT_INCLUDE => [
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'schemaLocation', '', 'buildSchemaLocationAttribute', ], 
-        ],
+        ], 
+        ContextId::ELT_NOTATION => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**

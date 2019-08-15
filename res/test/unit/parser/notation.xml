@@ -30,6 +30,49 @@
       <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
+  <!-- notation::id -->
+  <test group="attribute" name="[notation][attribute::id] Empty string">
+    <schema fileName="notation_id_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[notation][attribute::id] Only white spaces">
+    <schema fileName="notation_id_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[notation][attribute::id] Separated by whitespaces">
+    <schema fileName="notation_id_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[notation][attribute::id] Starts with digit">
+    <schema fileName="notation_id_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[notation][attribute::id] Starts with .">
+    <schema fileName="notation_id_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[notation][attribute::id] Starts with -">
+    <schema fileName="notation_id_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[notation][attribute::id] Contains invalid character">
+    <schema fileName="notation_id_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo:bar" is an invalid ID.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
