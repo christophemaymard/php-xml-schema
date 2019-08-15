@@ -171,6 +171,7 @@ class SpecificationFactoryTest extends TestCase
             [ 2, 0, ], // ELT_ANNOTATION
             [ 5, 0, ], // ELT_IMPORT
             [ 6, 0, ], // ELT_INCLUDE
+            [ 7, 0, ], // ELT_NOTATION
         ];
     }
     
@@ -189,6 +190,8 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 1, 0, 5, 'import', ], // ELT_IMPORT
             [ 1, 0, 6, 'include', ], // ELT_INCLUDE
+            [ 1, 0, 7, 'notation', ], // ELT_NOTATION
+            [ 1, 1, 7, 'notation', ], // ELT_NOTATION
             // Context: ELT_ANNOTATION
             [ 2, 0, 3, 'appinfo', ], // ELT_APPINFO
             [ 2, 0, 4, 'documentation', ], // ELT_DOCUMENTATION
@@ -214,6 +217,8 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 'buildCompositionAnnotationElement', ], // ELT_ANNOTATION
             [ 1, 0, 5, 'buildImportElement', ], // ELT_IMPORT
             [ 1, 0, 6, 'buildIncludeElement', ], // ELT_INCLUDE
+            [ 1, 0, 7, 'buildNotationElement', ], // ELT_NOTATION
+            [ 1, 1, 7, 'buildNotationElement', ], // ELT_NOTATION
             // Context: ELT_ANNOTATION
             [ 2, 0, 3, 'buildAppInfoElement', ], // ELT_APPINFO
             [ 2, 0, 4, 'buildDocumentationElement', ], // ELT_DOCUMENTATION
@@ -239,6 +244,8 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 0, ], // ELT_ANNOTATION
             [ 1, 0, 5, 0, ], // ELT_IMPORT
             [ 1, 0, 6, 0 ], // ELT_INCLUDE
+            [ 1, 0, 7, 1, ], // ELT_NOTATION
+            [ 1, 1, 7, 1, ], // ELT_NOTATION
             // Context: ELT_ANNOTATION
             [ 2, 0, 3, 0, ], // ELT_APPINFO
             [ 2, 0, 4, 0, ], // ELT_DOCUMENTATION

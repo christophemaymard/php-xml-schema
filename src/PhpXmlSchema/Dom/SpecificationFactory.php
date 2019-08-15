@@ -30,6 +30,7 @@ class SpecificationFactory
         ContextId::ELT_ANNOTATION => 0, 
         ContextId::ELT_IMPORT => 0, 
         ContextId::ELT_INCLUDE => 0, 
+        ContextId::ELT_NOTATION => 0, 
     ];
     
     /**
@@ -44,6 +45,8 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_IMPORT, 'import', ], 
             [ 0, ContextId::ELT_INCLUDE, 'include', ], 
+            [ 0, ContextId::ELT_NOTATION, 'notation', ], 
+            [ 1, ContextId::ELT_NOTATION, 'notation', ], 
         ], 
         ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'appinfo', ], 
@@ -70,6 +73,8 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'buildCompositionAnnotationElement', ], 
             [ 0, ContextId::ELT_IMPORT, 'buildImportElement', ], 
             [ 0, ContextId::ELT_INCLUDE, 'buildIncludeElement', ], 
+            [ 0, ContextId::ELT_NOTATION, 'buildNotationElement', ], 
+            [ 1, ContextId::ELT_NOTATION, 'buildNotationElement', ], 
         ], 
         ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'buildAppInfoElement', ], 
@@ -95,6 +100,8 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 0, ], 
             [ 0, ContextId::ELT_IMPORT, 0, ], 
             [ 0, ContextId::ELT_INCLUDE, 0, ], 
+            [ 0, ContextId::ELT_NOTATION, 1, ], 
+            [ 1, ContextId::ELT_NOTATION, 1, ], 
         ], 
         ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 0, ], 

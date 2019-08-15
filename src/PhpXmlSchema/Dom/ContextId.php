@@ -21,4 +21,5 @@ class ContextId
     const ELT_DOCUMENTATION = 4;
     const ELT_IMPORT = 5;
     const ELT_INCLUDE = 6;
+    const ELT_NOTATION = 7;
 }

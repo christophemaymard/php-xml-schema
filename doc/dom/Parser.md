@@ -37,7 +37,7 @@
 - [ ] Parse **attributeGroup** elements.
 - [ ] Parse **element** elements.
 - [ ] Parse **attribute** elements.
-- [ ] Parse **notation** elements.
+- [x] Parse **notation** elements.
 - [ ] Parse **annotation** elements (definition).
 
 ## Element: "annotation"
@@ -123,3 +123,24 @@
 - [x] Parse **schemaLocation** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "notation"
+
+```
+<notation
+  id = ID
+  name = NCName
+  public = token
+  system = anyURI
+>
+  Content: (annotation?)
+</notation>
+```
+
+- [x] Parse **notation** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [ ] Parse **public** attribute (collapsing white spaces).
+- [ ] Parse **system** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.

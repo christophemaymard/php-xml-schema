@@ -279,6 +279,27 @@ class SchemaParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "notation" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessNotationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('notation_0002.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $nots = $sch->getNotationElements();
+        self::assertCount(2, $nots);
+        self::assertNotationElementHasNoAttribute($nots[0]);
+        self::assertSame([], $nots[0]->getElements());
+        self::assertNotationElementHasNoAttribute($nots[1]);
+        self::assertSame([], $nots[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "attributeFormDefault" attributes.
      * 
      * @return  array[]
