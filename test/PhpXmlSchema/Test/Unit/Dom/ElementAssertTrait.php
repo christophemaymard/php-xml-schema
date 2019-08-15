@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
+use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 
 /**
@@ -422,5 +423,19 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasSchemaLocation());
+    }
+    
+    /**
+     * Asserts that the specified "notation" element has no attribute.
+     * 
+     * @param   NotationElement $sut    The element to test.
+     */
+    public static function assertNotationElementHasNoAttribute(
+        NotationElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasPublic());
+        self::assertFalse($sut->hasSystem());
     }
 }

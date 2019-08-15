@@ -298,6 +298,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildNotationElement()
+    {
+        if ($this->currentElement instanceof SchemaElement) {
+            $elt = new NotationElement();
+            $this->currentElement->addNotationElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaElement()
     {
         $this->schemaElement = $this->currentElement = new SchemaElement();

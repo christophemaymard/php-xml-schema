@@ -7,19 +7,20 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is NULL.
+ * class when the current element is the "notation" element.
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -46,8 +47,35 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertSchemaElementNotChanged(SchemaElement $sch)
     {
+        self::assertAncestorsNotChanged($sch);
+        
+        $not = self::getCurrentElement($sch);
+        self::assertNotationElementHasNoAttribute($not);
+        self::assertSame([], $not->getElements());
+    }
+    
+    /**
+     * Asserts that the ancestors of the current element did not change since 
+     * its building.
+     * 
+     * @param   SchemaElement   $sch    The "schema" element of the current element to assert.
+     */
+    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    {
         self::assertSchemaElementHasNoAttribute($sch);
-        self::assertSame([], $sch->getElements());
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getNotationElements());
+    }
+    
+    /**
+     * Returns the instance of the current element.
+     * 
+     * @param   SchemaElement   $sch    The "schema" element of the current element
+     * @return  NotationElement
+     */
+    private static function getCurrentElement(SchemaElement $sch):NotationElement
+    {
+        return $sch->getNotationElements()[0];
     }
     
     /**
@@ -56,7 +84,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     protected function setUp()
     {
         $this->sut = new SchemaElementBuilder();
-        $this->sut->endElement();
+        $this->sut->buildNotationElement();
     }
     
     /**
