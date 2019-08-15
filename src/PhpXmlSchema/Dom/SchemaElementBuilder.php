@@ -128,6 +128,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_ANNOTATION:
                 case ElementId::ELT_IMPORT:
                 case ElementId::ELT_INCLUDE:
+                case ElementId::ELT_NOTATION:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }
