@@ -383,6 +383,19 @@
       <message>The "notation" element (from no namespace) is unexpected, expected: "annotation", "import", "include" or "notation".</message>
     </schema>
   </test>
+  <!-- container 1 -->
+  <test group="content" name="[schema][container 1] notation unexpected import">
+    <schema fileName="container_1_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "notation".</message>
+    </schema>
+  </test>
+  <test group="content" name="[schema][container 1] notation unexpected include">
+    <schema fileName="container_1_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "notation".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
