@@ -229,4 +229,44 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         
         $this->sut->buildPublicAttribute("\u{001F}");
     }
+    
+    /**
+     * Tests that buildSystemAttribute() creates the attribute when the 
+     * current element is the "notation" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $uri    The expected value for the URI.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidAnyUriValues
+     */
+    public function testBuildSystemAttributeCreatesAttrWhenNotationAndValueIsValid(
+        string $value, 
+        string $uri
+    ) {
+        $this->sut->buildSystemAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $not = self::getCurrentElement($sch);
+        self::assertNotationElementHasOnlySystemAttribute($not);
+        self::assertSame($uri, $not->getSystem()->getUri());
+        self::assertSame([], $not->getElements());
+    }
+    
+    /**
+     * Tests that buildSystemAttribute() throws an exception when the current 
+     * element is the "notation" element and the value is invalid.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildSystemAttributeThrowsExceptionWhenNotationAndValueIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        
+        $this->sut->buildSystemAttribute(':');
+    }
 }

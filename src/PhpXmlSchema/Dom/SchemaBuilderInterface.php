@@ -140,6 +140,18 @@ interface SchemaBuilderInterface
     public function buildSourceAttribute(string $value);
     
     /**
+     * Builds a "system" attribute in the current element.
+     * 
+     * If the current element does not support the attribute then it is not 
+     * built.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
+     */
+    public function buildSystemAttribute(string $value);
+    
+    /**
      * Builds a "targetNamespace" attribute in the "schema" element.
      * 
      * If the current element does not support the attribute then it is not 

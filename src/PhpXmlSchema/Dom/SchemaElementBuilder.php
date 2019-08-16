@@ -204,6 +204,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildSystemAttribute(string $value)
+    {
+        if ($this->currentElement instanceof NotationElement) {
+            $this->currentElement->setSystem(
+                new AnyUriType($this->collapseWhiteSpace($value))
+            );
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildTargetNamespaceAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {
