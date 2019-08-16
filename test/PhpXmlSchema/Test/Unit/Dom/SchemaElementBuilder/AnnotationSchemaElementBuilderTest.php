@@ -40,6 +40,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
+    use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

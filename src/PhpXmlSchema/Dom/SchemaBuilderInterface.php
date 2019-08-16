@@ -104,6 +104,18 @@ interface SchemaBuilderInterface
     public function buildNamespaceAttribute(string $value);
     
     /**
+     * Builds a "public" attribute in the current element.
+     * 
+     * If the current element does not support the attribute then it is not 
+     * built.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
+     */
+    public function buildPublicAttribute(string $value);
+    
+    /**
      * Builds a "schemaLocation" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 

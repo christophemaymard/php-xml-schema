@@ -160,6 +160,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildPublicAttribute(string $value)
+    {
+        if ($this->currentElement instanceof NotationElement) {
+            $this->currentElement->setPublic(
+                new TokenType($this->collapseWhiteSpace($value))
+            );
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaLocationAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {

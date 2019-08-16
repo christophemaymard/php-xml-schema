@@ -188,4 +188,45 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         
         $this->sut->buildNameAttribute($value);
     }
+    
+    /**
+     * Tests that buildPublicAttribute() creates the attribute when the 
+     * current element is the "notation" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $public The expected value for the public.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidTokenValues
+     */
+    public function testBuildPublicAttributeCreatesAttrWhenNotationAndValueIsValid(
+        string $value, 
+        string $public
+    ) {
+        $this->sut->buildPublicAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $not = self::getCurrentElement($sch);
+        self::assertNotationElementHasOnlyPublicAttribute($not);
+        self::assertSame($public, $not->getPublic()->getToken());
+        self::assertSame([], $not->getElements());
+    }
+    
+    /**
+     * Tests that buildPublicAttribute() throws an exception when the 
+     * current element is the "notation" element and the value is invalid.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildPublicAttributeThrowsExceptionWhenNotationAndValueIsInvalid()
+    {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage("\"\u{001F}\" is an invalid token.");
+        
+        $this->sut->buildPublicAttribute("\u{001F}");
+    }
 }
