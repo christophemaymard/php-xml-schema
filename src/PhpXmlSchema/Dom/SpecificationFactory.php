@@ -31,6 +31,7 @@ class SpecificationFactory
         ContextId::ELT_IMPORT => 0, 
         ContextId::ELT_INCLUDE => 0, 
         ContextId::ELT_NOTATION => 0, 
+        ContextId::ELT_TOP_ATTRIBUTE => 0, 
     ];
     
     /**
@@ -45,7 +46,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_IMPORT, 'import', ], 
             [ 0, ContextId::ELT_INCLUDE, 'include', ], 
+            [ 0, ContextId::ELT_TOP_ATTRIBUTE, 'attribute', ], 
             [ 0, ContextId::ELT_NOTATION, 'notation', ], 
+            [ 1, ContextId::ELT_TOP_ATTRIBUTE, 'attribute', ], 
             [ 1, ContextId::ELT_NOTATION, 'notation', ], 
             [ 1, ContextId::ELT_ANNOTATION, 'annotation', ], 
         ], 
@@ -77,7 +80,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'buildCompositionAnnotationElement', ], 
             [ 0, ContextId::ELT_IMPORT, 'buildImportElement', ], 
             [ 0, ContextId::ELT_INCLUDE, 'buildIncludeElement', ], 
+            [ 0, ContextId::ELT_TOP_ATTRIBUTE, 'buildAttributeElement', ], 
             [ 0, ContextId::ELT_NOTATION, 'buildNotationElement', ], 
+            [ 1, ContextId::ELT_TOP_ATTRIBUTE, 'buildAttributeElement', ], 
             [ 1, ContextId::ELT_NOTATION, 'buildNotationElement', ], 
             [ 1, ContextId::ELT_ANNOTATION, 'buildDefinitionAnnotationElement', ], 
         ], 
@@ -108,7 +113,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 0, ], 
             [ 0, ContextId::ELT_IMPORT, 0, ], 
             [ 0, ContextId::ELT_INCLUDE, 0, ], 
+            [ 0, ContextId::ELT_TOP_ATTRIBUTE, 1, ], 
             [ 0, ContextId::ELT_NOTATION, 1, ], 
+            [ 1, ContextId::ELT_TOP_ATTRIBUTE, 1, ], 
             [ 1, ContextId::ELT_NOTATION, 1, ], 
             [ 1, ContextId::ELT_ANNOTATION, 1, ], 
         ], 

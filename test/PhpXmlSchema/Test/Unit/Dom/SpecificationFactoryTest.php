@@ -172,6 +172,7 @@ class SpecificationFactoryTest extends TestCase
             [ 5, 0, ], // ELT_IMPORT
             [ 6, 0, ], // ELT_INCLUDE
             [ 7, 0, ], // ELT_NOTATION
+            [ 8, 0, ], // ELT_TOP_ATTRIBUTE
         ];
     }
     
@@ -190,7 +191,9 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 1, 0, 5, 'import', ], // ELT_IMPORT
             [ 1, 0, 6, 'include', ], // ELT_INCLUDE
+            [ 1, 0, 8, 'attribute', ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 'notation', ], // ELT_NOTATION
+            [ 1, 1, 8, 'attribute', ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 'notation', ], // ELT_NOTATION
             [ 1, 1, 2, 'annotation', ], // ELT_ANNOTATION
             // Context: ELT_ANNOTATION
@@ -220,7 +223,9 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 'buildCompositionAnnotationElement', ], // ELT_ANNOTATION
             [ 1, 0, 5, 'buildImportElement', ], // ELT_IMPORT
             [ 1, 0, 6, 'buildIncludeElement', ], // ELT_INCLUDE
+            [ 1, 0, 8, 'buildAttributeElement', ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 'buildNotationElement', ], // ELT_NOTATION
+            [ 1, 1, 8, 'buildAttributeElement', ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 'buildNotationElement', ], // ELT_NOTATION
             [ 1, 1, 2, 'buildDefinitionAnnotationElement', ], // ELT_ANNOTATION
             // Context: ELT_ANNOTATION
@@ -250,7 +255,9 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 0, ], // ELT_ANNOTATION
             [ 1, 0, 5, 0, ], // ELT_IMPORT
             [ 1, 0, 6, 0 ], // ELT_INCLUDE
+            [ 1, 0, 8, 1, ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 1, ], // ELT_NOTATION
+            [ 1, 1, 8, 1, ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 1, ], // ELT_NOTATION
             [ 1, 1, 2, 1, ], // ELT_ANNOTATION
             // Context: ELT_ANNOTATION

@@ -27,7 +27,7 @@
   <test group="content" name="[schema] foo child element is not supported">
     <schema fileName="schema_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "import", "include" or "notation".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- schema::attributeFormDefault -->
@@ -359,47 +359,66 @@
   <test group="content" name="[schema][composition_annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "import", "include" or "notation".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "attribute" or "notation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][definition_annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0003.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "notation" or "annotation".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <!-- import -->
   <test group="content" name="[schema][import] not part of the XML Schema 1.0 namespace">
     <schema fileName="import_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "import" element (from no namespace) is unexpected, expected: "annotation", "import", "include" or "notation".</message>
+      <message>The "import" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- include -->
   <test group="content" name="[schema][include] not part of the XML Schema 1.0 namespace">
     <schema fileName="include_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "include" element (from no namespace) is unexpected, expected: "annotation", "import", "include" or "notation".</message>
+      <message>The "include" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "attribute" or "notation".</message>
+    </schema>
+  </test>
+  <!-- attribute -->
+  <test group="content" name="[schema][attribute] not part of the XML Schema 1.0 namespace">
+    <schema fileName="attribute_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "attribute" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- notation -->
   <test group="content" name="[schema][notation] not part of the XML Schema 1.0 namespace">
     <schema fileName="notation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "notation" element (from no namespace) is unexpected, expected: "annotation", "import", "include" or "notation".</message>
+      <message>The "notation" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- container 1 -->
   <test group="content" name="[schema][container 1] notation unexpected import">
     <schema fileName="container_1_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "notation" or "annotation".</message>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container 1] notation unexpected include">
     <schema fileName="container_1_0002.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "notation" or "annotation".</message>
+      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute", "notation" or "annotation".</message>
+    </schema>
+  </test>
+  <test group="content" name="[schema][container 1] attribute unexpected import">
+    <schema fileName="container_1_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute", "notation" or "annotation".</message>
+    </schema>
+  </test>
+  <test group="content" name="[schema][container 1] attribute unexpected include">
+    <schema fileName="container_1_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <!-- TEMPLATE
