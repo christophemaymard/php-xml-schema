@@ -152,6 +152,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_NOTATION => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'name', '', 'buildNameAttribute', ], 
         ], 
     ];
     

@@ -1,0 +1,5 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:notation name="  	  
+    foo_bar  	  
+    "></xs:notation>
+</xs:schema>

@@ -139,7 +139,7 @@
 
 - [x] Parse **notation** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Parse **name** attribute (collapsing white spaces).
 - [ ] Parse **public** attribute (collapsing white spaces).
 - [ ] Parse **system** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
