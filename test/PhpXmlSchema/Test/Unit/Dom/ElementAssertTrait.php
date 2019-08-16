@@ -483,4 +483,19 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasPublic());
         self::assertFalse($sut->hasSystem());
     }
+    
+    /**
+     * Asserts that the specified "notation" element has only the "system" 
+     * attribute.
+     * 
+     * @param   NotationElement $sut    The element to test.
+     */
+    public static function assertNotationElementHasOnlySystemAttribute(
+        NotationElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasPublic());
+        self::assertTrue($sut->hasSystem());
+    }
 }
