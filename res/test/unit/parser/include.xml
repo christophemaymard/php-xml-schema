@@ -87,8 +87,9 @@
       <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
     </schema>
   </test>
-  <test group="content" name="[include][annotation] annotation?">
-    <schema fileName="annotation_0003.xsd">
+  <!-- container 0 -->
+  <test group="content" name="[include][container 0] Unexpected annotation">
+    <schema fileName="container_0_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
       <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
