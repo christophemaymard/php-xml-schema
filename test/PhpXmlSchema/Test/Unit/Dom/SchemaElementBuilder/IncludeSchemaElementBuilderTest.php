@@ -39,6 +39,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
+    use BuildNameAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

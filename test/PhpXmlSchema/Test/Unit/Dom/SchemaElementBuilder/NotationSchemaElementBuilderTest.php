@@ -141,4 +141,51 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         
         $this->sut->buildIdAttribute($value);
     }
+    
+    /**
+     * Tests that buildNameAttribute() creates the attribute when the current 
+     * element is the "notation" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $name   The expected value for the name.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNCNameValues
+     */
+    public function testBuildNameAttributeCreatesAttrWhenNotationAndValueIsValid(
+        string $value, 
+        string $name
+    ) {
+        $this->sut->buildNameAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $not = self::getCurrentElement($sch);
+        self::assertNotationElementHasOnlyNameAttribute($not);
+        self::assertSame($name, $not->getName()->getNCName());
+        self::assertSame([], $not->getElements());
+    }
+    
+    /**
+     * Tests that buildNameAttribute() throws an exception when the current 
+     * element is the "notation" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNCNameValues
+     */
+    public function testBuildNameAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildNameAttribute($value);
+    }
 }

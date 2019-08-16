@@ -437,4 +437,78 @@ trait ValueProviderTrait
             ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid NCName values.
+     * 
+     * @return  array[]
+     */
+    public function getValidNCNameValues():array
+    {
+        return [
+            'Starts with _' => [ 
+                '_foo', '_foo', 
+            ], 
+            'Starts with letter' => [ 
+                'f', 'f', 
+            ], 
+            'Contains letter' => [ 
+                'foo', 'foo', 
+            ], 
+            'Contains digit' => [ 
+                'f00', 'f00', 
+            ], 
+            'Contains .' => [ 
+                'f.bar', 'f.bar', 
+            ], 
+            'Contains -' => [ 
+                'f-bar', 'f-bar', 
+            ], 
+            'Contains _' => [ 
+                'f_bar', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [ 
+                "  \t  \n  \r  foo_bar  \t  \n  \r  ", 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid NCName values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidNCNameValues():array
+    {
+        return [
+            'Empty string' => [
+                '', 
+                '"" is an invalid NCName.', 
+            ], 
+            'Only white spaces' => [
+                '       ', 
+                '"" is an invalid NCName.', 
+            ], 
+            'Separated by whitespaces' => [
+                'foo bar', 
+                '"foo bar" is an invalid NCName.', 
+            ], 
+            'Starts with digit' => [
+                '8foo', 
+                '"8foo" is an invalid NCName.', 
+            ], 
+            'Starts with .' => [
+                '.foo', 
+                '".foo" is an invalid NCName.', 
+            ], 
+            'Starts with -' => [
+                '-foo', 
+                '"-foo" is an invalid NCName.', 
+            ], 
+            'Contains invalid character' => [
+                'foo:bar', 
+                '"foo:bar" is an invalid NCName.', 
+            ], 
+        ];
+    }
 }

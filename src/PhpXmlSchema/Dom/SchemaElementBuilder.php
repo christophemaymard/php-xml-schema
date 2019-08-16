@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Dom;
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\LanguageType;
+use PhpXmlSchema\Datatype\NCNameType;
 use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Exception\Message;
@@ -131,6 +132,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_NOTATION:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function buildNameAttribute(string $value)
+    {
+        if ($this->currentElement instanceof NotationElement) {
+            $this->currentElement->setName(new NCNameType($this->collapseWhiteSpace($value)));
         }
     }
     
