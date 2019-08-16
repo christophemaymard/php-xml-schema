@@ -38,7 +38,7 @@
 - [ ] Parse **element** elements.
 - [ ] Parse **attribute** elements.
 - [x] Parse **notation** elements.
-- [ ] Parse **annotation** elements (definition).
+- [x] Parse **annotation** elements (definition).
 
 ## Element: "annotation"
 

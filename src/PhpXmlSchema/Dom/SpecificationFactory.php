@@ -47,6 +47,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_INCLUDE, 'include', ], 
             [ 0, ContextId::ELT_NOTATION, 'notation', ], 
             [ 1, ContextId::ELT_NOTATION, 'notation', ], 
+            [ 1, ContextId::ELT_ANNOTATION, 'annotation', ], 
         ], 
         ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'appinfo', ], 
@@ -78,6 +79,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_INCLUDE, 'buildIncludeElement', ], 
             [ 0, ContextId::ELT_NOTATION, 'buildNotationElement', ], 
             [ 1, ContextId::ELT_NOTATION, 'buildNotationElement', ], 
+            [ 1, ContextId::ELT_ANNOTATION, 'buildDefinitionAnnotationElement', ], 
         ], 
         ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 'buildAppInfoElement', ], 
@@ -108,6 +110,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_INCLUDE, 0, ], 
             [ 0, ContextId::ELT_NOTATION, 1, ], 
             [ 1, ContextId::ELT_NOTATION, 1, ], 
+            [ 1, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
         ContextId::ELT_ANNOTATION => [
             [ 0, ContextId::ELT_APPINFO, 0, ], 
