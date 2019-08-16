@@ -74,6 +74,24 @@ class NotationParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "public" attribute.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessPublicAttribute()
+    {
+        $sch = $this->sut->parse($this->getXs('notation_public_0001.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $not = $sch->getNotationElements()[0];
+        self::assertNotationElementHasOnlyPublicAttribute($not);
+        self::assertSame('foo bar baz qux', $not->getPublic()->getToken());
+        self::assertSame([], $not->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

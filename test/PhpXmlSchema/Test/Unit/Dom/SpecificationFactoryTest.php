@@ -290,6 +290,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NOTATION
             [ 7, 'id', '', 'buildIdAttribute', ], 
             [ 7, 'name', '', 'buildNameAttribute', ], 
+            [ 7, 'public', '', 'buildPublicAttribute', ], 
         ];
     }
 }
