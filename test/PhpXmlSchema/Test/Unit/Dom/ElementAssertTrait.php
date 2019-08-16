@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
+use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
@@ -497,5 +498,23 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasPublic());
         self::assertTrue($sut->hasSystem());
+    }
+    
+    /**
+     * Asserts that the specified "attribute" element has no attribute.
+     * 
+     * @param   AttributeElement    $sut    The element to test.
+     */
+    public static function assertAttributeElementHasNoAttribute(
+        AttributeElement $sut
+    ) {
+        self::assertFalse($sut->hasDefault());
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasForm());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
+        self::assertFalse($sut->hasType());
+        self::assertFalse($sut->hasUse());
     }
 }
