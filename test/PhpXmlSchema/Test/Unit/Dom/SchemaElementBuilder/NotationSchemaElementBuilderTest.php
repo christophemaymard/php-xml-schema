@@ -40,6 +40,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
+    use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

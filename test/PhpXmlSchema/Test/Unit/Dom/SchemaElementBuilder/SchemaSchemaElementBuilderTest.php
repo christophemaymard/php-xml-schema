@@ -571,4 +571,29 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertNotationElementHasNoAttribute($nots[1]);
         self::assertSame([], $nots[1]->getElements());
     }
+    
+    /**
+     * Tests that buildDefinitionAnnotationElement() creates the element 
+     * when the current element is the "schema" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildDefinitionAnnotationElementCreateEltWhenSchema()
+    {
+        $this->sut->buildDefinitionAnnotationElement();
+        $this->sut->endElement();
+        $this->sut->buildDefinitionAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $anns = $sch->getDefinitionAnnotationElements();
+        self::assertCount(2, $anns);
+        self::assertAnnotationElementHasNoAttribute($anns[0]);
+        self::assertSame([], $anns[0]->getElements());
+        self::assertAnnotationElementHasNoAttribute($anns[1]);
+        self::assertSame([], $anns[1]->getElements());
+    }
 }
