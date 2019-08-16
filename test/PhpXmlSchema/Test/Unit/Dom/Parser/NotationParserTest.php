@@ -110,6 +110,28 @@ class NotationParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "annotation" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAnnotationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $not = $sch->getNotationElements()[0];
+        self::assertNotationElementHasNoAttribute($not);
+        self::assertCount(1, $not->getElements());
+        
+        $ann = $not->getAnnotationElement();
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

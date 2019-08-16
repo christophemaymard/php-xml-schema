@@ -143,4 +143,4 @@
 - [x] Parse **public** attribute (collapsing white spaces).
 - [x] Parse **system** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
