@@ -487,6 +487,7 @@ class ParserContextTest extends TestCase
             public function buildCompositionAnnotationElement() {}
             public function buildDefinitionAnnotationElement() {}
             public function buildAppInfoElement() {}
+            public function buildAttributeElement() {}
             public function buildDocumentationElement() {}
             public function buildImportElement() {}
             public function buildIncludeElement() {}

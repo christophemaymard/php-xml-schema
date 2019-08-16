@@ -43,6 +43,7 @@ class DefinitionAnnotationSchemaElementBuilderTest extends AbstractSchemaElement
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
+    use BuildAttributeElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

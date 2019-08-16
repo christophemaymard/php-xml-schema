@@ -7,19 +7,21 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is NULL.
+ * class when the current element is the "attribute" element 
+ * (topLevelAttributeType).
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -51,8 +53,35 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertSchemaElementNotChanged(SchemaElement $sch)
     {
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Asserts that the ancestors of the current element did not change since 
+     * its building.
+     * 
+     * @param   SchemaElement   $sch    The "schema" element of the current element to assert.
+     */
+    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    {
         self::assertSchemaElementHasNoAttribute($sch);
-        self::assertSame([], $sch->getElements());
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getAttributeElements());
+    }
+    
+    /**
+     * Returns the instance of the current element.
+     * 
+     * @param   SchemaElement   $sch    The "schema" element of the current element
+     * @return  AttributeElement
+     */
+    private static function getCurrentElement(SchemaElement $sch):AttributeElement
+    {
+        return $sch->getAttributeElements()[0];
     }
     
     /**
@@ -61,7 +90,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     protected function setUp()
     {
         $this->sut = new SchemaElementBuilder();
-        $this->sut->endElement();
+        $this->sut->buildAttributeElement();
     }
     
     /**
