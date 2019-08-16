@@ -29,3 +29,5 @@ $parser = new Parser();
 // $schema is an instance of PhpXmlSchema\Dom\SchemaElement.
 $schema = $parser->parse($src);
 ```
+
+See the [documentation](/doc/dom/Parser.md).
