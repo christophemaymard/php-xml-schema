@@ -154,6 +154,7 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
             [ 'public', '', 'buildPublicAttribute', ], 
+            [ 'system', '', 'buildSystemAttribute', ], 
         ], 
     ];
     

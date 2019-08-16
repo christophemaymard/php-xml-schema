@@ -116,6 +116,13 @@
       <message>"foo:bar" is an invalid NCName.</message>
     </schema>
   </test>
+  <!-- notation::system -->
+  <test group="attribute" name="[notation][attribute::system]">
+    <schema fileName="notation_system_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid scheme.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

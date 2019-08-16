@@ -92,6 +92,24 @@ class NotationParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "system" attribute.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessSystemAttribute()
+    {
+        $sch = $this->sut->parse($this->getXs('notation_system_0001.xsd'));
+        
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $not = $sch->getNotationElements()[0];
+        self::assertNotationElementHasOnlySystemAttribute($not);
+        self::assertSame('http://example.org', $not->getSystem()->getUri());
+        self::assertSame([], $not->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
