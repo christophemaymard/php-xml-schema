@@ -264,6 +264,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_IMPORT:
                 case ElementId::ELT_INCLUDE:
+                case ElementId::ELT_NOTATION:
                     $elt = new AnnotationElement();
                     $this->currentElement->setAnnotationElement($elt);
                     $this->currentElement = $elt;

@@ -38,7 +38,6 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     
@@ -268,5 +267,28 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         $this->expectException(InvalidValueException::class);
         
         $this->sut->buildSystemAttribute(':');
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "notation" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenNotation()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $not = self::getCurrentElement($sch);
+        self::assertNotationElementHasNoAttribute($not);
+        self::assertCount(1, $not->getElements());
+        
+        $ann = $not->getAnnotationElement();
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
