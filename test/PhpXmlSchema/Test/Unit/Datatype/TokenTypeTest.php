@@ -32,7 +32,7 @@ class TokenTypeTest extends TestCase
     public function test__constructStoresValueWhenItIsValid(string $value)
     {
         $sut = new TokenType($value);
-        self::assertSame($value, $sut->getString());
+        self::assertSame($value, $sut->getToken());
     }
     
     /**

@@ -60,11 +60,11 @@ class TokenType
     }
     
     /**
-     * Returns the string representation of the value.
+     * Returns the token.
      * 
      * @return  string
      */
-    public function getString():string
+    public function getToken():string
     {
         return $this->value;
     }

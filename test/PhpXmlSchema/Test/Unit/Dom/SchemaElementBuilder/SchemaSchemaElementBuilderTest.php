@@ -405,7 +405,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementHasOnlyVersionAttribute($sch);
-        self::assertSame($version, $sch->getVersion()->getString());
+        self::assertSame($version, $sch->getVersion()->getToken());
         self::assertSame([], $sch->getElements());
     }
     

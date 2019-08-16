@@ -166,7 +166,7 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('schema_version_0001.xsd'));
         
-        self::assertSame('foo bar baz qux', $sch->getVersion()->getString());
+        self::assertSame('foo bar baz qux', $sch->getVersion()->getToken());
         self::assertSchemaElementHasOnlyVersionAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
@@ -209,7 +209,7 @@ class SchemaParserTest extends AbstractParserTestCase
         self::assertSchemaElementFinalDefaultAttribute(FALSE, TRUE, FALSE, FALSE, $sch);
         self::assertSame('schema', $sch->getId()->getId());
         self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
-        self::assertSame('1.0', $sch->getVersion()->getString());
+        self::assertSame('1.0', $sch->getVersion()->getToken());
         self::assertSame('en', $sch->getLang()->getPrimarySubtag());
         self::assertSame([ 'us', ], $sch->getLang()->getSubtags());
         self::assertSame([], $sch->getElements());
