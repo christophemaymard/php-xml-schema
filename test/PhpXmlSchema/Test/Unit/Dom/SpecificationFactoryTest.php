@@ -310,6 +310,7 @@ class SpecificationFactoryTest extends TestCase
             [ 7, 'system', '', 'buildSystemAttribute', ], 
             // Context: ELT_TOP_ATTRIBUTE
             [ 8, 'default', '', 'buildDefaultAttribute', ], 
+            [ 8, 'fixed', '', 'buildFixedAttribute', ], 
         ];
     }
 }

@@ -161,7 +161,7 @@
 
 - [x] Parse **attribute** element.
 - [x] Parse **default** attribute.
-- [ ] Parse **fixed** attribute.
+- [x] Parse **fixed** attribute.
 - [ ] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **name** attribute (collapsing white spaces).
 - [ ] Parse **type** attribute (collapsing white spaces).
