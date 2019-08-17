@@ -162,8 +162,15 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildNameAttribute(string $value)
     {
-        if ($this->currentElement instanceof NotationElement) {
-            $this->currentElement->setName(new NCNameType($this->collapseWhiteSpace($value)));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()){
+                case ElementId::ELT_NOTATION:
+                case ElementId::ELT_ATTRIBUTE:
+                    $this->currentElement->setName(
+                        new NCNameType($this->collapseWhiteSpace($value))
+                    );
+            }
+            
         }
     }
     
