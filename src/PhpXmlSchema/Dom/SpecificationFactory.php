@@ -178,6 +178,7 @@ class SpecificationFactory
         ContextId::ELT_TOP_ATTRIBUTE => [
             [ 'default', '', 'buildDefaultAttribute', ], 
             [ 'fixed', '', 'buildFixedAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     
