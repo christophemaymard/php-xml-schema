@@ -129,7 +129,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * Tests that parse() processes "id" attribute.
      * 
      * @param   string  $fileName   The name of the file used for the test.
-     * @param   bool    $id         The expected value for the ID.
+     * @param   string  $id         The expected value for the ID.
      * 
      * @group           attribute
      * @dataProvider    getValidIdAttributes

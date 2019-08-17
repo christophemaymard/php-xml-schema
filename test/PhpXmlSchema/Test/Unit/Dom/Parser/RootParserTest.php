@@ -31,7 +31,7 @@ class RootParserTest extends AbstractParserTestCase
     }
     
     /**
-     * Tests that parse() throws an expcetion when the provided XML Schema is 
+     * Tests that parse() throws an exception when the provided XML Schema is 
      * not an XML.
      * 
      * @group   xml

@@ -34,9 +34,7 @@ class TokenType
     /**
      * Constructor.
      * 
-     * @param   string  $value  The name to set.
-     * 
-     * @throws  InvalidValueException   When the value is an invalid value.
+     * @param   string  $value  The value to set.
      */
     public function __construct(string $value)
     {

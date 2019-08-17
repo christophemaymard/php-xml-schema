@@ -17,7 +17,7 @@ use PhpXmlSchema\Exception\InvalidValueException;
 interface SchemaBuilderInterface
 {
     /**
-     * Builds an "attributeFormDefault" attribute in the "schema" element.
+     * Builds an "attributeFormDefault" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
      * built.
@@ -29,13 +29,10 @@ interface SchemaBuilderInterface
     public function buildAttributeFormDefaultAttribute(string $value);
     
     /**
-     * Builds a "blockDefault" attribute in the "schema" element.
+     * Builds a "blockDefault" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
      * built.
-     * 
-     * Before creating the attribute, the white space characters (i.e. TAB, 
-     * LF, CR and SPACE) of the value are collapsed.
      * 
      * @param   string  $value  The value of the attribute.
      * 
@@ -44,7 +41,7 @@ interface SchemaBuilderInterface
     public function buildBlockDefaultAttribute(string $value);
     
     /**
-     * Builds an "elementFormDefault" attribute in the "schema" element.
+     * Builds an "elementFormDefault" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
      * built.
@@ -56,7 +53,7 @@ interface SchemaBuilderInterface
     public function buildElementFormDefaultAttribute(string $value);
     
     /**
-     * Builds a "finalDefault" attribute in the "schema" element.
+     * Builds a "finalDefault" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
      * built.
@@ -68,7 +65,7 @@ interface SchemaBuilderInterface
     public function buildFinalDefaultAttribute(string $value);
     
     /**
-     * Builds an "id" attribute in the "schema" element.
+     * Builds an "id" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
      * built.
@@ -152,7 +149,7 @@ interface SchemaBuilderInterface
     public function buildSystemAttribute(string $value);
     
     /**
-     * Builds a "targetNamespace" attribute in the "schema" element.
+     * Builds a "targetNamespace" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
      * built.
@@ -164,7 +161,7 @@ interface SchemaBuilderInterface
     public function buildTargetNamespaceAttribute(string $value);
     
     /**
-     * Builds a "version" attribute in the "schema" element.
+     * Builds a "version" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
      * built.
@@ -176,7 +173,7 @@ interface SchemaBuilderInterface
     public function buildVersionAttribute(string $value);
     
     /**
-     * Builds a "xml:lang" attribute in the "schema" element.
+     * Builds a "xml:lang" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
      * built.

@@ -8,7 +8,7 @@
 namespace PhpXmlSchema\Test\Unit\Dom;
 
 /**
- * Represents the base clas to unit test a facet element that holds the 
+ * Represents the base class to unit test a facet element that holds the 
  * "fixed" attribute.
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
