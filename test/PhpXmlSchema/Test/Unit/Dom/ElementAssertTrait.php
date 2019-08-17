@@ -517,4 +517,23 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasType());
         self::assertFalse($sut->hasUse());
     }
+    
+    /**
+     * Asserts that the specified "attribute" element has only the "default" 
+     * attribute.
+     * 
+     * @param   AttributeElement    $sut    The element to test.
+     */
+    public static function assertAttributeElementHasOnlyDefaultAttribute(
+        AttributeElement $sut
+    ) {
+        self::assertTrue($sut->hasDefault());
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasForm());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
+        self::assertFalse($sut->hasType());
+        self::assertFalse($sut->hasUse());
+    }
 }
