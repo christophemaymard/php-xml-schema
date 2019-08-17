@@ -160,11 +160,11 @@
 ```
 
 - [x] Parse **attribute** element.
-- [ ] Parse **default** attribute.
+- [x] Parse **default** attribute.
 - [ ] Parse **fixed** attribute.
 - [ ] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **name** attribute (collapsing white spaces).
 - [ ] Parse **type** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Others attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleType** element (localSimpleType).

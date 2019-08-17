@@ -175,6 +175,9 @@ class SpecificationFactory
             [ 'public', '', 'buildPublicAttribute', ], 
             [ 'system', '', 'buildSystemAttribute', ], 
         ], 
+        ContextId::ELT_TOP_ATTRIBUTE => [
+            [ 'default', '', 'buildDefaultAttribute', ], 
+        ], 
     ];
     
     /**
