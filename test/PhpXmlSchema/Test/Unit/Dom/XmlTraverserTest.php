@@ -780,6 +780,98 @@ class XmlTraverserTest extends TestCase
     }
     
     /**
+     * Tests that getNamespaceDeclarations() returns an empty array when the 
+     * cursor is positioned on a comment node.
+     */
+    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnCommentNode()
+    {
+        $sut = new XmlTraverser($this->getXml('nsdecl_0001.xml'));
+        self::assertTrue($sut->isCommentNode());
+        self::assertSame([], $sut->getNamespaceDeclarations());
+    }
+    
+    /**
+     * Tests that getNamespaceDeclarations() returns an empty array when the 
+     * cursor is positioned on a text node.
+     */
+    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnTextNode()
+    {
+        $sut = new XmlTraverser($this->getXml('nsdecl_0002.xml'));
+        $sut->moveToFirstChildNode();
+        
+        self::assertTrue($sut->isTextNode());
+        self::assertFalse($sut->isWhiteSpaceNode());
+        self::assertSame([], $sut->getNamespaceDeclarations());
+    }
+    
+    /**
+     * Tests that getNamespaceDeclarations() returns an empty array when the 
+     * cursor is positioned on a white space node.
+     */
+    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnWhiteSpaceNode()
+    {
+        $sut = new XmlTraverser($this->getXml('nsdecl_0003.xml'));
+        $sut->moveToFirstChildNode();
+        
+        self::assertTrue($sut->isTextNode());
+        self::assertTrue($sut->isWhiteSpaceNode());
+        self::assertSame([], $sut->getNamespaceDeclarations());
+    }
+    
+    /**
+     * Tests that getNamespaceDeclarations() returns an empty array when the 
+     * cursor is positioned on an attribute node.
+     */
+    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnAttributeNode()
+    {
+        $sut = new XmlTraverser($this->getXml('nsdecl_0004.xml'));
+        
+        self::assertTrue($sut->moveToFirstAttribute());
+        self::assertSame([], $sut->getNamespaceDeclarations());
+    }
+    
+    /**
+     * Tests that getNamespaceDeclarations() returns an associative of strings 
+     * when the cursor is positioned on the root element.
+     * 
+     * @param   string  $fileName
+     * @param   array   $decls
+     * 
+     * @dataProvider    getRootElementNamespaceDeclarations
+     */
+    public function testGetNamespaceDeclarationsReturnsArrayOfStringsWhenCursorOnRootElement(
+        string $fileName, 
+        array $decls
+    ) {
+        $sut = new XmlTraverser($this->getXml($fileName));
+        
+        self::assertTrue($sut->isElementNode());
+        self::assertArraySubset($decls, $sut->getNamespaceDeclarations(), TRUE);
+        self::assertCount(0, \array_diff_assoc($sut->getNamespaceDeclarations(), $decls));
+    }
+    
+    /**
+     * Tests that getNamespaceDeclarations() returns an associative of strings 
+     * when the cursor is positioned on a child element.
+     * 
+     * @param   string  $fileName
+     * @param   array   $decls
+     * 
+     * @dataProvider    getChildElementNamespaceDeclarations
+     */
+    public function testGetNamespaceDeclarationsReturnsArrayOfStringsWhenCursorOnChildElement(
+        string $fileName, 
+        array $decls
+    ) {
+        $sut = new XmlTraverser($this->getXml($fileName));
+        $sut->moveToFirstChildNode();
+        
+        self::assertTrue($sut->isElementNode());
+        self::assertArraySubset($decls, $sut->getNamespaceDeclarations(), TRUE);
+        self::assertCount(0, \array_diff_assoc($sut->getNamespaceDeclarations(), $decls));
+    }
+    
+    /**
      * Returns a set of invalid XML sources.
      * 
      * @return  array[]
@@ -873,6 +965,80 @@ class XmlTraverserTest extends TestCase
                 $this->getXml('value_0004.xml'), 
                 ' Comment ', 
             ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid XML sources related to namespace declarations 
+     * in a root element.
+     * 
+     * @return  array[]
+     */
+    public function getRootElementNamespaceDeclarations():array
+    {
+        return [
+            'No declaration' => [
+                'nsdecl_0005.xml', 
+                [ 
+                ], 
+            ], 
+            'Declaration with no prefix' => [
+                'nsdecl_0006.xml', 
+                [
+                    '' => 'http://example.org', 
+                ], 
+            ], 
+            'Declaration with prefix' => [
+                'nsdecl_0007.xml', 
+                [
+                    'foo' => 'http://example.org/foo', 
+                ], 
+            ], 
+            'Multiple declarations' => [
+                'nsdecl_0008.xml', 
+                [
+                    'foo' => 'http://example.org/foo', 
+                    '' => 'http://example.org', 
+                    'bar' => 'http://example.org/bar', 
+                ], 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of valid XML sources related to namespace declarations 
+     * in a child element.
+     * 
+     * @return  array[]
+     */
+    public function getChildElementNamespaceDeclarations():array
+    {
+        return [
+            'No declaration' => [
+                'nsdecl_0009.xml', 
+                [ 
+                ], 
+            ], 
+            'Declaration with no prefix' => [
+                'nsdecl_0010.xml', 
+                [
+                    '' => 'http://example.org', 
+                ], 
+            ], 
+            'Declaration with prefix' => [
+                'nsdecl_0011.xml', 
+                [
+                    'foo' => 'http://example.org/foo', 
+                ], 
+            ], 
+            'Multiple declarations' => [
+                'nsdecl_0012.xml', 
+                [
+                    'foo' => 'http://example.org/foo', 
+                    '' => 'http://example.org', 
+                    'bar' => 'http://example.org/bar', 
+                ], 
+            ],
         ];
     }
     

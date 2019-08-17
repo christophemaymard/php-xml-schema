@@ -1,0 +1,4 @@
+<root xmlns:foo="http://example.org/foo" 
+      xmlns="http://example.org" 
+      xmlns:bar="http://example.org/bar">
+</root>

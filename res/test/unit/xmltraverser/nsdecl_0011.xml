@@ -1,0 +1,4 @@
+<root xmlns:qux="http://example.org/qux"><child 
+  xmlns:foo="http://example.org/foo">
+</child>
+</root>

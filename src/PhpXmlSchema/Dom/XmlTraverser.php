@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\XmlNamespace;
 use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
@@ -26,6 +27,11 @@ class XmlTraverser
      * @var \DOMDocument
      */
     private $doc;
+    
+    /**
+     * @var \DOMXPath
+     */
+    private $xpath;
     
     /**
      * The instance of the node where the cursor is positioned.
@@ -64,6 +70,7 @@ class XmlTraverser
             throw new InvalidValueException('The source is an invalid XML.');
         }
         
+        $this->xpath = new \DOMXPath($this->doc);
         $this->currentNode = $this->doc->firstChild;
     }
     
@@ -105,6 +112,29 @@ class XmlTraverser
         }
         
         return $value;
+    }
+    
+    /**
+     * Returns all the namespace declarations defined in the current node.
+     * 
+     * If the current node is not an element, it will return an empty array.
+     * 
+     * @return  string[]    An associative array where the key is the prefix, and the value is the binded namespace.
+     */
+    public function getNamespaceDeclarations():array
+    {
+        $decls = [];
+        
+        if ($this->isElementNode()) {
+            // $node is an instance of \DOMNameSpaceNode.
+            foreach ($this->xpath->query('namespace::*', $this->currentNode) as $node) {
+                if ($this->currentNode->hasAttribute($node->nodeName)) {
+                    $decls[$node->prefix] = $node->nodeValue; 
+                }
+            }
+        }
+        
+        return $decls;
     }
     
     /**
