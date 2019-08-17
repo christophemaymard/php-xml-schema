@@ -146,4 +146,49 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         
         $this->sut->buildDefaultAttribute($value);
     }
+    
+    /**
+     * Tests that buildFixedAttribute() creates the attribute when the 
+     * current element is the "attribute" element (topLevelAttributeType) and 
+     * the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidStringValues
+     */
+    public function testBuildFixedAttributeCreatesAttrWhenTopAttributeAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildFixedAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertAttributeElementHasOnlyFixedAttribute($attr);
+        self::assertSame($value, $attr->getFixed()->getString());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() throws an exception when the 
+     * current element is the "attribute" element (topLevelAttributeType) and 
+     * the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidStringValues
+     */
+    public function testBuildFixedAttributeThrowsExceptionWhenTopAttributeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage('"'.$value.'" is an invalid string.');
+        
+        $this->sut->buildFixedAttribute($value);
+    }
 }

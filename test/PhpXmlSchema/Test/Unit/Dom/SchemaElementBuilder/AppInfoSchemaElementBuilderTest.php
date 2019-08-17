@@ -46,6 +46,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
+    use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

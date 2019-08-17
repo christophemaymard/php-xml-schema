@@ -132,6 +132,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildFixedAttribute(string $value)
+    {
+        if ($this->currentElement instanceof AttributeElement) {
+            $this->currentElement->setFixed(new StringType($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildIdAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {
