@@ -32,6 +32,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
+    use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

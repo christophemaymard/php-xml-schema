@@ -11,6 +11,7 @@ use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\LanguageType;
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Exception\Message;
@@ -77,6 +78,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             }
             
             $this->currentElement->setBlockDefault($attr);
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function buildDefaultAttribute(string $value)
+    {
+        if ($this->currentElement instanceof AttributeElement) {
+            $this->currentElement->setDefault(new StringType($value));
         }
     }
     

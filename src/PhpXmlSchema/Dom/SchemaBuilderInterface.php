@@ -41,6 +41,18 @@ interface SchemaBuilderInterface
     public function buildBlockDefaultAttribute(string $value);
     
     /**
+     * Builds a "default" attribute in the current element.
+     * 
+     * If the current element does not support the attribute then it is not 
+     * built.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
+     */
+    public function buildDefaultAttribute(string $value);
+    
+    /**
      * Builds an "elementFormDefault" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 
