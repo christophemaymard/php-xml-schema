@@ -179,6 +179,7 @@ class SpecificationFactory
             [ 'default', '', 'buildDefaultAttribute', ], 
             [ 'fixed', '', 'buildFixedAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'name', '', 'buildNameAttribute', ], 
         ], 
     ];
     
