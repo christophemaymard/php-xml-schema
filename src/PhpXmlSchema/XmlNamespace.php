@@ -25,6 +25,16 @@ class XmlNamespace
     const XML_1_0 = 'http://www.w3.org/XML/1998/namespace';
     
     /**
+     * The prefix of the XML NS 1.0 namespace.
+     */
+    const XMLNS_1_0_PREFIX = 'xmlns';
+    
+    /**
+     * The XML NS 1.0 namespace.
+     */
+    const XMLNS_1_0 = 'http://www.w3.org/2000/xmlns/';
+    
+    /**
      * The XML Schema 1.0 namespace.
      */
     const XML_SCHEMA_1_0 = 'http://www.w3.org/2001/XMLSchema';
