@@ -128,4 +128,52 @@ class FieldElementTest extends AbstractAbstractElementTestCase
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
         $parent2->addFieldElement($this->sut);
     }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a KeyElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToKeyElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new KeyElement();
+        $parent->addFieldElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a KeyRefElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToKeyRefElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new KeyRefElement();
+        $parent->addFieldElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a UniqueElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToUniqueElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new UniqueElement();
+        $parent->addFieldElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
 }

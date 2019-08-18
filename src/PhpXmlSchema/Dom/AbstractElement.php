@@ -109,6 +109,8 @@ abstract class AbstractElement implements ElementInterface
         
         if (isset($this->nsBinding[$prefix])) {
             $ns = $this->nsBinding[$prefix];
+        } elseif ($this->hasParent()) {
+            $ns = $this->parent->lookupNamespace($prefix);
         } elseif ($prefix == XmlNamespace::XML_1_0_PREFIX) {
             $ns = XmlNamespace::XML_1_0;
         }

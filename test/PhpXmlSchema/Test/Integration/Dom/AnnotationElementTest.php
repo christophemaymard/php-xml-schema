@@ -209,6 +209,73 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
     }
     
     /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a AnnotatedElementInterface element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @param   AnnotatedElementInterface   $parent The parent element to use for the test.
+     * 
+     * @group           namespace
+     * @group           xml
+     * @dataProvider    getAllAnnotatedElementValues
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToAnnotatedElementAndParentPrefixBoundToNamespace(
+        AnnotatedElementInterface $parent
+    ) {
+        $parent->setAnnotationElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a RedefineElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new RedefineElement();
+        $parent->addAnnotationElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a SchemaElement element (composition), and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementCompositionAndParentPrefixBoundToNamespace()
+    {
+        $parent = new SchemaElement();
+        $parent->addCompositionAnnotationElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a SchemaElement element (definition), and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementDefinitionAndParentPrefixBoundToNamespace()
+    {
+        $parent = new SchemaElement();
+        $parent->addDefinitionAnnotationElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
      * Returns a set of all the annotated element values.
      * 
      * @return  array[]

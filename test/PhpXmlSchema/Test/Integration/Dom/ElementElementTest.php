@@ -159,4 +159,68 @@ class ElementElementTest extends AbstractAbstractElementTestCase
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
         $parent2->addElementElement($this->sut);
     }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a AllElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToAllElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new AllElement();
+        $parent->addElementElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a ChoiceElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToChoiceElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new ChoiceElement();
+        $parent->addElementElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a SchemaElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new SchemaElement();
+        $parent->addElementElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a SequenceElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToSequenceElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new SequenceElement();
+        $parent->addElementElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
 }

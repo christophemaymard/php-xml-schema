@@ -75,4 +75,23 @@ class AnyAttributeElementTest extends AbstractAbstractElementTestCase
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
         $parent2->setAnyAttributeElement($this->sut);
     }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a AttributeNamingElementInterface element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @param   AttributeNamingElementInterface $parent The parent element to use for the test.
+     * 
+     * @group           namespace
+     * @group           xml
+     * @dataProvider    getAllAttributeNamingElementValues
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToAttributeNamingElementAndParentPrefixBoundToNamespace(
+        AttributeNamingElementInterface $parent
+    ) {
+        $parent->setAnyAttributeElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
 }

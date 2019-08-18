@@ -66,4 +66,20 @@ class ComplexContentElementTest extends AbstractAbstractElementTestCase
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
         $parent2->setContentElement($this->sut);
     }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when:
+     * - the element is added to a ComplexTypeElement element, and 
+     * - the prefix is bound to a namespace in the parent element.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testLookupNamespaceReturnsStringWhenAddedToComplexTypeElementAndParentPrefixBoundToNamespace()
+    {
+        $parent = new ComplexTypeElement();
+        $parent->setContentElement($this->sut);
+        $parent->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
 }
