@@ -18,6 +18,7 @@ use PhpXmlSchema\Dom\ProcessingModeType;
 use PhpXmlSchema\Dom\SelectorXPathType;
 use PhpXmlSchema\Dom\UseType;
 use PhpXmlSchema\Dom\WhiteSpaceType;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Test\Unit\Datatype\DatatypeDummyFactoryTrait;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
@@ -48,6 +49,136 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * Tests that getLocalName() returns a specific string.
      */
     abstract public function testGetLocalNameReturnsSpecificString();
+    
+    /**
+     * Tests that bindNamespace() throws an exception when the 'xml' prefix 
+     * is bound to a namespace other than the XML 1.0 namespace.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testBindNamespaceThrowsExceptionWhenBindingXmlPrefixToNamespaceOtherXml10()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('"xml" prefix can be bound only to '.
+            '"http://www.w3.org/XML/1998/namespace" and not "http://example.org".');
+        
+        $this->sut->bindNamespace('xml', 'http://example.org');
+    }
+    
+    /**
+     * Tests that bindNamespace() throws an exception when the prefix, other 
+     * than 'xml', is bound to XML 1.0 namespace.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXml10()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('"foo" prefix cannot be bound to '.
+            '"http://www.w3.org/XML/1998/namespace".');
+        
+        $this->sut->bindNamespace('foo', 'http://www.w3.org/XML/1998/namespace');
+    }
+    
+    /**
+     * Tests that bindNamespace() throws an exception when the prefix is 
+     * 'xmlns'.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testBindNamespaceThrowsExceptionWhenPrefixIsXmlns()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('"xmlns" prefix is reserved.');
+        
+        $this->sut->bindNamespace('xmlns', 'http://www.w3.org/2000/xmlns/');
+    }
+    
+    /**
+     * Tests that bindNamespace() throws an exception when the prefix, other 
+     * than 'xmlns', is bound to XML NS 1.0 namespace.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXmlns10()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('"foo" prefix cannot be bound to '.
+            '"http://www.w3.org/2000/xmlns/".');
+        
+        $this->sut->bindNamespace('foo', 'http://www.w3.org/2000/xmlns/');
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns NULL when the prefix is not bound 
+     * to a namespace.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testLookupNamespaceReturnsNullWhenPrefixNotBoundToNamespace()
+    {
+        self::assertNull($this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns the XML 1.0 namespace when the 
+     * prefix is 'xml' and is not bound to a namespace.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testLookupNamespaceReturnsXml10NamespaceWhenPrefixIsXmlAndNotBoundToNamespace()
+    {
+        self::assertSame('http://www.w3.org/XML/1998/namespace', $this->sut->lookupNamespace('xml'));
+    }
+    
+    /**
+     * Tests that lookupNamespace() returns a string when the prefix is bound 
+     * to a namespace.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testLookupNamespaceReturnsStringWhenPrefixNotBoundToNamespace()
+    {
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
+    }
+    
+    /**
+     * Tests that bindNamespace() updates the namespace when a prefix is 
+     * bound to multiple namespaces.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testBindNamespaceUpdatesNamespaceWhenPrefixBoundMultipleNamespaces()
+    {
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->bindNamespace('foo', 'http://example.org/newfoo');
+        self::assertSame('http://example.org/newfoo', $this->sut->lookupNamespace('foo'));
+    }
     
     /**
      * Creates a dummy for the {@see PhpXmlSchema\Dom\DerivationType} class.

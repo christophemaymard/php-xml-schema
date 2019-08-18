@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\XmlNamespace;
 use PhpXmlSchema\Exception\InvalidOperationException;
 
 /**
@@ -21,6 +22,14 @@ abstract class AbstractElement implements ElementInterface
      * @var ElementInterface|NULL
      */
     private $parent;
+    
+    /**
+     * An associative array where:
+     * - the key is the prefix, and 
+     * - the value is the namespace.
+     * @var string[]
+     */
+    private $nsBinding = [];
     
     /**
      * {@inheritDoc}
@@ -56,5 +65,54 @@ abstract class AbstractElement implements ElementInterface
     public function hasParent():bool
     {
         return $this->parent !== NULL;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function bindNamespace(string $prefix, string $namespace)
+    {
+        if ($prefix == XmlNamespace::XML_1_0_PREFIX && $namespace != XmlNamespace::XML_1_0) {
+            throw new InvalidOperationException(\sprintf(
+                '"xml" prefix can be bound only to "http://www.w3.org/XML/1998/namespace" and not "%s".', 
+                $namespace
+            ));
+        }
+        
+        if ($prefix != XmlNamespace::XML_1_0_PREFIX && $namespace == XmlNamespace::XML_1_0) {
+            throw new InvalidOperationException(\sprintf(
+                '"%s" prefix cannot be bound to "http://www.w3.org/XML/1998/namespace".', 
+                $prefix
+            ));
+        }
+        
+        if ($prefix == XmlNamespace::XMLNS_1_0_PREFIX) {
+            throw new InvalidOperationException('"xmlns" prefix is reserved.');
+        }
+        
+        if ($namespace == XmlNamespace::XMLNS_1_0) {
+            throw new InvalidOperationException(\sprintf(
+                '"%s" prefix cannot be bound to "http://www.w3.org/2000/xmlns/".', 
+                $prefix
+            ));
+        }
+        
+        $this->nsBinding[$prefix] = $namespace;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function lookupNamespace(string $prefix)
+    {
+        $ns = NULL;
+        
+        if (isset($this->nsBinding[$prefix])) {
+            $ns = $this->nsBinding[$prefix];
+        } elseif ($prefix == XmlNamespace::XML_1_0_PREFIX) {
+            $ns = XmlNamespace::XML_1_0;
+        }
+        
+        return $ns;
     }
 }
