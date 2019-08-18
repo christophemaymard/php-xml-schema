@@ -59,6 +59,7 @@ class XmlTraverserTest extends TestCase
      * @param   string  $src        The XML source to test.
      * @param   string  $namespace  The expected namespace.
      * 
+     * @group           namespace
      * @dataProvider    getDocFirstChildNodeNamespaceXmlSources
      */
     public function testGetNamespaceWhenCursorOnDocFirstChildNode(string $src, string $namespace)
@@ -782,6 +783,8 @@ class XmlTraverserTest extends TestCase
     /**
      * Tests that getNamespaceDeclarations() returns an empty array when the 
      * cursor is positioned on a comment node.
+     * 
+     * @group   namespace
      */
     public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnCommentNode()
     {
@@ -793,6 +796,8 @@ class XmlTraverserTest extends TestCase
     /**
      * Tests that getNamespaceDeclarations() returns an empty array when the 
      * cursor is positioned on a text node.
+     * 
+     * @group   namespace
      */
     public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnTextNode()
     {
@@ -807,6 +812,8 @@ class XmlTraverserTest extends TestCase
     /**
      * Tests that getNamespaceDeclarations() returns an empty array when the 
      * cursor is positioned on a white space node.
+     * 
+     * @group   namespace
      */
     public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnWhiteSpaceNode()
     {
@@ -821,6 +828,8 @@ class XmlTraverserTest extends TestCase
     /**
      * Tests that getNamespaceDeclarations() returns an empty array when the 
      * cursor is positioned on an attribute node.
+     * 
+     * @group   namespace
      */
     public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnAttributeNode()
     {
@@ -837,6 +846,7 @@ class XmlTraverserTest extends TestCase
      * @param   string  $fileName
      * @param   array   $decls
      * 
+     * @group           namespace
      * @dataProvider    getRootElementNamespaceDeclarations
      */
     public function testGetNamespaceDeclarationsReturnsArrayOfStringsWhenCursorOnRootElement(
@@ -857,6 +867,7 @@ class XmlTraverserTest extends TestCase
      * @param   string  $fileName
      * @param   array   $decls
      * 
+     * @group           namespace
      * @dataProvider    getChildElementNamespaceDeclarations
      */
     public function testGetNamespaceDeclarationsReturnsArrayOfStringsWhenCursorOnChildElement(
