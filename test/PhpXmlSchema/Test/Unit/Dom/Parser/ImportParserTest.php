@@ -42,10 +42,12 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasOnlyIdAttribute($import);
         self::assertSame($id, $import->getId()->getId());
         self::assertSame([], $import->getElements());
@@ -60,10 +62,12 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('import_ns_0001.xsd'));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasOnlyNamespaceAttribute($import);
         self::assertSame('http://example.org', $import->getNamespace()->getUri());
         self::assertSame([], $import->getElements());
@@ -78,10 +82,12 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('import_schloc_0001.xsd'));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasOnlySchemaLocationAttribute($import);
         self::assertSame('http://example.org', $import->getSchemaLocation()->getUri());
         self::assertSame([], $import->getElements());
@@ -97,14 +103,17 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasNoAttribute($import);
         self::assertCount(1, $import->getElements());
         
         $ann = $import->getAnnotationElement();
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }

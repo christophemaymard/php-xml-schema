@@ -50,6 +50,8 @@ class RootParserTest extends AbstractParserTestCase
     public function testParseReturnsEmptySchema()
     {
         $sch = $this->sut->parse($this->getXs('schema_0004.xsd'));
+        
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
@@ -60,6 +62,8 @@ class RootParserTest extends AbstractParserTestCase
     public function testParseSkipAllNodesBeforeRootElement()
     {
         $sch = $this->sut->parse($this->getXs('schema_0005.xsd'));
+        
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
     }

@@ -42,10 +42,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $not = $sch->getNotationElements()[0];
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasOnlyIdAttribute($not);
         self::assertSame($id, $not->getId()->getId());
         self::assertSame([], $not->getElements());
@@ -64,10 +66,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $not = $sch->getNotationElements()[0];
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasOnlyNameAttribute($not);
         self::assertSame($name, $not->getName()->getNCName());
         self::assertSame([], $not->getElements());
@@ -82,10 +86,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('notation_public_0001.xsd'));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $not = $sch->getNotationElements()[0];
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasOnlyPublicAttribute($not);
         self::assertSame('foo bar baz qux', $not->getPublic()->getToken());
         self::assertSame([], $not->getElements());
@@ -100,10 +106,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('notation_system_0001.xsd'));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $not = $sch->getNotationElements()[0];
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasOnlySystemAttribute($not);
         self::assertSame('http://example.org', $not->getSystem()->getUri());
         self::assertSame([], $not->getElements());
@@ -119,14 +127,17 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $not = $sch->getNotationElements()[0];
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasNoAttribute($not);
         self::assertCount(1, $not->getElements());
         
         $ann = $not->getAnnotationElement();
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }
