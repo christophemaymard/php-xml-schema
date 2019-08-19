@@ -54,6 +54,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertAncestorsNotChanged($sch);
         
         $import = self::getCurrentElement($sch);
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasNoAttribute($import);
         self::assertSame([], $import->getElements());
     }
@@ -66,6 +67,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         self::assertCount(1, $sch->getImportElements());
@@ -120,6 +122,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertAncestorsNotChanged($sch);
         
         $import = self::getCurrentElement($sch);
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasOnlyIdAttribute($import);
         self::assertSame($id, $import->getId()->getId());
         self::assertSame([], $import->getElements());
@@ -167,6 +170,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertAncestorsNotChanged($sch);
         
         $import = self::getCurrentElement($sch);
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasOnlyNamespaceAttribute($import);
         self::assertSame($uri, $import->getNamespace()->getUri());
         self::assertSame([], $import->getElements());
@@ -207,6 +211,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertAncestorsNotChanged($sch);
         
         $import = self::getCurrentElement($sch);
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasOnlySchemaLocationAttribute($import);
         self::assertSame($uri, $import->getSchemaLocation()->getUri());
         self::assertSame([], $import->getElements());
@@ -241,10 +246,12 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertAncestorsNotChanged($sch);
         
         $import = self::getCurrentElement($sch);
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasNoAttribute($import);
         self::assertCount(1, $import->getElements());
         
         $ann = $import->getAnnotationElement();
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }

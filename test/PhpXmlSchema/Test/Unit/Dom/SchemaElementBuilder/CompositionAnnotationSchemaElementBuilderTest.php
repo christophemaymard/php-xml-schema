@@ -55,6 +55,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertAncestorsNotChanged($sch);
         
         $ann = self::getCurrentElement($sch);
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }
@@ -67,6 +68,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         self::assertCount(1, $sch->getCompositionAnnotationElements());
@@ -122,6 +124,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertAncestorsNotChanged($sch);
         
         $ann = self::getCurrentElement($sch);
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasOnlyIdAttribute($ann);
         self::assertSame($id, $ann->getId()->getId());
         self::assertSame([], $ann->getElements());
@@ -166,11 +169,16 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertAncestorsNotChanged($sch);
         
         $ann = self::getCurrentElement($sch);
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         $appinfos = $ann->getAppInfoElements();
         self::assertCount(2, $appinfos);
+        
+        self::assertSame([], $appinfos[0]->getNamespaceDeclarations());
         self::assertAppInfoElementHasNoAttribute($appinfos[0]);
         self::assertSame('', $appinfos[0]->getContent());
+        
+        self::assertSame([], $appinfos[1]->getNamespaceDeclarations());
         self::assertAppInfoElementHasNoAttribute($appinfos[1]);
         self::assertSame('', $appinfos[1]->getContent());
     }
@@ -195,8 +203,12 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertAnnotationElementHasNoAttribute($ann);
         $docs = $ann->getDocumentationElements();
         self::assertCount(2, $docs);
+        
+        self::assertSame([], $docs[0]->getNamespaceDeclarations());
         self::assertDocumentationElementHasNoAttribute($docs[0]);
         self::assertSame('', $docs[0]->getContent());
+        
+        self::assertSame([], $docs[1]->getNamespaceDeclarations());
         self::assertDocumentationElementHasNoAttribute($docs[1]);
         self::assertSame('', $docs[1]->getContent());
     }

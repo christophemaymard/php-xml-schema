@@ -56,6 +56,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         self::assertAncestorsNotChanged($sch);
         
         $appinfo = self::getCurrentElement($sch);
+        self::assertSame([], $appinfo->getNamespaceDeclarations());
         self::assertAppInfoElementHasNoAttribute($appinfo);
         self::assertSame('', $appinfo->getContent());
     }
@@ -69,9 +70,11 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
         self::assertSchemaElementHasNoAttribute($sch);
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertCount(1, $ann->getElements());
         self::assertCount(1, $ann->getAppInfoElements());
@@ -128,6 +131,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         self::assertAncestorsNotChanged($sch);
         
         $appinfo = self::getCurrentElement($sch);
+        self::assertSame([], $appinfo->getNamespaceDeclarations());
         self::assertAppInfoElementHasOnlySourceAttribute($appinfo);
         self::assertSame($uri, $appinfo->getSource()->getUri());
         self::assertSame('', $appinfo->getContent());
@@ -162,6 +166,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         self::assertAncestorsNotChanged($sch);
         
         $appinfo = self::getCurrentElement($sch);
+        self::assertSame([], $appinfo->getNamespaceDeclarations());
         self::assertAppInfoElementHasNoAttribute($appinfo);
         self::assertSame('foo bar baz content', $appinfo->getContent());
     }
@@ -183,6 +188,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         self::assertAncestorsNotChanged($sch);
         
         $appinfo = self::getCurrentElement($sch);
+        self::assertSame([], $appinfo->getNamespaceDeclarations());
         self::assertAppInfoElementHasNoAttribute($appinfo);
         self::assertSame('baz', $appinfo->getContent());
     }

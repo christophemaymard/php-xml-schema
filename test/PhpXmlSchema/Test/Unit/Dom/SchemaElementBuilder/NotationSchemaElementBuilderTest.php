@@ -53,6 +53,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         self::assertAncestorsNotChanged($sch);
         
         $not = self::getCurrentElement($sch);
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasNoAttribute($not);
         self::assertSame([], $not->getElements());
     }
@@ -65,6 +66,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         self::assertCount(1, $sch->getNotationElements());
@@ -119,6 +121,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         self::assertAncestorsNotChanged($sch);
         
         $not = self::getCurrentElement($sch);
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasOnlyIdAttribute($not);
         self::assertSame($id, $not->getId()->getId());
         self::assertSame([], $not->getElements());
@@ -166,6 +169,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         self::assertAncestorsNotChanged($sch);
         
         $not = self::getCurrentElement($sch);
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasOnlyNameAttribute($not);
         self::assertSame($name, $not->getName()->getNCName());
         self::assertSame([], $not->getElements());
@@ -213,6 +217,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         self::assertAncestorsNotChanged($sch);
         
         $not = self::getCurrentElement($sch);
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasOnlyPublicAttribute($not);
         self::assertSame($public, $not->getPublic()->getToken());
         self::assertSame([], $not->getElements());
@@ -254,6 +259,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         self::assertAncestorsNotChanged($sch);
         
         $not = self::getCurrentElement($sch);
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasOnlySystemAttribute($not);
         self::assertSame($uri, $not->getSystem()->getUri());
         self::assertSame([], $not->getElements());
@@ -288,10 +294,12 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         self::assertAncestorsNotChanged($sch);
         
         $not = self::getCurrentElement($sch);
+        self::assertSame([], $not->getNamespaceDeclarations());
         self::assertNotationElementHasNoAttribute($not);
         self::assertCount(1, $not->getElements());
         
         $ann = $not->getAnnotationElement();
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }

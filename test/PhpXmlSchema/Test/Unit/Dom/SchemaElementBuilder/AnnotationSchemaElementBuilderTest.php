@@ -55,6 +55,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         self::assertAncestorsNotChanged($sch);
         
         $ann = self::getCurrentElement($sch);
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }
@@ -67,10 +68,12 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
+        self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
+        self::assertSame([], $import->getNamespaceDeclarations());
         self::assertImportElementHasNoAttribute($import);
         self::assertCount(1, $import->getElements());
     }
@@ -126,6 +129,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         self::assertAncestorsNotChanged($sch);
         
         $ann = self::getCurrentElement($sch);
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasOnlyIdAttribute($ann);
         self::assertSame($id, $ann->getId()->getId());
         self::assertSame([], $ann->getElements());
@@ -169,11 +173,16 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         self::assertAncestorsNotChanged($sch);
         
         $ann = self::getCurrentElement($sch);
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         $appinfos = $ann->getAppInfoElements();
         self::assertCount(2, $appinfos);
+        
+        self::assertSame([], $appinfos[0]->getNamespaceDeclarations());
         self::assertAppInfoElementHasNoAttribute($appinfos[0]);
         self::assertSame('', $appinfos[0]->getContent());
+        
+        self::assertSame([], $appinfos[1]->getNamespaceDeclarations());
         self::assertAppInfoElementHasNoAttribute($appinfos[1]);
         self::assertSame('', $appinfos[1]->getContent());
     }
@@ -195,11 +204,16 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         self::assertAncestorsNotChanged($sch);
         
         $ann = self::getCurrentElement($sch);
+        self::assertSame([], $ann->getNamespaceDeclarations());
         self::assertAnnotationElementHasNoAttribute($ann);
         $docs = $ann->getDocumentationElements();
         self::assertCount(2, $docs);
+        
+        self::assertSame([], $docs[0]->getNamespaceDeclarations());
         self::assertDocumentationElementHasNoAttribute($docs[0]);
         self::assertSame('', $docs[0]->getContent());
+        
+        self::assertSame([], $docs[1]->getNamespaceDeclarations());
         self::assertDocumentationElementHasNoAttribute($docs[1]);
         self::assertSame('', $docs[1]->getContent());
     }
