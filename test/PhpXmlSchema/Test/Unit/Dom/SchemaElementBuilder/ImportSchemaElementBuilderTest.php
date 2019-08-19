@@ -7,7 +7,6 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
-use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -23,6 +22,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BindNamespaceTestTrait;
+    
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -60,10 +61,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     }
     
     /**
-     * Asserts that the ancestors of the current element did not change since 
-     * its building.
-     * 
-     * @param   SchemaElement   $sch    The "schema" element of the current element to assert.
+     * {@inheritDoc}
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
@@ -74,12 +72,17 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     }
     
     /**
-     * Returns the instance of the current element.
-     * 
-     * @param   SchemaElement   $sch    The "schema" element of the current element
-     * @return  ImportElement
+     * {@inheritDoc}
      */
-    private static function getCurrentElement(SchemaElement $sch):ImportElement
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    {
+        self::assertImportElementHasNoAttribute(self::getCurrentElement($sch));
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected static function getCurrentElement(SchemaElement $sch)
     {
         return $sch->getImportElements()[0];
     }

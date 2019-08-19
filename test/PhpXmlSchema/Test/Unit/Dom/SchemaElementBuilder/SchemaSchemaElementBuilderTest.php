@@ -22,6 +22,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BindNamespaceTestTrait;
+    
     use BuildAppInfoElementDoesNotCreateElementTestTrait;
     use BuildSourceAttributeDoesNotCreateAttributeTestTrait;
     use BuildLeafElementContentDoesNotCreateContentTestTrait;
@@ -43,6 +45,29 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertSame([], $sch->getNamespaceDeclarations());
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    {
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    {
+        self::assertSchemaElementHasNoAttribute(self::getCurrentElement($sch));
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected static function getCurrentElement(SchemaElement $sch)
+    {
+        return $sch;
     }
     
     /**

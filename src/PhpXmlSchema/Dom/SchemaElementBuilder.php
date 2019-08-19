@@ -65,6 +65,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function bindNamespace(string $prefix, string $namespace)
+    {
+        if ($this->currentElement !== NULL) {
+            $this->currentElement->bindNamespace($prefix, $namespace);
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildBlockDefaultAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {

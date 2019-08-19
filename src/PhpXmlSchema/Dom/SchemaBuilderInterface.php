@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Dom;
 
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
@@ -16,6 +17,19 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 interface SchemaBuilderInterface
 {
+    /**
+     * Binds the specified prefix to the specified namespace.
+     * 
+     * @param   string  $prefix     The prefix.
+     * @param   string  $namespace  The namespace to bind to.
+     * 
+     * @throws  InvalidOperationException   When 'xml' prefix is bound to a namespace other than XML 1.0 namespace.
+     * @throws  InvalidOperationException   When the prefix, other than 'xml', is bound to the XML 1.0 namespace.
+     * @throws  InvalidOperationException   When the prefix is 'xmlns'.
+     * @throws  InvalidOperationException   When the prefix, other than 'xmlns', is bound to the XML NS 1.0 namespace.
+     */
+    public function bindNamespace(string $prefix, string $namespace);
+    
     /**
      * Builds an "attributeFormDefault" attribute in the current element.
      * 

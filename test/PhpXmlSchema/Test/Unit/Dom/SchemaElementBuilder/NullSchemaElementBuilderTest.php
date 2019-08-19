@@ -61,6 +61,28 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
+    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    {
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    {
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected static function getCurrentElement(SchemaElement $sch)
+    {
+        return NULL;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     protected function setUp()
     {
         $this->sut = new SchemaElementBuilder();
@@ -73,5 +95,24 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that bindNamespace() does not associate a prefix with a 
+     * namespace.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testBindNamespaceDoesNotBindNamespaceWhenNull()
+    {
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->bindNamespace('xml', 'http://example.org');
+        $this->sut->bindNamespace('foo', 'http://www.w3.org/XML/1998/namespace');
+        $this->sut->bindNamespace('xmlns', 'http://www.w3.org/2000/xmlns/');
+        $this->sut->bindNamespace('foo', 'http://www.w3.org/2000/xmlns/');
+        $sch = $this->sut->getSchema();
+        
+        self::assertSchemaElementNotChanged($sch);
     }
 }

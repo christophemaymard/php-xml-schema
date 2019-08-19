@@ -7,7 +7,6 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
-use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -23,6 +22,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BindNamespaceTestTrait;
+    
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -62,10 +63,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     }
     
     /**
-     * Asserts that the ancestors of the current element did not change since 
-     * its building.
-     * 
-     * @param   SchemaElement   $sch    The "schema" element of the current element to assert.
+     * {@inheritDoc}
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
@@ -81,12 +79,17 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     }
     
     /**
-     * Returns the instance of the current element.
-     * 
-     * @param   SchemaElement   $sch    The "schema" element of the current element
-     * @return  AppInfoElement
+     * {@inheritDoc}
      */
-    private static function getCurrentElement(SchemaElement $sch):AppInfoElement
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    {
+        self::assertAppInfoElementHasNoAttribute(self::getCurrentElement($sch));
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected static function getCurrentElement(SchemaElement $sch)
     {
         return $sch->getCompositionAnnotationElements()[0]
             ->getAppInfoElements()[0];
