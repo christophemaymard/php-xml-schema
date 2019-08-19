@@ -64,4 +64,11 @@ interface ElementInterface
      * @return  string|NULL The namespace that is associated with prefix if found, otherwise NULL.
      */
     public function lookupNamespace(string $prefix);
+    
+    /**
+     * Returns all the namespace declarations of this element.
+     * 
+     * @return  string[]
+     */
+    public function getNamespaceDeclarations():array;
 }

@@ -181,6 +181,37 @@ abstract class AbstractAbstractElementTestCase extends TestCase
     }
     
     /**
+     * Tests that getNamespaceDeclarations() returns an associative array 
+     * of strings.
+     * 
+     * @group   namespace
+     * @group   xml
+     * @group   element
+     * @group   dom
+     */
+    public function testGetNamespaceDeclarationsReturnsArrayOfStrings()
+    {
+        $decls = [];
+        self::assertSame($decls, $this->sut->getNamespaceDeclarations());
+        
+        $decls['foo'] = 'http://example.org/foo';
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        self::assertSame($decls, $this->sut->getNamespaceDeclarations());
+        
+        $decls['bar'] = 'http://example.org/bar';
+        $this->sut->bindNamespace('bar', 'http://example.org/bar');
+        self::assertSame($decls, $this->sut->getNamespaceDeclarations());
+        
+        $decls['xml'] = 'http://www.w3.org/XML/1998/namespace';
+        $this->sut->bindNamespace('xml', 'http://www.w3.org/XML/1998/namespace');
+        self::assertSame($decls, $this->sut->getNamespaceDeclarations());
+        
+        $decls['bar'] = 'http://example.org/newbar';
+        $this->sut->bindNamespace('bar', 'http://example.org/newbar');
+        self::assertSame($decls, $this->sut->getNamespaceDeclarations());
+    }
+    
+    /**
      * Creates a dummy for the {@see PhpXmlSchema\Dom\DerivationType} class.
      * 
      * @return  ProphecySubjectInterface

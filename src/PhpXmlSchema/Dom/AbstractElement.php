@@ -117,4 +117,12 @@ abstract class AbstractElement implements ElementInterface
         
         return $ns;
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getNamespaceDeclarations():array
+    {
+        return $this->nsBinding;
+    }
 }
