@@ -30,6 +30,27 @@ class SchemaParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes all the namespace declarations.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testParseProcessNamespaceDeclarations()
+    {
+        $sch = $this->sut->parse($this->getXs('schema_0007.xsd'));
+        
+        $decls = [
+            '' => 'http://example.org', 
+            'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            'foo' => 'http://example.org/foo', 
+        ];
+        self::assertArraySubset($decls, $sch->getNamespaceDeclarations(), TRUE);
+        self::assertCount(0, \array_diff_assoc($sch->getNamespaceDeclarations(), $decls));
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertSame([], $sch->getElements());
+    }
+    
+    /**
      * Tests that parse() processes "attributeFormDefault" attribute.
      * 
      * @param   string  $fileName   The name of the file used for the test.
@@ -46,7 +67,12 @@ class SchemaParserTest extends AbstractParserTestCase
     ) {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
         self::assertSame($qual, $sch->getAttributeFormDefault()->isQualified());
         self::assertSame($unqual, $sch->getAttributeFormDefault()->isUnqualified());
@@ -72,7 +98,12 @@ class SchemaParserTest extends AbstractParserTestCase
     ) {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasOnlyBlockDefaultAttribute($sch);
         self::assertSchemaElementBlockDefaultAttribute($res, $ext, $sub, $sch);
         self::assertSame([], $sch->getElements());
@@ -95,7 +126,12 @@ class SchemaParserTest extends AbstractParserTestCase
     ) {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
         self::assertSame($qual, $sch->getElementFormDefault()->isQualified());
         self::assertSame($unqual, $sch->getElementFormDefault()->isUnqualified());
@@ -123,7 +159,12 @@ class SchemaParserTest extends AbstractParserTestCase
     ) {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasOnlyFinalDefaultAttribute($sch);
         self::assertSchemaElementFinalDefaultAttribute($ext, $res, $lst, $unn, $sch);
         self::assertSame([], $sch->getElements());
@@ -142,7 +183,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasOnlyIdAttribute($sch);
         self::assertSame($id, $sch->getId()->getId());
         self::assertSame([], $sch->getElements());
@@ -157,7 +203,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('schema_target_0001.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
         self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
         self::assertSame([], $sch->getElements());
@@ -172,7 +223,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('schema_version_0001.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasOnlyVersionAttribute($sch);
         self::assertSame('foo bar baz qux', $sch->getVersion()->getToken());
         self::assertSame([], $sch->getElements());
@@ -195,7 +251,12 @@ class SchemaParserTest extends AbstractParserTestCase
     ) {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasOnlyLangAttribute($sch);
         self::assertSame($prim, $sch->getLang()->getPrimarySubtag());
         self::assertSame($subtags, $sch->getLang()->getSubtags());
@@ -211,7 +272,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('schema_0006.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
         self::assertSchemaElementBlockDefaultAttribute(FALSE, TRUE, FALSE, $sch);
         self::assertTrue($sch->getElementFormDefault()->isQualified());
@@ -234,7 +300,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
@@ -260,7 +331,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('import_0002.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
@@ -286,7 +362,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('include_0002.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
@@ -312,7 +393,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('notation_0002.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
@@ -338,7 +424,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('annotation_0004.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         $children = $sch->getElements();
         self::assertCount(3, $children);
@@ -368,7 +459,12 @@ class SchemaParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('attribute_0002.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         

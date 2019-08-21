@@ -30,6 +30,36 @@ class NotationParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes all the namespace declarations.
+     * 
+     * @group   namespace
+     * @group   xml
+     */
+    public function testParseProcessNamespaceDeclarations()
+    {
+        $sch = $this->sut->parse($this->getXs('notation_0006.xsd'));
+        
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $not = $sch->getNotationElements()[0];
+        $decls = [
+            '' => 'http://example.org', 
+            'foo' => 'http://example.org/foo', 
+        ];
+        self::assertArraySubset($decls, $not->getNamespaceDeclarations(), TRUE);
+        self::assertCount(0, \array_diff_assoc($not->getNamespaceDeclarations(), $decls));
+        self::assertNotationElementHasNoAttribute($not);
+        self::assertSame([], $not->getElements());
+    }
+    
+    /**
      * Tests that parse() processes "id" attribute.
      * 
      * @param   string  $fileName   The name of the file used for the test.
@@ -42,7 +72,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
@@ -66,7 +101,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
@@ -86,7 +126,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('notation_public_0001.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
@@ -106,7 +151,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('notation_system_0001.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
@@ -127,7 +177,12 @@ class NotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertSame(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch->getNamespaceDeclarations()
+        );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         

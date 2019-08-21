@@ -175,6 +175,11 @@ class Parser
         $this->ctxStack[] = $this->ctx;
         $this->ctx = new ParserContext($this->specFactory->create($cid));
         
+        // Parses the namespace declarations.
+        foreach ($this->xt->getNamespaceDeclarations() as $prefix => $namespace) {
+            $this->builder->bindNamespace($prefix, $namespace);
+        }
+        
         // Parses the attributes.
         if ($this->xt->moveToFirstAttribute()) {
             do {
