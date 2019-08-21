@@ -557,4 +557,137 @@ trait ValueProviderTrait
             'Contains invalid character (U+FFFF)' => [ "\u{FFFF}", ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid QName (without prefix) values.
+     * 
+     * @return  array[]
+     */
+    public function getValidQNameLocalPartValues():array
+    {
+        return [
+            'Starts with _' => [ 
+                '_foo', '_foo', 
+            ], 
+            'Starts with letter' => [ 
+                'f', 'f', 
+            ], 
+            'Contains letter' => [ 
+                'foo', 'foo', 
+            ], 
+            'Contains digit' => [ 
+                'f00', 'f00', 
+            ], 
+            'Contains .' => [ 
+                'f.bar', 'f.bar', 
+            ], 
+            'Contains -' => [ 
+                'f-bar', 'f-bar', 
+            ], 
+            'Contains _' => [ 
+                'f_bar', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [ 
+                "  \t  \n  \r  foo_bar  \t  \n  \r  ", 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid QName values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidQNameValues():array
+    {
+        return [
+            // Prefix is absent and local part is invalid.
+            'Prefix (absent), local part (empty string)' => [
+                '', 
+                '"" is an invalid NCName.', 
+            ], 
+            'Prefix (absent), local part (only white spaces)' => [
+                '       ', 
+                '"" is an invalid NCName.', 
+            ], 
+            'Prefix (absent), local part (separated by white spaces)' => [
+                'foo bar', 
+                '"foo bar" is an invalid NCName.', 
+            ], 
+            'Prefix (absent), local part (starts with digit)' => [
+                '8foo', 
+                '"8foo" is an invalid NCName.', 
+            ], 
+            'Prefix (absent), local part (starts with .)' => [
+                '.foo', 
+                '".foo" is an invalid NCName.', 
+            ], 
+            'Prefix (absent), local part (starts with -)' => [
+                '-foo', 
+                '"-foo" is an invalid NCName.', 
+            ], 
+            'Prefix (absent), local part (contains invalid character)' => [
+                'foo+bar', 
+                '"foo+bar" is an invalid NCName.', 
+            ], 
+            // Prefix is invalid and local part is valid.
+            'Prefix (empty string), local part (valid)' => [
+                ':qux', 
+                '"" is an invalid NCName.', 
+            ], 
+            'Prefix (only white spaces), local part (valid)' => [
+                '       :qux', 
+                '"" is an invalid NCName.', 
+            ], 
+            'Prefix (separated by white spaces), local part (valid)' => [
+                'foo bar:qux', 
+                '"foo bar" is an invalid NCName.', 
+            ], 
+            'Prefix (starts with digit), local part (valid)' => [
+                '8foo:qux', 
+                '"8foo" is an invalid NCName.', 
+            ], 
+            'Prefix (starts with .), local part (valid)' => [
+                '.foo:qux', 
+                '".foo" is an invalid NCName.', 
+            ], 
+            'Prefix (starts with -), local part (valid)' => [
+                '-foo:qux', 
+                '"-foo" is an invalid NCName.', 
+            ], 
+            'Prefix (contains invalid character), local part (valid)' => [
+                'foo+bar:qux', 
+                '"foo+bar" is an invalid NCName.', 
+            ], 
+            // Prefix is valid, and local part is invalid.
+            'Prefix (valid), local part (empty string)' => [
+                'qux:', 
+                '"" is an invalid NCName.', 
+            ], 
+            'Prefix (valid), local part (only white spaces)' => [
+                'qux:       ', 
+                '"" is an invalid NCName.', 
+            ], 
+            'Prefix (valid), local part (separated by white spaces)' => [
+                'qux:foo bar', 
+                '"foo bar" is an invalid NCName.', 
+            ], 
+            'Prefix (valid), local part (starts with digit)' => [
+                'qux:8foo', 
+                '"8foo" is an invalid NCName.', 
+            ], 
+            'Prefix (valid), local part (starts with .)' => [
+                'qux:.foo', 
+                '".foo" is an invalid NCName.', 
+            ], 
+            'Prefix (valid), local part (starts with -)' => [
+                'qux:-foo', 
+                '"-foo" is an invalid NCName.', 
+            ], 
+            'Prefix (valid), local part (contains invalid character)' => [
+                'qux:foo+bar', 
+                '"foo+bar" is an invalid NCName.', 
+            ], 
+        ];
+    }
 }
