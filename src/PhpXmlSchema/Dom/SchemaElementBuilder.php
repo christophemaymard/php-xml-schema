@@ -11,8 +11,10 @@ use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\LanguageType;
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Datatype\TokenType;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Exception\Message;
 
@@ -261,6 +263,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             $this->currentElement->setTargetNamespace(
                 new AnyUriType($this->collapseWhiteSpace($value))
             );
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function buildTypeAttribute(string $value)
+    {
+        if ($this->currentElement instanceof AttributeElement) {
+            $this->currentElement->setType($this->parseQName($value));
         }
     }
     
@@ -528,6 +540,38 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return $ft;
+    }
+    
+    /**
+     * Parses the specified value in QNameType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  QNameType   A created instance of QNameType.
+     * 
+     * @throws  InvalidOperationException   When the prefix is not bound to a namespace.
+     */
+    private function parseQName(string $value):QNameType
+    {
+        $parts = \explode(':', $this->collapseWhiteSpace($value), 2);
+        
+        if (\count($parts) == 1) {
+            $namespace = $this->currentElement->lookupNamespace('');
+            $localPart = new NCNameType($parts[0]);
+        } else {
+            $prefix = new NCNameType($parts[0]);
+            $localPart = new NCNameType($parts[1]);
+            
+            if (NULL === $namespace = $this->currentElement->lookupNamespace($prefix->getNCName())) {
+                throw new InvalidOperationException(\sprintf(
+                    'The "%s" prefix is not bound to a namespace.', 
+                    $parts[0]
+                ));
+            }
+        }
+        
+        return isset($namespace) ? 
+            new QNameType($localPart, new AnyUriType($namespace)):
+            new QNameType($localPart);
     }
     
     /**

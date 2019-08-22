@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
@@ -296,5 +297,144 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage($message);
         
         $this->sut->buildNameAttribute($value);
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() creates the attribute when:
+     * - the current element is the "attribute" element 
+     * (topLevelAttributeType), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - no default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildTypeAttributeCreatesAttrWhenTopAttributeAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildTypeAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertAttributeElementHasOnlyTypeAttribute($attr);
+        self::assertSame($localPart, $attr->getType()->getLocalPart()->getNCName());
+        self::assertFalse($attr->getType()->hasNamespace());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() creates the attribute when:
+     * - the current element is the "attribute" element 
+     * (topLevelAttributeType), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildTypeAttributeCreatesAttrWhenTopAttributeAndValueIsValidQNameLocalPartAndDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('', 'http://example.org');
+        $this->sut->buildAttributeElement();
+        $this->sut->buildTypeAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertSame(['' => 'http://example.org' ], $sch->getNamespaceDeclarations());
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getAttributeElements());
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertAttributeElementHasOnlyTypeAttribute($attr);
+        self::assertSame($localPart, $attr->getType()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org', $attr->getType()->getNamespace()->getUri());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() throws an exception when the current 
+     * element is the "attribute" element (topLevelAttributeType) and the 
+     * value is an invalid QName.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidQNameValues
+     */
+    public function testBuildTypeAttributeThrowsExceptionWhenTopAttributeAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildTypeAttribute($value);
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() creates the attribute when:
+     * - the current element is the "attribute" element 
+     * (topLevelAttributeType), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildTypeAttributeCreatesAttrWhenTopAttributeAndValueIsValidAndPrefixAssociatedNamespace()
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->buildAttributeElement();
+        $this->sut->buildTypeAttribute('foo:bar');
+        $sch = $this->sut->getSchema();
+        
+        self::assertSame(['foo' => 'http://example.org/foo' ], $sch->getNamespaceDeclarations());
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getAttributeElements());
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertAttributeElementHasOnlyTypeAttribute($attr);
+        self::assertSame('bar', $attr->getType()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/foo', $attr->getType()->getNamespace()->getUri());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() throws an exception when:
+     * - the current element is the "attribute" element 
+     * (topLevelAttributeType), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is not associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildTypeAttributeThrowsExceptionWhenTopAttributeAndValueIsValidAndPrefixNotAssociatedNamespace()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
+        
+        $this->sut->buildTypeAttribute('foo:bar');
     }
 }
