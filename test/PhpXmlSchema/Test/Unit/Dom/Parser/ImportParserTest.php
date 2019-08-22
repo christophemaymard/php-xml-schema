@@ -39,22 +39,23 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('import_0006.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
-        $decls = [
-            '' => 'http://example.org', 
-            'foo' => 'http://example.org/foo', 
-        ];
-        self::assertArraySubset($decls, $import->getNamespaceDeclarations(), TRUE);
-        self::assertCount(0, \array_diff_assoc($import->getNamespaceDeclarations(), $decls));
+        self::assertElementNamespaceDeclarations(
+            [
+                '' => 'http://example.org', 
+                'foo' => 'http://example.org/foo', 
+            ], 
+            $import
+        );
         self::assertImportElementHasNoAttribute($import);
         self::assertSame([], $import->getElements());
     }
@@ -72,17 +73,17 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
-        self::assertSame([], $import->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $import);
         self::assertImportElementHasOnlyIdAttribute($import);
         self::assertSame($id, $import->getId()->getId());
         self::assertSame([], $import->getElements());
@@ -97,17 +98,17 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('import_ns_0001.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
-        self::assertSame([], $import->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $import);
         self::assertImportElementHasOnlyNamespaceAttribute($import);
         self::assertSame('http://example.org', $import->getNamespace()->getUri());
         self::assertSame([], $import->getElements());
@@ -122,17 +123,17 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('import_schloc_0001.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
-        self::assertSame([], $import->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $import);
         self::assertImportElementHasOnlySchemaLocationAttribute($import);
         self::assertSame('http://example.org', $import->getSchemaLocation()->getUri());
         self::assertSame([], $import->getElements());
@@ -148,22 +149,22 @@ class ImportParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $import = $sch->getImportElements()[0];
-        self::assertSame([], $import->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $import);
         self::assertImportElementHasNoAttribute($import);
         self::assertCount(1, $import->getElements());
         
         $ann = $import->getAnnotationElement();
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }

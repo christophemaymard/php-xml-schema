@@ -39,22 +39,23 @@ class AnnotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('annotation_0006.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
-        $decls = [
-            '' => 'http://example.org', 
-            'foo' => 'http://example.org/foo', 
-        ];
-        self::assertArraySubset($decls, $ann->getNamespaceDeclarations(), TRUE);
-        self::assertCount(0, \array_diff_assoc($ann->getNamespaceDeclarations(), $decls));
+        self::assertElementNamespaceDeclarations(
+            [
+                '' => 'http://example.org', 
+                'foo' => 'http://example.org/foo', 
+            ], 
+            $ann
+        );
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }
@@ -72,17 +73,17 @@ class AnnotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasOnlyIdAttribute($ann);
         self::assertSame($id, $ann->getId()->getId());
         self::assertSame([], $ann->getElements());
@@ -98,27 +99,27 @@ class AnnotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('appinfo_0002.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertCount(2, $ann->getElements());
         
         $appinfos = $ann->getAppInfoElements();
         
-        self::assertSame([], $appinfos[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $appinfos[0]);
         self::assertAppInfoElementHasNoAttribute($appinfos[0]);
         self::assertSame('', $appinfos[0]->getContent());
         
-        self::assertSame([], $appinfos[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $appinfos[1]);
         self::assertAppInfoElementHasNoAttribute($appinfos[1]);
         self::assertSame('', $appinfos[1]->getContent());
     }
@@ -133,27 +134,27 @@ class AnnotationParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('documentation_0002.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertCount(2, $ann->getElements());
         
         $docs = $ann->getDocumentationElements();
         
-        self::assertSame([], $docs[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $docs[0]);
         self::assertDocumentationElementHasNoAttribute($docs[0]);
         self::assertSame('', $docs[0]->getContent());
         
-        self::assertSame([], $docs[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $docs[1]);
         self::assertDocumentationElementHasNoAttribute($docs[1]);
         self::assertSame('', $docs[1]->getContent());
     }

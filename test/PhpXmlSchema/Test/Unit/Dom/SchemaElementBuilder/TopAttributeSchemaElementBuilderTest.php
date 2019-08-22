@@ -58,7 +58,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertAncestorsNotChanged($sch);
         
         $attr = self::getCurrentElement($sch);
-        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasNoAttribute($attr);
         self::assertSame([], $attr->getElements());
     }
@@ -68,7 +68,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         self::assertCount(1, $sch->getAttributeElements());
@@ -127,7 +127,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertAncestorsNotChanged($sch);
         
         $attr = self::getCurrentElement($sch);
-        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyDefaultAttribute($attr);
         self::assertSame($value, $attr->getDefault()->getString());
         self::assertSame([], $attr->getElements());
@@ -173,7 +173,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertAncestorsNotChanged($sch);
         
         $attr = self::getCurrentElement($sch);
-        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyFixedAttribute($attr);
         self::assertSame($value, $attr->getFixed()->getString());
         self::assertSame([], $attr->getElements());
@@ -221,7 +221,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertAncestorsNotChanged($sch);
         
         $attr = self::getCurrentElement($sch);
-        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyIdAttribute($attr);
         self::assertSame($id, $attr->getId()->getId());
         self::assertSame([], $attr->getElements());
@@ -271,7 +271,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertAncestorsNotChanged($sch);
         
         $attr = self::getCurrentElement($sch);
-        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyNameAttribute($attr);
         self::assertSame($name, $attr->getName()->getNCName());
         self::assertSame([], $attr->getElements());
@@ -323,7 +323,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertAncestorsNotChanged($sch);
         
         $attr = self::getCurrentElement($sch);
-        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyTypeAttribute($attr);
         self::assertSame($localPart, $attr->getType()->getLocalPart()->getNCName());
         self::assertFalse($attr->getType()->hasNamespace());
@@ -354,13 +354,13 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->sut->buildTypeAttribute($value);
         $sch = $this->sut->getSchema();
         
-        self::assertSame(['' => 'http://example.org' ], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations(['' => 'http://example.org' ], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         self::assertCount(1, $sch->getAttributeElements());
         
         $attr = self::getCurrentElement($sch);
-        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyTypeAttribute($attr);
         self::assertSame($localPart, $attr->getType()->getLocalPart()->getNCName());
         self::assertSame('http://example.org', $attr->getType()->getNamespace()->getUri());
@@ -407,13 +407,13 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->sut->buildTypeAttribute('foo:bar');
         $sch = $this->sut->getSchema();
         
-        self::assertSame(['foo' => 'http://example.org/foo' ], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations(['foo' => 'http://example.org/foo' ], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         self::assertCount(1, $sch->getAttributeElements());
         
         $attr = self::getCurrentElement($sch);
-        self::assertSame([], $attr->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyTypeAttribute($attr);
         self::assertSame('bar', $attr->getType()->getLocalPart()->getNCName());
         self::assertSame('http://example.org/foo', $attr->getType()->getNamespace()->getUri());

@@ -54,7 +54,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertSchemaElementNotChanged(SchemaElement $sch)
     {
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
     }

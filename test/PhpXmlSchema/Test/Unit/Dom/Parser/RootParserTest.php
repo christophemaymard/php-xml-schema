@@ -51,11 +51,11 @@ class RootParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('schema_0004.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
@@ -68,11 +68,11 @@ class RootParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('schema_0005.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());

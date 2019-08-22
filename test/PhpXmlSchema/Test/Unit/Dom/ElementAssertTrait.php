@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\NotationElement;
@@ -26,6 +27,18 @@ use PhpXmlSchema\Dom\SchemaElement;
  */
 trait ElementAssertTrait
 {
+    /**
+     * Asserts that the specified element has a set of namespace declarations.
+     * 
+     * @param   string[]            $decls  
+     * @param   ElementInterface    $sut    The element to test.
+     */
+    public static function assertElementNamespaceDeclarations(array $decls, ElementInterface $sut)
+    {
+        self::assertArraySubset($decls, $sut->getNamespaceDeclarations(), TRUE);
+        self::assertCount(0, \array_diff_assoc($sut->getNamespaceDeclarations(), $decls));
+    }
+    
     /**
      * Asserts that the specified "schema" element has no attribute.
      * 

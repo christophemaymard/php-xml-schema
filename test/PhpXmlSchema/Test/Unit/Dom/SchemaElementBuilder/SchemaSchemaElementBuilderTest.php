@@ -43,7 +43,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      */
     public static function assertSchemaElementNotChanged(SchemaElement $sch)
     {
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertSame([], $sch->getElements());
     }
@@ -95,7 +95,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     {
         $sch1 = $this->sut->getSchema();
         
-        self::assertSame([], $sch1->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch1);
         self::assertSchemaElementHasNoAttribute($sch1);
         self::assertSame([], $sch1->getElements());
         $sch2 = $this->sut->getSchema();
@@ -112,7 +112,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildSchemaElement();
         $sch2 = $this->sut->getSchema();
         
-        self::assertSame([], $sch2->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch2);
         self::assertSchemaElementHasNoAttribute($sch2);
         self::assertSame([], $sch2->getElements());
         self::assertNotSame($sch2, $sch1, 'Not same instance of SchemaElement.');
@@ -131,7 +131,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildAttributeFormDefaultAttribute('qualified');
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
         self::assertTrue($sch->getAttributeFormDefault()->isQualified());
         self::assertSame([], $sch->getElements());
@@ -150,7 +150,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildAttributeFormDefaultAttribute('unqualified');
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
         self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
         self::assertSame([], $sch->getElements());
@@ -201,7 +201,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildBlockDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyBlockDefaultAttribute($sch);
         self::assertSchemaElementBlockDefaultAttribute($res, $ext, $sub, $sch);
         self::assertSame([], $sch->getElements());
@@ -243,7 +243,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildElementFormDefaultAttribute('qualified');
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
         self::assertTrue($sch->getElementFormDefault()->isQualified());
         self::assertSame([], $sch->getElements());
@@ -262,7 +262,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildElementFormDefaultAttribute('unqualified');
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
         self::assertTrue($sch->getElementFormDefault()->isUnqualified());
         self::assertSame([], $sch->getElements());
@@ -315,7 +315,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildFinalDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyFinalDefaultAttribute($sch);
         self::assertSchemaElementFinalDefaultAttribute($ext, $res, $lst, $unn, $sch);
         self::assertSame([], $sch->getElements());
@@ -362,7 +362,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyIdAttribute($sch);
         self::assertSame($id, $sch->getId()->getId());
         self::assertSame([], $sch->getElements());
@@ -407,7 +407,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildTargetNamespaceAttribute($value);
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
         self::assertSame($uri, $sch->getTargetNamespace()->getUri());
         self::assertSame([], $sch->getElements());
@@ -445,7 +445,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildVersionAttribute($value);
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyVersionAttribute($sch);
         self::assertSame($version, $sch->getVersion()->getToken());
         self::assertSame([], $sch->getElements());
@@ -485,7 +485,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildLangAttribute($value);
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyLangAttribute($sch);
         self::assertSame($primary, $sch->getLang()->getPrimarySubtag());
         self::assertSame($subtags, $sch->getLang()->getSubtags());
@@ -527,18 +527,18 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildCompositionAnnotationElement();
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
         $anns = $sch->getCompositionAnnotationElements();
         self::assertCount(2, $anns);
         
-        self::assertSame([], $anns[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $anns[0]);
         self::assertAnnotationElementHasNoAttribute($anns[0]);
         self::assertSame([], $anns[0]->getElements());
         
-        self::assertSame([], $anns[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $anns[1]);
         self::assertAnnotationElementHasNoAttribute($anns[1]);
         self::assertSame([], $anns[1]->getElements());
     }
@@ -557,18 +557,18 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildImportElement();
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
         $imports = $sch->getImportElements();
         self::assertCount(2, $imports);
         
-        self::assertSame([], $imports[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $imports[0]);
         self::assertImportElementHasNoAttribute($imports[0]);
         self::assertSame([], $imports[0]->getElements());
         
-        self::assertSame([], $imports[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $imports[1]);
         self::assertImportElementHasNoAttribute($imports[1]);
         self::assertSame([], $imports[1]->getElements());
     }
@@ -587,18 +587,18 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildIncludeElement();
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
         $incs = $sch->getIncludeElements();
         self::assertCount(2, $incs);
         
-        self::assertSame([], $incs[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $incs[0]);
         self::assertIncludeElementHasNoAttribute($incs[0]);
         self::assertSame([], $incs[0]->getElements());
         
-        self::assertSame([], $incs[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $incs[1]);
         self::assertIncludeElementHasNoAttribute($incs[1]);
         self::assertSame([], $incs[1]->getElements());
     }
@@ -617,18 +617,18 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildNotationElement();
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
         $nots = $sch->getNotationElements();
         self::assertCount(2, $nots);
         
-        self::assertSame([], $nots[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $nots[0]);
         self::assertNotationElementHasNoAttribute($nots[0]);
         self::assertSame([], $nots[0]->getElements());
         
-        self::assertSame([], $nots[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $nots[1]);
         self::assertNotationElementHasNoAttribute($nots[1]);
         self::assertSame([], $nots[1]->getElements());
     }
@@ -647,18 +647,18 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildDefinitionAnnotationElement();
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
         $anns = $sch->getDefinitionAnnotationElements();
         self::assertCount(2, $anns);
         
-        self::assertSame([], $anns[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $anns[0]);
         self::assertAnnotationElementHasNoAttribute($anns[0]);
         self::assertSame([], $anns[0]->getElements());
         
-        self::assertSame([], $anns[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $anns[1]);
         self::assertAnnotationElementHasNoAttribute($anns[1]);
         self::assertSame([], $anns[1]->getElements());
     }
@@ -677,18 +677,18 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->sut->buildAttributeElement();
         $sch = $this->sut->getSchema();
         
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(2, $sch->getElements());
         
         $attrs = $sch->getAttributeElements();
         self::assertCount(2, $attrs);
         
-        self::assertSame([], $attrs[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attrs[0]);
         self::assertAttributeElementHasNoAttribute($attrs[0]);
         self::assertSame([], $attrs[0]->getElements());
         
-        self::assertSame([], $attrs[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $attrs[1]);
         self::assertAttributeElementHasNoAttribute($attrs[1]);
         self::assertSame([], $attrs[1]->getElements());
     }

@@ -57,7 +57,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertAncestorsNotChanged($sch);
         
         $doc = self::getCurrentElement($sch);
-        self::assertSame([], $doc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $doc);
         self::assertDocumentationElementHasNoAttribute($doc);
         self::assertSame('', $doc->getContent());
     }
@@ -67,12 +67,12 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertCount(1, $ann->getElements());
         self::assertCount(1, $ann->getDocumentationElements());
@@ -134,7 +134,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertAncestorsNotChanged($sch);
         
         $doc = self::getCurrentElement($sch);
-        self::assertSame([], $doc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $doc);
         self::assertDocumentationElementHasOnlySourceAttribute($doc);
         self::assertSame($uri, $doc->getSource()->getUri());
         self::assertSame('', $doc->getContent());
@@ -176,7 +176,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertAncestorsNotChanged($sch);
         
         $doc = self::getCurrentElement($sch);
-        self::assertSame([], $doc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $doc);
         self::assertDocumentationElementHasOnlyLangAttribute($doc);
         self::assertSame($primary, $doc->getLang()->getPrimarySubtag());
         self::assertSame($subtags, $doc->getLang()->getSubtags());
@@ -219,7 +219,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertAncestorsNotChanged($sch);
         
         $doc = self::getCurrentElement($sch);
-        self::assertSame([], $doc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $doc);
         self::assertDocumentationElementHasNoAttribute($doc);
         self::assertSame('foo bar baz content', $doc->getContent());
     }
@@ -241,7 +241,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertAncestorsNotChanged($sch);
         
         $doc = self::getCurrentElement($sch);
-        self::assertSame([], $doc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $doc);
         self::assertDocumentationElementHasNoAttribute($doc);
         self::assertSame('baz', $doc->getContent());
     }

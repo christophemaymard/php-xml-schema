@@ -38,27 +38,28 @@ class AppInfoParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('appinfo_0005.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertCount(1, $ann->getElements());
         
         $appinfo = $ann->getAppInfoElements()[0];
-        $decls = [
-            '' => 'http://example.org', 
-            'foo' => 'http://example.org/foo', 
-        ];
-        self::assertArraySubset($decls, $appinfo->getNamespaceDeclarations(), TRUE);
-        self::assertCount(0, \array_diff_assoc($appinfo->getNamespaceDeclarations(), $decls));
+        self::assertElementNamespaceDeclarations(
+            [
+                '' => 'http://example.org', 
+                'foo' => 'http://example.org/foo', 
+            ], 
+            $appinfo
+        );
         self::assertAppInfoElementHasNoAttribute($appinfo);
         self::assertSame('', $appinfo->getContent());
     }
@@ -72,22 +73,22 @@ class AppInfoParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('appinfo_src_0001.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertCount(1, $ann->getElements());
         
         $appinfo = $ann->getAppInfoElements()[0];
-        self::assertSame([], $appinfo->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $appinfo);
         self::assertAppInfoElementHasOnlySourceAttribute($appinfo);
         self::assertSame('http://example.org', $appinfo->getSource()->getUri());
         self::assertSame('', $appinfo->getContent());
@@ -103,27 +104,27 @@ class AppInfoParserTest extends AbstractParserTestCase
     {
         $sch = $this->sut->parse($this->getXs('appinfo_0004.xsd'));
         
-        self::assertSame(
+        self::assertElementNamespaceDeclarations(
             [
                 'xs' => 'http://www.w3.org/2001/XMLSchema', 
             ], 
-            $sch->getNamespaceDeclarations()
+            $sch
         );
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         
         $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertCount(2, $ann->getElements());
         
         $appinfos = $ann->getAppInfoElements();
         
-        self::assertSame([], $appinfos[0]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $appinfos[0]);
         self::assertAppInfoElementHasNoAttribute($appinfos[0]);
         self::assertSame('foo', $appinfos[0]->getContent());
         
-        self::assertSame([], $appinfos[1]->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $appinfos[1]);
         self::assertAppInfoElementHasNoAttribute($appinfos[1]);
         self::assertSame('bar', $appinfos[1]->getContent());
     }

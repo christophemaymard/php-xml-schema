@@ -57,7 +57,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         self::assertAncestorsNotChanged($sch);
         
         $inc = self::getCurrentElement($sch);
-        self::assertSame([], $inc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $inc);
         self::assertIncludeElementHasNoAttribute($inc);
         self::assertSame([], $inc->getElements());
     }
@@ -67,7 +67,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
-        self::assertSame([], $sch->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         self::assertCount(1, $sch->getIncludeElements());
@@ -127,7 +127,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         self::assertAncestorsNotChanged($sch);
         
         $inc = self::getCurrentElement($sch);
-        self::assertSame([], $inc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $inc);
         self::assertIncludeElementHasOnlyIdAttribute($inc);
         self::assertSame($id, $inc->getId()->getId());
         self::assertSame([], $inc->getElements());
@@ -175,7 +175,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         self::assertAncestorsNotChanged($sch);
         
         $inc = self::getCurrentElement($sch);
-        self::assertSame([], $inc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $inc);
         self::assertIncludeElementHasOnlySchemaLocationAttribute($inc);
         self::assertSame($uri, $inc->getSchemaLocation()->getUri());
         self::assertSame([], $inc->getElements());
@@ -210,12 +210,12 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         self::assertAncestorsNotChanged($sch);
         
         $inc = self::getCurrentElement($sch);
-        self::assertSame([], $inc->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $inc);
         self::assertIncludeElementHasNoAttribute($inc);
         self::assertCount(1, $inc->getElements());
         
         $ann = $inc->getAnnotationElement();
-        self::assertSame([], $ann->getNamespaceDeclarations());
+        self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }
