@@ -423,6 +423,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildSimpleTypeElement()
+    {
+        if ($this->currentElement instanceof AttributeElement) {
+            $elt = new SimpleTypeElement();
+            $this->currentElement->setSimpleTypeElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaElement()
     {
         $this->schemaElement = $this->currentElement = new SchemaElement();

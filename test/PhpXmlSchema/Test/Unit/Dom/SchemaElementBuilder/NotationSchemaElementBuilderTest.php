@@ -46,6 +46,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
+    use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

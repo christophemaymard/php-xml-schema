@@ -461,4 +461,29 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }
+    
+    /**
+     * Tests that buildSimpleTypeElement() creates the element when the 
+     * current element is the "attribute" element (topLevelAttributeType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSimpleTypeElementCreateEltWhenTopAttribute()
+    {
+        $this->sut->buildSimpleTypeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertSame([], $st->getElements());
+    }
 }
