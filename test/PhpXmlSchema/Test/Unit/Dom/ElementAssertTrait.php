@@ -16,6 +16,7 @@ use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
+use PhpXmlSchema\Dom\SimpleTypeElement;
 
 /**
  * Represents a trait to assert XML Schema elements.
@@ -624,5 +625,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasRef());
         self::assertTrue($sut->hasType());
         self::assertFalse($sut->hasUse());
+    }
+    
+    /**
+     * Asserts that the specified "simpleType" element has no attribute.
+     * 
+     * @param   SimpleTypeElement   $sut    The element to test.
+     */
+    public static function assertSimpleTypeElementHasNoAttribute(
+        SimpleTypeElement $sut
+    ) {
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
     }
 }
