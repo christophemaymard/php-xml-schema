@@ -167,4 +167,23 @@
 - [x] Parse **type** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **simpleType** element (localSimpleType).
+- [x] Parse **simpleType** element (localSimpleType).
+
+## Element: "simpleType" (localSimpleType)
+
+```
+<simpleType
+  id = ID
+>
+  Content: (annotation?, (restriction | list | union))
+</simpleType>
+```
+
+- [x] Parse **simpleType** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **restriction** element.
+- [ ] Parse **list** element.
+- [ ] Parse **union** element.
+

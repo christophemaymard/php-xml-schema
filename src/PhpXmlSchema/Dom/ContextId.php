@@ -23,4 +23,5 @@ class ContextId
     const ELT_INCLUDE = 6;
     const ELT_NOTATION = 7;
     const ELT_TOP_ATTRIBUTE = 8;
+    const ELT_LOCAL_SIMPLETYPE = 9;
 }
