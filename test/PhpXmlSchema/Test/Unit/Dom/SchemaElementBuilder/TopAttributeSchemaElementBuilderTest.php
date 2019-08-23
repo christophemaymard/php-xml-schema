@@ -42,7 +42,6 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
@@ -436,5 +435,30 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
         
         $this->sut->buildTypeAttribute('foo:bar');
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "attribute" element (topLevelAttributeType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenTopAttribute()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $ann = $attr->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
