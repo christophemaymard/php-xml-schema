@@ -180,8 +180,8 @@
 ```
 
 - [x] Parse **simpleType** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Parse **id** attribute (collapsing white spaces).
+- [x] Others attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **restriction** element.
 - [ ] Parse **list** element.

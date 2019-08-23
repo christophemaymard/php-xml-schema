@@ -198,6 +198,9 @@ class SpecificationFactory
             [ 'name', '', 'buildNameAttribute', ], 
             [ 'type', '', 'buildTypeAttribute', ], 
         ], 
+        ContextId::ELT_LOCAL_SIMPLETYPE => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
