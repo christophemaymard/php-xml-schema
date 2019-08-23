@@ -164,7 +164,7 @@
 - [x] Parse **fixed** attribute.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **name** attribute (collapsing white spaces).
-- [ ] Parse **type** attribute (collapsing white spaces).
+- [x] Parse **type** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleType** element (localSimpleType).
