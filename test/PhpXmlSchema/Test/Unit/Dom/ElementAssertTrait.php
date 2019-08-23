@@ -639,4 +639,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
     }
+    
+    /**
+     * Asserts that the specified "simpleType" element has only the "id" 
+     * attribute.
+     * 
+     * @param   SimpleTypeElement   $sut    The element to test.
+     */
+    public static function assertSimpleTypeElementHasOnlyIdAttribute(
+        SimpleTypeElement $sut
+    ) {
+        self::assertFalse($sut->hasFinal());
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasName());
+    }
 }
