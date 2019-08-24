@@ -49,6 +49,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
+    use BuildRestrictionElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

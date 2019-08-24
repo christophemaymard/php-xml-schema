@@ -190,4 +190,29 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
     }
+    
+    /**
+     * Tests that buildRestrictionElement() creates the element when the 
+     * current element is the "simpleType" element (localSimpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildRestrictionElementCreateEltWhenLocalSimpleType()
+    {
+        $this->sut->buildRestrictionElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $st = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
+    }
 }
