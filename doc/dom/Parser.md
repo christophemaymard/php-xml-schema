@@ -200,7 +200,7 @@
 
 - [x] Parse **restriction** element.
 - [x] Parse **base** attribute (collapsing white spaces).
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleType** element (localSimpleType).
