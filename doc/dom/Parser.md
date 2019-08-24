@@ -182,7 +182,7 @@
 - [x] Parse **simpleType** element.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
 - [ ] Parse **restriction** element.
 - [ ] Parse **list** element.
 - [ ] Parse **union** element.
