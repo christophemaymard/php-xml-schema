@@ -30,6 +30,139 @@
       <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
+  <!-- restriction::base -->
+  <test group="attribute" name="[restriction][attribute::base] Prefix (absent), local part (empty string)">
+    <schema fileName="restriction_base_0024.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (absent), local part (only white spaces)">
+    <schema fileName="restriction_base_0025.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (absent), local part (separated by white spaces)">
+    <schema fileName="restriction_base_0026.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (absent), local part (starts with digit)">
+    <schema fileName="restriction_base_0027.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (absent), local part (starts with .)">
+    <schema fileName="restriction_base_0028.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (absent), local part (starts with -)">
+    <schema fileName="restriction_base_0029.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (absent), local part (contains invalid character)">
+    <schema fileName="restriction_base_0030.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (empty string), local part (valid)">
+    <schema fileName="restriction_base_0031.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (only white spaces), local part (valid)">
+    <schema fileName="restriction_base_0032.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (separated by white spaces), local part (valid)">
+    <schema fileName="restriction_base_0033.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (starts with digit), local part (valid)">
+    <schema fileName="restriction_base_0034.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (starts with .), local part (valid)">
+    <schema fileName="restriction_base_0035.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (starts with -), local part (valid)">
+    <schema fileName="restriction_base_0036.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (contains invalid character), local part (valid)">
+    <schema fileName="restriction_base_0037.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (valid), local part (empty string)">
+    <schema fileName="restriction_base_0038.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (valid), local part (only white spaces)">
+    <schema fileName="restriction_base_0039.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (valid), local part (separated by white spaces)">
+    <schema fileName="restriction_base_0040.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (valid), local part (starts with digit)">
+    <schema fileName="restriction_base_0041.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (valid), local part (starts with .)">
+    <schema fileName="restriction_base_0042.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (valid), local part (starts with -)">
+    <schema fileName="restriction_base_0043.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix (valid), local part (contains invalid character)">
+    <schema fileName="restriction_base_0044.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[restriction][attribute::base] Prefix not bound to namespace">
+    <schema fileName="restriction_base_0045.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" prefix is not bound to a namespace.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

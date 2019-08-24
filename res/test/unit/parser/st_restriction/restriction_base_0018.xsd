@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://example.org">
+  <xs:attribute>
+    <xs:simpleType>
+      <xs:restriction base="f:baz">
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+</xs:schema>
