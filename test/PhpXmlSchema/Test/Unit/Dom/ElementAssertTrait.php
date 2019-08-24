@@ -17,6 +17,7 @@ use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
+use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 
 /**
  * Represents a trait to assert XML Schema elements.
@@ -652,5 +653,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFinal());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasName());
+    }
+    
+    /**
+     * Asserts that the specified "restriction" element (simpleType) has no 
+     * attribute.
+     * 
+     * @param   SimpleTypeRestrictionElement    $sut    The element to test.
+     */
+    public static function assertSimpleTypeRestrictionElementHasNoAttribute(
+        SimpleTypeRestrictionElement $sut
+    ) {
+        self::assertFalse($sut->hasBase());
+        self::assertFalse($sut->hasId());
     }
 }
