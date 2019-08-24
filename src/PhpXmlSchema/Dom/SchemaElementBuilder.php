@@ -318,6 +318,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_INCLUDE:
                 case ElementId::ELT_NOTATION:
                 case ElementId::ELT_ATTRIBUTE:
+                case ElementId::ELT_SIMPLETYPE:
                     $elt = new AnnotationElement();
                     $this->currentElement->setAnnotationElement($elt);
                     $this->currentElement = $elt;
