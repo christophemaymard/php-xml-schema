@@ -104,7 +104,7 @@
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **namespace** attribute (collapsing white spaces).
 - [x] Parse **schemaLocation** attribute (collapsing white spaces).
-- [x] Others attributes are not supported.
+- [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 
 ## Element: "include"
@@ -121,7 +121,7 @@
 - [x] Parse **include** element.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **schemaLocation** attribute (collapsing white spaces).
-- [x] Others attributes are not supported.
+- [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 
 ## Element: "notation"
@@ -142,7 +142,7 @@
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Parse **public** attribute (collapsing white spaces).
 - [x] Parse **system** attribute (collapsing white spaces).
-- [x] Others attributes are not supported.
+- [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 
 ## Element: "attribute" (topLevelAttributeType)
@@ -165,7 +165,7 @@
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Parse **type** attribute (collapsing white spaces).
-- [x] Others attributes are not supported.
+- [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
 
@@ -181,7 +181,7 @@
 
 - [x] Parse **simpleType** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [x] Others attributes are not supported.
+- [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **restriction** element (anonymous).
 - [ ] Parse **list** element.
