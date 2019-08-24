@@ -183,7 +183,37 @@
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Others attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **restriction** element.
+- [x] Parse **restriction** element (anonymous).
 - [ ] Parse **list** element.
 - [ ] Parse **union** element.
+
+## Element: "restriction" (anonymous)
+
+```
+<restriction
+  base = QName
+  id = ID
+>
+  Content: (annotation?, (simpleType?, (minExclusive | minInclusive | maxExclusive | maxInclusive | totalDigits | fractionDigits | length | minLength | maxLength | enumeration | whiteSpace | pattern)*))
+</restriction>
+```
+
+- [x] Parse **restriction** element.
+- [ ] Parse **base** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleType** element (localSimpleType).
+- [ ] Parse **minExclusive** elements.
+- [ ] Parse **minInclusive** elements.
+- [ ] Parse **maxExclusive** elements.
+- [ ] Parse **maxInclusive** elements.
+- [ ] Parse **totalDigits** elements.
+- [ ] Parse **fractionDigits** elements.
+- [ ] Parse **length** elements.
+- [ ] Parse **minLength** elements.
+- [ ] Parse **maxLength** elements.
+- [ ] Parse **enumeration** elements.
+- [ ] Parse **whiteSpace** elements.
+- [ ] Parse **pattern** elements.
 
