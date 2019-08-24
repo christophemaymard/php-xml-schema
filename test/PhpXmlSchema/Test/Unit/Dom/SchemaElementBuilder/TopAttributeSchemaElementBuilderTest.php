@@ -49,6 +49,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
+    use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

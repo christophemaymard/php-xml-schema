@@ -470,6 +470,7 @@ class ParserContextTest extends TestCase
         {
             public function bindNamespace(string $prefix, string $namespace) {}
             public function buildAttributeFormDefaultAttribute(string $value) {}
+            public function buildBaseAttribute(string $value) {}
             public function buildBlockDefaultAttribute(string $value) {}
             public function buildDefaultAttribute(string $value) {}
             public function buildElementFormDefaultAttribute(string $value) {}

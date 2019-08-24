@@ -77,6 +77,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildBaseAttribute(string $value)
+    {
+        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
+            $this->currentElement->setBase($this->parseQName($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildBlockDefaultAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {
