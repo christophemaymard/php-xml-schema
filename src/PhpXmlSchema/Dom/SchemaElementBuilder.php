@@ -451,10 +451,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildSimpleTypeElement()
     {
-        if ($this->currentElement instanceof AttributeElement) {
-            $elt = new SimpleTypeElement();
-            $this->currentElement->setSimpleTypeElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTE:
+                case ElementId::ELT_SIMPLETYPE_RESTRICTION:
+                    $elt = new SimpleTypeElement();
+                    $this->currentElement->setSimpleTypeElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     

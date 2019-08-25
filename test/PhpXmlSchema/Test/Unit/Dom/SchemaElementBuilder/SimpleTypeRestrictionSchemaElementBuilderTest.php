@@ -50,7 +50,6 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     
     /**
@@ -326,5 +325,30 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+    }
+    
+    /**
+     * Tests that buildSimpleTypeElement() creates the element when the 
+     * current element is the "restriction" element (simpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSimpleTypeElementCreateEltWhenSimpleTypeRestriction()
+    {
+        $this->sut->buildSimpleTypeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $st = $res->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertSame([], $st->getElements());
     }
 }
