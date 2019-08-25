@@ -26,4 +26,5 @@ class ContextId
     const ELT_LOCAL_SIMPLETYPE = 9;
     const ELT_SIMPLETYPE_RESTRICTION = 10;
     const ELT_MINEXCLUSIVE = 11;
+    const ELT_MININCLUSIVE = 12;
 }

@@ -319,6 +319,51 @@ class SimpleTypeRestrictionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "minInclusive" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessMinInclusive()
+    {
+        $sch = $this->sut->parse($this->getXs('minInclusive_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st1 = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st1);
+        self::assertSimpleTypeElementHasNoAttribute($st1);
+        self::assertCount(1, $st1->getElements());
+        
+        $res = $st1->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $minincs = $res->getMinInclusiveElements();
+        
+        self::assertElementNamespaceDeclarations([], $minincs[0]);
+        self::assertMinInclusiveElementHasNoAttribute($minincs[0]);
+        self::assertSame([], $minincs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $minincs[1]);
+        self::assertMinInclusiveElementHasNoAttribute($minincs[1]);
+        self::assertSame([], $minincs[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "base" attributes with no prefix and no default 
      * namespace.
      * 

@@ -176,6 +176,7 @@ class SpecificationFactoryTest extends TestCase
             [ 9, 0, ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 0, ], // ELT_SIMPLETYPE_RESTRICTION
             [ 11, 0, ], // ELT_MINEXCLUSIVE
+            [ 12, 0, ], // ELT_MININCLUSIVE
         ];
     }
     
@@ -220,9 +221,12 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 10, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 0, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
+            [ 10, 0, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 10, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
+            [ 10, 1, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 10, 2, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
+            [ 10, 2, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 'annotation', ], // ELT_ANNOTATION
         ];
@@ -269,9 +273,12 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 10, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 0, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
+            [ 10, 0, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 10, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
+            [ 10, 1, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 10, 2, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
+            [ 10, 2, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
         ];
@@ -318,9 +325,12 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 0, 2, 1, ], // ELT_ANNOTATION
             [ 10, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 0, 11, 2, ], // ELT_MINEXCLUSIVE
+            [ 10, 0, 12, 2, ], // ELT_MININCLUSIVE
             [ 10, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 2, ], // ELT_MINEXCLUSIVE
+            [ 10, 1, 12, 2, ], // ELT_MININCLUSIVE
             [ 10, 2, 11, 2, ], // ELT_MINEXCLUSIVE
+            [ 10, 2, 12, 2, ], // ELT_MININCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 1, ], // ELT_ANNOTATION
         ];
