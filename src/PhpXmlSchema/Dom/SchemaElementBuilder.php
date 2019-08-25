@@ -156,8 +156,15 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildFixedAttribute(string $value)
     {
-        if ($this->currentElement instanceof AttributeElement) {
-            $this->currentElement->setFixed(new StringType($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTE:
+                    $this->currentElement->setFixed(new StringType($value));
+                    break;
+                case ElementId::ELT_MINEXCLUSIVE:
+                    $this->currentElement->setFixed($this->parseBoolean($value));
+                    break;
+            }
         }
     }
     
@@ -627,6 +634,29 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         return isset($namespace) ? 
             new QNameType($localPart, new AnyUriType($namespace)):
             new QNameType($localPart);
+    }
+    
+    /**
+     * Parses the specified value in boolean value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  bool
+     * 
+     * @throws  InvalidValueException   When the value is an invalid boolean datatype.
+     */
+    private function parseBoolean(string $value):bool
+    {
+        $cvalue = $this->collapseWhiteSpace($value);
+        
+        if ($cvalue === 'true' || $cvalue === '1') {
+            $bool = TRUE;
+        } elseif ($cvalue === 'false' || $cvalue === '0') {
+            $bool = FALSE;
+        } else {
+            throw new InvalidValueException(\sprintf('"%s" is an invalid boolean datatype.', $value));
+        }
+        
+        return $bool;
     }
     
     /**

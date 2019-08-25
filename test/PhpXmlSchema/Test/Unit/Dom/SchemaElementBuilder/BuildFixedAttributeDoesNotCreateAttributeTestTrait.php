@@ -28,8 +28,14 @@ trait BuildFixedAttributeDoesNotCreateAttributeTestTrait
      */
     public function testBuildFixedAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
     {
+        // string
         $this->sut->buildFixedAttribute("\u{0000}");
         $this->sut->buildFixedAttribute('foo');
+        
+        // boolean
+        $this->sut->buildFixedAttribute('TRUE');
+        $this->sut->buildFixedAttribute('true');
+        
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementNotChanged($sch);
