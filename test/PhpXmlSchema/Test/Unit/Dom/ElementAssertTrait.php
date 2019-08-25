@@ -14,6 +14,7 @@ use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
+use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\MinExclusiveElement;
 use PhpXmlSchema\Dom\MinInclusiveElement;
 use PhpXmlSchema\Dom\NotationElement;
@@ -804,5 +805,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "maxExclusive" element has no attribute.
+     * 
+     * @param   MaxExclusiveElement $sut    The element to test.
+     */
+    public static function assertMaxExclusiveElementHasNoAttribute(
+        MaxExclusiveElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
