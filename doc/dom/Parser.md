@@ -206,7 +206,7 @@
 - [x] Parse **simpleType** element (localSimpleType).
 - [x] Parse **minExclusive** elements.
 - [x] Parse **minInclusive** elements.
-- [ ] Parse **maxExclusive** elements.
+- [x] Parse **maxExclusive** elements.
 - [ ] Parse **maxInclusive** elements.
 - [ ] Parse **totalDigits** elements.
 - [ ] Parse **fractionDigits** elements.
@@ -254,4 +254,23 @@
 - [x] Parse **value** attribute.
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "maxExclusive"
+
+```
+<maxExclusive
+  fixed = boolean
+  id = ID
+  value = anySimpleType
+>
+  Content: (annotation?)
+</maxExclusive>
+```
+
+- [x] Parse **maxExclusive** element.
+- [ ] Parse **fixed** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **value** attribute.
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
