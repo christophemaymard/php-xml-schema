@@ -309,6 +309,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
+                case ElementId::ELT_MAXEXCLUSIVE:
                     $this->currentElement->setValue($value);
                     break;
             }

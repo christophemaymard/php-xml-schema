@@ -53,7 +53,6 @@ class MaxExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     
@@ -227,5 +226,26 @@ class MaxExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "maxExclusive" element and the value is valid.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildValueAttributeCreatesAttrWhenMaxExclusiveAndValueIsValid()
+    {
+        $this->sut->buildValueAttribute('foo');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $maxexc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $maxexc);
+        self::assertMaxExclusiveElementHasOnlyValueAttribute($maxexc);
+        self::assertSame('foo', $maxexc->getValue());
+        self::assertSame([], $maxexc->getElements());
     }
 }
