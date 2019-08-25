@@ -28,7 +28,6 @@ class MinExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -177,5 +176,53 @@ class MinExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
         $this->sut->buildFixedAttribute($value);
+    }
+    
+    /**
+     * Tests that buildIdAttribute() creates the attribute when the current 
+     * element is the "minExclusive" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidIdValues
+     */
+    public function testBuildIdAttributeCreatesAttrWhenMinExclusiveAndValueIsValid(
+        string $value, 
+        string $id
+    ) {
+        $this->sut->buildIdAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $minexc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $minexc);
+        self::assertMinExclusiveElementHasOnlyIdAttribute($minexc);
+        self::assertSame($id, $minexc->getId()->getId());
+        self::assertSame([], $minexc->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() throws an exception when the current 
+     * element is the "minExclusive" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidIdValues
+     */
+    public function testBuildIdAttributeThrowsExceptionWhenMinExclusiveAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildIdAttribute($value);
     }
 }
