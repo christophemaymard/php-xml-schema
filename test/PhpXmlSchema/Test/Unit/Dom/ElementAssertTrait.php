@@ -14,6 +14,7 @@ use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
+use PhpXmlSchema\Dom\MinExclusiveElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
@@ -692,5 +693,18 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
+    }
+    
+    /**
+     * Asserts that the specified "minExclusive" element has no attribute.
+     * 
+     * @param   MinExclusiveElement $sut    The element to test.
+     */
+    public static function assertMinExclusiveElementHasNoAttribute(
+        MinExclusiveElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
