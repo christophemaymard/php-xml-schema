@@ -30,6 +30,25 @@
       <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
+  <!-- minInclusive::fixed -->
+  <test group="attribute" name="[minInclusive][attribute::fixed] true (uppercase)">
+    <schema fileName="minInclusive_fixed_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"True" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[minInclusive][attribute::fixed] false (uppercase)">
+    <schema fileName="minInclusive_fixed_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"False" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[minInclusive][attribute::fixed] Numeric other than 0 or 1">
+    <schema fileName="minInclusive_fixed_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"2" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
