@@ -162,6 +162,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setFixed(new StringType($value));
                     break;
                 case ElementId::ELT_MINEXCLUSIVE:
+                case ElementId::ELT_MININCLUSIVE:
                     $this->currentElement->setFixed($this->parseBoolean($value));
                     break;
             }
