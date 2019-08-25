@@ -86,6 +86,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
         ], 
+        ContextId::ELT_MINEXCLUSIVE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -138,6 +141,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
         ], 
+        ContextId::ELT_MINEXCLUSIVE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -188,6 +194,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 2, ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 2, ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 2, ], 
+        ], 
+        ContextId::ELT_MINEXCLUSIVE => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     

@@ -223,6 +223,8 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 10, 2, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
+            // Context: ELT_MINEXCLUSIVE
+            [ 11, 0, 2, 'annotation', ], // ELT_ANNOTATION
         ];
     }
     
@@ -270,6 +272,8 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 10, 2, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
+            // Context: ELT_MINEXCLUSIVE
+            [ 11, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
         ];
     }
     
@@ -317,6 +321,8 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 10, 2, 11, 2, ], // ELT_MINEXCLUSIVE
+            // Context: ELT_MINEXCLUSIVE
+            [ 11, 0, 2, 1, ], // ELT_ANNOTATION
         ];
     }
     
