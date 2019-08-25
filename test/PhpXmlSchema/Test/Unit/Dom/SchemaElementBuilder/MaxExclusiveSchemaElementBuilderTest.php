@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -48,7 +49,6 @@ class MaxExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
@@ -134,5 +134,51 @@ class MaxExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() creates the attribute when the 
+     * current element is the "maxExclusive" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $bool   The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidBooleanValues
+     */
+    public function testBuildFixedAttributeCreatesAttrWhenMaxExclusiveAndValueIsValid(
+        string $value, 
+        bool $bool
+    ) {
+        $this->sut->buildFixedAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $maxexc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $maxexc);
+        self::assertMaxExclusiveElementHasOnlyFixedAttribute($maxexc);
+        self::assertSame($bool, $maxexc->getFixed());
+        self::assertSame([], $maxexc->getElements());
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() throws an exception when the current 
+     * element is the "maxExclusive" element and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidBooleanValues
+     */
+    public function testBuildFixedAttributeThrowsExceptionWhenMaxExclusiveAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
+        
+        $this->sut->buildFixedAttribute($value);
     }
 }

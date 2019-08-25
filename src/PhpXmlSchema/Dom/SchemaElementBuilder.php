@@ -163,6 +163,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     break;
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
+                case ElementId::ELT_MAXEXCLUSIVE:
                     $this->currentElement->setFixed($this->parseBoolean($value));
                     break;
             }
