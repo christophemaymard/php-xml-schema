@@ -229,6 +229,8 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 2, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 'annotation', ], // ELT_ANNOTATION
+            // Context: ELT_MININCLUSIVE
+            [ 12, 0, 2, 'annotation', ], // ELT_ANNOTATION
         ];
     }
     
@@ -281,6 +283,8 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 2, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
+            // Context: ELT_MININCLUSIVE
+            [ 12, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
         ];
     }
     
@@ -333,6 +337,8 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 2, 12, 2, ], // ELT_MININCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 1, ], // ELT_ANNOTATION
+            // Context: ELT_MININCLUSIVE
+            [ 12, 0, 2, 1, ], // ELT_ANNOTATION
         ];
     }
     
