@@ -407,6 +407,8 @@ class SpecificationFactoryTest extends TestCase
             [ 12, 'fixed', '', 'buildFixedAttribute', ], 
             [ 12, 'id', '', 'buildIdAttribute', ], 
             [ 12, 'value', '', 'buildValueAttribute', ], 
+            // Context: ELT_MAXEXCLUSIVE
+            [ 13, 'fixed', '', 'buildFixedAttribute', ], 
         ];
     }
 }

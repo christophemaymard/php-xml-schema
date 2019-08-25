@@ -268,9 +268,9 @@
 ```
 
 - [x] Parse **maxExclusive** element.
-- [ ] Parse **fixed** attribute (collapsing white spaces).
+- [x] Parse **fixed** attribute (collapsing white spaces).
 - [ ] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **value** attribute.
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 

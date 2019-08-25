@@ -74,4 +74,91 @@ class MaxExclusiveParserTest extends AbstractParserTestCase
         self::assertMaxExclusiveElementHasNoAttribute($maxexc);
         self::assertSame([], $maxexc->getElements());
     }
+    
+    /**
+     * Tests that parse() processes "fixed" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $bool       The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFixedAttributes
+     */
+    public function testParseProcessFixedAttribute(string $fileName, bool $bool)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $maxexc = $res->getMaxExclusiveElements()[0];
+        self::assertElementNamespaceDeclarations([], $maxexc);
+        self::assertMaxExclusiveElementHasOnlyFixedAttribute($maxexc);
+        self::assertSame($bool, $maxexc->getFixed());
+        self::assertSame([], $maxexc->getElements());
+    }
+    
+    /**
+     * Returns a set of valid "fixed" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFixedAttributes():array
+    {
+        return [
+            'true (string)' => [
+                'maxExclusive_fixed_0001.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric)' => [
+                'maxExclusive_fixed_0002.xsd', 
+                TRUE, 
+            ], 
+            'true (string) surrounded by white spaces' => [
+                'maxExclusive_fixed_0003.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric) surrounded by white spaces' => [
+                'maxExclusive_fixed_0004.xsd', 
+                TRUE, 
+            ], 
+            'false (string)' => [
+                'maxExclusive_fixed_0005.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric)' => [
+                'maxExclusive_fixed_0006.xsd', 
+                FALSE, 
+            ], 
+            'false (string) surrounded by white spaces' => [
+                'maxExclusive_fixed_0007.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric) surrounded by white spaces' => [
+                'maxExclusive_fixed_0008.xsd', 
+                FALSE, 
+            ], 
+        ];
+    }
 }
