@@ -735,4 +735,18 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "minExclusive" element has only the "value" 
+     * attribute.
+     * 
+     * @param   MinExclusiveElement $sut    The element to test.
+     */
+    public static function assertMinExclusiveElementHasOnlyValueAttribute(
+        MinExclusiveElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasValue());
+    }
 }

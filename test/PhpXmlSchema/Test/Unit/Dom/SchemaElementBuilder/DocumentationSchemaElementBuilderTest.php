@@ -52,6 +52,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
+    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

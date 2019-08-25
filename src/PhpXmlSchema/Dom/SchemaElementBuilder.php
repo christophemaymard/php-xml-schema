@@ -299,6 +299,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildValueAttribute(string $value)
+    {
+        if ($this->currentElement instanceof MinExclusiveElement) {
+            $this->currentElement->setValue($value);
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildVersionAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {

@@ -225,4 +225,25 @@ class MinExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         
         $this->sut->buildIdAttribute($value);
     }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "minExclusive" element and the value is valid.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildValueAttributeCreatesAttrWhenMinExclusiveAndValueIsValid()
+    {
+        $this->sut->buildValueAttribute('foo');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $minexc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $minexc);
+        self::assertMinExclusiveElementHasOnlyValueAttribute($minexc);
+        self::assertSame('foo', $minexc->getValue());
+        self::assertSame([], $minexc->getElements());
+    }
 }
