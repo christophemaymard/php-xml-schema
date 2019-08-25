@@ -164,6 +164,46 @@ class MinExclusiveParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "value" attribute.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessValueAttribute()
+    {
+        $sch = $this->sut->parse($this->getXs('minExclusive_value_0001.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $minexc = $res->getMinExclusiveElements()[0];
+        self::assertElementNamespaceDeclarations([], $minexc);
+        self::assertMinExclusiveElementHasOnlyValueAttribute($minexc);
+        self::assertSame('  foo  ', $minexc->getValue());
+        self::assertSame([], $minexc->getElements());
+    }
+    
+    /**
      * Returns a set of valid "fixed" attributes.
      * 
      * @return  array[]
