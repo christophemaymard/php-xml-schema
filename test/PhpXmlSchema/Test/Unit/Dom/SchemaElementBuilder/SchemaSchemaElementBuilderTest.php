@@ -42,6 +42,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
+    use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

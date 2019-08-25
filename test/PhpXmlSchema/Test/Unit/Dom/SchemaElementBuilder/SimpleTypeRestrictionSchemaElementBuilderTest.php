@@ -384,4 +384,36 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertMinExclusiveElementHasNoAttribute($minexcs[1]);
         self::assertSame([], $minexcs[1]->getElements());
     }
+    
+    /**
+     * Tests that buildMinInclusiveElement() creates the element when the 
+     * current element is the "restriction" element (simpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildMinInclusiveElementCreateEltWhenSimpleTypeRestriction()
+    {
+        $this->sut->buildMinInclusiveElement();
+        $this->sut->endElement();
+        $this->sut->buildMinInclusiveElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $minincs = $res->getMinInclusiveElements();
+        
+        self::assertElementNamespaceDeclarations([], $minincs[0]);
+        self::assertMinInclusiveElementHasNoAttribute($minincs[0]);
+        self::assertSame([], $minincs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $minincs[1]);
+        self::assertMinInclusiveElementHasNoAttribute($minincs[1]);
+        self::assertSame([], $minincs[1]->getElements());
+    }
 }
