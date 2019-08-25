@@ -203,7 +203,7 @@
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **simpleType** element (localSimpleType).
+- [x] Parse **simpleType** element (localSimpleType).
 - [ ] Parse **minExclusive** elements.
 - [ ] Parse **minInclusive** elements.
 - [ ] Parse **maxExclusive** elements.
