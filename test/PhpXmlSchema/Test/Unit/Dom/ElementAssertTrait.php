@@ -763,4 +763,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "minInclusive" element has only the "fixed" 
+     * attribute.
+     * 
+     * @param   MinInclusiveElement $sut    The element to test.
+     */
+    public static function assertMinInclusiveElementHasOnlyFixedAttribute(
+        MinInclusiveElement $sut
+    ) {
+        self::assertTrue($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
+    }
 }
