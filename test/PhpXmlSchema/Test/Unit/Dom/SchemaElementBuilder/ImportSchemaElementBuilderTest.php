@@ -50,6 +50,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
+    use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}
