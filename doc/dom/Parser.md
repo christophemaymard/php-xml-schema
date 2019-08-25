@@ -251,7 +251,7 @@
 - [x] Parse **minInclusive** element.
 - [x] Parse **fixed** attribute (collapsing white spaces).
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **value** attribute.
+- [x] Parse **value** attribute.
 - [x] Attributes are not supported.
 - [ ] Parse **annotation** element.
 

@@ -273,6 +273,7 @@ class SpecificationFactory
         ContextId::ELT_MININCLUSIVE => [
             [ 'fixed', '', 'buildFixedAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'value', '', 'buildValueAttribute', ], 
         ], 
     ];
     

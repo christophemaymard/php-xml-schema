@@ -390,6 +390,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_MININCLUSIVE
             [ 12, 'fixed', '', 'buildFixedAttribute', ], 
             [ 12, 'id', '', 'buildIdAttribute', ], 
+            [ 12, 'value', '', 'buildValueAttribute', ], 
         ];
     }
 }
