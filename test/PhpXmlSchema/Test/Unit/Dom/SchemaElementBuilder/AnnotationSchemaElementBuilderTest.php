@@ -54,6 +54,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
+    use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

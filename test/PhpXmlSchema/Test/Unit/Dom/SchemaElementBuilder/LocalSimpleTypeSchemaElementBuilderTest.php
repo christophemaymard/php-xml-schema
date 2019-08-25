@@ -55,6 +55,7 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
+    use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}
