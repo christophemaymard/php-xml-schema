@@ -77,6 +77,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_SIMPLETYPE_RESTRICTION, 'restriction', ], 
             [ 1, ContextId::ELT_SIMPLETYPE_RESTRICTION, 'restriction', ], 
         ], 
+        ContextId::ELT_SIMPLETYPE_RESTRICTION => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -121,6 +124,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_SIMPLETYPE_RESTRICTION, 'buildRestrictionElement', ], 
             [ 1, ContextId::ELT_SIMPLETYPE_RESTRICTION, 'buildRestrictionElement', ], 
         ], 
+        ContextId::ELT_SIMPLETYPE_RESTRICTION => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -163,6 +169,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_SIMPLETYPE_RESTRICTION, 2, ], 
             [ 1, ContextId::ELT_SIMPLETYPE_RESTRICTION, 2, ], 
+        ], 
+        ContextId::ELT_SIMPLETYPE_RESTRICTION => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
