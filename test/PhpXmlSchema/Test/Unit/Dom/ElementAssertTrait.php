@@ -847,4 +847,18 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "maxExclusive" element has only the "value" 
+     * attribute.
+     * 
+     * @param   MaxExclusiveElement $sut    The element to test.
+     */
+    public static function assertMaxExclusiveElementHasOnlyValueAttribute(
+        MaxExclusiveElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasValue());
+    }
 }
