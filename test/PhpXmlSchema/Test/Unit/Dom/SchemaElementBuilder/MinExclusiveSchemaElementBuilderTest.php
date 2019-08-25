@@ -39,7 +39,6 @@ class MinExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -245,5 +244,30 @@ class MinExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertMinExclusiveElementHasOnlyValueAttribute($minexc);
         self::assertSame('foo', $minexc->getValue());
         self::assertSame([], $minexc->getElements());
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "minExclusive" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenMinExclusive()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $minexc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $minexc);
+        self::assertMinExclusiveElementHasNoAttribute($minexc);
+        self::assertCount(1, $minexc->getElements());
+        
+        $ann = $minexc->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
