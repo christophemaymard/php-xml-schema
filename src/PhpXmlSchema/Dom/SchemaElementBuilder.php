@@ -303,8 +303,13 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildValueAttribute(string $value)
     {
-        if ($this->currentElement instanceof MinExclusiveElement) {
-            $this->currentElement->setValue($value);
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_MINEXCLUSIVE:
+                case ElementId::ELT_MININCLUSIVE:
+                    $this->currentElement->setValue($value);
+                    break;
+            }
         }
     }
     

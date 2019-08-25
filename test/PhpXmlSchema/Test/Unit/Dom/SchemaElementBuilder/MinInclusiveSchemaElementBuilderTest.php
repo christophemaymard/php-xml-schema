@@ -53,7 +53,6 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     
     /**
@@ -226,5 +225,26 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "minInclusive" element and the value is valid.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildValueAttributeCreatesAttrWhenMinInclusiveAndValueIsValid()
+    {
+        $this->sut->buildValueAttribute('foo');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $mininc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $mininc);
+        self::assertMinInclusiveElementHasOnlyValueAttribute($mininc);
+        self::assertSame('foo', $mininc->getValue());
+        self::assertSame([], $mininc->getElements());
     }
 }
