@@ -49,6 +49,49 @@
       <message>"2" is an invalid boolean datatype.</message>
     </schema>
   </test>
+  <!-- maxExclusive::id -->
+  <test group="attribute" name="[maxExclusive][attribute::id] Empty string">
+    <schema fileName="maxExclusive_id_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[maxExclusive][attribute::id] Only white spaces">
+    <schema fileName="maxExclusive_id_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[maxExclusive][attribute::id] Separated by whitespaces">
+    <schema fileName="maxExclusive_id_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[maxExclusive][attribute::id] Starts with digit">
+    <schema fileName="maxExclusive_id_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[maxExclusive][attribute::id] Starts with .">
+    <schema fileName="maxExclusive_id_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[maxExclusive][attribute::id] Starts with -">
+    <schema fileName="maxExclusive_id_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[maxExclusive][attribute::id] Contains invalid character">
+    <schema fileName="maxExclusive_id_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo:bar" is an invalid ID.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
