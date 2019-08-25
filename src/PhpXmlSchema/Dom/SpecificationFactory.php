@@ -246,6 +246,9 @@ class SpecificationFactory
             [ 'base', '', 'buildBaseAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
         ], 
+        ContextId::ELT_MINEXCLUSIVE => [
+            [ 'fixed', '', 'buildFixedAttribute', ], 
+        ], 
     ];
     
     /**
