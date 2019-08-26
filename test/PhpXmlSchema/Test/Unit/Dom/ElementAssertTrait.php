@@ -931,4 +931,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "totalDigits" element has only the "fixed" 
+     * attribute.
+     * 
+     * @param   TotalDigitsElement  $sut    The element to test.
+     */
+    public static function assertTotalDigitsElementHasOnlyFixedAttribute(
+        TotalDigitsElement $sut
+    ) {
+        self::assertTrue($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
+    }
 }
