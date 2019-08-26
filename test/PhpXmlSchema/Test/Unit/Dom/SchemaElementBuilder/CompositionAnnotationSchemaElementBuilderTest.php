@@ -57,6 +57,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
     use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
+    use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

@@ -56,6 +56,7 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
     use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
+    use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

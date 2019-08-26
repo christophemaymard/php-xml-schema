@@ -512,4 +512,36 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertTotalDigitsElementHasNoAttribute($tds[1]);
         self::assertSame([], $tds[1]->getElements());
     }
+    
+    /**
+     * Tests that buildFractionDigitsElement() creates the element when the 
+     * current element is the "restriction" element (simpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildFractionDigitsElementCreateEltWhenSimpleTypeRestriction()
+    {
+        $this->sut->buildFractionDigitsElement();
+        $this->sut->endElement();
+        $this->sut->buildFractionDigitsElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $fds = $res->getFractionDigitsElements();
+        
+        self::assertElementNamespaceDeclarations([], $fds[0]);
+        self::assertFractionDigitsElementHasNoAttribute($fds[0]);
+        self::assertSame([], $fds[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $fds[1]);
+        self::assertFractionDigitsElementHasNoAttribute($fds[1]);
+        self::assertSame([], $fds[1]->getElements());
+    }
 }

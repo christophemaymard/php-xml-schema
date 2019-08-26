@@ -443,6 +443,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildFractionDigitsElement()
+    {
+        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
+            $elt = new FractionDigitsElement();
+            $this->currentElement->addFractionDigitsElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildImportElement()
     {
         if ($this->currentElement instanceof SchemaElement) {
