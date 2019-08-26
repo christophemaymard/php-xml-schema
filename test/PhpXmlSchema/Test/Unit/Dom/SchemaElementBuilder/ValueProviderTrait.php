@@ -808,4 +808,61 @@ trait ValueProviderTrait
             ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid "nonNegativeInteger" datatype values.
+     * 
+     * @return  array[]
+     */
+    public function getValidNonNegativeIntegerValues():array
+    {
+        return [
+            '0' => [ 
+                '0', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign' => [ 
+                '+0', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign and leading zeroes' => [ 
+                '+000', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign, leading zeroes and surrounded by white spaces' => [ 
+                " \t \r  \n  +00   \t \r  \n   ", 
+                \gmp_init(0), 
+            ], 
+            '1234567890' => [ 
+                '1234567890', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign' => [ 
+                '+1234567890', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign and leading zeroes' => [ 
+                '+001234567890', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign, leading zeroes and surrounded by white spaces' => [ 
+                " \t \r  \n  +001234567890   \t \r  \n   ", 
+                \gmp_init(1234567890), 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "nonNegativeInteger" datatype values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidNonNegativeIntegerValues():array
+    {
+        return [
+            'Negative integer' => [ 
+                '-9', 
+            ], 
+        ];
+    }
 }
