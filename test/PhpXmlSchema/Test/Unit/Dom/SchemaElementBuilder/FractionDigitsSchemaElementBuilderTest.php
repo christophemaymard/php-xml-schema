@@ -39,7 +39,6 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -275,5 +274,30 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer.', $value));
         
         $this->sut->buildValueAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "fractionDigits" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenFractionDigits()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $fd = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $fd);
+        self::assertFractionDigitsElementHasNoAttribute($fd);
+        self::assertCount(1, $fd->getElements());
+        
+        $ann = $fd->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
