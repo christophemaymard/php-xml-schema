@@ -499,6 +499,51 @@ class SimpleTypeRestrictionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "fractionDigits" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessFractionDigits()
+    {
+        $sch = $this->sut->parse($this->getXs('fractionDigits_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st1 = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st1);
+        self::assertSimpleTypeElementHasNoAttribute($st1);
+        self::assertCount(1, $st1->getElements());
+        
+        $res = $st1->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $fds = $res->getFractionDigitsElements();
+        
+        self::assertElementNamespaceDeclarations([], $fds[0]);
+        self::assertFractionDigitsElementHasNoAttribute($fds[0]);
+        self::assertSame([], $fds[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $fds[1]);
+        self::assertFractionDigitsElementHasNoAttribute($fds[1]);
+        self::assertSame([], $fds[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "base" attributes with no prefix and no default 
      * namespace.
      * 

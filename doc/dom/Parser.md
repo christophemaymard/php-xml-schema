@@ -209,7 +209,7 @@
 - [x] Parse **maxExclusive** elements.
 - [x] Parse **maxInclusive** elements.
 - [x] Parse **totalDigits** elements.
-- [ ] Parse **fractionDigits** elements.
+- [x] Parse **fractionDigits** elements.
 - [ ] Parse **length** elements.
 - [ ] Parse **minLength** elements.
 - [ ] Parse **maxLength** elements.
@@ -311,4 +311,23 @@
 - [x] Parse **value** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "fractionDigits"
+
+```
+<fractionDigits
+  fixed = boolean
+  id = ID
+  value = nonNegativeInteger
+>
+  Content: (annotation?)
+</fractionDigits>
+```
+
+- [x] Parse **fractionDigits** element.
+- [ ] Parse **fixed** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **value** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
