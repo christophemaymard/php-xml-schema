@@ -22,6 +22,7 @@ use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
+use PhpXmlSchema\Dom\TotalDigitsElement;
 
 /**
  * Represents a trait to assert XML Schema elements.
@@ -916,5 +917,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "totalDigits" element has no attribute.
+     * 
+     * @param   TotalDigitsElement  $sut    The element to test.
+     */
+    public static function assertTotalDigitsElementHasNoAttribute(
+        TotalDigitsElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }

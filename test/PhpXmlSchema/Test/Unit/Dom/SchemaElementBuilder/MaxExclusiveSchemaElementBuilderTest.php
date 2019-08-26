@@ -55,6 +55,7 @@ class MaxExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
+    use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

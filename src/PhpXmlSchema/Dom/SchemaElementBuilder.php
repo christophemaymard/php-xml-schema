@@ -548,6 +548,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildTotalDigitsElement()
+    {
+        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
+            $elt = new TotalDigitsElement();
+            $this->currentElement->addTotalDigitsElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaElement()
     {
         $this->schemaElement = $this->currentElement = new SchemaElement();
