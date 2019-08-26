@@ -753,4 +753,59 @@ trait ValueProviderTrait
             ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid "positiveInteger" datatype values.
+     * 
+     * @return  array[]
+     */
+    public function getValidPositiveIntegerValues():array
+    {
+        return [
+            '1' => [ 
+                '1', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign' => [ 
+                '+1', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign and surrounded by white spaces' => [ 
+                " \t \r  \n  +1   \t \r  \n   ", 
+                \gmp_init(1), 
+            ], 
+            '1234567890' => [ 
+                '1234567890', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign' => [ 
+                '+1234567890', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign and surrounded by white spaces' => [ 
+                " \t \r  \n  +1234567890   \t \r  \n   ", 
+                \gmp_init(1234567890), 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "positiveInteger" datatype values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidPositiveIntegerValues():array
+    {
+        return [
+            '0' => [ 
+                '0', 
+            ], 
+            '0 with positive sign' => [ 
+                '+0', 
+            ], 
+            'Negative integer' => [ 
+                '-9', 
+            ], 
+        ];
+    }
 }
