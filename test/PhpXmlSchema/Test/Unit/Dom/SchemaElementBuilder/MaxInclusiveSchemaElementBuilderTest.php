@@ -28,7 +28,6 @@ class MaxInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -181,5 +180,53 @@ class MaxInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
         $this->sut->buildFixedAttribute($value);
+    }
+    
+    /**
+     * Tests that buildIdAttribute() creates the attribute when the current 
+     * element is the "maxInclusive" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidIdValues
+     */
+    public function testBuildIdAttributeCreatesAttrWhenMaxInclusiveAndValueIsValid(
+        string $value, 
+        string $id
+    ) {
+        $this->sut->buildIdAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $maxinc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $maxinc);
+        self::assertMaxInclusiveElementHasOnlyIdAttribute($maxinc);
+        self::assertSame($id, $maxinc->getId()->getId());
+        self::assertSame([], $maxinc->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() throws an exception when the current 
+     * element is the "maxInclusive" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidIdValues
+     */
+    public function testBuildIdAttributeThrowsExceptionWhenMaxInclusiveAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildIdAttribute($value);
     }
 }

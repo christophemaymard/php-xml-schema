@@ -189,6 +189,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
                 case ElementId::ELT_MAXEXCLUSIVE:
+                case ElementId::ELT_MAXINCLUSIVE:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }
