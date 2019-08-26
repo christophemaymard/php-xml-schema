@@ -329,5 +329,5 @@
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **value** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
 

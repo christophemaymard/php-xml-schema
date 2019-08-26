@@ -253,6 +253,8 @@ class SpecificationFactoryTest extends TestCase
             [ 14, 0, 2, 'annotation', ], // ELT_ANNOTATION
             // Context: ELT_TOTALDIGITS
             [ 15, 0, 2, 'annotation', ], // ELT_ANNOTATION
+            // Context: ELT_FRACTIONDIGITS
+            [ 16, 0, 2, 'annotation', ], // ELT_ANNOTATION
         ];
     }
     
@@ -325,6 +327,8 @@ class SpecificationFactoryTest extends TestCase
             [ 14, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             // Context: ELT_TOTALDIGITS
             [ 15, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
+            // Context: ELT_FRACTIONDIGITS
+            [ 16, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
         ];
     }
     
@@ -397,6 +401,8 @@ class SpecificationFactoryTest extends TestCase
             [ 14, 0, 2, 1, ], // ELT_ANNOTATION
             // Context: ELT_TOTALDIGITS
             [ 15, 0, 2, 1, ], // ELT_ANNOTATION
+            // Context: ELT_FRACTIONDIGITS
+            [ 16, 0, 2, 1, ], // ELT_ANNOTATION
         ];
     }
     
