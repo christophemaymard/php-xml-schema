@@ -15,6 +15,7 @@ use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
+use PhpXmlSchema\Dom\LengthElement;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\MaxInclusiveElement;
 use PhpXmlSchema\Dom\MinExclusiveElement;
@@ -1028,5 +1029,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "length" element has no attribute.
+     * 
+     * @param   LengthElement   $sut    The element to test.
+     */
+    public static function assertLengthElementHasNoAttribute(
+        LengthElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
