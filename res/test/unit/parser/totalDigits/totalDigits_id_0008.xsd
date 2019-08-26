@@ -1,0 +1,11 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:attribute>
+        <xs:simpleType>
+            <xs:restriction>
+                <xs:totalDigits id="  	  
+    foo_bar  	  
+    "></xs:totalDigits>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+</xs:schema>

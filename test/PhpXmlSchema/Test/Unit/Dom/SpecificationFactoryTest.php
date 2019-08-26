@@ -449,6 +449,7 @@ class SpecificationFactoryTest extends TestCase
             [ 14, 'value', '', 'buildValueAttribute', ], 
             // Context: ELT_TOTALDIGITS
             [ 15, 'fixed', '', 'buildFixedAttribute', ], 
+            [ 15, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
