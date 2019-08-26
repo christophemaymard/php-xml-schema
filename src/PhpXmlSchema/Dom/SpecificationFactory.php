@@ -318,6 +318,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'value', '', 'buildValueAttribute', ], 
         ], 
+        ContextId::ELT_MAXINCLUSIVE => [
+            [ 'fixed', '', 'buildFixedAttribute', ], 
+        ], 
     ];
     
     /**
