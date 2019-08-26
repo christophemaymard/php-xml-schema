@@ -39,7 +39,6 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -274,5 +273,30 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid positive integer.', $value));
         
         $this->sut->buildValueAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "totalDigits" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenTotalDigits()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $td = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $td);
+        self::assertTotalDigitsElementHasNoAttribute($td);
+        self::assertCount(1, $td->getElements());
+        
+        $ann = $td->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
