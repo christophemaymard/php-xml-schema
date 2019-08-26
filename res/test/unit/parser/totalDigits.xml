@@ -92,6 +92,25 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- totalDigits::value -->
+  <test group="attribute" name="[totalDigits][attribute::value] 0">
+    <schema fileName="totalDigits_value_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"0" is an invalid positive integer.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[totalDigits][attribute::value] 0 with positive sign">
+    <schema fileName="totalDigits_value_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"+0" is an invalid positive integer.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[totalDigits][attribute::value] Negative integer">
+    <schema fileName="totalDigits_value_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-9" is an invalid positive integer.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

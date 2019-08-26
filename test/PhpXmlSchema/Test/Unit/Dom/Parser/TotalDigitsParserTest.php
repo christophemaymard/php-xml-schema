@@ -164,6 +164,50 @@ class TotalDigitsParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "value" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   \GMP    $pi         The expected value for the positive integer.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidValueAttributes
+     */
+    public function testParseProcessValueAttribute(string $fileName, \GMP $pi)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $td = $res->getTotalDigitsElements()[0];
+        self::assertElementNamespaceDeclarations([], $td);
+        self::assertTotalDigitsElementHasOnlyValueAttribute($td);
+        self::assertEquals($pi, $td->getValue()->getInteger());
+        self::assertSame([], $td->getElements());
+    }
+    
+    /**
      * Returns a set of valid "fixed" attributes.
      * 
      * @return  array[]
@@ -237,6 +281,41 @@ class TotalDigitsParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'totalDigits_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "value" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidValueAttributes():array
+    {
+        return [
+            '1' => [
+                'totalDigits_value_0001.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign' => [
+                'totalDigits_value_0002.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign and surrounded by white spaces' => [
+                'totalDigits_value_0003.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1234567890' => [
+                'totalDigits_value_0004.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign' => [
+                'totalDigits_value_0005.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign and surrounded by white spaces' => [
+                'totalDigits_value_0006.xsd', 
+                \gmp_init(1234567890), 
             ], 
         ];
     }
