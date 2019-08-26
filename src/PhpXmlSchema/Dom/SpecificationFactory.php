@@ -342,6 +342,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'value', '', 'buildValueAttribute', ], 
         ], 
+        ContextId::ELT_TOTALDIGITS => [
+            [ 'fixed', '', 'buildFixedAttribute', ], 
+        ], 
     ];
     
     /**
