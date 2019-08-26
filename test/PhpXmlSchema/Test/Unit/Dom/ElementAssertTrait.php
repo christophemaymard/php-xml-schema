@@ -987,4 +987,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "fractionDigits" element has only the 
+     * "fixed" attribute.
+     * 
+     * @param   FractionDigitsElement   $sut    The element to test.
+     */
+    public static function assertFractionDigitsElementHasOnlyFixedAttribute(
+        FractionDigitsElement $sut
+    ) {
+        self::assertTrue($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
+    }
 }
