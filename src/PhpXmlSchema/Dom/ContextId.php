@@ -31,4 +31,5 @@ class ContextId
     const ELT_MAXINCLUSIVE = 14;
     const ELT_TOTALDIGITS = 15;
     const ELT_FRACTIONDIGITS = 16;
+    const ELT_LENGTH = 17;
 }
