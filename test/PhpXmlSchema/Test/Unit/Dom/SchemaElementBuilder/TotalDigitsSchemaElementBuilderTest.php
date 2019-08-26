@@ -53,7 +53,6 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
@@ -229,5 +228,51 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "totalDigits" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $pi     The expected value for the positive integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidPositiveIntegerValues
+     */
+    public function testBuildValueAttributeCreatesAttrWhenTotalDigitsAndValueIsValid(
+        string $value, 
+        \GMP $pi
+    ) {
+        $this->sut->buildValueAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $td = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $td);
+        self::assertTotalDigitsElementHasOnlyValueAttribute($td);
+        self::assertEquals($pi, $td->getValue()->getInteger());
+        self::assertSame([], $td->getElements());
+    }
+    
+    /**
+     * Tests that buildValueAttribute() throws an exception when the current 
+     * element is the "totalDigits" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidPositiveIntegerValues
+     */
+    public function testBuildValueAttributeThrowsExceptionWhenTotalDigitsAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid positive integer.', $value));
+        
+        $this->sut->buildValueAttribute($value);
     }
 }

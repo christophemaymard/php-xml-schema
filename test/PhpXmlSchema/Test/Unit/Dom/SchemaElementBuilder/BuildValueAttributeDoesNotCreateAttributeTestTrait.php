@@ -28,7 +28,13 @@ trait BuildValueAttributeDoesNotCreateAttributeTestTrait
      */
     public function testBuildValueAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
     {
+        // anySimpleType
         $this->sut->buildValueAttribute('value');
+        
+        // positiveInteger
+        $this->sut->buildValueAttribute('-2');
+        $this->sut->buildValueAttribute('+8');
+        
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementNotChanged($sch);

@@ -11,6 +11,7 @@ use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\LanguageType;
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\PositiveIntegerType;
 use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Datatype\TokenType;
@@ -316,6 +317,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_MAXEXCLUSIVE:
                 case ElementId::ELT_MAXINCLUSIVE:
                     $this->currentElement->setValue($value);
+                    break;
+                case ElementId::ELT_TOTALDIGITS:
+                    $this->currentElement->setValue($this->parsePositiveInteger($value));
                     break;
             }
         }
@@ -735,6 +739,25 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return $bool;
+    }
+    
+    /**
+     * Parses the specified value in PositiveIntegerType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  PositiveIntegerType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid positive integer datatype.
+     */
+    private function parsePositiveInteger(string $value):PositiveIntegerType
+    {
+        $cvalue = $this->collapseWhiteSpace($value);
+        
+        if (!\preg_match('`^(\\+)?([1-9][0-9]*)$`', $cvalue, $matches)) {
+            throw new InvalidValueException(\sprintf('"%s" is an invalid positive integer.', $value));
+        }
+        
+        return new PositiveIntegerType(\gmp_init($matches[2], 10));
     }
     
     /**
