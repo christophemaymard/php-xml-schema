@@ -469,6 +469,7 @@ class SpecificationFactoryTest extends TestCase
             [ 15, 'value', '', 'buildValueAttribute', ], 
             // Context: ELT_FRACTIONDIGITS
             [ 16, 'fixed', '', 'buildFixedAttribute', ], 
+            [ 16, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

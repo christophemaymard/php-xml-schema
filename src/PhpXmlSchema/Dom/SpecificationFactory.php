@@ -368,6 +368,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_FRACTIONDIGITS => [
             [ 'fixed', '', 'buildFixedAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     
