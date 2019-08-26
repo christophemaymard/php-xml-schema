@@ -57,6 +57,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
     use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
     use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
+    use BuildLengthElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

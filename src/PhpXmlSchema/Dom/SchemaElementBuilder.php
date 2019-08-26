@@ -486,6 +486,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildLengthElement()
+    {
+        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
+            $elt = new LengthElement();
+            $this->currentElement->addLengthElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildMaxExclusiveElement()
     {
         if ($this->currentElement instanceof SimpleTypeRestrictionElement) {

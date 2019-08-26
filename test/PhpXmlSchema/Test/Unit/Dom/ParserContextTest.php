@@ -498,6 +498,7 @@ class ParserContextTest extends TestCase
             public function buildFractionDigitsElement() {}
             public function buildImportElement() {}
             public function buildIncludeElement() {}
+            public function buildLengthElement() {}
             public function buildMaxExclusiveElement() {}
             public function buildMaxInclusiveElement() {}
             public function buildMinExclusiveElement() {}

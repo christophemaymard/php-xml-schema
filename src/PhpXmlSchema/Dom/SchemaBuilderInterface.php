@@ -351,6 +351,16 @@ interface SchemaBuilderInterface
     public function buildIncludeElement();
     
     /**
+     * Builds a "length" element.
+     * 
+     * If the current element supports the element then:
+     * - a new instance is created, and 
+     * - the created instance is added or set to the current element, and 
+     * - the created instance becomes the current element.
+     */
+    public function buildLengthElement();
+    
+    /**
      * Builds a "maxExclusive" element.
      * 
      * If the current element supports the element then:
