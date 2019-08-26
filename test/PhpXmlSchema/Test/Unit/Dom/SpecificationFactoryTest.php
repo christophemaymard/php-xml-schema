@@ -178,6 +178,7 @@ class SpecificationFactoryTest extends TestCase
             [ 11, 0, ], // ELT_MINEXCLUSIVE
             [ 12, 0, ], // ELT_MININCLUSIVE
             [ 13, 0, ], // ELT_MAXEXCLUSIVE
+            [ 14, 0, ], // ELT_MAXINCLUSIVE
         ];
     }
     
@@ -224,13 +225,16 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 0, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 10, 0, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 10, 0, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
+            [ 10, 0, 14, 'maxInclusive', ], // ELT_MAXINCLUSIVE
             [ 10, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 10, 1, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 10, 1, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
+            [ 10, 1, 14, 'maxInclusive', ], // ELT_MAXINCLUSIVE
             [ 10, 2, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 10, 2, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 10, 2, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
+            [ 10, 2, 14, 'maxInclusive', ], // ELT_MAXINCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 'annotation', ], // ELT_ANNOTATION
             // Context: ELT_MININCLUSIVE
@@ -283,13 +287,16 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 0, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 10, 0, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 10, 0, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
+            [ 10, 0, 14, 'buildMaxInclusiveElement', ], // ELT_MAXINCLUSIVE
             [ 10, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 10, 1, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 10, 1, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
+            [ 10, 1, 14, 'buildMaxInclusiveElement', ], // ELT_MAXINCLUSIVE
             [ 10, 2, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 10, 2, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 10, 2, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
+            [ 10, 2, 14, 'buildMaxInclusiveElement', ], // ELT_MAXINCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             // Context: ELT_MININCLUSIVE
@@ -342,13 +349,16 @@ class SpecificationFactoryTest extends TestCase
             [ 10, 0, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 10, 0, 12, 2, ], // ELT_MININCLUSIVE
             [ 10, 0, 13, 2, ], // ELT_MAXEXCLUSIVE
+            [ 10, 0, 14, 2, ], // ELT_MAXINCLUSIVE
             [ 10, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 10, 1, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 10, 1, 12, 2, ], // ELT_MININCLUSIVE
             [ 10, 1, 13, 2, ], // ELT_MAXEXCLUSIVE
+            [ 10, 1, 14, 2, ], // ELT_MAXINCLUSIVE
             [ 10, 2, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 10, 2, 12, 2, ], // ELT_MININCLUSIVE
             [ 10, 2, 13, 2, ], // ELT_MAXEXCLUSIVE
+            [ 10, 2, 14, 2, ], // ELT_MAXINCLUSIVE
             // Context: ELT_MINEXCLUSIVE
             [ 11, 0, 2, 1, ], // ELT_ANNOTATION
             // Context: ELT_MININCLUSIVE

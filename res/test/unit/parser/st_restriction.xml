@@ -27,7 +27,7 @@
   <test group="content" name="[restriction] foo child element is not supported">
     <schema fileName="restriction_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive" or "maxExclusive".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
     </schema>
   </test>
   <!-- restriction::base -->
@@ -210,48 +210,55 @@
   <test group="content" name="[restriction][annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive" or "maxExclusive".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
     </schema>
   </test>
   <!-- simpleType -->
   <test group="content" name="[restriction][simpleType] not part of the XML Schema 1.0 namespace">
     <schema fileName="simpleType_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "simpleType" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive" or "maxExclusive".</message>
+      <message>The "simpleType" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
     </schema>
   </test>
   <!-- minExclusive -->
   <test group="content" name="[restriction][minExclusive] not part of the XML Schema 1.0 namespace">
     <schema fileName="minExclusive_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "minExclusive" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive" or "maxExclusive".</message>
+      <message>The "minExclusive" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
     </schema>
   </test>
   <!-- minInclusive -->
   <test group="content" name="[restriction][minInclusive] not part of the XML Schema 1.0 namespace">
     <schema fileName="minInclusive_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "minInclusive" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive" or "maxExclusive".</message>
+      <message>The "minInclusive" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
     </schema>
   </test>
   <!-- maxExclusive -->
   <test group="content" name="[restriction][maxExclusive] not part of the XML Schema 1.0 namespace">
     <schema fileName="maxExclusive_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "maxExclusive" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive" or "maxExclusive".</message>
+      <message>The "maxExclusive" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
+    </schema>
+  </test>
+  <!-- maxInclusive -->
+  <test group="content" name="[restriction][maxInclusive] not part of the XML Schema 1.0 namespace">
+    <schema fileName="maxInclusive_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "maxInclusive" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
     </schema>
   </test>
   <!-- container -->
   <test group="content" name="[restriction][container] annotation unexpected annotation">
     <schema fileName="container_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "minExclusive", "minInclusive" or "maxExclusive".</message>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
     </schema>
   </test>
   <test group="content" name="[restriction][container] simpleType unexpected simpleType">
     <schema fileName="container_0002.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "simpleType" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "minExclusive", "minInclusive" or "maxExclusive".</message>
+      <message>The "simpleType" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "minExclusive", "minInclusive", "maxExclusive" or "maxInclusive".</message>
     </schema>
   </test>
   <!-- TEMPLATE
