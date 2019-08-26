@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -48,7 +49,6 @@ class MaxInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
@@ -135,5 +135,51 @@ class MaxInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() creates the attribute when the 
+     * current element is the "maxInclusive" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $bool   The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidBooleanValues
+     */
+    public function testBuildFixedAttributeCreatesAttrWhenMaxInclusiveAndValueIsValid(
+        string $value, 
+        bool $bool
+    ) {
+        $this->sut->buildFixedAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $maxinc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $maxinc);
+        self::assertMaxInclusiveElementHasOnlyFixedAttribute($maxinc);
+        self::assertSame($bool, $maxinc->getFixed());
+        self::assertSame([], $maxinc->getElements());
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() throws an exception when the current 
+     * element is the "maxInclusive" element and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidBooleanValues
+     */
+    public function testBuildFixedAttributeThrowsExceptionWhenMaxInclusiveAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
+        
+        $this->sut->buildFixedAttribute($value);
     }
 }
