@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
+use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
@@ -972,5 +973,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "fractionDigits" element has no attribute.
+     * 
+     * @param   FractionDigitsElement   $sut    The element to test.
+     */
+    public static function assertFractionDigitsElementHasNoAttribute(
+        FractionDigitsElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
