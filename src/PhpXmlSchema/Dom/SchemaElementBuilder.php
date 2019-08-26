@@ -11,6 +11,7 @@ use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Datatype\LanguageType;
 use PhpXmlSchema\Datatype\NCNameType;
+use PhpXmlSchema\Datatype\NonNegativeIntegerType;
 use PhpXmlSchema\Datatype\PositiveIntegerType;
 use PhpXmlSchema\Datatype\QNameType;
 use PhpXmlSchema\Datatype\StringType;
@@ -322,6 +323,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     break;
                 case ElementId::ELT_TOTALDIGITS:
                     $this->currentElement->setValue($this->parsePositiveInteger($value));
+                    break;
+                case ElementId::ELT_FRACTIONDIGITS:
+                    $this->currentElement->setValue($this->parseNonNegativeInteger($value));
                     break;
             }
         }
@@ -773,6 +777,27 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return new PositiveIntegerType(\gmp_init($matches[2], 10));
+    }
+    
+    /**
+     * Parses the specified value in NonNegativeIntegerType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  NonNegativeIntegerType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid non-negative integer datatype.
+     */
+    private function parseNonNegativeInteger(string $value):NonNegativeIntegerType
+    {
+        $cvalue = $this->collapseWhiteSpace($value);
+        
+        if (!\preg_match('`^(\\+)?([0-9]+)$`', $cvalue, $matches)) {
+            throw new InvalidValueException(\sprintf('"%s" is an invalid non-negative integer.', $value));
+        }
+        
+        // \gmp_init() removes leading zeroes when the decimal base (10) is 
+        // provided.
+        return new NonNegativeIntegerType(\gmp_init($matches[2], 10));
     }
     
     /**

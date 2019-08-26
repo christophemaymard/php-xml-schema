@@ -35,6 +35,10 @@ trait BuildValueAttributeDoesNotCreateAttributeTestTrait
         $this->sut->buildValueAttribute('-2');
         $this->sut->buildValueAttribute('+8');
         
+        // nonNegativeInteger
+        $this->sut->buildValueAttribute('-9');
+        $this->sut->buildValueAttribute('+5');
+        
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementNotChanged($sch);
