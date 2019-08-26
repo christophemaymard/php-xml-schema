@@ -197,6 +197,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_MAXINCLUSIVE:
                 case ElementId::ELT_TOTALDIGITS:
                 case ElementId::ELT_FRACTIONDIGITS:
+                case ElementId::ELT_LENGTH:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }
