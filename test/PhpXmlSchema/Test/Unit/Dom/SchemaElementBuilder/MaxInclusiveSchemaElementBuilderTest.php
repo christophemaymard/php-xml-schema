@@ -39,7 +39,6 @@ class MaxInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -248,5 +247,30 @@ class MaxInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertMaxInclusiveElementHasOnlyValueAttribute($maxinc);
         self::assertSame('foo', $maxinc->getValue());
         self::assertSame([], $maxinc->getElements());
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "maxInclusive" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenMaxInclusive()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $maxinc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $maxinc);
+        self::assertMaxInclusiveElementHasNoAttribute($maxinc);
+        self::assertCount(1, $maxinc->getElements());
+        
+        $ann = $maxinc->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }

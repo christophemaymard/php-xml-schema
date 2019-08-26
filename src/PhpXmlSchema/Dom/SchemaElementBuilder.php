@@ -365,6 +365,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
                 case ElementId::ELT_MAXEXCLUSIVE:
+                case ElementId::ELT_MAXINCLUSIVE:
                     $elt = new AnnotationElement();
                     $this->currentElement->setAnnotationElement($elt);
                     $this->currentElement = $elt;
