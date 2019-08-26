@@ -29,4 +29,5 @@ class ContextId
     const ELT_MININCLUSIVE = 12;
     const ELT_MAXEXCLUSIVE = 13;
     const ELT_MAXINCLUSIVE = 14;
+    const ELT_TOTALDIGITS = 15;
 }

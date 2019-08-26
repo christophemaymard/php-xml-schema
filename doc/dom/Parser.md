@@ -208,7 +208,7 @@
 - [x] Parse **minInclusive** elements.
 - [x] Parse **maxExclusive** elements.
 - [x] Parse **maxInclusive** elements.
-- [ ] Parse **totalDigits** elements.
+- [x] Parse **totalDigits** elements.
 - [ ] Parse **fractionDigits** elements.
 - [ ] Parse **length** elements.
 - [ ] Parse **minLength** elements.
@@ -292,4 +292,23 @@
 - [x] Parse **value** attribute.
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "totalDigits"
+
+```
+<totalDigits
+  fixed = boolean
+  id = ID
+  value = positiveInteger
+>
+  Content: (annotation?)
+</totalDigits>
+```
+
+- [x] Parse **totalDigits** element.
+- [ ] Parse **fixed** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **value** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
