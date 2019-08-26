@@ -959,4 +959,18 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "totalDigits" element has only the "value" 
+     * attribute.
+     * 
+     * @param   TotalDigitsElement  $sut    The element to test.
+     */
+    public static function assertTotalDigitsElementHasOnlyValueAttribute(
+        TotalDigitsElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasValue());
+    }
 }
