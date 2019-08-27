@@ -62,6 +62,7 @@ class DefinitionAnnotationSchemaElementBuilderTest extends AbstractSchemaElement
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
+    use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

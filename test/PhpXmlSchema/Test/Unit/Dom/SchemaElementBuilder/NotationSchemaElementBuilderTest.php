@@ -60,6 +60,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
+    use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

@@ -62,6 +62,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
+    use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

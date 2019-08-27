@@ -672,4 +672,36 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertEnumerationElementHasNoAttribute($enums[1]);
         self::assertSame([], $enums[1]->getElements());
     }
+    
+    /**
+     * Tests that buildWhiteSpaceElement() creates the element when the 
+     * current element is the "restriction" element (simpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildWhiteSpaceElementCreateEltWhenSimpleTypeRestriction()
+    {
+        $this->sut->buildWhiteSpaceElement();
+        $this->sut->endElement();
+        $this->sut->buildWhiteSpaceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $wps = $res->getWhiteSpaceElements();
+        
+        self::assertElementNamespaceDeclarations([], $wps[0]);
+        self::assertWhiteSpaceElementHasNoAttribute($wps[0]);
+        self::assertSame([], $wps[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $wps[1]);
+        self::assertWhiteSpaceElementHasNoAttribute($wps[1]);
+        self::assertSame([], $wps[1]->getElements());
+    }
 }

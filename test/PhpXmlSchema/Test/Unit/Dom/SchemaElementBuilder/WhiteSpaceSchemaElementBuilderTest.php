@@ -12,15 +12,17 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is NULL.
+ * class when the current element is the "whiteSpace" element.
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BindNamespaceTestTrait;
+    
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -69,9 +71,12 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertSchemaElementNotChanged(SchemaElement $sch)
     {
-        self::assertElementNamespaceDeclarations([], $sch);
-        self::assertSchemaElementHasNoAttribute($sch);
-        self::assertSame([], $sch->getElements());
+        self::assertAncestorsNotChanged($sch);
+        
+        $wp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $wp);
+        self::assertWhiteSpaceElementHasNoAttribute($wp);
+        self::assertSame([], $wp->getElements());
     }
     
     /**
@@ -79,6 +84,25 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
+        self::assertElementNamespaceDeclarations([], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        self::assertCount(1, $res->getWhiteSpaceElements());
     }
     
     /**
@@ -86,6 +110,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
+        self::assertWhiteSpaceElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -93,7 +118,10 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     protected static function getCurrentElement(SchemaElement $sch)
     {
-        return NULL;
+        return $sch->getAttributeElements()[0]
+            ->getSimpleTypeElement()
+            ->getDerivationElement()
+            ->getWhiteSpaceElements()[0];
     }
     
     /**
@@ -102,7 +130,10 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     protected function setUp()
     {
         $this->sut = new SchemaElementBuilder();
-        $this->sut->endElement();
+        $this->sut->buildAttributeElement();
+        $this->sut->buildSimpleTypeElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildWhiteSpaceElement();
     }
     
     /**
@@ -111,24 +142,5 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that bindNamespace() does not associate a prefix with a 
-     * namespace.
-     * 
-     * @group   namespace
-     * @group   xml
-     */
-    public function testBindNamespaceDoesNotBindNamespaceWhenNull()
-    {
-        $this->sut->bindNamespace('foo', 'http://example.org/foo');
-        $this->sut->bindNamespace('xml', 'http://example.org');
-        $this->sut->bindNamespace('foo', 'http://www.w3.org/XML/1998/namespace');
-        $this->sut->bindNamespace('xmlns', 'http://www.w3.org/2000/xmlns/');
-        $this->sut->bindNamespace('foo', 'http://www.w3.org/2000/xmlns/');
-        $sch = $this->sut->getSchema();
-        
-        self::assertSchemaElementNotChanged($sch);
     }
 }
