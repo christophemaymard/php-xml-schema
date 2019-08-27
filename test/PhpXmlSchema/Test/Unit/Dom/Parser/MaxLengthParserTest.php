@@ -164,6 +164,50 @@ class MaxLengthParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "value" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   \GMP    $nni        The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidValueAttributes
+     */
+    public function testParseProcessValueAttribute(string $fileName, \GMP $nni)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $maxl = $res->getMaxLengthElements()[0];
+        self::assertElementNamespaceDeclarations([], $maxl);
+        self::assertMaxLengthElementHasOnlyValueAttribute($maxl);
+        self::assertEquals($nni, $maxl->getValue()->getInteger());
+        self::assertSame([], $maxl->getElements());
+    }
+    
+    /**
      * Returns a set of valid "fixed" attributes.
      * 
      * @return  array[]
@@ -237,6 +281,49 @@ class MaxLengthParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'maxLength_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "value" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidValueAttributes():array
+    {
+        return [
+            '0' => [
+                'maxLength_value_0001.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign' => [
+                'maxLength_value_0002.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign and leading zeroes' => [
+                'maxLength_value_0003.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign, leading zeroes and surrounded by white spaces' => [
+                'maxLength_value_0004.xsd', 
+                \gmp_init(0), 
+            ], 
+            '1234567890' => [
+                'maxLength_value_0005.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign' => [
+                'maxLength_value_0006.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign and leading zeroes' => [
+                'maxLength_value_0007.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign, leading zeroes and surrounded by white spaces' => [
+                'maxLength_value_0008.xsd', 
+                \gmp_init(1234567890), 
             ], 
         ];
     }
