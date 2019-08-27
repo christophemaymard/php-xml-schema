@@ -18,6 +18,7 @@ use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\LengthElement;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\MaxInclusiveElement;
+use PhpXmlSchema\Dom\MaxLengthElement;
 use PhpXmlSchema\Dom\MinExclusiveElement;
 use PhpXmlSchema\Dom\MinInclusiveElement;
 use PhpXmlSchema\Dom\MinLengthElement;
@@ -1140,5 +1141,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "maxLength" element has no attribute.
+     * 
+     * @param   MaxLengthElement    $sut    The element to test.
+     */
+    public static function assertMaxLengthElementHasNoAttribute(
+        MaxLengthElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
