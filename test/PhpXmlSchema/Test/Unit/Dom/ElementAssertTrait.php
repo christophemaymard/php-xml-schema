@@ -1113,4 +1113,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "minLength" element has only the "id" 
+     * attribute.
+     * 
+     * @param   MinLengthElement    $sut    The element to test.
+     */
+    public static function assertMinLengthElementHasOnlyIdAttribute(
+        MinLengthElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasValue());
+    }
 }
