@@ -464,6 +464,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_ENUMERATION => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'value', '', 'buildValueAttribute', ], 
         ], 
     ];
     

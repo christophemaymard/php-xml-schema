@@ -549,6 +549,7 @@ class SpecificationFactoryTest extends TestCase
             [ 19, 'value', '', 'buildValueAttribute', ], 
             // Context: ELT_ENUMERATION
             [ 20, 'id', '', 'buildIdAttribute', ], 
+            [ 20, 'value', '', 'buildValueAttribute', ], 
         ];
     }
 }

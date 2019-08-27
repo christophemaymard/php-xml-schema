@@ -120,6 +120,46 @@ class EnumerationParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "value" attribute.
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessValueAttribute()
+    {
+        $sch = $this->sut->parse($this->getXs('enumeration_value_0001.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $enum = $res->getEnumerationElements()[0];
+        self::assertElementNamespaceDeclarations([], $enum);
+        self::assertEnumerationElementHasOnlyValueAttribute($enum);
+        self::assertSame('  foo  ', $enum->getValue());
+        self::assertSame([], $enum->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
