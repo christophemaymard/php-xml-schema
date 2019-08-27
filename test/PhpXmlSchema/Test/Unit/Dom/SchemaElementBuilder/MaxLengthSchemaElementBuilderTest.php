@@ -39,7 +39,6 @@ class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -278,5 +277,30 @@ class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer.', $value));
         
         $this->sut->buildValueAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "maxLength" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenMaxLength()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $maxl = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $maxl);
+        self::assertMaxLengthElementHasNoAttribute($maxl);
+        self::assertCount(1, $maxl->getElements());
+        
+        $ann = $maxl->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
