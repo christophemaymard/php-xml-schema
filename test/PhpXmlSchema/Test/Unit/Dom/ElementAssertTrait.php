@@ -28,6 +28,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use PhpXmlSchema\Dom\TotalDigitsElement;
+use PhpXmlSchema\Dom\WhiteSpaceElement;
 
 /**
  * Represents a trait to assert XML Schema elements.
@@ -1235,5 +1236,18 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "whiteSpace" element has no attribute.
+     * 
+     * @param   WhiteSpaceElement   $sut    The element to test.
+     */
+    public static function assertWhiteSpaceElementHasNoAttribute(
+        WhiteSpaceElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
