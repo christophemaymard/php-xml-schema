@@ -1183,4 +1183,18 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "maxLength" element has only the "value" 
+     * attribute.
+     * 
+     * @param   MaxLengthElement    $sut    The element to test.
+     */
+    public static function assertMaxLengthElementHasOnlyValueAttribute(
+        MaxLengthElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasValue());
+    }
 }
