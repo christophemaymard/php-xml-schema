@@ -212,7 +212,7 @@
 - [x] Parse **fractionDigits** elements.
 - [x] Parse **length** elements.
 - [x] Parse **minLength** elements.
-- [ ] Parse **maxLength** elements.
+- [x] Parse **maxLength** elements.
 - [ ] Parse **enumeration** elements.
 - [ ] Parse **whiteSpace** elements.
 - [ ] Parse **pattern** elements.
@@ -368,4 +368,23 @@
 - [x] Parse **value** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "maxLength"
+
+```
+<maxLength
+  fixed = boolean
+  id = ID
+  value = nonNegativeInteger
+>
+  Content: (annotation?)
+</maxLength>
+```
+
+- [x] Parse **maxLength** element.
+- [ ] Parse **fixed** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **value** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
