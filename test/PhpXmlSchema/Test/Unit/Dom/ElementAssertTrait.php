@@ -1071,4 +1071,18 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "length" element has only the "value" 
+     * attribute.
+     * 
+     * @param   LengthElement   $sut    The element to test.
+     */
+    public static function assertLengthElementHasOnlyValueAttribute(
+        LengthElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasValue());
+    }
 }
