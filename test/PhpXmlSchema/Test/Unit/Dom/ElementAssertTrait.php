@@ -1099,4 +1099,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "minLength" element has only the "fixed" 
+     * attribute.
+     * 
+     * @param   MinLengthElement    $sut    The element to test.
+     */
+    public static function assertMinLengthElementHasOnlyFixedAttribute(
+        MinLengthElement $sut
+    ) {
+        self::assertTrue($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
+    }
 }
