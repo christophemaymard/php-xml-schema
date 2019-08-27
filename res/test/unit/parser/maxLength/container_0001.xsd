@@ -1,0 +1,12 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:attribute>
+        <xs:simpleType>
+            <xs:restriction>
+                <xs:maxLength>
+                  <xs:annotation></xs:annotation>
+                  <xs:annotation></xs:annotation>
+                </xs:maxLength>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+</xs:schema>
