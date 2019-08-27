@@ -59,6 +59,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     use BuildLengthElementDoesNotCreateElementTestTrait;
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
+    use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

@@ -61,6 +61,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     use BuildLengthElementDoesNotCreateElementTestTrait;
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
+    use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

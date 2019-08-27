@@ -49,6 +49,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     use BuildLengthElementDoesNotCreateElementTestTrait;
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
+    use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}
