@@ -20,6 +20,7 @@ use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\MaxInclusiveElement;
 use PhpXmlSchema\Dom\MinExclusiveElement;
 use PhpXmlSchema\Dom\MinInclusiveElement;
+use PhpXmlSchema\Dom\MinLengthElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
@@ -1084,5 +1085,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "minLength" element has no attribute.
+     * 
+     * @param   MinLengthElement    $sut    The element to test.
+     */
+    public static function assertMinLengthElementHasNoAttribute(
+        MinLengthElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
