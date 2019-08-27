@@ -327,6 +327,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setValue($this->parsePositiveInteger($value));
                     break;
                 case ElementId::ELT_FRACTIONDIGITS:
+                case ElementId::ELT_LENGTH:
                     $this->currentElement->setValue($this->parseNonNegativeInteger($value));
                     break;
             }

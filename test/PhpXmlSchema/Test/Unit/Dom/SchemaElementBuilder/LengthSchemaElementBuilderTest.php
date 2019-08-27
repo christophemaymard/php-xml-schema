@@ -53,7 +53,6 @@ class LengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
@@ -231,5 +230,51 @@ class LengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "length" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerValues
+     */
+    public function testBuildValueAttributeCreatesAttrWhenLengthAndValueIsValid(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildValueAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $length = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $length);
+        self::assertLengthElementHasOnlyValueAttribute($length);
+        self::assertEquals($nni, $length->getValue()->getInteger());
+        self::assertSame([], $length->getElements());
+    }
+    
+    /**
+     * Tests that buildValueAttribute() throws an exception when the current 
+     * element is the "length" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerValues
+     */
+    public function testBuildValueAttributeThrowsExceptionWhenLengthAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer.', $value));
+        
+        $this->sut->buildValueAttribute($value);
     }
 }
