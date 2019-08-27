@@ -485,6 +485,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'value', '', 'buildValueAttribute', ], 
         ], 
+        ContextId::ELT_WHITESPACE => [
+            [ 'fixed', '', 'buildFixedAttribute', ], 
+        ], 
     ];
     
     /**
