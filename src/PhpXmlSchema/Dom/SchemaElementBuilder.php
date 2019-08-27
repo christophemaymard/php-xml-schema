@@ -326,6 +326,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_MININCLUSIVE:
                 case ElementId::ELT_MAXEXCLUSIVE:
                 case ElementId::ELT_MAXINCLUSIVE:
+                case ElementId::ELT_ENUMERATION:
                     $this->currentElement->setValue($value);
                     break;
                 case ElementId::ELT_TOTALDIGITS:

@@ -54,7 +54,6 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
@@ -189,5 +188,26 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "enumeration" element and the value is valid.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildValueAttributeCreatesAttrWhenEnumerationAndValueIsValid()
+    {
+        $this->sut->buildValueAttribute('foo');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $enum = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $enum);
+        self::assertEnumerationElementHasOnlyValueAttribute($enum);
+        self::assertSame('foo', $enum->getValue());
+        self::assertSame([], $enum->getElements());
     }
 }
