@@ -202,6 +202,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_LENGTH:
                 case ElementId::ELT_MINLENGTH:
                 case ElementId::ELT_MAXLENGTH:
+                case ElementId::ELT_ENUMERATION:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }
