@@ -214,7 +214,7 @@
 - [x] Parse **minLength** elements.
 - [x] Parse **maxLength** elements.
 - [x] Parse **enumeration** elements.
-- [ ] Parse **whiteSpace** elements.
+- [x] Parse **whiteSpace** elements.
 - [ ] Parse **pattern** elements.
 
 ## Element: "minExclusive"
@@ -404,4 +404,23 @@
 - [x] Parse **value** attribute.
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "whiteSpace"
+
+```
+<whiteSpace
+  fixed = boolean
+  id = ID
+  value = (collapse | preserve | replace)
+>
+  Content: (annotation?)
+</whiteSpace>
+```
+
+- [x] Parse **whiteSpace** element.
+- [ ] Parse **fixed** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **value** attribute.
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
