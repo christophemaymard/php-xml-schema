@@ -507,6 +507,8 @@ class SpecificationFactoryTest extends TestCase
             [ 17, 'fixed', '', 'buildFixedAttribute', ], 
             [ 17, 'id', '', 'buildIdAttribute', ], 
             [ 17, 'value', '', 'buildValueAttribute', ], 
+            // Context: ELT_MINLENGTH
+            [ 18, 'fixed', '', 'buildFixedAttribute', ], 
         ];
     }
 }
