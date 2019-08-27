@@ -1264,4 +1264,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "whiteSpace" element has only the "id" 
+     * attribute.
+     * 
+     * @param   WhiteSpaceElement   $sut    The element to test.
+     */
+    public static function assertWhiteSpaceElementHasOnlyIdAttribute(
+        WhiteSpaceElement $sut
+    ) {
+        self::assertFalse($sut->hasFixed());
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasValue());
+    }
 }
