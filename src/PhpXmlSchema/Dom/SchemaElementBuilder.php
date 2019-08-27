@@ -383,6 +383,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_MAXINCLUSIVE:
                 case ElementId::ELT_TOTALDIGITS:
                 case ElementId::ELT_FRACTIONDIGITS:
+                case ElementId::ELT_LENGTH:
                     $elt = new AnnotationElement();
                     $this->currentElement->setAnnotationElement($elt);
                     $this->currentElement = $elt;
