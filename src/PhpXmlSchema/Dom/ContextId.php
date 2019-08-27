@@ -32,4 +32,5 @@ class ContextId
     const ELT_TOTALDIGITS = 15;
     const ELT_FRACTIONDIGITS = 16;
     const ELT_LENGTH = 17;
+    const ELT_MINLENGTH = 18;
 }

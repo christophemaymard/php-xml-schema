@@ -211,7 +211,7 @@
 - [x] Parse **totalDigits** elements.
 - [x] Parse **fractionDigits** elements.
 - [x] Parse **length** elements.
-- [ ] Parse **minLength** elements.
+- [x] Parse **minLength** elements.
 - [ ] Parse **maxLength** elements.
 - [ ] Parse **enumeration** elements.
 - [ ] Parse **whiteSpace** elements.
@@ -349,4 +349,23 @@
 - [x] Parse **value** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "minLength"
+
+```
+<minLength
+  fixed = boolean
+  id = ID
+  value = nonNegativeInteger
+>
+  Content: (annotation?)
+</minLength>
+```
+
+- [x] Parse **minLength** element.
+- [ ] Parse **fixed** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **value** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
