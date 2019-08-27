@@ -39,7 +39,6 @@ class MinLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -277,5 +276,30 @@ class MinLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer.', $value));
         
         $this->sut->buildValueAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "minLength" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenMinLength()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $minl = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $minl);
+        self::assertMinLengthElementHasNoAttribute($minl);
+        self::assertCount(1, $minl->getElements());
+        
+        $ann = $minl->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
