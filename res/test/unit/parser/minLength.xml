@@ -92,6 +92,13 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- minLength::value -->
+  <test group="attribute" name="[minLength][attribute::value] Negative integer">
+    <schema fileName="minLength_value_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-9" is an invalid non-negative integer.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

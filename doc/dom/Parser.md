@@ -365,7 +365,7 @@
 - [x] Parse **minLength** element.
 - [x] Parse **fixed** attribute (collapsing white spaces).
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **value** attribute (collapsing white spaces).
+- [x] Parse **value** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 
