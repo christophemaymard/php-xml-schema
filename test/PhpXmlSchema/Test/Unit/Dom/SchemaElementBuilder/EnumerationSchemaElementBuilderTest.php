@@ -39,7 +39,6 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -209,5 +208,30 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
         self::assertEnumerationElementHasOnlyValueAttribute($enum);
         self::assertSame('foo', $enum->getValue());
         self::assertSame([], $enum->getElements());
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "enumeration" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenEnumeration()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $enum = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $enum);
+        self::assertEnumerationElementHasNoAttribute($enum);
+        self::assertCount(1, $enum->getElements());
+        
+        $ann = $enum->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
