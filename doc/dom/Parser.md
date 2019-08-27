@@ -213,7 +213,7 @@
 - [x] Parse **length** elements.
 - [x] Parse **minLength** elements.
 - [x] Parse **maxLength** elements.
-- [ ] Parse **enumeration** elements.
+- [x] Parse **enumeration** elements.
 - [ ] Parse **whiteSpace** elements.
 - [ ] Parse **pattern** elements.
 
@@ -387,4 +387,21 @@
 - [x] Parse **value** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "enumeration"
+
+```
+<enumeration
+  id = ID
+  value = anySimpleType
+>
+  Content: (annotation?)
+</enumeration>
+```
+
+- [x] Parse **enumeration** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **value** attribute.
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
