@@ -128,6 +128,9 @@ class SpecificationFactory
         ContextId::ELT_FRACTIONDIGITS => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
         ], 
+        ContextId::ELT_LENGTH => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -216,6 +219,9 @@ class SpecificationFactory
         ContextId::ELT_FRACTIONDIGITS => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
         ], 
+        ContextId::ELT_LENGTH => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -301,6 +307,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
         ContextId::ELT_FRACTIONDIGITS => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+        ], 
+        ContextId::ELT_LENGTH => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
