@@ -1223,4 +1223,17 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "enumeration" element has only the "value" 
+     * attribute.
+     * 
+     * @param   EnumerationElement  $sut    The element to test.
+     */
+    public static function assertEnumerationElementHasOnlyValueAttribute(
+        EnumerationElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasValue());
+    }
 }
