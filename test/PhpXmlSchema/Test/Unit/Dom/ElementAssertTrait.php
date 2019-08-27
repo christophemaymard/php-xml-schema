@@ -1250,4 +1250,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "whiteSpace" element has only the "fixed" 
+     * attribute.
+     * 
+     * @param   WhiteSpaceElement   $sut    The element to test.
+     */
+    public static function assertWhiteSpaceElementHasOnlyFixedAttribute(
+        WhiteSpaceElement $sut
+    ) {
+        self::assertTrue($sut->hasFixed());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
+    }
 }
