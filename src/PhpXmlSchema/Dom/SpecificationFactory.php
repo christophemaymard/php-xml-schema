@@ -440,6 +440,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_MAXLENGTH => [
             [ 'fixed', '', 'buildFixedAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     
