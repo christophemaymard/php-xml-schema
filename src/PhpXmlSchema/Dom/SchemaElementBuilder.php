@@ -550,6 +550,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildMinLengthElement()
+    {
+        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
+            $elt = new MinLengthElement();
+            $this->currentElement->addMinLengthElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildNotationElement()
     {
         if ($this->currentElement instanceof SchemaElement) {

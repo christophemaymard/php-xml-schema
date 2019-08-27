@@ -60,6 +60,7 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
     use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     use BuildLengthElementDoesNotCreateElementTestTrait;
+    use BuildMinLengthElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

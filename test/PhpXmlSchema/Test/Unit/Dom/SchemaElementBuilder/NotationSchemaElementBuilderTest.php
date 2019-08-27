@@ -57,6 +57,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
     use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     use BuildLengthElementDoesNotCreateElementTestTrait;
+    use BuildMinLengthElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}
