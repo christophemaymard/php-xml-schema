@@ -640,4 +640,36 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertMaxLengthElementHasNoAttribute($maxls[1]);
         self::assertSame([], $maxls[1]->getElements());
     }
+    
+    /**
+     * Tests that buildEnumerationElement() creates the element when the 
+     * current element is the "restriction" element (simpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildEnumerationElementCreateEltWhenSimpleTypeRestriction()
+    {
+        $this->sut->buildEnumerationElement();
+        $this->sut->endElement();
+        $this->sut->buildEnumerationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $enums = $res->getEnumerationElements();
+        
+        self::assertElementNamespaceDeclarations([], $enums[0]);
+        self::assertEnumerationElementHasNoAttribute($enums[0]);
+        self::assertSame([], $enums[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $enums[1]);
+        self::assertEnumerationElementHasNoAttribute($enums[1]);
+        self::assertSame([], $enums[1]->getElements());
+    }
 }

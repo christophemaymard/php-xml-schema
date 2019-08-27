@@ -9,19 +9,17 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is the "simpleType" element 
- * (localSimpleType).
+ * class when the current element is the "enumeration" element.
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BindNamespaceTestTrait;
     
@@ -29,6 +27,7 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
+    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -40,6 +39,7 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -51,6 +51,7 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
+    use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
@@ -71,10 +72,10 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     {
         self::assertAncestorsNotChanged($sch);
         
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertSame([], $st->getElements());
+        $enum = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $enum);
+        self::assertEnumerationElementHasNoAttribute($enum);
+        self::assertSame([], $enum->getElements());
     }
     
     /**
@@ -90,7 +91,17 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasNoAttribute($attr);
         self::assertCount(1, $attr->getElements());
-        self::assertNotNull($attr->getSimpleTypeElement());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        self::assertCount(1, $res->getEnumerationElements());
     }
     
     /**
@@ -98,7 +109,7 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
-        self::assertSimpleTypeElementHasNoAttribute(self::getCurrentElement($sch));
+        self::assertEnumerationElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -107,7 +118,9 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     protected static function getCurrentElement(SchemaElement $sch)
     {
         return $sch->getAttributeElements()[0]
-            ->getSimpleTypeElement();
+            ->getSimpleTypeElement()
+            ->getDerivationElement()
+            ->getEnumerationElements()[0];
     }
     
     /**
@@ -118,6 +131,8 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
         $this->sut->buildSimpleTypeElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildEnumerationElement();
     }
     
     /**
@@ -126,105 +141,5 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that buildIdAttribute() creates the attribute when the current 
-     * element is the "simpleType" element (localSimpleType) and the value is 
-     * valid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $id     The expected value for the ID.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidIdValues
-     */
-    public function testBuildIdAttributeCreatesAttrWhenLocalSimpleTypeAndValueIsValid(
-        string $value, 
-        string $id
-    ) {
-        $this->sut->buildIdAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasOnlyIdAttribute($st);
-        self::assertSame($id, $st->getId()->getId());
-        self::assertSame([], $st->getElements());
-    }
-    
-    /**
-     * Tests that buildIdAttribute() throws an exception when the current 
-     * element is the "simpleType" element (localSimpleType) and the value is 
-     * invalid.
-     * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getInvalidIdValues
-     */
-    public function testBuildIdAttributeThrowsExceptionWhenLocalSimpleTypeAndValueIsInvalid(
-        string $value, 
-        string $message
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
-        
-        $this->sut->buildIdAttribute($value);
-    }
-    
-    /**
-     * Tests that buildAnnotationElement() creates the element when the 
-     * current element is the "simpleType" element (localSimpleType).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildAnnotationElementCreateEltWhenLocalSimpleType()
-    {
-        $this->sut->buildAnnotationElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertCount(1, $st->getElements());
-        
-        $ann = $st->getAnnotationElement();
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertSame([], $ann->getElements());
-    }
-    
-    /**
-     * Tests that buildRestrictionElement() creates the element when the 
-     * current element is the "simpleType" element (localSimpleType).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildRestrictionElementCreateEltWhenLocalSimpleType()
-    {
-        $this->sut->buildRestrictionElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertCount(1, $st->getElements());
-        
-        $res = $st->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $res);
-        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
-        self::assertSame([], $res->getElements());
     }
 }

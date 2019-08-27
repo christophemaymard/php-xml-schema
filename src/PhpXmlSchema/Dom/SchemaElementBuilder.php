@@ -462,6 +462,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildEnumerationElement()
+    {
+        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
+            $elt = new EnumerationElement();
+            $this->currentElement->addEnumerationElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildFractionDigitsElement()
     {
         if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
