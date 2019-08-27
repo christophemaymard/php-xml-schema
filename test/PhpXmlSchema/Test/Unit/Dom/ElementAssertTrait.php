@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
+use PhpXmlSchema\Dom\EnumerationElement;
 use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
@@ -1196,5 +1197,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "enumeration" element has no attribute.
+     * 
+     * @param   EnumerationElement  $sut    The element to test.
+     */
+    public static function assertEnumerationElementHasNoAttribute(
+        EnumerationElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
