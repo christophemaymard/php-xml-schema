@@ -487,6 +487,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_WHITESPACE => [
             [ 'fixed', '', 'buildFixedAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     

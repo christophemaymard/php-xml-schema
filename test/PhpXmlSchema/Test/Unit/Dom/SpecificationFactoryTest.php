@@ -568,6 +568,7 @@ class SpecificationFactoryTest extends TestCase
             [ 20, 'value', '', 'buildValueAttribute', ], 
             // Context: ELT_WHITESPACE
             [ 21, 'fixed', '', 'buildFixedAttribute', ], 
+            [ 21, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
