@@ -164,6 +164,50 @@ class LengthParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "value" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   \GMP    $nni        The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidValueAttributes
+     */
+    public function testParseProcessValueAttribute(string $fileName, \GMP $nni)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $length = $res->getLengthElements()[0];
+        self::assertElementNamespaceDeclarations([], $length);
+        self::assertLengthElementHasOnlyValueAttribute($length);
+        self::assertEquals($nni, $length->getValue()->getInteger());
+        self::assertSame([], $length->getElements());
+    }
+    
+    /**
      * Returns a set of valid "fixed" attributes.
      * 
      * @return  array[]
@@ -237,6 +281,49 @@ class LengthParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'length_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "value" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidValueAttributes():array
+    {
+        return [
+            '0' => [
+                'length_value_0001.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign' => [
+                'length_value_0002.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign and leading zeroes' => [
+                'length_value_0003.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign, leading zeroes and surrounded by white spaces' => [
+                'length_value_0004.xsd', 
+                \gmp_init(0), 
+            ], 
+            '1234567890' => [
+                'length_value_0005.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign' => [
+                'length_value_0006.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign and leading zeroes' => [
+                'length_value_0007.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign, leading zeroes and surrounded by white spaces' => [
+                'length_value_0008.xsd', 
+                \gmp_init(1234567890), 
             ], 
         ];
     }
