@@ -416,6 +416,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_MINLENGTH => [
             [ 'fixed', '', 'buildFixedAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     
