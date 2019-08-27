@@ -171,6 +171,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_FRACTIONDIGITS:
                 case ElementId::ELT_LENGTH:
                 case ElementId::ELT_MINLENGTH:
+                case ElementId::ELT_MAXLENGTH:
                     $this->currentElement->setFixed($this->parseBoolean($value));
                     break;
             }
