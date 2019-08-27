@@ -53,7 +53,6 @@ class MinLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
@@ -232,5 +231,51 @@ class MinLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "minLength" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerValues
+     */
+    public function testBuildValueAttributeCreatesAttrWhenMinLengthAndValueIsValid(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildValueAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $minl = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $minl);
+        self::assertMinLengthElementHasOnlyValueAttribute($minl);
+        self::assertEquals($nni, $minl->getValue()->getInteger());
+        self::assertSame([], $minl->getElements());
+    }
+    
+    /**
+     * Tests that buildValueAttribute() throws an exception when the current 
+     * element is the "minLength" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerValues
+     */
+    public function testBuildValueAttributeThrowsExceptionWhenMinLengthAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer.', $value));
+        
+        $this->sut->buildValueAttribute($value);
     }
 }
