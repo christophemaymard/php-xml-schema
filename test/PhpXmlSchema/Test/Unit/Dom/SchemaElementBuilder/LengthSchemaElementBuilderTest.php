@@ -64,6 +64,7 @@ class LengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     use BuildPatternElementDoesNotCreateElementTestTrait;
     use BuildListElementDoesNotCreateElementTestTrait;
+    use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

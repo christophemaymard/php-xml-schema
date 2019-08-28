@@ -65,6 +65,7 @@ class DefinitionAnnotationSchemaElementBuilderTest extends AbstractSchemaElement
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     use BuildPatternElementDoesNotCreateElementTestTrait;
     use BuildListElementDoesNotCreateElementTestTrait;
+    use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

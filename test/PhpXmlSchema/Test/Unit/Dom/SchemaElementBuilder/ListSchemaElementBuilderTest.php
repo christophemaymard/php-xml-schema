@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
@@ -185,5 +186,133 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildItemTypeAttribute() creates the attribute when:
+     * - the current element is the "list" element, and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidQNameLocalPartAndDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('', 'http://example.org');
+        $this->sut->buildAttributeElement();
+        $this->sut->buildSimpleTypeElement();
+        $this->sut->buildListElement();
+        $this->sut->buildItemTypeAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['' => 'http://example.org' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        self::assertNotNull($st->getDerivationElement());
+        
+        $list = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $list);
+        self::assertListElementHasOnlyItemTypeAttribute($list);
+        self::assertSame($localPart, $list->getItemType()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org', $list->getItemType()->getNamespace()->getUri());
+        self::assertSame([], $list->getElements());
+    }
+    
+    /**
+     * Tests that buildItemTypeAttribute() throws an exception when the current 
+     * element is the "list" element and the value is an invalid QName.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidQNameValues
+     */
+    public function testBuildItemTypeAttributeThrowsExceptionWhenListAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildItemTypeAttribute($value);
+    }
+    
+    /**
+     * Tests that buildItemTypeAttribute() creates the attribute when:
+     * - the current element is the "list" element, and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidAndPrefixAssociatedNamespace()
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->buildAttributeElement();
+        $this->sut->buildSimpleTypeElement();
+        $this->sut->buildListElement();
+        $this->sut->buildItemTypeAttribute('foo:bar');
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['foo' => 'http://example.org/foo' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        self::assertNotNull($st->getDerivationElement());
+        
+        $list = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $list);
+        self::assertListElementHasOnlyItemTypeAttribute($list);
+        self::assertSame('bar', $list->getItemType()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/foo', $list->getItemType()->getNamespace()->getUri());
+        self::assertSame([], $list->getElements());
+    }
+    
+    /**
+     * Tests that buildItemTypeAttribute() throws an exception when:
+     * - the current element is the "list" element, and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is not associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildItemTypeAttributeThrowsExceptionWhenListAndValueIsValidAndPrefixNotAssociatedNamespace()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
+        
+        $this->sut->buildItemTypeAttribute('foo:bar');
     }
 }

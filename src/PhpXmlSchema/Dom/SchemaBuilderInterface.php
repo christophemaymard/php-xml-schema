@@ -128,6 +128,19 @@ interface SchemaBuilderInterface
     public function buildIdAttribute(string $value);
     
     /**
+     * Builds an "itemType" attribute in the current element.
+     * 
+     * If the current element does not support the attribute then it is not 
+     * built.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException       When the current element supports the attribute and the value is invalid.
+     * @throws  InvalidOperationException   When the current element supports the attribute and the prefix is not bound to a namespace.
+     */
+    public function buildItemTypeAttribute(string $value);
+    
+    /**
      * Builds a "name" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 

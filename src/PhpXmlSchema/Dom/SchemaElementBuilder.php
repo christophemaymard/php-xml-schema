@@ -215,6 +215,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildItemTypeAttribute(string $value)
+    {
+        if ($this->currentElement instanceof ListElement) {
+            $this->currentElement->setItemType($this->parseQName($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildNameAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {
