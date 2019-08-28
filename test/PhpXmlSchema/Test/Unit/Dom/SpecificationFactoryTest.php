@@ -586,6 +586,8 @@ class SpecificationFactoryTest extends TestCase
             [ 21, 'fixed', '', 'buildFixedAttribute', ], 
             [ 21, 'id', '', 'buildIdAttribute', ], 
             [ 21, 'value', '', 'buildValueAttribute', ], 
+            // Context: ELT_PATTERN
+            [ 22, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

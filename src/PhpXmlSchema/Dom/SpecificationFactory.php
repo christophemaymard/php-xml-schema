@@ -509,6 +509,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'value', '', 'buildValueAttribute', ], 
         ], 
+        ContextId::ELT_PATTERN => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
