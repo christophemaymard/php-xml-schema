@@ -24,6 +24,7 @@ use PhpXmlSchema\Dom\MinExclusiveElement;
 use PhpXmlSchema\Dom\MinInclusiveElement;
 use PhpXmlSchema\Dom\MinLengthElement;
 use PhpXmlSchema\Dom\NotationElement;
+use PhpXmlSchema\Dom\PatternElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
@@ -1291,5 +1292,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "pattern" element has no attribute.
+     * 
+     * @param   PatternElement  $sut    The element to test.
+     */
+    public static function assertPatternElementHasNoAttribute(
+        PatternElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasValue());
     }
 }
