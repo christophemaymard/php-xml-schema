@@ -17,6 +17,7 @@ use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\LengthElement;
+use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
 use PhpXmlSchema\Dom\MaxInclusiveElement;
 use PhpXmlSchema\Dom\MaxLengthElement;
@@ -1330,5 +1331,17 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
+    }
+    
+    /**
+     * Asserts that the specified "list" element has no attribute.
+     * 
+     * @param   ListElement $sut    The element to test.
+     */
+    public static function assertListElementHasNoAttribute(
+        ListElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasItemType());
     }
 }
