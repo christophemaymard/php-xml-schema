@@ -1383,4 +1383,16 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMemberTypes());
     }
+    
+    /**
+     * Asserts that the specified "union" element has only the "id" attribute.
+     * 
+     * @param   UnionElement    $sut    The element to test.
+     */
+    public static function assertUnionElementHasOnlyIdAttribute(
+        UnionElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasMemberTypes());
+    }
 }
