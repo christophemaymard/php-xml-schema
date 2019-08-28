@@ -164,6 +164,58 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "value" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $coll       The expected value for the collapse flag.
+     * @param   bool    $pres       The expected value for the preserve flag.
+     * @param   bool    $rep        The expected value for the replace flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidValueAttributes
+     */
+    public function testParseProcessValueAttribute(
+        string $fileName, 
+        bool $coll,
+        bool $pres,
+        bool $rep
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $wp = $res->getWhiteSpaceElements()[0];
+        self::assertElementNamespaceDeclarations([], $wp);
+        self::assertWhiteSpaceElementHasOnlyValueAttribute($wp);
+        self::assertEquals($coll, $wp->getValue()->isCollapse());
+        self::assertEquals($pres, $wp->getValue()->isPreserve());
+        self::assertEquals($rep, $wp->getValue()->isReplace());
+        self::assertSame([], $wp->getElements());
+    }
+    
+    /**
      * Returns a set of valid "fixed" attributes.
      * 
      * @return  array[]
@@ -237,6 +289,35 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'whiteSpace_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "value" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidValueAttributes():array
+    {
+        return [
+            'collapse' => [
+                'whiteSpace_value_0001.xsd', 
+                TRUE, 
+                FALSE, 
+                FALSE, 
+            ], 
+            'preserve' => [
+                'whiteSpace_value_0002.xsd', 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+            ], 
+            'replace' => [
+                'whiteSpace_value_0003.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
             ], 
         ];
     }

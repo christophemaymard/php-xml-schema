@@ -92,6 +92,49 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- whiteSpace::value -->
+  <test group="attribute" name="[whiteSpace][attribute::value] Empty string">
+    <schema fileName="whiteSpace_value_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid white space type.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[whiteSpace][attribute::value] collapse (uppercase)">
+    <schema fileName="whiteSpace_value_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Collapse" is an invalid white space type.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[whiteSpace][attribute::value] preserve (uppercase)">
+    <schema fileName="whiteSpace_value_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Preserve" is an invalid white space type.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[whiteSpace][attribute::value] replace (uppercase)">
+    <schema fileName="whiteSpace_value_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Replace" is an invalid white space type.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[whiteSpace][attribute::value] collapse preserve">
+    <schema fileName="whiteSpace_value_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"collapse preserve" is an invalid white space type.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[whiteSpace][attribute::value] collapse replace">
+    <schema fileName="whiteSpace_value_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"collapse replace" is an invalid white space type.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[whiteSpace][attribute::value] preserve replace">
+    <schema fileName="whiteSpace_value_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"preserve replace" is an invalid white space type.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
