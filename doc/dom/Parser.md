@@ -185,7 +185,7 @@
 - [x] Parse **annotation** element.
 - [x] Parse **restriction** element (anonymous).
 - [x] Parse **list** element.
-- [ ] Parse **union** element.
+- [x] Parse **union** element.
 
 ## Element: "restriction" (anonymous)
 
@@ -234,6 +234,24 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
+
+## Element: "union"
+
+```
+<union
+  id = ID
+  memberTypes = List of QName
+>
+  Content: (annotation?, simpleType*)
+</union>
+```
+
+- [x] Parse **union** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **memberTypes** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleType** elements (localSimpleType).
 
 ## Element: "minExclusive"
 

@@ -188,6 +188,7 @@ class SpecificationFactoryTest extends TestCase
             [ 21, 0, ], // ELT_WHITESPACE
             [ 22, 0, ], // ELT_PATTERN
             [ 23, 0, ], // ELT_LIST
+            [ 24, 0, ], // ELT_UNION
         ];
     }
     
@@ -228,8 +229,10 @@ class SpecificationFactoryTest extends TestCase
             [ 9, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 9, 0, 10, 'restriction', ], // ELT_SIMPLETYPE_RESTRICTION
             [ 9, 0, 23, 'list', ], // ELT_LIST
+            [ 9, 0, 24, 'union', ], // ELT_UNION
             [ 9, 1, 10, 'restriction', ], // ELT_SIMPLETYPE_RESTRICTION
             [ 9, 1, 23, 'list', ], // ELT_LIST
+            [ 9, 1, 24, 'union', ], // ELT_UNION
             // Context: ELT_SIMPLETYPE_RESTRICTION
             [ 10, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 10, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
@@ -338,8 +341,10 @@ class SpecificationFactoryTest extends TestCase
             [ 9, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 9, 0, 10, 'buildRestrictionElement', ], // ELT_SIMPLETYPE_RESTRICTION
             [ 9, 0, 23, 'buildListElement', ], // ELT_LIST
+            [ 9, 0, 24, 'buildUnionElement', ], // ELT_UNION
             [ 9, 1, 10, 'buildRestrictionElement', ], // ELT_SIMPLETYPE_RESTRICTION
             [ 9, 1, 23, 'buildListElement', ], // ELT_LIST
+            [ 9, 1, 24, 'buildUnionElement', ], // ELT_UNION
             // Context: ELT_SIMPLETYPE_RESTRICTION
             [ 10, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 10, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
@@ -448,8 +453,10 @@ class SpecificationFactoryTest extends TestCase
             [ 9, 0, 2, 1, ], // ELT_ANNOTATION
             [ 9, 0, 10, 2, ], // ELT_SIMPLETYPE_RESTRICTION
             [ 9, 0, 23, 2, ], // ELT_LIST
+            [ 9, 0, 24, 2, ], // ELT_UNION
             [ 9, 1, 10, 2, ], // ELT_SIMPLETYPE_RESTRICTION
             [ 9, 1, 23, 2, ], // ELT_LIST
+            [ 9, 1, 24, 2, ], // ELT_UNION
             // Context: ELT_SIMPLETYPE_RESTRICTION
             [ 10, 0, 2, 1, ], // ELT_ANNOTATION
             [ 10, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE

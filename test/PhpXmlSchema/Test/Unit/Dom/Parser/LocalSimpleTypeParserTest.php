@@ -205,6 +205,41 @@ class LocalSimpleTypeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "union" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessUnionElement()
+    {
+        $sch = $this->sut->parse($this->getXs('union_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $union = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $union);
+        self::assertUnionElementHasNoAttribute($union);
+        self::assertSame([], $union->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
