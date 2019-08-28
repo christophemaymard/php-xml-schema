@@ -865,4 +865,65 @@ trait ValueProviderTrait
             ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid white space type values.
+     * 
+     * @return  array[]
+     */
+    public function getValidWhiteSpaceValues():array
+    {
+        return [
+            'collapse' => [ 
+                'collapse', 
+                TRUE, 
+                FALSE, 
+                FALSE, 
+            ], 
+            'preserve' => [ 
+                'preserve', 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+            ], 
+            'replace' => [ 
+                'replace', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid white space type values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidWhiteSpaceValues():array
+    {
+        return [
+            'Empty string' => [ 
+                '', 
+            ], 
+            'collapse (uppercase)' => [ 
+                'Collapse', 
+            ], 
+            'preserve (uppercase)' => [ 
+                'Preserve', 
+            ], 
+            'replace (uppercase)' => [ 
+                'Replace', 
+            ], 
+            'collapse preserve' => [ 
+                'collapse preserve', 
+            ], 
+            'collapse replace' => [ 
+                'collapse replace', 
+            ], 
+            'preserve replace' => [ 
+                'preserve replace', 
+            ], 
+        ];
+    }
 }
