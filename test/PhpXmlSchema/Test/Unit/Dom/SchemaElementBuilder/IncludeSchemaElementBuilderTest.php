@@ -66,6 +66,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildPatternElementDoesNotCreateElementTestTrait;
     use BuildListElementDoesNotCreateElementTestTrait;
     use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
+    use BuildUnionElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

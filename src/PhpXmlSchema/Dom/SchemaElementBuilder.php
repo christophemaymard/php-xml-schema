@@ -697,6 +697,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildUnionElement()
+    {
+        if ($this->currentElement instanceof SimpleTypeElement) {
+            $elt = new UnionElement();
+            $this->currentElement->setDerivationElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildWhiteSpaceElement()
     {
         if ($this->currentElement instanceof SimpleTypeRestrictionElement) {

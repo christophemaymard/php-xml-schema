@@ -255,4 +255,29 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
         self::assertListElementHasNoAttribute($list);
         self::assertSame([], $list->getElements());
     }
+    
+    /**
+     * Tests that buildUnionElement() creates the element when the current 
+     * element is the "simpleType" element (localSimpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildUnionElementCreateEltWhenLocalSimpleType()
+    {
+        $this->sut->buildUnionElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $st = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $union = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $union);
+        self::assertUnionElementHasNoAttribute($union);
+        self::assertSame([], $union->getElements());
+    }
 }
