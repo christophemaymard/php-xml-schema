@@ -207,6 +207,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_WHITESPACE:
                 case ElementId::ELT_PATTERN:
                 case ElementId::ELT_LIST:
+                case ElementId::ELT_UNION:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }
