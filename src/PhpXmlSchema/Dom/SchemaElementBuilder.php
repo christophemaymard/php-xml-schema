@@ -674,6 +674,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
+                case ElementId::ELT_LIST:
                     $elt = new SimpleTypeElement();
                     $this->currentElement->setSimpleTypeElement($elt);
                     $this->currentElement = $elt;

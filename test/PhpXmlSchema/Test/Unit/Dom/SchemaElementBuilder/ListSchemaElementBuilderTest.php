@@ -50,7 +50,6 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
@@ -338,5 +337,30 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+    }
+    
+    /**
+     * Tests that buildSimpleTypeElement() creates the element when the 
+     * current element is the "list" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSimpleTypeElementCreateEltWhenList()
+    {
+        $this->sut->buildSimpleTypeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $list = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $list);
+        self::assertListElementHasNoAttribute($list);
+        self::assertCount(1, $list->getElements());
+        
+        $st = $list->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertSame([], $st->getElements());
     }
 }
