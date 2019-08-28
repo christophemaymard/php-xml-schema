@@ -400,6 +400,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_MINLENGTH:
                 case ElementId::ELT_MAXLENGTH:
                 case ElementId::ELT_ENUMERATION:
+                case ElementId::ELT_WHITESPACE:
                     $elt = new AnnotationElement();
                     $this->currentElement->setAnnotationElement($elt);
                     $this->currentElement = $elt;
