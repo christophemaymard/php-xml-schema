@@ -62,6 +62,7 @@ class MinExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
+    use BuildPatternElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

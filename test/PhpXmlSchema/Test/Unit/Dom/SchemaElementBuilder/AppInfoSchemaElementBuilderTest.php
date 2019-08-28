@@ -64,6 +64,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
+    use BuildPatternElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

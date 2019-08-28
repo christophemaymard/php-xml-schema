@@ -63,6 +63,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
+    use BuildPatternElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

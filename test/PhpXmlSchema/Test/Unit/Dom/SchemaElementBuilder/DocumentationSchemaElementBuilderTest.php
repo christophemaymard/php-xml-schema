@@ -63,6 +63,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
+    use BuildPatternElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

@@ -63,6 +63,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
+    use BuildPatternElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

@@ -615,6 +615,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildPatternElement()
+    {
+        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
+            $elt = new PatternElement();
+            $this->currentElement->addPatternElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildRestrictionElement()
     {
         if ($this->currentElement instanceof SimpleTypeElement) {
