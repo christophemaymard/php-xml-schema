@@ -30,6 +30,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use PhpXmlSchema\Dom\TotalDigitsElement;
+use PhpXmlSchema\Dom\UnionElement;
 use PhpXmlSchema\Dom\WhiteSpaceElement;
 
 /**
@@ -1369,5 +1370,17 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasItemType());
+    }
+    
+    /**
+     * Asserts that the specified "union" element has no attribute.
+     * 
+     * @param   UnionElement    $sut    The element to test.
+     */
+    public static function assertUnionElementHasNoAttribute(
+        UnionElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMemberTypes());
     }
 }
