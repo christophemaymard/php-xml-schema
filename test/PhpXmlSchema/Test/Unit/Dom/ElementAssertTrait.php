@@ -1305,4 +1305,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
+    
+    /**
+     * Asserts that the specified "pattern" element has only the "id" 
+     * attribute.
+     * 
+     * @param   PatternElement  $sut    The element to test.
+     */
+    public static function assertPatternElementHasOnlyIdAttribute(
+        PatternElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasValue());
+    }
 }
