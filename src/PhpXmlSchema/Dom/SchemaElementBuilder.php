@@ -344,6 +344,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_WHITESPACE:
                     $this->currentElement->setValue($this->parseWhiteSpace($value));
                     break;
+                case ElementId::ELT_PATTERN:
+                    $this->currentElement->setValue(new StringType($value));
+                    break;
             }
         }
     }

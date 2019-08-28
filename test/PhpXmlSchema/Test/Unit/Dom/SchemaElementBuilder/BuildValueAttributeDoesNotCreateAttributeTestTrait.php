@@ -43,6 +43,10 @@ trait BuildValueAttributeDoesNotCreateAttributeTestTrait
         $this->sut->buildValueAttribute('COLLAPSE');
         $this->sut->buildValueAttribute('preserve');
         
+        // string
+        $this->sut->buildValueAttribute("\u{0000}");
+        $this->sut->buildValueAttribute('foo');
+        
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementNotChanged($sch);

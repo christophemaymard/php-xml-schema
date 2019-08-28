@@ -54,7 +54,6 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
@@ -191,5 +190,49 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "pattern" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidStringValues
+     */
+    public function testBuildValueAttributeCreatesAttrWhenPatternAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildValueAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $pat = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $pat);
+        self::assertPatternElementHasOnlyValueAttribute($pat);
+        self::assertSame($value, $pat->getValue()->getString());
+        self::assertSame([], $pat->getElements());
+    }
+    
+    /**
+     * Tests that buildValueAttribute() throws an exception when the current 
+     * element is the "pattern" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidStringValues
+     */
+    public function testBuildValueAttributeThrowsExceptionWhenPatternAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid string.', $value));
+        
+        $this->sut->buildValueAttribute($value);
     }
 }
