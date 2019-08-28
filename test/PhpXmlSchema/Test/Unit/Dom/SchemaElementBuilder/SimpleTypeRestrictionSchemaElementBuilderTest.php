@@ -52,6 +52,7 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
+    use BuildListElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

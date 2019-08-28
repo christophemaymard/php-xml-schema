@@ -63,6 +63,7 @@ class MaxInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     use BuildPatternElementDoesNotCreateElementTestTrait;
+    use BuildListElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

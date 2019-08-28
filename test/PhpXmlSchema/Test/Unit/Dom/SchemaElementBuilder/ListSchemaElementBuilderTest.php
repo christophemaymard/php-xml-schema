@@ -9,18 +9,17 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is the "enumeration" element.
+ * class when the current element is the "list" element.
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BindNamespaceTestTrait;
     
@@ -28,6 +27,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
+    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -39,6 +39,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -53,6 +54,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
+    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
@@ -73,10 +75,10 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     {
         self::assertAncestorsNotChanged($sch);
         
-        $enum = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $enum);
-        self::assertEnumerationElementHasNoAttribute($enum);
-        self::assertSame([], $enum->getElements());
+        $list = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $list);
+        self::assertListElementHasNoAttribute($list);
+        self::assertSame([], $list->getElements());
     }
     
     /**
@@ -97,12 +99,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasNoAttribute($st);
         self::assertCount(1, $st->getElements());
-        
-        $res = $st->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $res);
-        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
-        self::assertCount(1, $res->getElements());
-        self::assertCount(1, $res->getEnumerationElements());
+        self::assertNotNull($st->getDerivationElement());
     }
     
     /**
@@ -110,7 +107,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
-        self::assertEnumerationElementHasNoAttribute(self::getCurrentElement($sch));
+        self::assertListElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -120,8 +117,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     {
         return $sch->getAttributeElements()[0]
             ->getSimpleTypeElement()
-            ->getDerivationElement()
-            ->getEnumerationElements()[0];
+            ->getDerivationElement();
     }
     
     /**
@@ -132,8 +128,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
         $this->sut->buildSimpleTypeElement();
-        $this->sut->buildRestrictionElement();
-        $this->sut->buildEnumerationElement();
+        $this->sut->buildListElement();
     }
     
     /**
@@ -142,99 +137,5 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that buildIdAttribute() creates the attribute when the current 
-     * element is the "enumeration" element and the value is valid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $id     The expected value for the ID.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidIdValues
-     */
-    public function testBuildIdAttributeCreatesAttrWhenEnumerationAndValueIsValid(
-        string $value, 
-        string $id
-    ) {
-        $this->sut->buildIdAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $enum = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $enum);
-        self::assertEnumerationElementHasOnlyIdAttribute($enum);
-        self::assertSame($id, $enum->getId()->getId());
-        self::assertSame([], $enum->getElements());
-    }
-    
-    /**
-     * Tests that buildIdAttribute() throws an exception when the current 
-     * element is the "enumeration" element and the value is invalid.
-     * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getInvalidIdValues
-     */
-    public function testBuildIdAttributeThrowsExceptionWhenEnumerationAndValueIsInvalid(
-        string $value, 
-        string $message
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
-        
-        $this->sut->buildIdAttribute($value);
-    }
-    
-    /**
-     * Tests that buildValueAttribute() creates the attribute when the 
-     * current element is the "enumeration" element and the value is valid.
-     * 
-     * @group   attribute
-     * @group   parsing
-     */
-    public function testBuildValueAttributeCreatesAttrWhenEnumerationAndValueIsValid()
-    {
-        $this->sut->buildValueAttribute('foo');
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $enum = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $enum);
-        self::assertEnumerationElementHasOnlyValueAttribute($enum);
-        self::assertSame('foo', $enum->getValue());
-        self::assertSame([], $enum->getElements());
-    }
-    
-    /**
-     * Tests that buildAnnotationElement() creates the element when the 
-     * current element is the "enumeration" element.
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildAnnotationElementCreateEltWhenEnumeration()
-    {
-        $this->sut->buildAnnotationElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $enum = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $enum);
-        self::assertEnumerationElementHasNoAttribute($enum);
-        self::assertCount(1, $enum->getElements());
-        
-        $ann = $enum->getAnnotationElement();
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertSame([], $ann->getElements());
     }
 }

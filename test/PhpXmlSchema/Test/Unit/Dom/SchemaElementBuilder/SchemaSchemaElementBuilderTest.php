@@ -53,6 +53,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     use BuildPatternElementDoesNotCreateElementTestTrait;
+    use BuildListElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

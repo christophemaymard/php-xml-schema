@@ -500,6 +500,7 @@ class ParserContextTest extends TestCase
             public function buildImportElement() {}
             public function buildIncludeElement() {}
             public function buildLengthElement() {}
+            public function buildListElement() {}
             public function buildMaxExclusiveElement() {}
             public function buildMaxInclusiveElement() {}
             public function buildMaxLengthElement() {}
