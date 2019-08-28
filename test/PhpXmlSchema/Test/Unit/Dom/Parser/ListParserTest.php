@@ -234,6 +234,46 @@ class ListParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "simpleType" element (localSimpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessSimpleType()
+    {
+        $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st1 = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st1);
+        self::assertSimpleTypeElementHasNoAttribute($st1);
+        self::assertCount(1, $st1->getElements());
+        
+        $list = $st1->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $list);
+        self::assertListElementHasNoAttribute($list);
+        self::assertCount(1, $list->getElements());
+        
+        $st2 = $list->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st2);
+        self::assertSimpleTypeElementHasNoAttribute($st2);
+        self::assertSame([], $st2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
