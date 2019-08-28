@@ -27,7 +27,7 @@
   <test group="content" name="[whiteSpace] foo child element is not supported">
     <schema fileName="whiteSpace_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation".</message>
     </schema>
   </test>
   <!-- whiteSpace::fixed -->
@@ -133,6 +133,20 @@
     <schema fileName="whiteSpace_value_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"preserve replace" is an invalid white space type.</message>
+    </schema>
+  </test>
+  <!-- annotation -->
+  <test group="content" name="[whiteSpace][annotation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
+    </schema>
+  </test>
+  <!-- container -->
+  <test group="content" name="[whiteSpace][container] annotation unexpected annotation">
+    <schema fileName="container_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
   <!-- TEMPLATE
