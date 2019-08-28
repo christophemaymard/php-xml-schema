@@ -769,6 +769,51 @@ class SimpleTypeRestrictionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "pattern" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessPattern()
+    {
+        $sch = $this->sut->parse($this->getXs('pattern_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st1 = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st1);
+        self::assertSimpleTypeElementHasNoAttribute($st1);
+        self::assertCount(1, $st1->getElements());
+        
+        $res = $st1->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $pats = $res->getPatternElements();
+        
+        self::assertElementNamespaceDeclarations([], $pats[0]);
+        self::assertPatternElementHasNoAttribute($pats[0]);
+        self::assertSame([], $pats[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $pats[1]);
+        self::assertPatternElementHasNoAttribute($pats[1]);
+        self::assertSame([], $pats[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "base" attributes with no prefix and no default 
      * namespace.
      * 

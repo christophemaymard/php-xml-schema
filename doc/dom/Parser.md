@@ -215,7 +215,7 @@
 - [x] Parse **maxLength** elements.
 - [x] Parse **enumeration** elements.
 - [x] Parse **whiteSpace** elements.
-- [ ] Parse **pattern** elements.
+- [x] Parse **pattern** elements.
 
 ## Element: "minExclusive"
 
@@ -423,4 +423,21 @@
 - [x] Parse **value** attribute.
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "pattern"
+
+```
+<pattern
+  id = ID
+  value = string
+>
+  Content: (annotation?)
+</pattern>
+```
+
+- [x] Parse **pattern** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **value** attribute.
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
