@@ -53,7 +53,6 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
@@ -235,5 +234,57 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildValueAttribute() creates the attribute when the 
+     * current element is the "whiteSpace" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $coll   The expected value for the collapse flag.
+     * @param   bool    $pres   The expected value for the preserve flag.
+     * @param   bool    $rep    The expected value for the replace flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidWhiteSpaceValues
+     */
+    public function testBuildValueAttributeCreatesAttrWhenWhiteSpaceAndValueIsValid(
+        string $value, 
+        bool $coll,
+        bool $pres,
+        bool $rep
+    ) {
+        $this->sut->buildValueAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $wp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $wp);
+        self::assertWhiteSpaceElementHasOnlyValueAttribute($wp);
+        self::assertSame($coll, $wp->getValue()->isCollapse());
+        self::assertSame($pres, $wp->getValue()->isPreserve());
+        self::assertSame($rep, $wp->getValue()->isReplace());
+        self::assertSame([], $wp->getElements());
+    }
+    
+    /**
+     * Tests that buildValueAttribute() throws an exception when the current 
+     * element is the "whiteSpace" element and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidWhiteSpaceValues
+     */
+    public function testBuildValueAttributeThrowsExceptionWhenWhiteSpaceAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid white space type.', $value));
+        
+        $this->sut->buildValueAttribute($value);
     }
 }

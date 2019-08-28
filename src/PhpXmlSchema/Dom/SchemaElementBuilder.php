@@ -340,6 +340,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_MAXLENGTH:
                     $this->currentElement->setValue($this->parseNonNegativeInteger($value));
                     break;
+                case ElementId::ELT_WHITESPACE:
+                    $this->currentElement->setValue($this->parseWhiteSpace($value));
+                    break;
             }
         }
     }
@@ -876,6 +879,29 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         // \gmp_init() removes leading zeroes when the decimal base (10) is 
         // provided.
         return new NonNegativeIntegerType(\gmp_init($matches[2], 10));
+    }
+    
+    /**
+     * Parses the specified value in WhiteSpaceType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  WhiteSpaceType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid white space type.
+     */
+    private function parseWhiteSpace(string $value):WhiteSpaceType
+    {
+        if ($value == 'collapse') {
+            $ws = WhiteSpaceType::createCollapse();
+        } elseif ($value == 'preserve') {
+            $ws = WhiteSpaceType::createPreserve();
+        } elseif ($value == 'replace') {
+            $ws = WhiteSpaceType::createReplace();
+        } else {
+            throw new InvalidValueException(\sprintf('"%s" is an invalid white space type.', $value));
+        }
+        
+        return $ws;
     }
     
     /**

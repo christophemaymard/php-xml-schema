@@ -39,6 +39,10 @@ trait BuildValueAttributeDoesNotCreateAttributeTestTrait
         $this->sut->buildValueAttribute('-9');
         $this->sut->buildValueAttribute('+5');
         
+        // white space
+        $this->sut->buildValueAttribute('COLLAPSE');
+        $this->sut->buildValueAttribute('preserve');
+        
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementNotChanged($sch);
