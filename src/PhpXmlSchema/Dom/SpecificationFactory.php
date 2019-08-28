@@ -46,6 +46,7 @@ class SpecificationFactory
         ContextId::ELT_ENUMERATION => 0, 
         ContextId::ELT_WHITESPACE => 0, 
         ContextId::ELT_PATTERN => 0, 
+        ContextId::ELT_LIST => 0, 
     ];
     
     /**
@@ -87,7 +88,9 @@ class SpecificationFactory
         ContextId::ELT_LOCAL_SIMPLETYPE => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_SIMPLETYPE_RESTRICTION, 'restriction', ], 
+            [ 0, ContextId::ELT_LIST, 'list', ], 
             [ 1, ContextId::ELT_SIMPLETYPE_RESTRICTION, 'restriction', ], 
+            [ 1, ContextId::ELT_LIST, 'list', ], 
         ], 
         ContextId::ELT_SIMPLETYPE_RESTRICTION => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
@@ -208,7 +211,9 @@ class SpecificationFactory
         ContextId::ELT_LOCAL_SIMPLETYPE => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
             [ 0, ContextId::ELT_SIMPLETYPE_RESTRICTION, 'buildRestrictionElement', ], 
+            [ 0, ContextId::ELT_LIST, 'buildListElement', ], 
             [ 1, ContextId::ELT_SIMPLETYPE_RESTRICTION, 'buildRestrictionElement', ], 
+            [ 1, ContextId::ELT_LIST, 'buildListElement', ], 
         ], 
         ContextId::ELT_SIMPLETYPE_RESTRICTION => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
@@ -328,7 +333,9 @@ class SpecificationFactory
         ContextId::ELT_LOCAL_SIMPLETYPE => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_SIMPLETYPE_RESTRICTION, 2, ], 
+            [ 0, ContextId::ELT_LIST, 2, ], 
             [ 1, ContextId::ELT_SIMPLETYPE_RESTRICTION, 2, ], 
+            [ 1, ContextId::ELT_LIST, 2, ], 
         ], 
         ContextId::ELT_SIMPLETYPE_RESTRICTION => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 

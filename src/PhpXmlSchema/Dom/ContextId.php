@@ -37,4 +37,5 @@ class ContextId
     const ELT_ENUMERATION = 20;
     const ELT_WHITESPACE = 21;
     const ELT_PATTERN = 22;
+    const ELT_LIST = 23;
 }

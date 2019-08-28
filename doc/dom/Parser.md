@@ -184,7 +184,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **restriction** element (anonymous).
-- [ ] Parse **list** element.
+- [x] Parse **list** element.
 - [ ] Parse **union** element.
 
 ## Element: "restriction" (anonymous)
@@ -216,6 +216,24 @@
 - [x] Parse **enumeration** elements.
 - [x] Parse **whiteSpace** elements.
 - [x] Parse **pattern** elements.
+
+## Element: "list"
+
+```
+<list
+  id = ID
+  itemType = QName
+>
+  Content: (annotation?, simpleType?)
+</list>
+```
+
+- [x] Parse **list** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **itemType** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleType** element (localSimpleType).
 
 ## Element: "minExclusive"
 
