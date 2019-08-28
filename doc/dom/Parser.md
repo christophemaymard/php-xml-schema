@@ -247,9 +247,9 @@
 ```
 
 - [x] Parse **union** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **memberTypes** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleType** elements (localSimpleType).
 

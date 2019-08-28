@@ -555,6 +555,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'itemType', '', 'buildItemTypeAttribute', ], 
         ], 
+        ContextId::ELT_UNION => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
