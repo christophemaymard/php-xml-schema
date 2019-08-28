@@ -73,6 +73,139 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- list::itemType -->
+  <test group="attribute" name="[list][attribute::itemType] Prefix (absent), local part (empty string)">
+    <schema fileName="list_itemType_0024.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (absent), local part (only white spaces)">
+    <schema fileName="list_itemType_0025.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (absent), local part (separated by white spaces)">
+    <schema fileName="list_itemType_0026.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (absent), local part (starts with digit)">
+    <schema fileName="list_itemType_0027.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (absent), local part (starts with .)">
+    <schema fileName="list_itemType_0028.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (absent), local part (starts with -)">
+    <schema fileName="list_itemType_0029.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (absent), local part (contains invalid character)">
+    <schema fileName="list_itemType_0030.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (empty string), local part (valid)">
+    <schema fileName="list_itemType_0031.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (only white spaces), local part (valid)">
+    <schema fileName="list_itemType_0032.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (separated by white spaces), local part (valid)">
+    <schema fileName="list_itemType_0033.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (starts with digit), local part (valid)">
+    <schema fileName="list_itemType_0034.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (starts with .), local part (valid)">
+    <schema fileName="list_itemType_0035.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (starts with -), local part (valid)">
+    <schema fileName="list_itemType_0036.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (contains invalid character), local part (valid)">
+    <schema fileName="list_itemType_0037.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (valid), local part (empty string)">
+    <schema fileName="list_itemType_0038.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (valid), local part (only white spaces)">
+    <schema fileName="list_itemType_0039.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (valid), local part (separated by white spaces)">
+    <schema fileName="list_itemType_0040.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (valid), local part (starts with digit)">
+    <schema fileName="list_itemType_0041.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (valid), local part (starts with .)">
+    <schema fileName="list_itemType_0042.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (valid), local part (starts with -)">
+    <schema fileName="list_itemType_0043.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix (valid), local part (contains invalid character)">
+    <schema fileName="list_itemType_0044.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[list][attribute::itemType] Prefix not bound to namespace">
+    <schema fileName="list_itemType_0045.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" prefix is not bound to a namespace.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

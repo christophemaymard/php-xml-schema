@@ -230,7 +230,7 @@
 
 - [x] Parse **list** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **itemType** attribute (collapsing white spaces).
+- [x] Parse **itemType** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleType** element (localSimpleType).

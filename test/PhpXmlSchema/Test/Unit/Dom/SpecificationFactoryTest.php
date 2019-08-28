@@ -604,6 +604,7 @@ class SpecificationFactoryTest extends TestCase
             [ 22, 'value', '', 'buildValueAttribute', ], 
             // Context: ELT_LIST
             [ 23, 'id', '', 'buildIdAttribute', ], 
+            [ 23, 'itemType', '', 'buildItemTypeAttribute', ], 
         ];
     }
 }

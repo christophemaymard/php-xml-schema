@@ -531,6 +531,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_LIST => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'itemType', '', 'buildItemTypeAttribute', ], 
         ], 
     ];
     
