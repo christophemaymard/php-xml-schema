@@ -120,6 +120,52 @@ class PatternParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "value" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $string     The expected value for the string.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidValueAttributes
+     */
+    public function testParseProcessValueAttribute(
+        string $fileName, 
+        string $string
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $pat = $res->getPatternElements()[0];
+        self::assertElementNamespaceDeclarations([], $pat);
+        self::assertPatternElementHasOnlyValueAttribute($pat);
+        self::assertSame($string, $pat->getValue()->getString());
+        self::assertSame([], $pat->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -150,6 +196,33 @@ class PatternParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'pattern_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "value" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidValueAttributes():array
+    {
+        return [
+            'Empty string' => [
+                'pattern_value_0001.xsd', 
+                '', 
+            ], 
+            'Only white spaces' => [
+                'pattern_value_0002.xsd', 
+                '                  ', 
+            ], 
+            'Alphanumeric' => [
+                'pattern_value_0003.xsd', 
+                'foo3bar6baz9', 
+            ], 
+            'Alphanumeric with white spaces' => [
+                'pattern_value_0004.xsd', 
+                '  foo2    bar9   baz8    qux1  ', 
             ], 
         ];
     }
