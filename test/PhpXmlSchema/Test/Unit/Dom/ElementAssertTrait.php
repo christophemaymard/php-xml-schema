@@ -1357,4 +1357,17 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasItemType());
     }
+    
+    /**
+     * Asserts that the specified "list" element has only the "itemType" 
+     * attribute.
+     * 
+     * @param   ListElement $sut    The element to test.
+     */
+    public static function assertListElementHasOnlyItemTypeAttribute(
+        ListElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasItemType());
+    }
 }
