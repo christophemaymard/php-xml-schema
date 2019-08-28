@@ -417,6 +417,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_ENUMERATION:
                 case ElementId::ELT_WHITESPACE:
                 case ElementId::ELT_PATTERN:
+                case ElementId::ELT_LIST:
                     $elt = new AnnotationElement();
                     $this->currentElement->setAnnotationElement($elt);
                     $this->currentElement = $elt;
