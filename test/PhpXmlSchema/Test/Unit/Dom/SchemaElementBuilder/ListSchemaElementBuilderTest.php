@@ -191,6 +191,36 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * Tests that buildItemTypeAttribute() creates the attribute when:
      * - the current element is the "list" element, and 
      * - the value is a valid QName (local part without prefix), and 
+     * - no default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildItemTypeAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $list = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $list);
+        self::assertListElementHasOnlyItemTypeAttribute($list);
+        self::assertSame($localPart, $list->getItemType()->getLocalPart()->getNCName());
+        self::assertFalse($list->getItemType()->hasNamespace());
+        self::assertSame([], $list->getElements());
+    }
+    
+    /**
+     * Tests that buildItemTypeAttribute() creates the attribute when:
+     * - the current element is the "list" element, and 
+     * - the value is a valid QName (local part without prefix), and 
      * - default namespace.
      * 
      * @param   string  $value      The value to test.
