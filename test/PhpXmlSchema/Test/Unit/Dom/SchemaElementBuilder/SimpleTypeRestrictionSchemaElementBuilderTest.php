@@ -131,6 +131,36 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
      * Tests that buildBaseAttribute() creates the attribute when:
      * - the current element is the "restriction" element (simpleType), and 
      * - the value is a valid QName (local part without prefix), and 
+     * - no default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildBaseAttributeCreatesAttrWhenSimpleTypeRestrictionAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildBaseAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasOnlyBaseAttribute($res);
+        self::assertSame($localPart, $res->getBase()->getLocalPart()->getNCName());
+        self::assertFalse($res->getBase()->hasNamespace());
+        self::assertSame([], $res->getElements());
+    }
+    
+    /**
+     * Tests that buildBaseAttribute() creates the attribute when:
+     * - the current element is the "restriction" element (simpleType), and 
+     * - the value is a valid QName (local part without prefix), and 
      * - default namespace.
      * 
      * @param   string  $value      The value to test.
