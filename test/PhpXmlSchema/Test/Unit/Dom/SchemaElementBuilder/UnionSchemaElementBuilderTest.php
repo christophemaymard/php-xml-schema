@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
@@ -187,5 +188,190 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMemberTypesAttribute() creates the attribute when:
+     * - the current element is the "union" element, and 
+     * - the value is a valid QName list, and 
+     * - multiple QName with a local part and no prefix, and 
+     * - no default namespace.
+     * 
+     * @param   string      $value      The value to test.
+     * @param   string[]    $localParts The expected value for the local parts.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameListLValues
+     */
+    public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidLAndNoDefaultNamespace(
+        string $value, 
+        array $localParts
+    ) {
+        $this->sut->buildMemberTypesAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $union = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $union);
+        self::assertUnionElementHasOnlyMemberTypesAttribute($union);
+        $qnames = $union->getMemberTypes();
+        self::assertSame(\count($localParts), \count($qnames));
+        
+        foreach ($localParts as $idx => $localPart) {
+            self::assertSame($localPart, $qnames[$idx]->getLocalPart()->getNCName());
+            self::assertFalse($qnames[$idx]->hasNamespace());
+        }
+        
+        self::assertSame([], $union->getElements());
+    }
+    
+    /**
+     * Tests that buildMemberTypesAttribute() creates the attribute when:
+     * - the current element is the "union" element, and 
+     * - the value is a valid QName list, and 
+     * - 1 QName with a local part and no prefix, and 
+     * - default namespace.
+     * 
+     * @param   string      $value      The value to test.
+     * @param   string[]    $localParts The expected value for the local parts.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameListLValues
+     */
+    public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidLAndDefaultNamespace(
+        string $value, 
+        array $localParts
+    ) {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('', 'http://example.org');
+        $this->sut->buildAttributeElement();
+        $this->sut->buildSimpleTypeElement();
+        $this->sut->buildUnionElement();
+        $this->sut->buildMemberTypesAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['' => 'http://example.org' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        self::assertNotNull($st->getDerivationElement());
+        
+        $union = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $union);
+        self::assertUnionElementHasOnlyMemberTypesAttribute($union);
+        $qnames = $union->getMemberTypes();
+        self::assertSame(\count($localParts), \count($qnames));
+        
+        foreach ($localParts as $idx => $localPart) {
+            self::assertSame($localPart, $qnames[$idx]->getLocalPart()->getNCName());
+            self::assertSame('http://example.org', $qnames[$idx]->getNamespace()->getUri());
+        }
+        
+        self::assertSame([], $union->getElements());
+    }
+    
+    /**
+     * Tests that buildMemberTypesAttribute() throws an exception when the 
+     * current element is the "union" element and the value is an invalid 
+     * QName list.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidQNameListValues
+     */
+    public function testBuildMemberTypesAttributeThrowsExceptionWhenUnionAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildMemberTypesAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMemberTypesAttribute() creates the attribute when:
+     * - the current element is the "union" element, and 
+     * - the value is a valid QName list, and 
+     * - 2 QName with a prefix and a local part, and 
+     * - prefixes are associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidAndPrefixAssociatedNamespace()
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->bindNamespace('baz', 'http://example.org/baz');
+        $this->sut->buildAttributeElement();
+        $this->sut->buildSimpleTypeElement();
+        $this->sut->buildUnionElement();
+        $this->sut->buildMemberTypesAttribute('foo:bar baz:qux');
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(
+            [ 
+                'foo' => 'http://example.org/foo', 
+                'baz' => 'http://example.org/baz', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        self::assertNotNull($st->getDerivationElement());
+        
+        $union = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $union);
+        self::assertUnionElementHasOnlyMemberTypesAttribute($union);
+        $qnames = $union->getMemberTypes();
+        self::assertCount(2, $qnames);
+        self::assertSame('bar', $qnames[0]->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/foo', $qnames[0]->getNamespace()->getUri());
+        self::assertSame('qux', $qnames[1]->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/baz', $qnames[1]->getNamespace()->getUri());
+        self::assertSame([], $union->getElements());
+    }
+    
+    /**
+     * Tests that buildMemberTypesAttribute() throws an exception when:
+     * - the current element is the "union" element, and 
+     * - the value is a valid QName list, and 
+     * - the prefix is not associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildMemberTypesAttributeThrowsExceptionWhenUnionAndValueIsValidAndPrefixNotAssociatedNamespace()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "bar" prefix is not bound to a namespace.');
+        
+        $this->sut->buildMemberTypesAttribute('foo bar:baz');
     }
 }

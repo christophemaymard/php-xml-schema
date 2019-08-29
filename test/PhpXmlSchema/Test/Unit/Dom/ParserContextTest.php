@@ -478,6 +478,7 @@ class ParserContextTest extends TestCase
             public function buildFixedAttribute(string $value) {}
             public function buildIdAttribute(string $value) {}
             public function buildItemTypeAttribute(string $value) {}
+            public function buildMemberTypesAttribute(string $value) {}
             public function buildNameAttribute(string $value) {}
             public function buildNamespaceAttribute(string $value) {}
             public function buildPublicAttribute(string $value) {}

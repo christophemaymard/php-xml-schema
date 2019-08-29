@@ -226,6 +226,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildMemberTypesAttribute(string $value)
+    {
+        if ($this->currentElement instanceof UnionElement) {
+            foreach ($this->parseQNameList($value) as $qname) {
+                $this->currentElement->addMemberType($qname);
+            }
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildNameAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {
@@ -840,6 +852,23 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return $ft;
+    }
+    
+    /**
+     * Parses the specified value in QNameType values.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  QNameType[] An indexed array of QName instances.
+     */
+    private function parseQNameList(string $value):array
+    {
+        $qnames = [];
+        
+        foreach (\explode(' ', $this->collapseWhiteSpace($value)) as $qnameValue) {
+            $qnames[] = $this->parseQName($qnameValue);
+        }
+        
+        return $qnames;
     }
     
     /**
