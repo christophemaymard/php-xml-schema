@@ -27,7 +27,7 @@
   <test group="content" name="[union] foo child element is not supported">
     <schema fileName="union_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation".</message>
     </schema>
   </test>
   <!-- union::id -->
@@ -282,6 +282,20 @@
     <schema fileName="union_memberTypes_0091.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
       <message>The "bar" prefix is not bound to a namespace.</message>
+    </schema>
+  </test>
+  <!-- annotation -->
+  <test group="content" name="[union][annotation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
+    </schema>
+  </test>
+  <!-- container -->
+  <test group="content" name="[union][container] annotation unexpected annotation">
+    <schema fileName="container_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
   <!-- TEMPLATE
