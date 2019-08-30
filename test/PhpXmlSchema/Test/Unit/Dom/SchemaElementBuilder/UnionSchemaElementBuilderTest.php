@@ -40,7 +40,6 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -373,5 +372,30 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $this->expectExceptionMessage('The "bar" prefix is not bound to a namespace.');
         
         $this->sut->buildMemberTypesAttribute('foo bar:baz');
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "union" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenUnion()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $union = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $union);
+        self::assertUnionElementHasNoAttribute($union);
+        self::assertCount(1, $union->getElements());
+        
+        $ann = $union->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
