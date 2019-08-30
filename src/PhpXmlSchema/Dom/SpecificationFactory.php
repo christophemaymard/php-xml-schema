@@ -581,6 +581,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'memberTypes', '', 'buildMemberTypesAttribute', ], 
         ], 
+        ContextId::ELT_TOP_SIMPLETYPE => [
+            [ 'final', '', 'buildFinalAttribute', ], 
+        ], 
     ];
     
     /**

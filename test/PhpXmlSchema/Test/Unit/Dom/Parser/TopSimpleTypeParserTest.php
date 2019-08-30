@@ -59,4 +59,90 @@ class TopSimpleTypeParserTest extends AbstractParserTestCase
         self::assertSimpleTypeElementHasNoAttribute($st);
         self::assertSame([], $st->getElements());
     }
+    
+    /**
+     * Tests that parse() processes "final" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $list       The expected value for the "list" flag.
+     * @param   bool    $union      The expected value for the "union" flag.
+     * @param   bool    $res        The expected value for the "restriction" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFinalAttributes
+     */
+    public function testParseProcessFinalAttribute(
+        string $fileName,
+        bool $list, 
+        bool $union, 
+        bool $res
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $st = $sch->getSimpleTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasOnlyFinalAttribute($st);
+        self::assertSimpleTypeElementFinalAttribute($list, $union, $res, $st);
+        self::assertSame([], $st->getElements());
+    }
+    
+    /**
+     * Returns a set of valid "final" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFinalAttributes():array
+    {
+        // [ $fileName, $list, $union, $restriction, ]
+        return [
+            'Empty string' => [
+                'simpleType_final_0001.xsd', FALSE, FALSE, FALSE, 
+            ], 
+            'Only white spaces' => [
+                'simpleType_final_0002.xsd', FALSE, FALSE, FALSE, 
+            ], 
+            '#all' => [
+                'simpleType_final_0003.xsd', TRUE, TRUE, TRUE, 
+            ], 
+            'list, union and restriction with white spaces' => [
+                'simpleType_final_0004.xsd', TRUE, TRUE, TRUE, 
+            ], 
+            'list with white spaces' => [
+                'simpleType_final_0005.xsd', TRUE, FALSE, FALSE, 
+            ], 
+            'union with white spaces' => [
+                'simpleType_final_0006.xsd', FALSE, TRUE, FALSE, 
+            ], 
+            'restriction with white spaces' => [
+                'simpleType_final_0007.xsd', FALSE, FALSE, TRUE, 
+            ], 
+            'restriction and list with white spaces' => [
+                'simpleType_final_0008.xsd', TRUE, FALSE, TRUE, 
+            ], 
+            'union and restriction with white spaces' => [
+                'simpleType_final_0009.xsd', FALSE, TRUE, TRUE, 
+            ], 
+            'list and union with white spaces' => [
+                'simpleType_final_0010.xsd', TRUE, TRUE, FALSE, 
+            ], 
+            'Duplicated list' => [
+                'simpleType_final_0011.xsd', TRUE, FALSE, FALSE, 
+            ], 
+            'Duplicated union' => [
+                'simpleType_final_0012.xsd', FALSE, TRUE, FALSE, 
+            ], 
+            'Duplicated restriction' => [
+                'simpleType_final_0013.xsd', FALSE, FALSE, TRUE, 
+            ], 
+        ];
+    }
 }
