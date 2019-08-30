@@ -244,6 +244,51 @@ class UnionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "simpleType" elements (localSimpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessSimpleTypeElement()
+    {
+        $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $attr = $sch->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $st = $attr->getSimpleTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $union = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $union);
+        self::assertUnionElementHasNoAttribute($union);
+        self::assertCount(2, $union->getElements());
+        
+        $sts = $union->getSimpleTypeElements();
+        
+        self::assertElementNamespaceDeclarations([], $sts[0]);
+        self::assertSimpleTypeElementHasNoAttribute($sts[0]);
+        self::assertSame([], $sts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $sts[1]);
+        self::assertSimpleTypeElementHasNoAttribute($sts[1]);
+        self::assertSame([], $sts[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

@@ -251,7 +251,7 @@
 - [x] Parse **memberTypes** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **simpleType** elements (localSimpleType).
+- [x] Parse **simpleType** elements (localSimpleType).
 
 ## Element: "minExclusive"
 
