@@ -711,6 +711,20 @@ trait ElementAssertTrait
     }
     
     /**
+     * Asserts that the specified "simpleType" element has only the "name" 
+     * attribute.
+     * 
+     * @param   SimpleTypeElement   $sut    The element to test.
+     */
+    public static function assertSimpleTypeElementHasOnlyNameAttribute(
+        SimpleTypeElement $sut
+    ) {
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasName());
+    }
+    
+    /**
      * Asserts that the specified "restriction" element (simpleType) has no 
      * attribute.
      * 
