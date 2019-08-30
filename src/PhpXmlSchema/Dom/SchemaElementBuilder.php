@@ -186,13 +186,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_SIMPLETYPE:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_SCHEMA:
                 case ElementId::ELT_ANNOTATION:
                 case ElementId::ELT_IMPORT:
                 case ElementId::ELT_INCLUDE:
                 case ElementId::ELT_NOTATION:
                 case ElementId::ELT_ATTRIBUTE:
-                case ElementId::ELT_SIMPLETYPE:
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
@@ -412,11 +415,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SIMPLETYPE:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_IMPORT:
                 case ElementId::ELT_INCLUDE:
                 case ElementId::ELT_NOTATION:
                 case ElementId::ELT_ATTRIBUTE:
-                case ElementId::ELT_SIMPLETYPE:
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
@@ -564,7 +570,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildListElement()
     {
-        if ($this->currentElement instanceof SimpleTypeElement) {
+        if ($this->currentElement instanceof SimpleTypeElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement
+        ) {
             $elt = new ListElement();
             $this->currentElement->setDerivationElement($elt);
             $this->currentElement = $elt;
@@ -672,7 +680,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildRestrictionElement()
     {
-        if ($this->currentElement instanceof SimpleTypeElement) {
+        if ($this->currentElement instanceof SimpleTypeElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement
+        ) {
             $elt = new SimpleTypeRestrictionElement();
             $this->currentElement->setDerivationElement($elt);
             $this->currentElement = $elt;
@@ -694,6 +704,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement = $elt;
                     break;
                 case ElementId::ELT_UNION:
+                case ElementId::ELT_SCHEMA:
                     $elt = new SimpleTypeElement();
                     $this->currentElement->addSimpleTypeElement($elt);
                     $this->currentElement = $elt;
@@ -719,7 +730,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildUnionElement()
     {
-        if ($this->currentElement instanceof SimpleTypeElement) {
+        if ($this->currentElement instanceof SimpleTypeElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement
+        ) {
             $elt = new UnionElement();
             $this->currentElement->setDerivationElement($elt);
             $this->currentElement = $elt;

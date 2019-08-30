@@ -37,7 +37,6 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
@@ -711,5 +710,34 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertElementNamespaceDeclarations([], $attrs[1]);
         self::assertAttributeElementHasNoAttribute($attrs[1]);
         self::assertSame([], $attrs[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildSimpleTypeElement() creates the element when the 
+     * current element is the "schema" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSimpleTypeElementCreateEltWhenSchema()
+    {
+        $this->sut->buildSimpleTypeElement();
+        $this->sut->endElement();
+        $this->sut->buildSimpleTypeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations([], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $sts = $sch->getSimpleTypeElements();
+        
+        self::assertElementNamespaceDeclarations([], $sts[0]);
+        self::assertSimpleTypeElementHasNoAttribute($sts[0]);
+        self::assertSame([], $sts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $sts[1]);
+        self::assertSimpleTypeElementHasNoAttribute($sts[1]);
+        self::assertSame([], $sts[1]->getElements());
     }
 }
