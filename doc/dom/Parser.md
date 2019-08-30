@@ -184,7 +184,7 @@
 - [x] Parse **simpleType** element.
 - [x] Parse **final** attribute (collapsing white spaces).
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Parse **name** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **restriction** element (anonymous).

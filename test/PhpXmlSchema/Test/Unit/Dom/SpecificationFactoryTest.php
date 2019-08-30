@@ -649,6 +649,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_TOP_SIMPLETYPE
             [ 25, 'final', '', 'buildFinalAttribute', ], 
             [ 25, 'id', '', 'buildIdAttribute', ], 
+            [ 25, 'name', '', 'buildNameAttribute', ], 
         ];
     }
 }
