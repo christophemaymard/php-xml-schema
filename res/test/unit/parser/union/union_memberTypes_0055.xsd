@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qux="http://example.org/qux" xmlns:f-bar="http://example.org/f-bar">
+  <xs:attribute>
+    <xs:simpleType>
+      <xs:union memberTypes="qux:foo f-bar:baz">
+      </xs:union>
+    </xs:simpleType>
+  </xs:attribute>
+</xs:schema>

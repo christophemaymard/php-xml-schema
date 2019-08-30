@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f.bar="http://example.org/f.bar">
+  <xs:attribute>
+    <xs:simpleType>
+      <xs:union memberTypes="f.bar:baz">
+      </xs:union>
+    </xs:simpleType>
+  </xs:attribute>
+</xs:schema>
