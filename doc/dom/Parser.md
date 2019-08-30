@@ -31,7 +31,7 @@
 - [x] Parse **import** elements.
 - [ ] Parse **redefine** elements.
 - [x] Parse **annotation** elements (composition).
-- [ ] Parse **simpleType** elements.
+- [x] Parse **simpleType** elements (topLevelSimpleType).
 - [ ] Parse **complexType** elements.
 - [ ] Parse **group** elements.
 - [ ] Parse **attributeGroup** elements.
@@ -168,6 +168,28 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
+
+## Element: "simpleType" (topLevelSimpleType)
+
+```
+<simpleType
+  final = (#all | List of (list | union | restriction))
+  id = ID
+  name = NCName
+>
+  Content: (annotation?, (restriction | list | union))
+</simpleType>
+```
+
+- [x] Parse **simpleType** element.
+- [ ] Parse **final** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **restriction** element (anonymous).
+- [ ] Parse **list** element.
+- [ ] Parse **union** element.
 
 ## Element: "simpleType" (localSimpleType)
 

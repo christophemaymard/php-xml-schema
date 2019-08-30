@@ -482,6 +482,36 @@ class SchemaParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "simpleType" elements (topLevelSimpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessSimpleTypeElement()
+    {
+        $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $sts = $sch->getSimpleTypeElements();
+        
+        self::assertElementNamespaceDeclarations([], $sts[0]);
+        self::assertSimpleTypeElementHasNoAttribute($sts[0]);
+        self::assertSame([], $sts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $sts[1]);
+        self::assertSimpleTypeElementHasNoAttribute($sts[1]);
+        self::assertSame([], $sts[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "attributeFormDefault" attributes.
      * 
      * @return  array[]

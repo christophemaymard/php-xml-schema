@@ -189,6 +189,7 @@ class SpecificationFactoryTest extends TestCase
             [ 22, 0, ], // ELT_PATTERN
             [ 23, 0, ], // ELT_LIST
             [ 24, 0, ], // ELT_UNION
+            [ 25, 0, ], // ELT_TOP_SIMPLETYPE
         ];
     }
     
@@ -207,8 +208,10 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 1, 0, 5, 'import', ], // ELT_IMPORT
             [ 1, 0, 6, 'include', ], // ELT_INCLUDE
+            [ 1, 0, 25, 'simpleType', ], // ELT_TOP_SIMPLETYPE
             [ 1, 0, 8, 'attribute', ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 'notation', ], // ELT_NOTATION
+            [ 1, 1, 25, 'simpleType', ], // ELT_TOP_SIMPLETYPE
             [ 1, 1, 8, 'attribute', ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 'notation', ], // ELT_NOTATION
             [ 1, 1, 2, 'annotation', ], // ELT_ANNOTATION
@@ -323,8 +326,10 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 'buildCompositionAnnotationElement', ], // ELT_ANNOTATION
             [ 1, 0, 5, 'buildImportElement', ], // ELT_IMPORT
             [ 1, 0, 6, 'buildIncludeElement', ], // ELT_INCLUDE
+            [ 1, 0, 25, 'buildSimpleTypeElement', ], // ELT_TOP_SIMPLETYPE
             [ 1, 0, 8, 'buildAttributeElement', ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 'buildNotationElement', ], // ELT_NOTATION
+            [ 1, 1, 25, 'buildSimpleTypeElement', ], // ELT_TOP_SIMPLETYPE
             [ 1, 1, 8, 'buildAttributeElement', ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 'buildNotationElement', ], // ELT_NOTATION
             [ 1, 1, 2, 'buildDefinitionAnnotationElement', ], // ELT_ANNOTATION
@@ -439,8 +444,10 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 2, 0, ], // ELT_ANNOTATION
             [ 1, 0, 5, 0, ], // ELT_IMPORT
             [ 1, 0, 6, 0 ], // ELT_INCLUDE
+            [ 1, 0, 25, 1, ], // ELT_TOP_SIMPLETYPE
             [ 1, 0, 8, 1, ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 1, ], // ELT_NOTATION
+            [ 1, 1, 25, 1, ], // ELT_TOP_SIMPLETYPE
             [ 1, 1, 8, 1, ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 1, ], // ELT_NOTATION
             [ 1, 1, 2, 1, ], // ELT_ANNOTATION

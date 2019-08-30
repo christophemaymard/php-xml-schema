@@ -39,4 +39,5 @@ class ContextId
     const ELT_PATTERN = 22;
     const ELT_LIST = 23;
     const ELT_UNION = 24;
+    const ELT_TOP_SIMPLETYPE = 25;
 }
