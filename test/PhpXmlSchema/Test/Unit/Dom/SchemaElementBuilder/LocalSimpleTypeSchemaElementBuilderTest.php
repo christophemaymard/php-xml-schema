@@ -67,6 +67,7 @@ class LocalSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuild
     use BuildPatternElementDoesNotCreateElementTestTrait;
     use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
+    use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -127,5 +128,61 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildFinalAttribute() creates the attribute when the 
+     * current element is the "simpleType" element (topLevelSimpleType) and 
+     * the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $list   The expected value for the "list" flag.
+     * @param   bool    $union  The expected value for the "union" flag.
+     * @param   bool    $res    The expected value for the "restriction" flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidSimpleDerivationSetValues
+     */
+    public function testBuildFinalAttributeCreatesAttrWhenTopSimpleTypeAndValueIsValid(
+        string $value, 
+        bool $list, 
+        bool $union, 
+        bool $res
+    ) {
+        $this->sut->buildFinalAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $st = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasOnlyFinalAttribute($st);
+        self::assertSimpleTypeElementFinalAttribute($list, $union, $res, $st);
+        self::assertSame([], $st->getElements());
+    }
+    
+    /**
+     * Tests that buildFinalAttribute() throws an exception when the current 
+     * element is the "simpleType" element (topLevelSimpleType) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidSimpleDerivationSetValues
+     */
+    public function testBuildFinalAttributeThrowsExceptionWhenTopSimpleTypeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "final" '.
+            'attribute (from no namespace), expected: "#all" or '.
+            '"List of (list | union | restriction)".'
+        );
+        
+        $this->sut->buildFinalAttribute($value);
     }
 }

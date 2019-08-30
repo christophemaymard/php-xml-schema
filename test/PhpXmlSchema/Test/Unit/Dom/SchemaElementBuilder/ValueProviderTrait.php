@@ -1162,4 +1162,96 @@ trait ValueProviderTrait
             ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid "simpleDerivationSet" values.
+     * 
+     * @return  array[]
+     */
+    public function getValidSimpleDerivationSetValues():array
+    {
+        // [ $value, $list, $union, $restriction, ]
+        return [
+            'Empty string' => [ 
+                '', FALSE, FALSE, FALSE, 
+            ],
+            'Only white spaces' => [ 
+                "\t    \r    \n", FALSE, FALSE, FALSE, 
+            ],
+            '#all' => [ 
+                '#all', TRUE, TRUE, TRUE, 
+            ],
+            'list, union and restriction with white spaces' => [ 
+                " union\t \r \nlist\t \r \nrestriction  ", TRUE, TRUE, TRUE, 
+            ],
+            'list with white spaces' => [ 
+                " list\r", TRUE, FALSE, FALSE, 
+            ],
+            'union with white spaces' => [ 
+                "   union   ", FALSE, TRUE, FALSE, 
+            ],
+            'restriction with white spaces' => [ 
+                "\t \r \n  restriction  ", FALSE, FALSE, TRUE, 
+            ],
+            'restriction and list with white spaces' => [ 
+                "\t\t\t restriction \n   \rlist\n ", TRUE, FALSE, TRUE, 
+            ],
+            'union and restriction with white spaces' => [ 
+                "\n\n\nunion restriction", FALSE, TRUE, TRUE, 
+            ],
+            'list and union with white spaces' => [ 
+                "list\t\t\tunion\n\n\n", TRUE, TRUE, FALSE, 
+            ],
+            'Duplicated list' => [ 
+                'list list', TRUE, FALSE, FALSE, 
+            ],
+            'Duplicated union' => [ 
+                'union union', FALSE, TRUE, FALSE, 
+            ],
+            'Duplicated restriction' => [ 
+                'restriction restriction', FALSE, FALSE, TRUE, 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "simpleDerivationSet" values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidSimpleDerivationSetValues():array
+    {
+        return [
+            'Not list neither union neither restriction' => [ 
+                'foo', 
+            ],
+            '#all (uppercase)' => [ 
+                '#ALL', 
+            ],
+            '#all with white spaces' => [ 
+                '    #all    ', 
+            ], 
+            'list (uppercase)' => [ 
+                'List', 
+            ],
+            'union (uppercase)' => [ 
+                'unIon', 
+            ],
+            'restriction (uppercase)' => [ 
+                'Restriction', 
+            ],
+            '#all with list' => [ 
+                '#all list', 
+            ],
+            '#all with union' => [ 
+                'union #all', 
+            ],
+            '#all with restriction' => [ 
+                '#all restriction', 
+            ],
+            'Value not list neither union neither restriction in list' => [ 
+                'list union foo restriction', 
+            ],
+        ];
+    }
 }

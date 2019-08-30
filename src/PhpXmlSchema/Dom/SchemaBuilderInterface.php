@@ -92,6 +92,18 @@ interface SchemaBuilderInterface
     public function buildElementFormDefaultAttribute(string $value);
     
     /**
+     * Builds a "final" attribute in the current element.
+     * 
+     * If the current element does not support the attribute then it is not 
+     * built.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
+     */
+    public function buildFinalAttribute(string $value);
+    
+    /**
      * Builds a "finalDefault" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 

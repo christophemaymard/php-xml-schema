@@ -68,6 +68,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildListElementDoesNotCreateElementTestTrait;
     use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildUnionElementDoesNotCreateElementTestTrait;
+    use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

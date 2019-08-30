@@ -656,6 +656,47 @@ trait ElementAssertTrait
     }
     
     /**
+     * Asserts that the specified "simpleType" element has only the "final" 
+     * attribute.
+     * 
+     * @param   SimpleTypeElement   $sut    The element to test.
+     */
+    public static function assertSimpleTypeElementHasOnlyFinalAttribute(
+        SimpleTypeElement $sut
+    ) {
+        self::assertTrue($sut->hasFinal());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+    }
+    
+    /**
+     * Asserts that the "final" attribute:
+     * - byRestriction() returns the same value as the expected "restriction" flag
+     * - byExtension() returns FALSE
+     * - bySubstitution() returns FALSE
+     * - byList() returns returns the same value as the expected "list" flag
+     * - byUnion() returns returns the same value as the expected "union" flag
+     * 
+     * @param   bool                $list   The expected value for the "list" flag.
+     * @param   bool                $union  The expected value for the "union" flag.
+     * @param   bool                $res    The expected value for the "restriction" flag.
+     * @param   SimpleTypeElement   $st     The element that holds the attribute.
+     */
+    public static function assertSimpleTypeElementFinalAttribute(
+        bool $list, 
+        bool $union, 
+        bool $res, 
+        SimpleTypeElement $st
+    ) {
+        $sut = $st->getFinal();
+        self::assertSame($res, $sut->byRestriction());
+        self::assertFalse($sut->byExtension());
+        self::assertFalse($sut->bySubstitution());
+        self::assertSame($list, $sut->byList());
+        self::assertSame($union, $sut->byUnion());
+    }
+    
+    /**
      * Asserts that the specified "simpleType" element has only the "id" 
      * attribute.
      * 
