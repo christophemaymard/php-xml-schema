@@ -640,6 +640,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
         ], 
+        ContextId::ELT_ATTRIBUTE => [
+            [ 'default', '', 'buildDefaultAttribute', ], 
+        ], 
     ];
     
     /**

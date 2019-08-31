@@ -697,6 +697,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NAMED_ATTRIBUTEGROUP
             [ 26, 'id', '', 'buildIdAttribute', ], 
             [ 26, 'name', '', 'buildNameAttribute', ], 
+            // Context: ELT_ATTRIBUTE
+            [ 27, 'default', '', 'buildDefaultAttribute', ], 
         ];
     }
 }

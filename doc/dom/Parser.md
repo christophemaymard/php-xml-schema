@@ -207,7 +207,7 @@
 ```
 
 - [x] Parse **attribute** element.
-- [ ] Parse **default** attribute.
+- [x] Parse **default** attribute.
 - [ ] Parse **fixed** attribute.
 - [ ] Parse **form** attribute.
 - [ ] Parse **id** attribute (collapsing white spaces).
@@ -215,7 +215,7 @@
 - [ ] Parse **ref** attribute (collapsing white spaces).
 - [ ] Parse **type** attribute (collapsing white spaces).
 - [ ] Parse **use** attribute.
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleType** element (localSimpleType).
 
