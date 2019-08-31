@@ -64,7 +64,6 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     use BuildPatternElementDoesNotCreateElementTestTrait;
-    use BuildListElementDoesNotCreateElementTestTrait;
     use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildUnionElementDoesNotCreateElementTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
@@ -330,5 +329,30 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertElementNamespaceDeclarations([], $res);
         self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
         self::assertSame([], $res->getElements());
+    }
+    
+    /**
+     * Tests that buildListElement() creates the element when the current 
+     * element is the "simpleType" element (topLevelSimpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildListElementCreateEltWhenTopSimpleType()
+    {
+        $this->sut->buildListElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $st = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $list = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $list);
+        self::assertListElementHasNoAttribute($list);
+        self::assertSame([], $list->getElements());
     }
 }

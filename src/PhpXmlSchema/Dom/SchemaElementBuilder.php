@@ -589,9 +589,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildListElement()
     {
-        if ($this->currentElement instanceof SimpleTypeElement && 
-            !$this->currentElement->getParent() instanceof SchemaElement
-        ) {
+        if ($this->currentElement instanceof SimpleTypeElement) {
             $elt = new ListElement();
             $this->currentElement->setDerivationElement($elt);
             $this->currentElement = $elt;
