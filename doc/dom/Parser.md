@@ -189,7 +189,7 @@
 - [x] Parse **annotation** element.
 - [x] Parse **restriction** element (anonymous).
 - [x] Parse **list** element.
-- [ ] Parse **union** element.
+- [x] Parse **union** element.
 
 ## Element: "simpleType" (localSimpleType)
 

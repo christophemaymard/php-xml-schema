@@ -312,8 +312,10 @@ class SpecificationFactoryTest extends TestCase
             [ 25, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 25, 0, 10, 'restriction', ], // ELT_SIMPLETYPE_RESTRICTION
             [ 25, 0, 23, 'list', ], // ELT_LIST
+            [ 25, 0, 24, 'union', ], // ELT_UNION
             [ 25, 1, 10, 'restriction', ], // ELT_SIMPLETYPE_RESTRICTION
             [ 25, 1, 23, 'list', ], // ELT_LIST
+            [ 25, 1, 24, 'union', ], // ELT_UNION
         ];
     }
     
@@ -436,8 +438,10 @@ class SpecificationFactoryTest extends TestCase
             [ 25, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 25, 0, 10, 'buildRestrictionElement', ], // ELT_SIMPLETYPE_RESTRICTION
             [ 25, 0, 23, 'buildListElement', ], // ELT_LIST
+            [ 25, 0, 24, 'buildUnionElement', ], // ELT_UNION
             [ 25, 1, 10, 'buildRestrictionElement', ], // ELT_SIMPLETYPE_RESTRICTION
             [ 25, 1, 23, 'buildListElement', ], // ELT_LIST
+            [ 25, 1, 24, 'buildUnionElement', ], // ELT_UNION
         ];
     }
     
@@ -560,8 +564,10 @@ class SpecificationFactoryTest extends TestCase
             [ 25, 0, 2, 1, ], // ELT_ANNOTATION
             [ 25, 0, 10, 2, ], // ELT_SIMPLETYPE_RESTRICTION
             [ 25, 0, 23, 2, ], // ELT_LIST
+            [ 25, 0, 24, 2, ], // ELT_UNION
             [ 25, 1, 10, 2, ], // ELT_SIMPLETYPE_RESTRICTION
             [ 25, 1, 23, 2, ], // ELT_LIST
+            [ 25, 1, 24, 2, ], // ELT_UNION
         ];
     }
     

@@ -27,7 +27,7 @@
   <test group="content" name="[simpleType] foo child element is not supported">
     <schema fileName="simpleType_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "restriction" or "list".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "restriction", "list" or "union".</message>
     </schema>
   </test>
   <!-- simpleType::final -->
@@ -181,28 +181,35 @@
   <test group="content" name="[simpleType][annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "restriction" or "list".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "restriction", "list" or "union".</message>
     </schema>
   </test>
   <!-- restriction -->
   <test group="content" name="[simpleType][restriction] not part of the XML Schema 1.0 namespace">
     <schema fileName="restriction_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "restriction" element (from no namespace) is unexpected, expected: "annotation", "restriction" or "list".</message>
+      <message>The "restriction" element (from no namespace) is unexpected, expected: "annotation", "restriction", "list" or "union".</message>
     </schema>
   </test>
   <!-- list -->
   <test group="content" name="[simpleType][list] not part of the XML Schema 1.0 namespace">
     <schema fileName="list_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "list" element (from no namespace) is unexpected, expected: "annotation", "restriction" or "list".</message>
+      <message>The "list" element (from no namespace) is unexpected, expected: "annotation", "restriction", "list" or "union".</message>
+    </schema>
+  </test>
+  <!-- union -->
+  <test group="content" name="[simpleType][union] not part of the XML Schema 1.0 namespace">
+    <schema fileName="union_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "union" element (from no namespace) is unexpected, expected: "annotation", "restriction", "list" or "union".</message>
     </schema>
   </test>
   <!-- container -->
   <test group="content" name="[simpleType][container] annotation unexpected annotation">
     <schema fileName="container_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "restriction" or "list".</message>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "restriction", "list" or "union".</message>
     </schema>
   </test>
   <test group="content" name="[simpleType][container] restriction unexpected restriction">
@@ -215,6 +222,12 @@
     <schema fileName="container_0003.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
       <message>The "list" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+    </schema>
+  </test>
+  <test group="content" name="[simpleType][container] union unexpected union">
+    <schema fileName="container_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "union" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
   <!-- TEMPLATE
