@@ -216,7 +216,7 @@
 - [x] Parse **type** attribute (collapsing white spaces).
 - [x] Parse **use** attribute.
 - [x] Other attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
 - [ ] Parse **simpleType** element (localSimpleType).
 
 ## Element: "simpleType" (topLevelSimpleType)
