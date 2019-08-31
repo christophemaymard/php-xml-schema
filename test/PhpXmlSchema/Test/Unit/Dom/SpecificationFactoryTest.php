@@ -191,6 +191,7 @@ class SpecificationFactoryTest extends TestCase
             [ 24, 0, ], // ELT_UNION
             [ 25, 0, ], // ELT_TOP_SIMPLETYPE
             [ 26, 0, ], // ELT_NAMED_ATTRIBUTEGROUP
+            [ 27, 0, ], // ELT_ATTRIBUTE
         ];
     }
     
@@ -321,6 +322,8 @@ class SpecificationFactoryTest extends TestCase
             [ 25, 1, 24, 'union', ], // ELT_UNION
             // Context: ELT_NAMED_ATTRIBUTEGROUP
             [ 26, 0, 2, 'annotation', ], // ELT_ANNOTATION
+            [ 26, 0, 27, 'attribute', ], // ELT_ATTRIBUTE
+            [ 26, 1, 27, 'attribute', ], // ELT_ATTRIBUTE
         ];
     }
     
@@ -451,6 +454,8 @@ class SpecificationFactoryTest extends TestCase
             [ 25, 1, 24, 'buildUnionElement', ], // ELT_UNION
             // Context: ELT_NAMED_ATTRIBUTEGROUP
             [ 26, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
+            [ 26, 0, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
+            [ 26, 1, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
         ];
     }
     
@@ -581,6 +586,8 @@ class SpecificationFactoryTest extends TestCase
             [ 25, 1, 24, 2, ], // ELT_UNION
             // Context: ELT_NAMED_ATTRIBUTEGROUP
             [ 26, 0, 2, 1, ], // ELT_ANNOTATION
+            [ 26, 0, 27, 1, ], // ELT_ATTRIBUTE
+            [ 26, 1, 27, 1, ], // ELT_ATTRIBUTE
         ];
     }
     

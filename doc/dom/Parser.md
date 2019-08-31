@@ -161,7 +161,7 @@
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **attribute** elements (attribute).
+- [x] Parse **attribute** elements (attribute).
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
 - [ ] Parse **anyAttribute** element.
 
@@ -188,6 +188,36 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
+
+## Element: "attribute" (attribute)
+
+```
+<attribute
+  default = string
+  fixed = string
+  form = (qualified | unqualified)
+  id = ID
+  name = NCName
+  ref = QName
+  type = QName
+  use = (optional | prohibited | required)
+>
+  Content: (annotation?, simpleType?)
+</attribute>
+```
+
+- [x] Parse **attribute** element.
+- [ ] Parse **default** attribute.
+- [ ] Parse **fixed** attribute.
+- [ ] Parse **form** attribute.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [ ] Parse **ref** attribute (collapsing white spaces).
+- [ ] Parse **type** attribute (collapsing white spaces).
+- [ ] Parse **use** attribute.
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleType** element (localSimpleType).
 
 ## Element: "simpleType" (topLevelSimpleType)
 
