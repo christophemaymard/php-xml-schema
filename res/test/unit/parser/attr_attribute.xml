@@ -431,6 +431,67 @@
       <message>The "foo" prefix is not bound to a namespace.</message>
     </schema>
   </test>
+  <!-- attribute::use -->
+  <test group="attribute" name="[attribute][attribute::use] Empty string">
+    <schema fileName="attribute_use_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] Only white spaces">
+    <schema fileName="attribute_use_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"       " is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] Not optional neither prohibited neither required">
+    <schema fileName="attribute_use_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo" is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] optional with white spaces">
+    <schema fileName="attribute_use_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    optional     " is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] prohibited with white spaces">
+    <schema fileName="attribute_use_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    prohibited     " is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] required with white spaces">
+    <schema fileName="attribute_use_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    required     " is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] optional (uppercase)">
+    <schema fileName="attribute_use_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Optional" is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] prohibited (uppercase)">
+    <schema fileName="attribute_use_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Prohibited" is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] required (uppercase)">
+    <schema fileName="attribute_use_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Required" is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::use] optional, prohibited and required">
+    <schema fileName="attribute_use_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"optional prohibited required" is an invalid value for the "use" attribute (from no namespace), expected: "optional", "prohibited" or "required".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

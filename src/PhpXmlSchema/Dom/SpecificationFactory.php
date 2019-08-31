@@ -648,6 +648,7 @@ class SpecificationFactory
             [ 'name', '', 'buildNameAttribute', ], 
             [ 'ref', '', 'buildRefAttribute', ], 
             [ 'type', '', 'buildTypeAttribute', ], 
+            [ 'use', '', 'buildUseAttribute', ], 
         ], 
     ];
     

@@ -393,6 +393,48 @@ class AttributeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "use" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $opt        The expected value for the "optional" flag.
+     * @param   bool    $proh       The expected value for the "prohibited" flag.
+     * @param   bool    $req        The expected value for the "required" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidUseAttributes
+     */
+    public function testParseProcessUseAttribute(
+        string $fileName, 
+        bool $opt, 
+        bool $proh, 
+        bool $req
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(1, $ag->getElements());
+        
+        $attr = $ag->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasOnlyUseAttribute($attr);
+        self::assertSame($opt, $attr->getUse()->isOptional());
+        self::assertSame($proh, $attr->getUse()->isProhibited());
+        self::assertSame($req, $attr->getUse()->isRequired());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
      * Returns a set of valid "default" attributes.
      * 
      * @return  array[]
@@ -910,6 +952,27 @@ class AttributeParserTest extends AbstractParserTestCase
                 ], 
                 'http://example.org', 
                 'baz', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "use" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidUseAttributes():array
+    {
+        // [ $fileName, $optional, $prohibited, $required, ]
+        return [
+            'optional' => [
+                'attribute_use_0001.xsd', TRUE, FALSE, FALSE, 
+            ], 
+            'prohibited' => [
+                'attribute_use_0002.xsd', FALSE, TRUE, FALSE, 
+            ], 
+            'required' => [
+                'attribute_use_0003.xsd', FALSE, FALSE, TRUE, 
             ], 
         ];
     }
