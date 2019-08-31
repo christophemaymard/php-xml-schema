@@ -187,7 +187,7 @@
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **restriction** element (anonymous).
+- [x] Parse **restriction** element (anonymous).
 - [ ] Parse **list** element.
 - [ ] Parse **union** element.
 
