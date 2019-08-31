@@ -405,6 +405,27 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildUseAttribute(string $value)
+    {
+        if ($this->currentElement instanceof AttributeElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement
+        ) {
+            if (NULL === $attr = $this->parseUse($value)) {
+                throw new InvalidValueException(Message::invalidAttributeValue(
+                    $value, 
+                    'use', 
+                    '', 
+                    [ 'optional', 'prohibited', 'required', ]
+                ));
+            }
+            
+            $this->currentElement->setUse($attr);
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildValueAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {
@@ -1111,6 +1132,27 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return new DerivationType($res, FALSE, FALSE, $list, $union);
+    }
+    
+    /**
+     * Parses the specified value in UseType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  UseType|NULL    A created instance of UseType if the value is valid, otherwise NULL.
+     */
+    private function parseUse(string $value)
+    {
+        $use = NULL;
+        
+        if ($value == 'optional') {
+            $use = UseType::createOptional();
+        } elseif ($value == 'prohibited') {
+            $use = UseType::createProhibited();
+        } elseif ($value == 'required') {
+            $use = UseType::createRequired();
+        }
+        
+        return $use;
     }
     
     /**

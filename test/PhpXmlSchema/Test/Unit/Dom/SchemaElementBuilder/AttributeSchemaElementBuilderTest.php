@@ -684,4 +684,60 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         
         $this->sut->buildTypeAttribute('foo:bar');
     }
+    
+    /**
+     * Tests that buildUseAttribute() creates the attribute when the current 
+     * element is the "attribute" element (attribute) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $opt    The expected value for the "optional" flag.
+     * @param   bool    $proh   The expected value for the "prohibited" flag.
+     * @param   bool    $req    The expected value for the "required" flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidUseSetValues
+     */
+    public function testBuildUseAttributeCreatesAttrWhenAttributeAndValueIsValid(
+        string $value, 
+        bool $opt, 
+        bool $proh, 
+        bool $req
+    ) {
+        $this->sut->buildUseAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasOnlyUseAttribute($attr);
+        self::assertSame($opt, $attr->getUse()->isOptional());
+        self::assertSame($proh, $attr->getUse()->isProhibited());
+        self::assertSame($req, $attr->getUse()->isRequired());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildUseAttribute() throws an exception when the current 
+     * element is the "attribute" element (attribute) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidUseValues
+     */
+    public function testBuildUseAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "use" '.
+            'attribute (from no namespace), expected: "optional", '.
+            '"prohibited" or "required".'
+        );
+        $this->sut->buildUseAttribute($value);
+    }
 }

@@ -682,6 +682,25 @@ trait ElementAssertTrait
     }
     
     /**
+     * Asserts that the specified "attribute" element has only the "use" 
+     * attribute.
+     * 
+     * @param   AttributeElement    $sut    The element to test.
+     */
+    public static function assertAttributeElementHasOnlyUseAttribute(
+        AttributeElement $sut
+    ) {
+        self::assertFalse($sut->hasDefault());
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasForm());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
+        self::assertFalse($sut->hasType());
+        self::assertTrue($sut->hasUse());
+    }
+    
+    /**
      * Asserts that the specified "simpleType" element has no attribute.
      * 
      * @param   SimpleTypeElement   $sut    The element to test.
