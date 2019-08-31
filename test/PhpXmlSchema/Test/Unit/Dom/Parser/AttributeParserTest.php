@@ -102,6 +102,42 @@ class AttributeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "fixed" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $string     The expected value for the string.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFixedAttributes
+     */
+    public function testParseProcessFixedAttribute(
+        string $fileName, 
+        string $string
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(1, $ag->getElements());
+        
+        $attr = $ag->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasOnlyFixedAttribute($attr);
+        self::assertSame($string, $attr->getFixed()->getString());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
      * Returns a set of valid "default" attributes.
      * 
      * @return  array[]
@@ -123,6 +159,33 @@ class AttributeParserTest extends AbstractParserTestCase
             ], 
             'Alphanumeric with white spaces' => [
                 'attribute_default_0004.xsd', 
+                '  foo2    bar9   baz8    qux1  ', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "fixed" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFixedAttributes():array
+    {
+        return [
+            'Empty string' => [
+                'attribute_fixed_0001.xsd', 
+                '', 
+            ], 
+            'Only white spaces' => [
+                'attribute_fixed_0002.xsd', 
+                '                  ', 
+            ], 
+            'Alphanumeric' => [
+                'attribute_fixed_0003.xsd', 
+                'foo3bar6baz9', 
+            ], 
+            'Alphanumeric with white spaces' => [
+                'attribute_fixed_0004.xsd', 
                 '  foo2    bar9   baz8    qux1  ', 
             ], 
         ];

@@ -642,6 +642,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_ATTRIBUTE => [
             [ 'default', '', 'buildDefaultAttribute', ], 
+            [ 'fixed', '', 'buildFixedAttribute', ], 
         ], 
     ];
     

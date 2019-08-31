@@ -1,0 +1,5 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:attributeGroup>
+    <xs:attribute fixed="  foo2    bar9   baz8    qux1  "></xs:attribute>
+  </xs:attributeGroup>
+</xs:schema>
