@@ -1477,4 +1477,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasRef());
     }
+    
+    /**
+     * Asserts that the specified "attributeGroup" element has only the "id" 
+     * attribute.
+     * 
+     * @param   AttributeGroupElement   $sut    The element to test.
+     */
+    public static function assertAttributeGroupElementHasOnlyIdAttribute(
+        AttributeGroupElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
+    }
 }
