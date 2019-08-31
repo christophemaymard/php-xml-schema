@@ -45,7 +45,6 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractSchemaElementB
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
-    use BuildAttributeElementDoesNotCreateElementTestTrait;
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
@@ -252,5 +251,37 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractSchemaElementB
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+    }
+    
+    /**
+     * Tests that buildAttributeElement() creates the element when the 
+     * current element is the "attributeGroup" element (namedAttributeGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAttributeElementCreateEltWhenNamedAttributeGroup()
+    {
+        $this->sut->buildAttributeElement();
+        $this->sut->endElement();
+        $this->sut->buildAttributeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ag = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(2, $ag->getElements());
+        
+        $attrs = $ag->getAttributeElements();
+        
+        self::assertElementNamespaceDeclarations([], $attrs[0]);
+        self::assertAttributeElementHasNoAttribute($attrs[0]);
+        self::assertSame([], $attrs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $attrs[1]);
+        self::assertAttributeElementHasNoAttribute($attrs[1]);
+        self::assertSame([], $attrs[1]->getElements());
     }
 }

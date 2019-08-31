@@ -110,7 +110,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildDefaultAttribute(string $value)
     {
-        if ($this->currentElement instanceof AttributeElement) {
+        if ($this->currentElement instanceof AttributeElement &&
+            $this->currentElement->getParent() instanceof SchemaElement
+        ) {
             $this->currentElement->setDefault(new StringType($value));
         }
     }
@@ -182,7 +184,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ATTRIBUTE:
-                    $this->currentElement->setFixed(new StringType($value));
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setFixed(new StringType($value));
+                    }
+                    
                     break;
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
@@ -207,13 +212,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_SIMPLETYPE:
                 case ElementId::ELT_SCHEMA:
                 case ElementId::ELT_ANNOTATION:
                 case ElementId::ELT_IMPORT:
                 case ElementId::ELT_INCLUDE:
                 case ElementId::ELT_NOTATION:
-                case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
@@ -265,11 +273,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()){
                 case ElementId::ELT_SIMPLETYPE:
+                case ElementId::ELT_ATTRIBUTE:
                     if (!$this->currentElement->getParent() instanceof SchemaElement) {
                         break;
                     }
                 case ElementId::ELT_NOTATION:
-                case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
                     $this->currentElement->setName(
                         new NCNameType($this->collapseWhiteSpace($value))
@@ -364,7 +372,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildTypeAttribute(string $value)
     {
-        if ($this->currentElement instanceof AttributeElement) {
+        if ($this->currentElement instanceof AttributeElement && 
+            $this->currentElement->getParent() instanceof SchemaElement
+        ) {
             $this->currentElement->setType($this->parseQName($value));
         }
     }
@@ -439,11 +449,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_SIMPLETYPE:
                 case ElementId::ELT_IMPORT:
                 case ElementId::ELT_INCLUDE:
                 case ElementId::ELT_NOTATION:
-                case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
@@ -508,10 +521,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildAttributeElement()
     {
-        if ($this->currentElement instanceof SchemaElement) {
-            $elt = new AttributeElement();
-            $this->currentElement->addAttributeElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SCHEMA:
+                case ElementId::ELT_ATTRIBUTEGROUP:
+                    $elt = new AttributeElement();
+                    $this->currentElement->addAttributeElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     
@@ -727,6 +744,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ATTRIBUTE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
                 case ElementId::ELT_LIST:
                     $elt = new SimpleTypeElement();
