@@ -48,7 +48,6 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
@@ -181,5 +180,51 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         $this->expectExceptionMessage('"'.$value.'" is an invalid string.');
         
         $this->sut->buildDefaultAttribute($value);
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() creates the attribute when the 
+     * current element is the "attribute" element (attribute) and the value 
+     * is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidStringValues
+     */
+    public function testBuildFixedAttributeCreatesAttrWhenAttributeAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildFixedAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasOnlyFixedAttribute($attr);
+        self::assertSame($value, $attr->getFixed()->getString());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() throws an exception when the 
+     * current element is the "attribute" element (attribute) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidStringValues
+     */
+    public function testBuildFixedAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage('"'.$value.'" is an invalid string.');
+        
+        $this->sut->buildFixedAttribute($value);
     }
 }

@@ -182,10 +182,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ATTRIBUTE:
-                    if ($this->currentElement->getParent() instanceof SchemaElement) {
-                        $this->currentElement->setFixed(new StringType($value));
-                    }
-                    
+                    $this->currentElement->setFixed(new StringType($value));
                     break;
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
