@@ -59,4 +59,68 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
         self::assertAttributeGroupElementHasNoAttribute($ag);
         self::assertSame([], $ag->getElements());
     }
+    
+    /**
+     * Tests that parse() processes "id" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $id         The expected value for the ID.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidIdAttributes
+     */
+    public function testParseProcessIdAttribute(string $fileName, string $id)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasOnlyIdAttribute($ag);
+        self::assertSame($id, $ag->getId()->getId());
+        self::assertSame([], $ag->getElements());
+    }
+    
+    /**
+     * Returns a set of valid "id" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidIdAttributes():array
+    {
+        return [
+            'Starts with _' => [
+                'attributeGroup_id_0001.xsd', '_foo', 
+            ], 
+            'Starts with letter' => [
+                'attributeGroup_id_0002.xsd', 'f', 
+            ], 
+            'Contains letter' => [
+                'attributeGroup_id_0003.xsd', 'foo', 
+            ], 
+            'Contains digit' => [
+                'attributeGroup_id_0004.xsd', 'f00', 
+            ], 
+            'Contains .' => [
+                'attributeGroup_id_0005.xsd', 'f.bar', 
+            ], 
+            'Contains -' => [
+                'attributeGroup_id_0006.xsd', 'f-bar', 
+            ], 
+            'Contains _' => [
+                'attributeGroup_id_0007.xsd', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [
+                'attributeGroup_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
 }

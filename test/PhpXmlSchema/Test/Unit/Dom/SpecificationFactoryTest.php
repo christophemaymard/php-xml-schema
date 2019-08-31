@@ -681,6 +681,8 @@ class SpecificationFactoryTest extends TestCase
             [ 25, 'final', '', 'buildFinalAttribute', ], 
             [ 25, 'id', '', 'buildIdAttribute', ], 
             [ 25, 'name', '', 'buildNameAttribute', ], 
+            // Context: ELT_NAMED_ATTRIBUTEGROUP
+            [ 26, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
