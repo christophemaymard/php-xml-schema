@@ -1,0 +1,5 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:baz="http://example.org/baz">
+  <xs:attributeGroup>
+    <xs:attribute type="baz:f"></xs:attribute>
+  </xs:attributeGroup>
+</xs:schema>
