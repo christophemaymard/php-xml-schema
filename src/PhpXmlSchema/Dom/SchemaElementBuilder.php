@@ -110,9 +110,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildDefaultAttribute(string $value)
     {
-        if ($this->currentElement instanceof AttributeElement &&
-            $this->currentElement->getParent() instanceof SchemaElement
-        ) {
+        if ($this->currentElement instanceof AttributeElement) {
             $this->currentElement->setDefault(new StringType($value));
         }
     }

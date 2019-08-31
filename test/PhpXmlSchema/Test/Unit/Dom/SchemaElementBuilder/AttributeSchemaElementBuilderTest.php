@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -47,7 +48,6 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
@@ -135,5 +135,51 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildDefaultAttribute() creates the attribute when the 
+     * current element is the "attribute" element (attribute) and the value 
+     * is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidStringValues
+     */
+    public function testBuildDefaultAttributeCreatesAttrWhenAttributeAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildDefaultAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasOnlyDefaultAttribute($attr);
+        self::assertSame($value, $attr->getDefault()->getString());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildDefaultAttribute() throws an exception when the 
+     * current element is the "attribute" element (attribute) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidStringValues
+     */
+    public function testBuildDefaultAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage('"'.$value.'" is an invalid string.');
+        
+        $this->sut->buildDefaultAttribute($value);
     }
 }
