@@ -154,6 +154,36 @@ class TopSimpleTypeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "annotation" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAnnotationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $st = $sch->getSimpleTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $ann = $st->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
+    }
+    
+    /**
      * Returns a set of valid "final" attributes.
      * 
      * @return  array[]

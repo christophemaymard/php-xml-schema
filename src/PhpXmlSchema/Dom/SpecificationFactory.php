@@ -185,6 +185,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_LOCAL_SIMPLETYPE, 'simpleType', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'simpleType', ], 
         ], 
+        ContextId::ELT_TOP_SIMPLETYPE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -322,6 +325,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_LOCAL_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'buildSimpleTypeElement', ], 
         ], 
+        ContextId::ELT_TOP_SIMPLETYPE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -457,6 +463,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_LOCAL_SIMPLETYPE, 1, ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 1, ], 
+        ], 
+        ContextId::ELT_TOP_SIMPLETYPE => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
