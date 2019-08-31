@@ -217,7 +217,7 @@
 - [x] Parse **use** attribute.
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **simpleType** element (localSimpleType).
+- [x] Parse **simpleType** element (localSimpleType).
 
 ## Element: "simpleType" (topLevelSimpleType)
 
