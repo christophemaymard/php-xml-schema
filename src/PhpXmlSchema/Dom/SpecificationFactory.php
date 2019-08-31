@@ -197,6 +197,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_LIST, 'list', ], 
             [ 1, ContextId::ELT_UNION, 'union', ], 
         ], 
+        ContextId::ELT_NAMED_ATTRIBUTEGROUP => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -345,6 +348,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_LIST, 'buildListElement', ], 
             [ 1, ContextId::ELT_UNION, 'buildUnionElement', ], 
         ], 
+        ContextId::ELT_NAMED_ATTRIBUTEGROUP => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -491,6 +497,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_SIMPLETYPE_RESTRICTION, 2, ], 
             [ 1, ContextId::ELT_LIST, 2, ], 
             [ 1, ContextId::ELT_UNION, 2, ], 
+        ], 
+        ContextId::ELT_NAMED_ATTRIBUTEGROUP => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     

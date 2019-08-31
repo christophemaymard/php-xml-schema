@@ -119,6 +119,36 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "annotation" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAnnotationElement()
+    {
+        $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(1, $ag->getElements());
+        
+        $ann = $ag->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
