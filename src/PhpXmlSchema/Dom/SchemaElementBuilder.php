@@ -228,6 +228,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTEGROUP:
+                    if ($this->currentElement->getParent() instanceof AttributeGroupElement) {
+                        break;
+                    }
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_SIMPLETYPE:
                 case ElementId::ELT_SCHEMA:
@@ -250,7 +254,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_PATTERN:
                 case ElementId::ELT_LIST:
                 case ElementId::ELT_UNION:
-                case ElementId::ELT_ATTRIBUTEGROUP:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }
@@ -286,12 +289,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()){
                 case ElementId::ELT_SIMPLETYPE:
+                case ElementId::ELT_ATTRIBUTEGROUP:
                     if (!$this->currentElement->getParent() instanceof SchemaElement) {
                         break;
                     }
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_NOTATION:
-                case ElementId::ELT_ATTRIBUTEGROUP:
                     $this->currentElement->setName(
                         new NCNameType($this->collapseWhiteSpace($value))
                     );
@@ -493,6 +496,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTEGROUP:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_SIMPLETYPE:
                 case ElementId::ELT_IMPORT:
@@ -513,7 +520,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_PATTERN:
                 case ElementId::ELT_LIST:
                 case ElementId::ELT_UNION:
-                case ElementId::ELT_ATTRIBUTEGROUP:
                     $elt = new AnnotationElement();
                     $this->currentElement->setAnnotationElement($elt);
                     $this->currentElement = $elt;
@@ -564,8 +570,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
-                case ElementId::ELT_SCHEMA:
                 case ElementId::ELT_ATTRIBUTEGROUP:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
+                case ElementId::ELT_SCHEMA:
                     $elt = new AttributeElement();
                     $this->currentElement->addAttributeElement($elt);
                     $this->currentElement = $elt;
@@ -578,10 +587,17 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildAttributeGroupElement()
     {
-        if ($this->currentElement instanceof SchemaElement) {
-            $elt = new AttributeGroupElement();
-            $this->currentElement->addAttributeGroupElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTEGROUP:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
+                case ElementId::ELT_SCHEMA:
+                    $elt = new AttributeGroupElement();
+                    $this->currentElement->addAttributeGroupElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     
