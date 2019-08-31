@@ -188,7 +188,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **restriction** element (anonymous).
-- [ ] Parse **list** element.
+- [x] Parse **list** element.
 - [ ] Parse **union** element.
 
 ## Element: "simpleType" (localSimpleType)

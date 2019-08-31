@@ -1,0 +1,6 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType>
+    <xs:list></xs:list>
+    <xs:list></xs:list>
+  </xs:simpleType>
+</xs:schema>
