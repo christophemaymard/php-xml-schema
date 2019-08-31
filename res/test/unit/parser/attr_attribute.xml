@@ -122,6 +122,49 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- attribute::name -->
+  <test group="attribute" name="[attribute][attribute::name] Empty string">
+    <schema fileName="attribute_name_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::name] Only white spaces">
+    <schema fileName="attribute_name_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::name] Separated by whitespaces">
+    <schema fileName="attribute_name_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::name] Starts with digit">
+    <schema fileName="attribute_name_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::name] Starts with .">
+    <schema fileName="attribute_name_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::name] Starts with -">
+    <schema fileName="attribute_name_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[attribute][attribute::name] Contains invalid character">
+    <schema fileName="attribute_name_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo:bar" is an invalid NCName.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
