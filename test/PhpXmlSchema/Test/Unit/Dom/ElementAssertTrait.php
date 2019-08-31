@@ -587,6 +587,25 @@ trait ElementAssertTrait
     }
     
     /**
+     * Asserts that the specified "attribute" element has only the "form" 
+     * attribute.
+     * 
+     * @param   AttributeElement    $sut    The element to test.
+     */
+    public static function assertAttributeElementHasOnlyFormAttribute(
+        AttributeElement $sut
+    ) {
+        self::assertFalse($sut->hasDefault());
+        self::assertFalse($sut->hasFixed());
+        self::assertTrue($sut->hasForm());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
+        self::assertFalse($sut->hasType());
+        self::assertFalse($sut->hasUse());
+    }
+    
+    /**
      * Asserts that the specified "attribute" element has only the "id" 
      * attribute.
      * 

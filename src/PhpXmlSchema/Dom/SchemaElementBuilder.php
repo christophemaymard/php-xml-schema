@@ -203,6 +203,27 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildFormAttribute(string $value)
+    {
+        if ($this->currentElement instanceof AttributeElement &&
+            !$this->currentElement->getParent() instanceof SchemaElement
+        ) {
+            if (NULL === $attr = $this->parseFormType($value)) {
+                throw new InvalidValueException(Message::invalidAttributeValue(
+                    $value, 
+                    'form', 
+                    '', 
+                    [ 'qualified', 'unqualified', ]
+                ));
+            }
+            
+            $this->currentElement->setForm($attr);
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildIdAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {

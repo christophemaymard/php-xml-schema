@@ -227,4 +227,71 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         
         $this->sut->buildFixedAttribute($value);
     }
+    
+    /**
+     * Tests that buildFormAttribute() creates the attribute when the current 
+     * element is the "attribute" element (attribute) and the value is 
+     * "qualified".
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildFormAttributeCreatesAttrWhenAttributeAndValueIsQualified()
+    {
+        $this->sut->buildFormAttribute('qualified');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasOnlyFormAttribute($attr);
+        self::assertTrue($attr->getForm()->isQualified());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildFormAttribute() creates the attribute when the current 
+     * element is the "attribute" element (attribute) and the value is 
+     * "unqualified".
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildFormAttributeCreatesAttrWhenAttributeAndValueIsUnqualified()
+    {
+        $this->sut->buildFormAttribute('unqualified');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasOnlyFormAttribute($attr);
+        self::assertTrue($attr->getForm()->isUnqualified());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
+     * Tests that buildFormAttribute() throws an exception when the current 
+     * element is the "attribute" element (attribute) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidFormChoiceValues
+     */
+    public function testBuildFormAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "form" '.
+            'attribute (from no namespace), expected: "qualified" or '.
+            '"unqualified".'
+        );
+        $this->sut->buildFormAttribute($value);
+    }
 }
