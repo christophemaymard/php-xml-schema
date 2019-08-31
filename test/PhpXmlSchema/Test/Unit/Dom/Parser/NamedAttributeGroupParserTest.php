@@ -90,6 +90,35 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "name" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $name       The expected value for the name.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNameAttributes
+     */
+    public function testParseProcessNameAttribute(string $fileName, string $name)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasOnlyNameAttribute($ag);
+        self::assertSame($name, $ag->getName()->getNCName());
+        self::assertSame([], $ag->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -120,6 +149,41 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'attributeGroup_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "name" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidNameAttributes():array
+    {
+        return [
+            'Starts with _' => [
+                'attributeGroup_name_0001.xsd', '_foo', 
+            ], 
+            'Starts with letter' => [
+                'attributeGroup_name_0002.xsd', 'f', 
+            ], 
+            'Contains letter' => [
+                'attributeGroup_name_0003.xsd', 'foo', 
+            ], 
+            'Contains digit' => [
+                'attributeGroup_name_0004.xsd', 'f00', 
+            ], 
+            'Contains .' => [
+                'attributeGroup_name_0005.xsd', 'f.bar', 
+            ], 
+            'Contains -' => [
+                'attributeGroup_name_0006.xsd', 'f-bar', 
+            ], 
+            'Contains _' => [
+                'attributeGroup_name_0007.xsd', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [
+                'attributeGroup_name_0008.xsd', 'foo_bar', 
             ], 
         ];
     }

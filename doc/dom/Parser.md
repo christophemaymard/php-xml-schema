@@ -158,7 +158,7 @@
 
 - [x] Parse **attributeGroup** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Parse **name** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **attribute** elements (attribute).
