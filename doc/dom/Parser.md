@@ -208,8 +208,8 @@
 
 - [x] Parse **attribute** element.
 - [x] Parse **default** attribute.
-- [ ] Parse **fixed** attribute.
-- [ ] Parse **form** attribute.
+- [x] Parse **fixed** attribute.
+- [x] Parse **form** attribute.
 - [ ] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **name** attribute (collapsing white spaces).
 - [ ] Parse **ref** attribute (collapsing white spaces).

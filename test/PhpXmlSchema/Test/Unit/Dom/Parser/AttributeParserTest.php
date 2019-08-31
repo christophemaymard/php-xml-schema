@@ -138,6 +138,45 @@ class AttributeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "form" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $qual       The expected value for the "qualified" flag.
+     * @param   bool    $unqual     The expected value for the "unqualified" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFormAttributes
+     */
+    public function testParseProcessFormAttribute(
+        string $fileName,
+        bool $qual, 
+        bool $unqual
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(1, $ag->getElements());
+        
+        $attr = $ag->getAttributeElements()[0];
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasOnlyFormAttribute($attr);
+        self::assertSame($qual, $attr->getForm()->isQualified());
+        self::assertSame($unqual, $attr->getForm()->isUnqualified());
+        self::assertSame([], $attr->getElements());
+    }
+    
+    /**
      * Returns a set of valid "default" attributes.
      * 
      * @return  array[]
@@ -187,6 +226,24 @@ class AttributeParserTest extends AbstractParserTestCase
             'Alphanumeric with white spaces' => [
                 'attribute_fixed_0004.xsd', 
                 '  foo2    bar9   baz8    qux1  ', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "form" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFormAttributes():array
+    {
+        // [ $fileName, $qualified, $unqualified, ]
+        return [
+            'qualified' => [
+                'attribute_form_0001.xsd', TRUE, FALSE, 
+            ], 
+            'unqualified' => [
+                'attribute_form_0002.xsd', FALSE, TRUE, 
             ], 
         ];
     }
