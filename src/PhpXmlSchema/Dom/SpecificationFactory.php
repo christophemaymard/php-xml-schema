@@ -646,6 +646,7 @@ class SpecificationFactory
             [ 'form', '', 'buildFormAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
+            [ 'ref', '', 'buildRefAttribute', ], 
         ], 
     ];
     

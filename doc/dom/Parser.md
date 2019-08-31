@@ -212,7 +212,7 @@
 - [x] Parse **form** attribute.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **name** attribute (collapsing white spaces).
-- [ ] Parse **ref** attribute (collapsing white spaces).
+- [x] Parse **ref** attribute (collapsing white spaces).
 - [ ] Parse **type** attribute (collapsing white spaces).
 - [ ] Parse **use** attribute.
 - [x] Other attributes are not supported.
