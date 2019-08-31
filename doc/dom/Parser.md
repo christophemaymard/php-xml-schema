@@ -34,7 +34,7 @@
 - [x] Parse **simpleType** elements (topLevelSimpleType).
 - [ ] Parse **complexType** elements.
 - [ ] Parse **group** elements.
-- [ ] Parse **attributeGroup** elements.
+- [x] Parse **attributeGroup** elements (namedAttributeGroup).
 - [ ] Parse **element** elements.
 - [x] Parse **attribute** elements (topLevelAttributeType).
 - [x] Parse **notation** elements.
@@ -144,6 +144,26 @@
 - [x] Parse **system** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "attributeGroup" (namedAttributeGroup)
+
+```
+<attributeGroup
+  id = ID
+  name = NCName
+>
+  Content: (annotation?, ((attribute | attributeGroup)*, anyAttribute?))
+</attributeGroup>
+```
+
+- [x] Parse **attributeGroup** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **attribute** elements (attribute).
+- [ ] Parse **attributeGroup** elements (attributeGroupRef).
+- [ ] Parse **anyAttribute** element.
 
 ## Element: "attribute" (topLevelAttributeType)
 

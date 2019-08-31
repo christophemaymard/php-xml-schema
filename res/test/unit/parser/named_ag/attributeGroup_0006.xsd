@@ -1,0 +1,3 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:attributeGroup xmlns="http://example.org" xmlns:foo="http://example.org/foo"></xs:attributeGroup>
+</xs:schema>
