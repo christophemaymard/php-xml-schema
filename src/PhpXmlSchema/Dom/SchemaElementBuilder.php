@@ -397,9 +397,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildTypeAttribute(string $value)
     {
-        if ($this->currentElement instanceof AttributeElement && 
-            $this->currentElement->getParent() instanceof SchemaElement
-        ) {
+        if ($this->currentElement instanceof AttributeElement) {
             $this->currentElement->setType($this->parseQName($value));
         }
     }
