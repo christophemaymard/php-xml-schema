@@ -40,7 +40,6 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
@@ -739,5 +738,30 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
             '"prohibited" or "required".'
         );
         $this->sut->buildUseAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "attribute" element (attribute).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenAttribute()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $attr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $attr);
+        self::assertAttributeElementHasNoAttribute($attr);
+        self::assertCount(1, $attr->getElements());
+        
+        $ann = $attr->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
