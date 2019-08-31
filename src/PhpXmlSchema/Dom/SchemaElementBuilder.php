@@ -785,9 +785,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ATTRIBUTE:
-                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
-                        break;
-                    }
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
                 case ElementId::ELT_LIST:
                     $elt = new SimpleTypeElement();
