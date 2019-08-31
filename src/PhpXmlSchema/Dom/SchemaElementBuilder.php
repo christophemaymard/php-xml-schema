@@ -745,9 +745,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildUnionElement()
     {
-        if ($this->currentElement instanceof SimpleTypeElement && 
-            !$this->currentElement->getParent() instanceof SchemaElement
-        ) {
+        if ($this->currentElement instanceof SimpleTypeElement) {
             $elt = new UnionElement();
             $this->currentElement->setDerivationElement($elt);
             $this->currentElement = $elt;
