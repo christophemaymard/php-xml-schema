@@ -43,7 +43,6 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractSchemaElementB
     use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
-    use BuildNameAttributeDoesNotCreateAttributeTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
@@ -179,5 +178,55 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractSchemaElementB
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildNameAttribute() creates the attribute when the current 
+     * element is the "attributeGroup" element (namedAttributeGroup) and the 
+     * value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $name   The expected value for the name.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNCNameValues
+     */
+    public function testBuildNameAttributeCreatesAttrWhenNamedAttributeGroupAndValueIsValid(
+        string $value, 
+        string $name
+    ) {
+        $this->sut->buildNameAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ag = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasOnlyNameAttribute($ag);
+        self::assertSame($name, $ag->getName()->getNCName());
+        self::assertSame([], $ag->getElements());
+    }
+    
+    /**
+     * Tests that buildNameAttribute() throws an exception when the current 
+     * element is the "attributeGroup" element (namedAttributeGroup) and the 
+     * value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNCNameValues
+     */
+    public function testBuildNameAttributeThrowsExceptionWhenNamedAttributeGroupAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildNameAttribute($value);
     }
 }

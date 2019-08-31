@@ -270,6 +270,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     }
                 case ElementId::ELT_NOTATION:
                 case ElementId::ELT_ATTRIBUTE:
+                case ElementId::ELT_ATTRIBUTEGROUP:
                     $this->currentElement->setName(
                         new NCNameType($this->collapseWhiteSpace($value))
                     );
