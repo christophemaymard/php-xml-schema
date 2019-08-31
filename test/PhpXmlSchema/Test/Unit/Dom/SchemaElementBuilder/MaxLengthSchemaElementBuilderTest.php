@@ -68,6 +68,7 @@ class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildUnionElementDoesNotCreateElementTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

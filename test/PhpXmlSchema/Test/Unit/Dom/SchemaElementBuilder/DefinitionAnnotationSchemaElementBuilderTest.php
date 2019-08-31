@@ -69,6 +69,7 @@ class DefinitionAnnotationSchemaElementBuilderTest extends AbstractSchemaElement
     use BuildUnionElementDoesNotCreateElementTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

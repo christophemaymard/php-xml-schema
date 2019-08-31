@@ -12,15 +12,18 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is NULL.
+ * class when the current element is the "attributeGroup" element 
+ * (namedAttributeGroup).
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class NamedAttributeGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BindNamespaceTestTrait;
+    
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -76,9 +79,12 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertSchemaElementNotChanged(SchemaElement $sch)
     {
-        self::assertElementNamespaceDeclarations([], $sch);
-        self::assertSchemaElementHasNoAttribute($sch);
-        self::assertSame([], $sch->getElements());
+        self::assertAncestorsNotChanged($sch);
+        
+        $ag = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertSame([], $ag->getElements());
     }
     
     /**
@@ -86,6 +92,10 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
+        self::assertElementNamespaceDeclarations([], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getAttributeGroupElements());
     }
     
     /**
@@ -93,6 +103,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
+        self::assertAttributeGroupElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -100,7 +111,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     protected static function getCurrentElement(SchemaElement $sch)
     {
-        return NULL;
+        return $sch->getAttributeGroupElements()[0];
     }
     
     /**
@@ -109,7 +120,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     protected function setUp()
     {
         $this->sut = new SchemaElementBuilder();
-        $this->sut->endElement();
+        $this->sut->buildAttributeGroupElement();
     }
     
     /**
@@ -118,24 +129,5 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that bindNamespace() does not associate a prefix with a 
-     * namespace.
-     * 
-     * @group   namespace
-     * @group   xml
-     */
-    public function testBindNamespaceDoesNotBindNamespaceWhenNull()
-    {
-        $this->sut->bindNamespace('foo', 'http://example.org/foo');
-        $this->sut->bindNamespace('xml', 'http://example.org');
-        $this->sut->bindNamespace('foo', 'http://www.w3.org/XML/1998/namespace');
-        $this->sut->bindNamespace('xmlns', 'http://www.w3.org/2000/xmlns/');
-        $this->sut->bindNamespace('foo', 'http://www.w3.org/2000/xmlns/');
-        $sch = $this->sut->getSchema();
-        
-        self::assertSchemaElementNotChanged($sch);
     }
 }

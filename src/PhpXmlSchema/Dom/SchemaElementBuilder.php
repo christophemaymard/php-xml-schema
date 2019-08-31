@@ -515,6 +515,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildAttributeGroupElement()
+    {
+        if ($this->currentElement instanceof SchemaElement) {
+            $elt = new AttributeGroupElement();
+            $this->currentElement->addAttributeGroupElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildDocumentationElement()
     {
         if ($this->currentElement instanceof AnnotationElement) {

@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
+use PhpXmlSchema\Dom\AttributeGroupElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\EnumerationElement;
@@ -1462,5 +1463,18 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMemberTypes());
+    }
+    
+    /**
+     * Asserts that the specified "attributeGroup" element has no attribute.
+     * 
+     * @param   AttributeGroupElement   $sut    The element to test.
+     */
+    public static function assertAttributeGroupElementHasNoAttribute(
+        AttributeGroupElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
     }
 }
