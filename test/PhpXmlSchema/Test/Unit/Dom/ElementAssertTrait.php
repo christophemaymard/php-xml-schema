@@ -8,6 +8,7 @@
 namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PhpXmlSchema\Dom\AnnotationElement;
+use PhpXmlSchema\Dom\AnyAttributeElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
@@ -1575,5 +1576,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertTrue($sut->hasRef());
+    }
+    
+    /**
+     * Asserts that the specified "anyAttribute" element has no attribute.
+     * 
+     * @param   AnyAttributeElement $sut    The element to test.
+     */
+    public static function assertAnyAttributeElementHasNoAttribute(
+        AnyAttributeElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasNamespace());
+        self::assertFalse($sut->hasProcessContents());
     }
 }

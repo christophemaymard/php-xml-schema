@@ -318,4 +318,29 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractSchemaElementB
         self::assertAttributeGroupElementHasNoAttribute($ags[1]);
         self::assertSame([], $ags[1]->getElements());
     }
+    
+    /**
+     * Tests that buildAnyAttributeElement() creates the element when the 
+     * current element is the "attributeGroup" element (namedAttributeGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnyAttributeElementCreateEltWhenNamedAttributeGroup()
+    {
+        $this->sut->buildAnyAttributeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ag = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(1, $ag->getElements());
+        
+        $anyAttr = $ag->getAnyAttributeElement();
+        self::assertElementNamespaceDeclarations([], $anyAttr);
+        self::assertAnyAttributeElementHasNoAttribute($anyAttr);
+        self::assertSame([], $anyAttr->getElements());
+    }
 }
