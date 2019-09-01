@@ -192,6 +192,7 @@ class SpecificationFactoryTest extends TestCase
             [ 25, 0, ], // ELT_TOP_SIMPLETYPE
             [ 26, 0, ], // ELT_NAMED_ATTRIBUTEGROUP
             [ 27, 0, ], // ELT_ATTRIBUTE
+            [ 28, 0, ], // ELT_ATTRIBUTEGROUP_REF
         ];
     }
     
@@ -323,7 +324,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NAMED_ATTRIBUTEGROUP
             [ 26, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 26, 0, 27, 'attribute', ], // ELT_ATTRIBUTE
+            [ 26, 0, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
             [ 26, 1, 27, 'attribute', ], // ELT_ATTRIBUTE
+            [ 26, 1, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
             // Context: ELT_ATTRIBUTE
             [ 27, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 27, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
@@ -459,7 +462,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NAMED_ATTRIBUTEGROUP
             [ 26, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 26, 0, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
+            [ 26, 0, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
             [ 26, 1, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
+            [ 26, 1, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
             // Context: ELT_ATTRIBUTE
             [ 27, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 27, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
@@ -595,7 +600,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NAMED_ATTRIBUTEGROUP
             [ 26, 0, 2, 1, ], // ELT_ANNOTATION
             [ 26, 0, 27, 1, ], // ELT_ATTRIBUTE
+            [ 26, 0, 28, 1, ], // ELT_ATTRIBUTEGROUP_REF
             [ 26, 1, 27, 1, ], // ELT_ATTRIBUTE
+            [ 26, 1, 28, 1, ], // ELT_ATTRIBUTEGROUP_REF
             // Context: ELT_ATTRIBUTE
             [ 27, 0, 2, 1, ], // ELT_ANNOTATION
             [ 27, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE

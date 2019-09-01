@@ -42,4 +42,5 @@ class ContextId
     const ELT_TOP_SIMPLETYPE = 25;
     const ELT_NAMED_ATTRIBUTEGROUP = 26;
     const ELT_ATTRIBUTE = 27;
+    const ELT_ATTRIBUTEGROUP_REF = 28;
 }

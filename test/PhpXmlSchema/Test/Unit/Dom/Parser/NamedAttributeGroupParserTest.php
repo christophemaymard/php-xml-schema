@@ -184,6 +184,42 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "attributeGroup" elements 
+     * (attributeGroupRef).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAttributeGroupElement()
+    {
+        $sch = $this->sut->parse($this->getXs('attributeGroupRef_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(2, $ag->getElements());
+        
+        $ags = $ag->getAttributeGroupElements();
+        
+        self::assertElementNamespaceDeclarations([], $ags[0]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[0]);
+        self::assertSame([], $ags[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $ags[1]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[1]);
+        self::assertSame([], $ags[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

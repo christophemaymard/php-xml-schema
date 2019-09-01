@@ -162,8 +162,25 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **attribute** elements (attribute).
-- [ ] Parse **attributeGroup** elements (attributeGroupRef).
+- [x] Parse **attributeGroup** elements (attributeGroupRef).
 - [ ] Parse **anyAttribute** element.
+
+## Element: "attributeGroup" (attributeGroupRef)
+
+```
+<attributeGroup
+  id = ID
+  ref = QName
+>
+  Content: (annotation?)
+</attributeGroup>
+```
+
+- [x] Parse **attributeGroup** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **ref** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
 ## Element: "attribute" (topLevelAttributeType)
 
