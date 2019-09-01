@@ -674,6 +674,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_ATTRIBUTEGROUP_REF => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'ref', '', 'buildRefAttribute', ], 
         ], 
     ];
     
