@@ -52,6 +52,7 @@ class SpecificationFactory
         ContextId::ELT_NAMED_ATTRIBUTEGROUP => 0, 
         ContextId::ELT_ATTRIBUTE => 0, 
         ContextId::ELT_ATTRIBUTEGROUP_REF => 0, 
+        ContextId::ELT_ANYATTRIBUTE => 0, 
     ];
     
     /**
@@ -203,8 +204,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_ATTRIBUTE, 'attribute', ], 
             [ 0, ContextId::ELT_ATTRIBUTEGROUP_REF, 'attributeGroup', ], 
+            [ 0, ContextId::ELT_ANYATTRIBUTE, 'anyAttribute', ], 
             [ 1, ContextId::ELT_ATTRIBUTE, 'attribute', ], 
             [ 1, ContextId::ELT_ATTRIBUTEGROUP_REF, 'attributeGroup', ], 
+            [ 1, ContextId::ELT_ANYATTRIBUTE, 'anyAttribute', ], 
         ], 
         ContextId::ELT_ATTRIBUTE => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
@@ -366,8 +369,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
             [ 0, ContextId::ELT_ATTRIBUTE, 'buildAttributeElement', ], 
             [ 0, ContextId::ELT_ATTRIBUTEGROUP_REF, 'buildAttributeGroupElement', ], 
+            [ 0, ContextId::ELT_ANYATTRIBUTE, 'buildAnyAttributeElement', ], 
             [ 1, ContextId::ELT_ATTRIBUTE, 'buildAttributeElement', ], 
             [ 1, ContextId::ELT_ATTRIBUTEGROUP_REF, 'buildAttributeGroupElement', ], 
+            [ 1, ContextId::ELT_ANYATTRIBUTE, 'buildAnyAttributeElement', ], 
         ], 
         ContextId::ELT_ATTRIBUTE => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
@@ -528,8 +533,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_ATTRIBUTE, 1, ], 
             [ 0, ContextId::ELT_ATTRIBUTEGROUP_REF, 1, ], 
+            [ 0, ContextId::ELT_ANYATTRIBUTE, 2, ], 
             [ 1, ContextId::ELT_ATTRIBUTE, 1, ], 
             [ 1, ContextId::ELT_ATTRIBUTEGROUP_REF, 1, ], 
+            [ 1, ContextId::ELT_ANYATTRIBUTE, 2, ], 
         ], 
         ContextId::ELT_ATTRIBUTE => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 

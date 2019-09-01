@@ -163,7 +163,7 @@
 - [x] Parse **annotation** element.
 - [x] Parse **attribute** elements (attribute).
 - [x] Parse **attributeGroup** elements (attributeGroupRef).
-- [ ] Parse **anyAttribute** element.
+- [x] Parse **anyAttribute** element.
 
 ## Element: "attributeGroup" (attributeGroupRef)
 
@@ -235,6 +235,25 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
+
+## Element: "anyAttribute"
+
+```
+<anyAttribute
+  id = ID
+  namespace = ((##any | ##other) | List of (anyURI | (##targetNamespace | ##local)))
+  processContents = (lax | skip | strict)
+>
+  Content: (annotation?)
+</anyAttribute>
+```
+
+- [x] Parse **anyAttribute** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **namespace** attribute (collapsing white spaces).
+- [ ] Parse **processContents** attribute.
+- [x] Other attributes are not supported.
+- [ ] Parse **annotation** element.
 
 ## Element: "simpleType" (topLevelSimpleType)
 

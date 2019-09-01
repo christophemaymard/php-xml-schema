@@ -43,4 +43,5 @@ class ContextId
     const ELT_NAMED_ATTRIBUTEGROUP = 26;
     const ELT_ATTRIBUTE = 27;
     const ELT_ATTRIBUTEGROUP_REF = 28;
+    const ELT_ANYATTRIBUTE = 29;
 }
