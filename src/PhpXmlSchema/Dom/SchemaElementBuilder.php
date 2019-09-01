@@ -329,10 +329,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildRefAttribute(string $value)
     {
-        if ($this->currentElement instanceof AttributeElement && 
-            $this->currentElement->getParent() instanceof AttributeGroupElement
-        ) {
-            $this->currentElement->setRef($this->parseQName($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTE:
+                case ElementId::ELT_ATTRIBUTEGROUP:
+                    if ($this->currentElement->getParent() instanceof AttributeGroupElement) {
+                        $this->currentElement->setRef($this->parseQName($value));
+                    }
+            }
         }
     }
     
