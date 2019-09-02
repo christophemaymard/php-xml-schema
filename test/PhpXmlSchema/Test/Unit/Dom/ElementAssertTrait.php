@@ -1590,4 +1590,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasProcessContents());
     }
+    
+    /**
+     * Asserts that the specified "anyAttribute" element has only the "id" 
+     * attribute.
+     * 
+     * @param   AnyAttributeElement $sut    The element to test.
+     */
+    public static function assertAnyAttributeElementHasOnlyIdAttribute(
+        AnyAttributeElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasNamespace());
+        self::assertFalse($sut->hasProcessContents());
+    }
 }
