@@ -717,6 +717,7 @@ class SpecificationFactory
             [ 'abstract', '', 'buildAbstractAttribute', ], 
             [ 'block', '', 'buildBlockAttribute', ], 
             [ 'final', '', 'buildFinalAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     
