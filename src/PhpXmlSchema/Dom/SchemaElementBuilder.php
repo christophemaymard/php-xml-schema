@@ -548,6 +548,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_PATTERN:
                 case ElementId::ELT_LIST:
                 case ElementId::ELT_UNION:
+                case ElementId::ELT_ANYATTRIBUTE:
                     $elt = new AnnotationElement();
                     $this->currentElement->setAnnotationElement($elt);
                     $this->currentElement = $elt;

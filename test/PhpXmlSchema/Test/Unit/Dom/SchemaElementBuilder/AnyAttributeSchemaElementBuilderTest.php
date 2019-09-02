@@ -38,7 +38,6 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildDocumentationElementDoesNotCreateElementTestTrait;
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -305,5 +304,30 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
             '"skip" or "strict".'
         );
         $this->sut->buildProcessContentsAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "anyAttribute" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenAnyAttribute()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $anyAttr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $anyAttr);
+        self::assertAnyAttributeElementHasNoAttribute($anyAttr);
+        self::assertCount(1, $anyAttr->getElements());
+        
+        $ann = $anyAttr->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
