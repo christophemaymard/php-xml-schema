@@ -408,7 +408,7 @@
 - [x] Parse **simpleContent** element.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
 - [ ] Parse **restriction** element (simpleRestrictionType).
 - [ ] Parse **extension** element (simpleExtensionType).
 
