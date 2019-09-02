@@ -31,6 +31,7 @@ use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\PatternElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleContentElement;
+use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use PhpXmlSchema\Dom\TotalDigitsElement;
@@ -1861,5 +1862,18 @@ trait ElementAssertTrait
         SimpleContentElement $sut
     ) {
         self::assertTrue($sut->hasId());
+    }
+    
+    /**
+     * Asserts that the specified "restriction" element 
+     * (simpleRestrictionType) has no attribute.
+     * 
+     * @param   SimpleContentRestrictionElement $sut    The element to test.
+     */
+    public static function assertSimpleContentRestrictionElementHasNoAttribute(
+        SimpleContentRestrictionElement $sut
+    ) {
+        self::assertFalse($sut->hasBase());
+        self::assertFalse($sut->hasId());
     }
 }

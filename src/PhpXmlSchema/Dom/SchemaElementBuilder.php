@@ -896,10 +896,19 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildRestrictionElement()
     {
-        if ($this->currentElement instanceof SimpleTypeElement) {
-            $elt = new SimpleTypeRestrictionElement();
-            $this->currentElement->setDerivationElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SIMPLETYPE:
+                    $elt = new SimpleTypeRestrictionElement();
+                    $this->currentElement->setDerivationElement($elt);
+                    $this->currentElement = $elt;
+                    break;
+                case ElementId::ELT_SIMPLECONTENT:
+                    $elt = new SimpleContentRestrictionElement();
+                    $this->currentElement->setDerivationElement($elt);
+                    $this->currentElement = $elt;
+                    break;
+            }
         }
     }
     

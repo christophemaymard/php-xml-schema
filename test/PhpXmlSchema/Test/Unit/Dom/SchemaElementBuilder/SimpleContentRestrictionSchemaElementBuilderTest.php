@@ -9,18 +9,18 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is the "simpleContent" element.
+ * class when the current element is the "restriction" element 
+ * (simpleRestrictionType).
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BindNamespaceTestTrait;
     
@@ -28,6 +28,7 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
+    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -39,6 +40,7 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -50,6 +52,7 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
+    use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
@@ -88,10 +91,10 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     {
         self::assertAncestorsNotChanged($sch);
         
-        $sc = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $sc);
-        self::assertSimpleContentElementHasNoAttribute($sc);
-        self::assertSame([], $sc->getElements());
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -107,7 +110,12 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertElementNamespaceDeclarations([], $ct);
         self::assertComplexTypeElementHasNoAttribute($ct);
         self::assertCount(1, $ct->getElements());
-        self::assertNotNull($ct->getContentElement());
+        
+        $sc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $sc);
+        self::assertSimpleContentElementHasNoAttribute($sc);
+        self::assertCount(1, $sc->getElements());
+        self::assertNotNull($sc->getDerivationElement());
     }
     
     /**
@@ -115,7 +123,7 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
-        self::assertSimpleContentElementHasNoAttribute(self::getCurrentElement($sch));
+        self::assertSimpleContentRestrictionElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -124,7 +132,8 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     protected static function getCurrentElement(SchemaElement $sch)
     {
         return $sch->getComplexTypeElements()[0]
-            ->getContentElement();
+            ->getContentElement()
+            ->getDerivationElement();
     }
     
     /**
@@ -135,6 +144,7 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
         $this->sut->buildSimpleContentElement();
+        $this->sut->buildRestrictionElement();
     }
     
     /**
@@ -143,103 +153,5 @@ class SimpleContentSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that buildIdAttribute() creates the attribute when the current 
-     * element is the "simpleContent" element and the value is valid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $id     The expected value for the ID.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidIdValues
-     */
-    public function testBuildIdAttributeCreatesAttrWhenSimpleContentAndValueIsValid(
-        string $value, 
-        string $id
-    ) {
-        $this->sut->buildIdAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $sc = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $sc);
-        self::assertSimpleContentElementHasOnlyIdAttribute($sc);
-        self::assertSame($id, $sc->getId()->getId());
-        self::assertSame([], $sc->getElements());
-    }
-    
-    /**
-     * Tests that buildIdAttribute() throws an exception when the current 
-     * element is the "simpleContent" element and the value is invalid.
-     * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getInvalidIdValues
-     */
-    public function testBuildIdAttributeThrowsExceptionWhenSimpleContentAndValueIsInvalid(
-        string $value, 
-        string $message
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
-        
-        $this->sut->buildIdAttribute($value);
-    }
-    
-    /**
-     * Tests that buildAnnotationElement() creates the element when the 
-     * current element is the "simpleContent" element.
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildAnnotationElementCreateEltWhenSimpleContent()
-    {
-        $this->sut->buildAnnotationElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $sc = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $sc);
-        self::assertSimpleContentElementHasNoAttribute($sc);
-        self::assertCount(1, $sc->getElements());
-        
-        $ann = $sc->getAnnotationElement();
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertSame([], $ann->getElements());
-    }
-    
-    /**
-     * Tests that buildRestrictionElement() creates the element when the 
-     * current element is the "simpleContent" element.
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildRestrictionElementCreateEltWhenSimpleContent()
-    {
-        $this->sut->buildRestrictionElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $sc = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $sc);
-        self::assertSimpleContentElementHasNoAttribute($sc);
-        self::assertCount(1, $sc->getElements());
-        
-        $res = $sc->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $res);
-        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
-        self::assertSame([], $res->getElements());
     }
 }
