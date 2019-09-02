@@ -72,7 +72,6 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildUnionElementDoesNotCreateElementTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
     use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
@@ -238,5 +237,59 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         );
         
         $this->sut->buildBlockAttribute($value);
+    }
+    
+    /**
+     * Tests that buildFinalAttribute() creates the attribute when the 
+     * current element is the "complexType" element (topLevelComplexType) and 
+     * the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $ext    The expected value for the "extension" flag.
+     * @param   bool    $res    The expected value for the "restriction" flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidDerivationSetValues
+     */
+    public function testBuildFinalAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
+        string $value, 
+        bool $ext, 
+        bool $res
+    ) {
+        $this->sut->buildFinalAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasOnlyFinalAttribute($ct);
+        self::assertComplexTypeElementFinalAttribute($ext, $res, $ct);
+        self::assertSame([], $ct->getElements());
+    }
+    
+    /**
+     * Tests that buildFinalAttribute() throws an exception when the 
+     * current element is the "complexType" element (topLevelComplexType) and 
+     * the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidDerivationSetValues
+     */
+    public function testBuildFinalAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "final" '.
+            'attribute (from no namespace), expected: "#all" or '.
+            '"List of (extension | restriction)".'
+        );
+        
+        $this->sut->buildFinalAttribute($value);
     }
 }

@@ -182,6 +182,17 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             }
             
             $this->currentElement->setFinal($attr);
+        } elseif ($this->currentElement instanceof ComplexTypeElement) {
+            if (NULL === $attr = $this->parseDerivationSet($value)) {
+                throw new InvalidValueException(Message::invalidAttributeValue(
+                    $value, 
+                    'final', 
+                    '', 
+                    [ '#all', 'List of (extension | restriction)', ]
+                ));
+            }
+            
+            $this->currentElement->setFinal($attr);
         }
     }
     
