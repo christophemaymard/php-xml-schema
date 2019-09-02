@@ -151,6 +151,48 @@ class AnyAttributeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "processContents" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $lax        The expected value for the "lax" flag.
+     * @param   bool    $skip       The expected value for the "skip" flag.
+     * @param   bool    $strict     The expected value for the "strict" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidProcessContentsAttributes
+     */
+    public function testParseProcessProcessContentsAttribute(
+        string $fileName, 
+        bool $lax, 
+        bool $skip, 
+        bool $strict
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(1, $ag->getElements());
+        
+        $anyAttr = $ag->getAnyAttributeElement();
+        self::assertElementNamespaceDeclarations([], $anyAttr);
+        self::assertAnyAttributeElementHasOnlyProcessContentsAttribute($anyAttr);
+        self::assertSame($lax, $anyAttr->getProcessContents()->isLax());
+        self::assertSame($skip, $anyAttr->getProcessContents()->isSkip());
+        self::assertSame($strict, $anyAttr->getProcessContents()->isStrict());
+        self::assertSame([], $anyAttr->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -334,6 +376,27 @@ class AnyAttributeParserTest extends AbstractParserTestCase
                     'http://example.org/foo', 
                     'http://example.org/bar', 
                 ], 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "processContents" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidProcessContentsAttributes():array
+    {
+        // [ $fileName, $lax, $skip, $strict, ]
+        return [
+            'lax' => [
+                'anyAttribute_processContents_0001.xsd', TRUE, FALSE, FALSE, 
+            ], 
+            'skip' => [
+                'anyAttribute_processContents_0002.xsd', FALSE, TRUE, FALSE, 
+            ], 
+            'strict' => [
+                'anyAttribute_processContents_0003.xsd', FALSE, FALSE, TRUE, 
             ], 
         ];
     }

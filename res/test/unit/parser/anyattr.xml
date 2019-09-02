@@ -128,6 +128,67 @@
       <message>"##other http://example.org/foo" is an invalid namespace list.</message>
     </schema>
   </test>
+  <!-- anyAttribute::processContents -->
+  <test group="attribute" name="[anyAttribute][attribute::processContents] Empty string">
+    <schema fileName="anyAttribute_processContents_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] Only white spaces">
+    <schema fileName="anyAttribute_processContents_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"       " is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] Not lax neither skip neither strict">
+    <schema fileName="anyAttribute_processContents_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo" is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] lax with white spaces">
+    <schema fileName="anyAttribute_processContents_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    lax     " is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] skip with white spaces">
+    <schema fileName="anyAttribute_processContents_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    skip     " is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] strict with white spaces">
+    <schema fileName="anyAttribute_processContents_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    strict     " is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] lax (uppercase)">
+    <schema fileName="anyAttribute_processContents_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Lax" is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] skip (uppercase)">
+    <schema fileName="anyAttribute_processContents_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"sKip" is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] strict (uppercase)">
+    <schema fileName="anyAttribute_processContents_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"sTrict" is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::processContents] lax, skip and strict">
+    <schema fileName="anyAttribute_processContents_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"lax skip strict" is an invalid value for the "processContents" attribute (from no namespace), expected: "lax", "skip" or "strict".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

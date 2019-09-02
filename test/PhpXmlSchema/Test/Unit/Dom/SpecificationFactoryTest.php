@@ -744,6 +744,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_ANYATTRIBUTE
             [ 29, 'id', '', 'buildIdAttribute', ], 
             [ 29, 'namespace', '', 'buildNamespaceAttribute', ], 
+            [ 29, 'processContents', '', 'buildProcessContentsAttribute', ], 
         ];
     }
 }

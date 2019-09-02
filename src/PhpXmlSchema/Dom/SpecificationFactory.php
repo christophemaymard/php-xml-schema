@@ -695,6 +695,7 @@ class SpecificationFactory
         ContextId::ELT_ANYATTRIBUTE => [
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'namespace', '', 'buildNamespaceAttribute', ], 
+            [ 'processContents', '', 'buildProcessContentsAttribute', ], 
         ], 
     ];
     
