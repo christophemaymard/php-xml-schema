@@ -694,6 +694,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_ANYATTRIBUTE => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'namespace', '', 'buildNamespaceAttribute', ], 
         ], 
     ];
     

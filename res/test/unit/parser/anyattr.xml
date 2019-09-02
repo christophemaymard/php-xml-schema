@@ -73,6 +73,61 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- anyAttribute::namespace -->
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##any surrounded by white spaces">
+    <schema fileName="anyAttribute_namespace_0017.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"      ##any      " is an invalid namespace list.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##other surrounded by white spaces">
+    <schema fileName="anyAttribute_namespace_0018.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"     ##other     " is an invalid namespace list.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##any and ##other">
+    <schema fileName="anyAttribute_namespace_0019.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"##any ##other" is an invalid namespace list.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##any and ##targetNamespace">
+    <schema fileName="anyAttribute_namespace_0020.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"##any ##targetNamespace" is an invalid namespace list.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##any and ##local">
+    <schema fileName="anyAttribute_namespace_0021.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"##any ##local" is an invalid namespace list.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##other and ##targetNamespace">
+    <schema fileName="anyAttribute_namespace_0022.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"##other ##targetNamespace" is an invalid namespace list.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##other and ##local">
+    <schema fileName="anyAttribute_namespace_0023.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"##other ##local" is an invalid namespace list.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##any and 1 anyURI">
+    <schema fileName="anyAttribute_namespace_0024.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"##any http://example.org/foo" is an invalid namespace list.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[anyAttribute][attribute::namespace] ##other and 1 anyURI">
+    <schema fileName="anyAttribute_namespace_0025.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"##other http://example.org/foo" is an invalid namespace list.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

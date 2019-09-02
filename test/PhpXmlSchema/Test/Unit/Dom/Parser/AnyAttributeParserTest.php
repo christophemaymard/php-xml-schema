@@ -100,6 +100,57 @@ class AnyAttributeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "namespace" attribute.
+     * 
+     * @param   string      $fileName   The name of the file used for the test.
+     * @param   bool        $any        The expected value for the "any" flag.
+     * @param   bool        $other      The expected value for the "other" flag.
+     * @param   bool        $targetNs   The expected value for the "targetNamespace" flag.
+     * @param   bool        $local      The expected value for the "local" flag.
+     * @param   string[]    $uris       The expected value for the anyURIs.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNamespaceAttributes
+     */
+    public function testParseProcessNamespaceAttribute(
+        string $fileName, 
+        bool $any, 
+        bool $other, 
+        bool $targetNs, 
+        bool $local, 
+        array $uris
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ag = $sch->getAttributeGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $ag);
+        self::assertAttributeGroupElementHasNoAttribute($ag);
+        self::assertCount(1, $ag->getElements());
+        
+        $anyAttr = $ag->getAnyAttributeElement();
+        self::assertElementNamespaceDeclarations([], $anyAttr);
+        self::assertAnyAttributeElementHasOnlyNamespaceAttribute($anyAttr);
+        self::assertAnyAttributeElementNamespaceAttribute(
+            $any, 
+            $other, 
+            $targetNs, 
+            $local, 
+            $uris, 
+            $anyAttr
+        );
+        self::assertSame([], $anyAttr->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -130,6 +181,159 @@ class AnyAttributeParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'anyAttribute_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "namespace" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidNamespaceAttributes():array
+    {
+        // [ $fileName, $any, $other, $targetNamespace, $local, $uris, ]
+        return [
+            'Empty string' => [
+                'anyAttribute_namespace_0001.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                [], 
+            ], 
+            'Only white spaces' => [
+                'anyAttribute_namespace_0002.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                [], 
+            ], 
+            '##any' => [
+                'anyAttribute_namespace_0003.xsd', 
+                TRUE, 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                [], 
+            ], 
+            '##other' => [
+                'anyAttribute_namespace_0004.xsd', 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                FALSE, 
+                [], 
+            ], 
+            '##targetNamespace' => [
+                'anyAttribute_namespace_0005.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [], 
+            ], 
+            '##targetNamespace surrounded by white spaces' => [
+                'anyAttribute_namespace_0006.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [], 
+            ], 
+            'Duplicated ##targetNamespace' => [
+                'anyAttribute_namespace_0007.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [], 
+            ], 
+            '##local' => [
+                'anyAttribute_namespace_0008.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [], 
+            ], 
+            '##local surrounded by white spaces' => [
+                'anyAttribute_namespace_0009.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [], 
+            ], 
+            'Duplicated ##local' => [
+                'anyAttribute_namespace_0010.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [], 
+            ], 
+            '##targetNamespace and ##local' => [
+                'anyAttribute_namespace_0011.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                TRUE, 
+                [], 
+            ], 
+            '##targetNamespace and 1 anyURI' => [
+                'anyAttribute_namespace_0012.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [
+                    'http://example.org/foo', 
+                ], 
+            ], 
+            '##local and 1 anyURI' => [
+                'anyAttribute_namespace_0013.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [
+                    'http://example.org/foo', 
+                ], 
+            ], 
+            '##targetNamespace and 2 anyURI' => [
+                'anyAttribute_namespace_0014.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [
+                    'http://example.org/foo', 
+                    'http://example.org/bar', 
+                ], 
+            ], 
+            '##local and 2 anyURI' => [
+                'anyAttribute_namespace_0015.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [
+                    'http://example.org/foo', 
+                    'http://example.org/bar', 
+                ], 
+            ], 
+            '##targetNamespace, ##local and 2 AnyURI' => [
+                'anyAttribute_namespace_0016.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                TRUE, 
+                [
+                    'http://example.org/foo', 
+                    'http://example.org/bar', 
+                ], 
             ], 
         ];
     }

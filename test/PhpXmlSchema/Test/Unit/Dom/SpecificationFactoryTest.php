@@ -743,6 +743,7 @@ class SpecificationFactoryTest extends TestCase
             [ 28, 'ref', '', 'buildRefAttribute', ], 
             // Context: ELT_ANYATTRIBUTE
             [ 29, 'id', '', 'buildIdAttribute', ], 
+            [ 29, 'namespace', '', 'buildNamespaceAttribute', ], 
         ];
     }
 }

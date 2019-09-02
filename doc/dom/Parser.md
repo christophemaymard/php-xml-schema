@@ -250,7 +250,7 @@
 
 - [x] Parse **anyAttribute** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **namespace** attribute (collapsing white spaces).
+- [x] Parse **namespace** attribute (collapsing white spaces).
 - [ ] Parse **processContents** attribute.
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
