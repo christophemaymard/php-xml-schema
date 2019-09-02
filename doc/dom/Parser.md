@@ -32,7 +32,7 @@
 - [ ] Parse **redefine** elements.
 - [x] Parse **annotation** elements (composition).
 - [x] Parse **simpleType** elements (topLevelSimpleType).
-- [ ] Parse **complexType** elements.
+- [x] Parse **complexType** elements (topLevelComplexType).
 - [ ] Parse **group** elements.
 - [x] Parse **attributeGroup** elements (namedAttributeGroup).
 - [ ] Parse **element** elements.
@@ -360,6 +360,40 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** elements (localSimpleType).
+
+## Element: "complexType" (topLevelComplexType)
+
+```
+<complexType
+  abstract = boolean
+  block = (#all | List of (extension | restriction))
+  final = (#all | List of (extension | restriction))
+  id = ID
+  mixed = boolean
+  name = NCName
+>
+  Content: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, ((attribute | attributeGroup)*, anyAttribute?))))
+</complexType>
+```
+
+- [x] Parse **complexType** element.
+- [ ] Parse **abstract** attribute (collapsing white spaces).
+- [ ] Parse **block** attribute (collapsing white spaces).
+- [ ] Parse **final** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **mixed** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleContent** element.
+- [ ] Parse **complexContent** element.
+- [ ] Parse **group** element (groupRef).
+- [ ] Parse **all** element (all).
+- [ ] Parse **choice** element (explicitGroup).
+- [ ] Parse **sequence** element (explicitGroup).
+- [ ] Parse **attribute** elements (attribute).
+- [ ] Parse **attributeGroup** elements (attributeGroupRef).
+- [ ] Parse **anyAttribute** element.
 
 ## Element: "minExclusive"
 

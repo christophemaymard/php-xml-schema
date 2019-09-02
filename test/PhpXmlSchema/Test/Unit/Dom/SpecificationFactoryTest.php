@@ -194,6 +194,7 @@ class SpecificationFactoryTest extends TestCase
             [ 27, 0, ], // ELT_ATTRIBUTE
             [ 28, 0, ], // ELT_ATTRIBUTEGROUP_REF
             [ 29, 0, ], // ELT_ANYATTRIBUTE
+            [ 30, 0, ], // ELT_TOP_COMPLEXTYPE
         ];
     }
     
@@ -213,10 +214,12 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 5, 'import', ], // ELT_IMPORT
             [ 1, 0, 6, 'include', ], // ELT_INCLUDE
             [ 1, 0, 25, 'simpleType', ], // ELT_TOP_SIMPLETYPE
+            [ 1, 0, 30, 'complexType', ], // ELT_TOP_COMPLEXTYPE
             [ 1, 0, 26, 'attributeGroup', ], // ELT_NAMED_ATTRIBUTEGROUP
             [ 1, 0, 8, 'attribute', ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 'notation', ], // ELT_NOTATION
             [ 1, 1, 25, 'simpleType', ], // ELT_TOP_SIMPLETYPE
+            [ 1, 1, 30, 'complexType', ], // ELT_TOP_COMPLEXTYPE
             [ 1, 1, 26, 'attributeGroup', ], // ELT_NAMED_ATTRIBUTEGROUP
             [ 1, 1, 8, 'attribute', ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 'notation', ], // ELT_NOTATION
@@ -357,10 +360,12 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 5, 'buildImportElement', ], // ELT_IMPORT
             [ 1, 0, 6, 'buildIncludeElement', ], // ELT_INCLUDE
             [ 1, 0, 25, 'buildSimpleTypeElement', ], // ELT_TOP_SIMPLETYPE
+            [ 1, 0, 30, 'buildComplexTypeElement', ], // ELT_TOP_COMPLEXTYPE
             [ 1, 0, 26, 'buildAttributeGroupElement', ], // ELT_NAMED_ATTRIBUTEGROUP
             [ 1, 0, 8, 'buildAttributeElement', ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 'buildNotationElement', ], // ELT_NOTATION
             [ 1, 1, 25, 'buildSimpleTypeElement', ], // ELT_TOP_SIMPLETYPE
+            [ 1, 1, 30, 'buildComplexTypeElement', ], // ELT_TOP_COMPLEXTYPE
             [ 1, 1, 26, 'buildAttributeGroupElement', ], // ELT_NAMED_ATTRIBUTEGROUP
             [ 1, 1, 8, 'buildAttributeElement', ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 'buildNotationElement', ], // ELT_NOTATION
@@ -501,10 +506,12 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 5, 0, ], // ELT_IMPORT
             [ 1, 0, 6, 0 ], // ELT_INCLUDE
             [ 1, 0, 25, 1, ], // ELT_TOP_SIMPLETYPE
+            [ 1, 0, 30, 1, ], // ELT_TOP_COMPLEXTYPE
             [ 1, 0, 26, 1, ], // ELT_NAMED_ATTRIBUTEGROUP
             [ 1, 0, 8, 1, ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 1, ], // ELT_NOTATION
             [ 1, 1, 25, 1, ], // ELT_TOP_SIMPLETYPE
+            [ 1, 1, 30, 1, ], // ELT_TOP_COMPLEXTYPE
             [ 1, 1, 26, 1, ], // ELT_NAMED_ATTRIBUTEGROUP
             [ 1, 1, 8, 1, ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 1, ], // ELT_NOTATION

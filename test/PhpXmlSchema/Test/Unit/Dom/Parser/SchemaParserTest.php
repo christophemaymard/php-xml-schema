@@ -543,6 +543,37 @@ class SchemaParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "complexType" elements 
+     * (topLevelComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessComplexTypeElement()
+    {
+        $sch = $this->sut->parse($this->getXs('complexType_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $cts = $sch->getComplexTypeElements();
+        
+        self::assertElementNamespaceDeclarations([], $cts[0]);
+        self::assertComplexTypeElementHasNoAttribute($cts[0]);
+        self::assertSame([], $cts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $cts[1]);
+        self::assertComplexTypeElementHasNoAttribute($cts[1]);
+        self::assertSame([], $cts[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "attributeFormDefault" attributes.
      * 
      * @return  array[]
