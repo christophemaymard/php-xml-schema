@@ -1,0 +1,6 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:foo="http://example.org">
+  <xs:complexType>
+    <xs:simpleContent foo:bar="baz">
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

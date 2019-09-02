@@ -385,7 +385,7 @@
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **simpleContent** element.
+- [x] Parse **simpleContent** element.
 - [ ] Parse **complexContent** element.
 - [ ] Parse **group** element (groupRef).
 - [ ] Parse **all** element (all).
@@ -394,6 +394,23 @@
 - [ ] Parse **attribute** elements (attribute).
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
 - [ ] Parse **anyAttribute** element.
+
+## Element: "simpleContent"
+
+```
+<simpleContent
+  id = ID
+>
+  Content: (annotation?, (restriction | extension))
+</simpleContent>
+```
+
+- [x] Parse **simpleContent** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **restriction** element (simpleRestrictionType).
+- [ ] Parse **extension** element (simpleExtensionType).
 
 ## Element: "minExclusive"
 

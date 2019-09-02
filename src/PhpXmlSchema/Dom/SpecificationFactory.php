@@ -54,6 +54,7 @@ class SpecificationFactory
         ContextId::ELT_ATTRIBUTEGROUP_REF => 0, 
         ContextId::ELT_ANYATTRIBUTE => 0, 
         ContextId::ELT_TOP_COMPLEXTYPE => 0, 
+        ContextId::ELT_SIMPLECONTENT => 0, 
     ];
     
     /**
@@ -225,6 +226,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_TOP_COMPLEXTYPE => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+            [ 0, ContextId::ELT_SIMPLECONTENT, 'simpleContent', ], 
+            [ 1, ContextId::ELT_SIMPLECONTENT, 'simpleContent', ], 
         ], 
     ];
     
@@ -398,6 +401,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_TOP_COMPLEXTYPE => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+            [ 0, ContextId::ELT_SIMPLECONTENT, 'buildSimpleContentElement', ], 
+            [ 1, ContextId::ELT_SIMPLECONTENT, 'buildSimpleContentElement', ], 
         ], 
     ];
     
@@ -570,6 +575,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_TOP_COMPLEXTYPE => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+            [ 0, ContextId::ELT_SIMPLECONTENT, 3, ], 
+            [ 1, ContextId::ELT_SIMPLECONTENT, 3, ], 
         ], 
     ];
     

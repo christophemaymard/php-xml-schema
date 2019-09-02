@@ -45,4 +45,5 @@ class ContextId
     const ELT_ATTRIBUTEGROUP_REF = 28;
     const ELT_ANYATTRIBUTE = 29;
     const ELT_TOP_COMPLEXTYPE = 30;
+    const ELT_SIMPLECONTENT = 31;
 }
