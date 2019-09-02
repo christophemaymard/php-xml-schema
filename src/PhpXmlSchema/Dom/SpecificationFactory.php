@@ -713,6 +713,9 @@ class SpecificationFactory
             [ 'namespace', '', 'buildNamespaceAttribute', ], 
             [ 'processContents', '', 'buildProcessContentsAttribute', ], 
         ], 
+        ContextId::ELT_TOP_COMPLEXTYPE => [
+            [ 'abstract', '', 'buildAbstractAttribute', ], 
+        ], 
     ];
     
     /**

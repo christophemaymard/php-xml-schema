@@ -59,4 +59,76 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
         self::assertComplexTypeElementHasNoAttribute($ct);
         self::assertSame([], $ct->getElements());
     }
+    
+    /**
+     * Tests that parse() processes "abstract" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $bool       The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidAbstractAttributes
+     */
+    public function testParseProcessAbstractAttribute(string $fileName, bool $bool)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasOnlyAbstractAttribute($ct);
+        self::assertSame($bool, $ct->getAbstract());
+        self::assertSame([], $ct->getElements());
+    }
+    
+    /**
+     * Returns a set of valid "abstract" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidAbstractAttributes():array
+    {
+        return [
+            'true (string)' => [
+                'complexType_abstract_0001.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric)' => [
+                'complexType_abstract_0002.xsd', 
+                TRUE, 
+            ], 
+            'true (string) surrounded by white spaces' => [
+                'complexType_abstract_0003.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric) surrounded by white spaces' => [
+                'complexType_abstract_0004.xsd', 
+                TRUE, 
+            ], 
+            'false (string)' => [
+                'complexType_abstract_0005.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric)' => [
+                'complexType_abstract_0006.xsd', 
+                FALSE, 
+            ], 
+            'false (string) surrounded by white spaces' => [
+                'complexType_abstract_0007.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric) surrounded by white spaces' => [
+                'complexType_abstract_0008.xsd', 
+                FALSE, 
+            ], 
+        ];
+    }
 }

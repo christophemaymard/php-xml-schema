@@ -758,6 +758,8 @@ class SpecificationFactoryTest extends TestCase
             [ 29, 'id', '', 'buildIdAttribute', ], 
             [ 29, 'namespace', '', 'buildNamespaceAttribute', ], 
             [ 29, 'processContents', '', 'buildProcessContentsAttribute', ], 
+            // Context: ELT_TOP_COMPLEXTYPE
+            [ 30, 'abstract', '', 'buildAbstractAttribute', ], 
         ];
     }
 }

@@ -377,13 +377,13 @@
 ```
 
 - [x] Parse **complexType** element.
-- [ ] Parse **abstract** attribute (collapsing white spaces).
+- [x] Parse **abstract** attribute (collapsing white spaces).
 - [ ] Parse **block** attribute (collapsing white spaces).
 - [ ] Parse **final** attribute (collapsing white spaces).
 - [ ] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **mixed** attribute (collapsing white spaces).
 - [ ] Parse **name** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleContent** element.
 - [ ] Parse **complexContent** element.

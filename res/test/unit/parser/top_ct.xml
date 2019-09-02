@@ -30,6 +30,25 @@
       <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
+  <!-- complexType::abstract -->
+  <test group="attribute" name="[complexType][attribute::abstract] true (uppercase)">
+    <schema fileName="complexType_abstract_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"True" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::abstract] false (uppercase)">
+    <schema fileName="complexType_abstract_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"False" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::abstract] Numeric other than 0 or 1">
+    <schema fileName="complexType_abstract_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"2" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
