@@ -123,6 +123,39 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "final" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $ext        The expected value for the "extension" flag.
+     * @param   bool    $res        The expected value for the "restriction" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFinalAttributes
+     */
+    public function testParseProcessFinalAttribute(
+        string $fileName,
+        bool $ext, 
+        bool $res
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasOnlyFinalAttribute($ct);
+        self::assertComplexTypeElementFinalAttribute($ext, $res, $ct);
+        self::assertSame([], $ct->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]
@@ -197,6 +230,42 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
             ], 
             'Duplicated restriction' => [
                 'complexType_block_0008.xsd', FALSE, TRUE, 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "final" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFinalAttributes():array
+    {
+        // [ $fileName, $extension, $restriction, ]
+        return [
+            'Empty string' => [
+                'complexType_final_0001.xsd', FALSE, FALSE, 
+            ], 
+            'Only white spaces' => [
+                'complexType_final_0002.xsd', FALSE, FALSE, 
+            ], 
+            '#all' => [
+                'complexType_final_0003.xsd', TRUE, TRUE, 
+            ], 
+            'extension and restriction with white spaces' => [
+                'complexType_final_0004.xsd', TRUE, TRUE, 
+            ], 
+            'extension with white spaces' => [
+                'complexType_final_0005.xsd', TRUE, FALSE, 
+            ], 
+            'restriction with white spaces' => [
+                'complexType_final_0006.xsd', FALSE, TRUE, 
+            ], 
+            'Duplicated extension' => [
+                'complexType_final_0007.xsd', TRUE, FALSE, 
+            ], 
+            'Duplicated restriction' => [
+                'complexType_final_0008.xsd', FALSE, TRUE, 
             ], 
         ];
     }

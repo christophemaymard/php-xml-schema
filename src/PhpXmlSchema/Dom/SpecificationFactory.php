@@ -716,6 +716,7 @@ class SpecificationFactory
         ContextId::ELT_TOP_COMPLEXTYPE => [
             [ 'abstract', '', 'buildAbstractAttribute', ], 
             [ 'block', '', 'buildBlockAttribute', ], 
+            [ 'final', '', 'buildFinalAttribute', ], 
         ], 
     ];
     
