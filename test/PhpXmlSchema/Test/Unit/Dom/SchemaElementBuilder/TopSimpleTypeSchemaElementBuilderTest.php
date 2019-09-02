@@ -71,6 +71,7 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
+    use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

@@ -1655,4 +1655,18 @@ trait ElementAssertTrait
         
         self::assertSame($uris, $namespaces);
     }
+    
+    /**
+     * Asserts that the specified "anyAttribute" element has only the 
+     * "processContents" attribute.
+     * 
+     * @param   AnyAttributeElement $sut    The element to test.
+     */
+    public static function assertAnyAttributeElementHasOnlyProcessContentsAttribute(
+        AnyAttributeElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasNamespace());
+        self::assertTrue($sut->hasProcessContents());
+    }
 }

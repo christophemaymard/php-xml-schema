@@ -249,4 +249,61 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         
         $this->sut->buildNamespaceAttribute($value);
     }
+    
+    /**
+     * Tests that buildProcessContentsAttribute() creates the attribute when 
+     * the current element is the "anyAttribute" element and the value is 
+     * valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $lax    The expected value for the "lax" flag.
+     * @param   bool    $skip   The expected value for the "skip" flag.
+     * @param   bool    $strict The expected value for the "strict" flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidProcessingModeValues
+     */
+    public function testBuildProcessContentsAttributeCreatesAttrWhenAnyAttributeAndValueIsValid(
+        string $value, 
+        bool $lax, 
+        bool $skip, 
+        bool $strict
+    ) {
+        $this->sut->buildProcessContentsAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $anyAttr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $anyAttr);
+        self::assertAnyAttributeElementHasOnlyProcessContentsAttribute($anyAttr);
+        self::assertSame($lax, $anyAttr->getProcessContents()->isLax());
+        self::assertSame($skip, $anyAttr->getProcessContents()->isSkip());
+        self::assertSame($strict, $anyAttr->getProcessContents()->isStrict());
+        self::assertSame([], $anyAttr->getElements());
+    }
+    
+    /**
+     * Tests that buildProcessContentsAttribute() throws an exception when 
+     * the current element is the "anyAttribute" element and the value is 
+     * invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidProcessingModeValues
+     */
+    public function testBuildProcessContentsAttributeThrowsExceptionWhenAnyAttributeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "processContents" '.
+            'attribute (from no namespace), expected: "lax", '.
+            '"skip" or "strict".'
+        );
+        $this->sut->buildProcessContentsAttribute($value);
+    }
 }

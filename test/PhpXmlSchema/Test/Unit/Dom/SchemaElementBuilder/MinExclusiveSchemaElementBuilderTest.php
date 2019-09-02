@@ -73,6 +73,7 @@ class MinExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
+    use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

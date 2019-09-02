@@ -76,6 +76,7 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
+    use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

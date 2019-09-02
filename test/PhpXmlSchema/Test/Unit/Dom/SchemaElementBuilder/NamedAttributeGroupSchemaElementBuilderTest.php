@@ -72,6 +72,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractSchemaElementB
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
+    use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

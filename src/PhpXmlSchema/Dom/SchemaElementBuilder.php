@@ -326,6 +326,25 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildProcessContentsAttribute(string $value)
+    {
+        if ($this->currentElement instanceof AnyAttributeElement) {
+            if (NULL === $attr = $this->parseProcessingMode($value)) {
+                throw new InvalidValueException(Message::invalidAttributeValue(
+                    $value, 
+                    'processContents', 
+                    '', 
+                    [ 'lax', 'skip', 'strict', ]
+                ));
+            }
+            
+            $this->currentElement->setProcessContents($attr);
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildPublicAttribute(string $value)
     {
         if ($this->currentElement instanceof NotationElement) {
@@ -1233,6 +1252,27 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return $nsList;
+    }
+    
+    /**
+     * Parses the specified value in ProcessingModeType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  ProcessingModeType|NULL A created instance of ProcessingModeType if the value is valid, otherwise NULL.
+     */
+    private function parseProcessingMode(string $value)
+    {
+        $pm = NULL;
+        
+        if ($value == 'lax') {
+            $pm = ProcessingModeType::createLax();
+        } elseif ($value == 'skip') {
+            $pm = ProcessingModeType::createSkip();
+        } elseif ($value == 'strict') {
+            $pm = ProcessingModeType::createStrict();
+        }
+        
+        return $pm;
     }
     
     /**

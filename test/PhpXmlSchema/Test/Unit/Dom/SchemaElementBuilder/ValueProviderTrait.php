@@ -1507,4 +1507,66 @@ trait ValueProviderTrait
             ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid ProcessingMode values.
+     * 
+     * @return  array[]
+     */
+    public function getValidProcessingModeValues():array
+    {
+        // [ $value, $lax, $skip, $strict, ]
+        return [
+            'lax' => [ 
+                'lax', TRUE, FALSE, FALSE, 
+            ],
+            'skip' => [ 
+                'skip', FALSE, TRUE, FALSE, 
+            ],
+            'strict' => [ 
+                'strict', FALSE, FALSE, TRUE, 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid ProcessingMode values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidProcessingModeValues():array
+    {
+        return [
+            'Empty string' => [
+                '', 
+            ], 
+            'Only white spaces' => [
+                '       ', 
+            ], 
+            'Not lax neither skip neither strict' => [ 
+                'foo', 
+            ], 
+            'lax with white spaces' => [
+                '    lax     ', 
+            ], 
+            'skip with white spaces' => [
+                '    skip     ', 
+            ], 
+            'strict with white spaces' => [
+                '    strict     ', 
+            ], 
+            'lax (uppercase)' => [ 
+                'Lax', 
+            ], 
+            'skip (uppercase)' => [ 
+                'sKip', 
+            ], 
+            'strict (uppercase)' => [ 
+                'sTrict', 
+            ], 
+            'lax, skip and strict' => [ 
+                'lax skip strict', 
+            ], 
+        ];
+    }
 }
