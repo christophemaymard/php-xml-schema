@@ -1787,4 +1787,21 @@ trait ElementAssertTrait
         self::assertFalse($sut->byList());
         self::assertFalse($sut->byUnion());
     }
+    
+    /**
+     * Asserts that the specified "complexType" element has only the "id" 
+     * attribute.
+     * 
+     * @param   ComplexTypeElement  $sut    The element to test.
+     */
+    public static function assertComplexTypeElementHasOnlyIdAttribute(
+        ComplexTypeElement $sut
+    ) {
+        self::assertFalse($sut->hasAbstract());
+        self::assertFalse($sut->hasBlock());
+        self::assertFalse($sut->hasFinal());
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasMixed());
+        self::assertFalse($sut->hasName());
+    }
 }
