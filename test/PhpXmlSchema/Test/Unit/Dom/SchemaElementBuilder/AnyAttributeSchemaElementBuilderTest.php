@@ -37,7 +37,6 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildLeafElementContentDoesNotCreateContentTestTrait;
     use BuildDocumentationElementDoesNotCreateElementTestTrait;
     use BuildImportElementDoesNotCreateElementTestTrait;
-    use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
@@ -187,5 +186,67 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildNamespaceAttribute() creates the attribute when the 
+     * current element is the "anyAttribute" element and the value is valid.
+     * 
+     * @param   string      $value      The value to test.
+     * @param   bool        $any        The expected value for the "any" flag.
+     * @param   bool        $other      The expected value for the "other" flag.
+     * @param   bool        $targetNs   The expected value for the "targetNamespace" flag.
+     * @param   bool        $local      The expected value for the "local" flag.
+     * @param   string[]    $uris       The expected value for the anyURIs.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNamespaceListValues
+     */
+    public function testBuildNamespaceAttributeCreatesAttrWhenAnyAttributeAndValueIsValid(
+        string $value, 
+        bool $any, 
+        bool $other, 
+        bool $targetNs, 
+        bool $local, 
+        array $uris
+    ) {
+        $this->sut->buildNamespaceAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $anyAttr = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $anyAttr);
+        self::assertAnyAttributeElementHasOnlyNamespaceAttribute($anyAttr);
+        self::assertAnyAttributeElementNamespaceAttribute(
+            $any, 
+            $other, 
+            $targetNs, 
+            $local, 
+            $uris, 
+            $anyAttr
+        );
+        self::assertSame([], $anyAttr->getElements());
+    }
+    
+    /**
+     * Tests that buildNamespaceAttribute() throws an exception when the 
+     * current element is the "anyAttribute" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNamespaceListValues
+     */
+    public function testBuildNamespaceAttributeThrowsExceptionWhenAnyAttributeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid namespace list.', $value));
+        
+        $this->sut->buildNamespaceAttribute($value);
     }
 }

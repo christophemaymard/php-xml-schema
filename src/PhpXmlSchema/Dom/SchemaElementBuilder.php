@@ -19,6 +19,7 @@ use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Exception\Message;
+use PhpXmlSchema\Exception\PhpXmlSchemaExceptionInterface;
 
 /**
  * Represents a builder of "schema" element.
@@ -306,10 +307,19 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildNamespaceAttribute(string $value)
     {
-        if ($this->currentElement instanceof ImportElement) {
-            $this->currentElement->setNamespace(
-                new AnyUriType($this->collapseWhiteSpace($value))
-            );
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_IMPORT:
+                    $this->currentElement->setNamespace(
+                        new AnyUriType($this->collapseWhiteSpace($value))
+                    );
+                    break;
+                case ElementId::ELT_ANYATTRIBUTE:
+                    $this->currentElement->setNamespace(
+                        $this->parseNamespaceList($value)
+                    );
+                    break;
+            }
         }
     }
     
@@ -1176,6 +1186,53 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return $use;
+    }
+    
+    /**
+     * Parses the specified value in "namespaceList" NamespaceListType value.
+     * 
+     * If the value is not '##any' neither '##other' then white space 
+     * characters (i.e. TAB, LF, CR and SPACE) are collapsed before parsing.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  NamespaceListType   A created instance of NamespaceListType.
+     * 
+     * @throws  InvalidValueException   When the value is an invalid namespace list.
+     */
+    private function parseNamespaceList(string $value):NamespaceListType
+    {
+        $nsList = NULL;
+        
+        if ($value == '##any') {
+            $nsList = NamespaceListType::createAny();
+        } elseif ($value == '##other') {
+            $nsList = NamespaceListType::createOther();
+        } else {
+            $targetNs = $local = FALSE;
+            $uris = [];
+            
+            foreach (\array_filter(\explode(' ', $this->collapseWhiteSpace($value)), 'strlen') as $v) {
+                try {
+                    if ($v == '##targetNamespace') {
+                        $targetNs = TRUE;
+                    } elseif ($v == '##local') {
+                        $local = TRUE;
+                    } elseif ($v == '##any' || $v == '##other') {
+                        throw new InvalidValueException();
+                    } else {
+                        $uris[] = new AnyUriType($v);
+                    }
+                } catch (PhpXmlSchemaExceptionInterface $ex) {
+                    throw new InvalidValueException(
+                        \sprintf('"%s" is an invalid namespace list.', $value)
+                    );
+                }
+            }
+            
+            $nsList = NamespaceListType::create($targetNs, $local, $uris);
+        }
+        
+        return $nsList;
     }
     
     /**

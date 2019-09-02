@@ -28,8 +28,14 @@ trait BuildNamespaceAttributeDoesNotCreateAttributeTestTrait
      */
     public function testBuildNamespaceAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
     {
+        // anyURI
         $this->sut->buildNamespaceAttribute(':');
         $this->sut->buildNamespaceAttribute('http://example.org/namespace');
+        
+        // namespaceList
+        $this->sut->buildNamespaceAttribute('##other ##targetNamespace');
+        $this->sut->buildNamespaceAttribute('##any');
+        
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementNotChanged($sch);
