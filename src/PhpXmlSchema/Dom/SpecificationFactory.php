@@ -737,6 +737,9 @@ class SpecificationFactory
             [ 'mixed', '', 'buildMixedAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
         ], 
+        ContextId::ELT_SIMPLECONTENT => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
