@@ -75,6 +75,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
     use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
+    use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

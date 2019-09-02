@@ -775,4 +775,33 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertAttributeGroupElementHasNoAttribute($ags[1]);
         self::assertSame([], $ags[1]->getElements());
     }
+    
+    /**
+     * Tests that buildComplexTypeElement() creates the element when the 
+     * current element is the "schema" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildComplexTypeElementCreateEltWhenSchema()
+    {
+        $this->sut->buildComplexTypeElement();
+        $this->sut->endElement();
+        $this->sut->buildComplexTypeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations([], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $cts = $sch->getComplexTypeElements();
+        
+        self::assertElementNamespaceDeclarations([], $cts[0]);
+        self::assertComplexTypeElementHasNoAttribute($cts[0]);
+        self::assertSame([], $cts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $cts[1]);
+        self::assertComplexTypeElementHasNoAttribute($cts[1]);
+        self::assertSame([], $cts[1]->getElements());
+    }
 }

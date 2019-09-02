@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\AnyAttributeElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
+use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\EnumerationElement;
@@ -1668,5 +1669,21 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasNamespace());
         self::assertTrue($sut->hasProcessContents());
+    }
+    
+    /**
+     * Asserts that the specified "complexType" element has no attribute.
+     * 
+     * @param   ComplexTypeElement  $sut    The element to test.
+     */
+    public static function assertComplexTypeElementHasNoAttribute(
+        ComplexTypeElement $sut
+    ) {
+        self::assertFalse($sut->hasAbstract());
+        self::assertFalse($sut->hasBlock());
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMixed());
+        self::assertFalse($sut->hasName());
     }
 }

@@ -9,18 +9,18 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is the "appinfo" element.
+ * class when the current element is the "complexType" element 
+ * (topLevelComplexType).
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BindNamespaceTestTrait;
     
@@ -34,6 +34,8 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
     use BuildCompositionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAppInfoElementDoesNotCreateElementTestTrait;
+    use BuildSourceAttributeDoesNotCreateAttributeTestTrait;
+    use BuildLeafElementContentDoesNotCreateContentTestTrait;
     use BuildDocumentationElementDoesNotCreateElementTestTrait;
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
@@ -85,10 +87,10 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     {
         self::assertAncestorsNotChanged($sch);
         
-        $appinfo = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $appinfo);
-        self::assertAppInfoElementHasNoAttribute($appinfo);
-        self::assertSame('', $appinfo->getContent());
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertSame([], $ct->getElements());
     }
     
     /**
@@ -96,15 +98,10 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      */
     public static function assertAncestorsNotChanged(SchemaElement $sch)
     {
-        self::assertSchemaElementHasNoAttribute($sch);
         self::assertElementNamespaceDeclarations([], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
-        
-        $ann = $sch->getCompositionAnnotationElements()[0];
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertCount(1, $ann->getElements());
-        self::assertCount(1, $ann->getAppInfoElements());
+        self::assertCount(1, $sch->getComplexTypeElements());
     }
     
     /**
@@ -112,7 +109,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
-        self::assertAppInfoElementHasNoAttribute(self::getCurrentElement($sch));
+        self::assertComplexTypeElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -120,8 +117,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      */
     protected static function getCurrentElement(SchemaElement $sch)
     {
-        return $sch->getCompositionAnnotationElements()[0]
-            ->getAppInfoElements()[0];
+        return $sch->getComplexTypeElements()[0];
     }
     
     /**
@@ -130,8 +126,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     protected function setUp()
     {
         $this->sut = new SchemaElementBuilder();
-        $this->sut->buildCompositionAnnotationElement();
-        $this->sut->buildAppInfoElement();
+        $this->sut->buildComplexTypeElement();
     }
     
     /**
@@ -140,88 +135,5 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that buildSourceAttribute() creates the attribute when the 
-     * current element is the "appinfo" element and the value is valid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $uri    The expected value for the URI.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidAnyUriValues
-     */
-    public function testBuildSourceAttributeCreatesAttrWhenAppInfoAndValueIsValid(
-        string $value, 
-        string $uri
-    ) {
-        $this->sut->buildSourceAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $appinfo = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $appinfo);
-        self::assertAppInfoElementHasOnlySourceAttribute($appinfo);
-        self::assertSame($uri, $appinfo->getSource()->getUri());
-        self::assertSame('', $appinfo->getContent());
-    }
-    
-    /**
-     * Tests that buildSourceAttribute() throws an exception when the current 
-     * element is the "appinfo" element and the value is invalid.
-     * 
-     * @group   attribute
-     * @group   parsing
-     */
-    public function testBuildSourceAttributeThrowsExceptionWhenAppInfoAndValueIsInvalid()
-    {
-        $this->expectException(InvalidValueException::class);
-        
-        $this->sut->buildSourceAttribute(':');
-    }
-    
-    /**
-     * Tests that buildLeafElementContent() creates the content when the 
-     * current element is the "appinfo" element.
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testbuildLeafElementContentCreatesContentWhenAppInfo()
-    {
-        $this->sut->buildLeafElementContent('foo bar baz content');
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $appinfo = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $appinfo);
-        self::assertAppInfoElementHasNoAttribute($appinfo);
-        self::assertSame('foo bar baz content', $appinfo->getContent());
-    }
-    
-    /**
-     * Tests that buildLeafElementContent() updates the content when the 
-     * current element is the "appinfo" element.
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testbuildLeafElementContentUpdatesContentWhenAppInfo()
-    {
-        $this->sut->buildLeafElementContent('foo');
-        $this->sut->buildLeafElementContent('bar');
-        $this->sut->buildLeafElementContent('baz');
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $appinfo = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $appinfo);
-        self::assertAppInfoElementHasNoAttribute($appinfo);
-        self::assertSame('baz', $appinfo->getContent());
     }
 }
