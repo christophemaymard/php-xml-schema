@@ -76,6 +76,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
+    use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

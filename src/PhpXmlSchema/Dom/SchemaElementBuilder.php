@@ -324,6 +324,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildMixedAttribute(string $value)
+    {
+        if ($this->currentElement instanceof ComplexTypeElement) {
+            $this->currentElement->setMixed($this->parseBoolean($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildNameAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {

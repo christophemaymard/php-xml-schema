@@ -78,6 +78,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
+    use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}
