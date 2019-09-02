@@ -692,6 +692,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'ref', '', 'buildRefAttribute', ], 
         ], 
+        ContextId::ELT_ANYATTRIBUTE => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**

@@ -249,7 +249,7 @@
 ```
 
 - [x] Parse **anyAttribute** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **namespace** attribute (collapsing white spaces).
 - [ ] Parse **processContents** attribute.
 - [x] Other attributes are not supported.
