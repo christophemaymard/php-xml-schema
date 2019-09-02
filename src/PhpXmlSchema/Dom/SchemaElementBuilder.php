@@ -294,6 +294,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_UNION:
                 case ElementId::ELT_ANYATTRIBUTE:
                 case ElementId::ELT_COMPLEXTYPE:
+                case ElementId::ELT_SIMPLECONTENT:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }
