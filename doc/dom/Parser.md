@@ -253,7 +253,7 @@
 - [x] Parse **namespace** attribute (collapsing white spaces).
 - [x] Parse **processContents** attribute.
 - [x] Other attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
 
 ## Element: "simpleType" (topLevelSimpleType)
 

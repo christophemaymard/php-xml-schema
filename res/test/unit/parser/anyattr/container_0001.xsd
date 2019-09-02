@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:attributeGroup>
+    <xs:anyAttribute>
+      <xs:annotation></xs:annotation>
+      <xs:annotation></xs:annotation>
+    </xs:anyAttribute>
+  </xs:attributeGroup>
+</xs:schema>
