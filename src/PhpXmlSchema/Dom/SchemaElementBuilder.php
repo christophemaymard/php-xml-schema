@@ -51,6 +51,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildAbstractAttribute(string $value)
+    {
+        if ($this->currentElement instanceof ComplexTypeElement) {
+            $this->currentElement->setAbstract($this->parseBoolean($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildAttributeFormDefaultAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {

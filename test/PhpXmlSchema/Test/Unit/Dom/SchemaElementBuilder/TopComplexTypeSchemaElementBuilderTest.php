@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -135,5 +136,53 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildAbstractAttribute() creates the attribute when the 
+     * current element is the "complexType" element (topLevelComplexType) and 
+     * the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $bool   The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidBooleanValues
+     */
+    public function testBuildAbstractAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
+        string $value, 
+        bool $bool
+    ) {
+        $this->sut->buildAbstractAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasOnlyAbstractAttribute($ct);
+        self::assertSame($bool, $ct->getAbstract());
+        self::assertSame([], $ct->getElements());
+    }
+    
+    /**
+     * Tests that buildAbstractAttribute() throws an exception when the current 
+     * element is the "complexType" element (topLevelComplexType) and the 
+     * value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidBooleanValues
+     */
+    public function testBuildAbstractAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
+        
+        $this->sut->buildAbstractAttribute($value);
     }
 }

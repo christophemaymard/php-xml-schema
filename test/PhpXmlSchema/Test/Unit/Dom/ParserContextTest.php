@@ -469,6 +469,7 @@ class ParserContextTest extends TestCase
         return new class() implements SchemaBuilderInterface
         {
             public function bindNamespace(string $prefix, string $namespace) {}
+            public function buildAbstractAttribute(string $value) {}
             public function buildAttributeFormDefaultAttribute(string $value) {}
             public function buildBaseAttribute(string $value) {}
             public function buildBlockDefaultAttribute(string $value) {}

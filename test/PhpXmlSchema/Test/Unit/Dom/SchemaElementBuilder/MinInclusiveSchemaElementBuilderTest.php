@@ -75,6 +75,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
     use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
+    use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

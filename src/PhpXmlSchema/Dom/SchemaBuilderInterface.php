@@ -31,6 +31,18 @@ interface SchemaBuilderInterface
     public function bindNamespace(string $prefix, string $namespace);
     
     /**
+     * Builds an "abstract" attribute in the current element.
+     * 
+     * If the current element does not support the attribute then it is not 
+     * built.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
+     */
+    public function buildAbstractAttribute(string $value);
+    
+    /**
      * Builds an "attributeFormDefault" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 

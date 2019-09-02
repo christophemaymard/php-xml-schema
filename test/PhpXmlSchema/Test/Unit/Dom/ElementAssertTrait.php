@@ -1686,4 +1686,21 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasMixed());
         self::assertFalse($sut->hasName());
     }
+    
+    /**
+     * Asserts that the specified "complexType" element has only the 
+     * "abstract" attribute.
+     * 
+     * @param   ComplexTypeElement  $sut    The element to test.
+     */
+    public static function assertComplexTypeElementHasOnlyAbstractAttribute(
+        ComplexTypeElement $sut
+    ) {
+        self::assertTrue($sut->hasAbstract());
+        self::assertFalse($sut->hasBlock());
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMixed());
+        self::assertFalse($sut->hasName());
+    }
 }
