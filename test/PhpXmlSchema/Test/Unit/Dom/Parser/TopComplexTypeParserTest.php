@@ -214,6 +214,35 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "name" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $name       The expected value for the name.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNameAttributes
+     */
+    public function testParseProcessNameAttribute(string $fileName, string $name)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasOnlyNameAttribute($ct);
+        self::assertSame($name, $ct->getName()->getNCName());
+        self::assertSame([], $ct->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]
@@ -402,6 +431,41 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
             'false (numeric) surrounded by white spaces' => [
                 'complexType_mixed_0008.xsd', 
                 FALSE, 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "name" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidNameAttributes():array
+    {
+        return [
+            'Starts with _' => [
+                'complexType_name_0001.xsd', '_foo', 
+            ], 
+            'Starts with letter' => [
+                'complexType_name_0002.xsd', 'f', 
+            ], 
+            'Contains letter' => [
+                'complexType_name_0003.xsd', 'foo', 
+            ], 
+            'Contains digit' => [
+                'complexType_name_0004.xsd', 'f00', 
+            ], 
+            'Contains .' => [
+                'complexType_name_0005.xsd', 'f.bar', 
+            ], 
+            'Contains -' => [
+                'complexType_name_0006.xsd', 'f-bar', 
+            ], 
+            'Contains _' => [
+                'complexType_name_0007.xsd', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [
+                'complexType_name_0008.xsd', 'foo_bar', 
             ], 
         ];
     }

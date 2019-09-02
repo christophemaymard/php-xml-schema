@@ -719,6 +719,7 @@ class SpecificationFactory
             [ 'final', '', 'buildFinalAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'mixed', '', 'buildMixedAttribute', ], 
+            [ 'name', '', 'buildNameAttribute', ], 
         ], 
     ];
     
