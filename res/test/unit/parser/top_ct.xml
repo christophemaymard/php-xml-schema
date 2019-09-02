@@ -49,6 +49,55 @@
       <message>"2" is an invalid boolean datatype.</message>
     </schema>
   </test>
+  <!-- complexType::block -->
+  <test group="attribute" name="[complexType][attribute::block] Not extension neither restriction">
+    <schema fileName="complexType_block_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::block] #all (uppercase)">
+    <schema fileName="complexType_block_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#ALL" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::block] #all with white spaces">
+    <schema fileName="complexType_block_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"    #all    " is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::block] extension (uppercase)">
+    <schema fileName="complexType_block_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Extension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::block] restriction (uppercase)">
+    <schema fileName="complexType_block_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"Restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::block] #all with extension">
+    <schema fileName="complexType_block_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"#all extension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::block] #all with restriction">
+    <schema fileName="complexType_block_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"restriction #all" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::block] Value not extension neither restriction in list">
+    <schema fileName="complexType_block_0016.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"extension foo restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

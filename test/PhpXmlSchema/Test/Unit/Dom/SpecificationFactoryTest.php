@@ -760,6 +760,7 @@ class SpecificationFactoryTest extends TestCase
             [ 29, 'processContents', '', 'buildProcessContentsAttribute', ], 
             // Context: ELT_TOP_COMPLEXTYPE
             [ 30, 'abstract', '', 'buildAbstractAttribute', ], 
+            [ 30, 'block', '', 'buildBlockAttribute', ], 
         ];
     }
 }

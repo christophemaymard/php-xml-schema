@@ -378,7 +378,7 @@
 
 - [x] Parse **complexType** element.
 - [x] Parse **abstract** attribute (collapsing white spaces).
-- [ ] Parse **block** attribute (collapsing white spaces).
+- [x] Parse **block** attribute (collapsing white spaces).
 - [ ] Parse **final** attribute (collapsing white spaces).
 - [ ] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **mixed** attribute (collapsing white spaces).
