@@ -185,6 +185,35 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "mixed" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $bool       The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidMixedAttributes
+     */
+    public function testParseProcessMixedAttribute(string $fileName, bool $bool)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasOnlyMixedAttribute($ct);
+        self::assertSame($bool, $ct->getMixed());
+        self::assertSame([], $ct->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]
@@ -330,6 +359,49 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'complexType_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "mixed" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidMixedAttributes():array
+    {
+        return [
+            'true (string)' => [
+                'complexType_mixed_0001.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric)' => [
+                'complexType_mixed_0002.xsd', 
+                TRUE, 
+            ], 
+            'true (string) surrounded by white spaces' => [
+                'complexType_mixed_0003.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric) surrounded by white spaces' => [
+                'complexType_mixed_0004.xsd', 
+                TRUE, 
+            ], 
+            'false (string)' => [
+                'complexType_mixed_0005.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric)' => [
+                'complexType_mixed_0006.xsd', 
+                FALSE, 
+            ], 
+            'false (string) surrounded by white spaces' => [
+                'complexType_mixed_0007.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric) surrounded by white spaces' => [
+                'complexType_mixed_0008.xsd', 
+                FALSE, 
             ], 
         ];
     }

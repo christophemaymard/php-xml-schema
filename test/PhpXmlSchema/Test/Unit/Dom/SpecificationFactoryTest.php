@@ -763,6 +763,7 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 'block', '', 'buildBlockAttribute', ], 
             [ 30, 'final', '', 'buildFinalAttribute', ], 
             [ 30, 'id', '', 'buildIdAttribute', ], 
+            [ 30, 'mixed', '', 'buildMixedAttribute', ], 
         ];
     }
 }

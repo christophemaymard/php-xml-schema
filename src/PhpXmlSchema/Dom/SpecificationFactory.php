@@ -718,6 +718,7 @@ class SpecificationFactory
             [ 'block', '', 'buildBlockAttribute', ], 
             [ 'final', '', 'buildFinalAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'mixed', '', 'buildMixedAttribute', ], 
         ], 
     ];
     
