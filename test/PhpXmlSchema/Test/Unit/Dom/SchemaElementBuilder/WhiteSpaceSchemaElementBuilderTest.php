@@ -78,6 +78,7 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
     use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
+    use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

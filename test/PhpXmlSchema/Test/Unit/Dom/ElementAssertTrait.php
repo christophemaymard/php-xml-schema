@@ -30,6 +30,7 @@ use PhpXmlSchema\Dom\MinLengthElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\PatternElement;
 use PhpXmlSchema\Dom\SchemaElement;
+use PhpXmlSchema\Dom\SimpleContentElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use PhpXmlSchema\Dom\TotalDigitsElement;
@@ -1837,5 +1838,16 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMixed());
         self::assertTrue($sut->hasName());
+    }
+    
+    /**
+     * Asserts that the specified "simpleContent" element has no attribute.
+     * 
+     * @param   SimpleContentElement    $sut    The element to test.
+     */
+    public static function assertSimpleContentElementHasNoAttribute(
+        SimpleContentElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
     }
 }
