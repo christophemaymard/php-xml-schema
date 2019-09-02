@@ -1821,4 +1821,21 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasMixed());
         self::assertFalse($sut->hasName());
     }
+    
+    /**
+     * Asserts that the specified "complexType" element has only the "name" 
+     * attribute.
+     * 
+     * @param   ComplexTypeElement  $sut    The element to test.
+     */
+    public static function assertComplexTypeElementHasOnlyNameAttribute(
+        ComplexTypeElement $sut
+    ) {
+        self::assertFalse($sut->hasAbstract());
+        self::assertFalse($sut->hasBlock());
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMixed());
+        self::assertTrue($sut->hasName());
+    }
 }
