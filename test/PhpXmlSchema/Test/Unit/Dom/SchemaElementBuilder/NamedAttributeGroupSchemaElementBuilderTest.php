@@ -75,6 +75,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractSchemaElementB
     use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
+    use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

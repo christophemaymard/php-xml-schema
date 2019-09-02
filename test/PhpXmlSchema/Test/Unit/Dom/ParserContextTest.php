@@ -472,6 +472,7 @@ class ParserContextTest extends TestCase
             public function buildAbstractAttribute(string $value) {}
             public function buildAttributeFormDefaultAttribute(string $value) {}
             public function buildBaseAttribute(string $value) {}
+            public function buildBlockAttribute(string $value) {}
             public function buildBlockDefaultAttribute(string $value) {}
             public function buildDefaultAttribute(string $value) {}
             public function buildElementFormDefaultAttribute(string $value) {}

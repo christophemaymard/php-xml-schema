@@ -185,4 +185,58 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         
         $this->sut->buildAbstractAttribute($value);
     }
+    
+    /**
+     * Tests that buildBlockAttribute() creates the attribute when the 
+     * current element is the "complexType" element (topLevelComplexType) and 
+     * the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $ext    The expected value for the "extension" flag.
+     * @param   bool    $res    The expected value for the "restriction" flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidDerivationSetValues
+     */
+    public function testBuildBlockAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
+        string $value, 
+        bool $ext, 
+        bool $res
+    ) {
+        $this->sut->buildBlockAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasOnlyBlockAttribute($ct);
+        self::assertComplexTypeElementBlockAttribute($ext, $res, $ct);
+        self::assertSame([], $ct->getElements());
+    }
+    
+    /**
+     * Tests that buildBlockAttribute() throws an exception when the 
+     * current element is the "complexType" element (topLevelComplexType) and 
+     * the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidDerivationSetValues
+     */
+    public function testBuildBlockAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(
+            '"'.$value.'" is an invalid value for the "block" '.
+            'attribute (from no namespace), expected: "#all" or '.
+            '"List of (extension | restriction)".'
+        );
+        
+        $this->sut->buildBlockAttribute($value);
+    }
 }

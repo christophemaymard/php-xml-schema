@@ -1703,4 +1703,46 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasMixed());
         self::assertFalse($sut->hasName());
     }
+    
+    /**
+     * Asserts that the specified "complexType" element has only the "block" 
+     * attribute.
+     * 
+     * @param   ComplexTypeElement  $sut    The element to test.
+     */
+    public static function assertComplexTypeElementHasOnlyBlockAttribute(
+        ComplexTypeElement $sut
+    ) {
+        self::assertFalse($sut->hasAbstract());
+        self::assertTrue($sut->hasBlock());
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMixed());
+        self::assertFalse($sut->hasName());
+    }
+    
+    /**
+     * Asserts that the "block" attribute:
+     * - byRestriction() returns the same value as the expected "restriction" flag
+     * - byExtension() returns the same value as the expected "extension" flag
+     * - bySubstitution() returns FALSE
+     * - byList() returns FALSE
+     * - byUnion() returns FALSE
+     * 
+     * @param   bool                $ext    The expected value for the "extension" flag.
+     * @param   bool                $res    The expected value for the "restriction" flag.
+     * @param   ComplexTypeElement  $elt    The element that holds the attribute.
+     */
+    public static function assertComplexTypeElementBlockAttribute(
+        bool $ext, 
+        bool $res, 
+        ComplexTypeElement $elt
+    ) {
+        $sut = $elt->getBlock();
+        self::assertSame($res, $sut->byRestriction());
+        self::assertSame($ext, $sut->byExtension());
+        self::assertFalse($sut->bySubstitution());
+        self::assertFalse($sut->byList());
+        self::assertFalse($sut->byUnion());
+    }
 }

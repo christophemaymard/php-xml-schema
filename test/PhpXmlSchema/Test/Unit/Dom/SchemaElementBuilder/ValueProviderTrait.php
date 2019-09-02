@@ -1569,4 +1569,75 @@ trait ValueProviderTrait
             ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid "derivationSet" values.
+     * 
+     * @return  array[]
+     */
+    public function getValidDerivationSetValues():array
+    {
+        // [ $value, $extension, $restriction, ]
+        return [
+            'Empty string' => [ 
+                '', FALSE, FALSE, 
+            ],
+            'Only white spaces' => [ 
+                "\t    \r    \n", FALSE, FALSE, 
+            ],
+            '#all' => [ 
+                '#all', TRUE, TRUE, 
+            ],
+            'extension and restriction with white spaces' => [ 
+                " extension\t \r \nrestriction  ", TRUE, TRUE, 
+            ],
+            'extension with white spaces' => [ 
+                " extension\r", TRUE, FALSE, 
+            ],
+            'restriction with white spaces' => [ 
+                "\t \r \n  restriction  ", FALSE, TRUE, 
+            ],
+            'Duplicated extension' => [ 
+                'extension extension', TRUE, FALSE, 
+            ],
+            'Duplicated restriction' => [ 
+                'restriction restriction', FALSE, TRUE, 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "derivationSet" values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidDerivationSetValues():array
+    {
+        return [
+            'Not extension neither restriction' => [ 
+                'foo', 
+            ],
+            '#all (uppercase)' => [ 
+                '#ALL', 
+            ],
+            '#all with white spaces' => [ 
+                '    #all    ', 
+            ], 
+            'extension (uppercase)' => [ 
+                'Extension', 
+            ],
+            'restriction (uppercase)' => [ 
+                'Restriction', 
+            ],
+            '#all with extension' => [ 
+                '#all extension', 
+            ],
+            '#all with restriction' => [ 
+                'restriction #all', 
+            ],
+            'Value not extension neither restriction in list' => [ 
+                'extension foo restriction', 
+            ],
+        ];
+    }
 }
