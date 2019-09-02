@@ -135,6 +135,42 @@ class SimpleContentParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "restriction" element 
+     * (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessRestrictionElement()
+    {
+        $sch = $this->sut->parse($this->getXs('restriction_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $sc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $sc);
+        self::assertSimpleContentElementHasNoAttribute($sc);
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

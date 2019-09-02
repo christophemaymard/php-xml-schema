@@ -46,4 +46,5 @@ class ContextId
     const ELT_ANYATTRIBUTE = 29;
     const ELT_TOP_COMPLEXTYPE = 30;
     const ELT_SIMPLECONTENT = 31;
+    const ELT_SIMPLECONTENT_RESTRICTION = 32;
 }
