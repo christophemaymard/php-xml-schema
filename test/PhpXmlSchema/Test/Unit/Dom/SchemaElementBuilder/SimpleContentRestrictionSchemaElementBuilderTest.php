@@ -53,7 +53,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     use BuildPatternElementDoesNotCreateElementTestTrait;
@@ -662,5 +661,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $minls[1]);
         self::assertMinLengthElementHasNoAttribute($minls[1]);
         self::assertSame([], $minls[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxLengthElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildMaxLengthElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildMaxLengthElement();
+        $this->sut->endElement();
+        $this->sut->buildMaxLengthElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $maxls = $res->getMaxLengthElements();
+        
+        self::assertElementNamespaceDeclarations([], $maxls[0]);
+        self::assertMaxLengthElementHasNoAttribute($maxls[0]);
+        self::assertSame([], $maxls[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $maxls[1]);
+        self::assertMaxLengthElementHasNoAttribute($maxls[1]);
+        self::assertSame([], $maxls[1]->getElements());
     }
 }
