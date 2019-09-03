@@ -940,6 +940,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
                 case ElementId::ELT_LIST:
+                case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
                     $elt = new SimpleTypeElement();
                     $this->currentElement->setSimpleTypeElement($elt);
                     $this->currentElement = $elt;
