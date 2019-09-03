@@ -679,6 +679,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                         break;
                     }
                 case ElementId::ELT_SCHEMA:
+                case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
                     $elt = new AttributeElement();
                     $this->currentElement->addAttributeElement($elt);
                     $this->currentElement = $elt;
