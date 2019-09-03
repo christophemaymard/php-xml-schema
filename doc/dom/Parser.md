@@ -429,7 +429,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
-- [ ] Parse **minExclusive** elements.
+- [x] Parse **minExclusive** elements.
 - [ ] Parse **minInclusive** elements.
 - [ ] Parse **maxExclusive** elements.
 - [ ] Parse **maxInclusive** elements.

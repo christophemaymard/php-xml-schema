@@ -274,6 +274,51 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "minExclusive" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessMinExclusiveElement()
+    {
+        $sch = $this->sut->parse($this->getXs('minExclusive_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $sc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $sc);
+        self::assertSimpleContentElementHasNoAttribute($sc);
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $minexcs = $res->getMinExclusiveElements();
+        
+        self::assertElementNamespaceDeclarations([], $minexcs[0]);
+        self::assertMinExclusiveElementHasNoAttribute($minexcs[0]);
+        self::assertSame([], $minexcs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $minexcs[1]);
+        self::assertMinExclusiveElementHasNoAttribute($minexcs[1]);
+        self::assertSame([], $minexcs[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "base" attributes with no prefix and no default 
      * namespace.
      * 
