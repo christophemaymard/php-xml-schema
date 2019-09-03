@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f00="http://example.org">
+  <xs:complexType>
+    <xs:simpleContent>
+      <xs:extension base="f00:baz">
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
