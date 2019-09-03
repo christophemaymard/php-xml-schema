@@ -47,7 +47,6 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
-    use BuildAttributeElementDoesNotCreateElementTestTrait;
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
@@ -391,5 +390,37 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+    }
+    
+    /**
+     * Tests that buildAttributeElement() creates the element when the 
+     * current element is the "extension" element (simpleExtensionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAttributeElementCreateEltWhenSimpleContentExtension()
+    {
+        $this->sut->buildAttributeElement();
+        $this->sut->endElement();
+        $this->sut->buildAttributeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertSimpleContentExtensionElementHasNoAttribute($ext);
+        self::assertCount(2, $ext->getElements());
+        
+        $attrs = $ext->getAttributeElements();
+        
+        self::assertElementNamespaceDeclarations([], $attrs[0]);
+        self::assertAttributeElementHasNoAttribute($attrs[0]);
+        self::assertSame([], $attrs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $attrs[1]);
+        self::assertAttributeElementHasNoAttribute($attrs[1]);
+        self::assertSame([], $attrs[1]->getElements());
     }
 }
