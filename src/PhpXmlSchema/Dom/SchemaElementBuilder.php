@@ -786,10 +786,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildLengthElement()
     {
-        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
-            $elt = new LengthElement();
-            $this->currentElement->addLengthElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SIMPLETYPE_RESTRICTION:
+                case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
+                    $elt = new LengthElement();
+                    $this->currentElement->addLengthElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     

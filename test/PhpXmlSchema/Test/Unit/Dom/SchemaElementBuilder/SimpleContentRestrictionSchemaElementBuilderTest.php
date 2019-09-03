@@ -53,7 +53,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildLengthElementDoesNotCreateElementTestTrait;
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
@@ -600,5 +599,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $fds[1]);
         self::assertFractionDigitsElementHasNoAttribute($fds[1]);
         self::assertSame([], $fds[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildLengthElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildLengthElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildLengthElement();
+        $this->sut->endElement();
+        $this->sut->buildLengthElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $lengths = $res->getLengthElements();
+        
+        self::assertElementNamespaceDeclarations([], $lengths[0]);
+        self::assertLengthElementHasNoAttribute($lengths[0]);
+        self::assertSame([], $lengths[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $lengths[1]);
+        self::assertLengthElementHasNoAttribute($lengths[1]);
+        self::assertSame([], $lengths[1]->getElements());
     }
 }
