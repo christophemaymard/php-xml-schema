@@ -53,7 +53,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
     use BuildPatternElementDoesNotCreateElementTestTrait;
     use BuildListElementDoesNotCreateElementTestTrait;
     use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
@@ -724,5 +723,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $enums[1]);
         self::assertEnumerationElementHasNoAttribute($enums[1]);
         self::assertSame([], $enums[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildWhiteSpaceElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildWhiteSpaceElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildWhiteSpaceElement();
+        $this->sut->endElement();
+        $this->sut->buildWhiteSpaceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $wps = $res->getWhiteSpaceElements();
+        
+        self::assertElementNamespaceDeclarations([], $wps[0]);
+        self::assertWhiteSpaceElementHasNoAttribute($wps[0]);
+        self::assertSame([], $wps[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $wps[1]);
+        self::assertWhiteSpaceElementHasNoAttribute($wps[1]);
+        self::assertSame([], $wps[1]->getElements());
     }
 }
