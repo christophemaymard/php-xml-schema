@@ -301,6 +301,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_SIMPLECONTENT:
                 case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
+                case ElementId::ELT_SIMPLECONTENT_EXTENSION:
                     $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
             }
         }
