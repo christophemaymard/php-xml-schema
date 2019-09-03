@@ -57,7 +57,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildUnionElementDoesNotCreateElementTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
@@ -817,5 +816,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $attrs[1]);
         self::assertAttributeElementHasNoAttribute($attrs[1]);
         self::assertSame([], $attrs[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildAttributeGroupElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAttributeGroupElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildAttributeGroupElement();
+        $this->sut->endElement();
+        $this->sut->buildAttributeGroupElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $ags = $res->getAttributeGroupElements();
+        
+        self::assertElementNamespaceDeclarations([], $ags[0]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[0]);
+        self::assertSame([], $ags[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $ags[1]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[1]);
+        self::assertSame([], $ags[1]->getElements());
     }
 }
