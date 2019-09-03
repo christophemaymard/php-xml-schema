@@ -80,6 +80,7 @@ class DefinitionAnnotationSchemaElementBuilderTest extends AbstractSchemaElement
     use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
     use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
+    use BuildExtensionElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

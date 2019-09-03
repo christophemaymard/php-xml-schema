@@ -31,6 +31,7 @@ use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\PatternElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SimpleContentElement;
+use PhpXmlSchema\Dom\SimpleContentExtensionElement;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
 use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
@@ -1901,5 +1902,18 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
+    }
+    
+    /**
+     * Asserts that the specified "extension" element (simpleExtensionType) 
+     * has no attribute.
+     * 
+     * @param   SimpleContentExtensionElement   $sut    The element to test.
+     */
+    public static function assertSimpleContentExtensionElementHasNoAttribute(
+        SimpleContentExtensionElement $sut
+    ) {
+        self::assertFalse($sut->hasBase());
+        self::assertFalse($sut->hasId());
     }
 }

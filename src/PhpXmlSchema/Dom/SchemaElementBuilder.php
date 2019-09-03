@@ -755,6 +755,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildExtensionElement()
+    {
+        if ($this->currentElement instanceof SimpleContentElement) {
+            $elt = new SimpleContentExtensionElement();
+            $this->currentElement->setDerivationElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildFractionDigitsElement()
     {
         if ($this->currentElement instanceof ElementInterface) {
