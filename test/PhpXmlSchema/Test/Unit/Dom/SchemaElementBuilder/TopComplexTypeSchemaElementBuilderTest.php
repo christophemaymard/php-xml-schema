@@ -488,4 +488,29 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         self::assertSimpleContentElementHasNoAttribute($sc);
         self::assertSame([], $sc->getElements());
     }
+    
+    /**
+     * Tests that buildComplexContentElement() creates the element when the 
+     * current element is the "complexType" element (topLevelComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildComplexContentElementCreateEltWhenTopComplexType()
+    {
+        $this->sut->buildComplexContentElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertSame([], $cc->getElements());
+    }
 }

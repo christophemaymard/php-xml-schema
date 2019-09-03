@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\AnyAttributeElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
+use PhpXmlSchema\Dom\ComplexContentElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
@@ -1941,5 +1942,17 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
+    }
+    
+    /**
+     * Asserts that the specified "complexContent" element has no attribute.
+     * 
+     * @param   ComplexContentElement   $sut    The element to test.
+     */
+    public static function assertComplexContentElementHasNoAttribute(
+        ComplexContentElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMixed());
     }
 }

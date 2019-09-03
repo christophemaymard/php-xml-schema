@@ -80,6 +80,7 @@ class LengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
+    use BuildComplexContentElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}
