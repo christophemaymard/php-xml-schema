@@ -358,15 +358,18 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 32, 0, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
             [ 32, 0, 14, 'maxInclusive', ], // ELT_MAXINCLUSIVE
+            [ 32, 0, 15, 'totalDigits', ], // ELT_TOTALDIGITS
             [ 32, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 32, 1, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
             [ 32, 1, 14, 'maxInclusive', ], // ELT_MAXINCLUSIVE
+            [ 32, 1, 15, 'totalDigits', ], // ELT_TOTALDIGITS
             [ 32, 2, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
             [ 32, 2, 14, 'maxInclusive', ], // ELT_MAXINCLUSIVE
+            [ 32, 2, 15, 'totalDigits', ], // ELT_TOTALDIGITS
         ];
     }
     
@@ -528,15 +531,18 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 32, 0, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
             [ 32, 0, 14, 'buildMaxInclusiveElement', ], // ELT_MAXINCLUSIVE
+            [ 32, 0, 15, 'buildTotalDigitsElement', ], // ELT_TOTALDIGITS
             [ 32, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 32, 1, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
             [ 32, 1, 14, 'buildMaxInclusiveElement', ], // ELT_MAXINCLUSIVE
+            [ 32, 1, 15, 'buildTotalDigitsElement', ], // ELT_TOTALDIGITS
             [ 32, 2, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
             [ 32, 2, 14, 'buildMaxInclusiveElement', ], // ELT_MAXINCLUSIVE
+            [ 32, 2, 15, 'buildTotalDigitsElement', ], // ELT_TOTALDIGITS
         ];
     }
     
@@ -698,15 +704,18 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 12, 2, ], // ELT_MININCLUSIVE
             [ 32, 0, 13, 2, ], // ELT_MAXEXCLUSIVE
             [ 32, 0, 14, 2, ], // ELT_MAXINCLUSIVE
+            [ 32, 0, 15, 2, ], // ELT_TOTALDIGITS
             [ 32, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 2, ], // ELT_MININCLUSIVE
             [ 32, 1, 13, 2, ], // ELT_MAXEXCLUSIVE
             [ 32, 1, 14, 2, ], // ELT_MAXINCLUSIVE
+            [ 32, 1, 15, 2, ], // ELT_TOTALDIGITS
             [ 32, 2, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 2, ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 2, ], // ELT_MAXEXCLUSIVE
             [ 32, 2, 14, 2, ], // ELT_MAXINCLUSIVE
+            [ 32, 2, 15, 2, ], // ELT_TOTALDIGITS
         ];
     }
     

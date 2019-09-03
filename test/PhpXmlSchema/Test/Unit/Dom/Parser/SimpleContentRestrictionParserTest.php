@@ -454,6 +454,51 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "totalDigits" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessTotalDigitsElement()
+    {
+        $sch = $this->sut->parse($this->getXs('totalDigits_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $sc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $sc);
+        self::assertSimpleContentElementHasNoAttribute($sc);
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $tds = $res->getTotalDigitsElements();
+        
+        self::assertElementNamespaceDeclarations([], $tds[0]);
+        self::assertTotalDigitsElementHasNoAttribute($tds[0]);
+        self::assertSame([], $tds[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $tds[1]);
+        self::assertTotalDigitsElementHasNoAttribute($tds[1]);
+        self::assertSame([], $tds[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "base" attributes with no prefix and no default 
      * namespace.
      * 
