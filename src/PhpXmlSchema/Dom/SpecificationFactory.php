@@ -248,6 +248,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_MINLENGTH, 'minLength', ], 
             [ 0, ContextId::ELT_MAXLENGTH, 'maxLength', ], 
             [ 0, ContextId::ELT_ENUMERATION, 'enumeration', ], 
+            [ 0, ContextId::ELT_WHITESPACE, 'whiteSpace', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'simpleType', ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
             [ 1, ContextId::ELT_MININCLUSIVE, 'minInclusive', ], 
@@ -259,6 +260,7 @@ class SpecificationFactory
             [ 1, ContextId::ELT_MINLENGTH, 'minLength', ], 
             [ 1, ContextId::ELT_MAXLENGTH, 'maxLength', ], 
             [ 1, ContextId::ELT_ENUMERATION, 'enumeration', ], 
+            [ 1, ContextId::ELT_WHITESPACE, 'whiteSpace', ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
             [ 2, ContextId::ELT_MININCLUSIVE, 'minInclusive', ], 
             [ 2, ContextId::ELT_MAXEXCLUSIVE, 'maxExclusive', ], 
@@ -269,6 +271,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_MINLENGTH, 'minLength', ], 
             [ 2, ContextId::ELT_MAXLENGTH, 'maxLength', ], 
             [ 2, ContextId::ELT_ENUMERATION, 'enumeration', ], 
+            [ 2, ContextId::ELT_WHITESPACE, 'whiteSpace', ], 
         ], 
     ];
     
@@ -463,6 +466,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_MINLENGTH, 'buildMinLengthElement', ], 
             [ 0, ContextId::ELT_MAXLENGTH, 'buildMaxLengthElement', ], 
             [ 0, ContextId::ELT_ENUMERATION, 'buildEnumerationElement', ], 
+            [ 0, ContextId::ELT_WHITESPACE, 'buildWhiteSpaceElement', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
             [ 1, ContextId::ELT_MININCLUSIVE, 'buildMinInclusiveElement', ], 
@@ -474,6 +478,7 @@ class SpecificationFactory
             [ 1, ContextId::ELT_MINLENGTH, 'buildMinLengthElement', ], 
             [ 1, ContextId::ELT_MAXLENGTH, 'buildMaxLengthElement', ], 
             [ 1, ContextId::ELT_ENUMERATION, 'buildEnumerationElement', ], 
+            [ 1, ContextId::ELT_WHITESPACE, 'buildWhiteSpaceElement', ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
             [ 2, ContextId::ELT_MININCLUSIVE, 'buildMinInclusiveElement', ], 
             [ 2, ContextId::ELT_MAXEXCLUSIVE, 'buildMaxExclusiveElement', ], 
@@ -484,6 +489,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_MINLENGTH, 'buildMinLengthElement', ], 
             [ 2, ContextId::ELT_MAXLENGTH, 'buildMaxLengthElement', ], 
             [ 2, ContextId::ELT_ENUMERATION, 'buildEnumerationElement', ], 
+            [ 2, ContextId::ELT_WHITESPACE, 'buildWhiteSpaceElement', ], 
         ], 
     ];
     
@@ -677,6 +683,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_MINLENGTH, 2, ], 
             [ 0, ContextId::ELT_MAXLENGTH, 2, ], 
             [ 0, ContextId::ELT_ENUMERATION, 2, ], 
+            [ 0, ContextId::ELT_WHITESPACE, 2, ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 2, ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 2, ], 
             [ 1, ContextId::ELT_MININCLUSIVE, 2, ], 
@@ -688,6 +695,7 @@ class SpecificationFactory
             [ 1, ContextId::ELT_MINLENGTH, 2, ], 
             [ 1, ContextId::ELT_MAXLENGTH, 2, ], 
             [ 1, ContextId::ELT_ENUMERATION, 2, ], 
+            [ 1, ContextId::ELT_WHITESPACE, 2, ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 2, ], 
             [ 2, ContextId::ELT_MININCLUSIVE, 2, ], 
             [ 2, ContextId::ELT_MAXEXCLUSIVE, 2, ], 
@@ -698,6 +706,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_MINLENGTH, 2, ], 
             [ 2, ContextId::ELT_MAXLENGTH, 2, ], 
             [ 2, ContextId::ELT_ENUMERATION, 2, ], 
+            [ 2, ContextId::ELT_WHITESPACE, 2, ], 
         ], 
     ];
     

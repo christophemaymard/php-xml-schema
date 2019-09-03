@@ -439,7 +439,7 @@
 - [x] Parse **minLength** elements.
 - [x] Parse **maxLength** elements.
 - [x] Parse **enumeration** elements.
-- [ ] Parse **whiteSpace** elements.
+- [x] Parse **whiteSpace** elements.
 - [ ] Parse **pattern** elements.
 - [ ] Parse **attribute** elements (attribute).
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
