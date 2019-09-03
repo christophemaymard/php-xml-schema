@@ -317,6 +317,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
         self::assertMinExclusiveElementHasNoAttribute($minexcs[1]);
         self::assertSame([], $minexcs[1]->getElements());
     }
+    
     /**
      * Tests that parse() processes "minInclusive" elements.
      * 
@@ -360,6 +361,51 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
         self::assertElementNamespaceDeclarations([], $minincs[1]);
         self::assertMinInclusiveElementHasNoAttribute($minincs[1]);
         self::assertSame([], $minincs[1]->getElements());
+    }
+    
+    /**
+     * Tests that parse() processes "maxExclusive" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessMaxExclusiveElement()
+    {
+        $sch = $this->sut->parse($this->getXs('maxExclusive_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $sc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $sc);
+        self::assertSimpleContentElementHasNoAttribute($sc);
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $maxexcs = $res->getMaxExclusiveElements();
+        
+        self::assertElementNamespaceDeclarations([], $maxexcs[0]);
+        self::assertMaxExclusiveElementHasNoAttribute($maxexcs[0]);
+        self::assertSame([], $maxexcs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $maxexcs[1]);
+        self::assertMaxExclusiveElementHasNoAttribute($maxexcs[1]);
+        self::assertSame([], $maxexcs[1]->getElements());
     }
     
     /**

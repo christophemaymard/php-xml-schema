@@ -431,7 +431,7 @@
 - [x] Parse **simpleType** element (localSimpleType).
 - [x] Parse **minExclusive** elements.
 - [x] Parse **minInclusive** elements.
-- [ ] Parse **maxExclusive** elements.
+- [x] Parse **maxExclusive** elements.
 - [ ] Parse **maxInclusive** elements.
 - [ ] Parse **totalDigits** elements.
 - [ ] Parse **fractionDigits** elements.
