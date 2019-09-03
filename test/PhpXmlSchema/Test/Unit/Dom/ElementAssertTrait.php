@@ -1889,4 +1889,17 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
+    
+    /**
+     * Asserts that the specified "restriction" element 
+     * (simpleRestrictionType) has only the "id" attribute.
+     * 
+     * @param   SimpleContentRestrictionElement $sut    The element to test.
+     */
+    public static function assertSimpleContentRestrictionElementHasOnlyIdAttribute(
+        SimpleContentRestrictionElement $sut
+    ) {
+        self::assertFalse($sut->hasBase());
+        self::assertTrue($sut->hasId());
+    }
 }
