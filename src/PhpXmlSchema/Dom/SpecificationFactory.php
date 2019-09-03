@@ -293,6 +293,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SIMPLECONTENT_EXTENSION => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+            [ 0, ContextId::ELT_ATTRIBUTE, 'attribute', ], 
+            [ 1, ContextId::ELT_ATTRIBUTE, 'attribute', ], 
         ], 
     ];
     
@@ -531,6 +533,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SIMPLECONTENT_EXTENSION => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+            [ 0, ContextId::ELT_ATTRIBUTE, 'buildAttributeElement', ], 
+            [ 1, ContextId::ELT_ATTRIBUTE, 'buildAttributeElement', ], 
         ], 
     ];
     
@@ -768,6 +772,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SIMPLECONTENT_EXTENSION => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+            [ 0, ContextId::ELT_ATTRIBUTE, 1, ], 
+            [ 1, ContextId::ELT_ATTRIBUTE, 1, ], 
         ], 
     ];
     
