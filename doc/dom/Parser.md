@@ -442,7 +442,7 @@
 - [x] Parse **whiteSpace** elements.
 - [x] Parse **pattern** elements.
 - [x] Parse **attribute** elements (attribute).
-- [ ] Parse **attributeGroup** elements (attributeGroupRef).
+- [x] Parse **attributeGroup** elements (attributeGroupRef).
 - [ ] Parse **anyAttribute** element.
 
 ## Element: "minExclusive"

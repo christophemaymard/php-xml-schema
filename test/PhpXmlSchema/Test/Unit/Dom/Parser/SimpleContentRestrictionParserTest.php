@@ -859,6 +859,52 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "attributeGroup" elements 
+     * (attributeGroupRef).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAttributeGroupElement()
+    {
+        $sch = $this->sut->parse($this->getXs('attributeGroup_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $sc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $sc);
+        self::assertSimpleContentElementHasNoAttribute($sc);
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $ags = $res->getAttributeGroupElements();
+        
+        self::assertElementNamespaceDeclarations([], $ags[0]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[0]);
+        self::assertSame([], $ags[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $ags[1]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[1]);
+        self::assertSame([], $ags[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "base" attributes with no prefix and no default 
      * namespace.
      * 
