@@ -70,7 +70,6 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     use BuildUnionElementDoesNotCreateElementTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
@@ -422,5 +421,37 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
         self::assertElementNamespaceDeclarations([], $attrs[1]);
         self::assertAttributeElementHasNoAttribute($attrs[1]);
         self::assertSame([], $attrs[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildAttributeGroupElement() creates the element when the 
+     * current element is the "extension" element (simpleExtensionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAttributeGroupElementCreateEltWhenSimpleContentExtension()
+    {
+        $this->sut->buildAttributeGroupElement();
+        $this->sut->endElement();
+        $this->sut->buildAttributeGroupElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertSimpleContentExtensionElementHasNoAttribute($ext);
+        self::assertCount(2, $ext->getElements());
+        
+        $ags = $ext->getAttributeGroupElements();
+        
+        self::assertElementNamespaceDeclarations([], $ags[0]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[0]);
+        self::assertSame([], $ags[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $ags[1]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[1]);
+        self::assertSame([], $ags[1]->getElements());
     }
 }
