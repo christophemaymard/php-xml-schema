@@ -245,6 +245,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_TOTALDIGITS, 'totalDigits', ], 
             [ 0, ContextId::ELT_FRACTIONDIGITS, 'fractionDigits', ], 
             [ 0, ContextId::ELT_LENGTH, 'length', ], 
+            [ 0, ContextId::ELT_MINLENGTH, 'minLength', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'simpleType', ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
             [ 1, ContextId::ELT_MININCLUSIVE, 'minInclusive', ], 
@@ -253,6 +254,7 @@ class SpecificationFactory
             [ 1, ContextId::ELT_TOTALDIGITS, 'totalDigits', ], 
             [ 1, ContextId::ELT_FRACTIONDIGITS, 'fractionDigits', ], 
             [ 1, ContextId::ELT_LENGTH, 'length', ], 
+            [ 1, ContextId::ELT_MINLENGTH, 'minLength', ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
             [ 2, ContextId::ELT_MININCLUSIVE, 'minInclusive', ], 
             [ 2, ContextId::ELT_MAXEXCLUSIVE, 'maxExclusive', ], 
@@ -260,6 +262,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_TOTALDIGITS, 'totalDigits', ], 
             [ 2, ContextId::ELT_FRACTIONDIGITS, 'fractionDigits', ], 
             [ 2, ContextId::ELT_LENGTH, 'length', ], 
+            [ 2, ContextId::ELT_MINLENGTH, 'minLength', ], 
         ], 
     ];
     
@@ -451,6 +454,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_TOTALDIGITS, 'buildTotalDigitsElement', ], 
             [ 0, ContextId::ELT_FRACTIONDIGITS, 'buildFractionDigitsElement', ], 
             [ 0, ContextId::ELT_LENGTH, 'buildLengthElement', ], 
+            [ 0, ContextId::ELT_MINLENGTH, 'buildMinLengthElement', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
             [ 1, ContextId::ELT_MININCLUSIVE, 'buildMinInclusiveElement', ], 
@@ -459,6 +463,7 @@ class SpecificationFactory
             [ 1, ContextId::ELT_TOTALDIGITS, 'buildTotalDigitsElement', ], 
             [ 1, ContextId::ELT_FRACTIONDIGITS, 'buildFractionDigitsElement', ], 
             [ 1, ContextId::ELT_LENGTH, 'buildLengthElement', ], 
+            [ 1, ContextId::ELT_MINLENGTH, 'buildMinLengthElement', ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
             [ 2, ContextId::ELT_MININCLUSIVE, 'buildMinInclusiveElement', ], 
             [ 2, ContextId::ELT_MAXEXCLUSIVE, 'buildMaxExclusiveElement', ], 
@@ -466,6 +471,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_TOTALDIGITS, 'buildTotalDigitsElement', ], 
             [ 2, ContextId::ELT_FRACTIONDIGITS, 'buildFractionDigitsElement', ], 
             [ 2, ContextId::ELT_LENGTH, 'buildLengthElement', ], 
+            [ 2, ContextId::ELT_MINLENGTH, 'buildMinLengthElement', ], 
         ], 
     ];
     
@@ -656,6 +662,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_TOTALDIGITS, 2, ], 
             [ 0, ContextId::ELT_FRACTIONDIGITS, 2, ], 
             [ 0, ContextId::ELT_LENGTH, 2, ], 
+            [ 0, ContextId::ELT_MINLENGTH, 2, ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 2, ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 2, ], 
             [ 1, ContextId::ELT_MININCLUSIVE, 2, ], 
@@ -664,6 +671,7 @@ class SpecificationFactory
             [ 1, ContextId::ELT_TOTALDIGITS, 2, ], 
             [ 1, ContextId::ELT_FRACTIONDIGITS, 2, ], 
             [ 1, ContextId::ELT_LENGTH, 2, ], 
+            [ 1, ContextId::ELT_MINLENGTH, 2, ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 2, ], 
             [ 2, ContextId::ELT_MININCLUSIVE, 2, ], 
             [ 2, ContextId::ELT_MAXEXCLUSIVE, 2, ], 
@@ -671,6 +679,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_TOTALDIGITS, 2, ], 
             [ 2, ContextId::ELT_FRACTIONDIGITS, 2, ], 
             [ 2, ContextId::ELT_LENGTH, 2, ], 
+            [ 2, ContextId::ELT_MINLENGTH, 2, ], 
         ], 
     ];
     

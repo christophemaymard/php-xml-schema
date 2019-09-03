@@ -361,6 +361,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 15, 'totalDigits', ], // ELT_TOTALDIGITS
             [ 32, 0, 16, 'fractionDigits', ], // ELT_FRACTIONDIGITS
             [ 32, 0, 17, 'length', ], // ELT_LENGTH
+            [ 32, 0, 18, 'minLength', ], // ELT_MINLENGTH
             [ 32, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 'minInclusive', ], // ELT_MININCLUSIVE
@@ -369,6 +370,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 15, 'totalDigits', ], // ELT_TOTALDIGITS
             [ 32, 1, 16, 'fractionDigits', ], // ELT_FRACTIONDIGITS
             [ 32, 1, 17, 'length', ], // ELT_LENGTH
+            [ 32, 1, 18, 'minLength', ], // ELT_MINLENGTH
             [ 32, 2, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
@@ -376,6 +378,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 15, 'totalDigits', ], // ELT_TOTALDIGITS
             [ 32, 2, 16, 'fractionDigits', ], // ELT_FRACTIONDIGITS
             [ 32, 2, 17, 'length', ], // ELT_LENGTH
+            [ 32, 2, 18, 'minLength', ], // ELT_MINLENGTH
         ];
     }
     
@@ -540,6 +543,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 15, 'buildTotalDigitsElement', ], // ELT_TOTALDIGITS
             [ 32, 0, 16, 'buildFractionDigitsElement', ], // ELT_FRACTIONDIGITS
             [ 32, 0, 17, 'buildLengthElement', ], // ELT_LENGTH
+            [ 32, 0, 18, 'buildMinLengthElement', ], // ELT_MINLENGTH
             [ 32, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
@@ -548,6 +552,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 15, 'buildTotalDigitsElement', ], // ELT_TOTALDIGITS
             [ 32, 1, 16, 'buildFractionDigitsElement', ], // ELT_FRACTIONDIGITS
             [ 32, 1, 17, 'buildLengthElement', ], // ELT_LENGTH
+            [ 32, 1, 18, 'buildMinLengthElement', ], // ELT_MINLENGTH
             [ 32, 2, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
@@ -555,6 +560,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 15, 'buildTotalDigitsElement', ], // ELT_TOTALDIGITS
             [ 32, 2, 16, 'buildFractionDigitsElement', ], // ELT_FRACTIONDIGITS
             [ 32, 2, 17, 'buildLengthElement', ], // ELT_LENGTH
+            [ 32, 2, 18, 'buildMinLengthElement', ], // ELT_MINLENGTH
         ];
     }
     
@@ -719,6 +725,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 15, 2, ], // ELT_TOTALDIGITS
             [ 32, 0, 16, 2, ], // ELT_FRACTIONDIGITS
             [ 32, 0, 17, 2, ], // ELT_LENGTH
+            [ 32, 0, 18, 2, ], // ELT_MINLENGTH
             [ 32, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 2, ], // ELT_MININCLUSIVE
@@ -727,6 +734,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 15, 2, ], // ELT_TOTALDIGITS
             [ 32, 1, 16, 2, ], // ELT_FRACTIONDIGITS
             [ 32, 1, 17, 2, ], // ELT_LENGTH
+            [ 32, 1, 18, 2, ], // ELT_MINLENGTH
             [ 32, 2, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 2, ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 2, ], // ELT_MAXEXCLUSIVE
@@ -734,6 +742,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 15, 2, ], // ELT_TOTALDIGITS
             [ 32, 2, 16, 2, ], // ELT_FRACTIONDIGITS
             [ 32, 2, 17, 2, ], // ELT_LENGTH
+            [ 32, 2, 18, 2, ], // ELT_MINLENGTH
         ];
     }
     
