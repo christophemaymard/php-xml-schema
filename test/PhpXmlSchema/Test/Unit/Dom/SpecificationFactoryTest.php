@@ -197,6 +197,7 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, ], // ELT_TOP_COMPLEXTYPE
             [ 31, 0, ], // ELT_SIMPLECONTENT
             [ 32, 0, ], // ELT_SIMPLECONTENT_RESTRICTION
+            [ 33, 0, ], // ELT_SIMPLECONTENT_EXTENSION
         ];
     }
     
@@ -350,7 +351,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'restriction', ], // ELT_SIMPLECONTENT_RESTRICTION
+            [ 31, 0, 33, 'extension', ], // ELT_SIMPLECONTENT_EXTENSION
             [ 31, 1, 32, 'restriction', ], // ELT_SIMPLECONTENT_RESTRICTION
+            [ 31, 1, 33, 'extension', ], // ELT_SIMPLECONTENT_EXTENSION
             // Context: ELT_SIMPLECONTENT_RESTRICTION
             [ 32, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 32, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
@@ -556,7 +559,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'buildRestrictionElement', ], // ELT_SIMPLECONTENT_RESTRICTION
+            [ 31, 0, 33, 'buildExtensionElement', ], // ELT_SIMPLECONTENT_EXTENSION
             [ 31, 1, 32, 'buildRestrictionElement', ], // ELT_SIMPLECONTENT_RESTRICTION
+            [ 31, 1, 33, 'buildExtensionElement', ], // ELT_SIMPLECONTENT_EXTENSION
             // Context: ELT_SIMPLECONTENT_RESTRICTION
             [ 32, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 32, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
@@ -762,7 +767,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 1, ], // ELT_ANNOTATION
             [ 31, 0, 32, 2, ], // ELT_SIMPLECONTENT_RESTRICTION
+            [ 31, 0, 33, 2, ], // ELT_SIMPLECONTENT_EXTENSION
             [ 31, 1, 32, 2, ], // ELT_SIMPLECONTENT_RESTRICTION
+            [ 31, 1, 33, 2, ], // ELT_SIMPLECONTENT_EXTENSION
             // Context: ELT_SIMPLECONTENT_RESTRICTION
             [ 32, 0, 2, 1, ], // ELT_ANNOTATION
             [ 32, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE

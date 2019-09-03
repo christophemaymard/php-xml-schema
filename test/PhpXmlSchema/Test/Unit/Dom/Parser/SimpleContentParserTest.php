@@ -171,6 +171,41 @@ class SimpleContentParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "extension" element (simpleExtensionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessExtensionElement()
+    {
+        $sch = $this->sut->parse($this->getXs('extension_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $sc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $sc);
+        self::assertSimpleContentElementHasNoAttribute($sc);
+        self::assertCount(1, $sc->getElements());
+        
+        $ext = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertSimpleContentExtensionElementHasNoAttribute($ext);
+        self::assertSame([], $ext->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

@@ -410,7 +410,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **restriction** element (simpleRestrictionType).
-- [ ] Parse **extension** element (simpleExtensionType).
+- [x] Parse **extension** element (simpleExtensionType).
 
 ## Element: "restriction" (simpleRestrictionType)
 
@@ -444,6 +444,26 @@
 - [x] Parse **attribute** elements (attribute).
 - [x] Parse **attributeGroup** elements (attributeGroupRef).
 - [x] Parse **anyAttribute** element.
+
+## Element: "extension" (simpleExtensionType)
+
+```
+<extension
+  base = QName
+  id = ID
+>
+  Content: (annotation?, ((attribute | attributeGroup)*, anyAttribute?))
+</extension>
+```
+
+- [x] Parse **restriction** element.
+- [ ] Parse **base** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **attribute** elements (attribute).
+- [ ] Parse **attributeGroup** elements (attributeGroupRef).
+- [ ] Parse **anyAttribute** element.
 
 ## Element: "minExclusive"
 
