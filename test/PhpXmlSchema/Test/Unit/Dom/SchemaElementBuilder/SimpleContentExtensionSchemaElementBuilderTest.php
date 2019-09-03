@@ -73,7 +73,6 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
     use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
@@ -453,5 +452,30 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
         self::assertElementNamespaceDeclarations([], $ags[1]);
         self::assertAttributeGroupElementHasNoAttribute($ags[1]);
         self::assertSame([], $ags[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildAnyAttributeElement() creates the element when the 
+     * current element is the "extension" element (simpleExtensionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnyAttributeElementCreateEltWhenSimpleContentExtension()
+    {
+        $this->sut->buildAnyAttributeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertSimpleContentExtensionElementHasNoAttribute($ext);
+        self::assertCount(1, $ext->getElements());
+        
+        $anyAttr = $ext->getAnyAttributeElement();
+        self::assertElementNamespaceDeclarations([], $anyAttr);
+        self::assertAnyAttributeElementHasNoAttribute($anyAttr);
+        self::assertSame([], $anyAttr->getElements());
     }
 }
