@@ -441,7 +441,7 @@
 - [x] Parse **enumeration** elements.
 - [x] Parse **whiteSpace** elements.
 - [x] Parse **pattern** elements.
-- [ ] Parse **attribute** elements (attribute).
+- [x] Parse **attribute** elements (attribute).
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
 - [ ] Parse **anyAttribute** element.
 
