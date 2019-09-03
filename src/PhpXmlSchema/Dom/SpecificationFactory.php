@@ -758,6 +758,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SIMPLECONTENT_RESTRICTION => [
             [ 'base', '', 'buildBaseAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     
