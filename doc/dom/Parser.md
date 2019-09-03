@@ -463,7 +463,7 @@
 - [x] Parse **annotation** element.
 - [x] Parse **attribute** elements (attribute).
 - [x] Parse **attributeGroup** elements (attributeGroupRef).
-- [ ] Parse **anyAttribute** element.
+- [x] Parse **anyAttribute** element.
 
 ## Element: "minExclusive"
 
