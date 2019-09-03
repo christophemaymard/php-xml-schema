@@ -793,6 +793,8 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 'name', '', 'buildNameAttribute', ], 
             // Context: ELT_SIMPLECONTENT
             [ 31, 'id', '', 'buildIdAttribute', ], 
+            // Context: ELT_SIMPLECONTENT_RESTRICTION
+            [ 32, 'base', '', 'buildBaseAttribute', ], 
         ];
     }
 }
