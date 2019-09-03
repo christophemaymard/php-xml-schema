@@ -646,12 +646,17 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildAnyAttributeElement()
     {
-        if ($this->currentElement instanceof AttributeGroupElement && 
-            $this->currentElement->getParent() instanceof SchemaElement
-        ) {
-            $elt = new AnyAttributeElement();
-            $this->currentElement->setAnyAttributeElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTEGROUP:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
+                case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
+                    $elt = new AnyAttributeElement();
+                    $this->currentElement->setAnyAttributeElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     
