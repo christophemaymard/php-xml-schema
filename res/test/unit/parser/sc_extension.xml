@@ -27,7 +27,7 @@
   <test group="content" name="[extension] foo child element is not supported">
     <schema fileName="extension_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation" or "attribute".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "attribute" or "attributeGroup".</message>
     </schema>
   </test>
   <!-- extension::base -->
@@ -210,21 +210,28 @@
   <test group="content" name="[extension][annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation" or "attribute".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "attribute" or "attributeGroup".</message>
     </schema>
   </test>
   <!-- attribute -->
   <test group="content" name="[extension][attribute] not part of the XML Schema 1.0 namespace">
     <schema fileName="attribute_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "attribute" element (from no namespace) is unexpected, expected: "annotation" or "attribute".</message>
+      <message>The "attribute" element (from no namespace) is unexpected, expected: "annotation", "attribute" or "attributeGroup".</message>
+    </schema>
+  </test>
+  <!-- attributeGroup -->
+  <test group="content" name="[extension][attributeGroup] not part of the XML Schema 1.0 namespace">
+    <schema fileName="attributeGroup_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "attributeGroup" element (from no namespace) is unexpected, expected: "annotation", "attribute" or "attributeGroup".</message>
     </schema>
   </test>
   <!-- container -->
   <test group="content" name="[extension][container] annotation unexpected annotation">
     <schema fileName="container_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute".</message>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute" or "attributeGroup".</message>
     </schema>
   </test>
   <!-- TEMPLATE
