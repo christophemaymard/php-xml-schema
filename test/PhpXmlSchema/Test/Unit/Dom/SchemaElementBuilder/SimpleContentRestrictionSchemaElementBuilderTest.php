@@ -53,7 +53,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
     use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
@@ -445,5 +444,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $minexcs[1]);
         self::assertMinExclusiveElementHasNoAttribute($minexcs[1]);
         self::assertSame([], $minexcs[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildMinInclusiveElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildMinInclusiveElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildMinInclusiveElement();
+        $this->sut->endElement();
+        $this->sut->buildMinInclusiveElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $minincs = $res->getMinInclusiveElements();
+        
+        self::assertElementNamespaceDeclarations([], $minincs[0]);
+        self::assertMinInclusiveElementHasNoAttribute($minincs[0]);
+        self::assertSame([], $minincs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $minincs[1]);
+        self::assertMinInclusiveElementHasNoAttribute($minincs[1]);
+        self::assertSame([], $minincs[1]->getElements());
     }
 }
