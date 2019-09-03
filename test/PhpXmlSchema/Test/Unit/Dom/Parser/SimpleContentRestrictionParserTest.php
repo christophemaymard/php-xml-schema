@@ -634,6 +634,51 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "maxLength" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessMaxLengthElement()
+    {
+        $sch = $this->sut->parse($this->getXs('maxLength_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $sc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $sc);
+        self::assertSimpleContentElementHasNoAttribute($sc);
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $maxls = $res->getMaxLengthElements();
+        
+        self::assertElementNamespaceDeclarations([], $maxls[0]);
+        self::assertMaxLengthElementHasNoAttribute($maxls[0]);
+        self::assertSame([], $maxls[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $maxls[1]);
+        self::assertMaxLengthElementHasNoAttribute($maxls[1]);
+        self::assertSame([], $maxls[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "base" attributes with no prefix and no default 
      * namespace.
      * 

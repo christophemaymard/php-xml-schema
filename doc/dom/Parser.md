@@ -437,7 +437,7 @@
 - [x] Parse **fractionDigits** elements.
 - [x] Parse **length** elements.
 - [x] Parse **minLength** elements.
-- [ ] Parse **maxLength** elements.
+- [x] Parse **maxLength** elements.
 - [ ] Parse **enumeration** elements.
 - [ ] Parse **whiteSpace** elements.
 - [ ] Parse **pattern** elements.
