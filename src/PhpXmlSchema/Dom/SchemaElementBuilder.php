@@ -746,10 +746,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildFractionDigitsElement()
     {
-        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
-            $elt = new FractionDigitsElement();
-            $this->currentElement->addFractionDigitsElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SIMPLETYPE_RESTRICTION:
+                case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
+                    $elt = new FractionDigitsElement();
+                    $this->currentElement->addFractionDigitsElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     

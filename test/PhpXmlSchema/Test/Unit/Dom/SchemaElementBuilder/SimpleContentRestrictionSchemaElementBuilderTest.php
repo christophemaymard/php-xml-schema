@@ -53,7 +53,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     use BuildLengthElementDoesNotCreateElementTestTrait;
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
@@ -569,5 +568,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $tds[1]);
         self::assertTotalDigitsElementHasNoAttribute($tds[1]);
         self::assertSame([], $tds[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildFractionDigitsElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildFractionDigitsElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildFractionDigitsElement();
+        $this->sut->endElement();
+        $this->sut->buildFractionDigitsElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $fds = $res->getFractionDigitsElements();
+        
+        self::assertElementNamespaceDeclarations([], $fds[0]);
+        self::assertFractionDigitsElementHasNoAttribute($fds[0]);
+        self::assertSame([], $fds[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $fds[1]);
+        self::assertFractionDigitsElementHasNoAttribute($fds[1]);
+        self::assertSame([], $fds[1]->getElements());
     }
 }
