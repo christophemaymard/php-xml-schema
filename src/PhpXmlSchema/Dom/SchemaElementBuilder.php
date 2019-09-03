@@ -96,6 +96,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_SIMPLETYPE_RESTRICTION:
                 case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
+                case ElementId::ELT_SIMPLECONTENT_EXTENSION:
                     $this->currentElement->setBase($this->parseQName($value));
             }
         }

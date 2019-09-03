@@ -1916,4 +1916,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
+    
+    /**
+     * Asserts that the specified "extension" element (simpleExtensionType) 
+     * has only the "base" attribute.
+     * 
+     * @param   SimpleContentExtensionElement   $sut    The element to test.
+     */
+    public static function assertSimpleContentExtensionElementHasOnlyBaseAttribute(
+        SimpleContentExtensionElement $sut
+    ) {
+        self::assertTrue($sut->hasBase());
+        self::assertFalse($sut->hasId());
+    }
 }
