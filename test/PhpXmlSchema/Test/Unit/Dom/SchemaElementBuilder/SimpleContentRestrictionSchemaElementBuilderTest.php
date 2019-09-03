@@ -53,7 +53,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMinLengthElementDoesNotCreateElementTestTrait;
     use BuildMaxLengthElementDoesNotCreateElementTestTrait;
     use BuildEnumerationElementDoesNotCreateElementTestTrait;
     use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
@@ -631,5 +630,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $lengths[1]);
         self::assertLengthElementHasNoAttribute($lengths[1]);
         self::assertSame([], $lengths[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildMinLengthElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildMinLengthElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildMinLengthElement();
+        $this->sut->endElement();
+        $this->sut->buildMinLengthElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $minls = $res->getMinLengthElements();
+        
+        self::assertElementNamespaceDeclarations([], $minls[0]);
+        self::assertMinLengthElementHasNoAttribute($minls[0]);
+        self::assertSame([], $minls[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $minls[1]);
+        self::assertMinLengthElementHasNoAttribute($minls[1]);
+        self::assertSame([], $minls[1]->getElements());
     }
 }
