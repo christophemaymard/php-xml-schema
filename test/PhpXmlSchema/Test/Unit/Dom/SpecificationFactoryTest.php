@@ -368,6 +368,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 22, 'pattern', ], // ELT_PATTERN
             [ 32, 0, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 32, 0, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 0, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             [ 32, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 'minInclusive', ], // ELT_MININCLUSIVE
@@ -383,6 +384,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 22, 'pattern', ], // ELT_PATTERN
             [ 32, 1, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 32, 1, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 1, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             [ 32, 2, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
@@ -397,8 +399,10 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 22, 'pattern', ], // ELT_PATTERN
             [ 32, 2, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 32, 2, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 2, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             [ 32, 3, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 32, 3, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 3, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
         ];
     }
     
@@ -570,6 +574,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 22, 'buildPatternElement', ], // ELT_PATTERN
             [ 32, 0, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 32, 0, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 0, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             [ 32, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
@@ -585,6 +590,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 22, 'buildPatternElement', ], // ELT_PATTERN
             [ 32, 1, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 32, 1, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 1, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             [ 32, 2, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
@@ -599,8 +605,10 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 22, 'buildPatternElement', ], // ELT_PATTERN
             [ 32, 2, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 32, 2, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 2, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             [ 32, 3, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 32, 3, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 3, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
         ];
     }
     
@@ -772,6 +780,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 22, 2, ], // ELT_PATTERN
             [ 32, 0, 27, 3, ], // ELT_ATTRIBUTE
             [ 32, 0, 28, 3, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 0, 29, 4, ], // ELT_ANYATTRIBUTE
             [ 32, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 2, ], // ELT_MININCLUSIVE
@@ -787,6 +796,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 22, 2, ], // ELT_PATTERN
             [ 32, 1, 27, 3, ], // ELT_ATTRIBUTE
             [ 32, 1, 28, 3, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 1, 29, 4, ], // ELT_ANYATTRIBUTE
             [ 32, 2, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 2, ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 2, ], // ELT_MAXEXCLUSIVE
@@ -801,8 +811,10 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 22, 2, ], // ELT_PATTERN
             [ 32, 2, 27, 3, ], // ELT_ATTRIBUTE
             [ 32, 2, 28, 3, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 2, 29, 4, ], // ELT_ANYATTRIBUTE
             [ 32, 3, 27, 3, ], // ELT_ATTRIBUTE
             [ 32, 3, 28, 3, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 32, 3, 29, 4, ], // ELT_ANYATTRIBUTE
         ];
     }
     
