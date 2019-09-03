@@ -53,7 +53,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
     use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
     use BuildLengthElementDoesNotCreateElementTestTrait;
     use BuildMinLengthElementDoesNotCreateElementTestTrait;
@@ -538,5 +537,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $maxincs[1]);
         self::assertMaxInclusiveElementHasNoAttribute($maxincs[1]);
         self::assertSame([], $maxincs[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildTotalDigitsElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildTotalDigitsElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildTotalDigitsElement();
+        $this->sut->endElement();
+        $this->sut->buildTotalDigitsElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $tds = $res->getTotalDigitsElements();
+        
+        self::assertElementNamespaceDeclarations([], $tds[0]);
+        self::assertTotalDigitsElementHasNoAttribute($tds[0]);
+        self::assertSame([], $tds[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $tds[1]);
+        self::assertTotalDigitsElementHasNoAttribute($tds[1]);
+        self::assertSame([], $tds[1]->getElements());
     }
 }
