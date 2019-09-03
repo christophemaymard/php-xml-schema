@@ -842,10 +842,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildMinExclusiveElement()
     {
-        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
-            $elt = new MinExclusiveElement();
-            $this->currentElement->addMinExclusiveElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SIMPLETYPE_RESTRICTION:
+                case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
+                    $elt = new MinExclusiveElement();
+                    $this->currentElement->addMinExclusiveElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     

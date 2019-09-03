@@ -52,7 +52,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
-    use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
@@ -414,5 +413,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasNoAttribute($st);
         self::assertSame([], $st->getElements());
+    }
+    
+    /**
+     * Tests that buildMinExclusiveElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildMinExclusiveElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildMinExclusiveElement();
+        $this->sut->endElement();
+        $this->sut->buildMinExclusiveElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $minexcs = $res->getMinExclusiveElements();
+        
+        self::assertElementNamespaceDeclarations([], $minexcs[0]);
+        self::assertMinExclusiveElementHasNoAttribute($minexcs[0]);
+        self::assertSame([], $minexcs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $minexcs[1]);
+        self::assertMinExclusiveElementHasNoAttribute($minexcs[1]);
+        self::assertSame([], $minexcs[1]->getElements());
     }
 }
