@@ -363,6 +363,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 17, 'length', ], // ELT_LENGTH
             [ 32, 0, 18, 'minLength', ], // ELT_MINLENGTH
             [ 32, 0, 19, 'maxLength', ], // ELT_MAXLENGTH
+            [ 32, 0, 20, 'enumeration', ], // ELT_ENUMERATION
             [ 32, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 'minInclusive', ], // ELT_MININCLUSIVE
@@ -373,6 +374,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 17, 'length', ], // ELT_LENGTH
             [ 32, 1, 18, 'minLength', ], // ELT_MINLENGTH
             [ 32, 1, 19, 'maxLength', ], // ELT_MAXLENGTH
+            [ 32, 1, 20, 'enumeration', ], // ELT_ENUMERATION
             [ 32, 2, 11, 'minExclusive', ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 'minInclusive', ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 'maxExclusive', ], // ELT_MAXEXCLUSIVE
@@ -382,6 +384,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 17, 'length', ], // ELT_LENGTH
             [ 32, 2, 18, 'minLength', ], // ELT_MINLENGTH
             [ 32, 2, 19, 'maxLength', ], // ELT_MAXLENGTH
+            [ 32, 2, 20, 'enumeration', ], // ELT_ENUMERATION
         ];
     }
     
@@ -548,6 +551,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 17, 'buildLengthElement', ], // ELT_LENGTH
             [ 32, 0, 18, 'buildMinLengthElement', ], // ELT_MINLENGTH
             [ 32, 0, 19, 'buildMaxLengthElement', ], // ELT_MAXLENGTH
+            [ 32, 0, 20, 'buildEnumerationElement', ], // ELT_ENUMERATION
             [ 32, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
@@ -558,6 +562,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 17, 'buildLengthElement', ], // ELT_LENGTH
             [ 32, 1, 18, 'buildMinLengthElement', ], // ELT_MINLENGTH
             [ 32, 1, 19, 'buildMaxLengthElement', ], // ELT_MAXLENGTH
+            [ 32, 1, 20, 'buildEnumerationElement', ], // ELT_ENUMERATION
             [ 32, 2, 11, 'buildMinExclusiveElement', ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 'buildMinInclusiveElement', ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 'buildMaxExclusiveElement', ], // ELT_MAXEXCLUSIVE
@@ -567,6 +572,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 17, 'buildLengthElement', ], // ELT_LENGTH
             [ 32, 2, 18, 'buildMinLengthElement', ], // ELT_MINLENGTH
             [ 32, 2, 19, 'buildMaxLengthElement', ], // ELT_MAXLENGTH
+            [ 32, 2, 20, 'buildEnumerationElement', ], // ELT_ENUMERATION
         ];
     }
     
@@ -733,6 +739,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 0, 17, 2, ], // ELT_LENGTH
             [ 32, 0, 18, 2, ], // ELT_MINLENGTH
             [ 32, 0, 19, 2, ], // ELT_MAXLENGTH
+            [ 32, 0, 20, 2, ], // ELT_ENUMERATION
             [ 32, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 32, 1, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 32, 1, 12, 2, ], // ELT_MININCLUSIVE
@@ -743,6 +750,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 1, 17, 2, ], // ELT_LENGTH
             [ 32, 1, 18, 2, ], // ELT_MINLENGTH
             [ 32, 1, 19, 2, ], // ELT_MAXLENGTH
+            [ 32, 1, 20, 2, ], // ELT_ENUMERATION
             [ 32, 2, 11, 2, ], // ELT_MINEXCLUSIVE
             [ 32, 2, 12, 2, ], // ELT_MININCLUSIVE
             [ 32, 2, 13, 2, ], // ELT_MAXEXCLUSIVE
@@ -752,6 +760,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, 2, 17, 2, ], // ELT_LENGTH
             [ 32, 2, 18, 2, ], // ELT_MINLENGTH
             [ 32, 2, 19, 2, ], // ELT_MAXLENGTH
+            [ 32, 2, 20, 2, ], // ELT_ENUMERATION
         ];
     }
     
