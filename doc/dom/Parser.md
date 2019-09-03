@@ -432,7 +432,7 @@
 - [x] Parse **minExclusive** elements.
 - [x] Parse **minInclusive** elements.
 - [x] Parse **maxExclusive** elements.
-- [ ] Parse **maxInclusive** elements.
+- [x] Parse **maxInclusive** elements.
 - [ ] Parse **totalDigits** elements.
 - [ ] Parse **fractionDigits** elements.
 - [ ] Parse **length** elements.
