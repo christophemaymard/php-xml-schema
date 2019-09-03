@@ -806,10 +806,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildMaxExclusiveElement()
     {
-        if ($this->currentElement instanceof SimpleTypeRestrictionElement) {
-            $elt = new MaxExclusiveElement();
-            $this->currentElement->addMaxExclusiveElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SIMPLETYPE_RESTRICTION:
+                case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
+                    $elt = new MaxExclusiveElement();
+                    $this->currentElement->addMaxExclusiveElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     

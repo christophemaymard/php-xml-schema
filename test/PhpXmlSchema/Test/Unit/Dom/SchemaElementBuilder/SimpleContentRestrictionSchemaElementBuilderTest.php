@@ -53,7 +53,6 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
     use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
     use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
     use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
@@ -476,5 +475,37 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
         self::assertElementNamespaceDeclarations([], $minincs[1]);
         self::assertMinInclusiveElementHasNoAttribute($minincs[1]);
         self::assertSame([], $minincs[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxExclusiveElement() creates the element when the 
+     * current element is the "restriction" element (simpleRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildMaxExclusiveElementCreateEltWhenSimpleContentRestriction()
+    {
+        $this->sut->buildMaxExclusiveElement();
+        $this->sut->endElement();
+        $this->sut->buildMaxExclusiveElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(2, $res->getElements());
+        
+        $maxexcs = $res->getMaxExclusiveElements();
+        
+        self::assertElementNamespaceDeclarations([], $maxexcs[0]);
+        self::assertMaxExclusiveElementHasNoAttribute($maxexcs[0]);
+        self::assertSame([], $maxexcs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $maxexcs[1]);
+        self::assertMaxExclusiveElementHasNoAttribute($maxexcs[1]);
+        self::assertSame([], $maxexcs[1]->getElements());
     }
 }
