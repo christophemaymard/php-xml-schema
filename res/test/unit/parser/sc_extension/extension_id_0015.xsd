@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType>
+    <xs:simpleContent>
+      <xs:extension id="foo:bar">
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

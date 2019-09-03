@@ -928,6 +928,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SIMPLECONTENT_EXTENSION => [
             [ 'base', '', 'buildBaseAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     
