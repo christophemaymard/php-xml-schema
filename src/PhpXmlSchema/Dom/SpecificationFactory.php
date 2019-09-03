@@ -239,9 +239,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_LOCAL_SIMPLETYPE, 'simpleType', ], 
             [ 0, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
+            [ 0, ContextId::ELT_MININCLUSIVE, 'minInclusive', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'simpleType', ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
+            [ 1, ContextId::ELT_MININCLUSIVE, 'minInclusive', ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 'minExclusive', ], 
+            [ 2, ContextId::ELT_MININCLUSIVE, 'minInclusive', ], 
         ], 
     ];
     
@@ -427,9 +430,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
             [ 0, ContextId::ELT_LOCAL_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 0, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
+            [ 0, ContextId::ELT_MININCLUSIVE, 'buildMinInclusiveElement', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
+            [ 1, ContextId::ELT_MININCLUSIVE, 'buildMinInclusiveElement', ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 'buildMinExclusiveElement', ], 
+            [ 2, ContextId::ELT_MININCLUSIVE, 'buildMinInclusiveElement', ], 
         ], 
     ];
     
@@ -614,9 +620,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_LOCAL_SIMPLETYPE, 2, ], 
             [ 0, ContextId::ELT_MINEXCLUSIVE, 2, ], 
+            [ 0, ContextId::ELT_MININCLUSIVE, 2, ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 2, ], 
             [ 1, ContextId::ELT_MINEXCLUSIVE, 2, ], 
+            [ 1, ContextId::ELT_MININCLUSIVE, 2, ], 
             [ 2, ContextId::ELT_MINEXCLUSIVE, 2, ], 
+            [ 2, ContextId::ELT_MININCLUSIVE, 2, ], 
         ], 
     ];
     

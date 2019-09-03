@@ -430,7 +430,7 @@
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
 - [x] Parse **minExclusive** elements.
-- [ ] Parse **minInclusive** elements.
+- [x] Parse **minInclusive** elements.
 - [ ] Parse **maxExclusive** elements.
 - [ ] Parse **maxInclusive** elements.
 - [ ] Parse **totalDigits** elements.
