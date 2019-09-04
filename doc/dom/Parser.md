@@ -501,7 +501,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **group** element (groupRef).
-- [ ] Parse **all** element (all).
+- [x] Parse **all** element (all).
 - [ ] Parse **choice** element (explicitGroup).
 - [ ] Parse **sequence** element (explicitGroup).
 - [ ] Parse **attribute** elements (attribute).
@@ -528,6 +528,26 @@
 - [x] Parse **ref** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "all" (all)
+
+```
+<all
+  id = ID
+  maxOccurs = 1
+  minOccurs = (0 | 1)
+>
+  Content: (annotation?, element*)
+</all>
+```
+
+- [x] Parse **all** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **maxOccurs** attribute (collapsing white spaces).
+- [ ] Parse **minOccurs** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **element** elements (narrowMaxMin).
 
 ## Element: "minExclusive"
 
