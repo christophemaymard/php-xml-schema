@@ -417,6 +417,8 @@ class SpecificationFactoryTest extends TestCase
             [ 33, 1, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 33, 1, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
             [ 33, 1, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
+            // Context: ELT_COMPLEXCONTENT
+            [ 34, 0, 2, 'annotation', ], // ELT_ANNOTATION
         ];
     }
     
@@ -635,6 +637,8 @@ class SpecificationFactoryTest extends TestCase
             [ 33, 1, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 33, 1, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
             [ 33, 1, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
+            // Context: ELT_COMPLEXCONTENT
+            [ 34, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
         ];
     }
     
@@ -853,6 +857,8 @@ class SpecificationFactoryTest extends TestCase
             [ 33, 1, 27, 1, ], // ELT_ATTRIBUTE
             [ 33, 1, 28, 1, ], // ELT_ATTRIBUTEGROUP_REF
             [ 33, 1, 29, 2, ], // ELT_ANYATTRIBUTE
+            // Context: ELT_COMPLEXCONTENT
+            [ 34, 0, 2, 1, ], // ELT_ANNOTATION
         ];
     }
     

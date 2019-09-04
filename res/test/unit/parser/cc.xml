@@ -27,7 +27,7 @@
   <test group="content" name="[complexContent] foo child element is not supported">
     <schema fileName="complexContent_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation".</message>
     </schema>
   </test>
   <!-- complexContent::id -->
@@ -90,6 +90,20 @@
     <schema fileName="complexContent_mixed_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>"2" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <!-- annotation -->
+  <test group="content" name="[complexContent][annotation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
+    </schema>
+  </test>
+  <!-- container -->
+  <test group="content" name="[complexContent][container] annotation unexpected annotation">
+    <schema fileName="container_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
   <!-- TEMPLATE

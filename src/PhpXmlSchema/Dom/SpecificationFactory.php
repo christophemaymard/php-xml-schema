@@ -303,6 +303,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_ATTRIBUTEGROUP_REF, 'attributeGroup', ], 
             [ 1, ContextId::ELT_ANYATTRIBUTE, 'anyAttribute', ], 
         ], 
+        ContextId::ELT_COMPLEXCONTENT => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -549,6 +552,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_ATTRIBUTEGROUP_REF, 'buildAttributeGroupElement', ], 
             [ 1, ContextId::ELT_ANYATTRIBUTE, 'buildAnyAttributeElement', ], 
         ], 
+        ContextId::ELT_COMPLEXCONTENT => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -793,6 +799,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_ATTRIBUTE, 1, ], 
             [ 1, ContextId::ELT_ATTRIBUTEGROUP_REF, 1, ], 
             [ 1, ContextId::ELT_ANYATTRIBUTE, 2, ], 
+        ], 
+        ContextId::ELT_COMPLEXCONTENT => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
