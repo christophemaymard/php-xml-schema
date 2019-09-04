@@ -1026,6 +1026,9 @@ class SpecificationFactory
             [ 'minOccurs', '', 'buildMinOccursAttribute', ], 
             [ 'ref', '', 'buildRefAttribute', ], 
         ], 
+        ContextId::ELT_ALL => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
