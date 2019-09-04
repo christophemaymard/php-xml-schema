@@ -422,6 +422,8 @@ class SpecificationFactoryTest extends TestCase
             [ 34, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 34, 0, 35, 'restriction', ], // ELT_COMPLEXCONTENT_RESTRICTION
             [ 34, 1, 35, 'restriction', ], // ELT_COMPLEXCONTENT_RESTRICTION
+            // Context: ELT_COMPLEXCONTENT_RESTRICTION
+            [ 35, 0, 2, 'annotation', ], // ELT_ANNOTATION
         ];
     }
     
@@ -644,6 +646,8 @@ class SpecificationFactoryTest extends TestCase
             [ 34, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 34, 0, 35, 'buildRestrictionElement', ], // ELT_COMPLEXCONTENT_RESTRICTION
             [ 34, 1, 35, 'buildRestrictionElement', ], // ELT_COMPLEXCONTENT_RESTRICTION
+            // Context: ELT_COMPLEXCONTENT_RESTRICTION
+            [ 35, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
         ];
     }
     
@@ -866,6 +870,8 @@ class SpecificationFactoryTest extends TestCase
             [ 34, 0, 2, 1, ], // ELT_ANNOTATION
             [ 34, 0, 35, 2, ], // ELT_COMPLEXCONTENT_RESTRICTION
             [ 34, 1, 35, 2, ], // ELT_COMPLEXCONTENT_RESTRICTION
+            // Context: ELT_COMPLEXCONTENT_RESTRICTION
+            [ 35, 0, 2, 1, ], // ELT_ANNOTATION
         ];
     }
     
