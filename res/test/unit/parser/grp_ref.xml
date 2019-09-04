@@ -86,6 +86,13 @@
       <message>"-9" is an invalid non-negative integer limit type.</message>
     </schema>
   </test>
+  <!-- group::minOccurs -->
+  <test group="attribute" name="[group][attribute::minOccurs] Negative integer">
+    <schema fileName="group_minOccurs_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-9" is an invalid non-negative integer.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
