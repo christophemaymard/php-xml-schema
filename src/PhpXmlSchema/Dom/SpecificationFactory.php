@@ -315,6 +315,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_GROUP_REF, 'group', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'group', ], 
         ], 
+        ContextId::ELT_GROUP_REF => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -571,6 +574,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
         ], 
+        ContextId::ELT_GROUP_REF => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -825,6 +831,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_GROUP_REF, 2, ], 
             [ 1, ContextId::ELT_GROUP_REF, 2, ], 
+        ], 
+        ContextId::ELT_GROUP_REF => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
