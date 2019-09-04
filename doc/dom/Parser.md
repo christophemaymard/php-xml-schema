@@ -481,8 +481,32 @@
 - [x] Parse **mixed** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **restriction** element (complexRestrictionType).
+- [x] Parse **restriction** element (complexRestrictionType).
 - [ ] Parse **extension** element (extensionType).
+
+## Element: "restriction" (complexRestrictionType)
+
+```
+<restriction
+  base = QName
+  id = ID
+>
+  Content: (annotation?, (group | all | choice | sequence)?, ((attribute | attributeGroup)*, anyAttribute?))
+</restriction>
+```
+
+- [x] Parse **restriction** element.
+- [ ] Parse **base** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **group** element (groupRef).
+- [ ] Parse **all** element (all).
+- [ ] Parse **choice** element (explicitGroup).
+- [ ] Parse **sequence** element (explicitGroup).
+- [ ] Parse **attribute** elements (attribute).
+- [ ] Parse **attributeGroup** elements (attributeGroupRef).
+- [ ] Parse **anyAttribute** element.
 
 ## Element: "minExclusive"
 

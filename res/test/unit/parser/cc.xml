@@ -27,7 +27,7 @@
   <test group="content" name="[complexContent] foo child element is not supported">
     <schema fileName="complexContent_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation" or "restriction".</message>
     </schema>
   </test>
   <!-- complexContent::id -->
@@ -96,14 +96,27 @@
   <test group="content" name="[complexContent][annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation" or "restriction".</message>
+    </schema>
+  </test>
+  <!-- restriction -->
+  <test group="content" name="[complexContent][restriction] not part of the XML Schema 1.0 namespace">
+    <schema fileName="restriction_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "restriction" element (from no namespace) is unexpected, expected: "annotation" or "restriction".</message>
     </schema>
   </test>
   <!-- container -->
   <test group="content" name="[complexContent][container] annotation unexpected annotation">
     <schema fileName="container_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "restriction".</message>
+    </schema>
+  </test>
+  <test group="content" name="[complexContent][container] restriction unexpected restriction">
+    <schema fileName="container_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "restriction" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
   <!-- TEMPLATE
