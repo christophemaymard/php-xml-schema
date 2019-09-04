@@ -93,6 +93,139 @@
       <message>"-9" is an invalid non-negative integer.</message>
     </schema>
   </test>
+  <!-- group::ref -->
+  <test group="attribute" name="[group][attribute::ref] Prefix (absent), local part (empty string)">
+    <schema fileName="group_ref_0024.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (absent), local part (only white spaces)">
+    <schema fileName="group_ref_0025.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (absent), local part (separated by white spaces)">
+    <schema fileName="group_ref_0026.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (absent), local part (starts with digit)">
+    <schema fileName="group_ref_0027.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (absent), local part (starts with .)">
+    <schema fileName="group_ref_0028.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (absent), local part (starts with -)">
+    <schema fileName="group_ref_0029.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (absent), local part (contains invalid character)">
+    <schema fileName="group_ref_0030.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (empty string), local part (valid)">
+    <schema fileName="group_ref_0031.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (only white spaces), local part (valid)">
+    <schema fileName="group_ref_0032.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (separated by white spaces), local part (valid)">
+    <schema fileName="group_ref_0033.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (starts with digit), local part (valid)">
+    <schema fileName="group_ref_0034.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (starts with .), local part (valid)">
+    <schema fileName="group_ref_0035.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (starts with -), local part (valid)">
+    <schema fileName="group_ref_0036.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (contains invalid character), local part (valid)">
+    <schema fileName="group_ref_0037.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (valid), local part (empty string)">
+    <schema fileName="group_ref_0038.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (valid), local part (only white spaces)">
+    <schema fileName="group_ref_0039.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (valid), local part (separated by white spaces)">
+    <schema fileName="group_ref_0040.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (valid), local part (starts with digit)">
+    <schema fileName="group_ref_0041.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (valid), local part (starts with .)">
+    <schema fileName="group_ref_0042.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (valid), local part (starts with -)">
+    <schema fileName="group_ref_0043.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix (valid), local part (contains invalid character)">
+    <schema fileName="group_ref_0044.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo+bar" is an invalid NCName.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::ref] Prefix not bound to namespace">
+    <schema fileName="group_ref_0045.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" prefix is not bound to a namespace.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

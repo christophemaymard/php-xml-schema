@@ -1,0 +1,10 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType>
+    <xs:complexContent>
+      <xs:restriction>
+        <xs:group ref="foo">
+        </xs:group>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
