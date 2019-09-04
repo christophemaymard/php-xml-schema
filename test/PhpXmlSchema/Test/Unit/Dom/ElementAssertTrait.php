@@ -2111,4 +2111,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
     }
+    
+    /**
+     * Asserts that the specified "all" element has only the "id" attribute.
+     * 
+     * @param   AllElement  $sut    The element to test.
+     */
+    public static function assertAllElementHasOnlyIdAttribute(
+        AllElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+    }
 }
