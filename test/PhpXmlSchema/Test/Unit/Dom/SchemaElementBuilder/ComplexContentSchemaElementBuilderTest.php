@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -27,7 +28,6 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -147,5 +147,53 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildIdAttribute() creates the attribute when the current 
+     * element is the "complexContent" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidIdValues
+     */
+    public function testBuildIdAttributeCreatesAttrWhenComplexContentAndValueIsValid(
+        string $value, 
+        string $id
+    ) {
+        $this->sut->buildIdAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $cc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasOnlyIdAttribute($cc);
+        self::assertSame($id, $cc->getId()->getId());
+        self::assertSame([], $cc->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() throws an exception when the current 
+     * element is the "complexContent" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidIdValues
+     */
+    public function testBuildIdAttributeThrowsExceptionWhenComplexContentAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildIdAttribute($value);
     }
 }

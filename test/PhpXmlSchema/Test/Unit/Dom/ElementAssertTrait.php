@@ -1955,4 +1955,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMixed());
     }
+    
+    /**
+     * Asserts that the specified "complexContent" element has only the "id" 
+     * attribute.
+     * 
+     * @param   ComplexContentElement   $sut    The element to test.
+     */
+    public static function assertComplexContentElementHasOnlyIdAttribute(
+        ComplexContentElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasMixed());
+    }
 }
