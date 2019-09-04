@@ -82,6 +82,7 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
+    use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

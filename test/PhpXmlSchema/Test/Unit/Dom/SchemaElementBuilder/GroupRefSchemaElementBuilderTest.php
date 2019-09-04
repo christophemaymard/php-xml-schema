@@ -211,4 +211,79 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         
         $this->sut->buildIdAttribute($value);
     }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "group" element (groupRef) and the value is 
+     * "unbounded".
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidIdValues
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenGroupRefAndValueIsUnbounded()
+    {
+        $this->sut->buildMaxOccursAttribute('unbounded');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyMaxOccursAttribute($grp);
+        self::assertTrue($grp->getMaxOccurs()->isUnlimited());
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "group" element (groupRef) and the value is a 
+     * valid non-negative integer.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerValues
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenGroupRefAndValueIsNonNegativeInteger(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMaxOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyMaxOccursAttribute($grp);
+        self::assertEquals($nni, $grp->getMaxOccurs()->getLimit()->getInteger());
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() throws an exception when the 
+     * current element is the "group" element (groupRef) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerLimitValues
+     * @dataProvider    getInvalidNonNegativeIntegerValues
+     */
+    public function testBuildMaxOccursAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
+        
+        $this->sut->buildMaxOccursAttribute($value);
+    }
 }

@@ -324,6 +324,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildMaxOccursAttribute(string $value)
+    {
+        if ($this->currentElement instanceof GroupElement) {
+            $this->currentElement->setMaxOccurs($this->parseNonNegativeIntegerLimit($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildMemberTypesAttribute(string $value)
     {
         if ($this->currentElement instanceof UnionElement) {
@@ -1296,6 +1306,33 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return $bool;
+    }
+    
+    /**
+     * Parses the specified value in NonNegativeIntegerLimitType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  NonNegativeIntegerLimitType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid non-negative integer limit type.
+     */
+    private function parseNonNegativeIntegerLimit(string $value):NonNegativeIntegerLimitType
+    {
+        try {
+            if ($value == 'unbounded') {
+                $limit = new NonNegativeIntegerLimitType();
+            } else {
+                $nni = $this->parseNonNegativeInteger($value);
+                $limit = new NonNegativeIntegerLimitType($nni);
+            }
+       } catch (\Throwable $ex) {
+            throw new InvalidValueException(\sprintf(
+                '"%s" is an invalid non-negative integer limit type.', 
+                $value
+            ));
+        }
+        
+        return $limit;
     }
     
     /**

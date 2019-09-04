@@ -1640,4 +1640,18 @@ trait ValueProviderTrait
             ],
         ];
     }
+    
+    /**
+     * Returns a set of invalid NonNegativeIntegerLimitType type values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidNonNegativeIntegerLimitValues():array
+    {
+        return [
+            'unbounded surrounded by white spaces' => [
+                "   \t  \n  unbounded  \r   ", 
+            ],
+        ];
+    }
 }

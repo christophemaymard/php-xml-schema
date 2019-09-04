@@ -2050,4 +2050,20 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasRef());
     }
+    
+    /**
+     * Asserts that the specified "group" element has only the "maxOccurs" 
+     * attribute.
+     * 
+     * @param   GroupElement    $sut    The element to test.
+     */
+    public static function assertGroupElementHasOnlyMaxOccursAttribute(
+        GroupElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
+    }
 }
