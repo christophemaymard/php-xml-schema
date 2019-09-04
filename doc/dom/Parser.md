@@ -500,13 +500,34 @@
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **group** element (groupRef).
+- [x] Parse **group** element (groupRef).
 - [ ] Parse **all** element (all).
 - [ ] Parse **choice** element (explicitGroup).
 - [ ] Parse **sequence** element (explicitGroup).
 - [ ] Parse **attribute** elements (attribute).
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
 - [ ] Parse **anyAttribute** element.
+
+## Element: "group" (groupRef)
+
+```
+<group
+  id = ID
+  maxOccurs = (nonNegativeInteger | unbounded)
+  minOccurs = nonNegativeInteger
+  ref = QName
+>
+  Content: (annotation?)
+</group>
+```
+
+- [x] Parse **group** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **maxOccurs** attribute (collapsing white spaces).
+- [ ] Parse **minOccurs** attribute (collapsing white spaces).
+- [ ] Parse **ref** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
 ## Element: "minExclusive"
 

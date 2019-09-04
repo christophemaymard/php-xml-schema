@@ -50,4 +50,5 @@ class ContextId
     const ELT_SIMPLECONTENT_EXTENSION = 33;
     const ELT_COMPLEXCONTENT = 34;
     const ELT_COMPLEXCONTENT_RESTRICTION = 35;
+    const ELT_GROUP_REF = 36;
 }

@@ -59,6 +59,7 @@ class SpecificationFactory
         ContextId::ELT_SIMPLECONTENT_EXTENSION => 0, 
         ContextId::ELT_COMPLEXCONTENT => 0, 
         ContextId::ELT_COMPLEXCONTENT_RESTRICTION => 0, 
+        ContextId::ELT_GROUP_REF => 0, 
     ];
     
     /**
@@ -311,6 +312,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_COMPLEXCONTENT_RESTRICTION => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+            [ 0, ContextId::ELT_GROUP_REF, 'group', ], 
+            [ 1, ContextId::ELT_GROUP_REF, 'group', ], 
         ], 
     ];
     
@@ -565,6 +568,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_COMPLEXCONTENT_RESTRICTION => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+            [ 0, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
+            [ 1, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
         ], 
     ];
     
@@ -818,6 +823,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_COMPLEXCONTENT_RESTRICTION => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+            [ 0, ContextId::ELT_GROUP_REF, 2, ], 
+            [ 1, ContextId::ELT_GROUP_REF, 2, ], 
         ], 
     ];
     
