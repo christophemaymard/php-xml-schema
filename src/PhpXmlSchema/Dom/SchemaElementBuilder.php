@@ -997,6 +997,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setDerivationElement($elt);
                     $this->currentElement = $elt;
                     break;
+                case ElementId::ELT_COMPLEXCONTENT:
+                    $elt = new ComplexContentRestrictionElement();
+                    $this->currentElement->setDerivationElement($elt);
+                    $this->currentElement = $elt;
+                    break;
             }
         }
     }

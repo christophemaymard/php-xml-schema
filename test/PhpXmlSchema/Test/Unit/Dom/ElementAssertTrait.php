@@ -13,6 +13,7 @@ use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
 use PhpXmlSchema\Dom\ComplexContentElement;
+use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
@@ -1980,5 +1981,18 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMixed());
+    }
+    
+    /**
+     * Asserts that the specified "restriction" element 
+     * (complexRestrictionType) has no attribute.
+     * 
+     * @param   ComplexContentRestrictionElement    $sut    The element to test.
+     */
+    public static function assertComplexContentRestrictionElementHasNoAttribute(
+        ComplexContentRestrictionElement $sut
+    ) {
+        self::assertFalse($sut->hasBase());
+        self::assertFalse($sut->hasId());
     }
 }
