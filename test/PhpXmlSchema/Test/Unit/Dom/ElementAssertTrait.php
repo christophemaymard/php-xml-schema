@@ -1995,4 +1995,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
+    
+    /**
+     * Asserts that the specified "restriction" element 
+     * (complexRestrictionType) has only the "base" attribute.
+     * 
+     * @param   ComplexContentRestrictionElement    $sut    The element to test.
+     */
+    public static function assertComplexContentRestrictionElementHasOnlyBaseAttribute(
+        ComplexContentRestrictionElement $sut
+    ) {
+        self::assertTrue($sut->hasBase());
+        self::assertFalse($sut->hasId());
+    }
 }
