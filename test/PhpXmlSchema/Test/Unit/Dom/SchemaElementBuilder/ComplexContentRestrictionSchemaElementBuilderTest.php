@@ -420,4 +420,29 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
         self::assertGroupElementHasNoAttribute($grp);
         self::assertSame([], $grp->getElements());
     }
+    
+    /**
+     * Tests that buildAllElement() creates the element when the current 
+     * element is the "restriction" element (complexRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAllElementCreateEltWhenComplexContentRestriction()
+    {
+        $this->sut->buildAllElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertSame([], $all->getElements());
+    }
 }

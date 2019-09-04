@@ -83,6 +83,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAllElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

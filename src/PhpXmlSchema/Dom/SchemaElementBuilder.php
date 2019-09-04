@@ -614,6 +614,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildAllElement()
+    {
+        if ($this->currentElement instanceof ComplexContentRestrictionElement) {
+            $elt = new AllElement();
+            $this->currentElement->setTypeDefinitionParticleElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildAnnotationElement()
     {
         if ($this->currentElement instanceof ElementInterface) {

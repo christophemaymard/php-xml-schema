@@ -408,6 +408,16 @@ interface SchemaBuilderInterface
     public function buildLangAttribute(string $value);
     
     /**
+     * Builds an "all" element.
+     * 
+     * If the current element supports the element then:
+     * - a new instance is created, and 
+     * - the created instance is added or set to the current element, and 
+     * - the created instance becomes the current element.
+     */
+    public function buildAllElement();
+    
+    /**
      * Builds an "annotation" element.
      * 
      * If the current element supports the element then:

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom;
 
+use PhpXmlSchema\Dom\AllElement;
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AnyAttributeElement;
 use PhpXmlSchema\Dom\AppInfoElement;
@@ -2097,5 +2098,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasMinOccurs());
         self::assertFalse($sut->hasName());
         self::assertTrue($sut->hasRef());
+    }
+    
+    /**
+     * Asserts that the specified "all" element has no attribute.
+     * 
+     * @param   AllElement  $sut    The element to test.
+     */
+    public static function assertAllElementHasNoAttribute(AllElement $sut)
+    {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
     }
 }
