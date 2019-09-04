@@ -30,6 +30,49 @@
       <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
+  <!-- complexContent::id -->
+  <test group="attribute" name="[complexContent][attribute::id] Empty string">
+    <schema fileName="complexContent_id_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexContent][attribute::id] Only white spaces">
+    <schema fileName="complexContent_id_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexContent][attribute::id] Separated by whitespaces">
+    <schema fileName="complexContent_id_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo bar" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexContent][attribute::id] Starts with digit">
+    <schema fileName="complexContent_id_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"8foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexContent][attribute::id] Starts with .">
+    <schema fileName="complexContent_id_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>".foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexContent][attribute::id] Starts with -">
+    <schema fileName="complexContent_id_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-foo" is an invalid ID.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexContent][attribute::id] Contains invalid character">
+    <schema fileName="complexContent_id_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"foo:bar" is an invalid ID.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

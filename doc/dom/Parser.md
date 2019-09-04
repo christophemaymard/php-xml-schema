@@ -477,9 +477,9 @@
 ```
 
 - [x] Parse **complexContent** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **mixed** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **restriction** element (complexRestrictionType).
 - [ ] Parse **extension** element (extensionType).
