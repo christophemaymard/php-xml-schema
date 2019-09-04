@@ -85,7 +85,6 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     
@@ -213,5 +212,49 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "all" element (all) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidOneNonNegativeIntegerLimitValues
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenAllAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildMaxOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $all = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasOnlyMaxOccursAttribute($all);
+        self::assertEquals(\gmp_init(1), $all->getMaxOccurs()->getLimit()->getInteger());
+        self::assertSame([], $all->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() throws an exception when the 
+     * current element is the "all" element (all) and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidOneNonNegativeIntegerLimitValues
+     */
+    public function testBuildMaxOccursAttributeThrowsExceptionWhenAllAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "1".', $value));
+        
+        $this->sut->buildMaxOccursAttribute($value);
     }
 }

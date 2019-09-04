@@ -1654,4 +1654,51 @@ trait ValueProviderTrait
             ],
         ];
     }
+    
+    /**
+     * Returns a set of valid NonNegativeIntegerLimitType type (with only 1) 
+     * values.
+     * 
+     * @return  array[]
+     */
+    public function getValidOneNonNegativeIntegerLimitValues():array
+    {
+        return [
+            '1' => [ 
+                '1', 
+            ], 
+            '1 surrounded by white spaces' => [ 
+                "   \r  \n   1    \t", 
+            ], 
+            '1 with positive sign' => [ 
+                '+1', 
+            ], 
+            '1 with leading zeroes' => [ 
+                '001', 
+            ], 
+            '1 with positive sign and leading zeroes' => [ 
+                '+001', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid NonNegativeIntegerLimitType type values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidOneNonNegativeIntegerLimitValues():array
+    {
+        return [
+            'unbounded' => [ 
+                'unbounded', 
+            ], 
+            'Non-negative integer other than 1' => [ 
+                '0', 
+            ], 
+            'Negative integer' => [ 
+                '-9', 
+            ], 
+        ];
+    }
 }

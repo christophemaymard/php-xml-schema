@@ -27,8 +27,14 @@ trait BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait
      */
     public function testBuildMaxOccursAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
     {
+        // nonNegativeInteger or unbounded
         $this->sut->buildMaxOccursAttribute('foo');
         $this->sut->buildMaxOccursAttribute('1');
+        
+        // 1 only
+        $this->sut->buildMaxOccursAttribute('3');
+        $this->sut->buildMaxOccursAttribute('1');
+        
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementNotChanged($sch);

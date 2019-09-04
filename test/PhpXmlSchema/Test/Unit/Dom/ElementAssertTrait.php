@@ -2124,4 +2124,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
     }
+    
+    /**
+     * Asserts that the specified "all" element has only the "maxOccurs" 
+     * attribute.
+     * 
+     * @param   AllElement  $sut    The element to test.
+     */
+    public static function assertAllElementHasOnlyMaxOccursAttribute(
+        AllElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+    }
 }

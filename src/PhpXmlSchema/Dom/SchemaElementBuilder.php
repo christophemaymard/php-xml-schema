@@ -327,8 +327,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildMaxOccursAttribute(string $value)
     {
-        if ($this->currentElement instanceof GroupElement) {
-            $this->currentElement->setMaxOccurs($this->parseNonNegativeIntegerLimit($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ALL:
+                    $this->currentElement->setMaxOccurs($this->parseOneNonNegativeIntegerLimit($value));
+                    break;
+                case ElementId::ELT_GROUP:
+                    $this->currentElement->setMaxOccurs($this->parseNonNegativeIntegerLimit($value));
+            }
         }
     }
     
@@ -1355,6 +1361,35 @@ class SchemaElementBuilder implements SchemaBuilderInterface
        } catch (\Throwable $ex) {
             throw new InvalidValueException(\sprintf(
                 '"%s" is an invalid non-negative integer limit type.', 
+                $value
+            ));
+        }
+        
+        return $limit;
+    }
+    
+    /**
+     * Parses the specified value in NonNegativeIntegerLimitType value (only 
+     * "1" is accepted). 
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  NonNegativeIntegerLimitType
+     * 
+     * @throws  InvalidValueException   When the value is not the "1" non-negative integer.
+     */
+    private function parseOneNonNegativeIntegerLimit(string $value):NonNegativeIntegerLimitType
+    {
+        try {
+            $nni = $this->parseNonNegativeInteger($value);
+            
+            if ($nni->getInteger() != 1) {
+                throw new InvalidValueException();
+            }
+            
+            $limit = new NonNegativeIntegerLimitType($nni);
+       } catch (\Throwable $ex) {
+            throw new InvalidValueException(\sprintf(
+                '"%s" is invalid, expected "1".', 
                 $value
             ));
         }
