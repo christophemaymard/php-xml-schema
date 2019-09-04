@@ -1006,6 +1006,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_GROUP_REF => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
         ], 
     ];
     

@@ -73,6 +73,19 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- group::maxOccurs -->
+  <test group="attribute" name="[group][attribute::maxOccurs] unbounded surrounded by white spaces">
+    <schema fileName="group_maxOccurs_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"     unbounded      " is an invalid non-negative integer limit type.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group][attribute::maxOccurs] Negative integer">
+    <schema fileName="group_maxOccurs_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-9" is an invalid non-negative integer limit type.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

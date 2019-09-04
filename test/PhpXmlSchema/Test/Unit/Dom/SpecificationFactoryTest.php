@@ -1027,6 +1027,7 @@ class SpecificationFactoryTest extends TestCase
             [ 35, 'id', '', 'buildIdAttribute', ], 
             // Context: ELT_GROUP_REF
             [ 36, 'id', '', 'buildIdAttribute', ], 
+            [ 36, 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
         ];
     }
 }
