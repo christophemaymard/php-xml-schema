@@ -966,6 +966,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_COMPLEXCONTENT => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'mixed', '', 'buildMixedAttribute', ], 
         ], 
     ];
     
