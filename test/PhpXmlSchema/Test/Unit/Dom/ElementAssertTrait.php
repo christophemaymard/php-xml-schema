@@ -2008,4 +2008,17 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
+    
+    /**
+     * Asserts that the specified "restriction" element 
+     * (complexRestrictionType) has only the "id" attribute.
+     * 
+     * @param   ComplexContentRestrictionElement    $sut    The element to test.
+     */
+    public static function assertComplexContentRestrictionElementHasOnlyIdAttribute(
+        ComplexContentRestrictionElement $sut
+    ) {
+        self::assertFalse($sut->hasBase());
+        self::assertTrue($sut->hasId());
+    }
 }
