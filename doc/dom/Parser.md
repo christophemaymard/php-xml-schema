@@ -386,7 +386,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleContent** element.
-- [ ] Parse **complexContent** element.
+- [x] Parse **complexContent** element.
 - [ ] Parse **group** element (groupRef).
 - [ ] Parse **all** element (all).
 - [ ] Parse **choice** element (explicitGroup).
@@ -464,6 +464,25 @@
 - [x] Parse **attribute** elements (attribute).
 - [x] Parse **attributeGroup** elements (attributeGroupRef).
 - [x] Parse **anyAttribute** element.
+
+## Element: "complexContent"
+
+```
+<complexContent
+  id = ID
+  mixed = boolean
+>
+  Content: (annotation?, (restriction | extension))
+</complexContent>
+```
+
+- [x] Parse **complexContent** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **mixed** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **restriction** element (complexRestrictionType).
+- [ ] Parse **extension** element (extensionType).
 
 ## Element: "minExclusive"
 

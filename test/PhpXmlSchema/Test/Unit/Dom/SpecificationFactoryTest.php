@@ -198,6 +198,7 @@ class SpecificationFactoryTest extends TestCase
             [ 31, 0, ], // ELT_SIMPLECONTENT
             [ 32, 0, ], // ELT_SIMPLECONTENT_RESTRICTION
             [ 33, 0, ], // ELT_SIMPLECONTENT_EXTENSION
+            [ 34, 0, ], // ELT_COMPLEXCONTENT
         ];
     }
     
@@ -347,7 +348,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_TOP_COMPLEXTYPE
             [ 30, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 30, 0, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
+            [ 30, 0, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             [ 30, 1, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
+            [ 30, 1, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'restriction', ], // ELT_SIMPLECONTENT_RESTRICTION
@@ -563,7 +566,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_TOP_COMPLEXTYPE
             [ 30, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 30, 0, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
+            [ 30, 0, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             [ 30, 1, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
+            [ 30, 1, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'buildRestrictionElement', ], // ELT_SIMPLECONTENT_RESTRICTION
@@ -779,7 +784,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_TOP_COMPLEXTYPE
             [ 30, 0, 2, 1, ], // ELT_ANNOTATION
             [ 30, 0, 31, 3, ], // ELT_SIMPLECONTENT
+            [ 30, 0, 34, 3, ], // ELT_COMPLEXCONTENT
             [ 30, 1, 31, 3, ], // ELT_SIMPLECONTENT
+            [ 30, 1, 34, 3, ], // ELT_COMPLEXCONTENT
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 1, ], // ELT_ANNOTATION
             [ 31, 0, 32, 2, ], // ELT_SIMPLECONTENT_RESTRICTION
