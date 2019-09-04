@@ -80,7 +80,6 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
@@ -195,5 +194,51 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMixedAttribute() creates the attribute when the 
+     * current element is the "complexContent" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $bool   The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidBooleanValues
+     */
+    public function testBuildMixedAttributeCreatesAttrWhenComplexContentAndValueIsValid(
+        string $value, 
+        bool $bool
+    ) {
+        $this->sut->buildMixedAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $cc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasOnlyMixedAttribute($cc);
+        self::assertSame($bool, $cc->getMixed());
+        self::assertSame([], $cc->getElements());
+    }
+    
+    /**
+     * Tests that buildMixedAttribute() throws an exception when the current 
+     * element is the "complexContent" element and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidBooleanValues
+     */
+    public function testBuildMixedAttributeThrowsExceptionWhenComplexContentAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
+        
+        $this->sut->buildMixedAttribute($value);
     }
 }
