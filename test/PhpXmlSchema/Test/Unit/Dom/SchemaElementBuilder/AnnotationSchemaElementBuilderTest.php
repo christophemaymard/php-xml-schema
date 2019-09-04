@@ -82,6 +82,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
+    use BuildGroupElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

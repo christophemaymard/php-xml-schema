@@ -810,6 +810,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildGroupElement()
+    {
+        if ($this->currentElement instanceof ComplexContentRestrictionElement) {
+            $elt = new GroupElement();
+            $this->currentElement->setTypeDefinitionParticleElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildImportElement()
     {
         if ($this->currentElement instanceof SchemaElement) {

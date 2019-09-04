@@ -81,6 +81,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
+    use BuildGroupElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

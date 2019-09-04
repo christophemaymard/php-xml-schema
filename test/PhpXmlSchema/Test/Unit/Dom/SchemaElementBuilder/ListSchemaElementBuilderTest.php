@@ -82,6 +82,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
+    use BuildGroupElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

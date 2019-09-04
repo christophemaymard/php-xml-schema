@@ -19,6 +19,7 @@ use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\EnumerationElement;
 use PhpXmlSchema\Dom\FractionDigitsElement;
+use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\LengthElement;
@@ -2020,5 +2021,19 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
+    }
+    
+    /**
+     * Asserts that the specified "group" element has no attribute.
+     * 
+     * @param   GroupElement    $sut    The element to test.
+     */
+    public static function assertGroupElementHasNoAttribute(GroupElement $sut)
+    {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
     }
 }
