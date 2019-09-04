@@ -40,7 +40,6 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -504,5 +503,30 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
         
         $this->sut->buildRefAttribute('foo:bar');
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "group" element (groupRef).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenGroupRef()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertCount(1, $grp->getElements());
+        
+        $ann = $grp->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
