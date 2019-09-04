@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
@@ -73,7 +74,6 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
     use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
-    use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
     use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
@@ -333,5 +333,176 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer.', $value));
         
         $this->sut->buildMinOccursAttribute($value);
+    }
+    
+    /**
+     * Tests that buildRefAttribute() creates the attribute when:
+     * - the current element is the "group" element (groupRef), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - no default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildRefAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyRefAttribute($grp);
+        self::assertSame($localPart, $grp->getRef()->getLocalPart()->getNCName());
+        self::assertFalse($grp->getRef()->hasNamespace());
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
+     * Tests that buildRefAttribute() creates the attribute when:
+     * - the current element is the "group" element (groupRef), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidQNameLocalPartAndDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('', 'http://example.org');
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildGroupElement();
+        $this->sut->buildRefAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['' => 'http://example.org' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        self::assertNotNull($res->getTypeDefinitionParticleElement());
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyRefAttribute($grp);
+        self::assertSame($localPart, $grp->getRef()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org', $grp->getRef()->getNamespace()->getUri());
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
+     * Tests that buildRefAttribute() throws an exception when the current 
+     * element is the "group" element (groupRef) and the value is an invalid 
+     * QName.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidQNameValues
+     */
+    public function testBuildRefAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildRefAttribute($value);
+    }
+    
+    /**
+     * Tests that buildRefAttribute() creates the attribute when:
+     * - the current element is the "group" element (groupRef), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidAndPrefixAssociatedNamespace()
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildGroupElement();
+        $this->sut->buildRefAttribute('foo:bar');
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['foo' => 'http://example.org/foo' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        self::assertNotNull($res->getTypeDefinitionParticleElement());
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyRefAttribute($grp);
+        self::assertSame('bar', $grp->getRef()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/foo', $grp->getRef()->getNamespace()->getUri());
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
+     * Tests that buildRefAttribute() throws an exception when:
+     * - the current element is the "group" element (groupRef), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is not associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildRefAttributeThrowsExceptionWhenGroupRefAndValueIsValidAndPrefixNotAssociatedNamespace()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
+        
+        $this->sut->buildRefAttribute('foo:bar');
     }
 }

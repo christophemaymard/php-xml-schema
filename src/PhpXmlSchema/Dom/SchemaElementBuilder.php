@@ -449,6 +449,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_GROUP:
+                    $this->currentElement->setRef($this->parseQName($value));
+                    break;
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
                     if ($this->currentElement->getParent() instanceof AttributeGroupElement) {
