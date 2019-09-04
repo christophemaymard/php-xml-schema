@@ -1025,6 +1025,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_COMPLEXCONTENT_RESTRICTION
             [ 35, 'base', '', 'buildBaseAttribute', ], 
             [ 35, 'id', '', 'buildIdAttribute', ], 
+            // Context: ELT_GROUP_REF
+            [ 36, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
