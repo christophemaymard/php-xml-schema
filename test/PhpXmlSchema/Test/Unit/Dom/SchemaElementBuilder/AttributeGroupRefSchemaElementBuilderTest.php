@@ -86,6 +86,7 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
+    use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

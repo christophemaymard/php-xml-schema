@@ -286,4 +286,52 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         
         $this->sut->buildMaxOccursAttribute($value);
     }
+    
+    /**
+     * Tests that buildMinOccursAttribute() creates the attribute when the 
+     * current element is the "group" element (groupRef) and the value is 
+     * valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerValues
+     */
+    public function testBuildMinOccursAttributeCreatesAttrWhenGroupRefAndValueIsValid(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMinOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyMinOccursAttribute($grp);
+        self::assertEquals($nni, $grp->getMinOccurs()->getInteger());
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() throws an exception when the 
+     * current element is the "group" element (groupRef) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerValues
+     */
+    public function testBuildMinOccursAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer.', $value));
+        
+        $this->sut->buildMinOccursAttribute($value);
+    }
 }

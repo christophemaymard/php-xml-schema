@@ -484,6 +484,7 @@ class ParserContextTest extends TestCase
             public function buildItemTypeAttribute(string $value) {}
             public function buildMaxOccursAttribute(string $value) {}
             public function buildMemberTypesAttribute(string $value) {}
+            public function buildMinOccursAttribute(string $value) {}
             public function buildMixedAttribute(string $value) {}
             public function buildNameAttribute(string $value) {}
             public function buildNamespaceAttribute(string $value) {}

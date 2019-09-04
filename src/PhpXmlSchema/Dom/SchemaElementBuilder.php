@@ -346,6 +346,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildMinOccursAttribute(string $value)
+    {
+        if ($this->currentElement instanceof GroupElement) {
+            $this->currentElement->setMinOccurs($this->parseNonNegativeInteger($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildMixedAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {

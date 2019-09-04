@@ -2066,4 +2066,20 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasRef());
     }
+    
+    /**
+     * Asserts that the specified "group" element has only the "minOccurs" 
+     * attribute.
+     * 
+     * @param   GroupElement    $sut    The element to test.
+     */
+    public static function assertGroupElementHasOnlyMinOccursAttribute(
+        GroupElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertTrue($sut->hasMinOccurs());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRef());
+    }
 }
