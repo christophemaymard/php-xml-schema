@@ -34,105 +34,105 @@
   <test group="attribute" name="[whiteSpace][attribute::fixed] true (uppercase)">
     <schema fileName="whiteSpace_fixed_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"True" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "True" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::fixed] false (uppercase)">
     <schema fileName="whiteSpace_fixed_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"False" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "False" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::fixed] Numeric other than 0 or 1">
     <schema fileName="whiteSpace_fixed_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"2" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "2" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <!-- whiteSpace::id -->
   <test group="attribute" name="[whiteSpace][attribute::id] Empty string">
     <schema fileName="whiteSpace_id_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::id] Only white spaces">
     <schema fileName="whiteSpace_id_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::id] Separated by whitespaces">
     <schema fileName="whiteSpace_id_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::id] Starts with digit">
     <schema fileName="whiteSpace_id_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::id] Starts with .">
     <schema fileName="whiteSpace_id_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::id] Starts with -">
     <schema fileName="whiteSpace_id_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::id] Contains invalid character">
     <schema fileName="whiteSpace_id_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID.</message>
     </schema>
   </test>
   <!-- whiteSpace::value -->
   <test group="attribute" name="[whiteSpace][attribute::value] Empty string">
     <schema fileName="whiteSpace_value_0004.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid white space type.</message>
+      <message>The "value" attribute is invalid: "" is an invalid white space type.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::value] collapse (uppercase)">
     <schema fileName="whiteSpace_value_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"Collapse" is an invalid white space type.</message>
+      <message>The "value" attribute is invalid: "Collapse" is an invalid white space type.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::value] preserve (uppercase)">
     <schema fileName="whiteSpace_value_0006.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"Preserve" is an invalid white space type.</message>
+      <message>The "value" attribute is invalid: "Preserve" is an invalid white space type.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::value] replace (uppercase)">
     <schema fileName="whiteSpace_value_0007.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"Replace" is an invalid white space type.</message>
+      <message>The "value" attribute is invalid: "Replace" is an invalid white space type.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::value] collapse preserve">
     <schema fileName="whiteSpace_value_0008.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"collapse preserve" is an invalid white space type.</message>
+      <message>The "value" attribute is invalid: "collapse preserve" is an invalid white space type.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::value] collapse replace">
     <schema fileName="whiteSpace_value_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"collapse replace" is an invalid white space type.</message>
+      <message>The "value" attribute is invalid: "collapse replace" is an invalid white space type.</message>
     </schema>
   </test>
   <test group="attribute" name="[whiteSpace][attribute::value] preserve replace">
     <schema fileName="whiteSpace_value_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"preserve replace" is an invalid white space type.</message>
+      <message>The "value" attribute is invalid: "preserve replace" is an invalid white space type.</message>
     </schema>
   </test>
   <!-- annotation -->

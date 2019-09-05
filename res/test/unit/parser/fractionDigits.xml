@@ -34,69 +34,69 @@
   <test group="attribute" name="[fractionDigits][attribute::fixed] true (uppercase)">
     <schema fileName="fractionDigits_fixed_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"True" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "True" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[fractionDigits][attribute::fixed] false (uppercase)">
     <schema fileName="fractionDigits_fixed_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"False" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "False" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[fractionDigits][attribute::fixed] Numeric other than 0 or 1">
     <schema fileName="fractionDigits_fixed_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"2" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "2" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <!-- fractionDigits::id -->
   <test group="attribute" name="[fractionDigits][attribute::id] Empty string">
     <schema fileName="fractionDigits_id_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[fractionDigits][attribute::id] Only white spaces">
     <schema fileName="fractionDigits_id_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[fractionDigits][attribute::id] Separated by whitespaces">
     <schema fileName="fractionDigits_id_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[fractionDigits][attribute::id] Starts with digit">
     <schema fileName="fractionDigits_id_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[fractionDigits][attribute::id] Starts with .">
     <schema fileName="fractionDigits_id_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[fractionDigits][attribute::id] Starts with -">
     <schema fileName="fractionDigits_id_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[fractionDigits][attribute::id] Contains invalid character">
     <schema fileName="fractionDigits_id_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID.</message>
     </schema>
   </test>
   <!-- fractionDigits::value -->
   <test group="attribute" name="[fractionDigits][attribute::value] Negative integer">
     <schema fileName="fractionDigits_value_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-9" is an invalid non-negative integer.</message>
+      <message>The "value" attribute is invalid: "-9" is an invalid non-negative integer.</message>
     </schema>
   </test>
   <!-- annotation -->

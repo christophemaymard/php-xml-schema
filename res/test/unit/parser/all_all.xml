@@ -34,75 +34,75 @@
   <test group="attribute" name="[all][attribute::id] Empty string">
     <schema fileName="all_id_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::id] Only white spaces">
     <schema fileName="all_id_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::id] Separated by whitespaces">
     <schema fileName="all_id_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::id] Starts with digit">
     <schema fileName="all_id_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::id] Starts with .">
     <schema fileName="all_id_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::id] Starts with -">
     <schema fileName="all_id_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::id] Contains invalid character">
     <schema fileName="all_id_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID.</message>
     </schema>
   </test>
   <!-- all::maxOccurs -->
   <test group="attribute" name="[all][attribute::maxOccurs] unbounded">
     <schema fileName="all_maxOccurs_0006.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"unbounded" is invalid, expected "1".</message>
+      <message>The "maxOccurs" attribute is invalid: "unbounded" is invalid, expected "1".</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::maxOccurs] Non-negative integer other than 1">
     <schema fileName="all_maxOccurs_0007.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"0" is invalid, expected "1".</message>
+      <message>The "maxOccurs" attribute is invalid: "0" is invalid, expected "1".</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::maxOccurs] Negative integer">
     <schema fileName="all_maxOccurs_0008.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-9" is invalid, expected "1".</message>
+      <message>The "maxOccurs" attribute is invalid: "-9" is invalid, expected "1".</message>
     </schema>
   </test>
   <!-- all::minOccurs -->
   <test group="attribute" name="[all][attribute::minOccurs] Non-negative integer other than 0 or 1">
     <schema fileName="all_minOccurs_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"2" is invalid, expected "0" or "1".</message>
+      <message>The "minOccurs" attribute is invalid: "2" is invalid, expected "0" or "1".</message>
     </schema>
   </test>
   <test group="attribute" name="[all][attribute::minOccurs] Negative integer">
     <schema fileName="all_minOccurs_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-9" is invalid, expected "0" or "1".</message>
+      <message>The "minOccurs" attribute is invalid: "-9" is invalid, expected "0" or "1".</message>
     </schema>
   </test>
   <!-- annotation -->

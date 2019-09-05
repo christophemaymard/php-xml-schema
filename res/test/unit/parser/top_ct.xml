@@ -34,222 +34,222 @@
   <test group="attribute" name="[complexType][attribute::abstract] true (uppercase)">
     <schema fileName="complexType_abstract_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"True" is an invalid boolean datatype.</message>
+      <message>The "abstract" attribute is invalid: "True" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::abstract] false (uppercase)">
     <schema fileName="complexType_abstract_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"False" is an invalid boolean datatype.</message>
+      <message>The "abstract" attribute is invalid: "False" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::abstract] Numeric other than 0 or 1">
     <schema fileName="complexType_abstract_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"2" is an invalid boolean datatype.</message>
+      <message>The "abstract" attribute is invalid: "2" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <!-- complexType::block -->
   <test group="attribute" name="[complexType][attribute::block] Not extension neither restriction">
     <schema fileName="complexType_block_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "foo" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] #all (uppercase)">
     <schema fileName="complexType_block_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"#ALL" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "#ALL" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] #all with white spaces">
     <schema fileName="complexType_block_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"    #all    " is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "    #all    " is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] extension (uppercase)">
     <schema fileName="complexType_block_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"Extension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "Extension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] restriction (uppercase)">
     <schema fileName="complexType_block_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"Restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "Restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] #all with extension">
     <schema fileName="complexType_block_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"#all extension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "#all extension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] #all with restriction">
     <schema fileName="complexType_block_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"restriction #all" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "restriction #all" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] Value not extension neither restriction in list">
     <schema fileName="complexType_block_0016.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"extension foo restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "extension foo restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <!-- complexType::final -->
   <test group="attribute" name="[complexType][attribute::final] Not extension neither restriction">
     <schema fileName="complexType_final_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "foo" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] #all (uppercase)">
     <schema fileName="complexType_final_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"#ALL" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "#ALL" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] #all with white spaces">
     <schema fileName="complexType_final_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"    #all    " is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "    #all    " is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] extension (uppercase)">
     <schema fileName="complexType_final_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"Extension" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "Extension" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] restriction (uppercase)">
     <schema fileName="complexType_final_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"Restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "Restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] #all with extension">
     <schema fileName="complexType_final_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"#all extension" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "#all extension" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] #all with restriction">
     <schema fileName="complexType_final_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"restriction #all" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "restriction #all" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] Value not extension neither restriction in list">
     <schema fileName="complexType_final_0016.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"extension foo restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "extension foo restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
     </schema>
   </test>
   <!-- complexType::id -->
   <test group="attribute" name="[complexType][attribute::id] Empty string">
     <schema fileName="complexType_id_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::id] Only white spaces">
     <schema fileName="complexType_id_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::id] Separated by whitespaces">
     <schema fileName="complexType_id_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::id] Starts with digit">
     <schema fileName="complexType_id_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::id] Starts with .">
     <schema fileName="complexType_id_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::id] Starts with -">
     <schema fileName="complexType_id_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::id] Contains invalid character">
     <schema fileName="complexType_id_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID.</message>
     </schema>
   </test>
   <!-- complexType::mixed -->
   <test group="attribute" name="[complexType][attribute::mixed] true (uppercase)">
     <schema fileName="complexType_mixed_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"True" is an invalid boolean datatype.</message>
+      <message>The "mixed" attribute is invalid: "True" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::mixed] false (uppercase)">
     <schema fileName="complexType_mixed_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"False" is an invalid boolean datatype.</message>
+      <message>The "mixed" attribute is invalid: "False" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::mixed] Numeric other than 0 or 1">
     <schema fileName="complexType_mixed_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"2" is an invalid boolean datatype.</message>
+      <message>The "mixed" attribute is invalid: "2" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <!-- complexType::name -->
   <test group="attribute" name="[complexType][attribute::name] Empty string">
     <schema fileName="complexType_name_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::name] Only white spaces">
     <schema fileName="complexType_name_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::name] Separated by whitespaces">
     <schema fileName="complexType_name_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "foo bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::name] Starts with digit">
     <schema fileName="complexType_name_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "8foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::name] Starts with .">
     <schema fileName="complexType_name_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: ".foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::name] Starts with -">
     <schema fileName="complexType_name_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "-foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::name] Contains invalid character">
     <schema fileName="complexType_name_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName.</message>
     </schema>
   </test>
   <!-- annotation -->

@@ -200,6 +200,8 @@ class Parser
      * Parses the current node as an attribute.
      * 
      * @throws  InvalidOperationException   When the attribute is not supported.
+     * @throws  InvalidValueException       When the attribute is supported and the value is invalid.
+     * @throws  InvalidOperationException   When the attribute is supported and the value is invalid.
      */
     private function parseAttributeNode()
     {
@@ -213,11 +215,25 @@ class Parser
             ));
         }
         
-        $this->ctx->createAttribute(
-            $localName, 
-            $namespace, 
-            $this->xt->getValue(),
-            $this->builder
-        );
+        try {
+            $this->ctx->createAttribute(
+                $localName, 
+                $namespace, 
+                $this->xt->getValue(),
+                $this->builder
+            );
+        } catch (InvalidValueException $ex) {
+            throw new InvalidValueException(\sprintf(
+                'The "%s" attribute is invalid: %s',
+                $localName, 
+                $ex->getMessage()
+            ));
+        } catch (InvalidOperationException $ex) {
+            throw new InvalidOperationException(\sprintf(
+                'The "%s" attribute is invalid: %s',
+                $localName, 
+                $ex->getMessage()
+            ));
+        }
     }
 }

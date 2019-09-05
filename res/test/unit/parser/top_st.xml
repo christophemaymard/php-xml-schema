@@ -34,147 +34,147 @@
   <test group="attribute" name="[simpleType][attribute::final] Not list neither union neither restriction">
     <schema fileName="simpleType_final_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "foo" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all (uppercase)">
     <schema fileName="simpleType_final_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"#ALL" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "#ALL" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all with white spaces">
     <schema fileName="simpleType_final_0016.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"    #all    " is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "    #all    " is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] list (uppercase)">
     <schema fileName="simpleType_final_0017.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"List" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "List" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] union (uppercase)">
     <schema fileName="simpleType_final_0018.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"unIon" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "unIon" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] restriction (uppercase)">
     <schema fileName="simpleType_final_0019.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"Restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "Restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all with list">
     <schema fileName="simpleType_final_0020.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"#all list" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "#all list" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all with union">
     <schema fileName="simpleType_final_0021.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"union #all" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "union #all" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all with restriction">
     <schema fileName="simpleType_final_0022.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"#all restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "#all restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] Value not list neither union neither restriction in list">
     <schema fileName="simpleType_final_0023.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"list union foo restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "list union foo restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
     </schema>
   </test>
   <!-- simpleType::id -->
   <test group="attribute" name="[simpleType][attribute::id] Empty string">
     <schema fileName="simpleType_id_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::id] Only white spaces">
     <schema fileName="simpleType_id_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::id] Separated by whitespaces">
     <schema fileName="simpleType_id_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::id] Starts with digit">
     <schema fileName="simpleType_id_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::id] Starts with .">
     <schema fileName="simpleType_id_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::id] Starts with -">
     <schema fileName="simpleType_id_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::id] Contains invalid character">
     <schema fileName="simpleType_id_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID.</message>
     </schema>
   </test>
   <!-- simpleType::name -->
   <test group="attribute" name="[simpleType][attribute::name] Empty string">
     <schema fileName="simpleType_name_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Only white spaces">
     <schema fileName="simpleType_name_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Separated by whitespaces">
     <schema fileName="simpleType_name_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "foo bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Starts with digit">
     <schema fileName="simpleType_name_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "8foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Starts with .">
     <schema fileName="simpleType_name_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: ".foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Starts with -">
     <schema fileName="simpleType_name_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "-foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Contains invalid character">
     <schema fileName="simpleType_name_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName.</message>
     </schema>
   </test>
   <!-- annotation -->

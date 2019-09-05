@@ -34,69 +34,69 @@
   <test group="attribute" name="[minLength][attribute::fixed] true (uppercase)">
     <schema fileName="minLength_fixed_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"True" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "True" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[minLength][attribute::fixed] false (uppercase)">
     <schema fileName="minLength_fixed_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"False" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "False" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[minLength][attribute::fixed] Numeric other than 0 or 1">
     <schema fileName="minLength_fixed_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"2" is an invalid boolean datatype.</message>
+      <message>The "fixed" attribute is invalid: "2" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <!-- minLength::id -->
   <test group="attribute" name="[minLength][attribute::id] Empty string">
     <schema fileName="minLength_id_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[minLength][attribute::id] Only white spaces">
     <schema fileName="minLength_id_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[minLength][attribute::id] Separated by whitespaces">
     <schema fileName="minLength_id_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[minLength][attribute::id] Starts with digit">
     <schema fileName="minLength_id_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[minLength][attribute::id] Starts with .">
     <schema fileName="minLength_id_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[minLength][attribute::id] Starts with -">
     <schema fileName="minLength_id_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[minLength][attribute::id] Contains invalid character">
     <schema fileName="minLength_id_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID.</message>
     </schema>
   </test>
   <!-- minLength::value -->
   <test group="attribute" name="[minLength][attribute::value] Negative integer">
     <schema fileName="minLength_value_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-9" is an invalid non-negative integer.</message>
+      <message>The "value" attribute is invalid: "-9" is an invalid non-negative integer.</message>
     </schema>
   </test>
   <!-- annotation -->

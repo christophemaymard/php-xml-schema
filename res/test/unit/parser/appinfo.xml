@@ -22,7 +22,7 @@
   <test group="attribute" name="[appinfo][attribute::source]">
     <schema fileName="appinfo_src_0002.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid scheme.</message>
+      <message>The "source" attribute is invalid: "" is an invalid scheme.</message>
     </schema>
   </test>
   <!-- TEMPLATE

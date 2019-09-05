@@ -34,254 +34,254 @@
   <test group="attribute" name="[union][attribute::id] Empty string">
     <schema fileName="union_id_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::id] Only white spaces">
     <schema fileName="union_id_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::id] Separated by whitespaces">
     <schema fileName="union_id_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::id] Starts with digit">
     <schema fileName="union_id_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::id] Starts with .">
     <schema fileName="union_id_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::id] Starts with -">
     <schema fileName="union_id_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::id] Contains invalid character">
     <schema fileName="union_id_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo:bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID.</message>
     </schema>
   </test>
   <!-- union::memberTypes -->
   <test group="attribute" name="[union][attribute::memberTypes] Empty string">
     <schema fileName="union_memberTypes_0057.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] Contains only white spaces">
     <schema fileName="union_memberTypes_0058.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is absent, local part starts with digit)">
     <schema fileName="union_memberTypes_0059.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "8foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is absent, local part starts with .)">
     <schema fileName="union_memberTypes_0060.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: ".foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is absent, local part starts with -)">
     <schema fileName="union_memberTypes_0061.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "-foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is absent, local part contains invalid character)">
     <schema fileName="union_memberTypes_0062.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo+bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "foo+bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is empty string, local part is valid)">
     <schema fileName="union_memberTypes_0063.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix contains only white spaces, local part is valid)">
     <schema fileName="union_memberTypes_0064.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix starts with digit, local part is valid)">
     <schema fileName="union_memberTypes_0065.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "8foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix starts with ., local part is valid)">
     <schema fileName="union_memberTypes_0066.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: ".foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix starts with -, local part is valid)">
     <schema fileName="union_memberTypes_0067.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "-foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix contains invalid character, local part is valid)">
     <schema fileName="union_memberTypes_0068.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo+bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "foo+bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is valid, local part is empty string)">
     <schema fileName="union_memberTypes_0069.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is valid, local part contains only white spaces)">
     <schema fileName="union_memberTypes_0070.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is valid, local part starts with digit)">
     <schema fileName="union_memberTypes_0071.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "8bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is valid, local part starts with .)">
     <schema fileName="union_memberTypes_0072.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: ".bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is valid, local part starts with -)">
     <schema fileName="union_memberTypes_0073.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "-bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (prefix is valid, local part contains invalid character)">
     <schema fileName="union_memberTypes_0074.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"bar+baz" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "bar+baz" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is absent, local part starts with digit)">
     <schema fileName="union_memberTypes_0075.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "8foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is absent, local part starts with .)">
     <schema fileName="union_memberTypes_0076.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: ".foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is absent, local part starts with -)">
     <schema fileName="union_memberTypes_0077.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "-foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is absent, local part contains invalid character)">
     <schema fileName="union_memberTypes_0078.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo+bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "foo+bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is empty string, local part is valid)">
     <schema fileName="union_memberTypes_0079.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix contains only white spaces, local part is valid)">
     <schema fileName="union_memberTypes_0080.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix starts with digit, local part is valid)">
     <schema fileName="union_memberTypes_0081.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "8foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix starts with ., local part is valid)">
     <schema fileName="union_memberTypes_0082.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: ".foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix starts with -, local part is valid)">
     <schema fileName="union_memberTypes_0083.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-foo" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "-foo" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix contains invalid character, local part is valid)">
     <schema fileName="union_memberTypes_0084.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"foo+bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "foo+bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is valid, local part is empty string)">
     <schema fileName="union_memberTypes_0085.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is valid, local part contains only white spaces)">
     <schema fileName="union_memberTypes_0086.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is valid, local part starts with digit)">
     <schema fileName="union_memberTypes_0087.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"8bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "8bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is valid, local part starts with .)">
     <schema fileName="union_memberTypes_0088.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>".bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: ".bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is valid, local part starts with -)">
     <schema fileName="union_memberTypes_0089.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"-bar" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "-bar" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] QName 1 (valid), QName 2 (prefix is valid, local part contains invalid character)">
     <schema fileName="union_memberTypes_0090.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"bar+baz" is an invalid NCName.</message>
+      <message>The "memberTypes" attribute is invalid: "bar+baz" is an invalid NCName.</message>
     </schema>
   </test>
   <test group="attribute" name="[union][attribute::memberTypes] Prefix not bound to namespace">
     <schema fileName="union_memberTypes_0091.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "bar" prefix is not bound to a namespace.</message>
+      <message>The "memberTypes" attribute is invalid: The "bar" prefix is not bound to a namespace.</message>
     </schema>
   </test>
   <!-- annotation -->
