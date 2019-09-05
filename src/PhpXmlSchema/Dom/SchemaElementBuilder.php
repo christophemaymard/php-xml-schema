@@ -366,16 +366,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildProcessContentsAttribute(string $value)
     {
         if ($this->currentElement instanceof AnyAttributeElement) {
-            if (NULL === $attr = $this->parseProcessingMode($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'processContents', 
-                    '', 
-                    [ 'lax', 'skip', 'strict', ]
-                ));
-            }
-            
-            $this->currentElement->setProcessContents($attr);
+            $this->currentElement->setProcessContents($this->parseProcessingMode($value));
         }
     }
     
@@ -1573,18 +1564,24 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * Parses the specified value in ProcessingModeType value.
      * 
      * @param   string  $value  The value to parse.
-     * @return  ProcessingModeType|NULL A created instance of ProcessingModeType if the value is valid, otherwise NULL.
+     * @return  ProcessingModeType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid mode of content processing.
      */
-    private function parseProcessingMode(string $value)
+    private function parseProcessingMode(string $value):ProcessingModeType
     {
-        $pm = NULL;
-        
         if ($value == 'lax') {
             $pm = ProcessingModeType::createLax();
         } elseif ($value == 'skip') {
             $pm = ProcessingModeType::createSkip();
         } elseif ($value == 'strict') {
             $pm = ProcessingModeType::createStrict();
+        } else {
+            throw new InvalidValueException(\sprintf(
+                '"%s" is an invalid mode of content processing, expected '.
+                '"lax", "skip" or "strict".', 
+                $value
+            ));
         }
         
         return $pm;

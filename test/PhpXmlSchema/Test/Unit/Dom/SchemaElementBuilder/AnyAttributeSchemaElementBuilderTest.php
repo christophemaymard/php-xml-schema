@@ -310,11 +310,12 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "processContents" '.
-            'attribute (from no namespace), expected: "lax", '.
-            '"skip" or "strict".'
-        );
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid mode of content processing, expected "lax", '.
+            '"skip" or "strict".', 
+            $value
+        ));
+        
         $this->sut->buildProcessContentsAttribute($value);
     }
     
