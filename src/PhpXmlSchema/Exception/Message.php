@@ -40,38 +40,6 @@ class Message
     }
     
     /**
-     * Formats a message when a value of an attribute, from a namespace, is 
-     * invalid and list the expected values.
-     * 
-     * @param   string      $invalidValue   The invalid value.
-     * @param   string      $name           The local name of the attribute.
-     * @param   string      $ns             The namespace of the attribute.
-     * @param   string[]    $values         The expected values.
-     * @return  string
-     */
-    public static function invalidAttributeValue(
-        string $invalidValue, 
-        string $name, 
-        string $ns, 
-        array $values
-    ):string {
-        if (empty($values)) {
-            $expected = '';
-        } else {
-            $expected = ', expected: '.self::formatCommaOrList($values);
-        }
-        
-        return \sprintf(
-            '"%s" is an invalid value for the "%s" attribute (from %s '.
-            'namespace)%s.', 
-            $invalidValue, 
-            $name, 
-            $ns == '' ? 'no' : $ns, 
-            $expected
-        );
-    }
-    
-    /**
      * Formats a message when an attribute, from a namespace, is not supported.
      * 
      * @param   string  $name   The local name of the unsupported attribute.
