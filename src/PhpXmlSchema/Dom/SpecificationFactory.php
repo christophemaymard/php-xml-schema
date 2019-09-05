@@ -1047,6 +1047,9 @@ class SpecificationFactory
             [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
             [ 'minOccurs', '', 'buildMinOccursAttribute', ], 
         ], 
+        ContextId::ELT_NARROW_ELEMENT => [
+            [ 'block', '', 'buildBlockAttribute', ], 
+        ], 
     ];
     
     /**
