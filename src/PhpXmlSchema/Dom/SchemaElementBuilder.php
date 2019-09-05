@@ -1492,7 +1492,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         $cvalue = $this->collapseWhiteSpace($value);
         
         if (!\preg_match('`^(\\+)?([0-9]+)$`', $cvalue, $matches)) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid non-negative integer.', $value));
+            throw new InvalidValueException(\sprintf('"%s" is an invalid nonNegativeInteger datatype.', $value));
         }
         
         // \gmp_init() removes leading zeroes when the decimal base (10) is 

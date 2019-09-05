@@ -90,7 +90,7 @@
   <test group="attribute" name="[group][attribute::minOccurs] Negative integer">
     <schema fileName="group_minOccurs_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "minOccurs" attribute is invalid: "-9" is an invalid non-negative integer.</message>
+      <message>The "minOccurs" attribute is invalid: "-9" is an invalid nonNegativeInteger datatype.</message>
     </schema>
   </test>
   <!-- group::ref -->

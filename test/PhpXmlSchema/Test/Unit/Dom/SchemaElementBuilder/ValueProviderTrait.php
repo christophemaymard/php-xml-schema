@@ -862,6 +862,7 @@ trait ValueProviderTrait
         return [
             'Negative integer' => [ 
                 '-9', 
+                '"-9" is an invalid nonNegativeInteger datatype.', 
             ], 
         ];
     }

@@ -291,16 +291,18 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * element is the "fractionDigits" element and the value is invalid.
      * 
      * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
      * 
      * @group           attribute
      * @group           parsing
      * @dataProvider    getInvalidNonNegativeIntegerValues
      */
     public function testBuildValueAttributeThrowsExceptionWhenFractionDigitsAndValueIsInvalid(
-        string $value
+        string $value, 
+        string $message
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer.', $value));
+        $this->expectExceptionMessage($message);
         
         $this->sut->buildValueAttribute($value);
     }

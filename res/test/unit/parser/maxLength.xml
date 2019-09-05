@@ -96,7 +96,7 @@
   <test group="attribute" name="[maxLength][attribute::value] Negative integer">
     <schema fileName="maxLength_value_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "value" attribute is invalid: "-9" is an invalid non-negative integer.</message>
+      <message>The "value" attribute is invalid: "-9" is an invalid nonNegativeInteger datatype.</message>
     </schema>
   </test>
   <!-- annotation -->

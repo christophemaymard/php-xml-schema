@@ -42,7 +42,7 @@ class NonNegativeIntegerTypeTest extends TestCase
     public function test__constructThrowsExceptionWhenValueIsInvalid()
     {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage('"-1" is an invalid non-negative integer.');
+        $this->expectExceptionMessage('"-1" is an invalid nonNegativeInteger datatype.');
         
         $sut = new NonNegativeIntegerType(\gmp_init(-1));
     }

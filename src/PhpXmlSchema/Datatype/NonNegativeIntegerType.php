@@ -39,12 +39,12 @@ class NonNegativeIntegerType
      * 
      * @param   \GMP    $value  The value to set.
      * 
-     * @throws  InvalidValueException   When the value is invalid.
+     * @throws  InvalidValueException   When the value is an invalid nonNegativeInteger datatype.
      */
     private function setValue(\GMP $value)
     {
         if ($value < 0) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid non-negative integer.', $value));
+            throw new InvalidValueException(\sprintf('"%s" is an invalid nonNegativeInteger datatype.', $value));
         }
         
         $this->value = $value;
