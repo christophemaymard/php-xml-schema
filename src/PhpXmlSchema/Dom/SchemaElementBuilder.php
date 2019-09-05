@@ -513,14 +513,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildLangAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {
-            $eid = $this->currentElement->getElementId();
-            
-            if ($eid == ElementId::ELT_SCHEMA || $eid == ElementId::ELT_DOCUMENTATION) {
-                $tags = \explode('-', $this->collapseWhiteSpace($value));
-
-                $this->currentElement->setLang(
-                    new LanguageType(\array_shift($tags), $tags)
-                );
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SCHEMA:
+                case ElementId::ELT_DOCUMENTATION:
+                    $this->currentElement->setLang($this->parseLanguage($value));
             }
         }
     }
@@ -1657,6 +1653,22 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     private function parseToken(string $value):TokenType
     {
         return new TokenType($this->collapseWhiteSpace($value));
+    }
+    
+    /**
+     * Parses the specified value in LanguageType value.
+     * 
+     * White space characters (i.e. TAB, LF, CR and SPACE) are collapsed 
+     * before parsing.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  LanguageType
+     */
+    private function parseLanguage(string $value):LanguageType
+    {
+        $tags = \explode('-', $this->collapseWhiteSpace($value));
+        
+        return new LanguageType(\array_shift($tags), $tags);
     }
     
     /**
