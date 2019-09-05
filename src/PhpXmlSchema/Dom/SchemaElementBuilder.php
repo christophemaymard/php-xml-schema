@@ -344,9 +344,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_IMPORT:
-                    $this->currentElement->setNamespace(
-                        new AnyUriType($this->collapseWhiteSpace($value))
-                    );
+                    $this->currentElement->setNamespace($this->parseAnyUri($value));
                     break;
                 case ElementId::ELT_ANYATTRIBUTE:
                     $this->currentElement->setNamespace(
@@ -407,9 +405,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch($this->currentElement->getElementId()) {
                 case ElementId::ELT_IMPORT:
                 case ElementId::ELT_INCLUDE:
-                    $this->currentElement->setSchemaLocation(
-                        new AnyUriType($this->collapseWhiteSpace($value))
-                    );
+                    $this->currentElement->setSchemaLocation($this->parseAnyUri($value));
             }
         }
     }
@@ -423,9 +419,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             $eid = $this->currentElement->getElementId();
             
             if ($eid == ElementId::ELT_APPINFO || $eid == ElementId::ELT_DOCUMENTATION) {
-                $this->currentElement->setSource(
-                    new AnyUriType($this->collapseWhiteSpace($value))
-                );
+                $this->currentElement->setSource($this->parseAnyUri($value));
             }
         }
     }
@@ -436,9 +430,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildSystemAttribute(string $value)
     {
         if ($this->currentElement instanceof NotationElement) {
-            $this->currentElement->setSystem(
-                new AnyUriType($this->collapseWhiteSpace($value))
-            );
+            $this->currentElement->setSystem($this->parseAnyUri($value));
         }
     }
     
@@ -448,9 +440,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildTargetNamespaceAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {
-            $this->currentElement->setTargetNamespace(
-                new AnyUriType($this->collapseWhiteSpace($value))
-            );
+            $this->currentElement->setTargetNamespace($this->parseAnyUri($value));
         }
     }
     
@@ -1643,6 +1633,20 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     private function parseNCName(string $value):NCNameType
     {
         return new NCNameType($this->collapseWhiteSpace($value));
+    }
+    
+    /**
+     * Parses the specified value in AnyUriType value.
+     * 
+     * White space characters (i.e. TAB, LF, CR and SPACE) are collapsed 
+     * before parsing.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  AnyUriType
+     */
+    private function parseAnyUri(string $value):AnyUriType
+    {
+        return new AnyUriType($this->collapseWhiteSpace($value));
     }
     
     /**
