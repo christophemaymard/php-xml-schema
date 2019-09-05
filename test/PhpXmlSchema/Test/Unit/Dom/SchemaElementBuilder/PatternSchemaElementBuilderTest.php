@@ -244,16 +244,18 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * element is the "pattern" element and the value is invalid.
      * 
      * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
      * 
      * @group           attribute
      * @group           parsing
      * @dataProvider    getInvalidStringValues
      */
     public function testBuildValueAttributeThrowsExceptionWhenPatternAndValueIsInvalid(
-        string $value
+        string $value, 
+        string $message
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf('"%s" is an invalid string.', $value));
+        $this->expectExceptionMessage($message);
         
         $this->sut->buildValueAttribute($value);
     }

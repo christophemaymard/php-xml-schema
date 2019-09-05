@@ -46,7 +46,7 @@ class StringTypeTest extends TestCase
     public function test__constructThrowsExceptionWhenValueIsInvalid(string $value)
     {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf('"%s" is an invalid string.', $value));
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid string datatype.', $value));
         
         $sut = new StringType($value);
     }

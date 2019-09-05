@@ -545,16 +545,46 @@ trait ValueProviderTrait
     public function getInvalidStringValues():array
     {
         return [
-            'Contains invalid character (U+0000)' => [ "\u{0000}", ], 
-            'Contains invalid character (U+0008)' => [ "\u{0008}", ], 
-            'Contains invalid character (U+000E)' => [ "\u{000E}", ], 
-            'Contains invalid character (U+001F)' => [ "\u{001F}", ], 
-            'Contains invalid character (U+D800)' => [ "\u{D800}", ], 
-            'Contains invalid character (U+DC00)' => [ "\u{DC00}", ], 
-            'Contains invalid character (U+DFFF)' => [ "\u{DFFF}", ], 
-            'Contains invalid character (U+DFFF)' => [ "\u{DFFF}", ], 
-            'Contains invalid character (U+FFFE)' => [ "\u{FFFE}", ], 
-            'Contains invalid character (U+FFFF)' => [ "\u{FFFF}", ], 
+            'Contains invalid character (U+0000)' => [
+                "\u{0000}", 
+                "\"\u{0000}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+0008)' => [
+                "\u{0008}", 
+                "\"\u{0008}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+000E)' => [
+                "\u{000E}", 
+                "\"\u{000E}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+001F)' => [
+                "\u{001F}", 
+                "\"\u{001F}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+D800)' => [
+                "\u{D800}", 
+                "\"\u{D800}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+DC00)' => [
+                "\u{DC00}", 
+                "\"\u{DC00}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+DFFF)' => [
+                "\u{DFFF}", 
+                "\"\u{DFFF}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+DFFF)' => [
+                "\u{DFFF}", 
+                "\"\u{DFFF}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+FFFE)' => [
+                "\u{FFFE}", 
+                "\"\u{FFFE}\" is an invalid string datatype.", 
+            ], 
+            'Contains invalid character (U+FFFF)' => [
+                "\u{FFFF}", 
+                "\"\u{FFFF}\" is an invalid string datatype.", 
+            ], 
         ];
     }
     

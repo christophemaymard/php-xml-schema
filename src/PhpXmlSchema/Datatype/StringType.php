@@ -39,12 +39,12 @@ class StringType
      * 
      * @param   string  $value  The value to set.
      * 
-     * @throws  InvalidValueException   When the value is invalid.
+     * @throws  InvalidValueException   When the value is an invalid string datatype.
      */
     private function setValue(string $value)
     {
         if (!\preg_match('`^['.XmlCharClass::CHAR.']*$`u', $value)) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid string.', $value));
+            throw new InvalidValueException(\sprintf('"%s" is an invalid string datatype.', $value));
         }
         
         $this->value = $value;
