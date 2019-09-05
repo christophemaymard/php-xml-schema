@@ -34,61 +34,61 @@
   <test group="attribute" name="[simpleType][attribute::final] Not list neither union neither restriction">
     <schema fileName="simpleType_final_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "foo" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "foo" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all (uppercase)">
     <schema fileName="simpleType_final_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "#ALL" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "#ALL" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all with white spaces">
     <schema fileName="simpleType_final_0016.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "    #all    " is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "    #all    " is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] list (uppercase)">
     <schema fileName="simpleType_final_0017.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "List" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "List" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] union (uppercase)">
     <schema fileName="simpleType_final_0018.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "unIon" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "unIon" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] restriction (uppercase)">
     <schema fileName="simpleType_final_0019.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "Restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "Restriction" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all with list">
     <schema fileName="simpleType_final_0020.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "#all list" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "#all list" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all with union">
     <schema fileName="simpleType_final_0021.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "union #all" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "union #all" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] #all with restriction">
     <schema fileName="simpleType_final_0022.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "#all restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "#all restriction" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::final] Value not list neither union neither restriction in list">
     <schema fileName="simpleType_final_0023.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "list union foo restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (list | union | restriction)".</message>
+      <message>The "final" attribute is invalid: "list union foo restriction" is an invalid simpleDerivationSet type, expected "#all" or a list of "list", "union" and/or "restriction".</message>
     </schema>
   </test>
   <!-- simpleType::id -->

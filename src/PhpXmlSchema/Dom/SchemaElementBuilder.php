@@ -150,16 +150,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof SimpleTypeElement && 
             $this->currentElement->getParent() instanceof SchemaElement
         ) {
-            if (NULL === $attr = $this->parseSimpleDerivationSetValue($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'final', 
-                    '', 
-                    [ '#all', 'List of (list | union | restriction)', ]
-                ));
-            }
-            
-            $this->currentElement->setFinal($attr);
+            $this->currentElement->setFinal($this->parseSimpleDerivationSet($value));
         } elseif ($this->currentElement instanceof ComplexTypeElement) {
             $this->currentElement->setFinal($this->parseDerivationSet($value));
         }
@@ -1480,9 +1471,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * CR and SPACE) are collapsed before parsing.
      * 
      * @param   string  $value  The value to parse.
-     * @return  DerivationType|NULL A created instance of DerivationType if the value is valid, otherwise NULL.
+     * @return  DerivationType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid simpleDerivationSet type.
      */
-    private function parseSimpleDerivationSetValue(string $value)
+    private function parseSimpleDerivationSet(string $value):DerivationType
     {
         $list = $union = $res = FALSE;
         
@@ -1497,7 +1490,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 } elseif ($flag == 'restriction') {
                     $res = TRUE;
                 } else {
-                    return NULL;
+                    throw new InvalidValueException(\sprintf(
+                        '"%s" is an invalid simpleDerivationSet type, '.
+                        'expected "#all" or a list of "list", "union" '.
+                        'and/or "restriction".', 
+                        $value
+                    ));
                 }
             }
         }

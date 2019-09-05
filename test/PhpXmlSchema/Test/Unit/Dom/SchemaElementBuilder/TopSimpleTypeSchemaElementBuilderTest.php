@@ -189,11 +189,11 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "final" '.
-            'attribute (from no namespace), expected: "#all" or '.
-            '"List of (list | union | restriction)".'
-        );
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid simpleDerivationSet type, expected "#all" '.
+            'or a list of "list", "union" and/or "restriction".', 
+            $value
+        ));
         
         $this->sut->buildFinalAttribute($value);
     }
