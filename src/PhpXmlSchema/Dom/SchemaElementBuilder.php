@@ -127,7 +127,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildDefaultAttribute(string $value)
     {
         if ($this->currentElement instanceof AttributeElement) {
-            $this->currentElement->setDefault(new StringType($value));
+            $this->currentElement->setDefault($this->parseString($value));
         }
     }
     
@@ -173,7 +173,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ATTRIBUTE:
-                    $this->currentElement->setFixed(new StringType($value));
+                    $this->currentElement->setFixed($this->parseString($value));
                     break;
                 case ElementId::ELT_MINEXCLUSIVE:
                 case ElementId::ELT_MININCLUSIVE:
@@ -491,7 +491,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setValue($this->parseWhiteSpace($value));
                     break;
                 case ElementId::ELT_PATTERN:
-                    $this->currentElement->setValue(new StringType($value));
+                    $this->currentElement->setValue($this->parseString($value));
                     break;
             }
         }
@@ -1669,6 +1669,17 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         $tags = \explode('-', $this->collapseWhiteSpace($value));
         
         return new LanguageType(\array_shift($tags), $tags);
+    }
+    
+    /**
+     * Parses the specified value in StringType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  StringType
+     */
+    private function parseString(string $value):StringType
+    {
+        return new StringType($value);
     }
     
     /**
