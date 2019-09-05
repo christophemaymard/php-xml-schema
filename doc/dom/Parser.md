@@ -544,7 +544,7 @@
 - [x] Parse **all** element.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **maxOccurs** attribute (collapsing white spaces).
-- [ ] Parse **minOccurs** attribute (collapsing white spaces).
+- [x] Parse **minOccurs** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **element** elements (narrowMaxMin).

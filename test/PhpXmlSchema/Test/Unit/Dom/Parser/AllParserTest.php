@@ -163,6 +163,50 @@ class AllParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "minOccurs" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   \GMP    $nni        The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidMinOccursAttributes
+     */
+    public function testParseProcessMinOccursAttribute(string $fileName, \GMP $nni)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasOnlyMinOccursAttribute($all);
+        self::assertEquals($nni, $all->getMinOccurs()->getInteger());
+        self::assertSame([], $all->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -219,6 +263,57 @@ class AllParserTest extends AbstractParserTestCase
             ], 
             '1 with positive sign and leading zeroes' => [
                 'all_maxOccurs_0005.xsd', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "minOccurs" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidMinOccursAttributes():array
+    {
+        return [
+            '0' => [
+                'all_minOccurs_0001.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 surrounded by white spaces' => [
+                'all_minOccurs_0002.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign' => [
+                'all_minOccurs_0003.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with leading zeroes' => [
+                'all_minOccurs_0004.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign and leading zeroes' => [
+                'all_minOccurs_0005.xsd', 
+                \gmp_init(0), 
+            ], 
+            '1' => [
+                'all_minOccurs_0006.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 surrounded by white spaces' => [
+                'all_minOccurs_0007.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign' => [
+                'all_minOccurs_0008.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 with leading zeroes' => [
+                'all_minOccurs_0009.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign and leading zeroes' => [
+                'all_minOccurs_0010.xsd', 
+                \gmp_init(1), 
             ], 
         ];
     }

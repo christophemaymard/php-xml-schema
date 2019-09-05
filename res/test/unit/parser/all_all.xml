@@ -92,6 +92,19 @@
       <message>"-9" is invalid, expected "1".</message>
     </schema>
   </test>
+  <!-- all::minOccurs -->
+  <test group="attribute" name="[all][attribute::minOccurs] Non-negative integer other than 0 or 1">
+    <schema fileName="all_minOccurs_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"2" is invalid, expected "0" or "1".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[all][attribute::minOccurs] Negative integer">
+    <schema fileName="all_minOccurs_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-9" is invalid, expected "0" or "1".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
