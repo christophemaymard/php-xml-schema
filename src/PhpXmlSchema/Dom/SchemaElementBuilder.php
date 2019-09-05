@@ -330,9 +330,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_NOTATION:
                 case ElementId::ELT_COMPLEXTYPE:
-                    $this->currentElement->setName(
-                        new NCNameType($this->collapseWhiteSpace($value))
-                    );
+                    $this->currentElement->setName($this->parseNCName($value));
             }
             
         }
@@ -1631,6 +1629,20 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     private function parseID(string $value):IDType
     {
         return new IDType($this->collapseWhiteSpace($value));
+    }
+    
+    /**
+     * Parses the specified value in NCNameType value.
+     * 
+     * White space characters (i.e. TAB, LF, CR and SPACE) are collapsed 
+     * before parsing.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  NCNameType
+     */
+    private function parseNCName(string $value):NCNameType
+    {
+        return new NCNameType($this->collapseWhiteSpace($value));
     }
     
     /**
