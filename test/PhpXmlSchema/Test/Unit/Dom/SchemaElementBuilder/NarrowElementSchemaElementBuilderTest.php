@@ -223,9 +223,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     ) {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
-            '"%s" is an invalid value for the "block" '.
-            'attribute (from no namespace), expected: "#all" or '.
-            '"List of (extension | restriction | substitution)".',
+            '"%s" is an invalid blockSet type, expected "#all" or a list of '.
+            '"extension", "restriction" and/or "substitution".',
             $value
         ));
         

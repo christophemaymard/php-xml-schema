@@ -83,61 +83,61 @@
   <test group="attribute" name="[schema][attribute::blockDefault] Not substitution neither extension neither restriction">
     <schema fileName="schema_blockd_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "foo" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "foo" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] #all (uppercase)">
     <schema fileName="schema_blockd_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "#ALL" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "#ALL" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] #all with white spaces">
     <schema fileName="schema_blockd_0016.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "    #all    " is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "    #all    " is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] substitution (uppercase)">
     <schema fileName="schema_blockd_0017.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "subStitution" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "subStitution" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] extension (uppercase)">
     <schema fileName="schema_blockd_0018.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "exTension" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "exTension" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] restriction (uppercase)">
     <schema fileName="schema_blockd_0019.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "Restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "Restriction" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] #all with substitution">
     <schema fileName="schema_blockd_0020.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "#all substitution" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "#all substitution" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] #all with extension">
     <schema fileName="schema_blockd_0021.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "extension #all" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "extension #all" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] #all with restriction">
     <schema fileName="schema_blockd_0022.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "#all restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "#all restriction" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::blockDefault] Value not substitution neither extension neither restriction in list">
     <schema fileName="schema_blockd_0023.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "blockDefault" attribute is invalid: "substitution extension foo restriction" is an invalid value for the "blockDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "blockDefault" attribute is invalid: "substitution extension foo restriction" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <!-- schema::elementFormDefault -->

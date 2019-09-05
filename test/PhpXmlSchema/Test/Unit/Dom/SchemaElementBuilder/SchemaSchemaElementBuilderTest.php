@@ -255,11 +255,11 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "blockDefault" '.
-            'attribute (from no namespace), expected: "#all" or '.
-            '"List of (extension | restriction | substitution)".'
-        );
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid blockSet type, expected "#all" or a list of '.
+            '"extension", "restriction" and/or "substitution".', 
+            $value
+        ));
         
         $this->sut->buildBlockDefaultAttribute($value);
     }

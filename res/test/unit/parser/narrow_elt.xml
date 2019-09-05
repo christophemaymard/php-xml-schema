@@ -34,61 +34,61 @@
   <test group="attribute" name="[element][attribute::block] Not substitution neither extension neither restriction">
     <schema fileName="element_block_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "foo" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "foo" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] #all (uppercase)">
     <schema fileName="element_block_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "#ALL" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "#ALL" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] #all with white spaces">
     <schema fileName="element_block_0016.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "    #all    " is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "    #all    " is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] substitution (uppercase)">
     <schema fileName="element_block_0017.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "subStitution" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "subStitution" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] extension (uppercase)">
     <schema fileName="element_block_0018.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "exTension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "exTension" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] restriction (uppercase)">
     <schema fileName="element_block_0019.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "Restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "Restriction" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] #all with substitution">
     <schema fileName="element_block_0020.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "#all substitution" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "#all substitution" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] #all with extension">
     <schema fileName="element_block_0021.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "extension #all" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "extension #all" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] #all with restriction">
     <schema fileName="element_block_0022.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "#all restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "#all restriction" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <test group="attribute" name="[element][attribute::block] Value not substitution neither extension neither restriction in list">
     <schema fileName="element_block_0023.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "substitution extension foo restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | substitution)".</message>
+      <message>The "block" attribute is invalid: "substitution extension foo restriction" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
   <!-- TEMPLATE

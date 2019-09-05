@@ -114,16 +114,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setBlock($attr);
                     break;
                 case ElementId::ELT_ELEMENT:
-                    if (NULL === $attr = $this->parseBlockSetValue($value)) {
-                        throw new InvalidValueException(Message::invalidAttributeValue(
-                            $value, 
-                            'block', 
-                            '', 
-                            [ '#all', 'List of (extension | restriction | substitution)', ]
-                        ));
-                    }
-                    
-                    $this->currentElement->setBlock($attr);
+                    $this->currentElement->setBlock($this->parseBlockSet($value));
                     break;
             }
             
@@ -136,16 +127,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildBlockDefaultAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {
-            if (NULL === $attr = $this->parseBlockSetValue($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'blockDefault', 
-                    '', 
-                    [ '#all', 'List of (extension | restriction | substitution)', ]
-                ));
-            }
-            
-            $this->currentElement->setBlockDefault($attr);
+            $this->currentElement->setBlockDefault($this->parseBlockSet($value));
         }
     }
     
@@ -1200,9 +1182,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * CR and SPACE) are collapsed before parsing.
      * 
      * @param   string  $value  The value to parse.
-     * @return  DerivationType|NULL A created instance of DerivationType if the value is valid, otherwise NULL.
+     * @return  DerivationType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid blockSet type.
      */
-    private function parseBlockSetValue(string $value)
+    private function parseBlockSet(string $value):DerivationType
     {
         $rest = $ext = $sub = FALSE;
         
@@ -1217,7 +1201,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 } elseif ($flag == 'substitution') {
                     $sub = TRUE;
                 } else {
-                    return NULL;
+                    throw new InvalidValueException(\sprintf(
+                        '"%s" is an invalid blockSet type, expected "#all" or '.
+                        'a list of "extension", "restriction" and/or '.
+                        '"substitution".', 
+                        $value
+                    ));
                 }
             }
         }
