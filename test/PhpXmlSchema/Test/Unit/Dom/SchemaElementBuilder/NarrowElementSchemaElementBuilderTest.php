@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -79,7 +80,6 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
-    use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
     use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
@@ -173,5 +173,62 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildBlockAttribute() creates the attribute when the 
+     * current element is the "element" element (narrowMaxMin) and the value 
+     * is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $res    The expected value for the "restriction" flag.
+     * @param   bool    $ext    The expected value for the "extension" flag.
+     * @param   bool    $sub    The expected value for the "substitution" flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidBlockSetValues
+     */
+    public function testBuildBlockAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
+        string $value, 
+        bool $res, 
+        bool $ext, 
+        bool $sub
+    ) {
+        $this->sut->buildBlockAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyBlockAttribute($elt);
+        self::assertElementElementBlockAttribute($res, $ext, $sub, $elt);
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildBlockAttribute() throws an exception when the 
+     * current element is the "element" element (narrowMaxMin) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidBlockSetValues
+     */
+    public function testBuildBlockAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid value for the "block" '.
+            'attribute (from no namespace), expected: "#all" or '.
+            '"List of (extension | restriction | substitution)".',
+            $value
+        ));
+        
+        $this->sut->buildBlockAttribute($value);
     }
 }

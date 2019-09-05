@@ -2177,4 +2177,56 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasSubstitutionGroup());
         self::assertFalse($sut->hasType());
     }
+    
+    /**
+     * Asserts that the specified "element" element has only the "block" 
+     * attribute.
+     * 
+     * @param   ElementElement  $sut    The element to test.
+     */
+    public static function assertElementElementHasOnlyBlockAttribute(
+        ElementElement $sut
+    ) {
+        self::assertFalse($sut->hasAbstract());
+        self::assertTrue($sut->hasBlock());
+        self::assertFalse($sut->hasDefault());
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasForm());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasNillable());
+        self::assertFalse($sut->hasRef());
+        self::assertFalse($sut->hasSubstitutionGroup());
+        self::assertFalse($sut->hasType());
+    }
+    
+    /**
+     * Asserts that the "block" attribute:
+     * - byRestriction() returns the same value as the expected "restriction" flag
+     * - byExtension() returns the same value as the expected "extension" flag
+     * - bySubstitution() returns the same value as the expected "substitution" flag
+     * - byList() returns FALSE
+     * - byUnion() returns FALSE
+     * 
+     * @param   bool            $res    The expected value for the "restriction" flag.
+     * @param   bool            $ext    The expected value for the "extension" flag.
+     * @param   bool            $sub    The expected value for the "substitution" flag.
+     * @param   ElementElement  $elt    The element to test.
+     */
+    public static function assertElementElementBlockAttribute(
+        bool $res, 
+        bool $ext, 
+        bool $sub, 
+        ElementElement $elt
+    ) {
+        $sut = $elt->getBlock();
+        self::assertSame($res, $sut->byRestriction());
+        self::assertSame($ext, $sut->byExtension());
+        self::assertSame($sub, $sut->bySubstitution());
+        self::assertFalse($sut->byList());
+        self::assertFalse($sut->byUnion());
+    }
 }

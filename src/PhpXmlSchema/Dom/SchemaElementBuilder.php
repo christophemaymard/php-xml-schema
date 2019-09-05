@@ -108,17 +108,34 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildBlockAttribute(string $value)
     {
-        if ($this->currentElement instanceof ComplexTypeElement) {
-            if (NULL === $attr = $this->parseDerivationSet($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'block', 
-                    '', 
-                    [ '#all', 'List of (extension | restriction)', ]
-                ));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_COMPLEXTYPE:
+                    if (NULL === $attr = $this->parseDerivationSet($value)) {
+                        throw new InvalidValueException(Message::invalidAttributeValue(
+                            $value, 
+                            'block', 
+                            '', 
+                            [ '#all', 'List of (extension | restriction)', ]
+                        ));
+                    }
+                    
+                    $this->currentElement->setBlock($attr);
+                    break;
+                case ElementId::ELT_ELEMENT:
+                    if (NULL === $attr = $this->parseBlockSetValue($value)) {
+                        throw new InvalidValueException(Message::invalidAttributeValue(
+                            $value, 
+                            'block', 
+                            '', 
+                            [ '#all', 'List of (extension | restriction | substitution)', ]
+                        ));
+                    }
+                    
+                    $this->currentElement->setBlock($attr);
+                    break;
             }
             
-            $this->currentElement->setBlock($attr);
         }
     }
     
