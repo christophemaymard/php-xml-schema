@@ -1701,4 +1701,74 @@ trait ValueProviderTrait
             ], 
         ];
     }
+    
+    /**
+     * Returns a set of valid "nonNegativeInteger" datatype (with only 0 or 
+     * 1) values.
+     * 
+     * @return  array[]
+     */
+    public function getValidZeroOrOneNonNegativeIntegerValues():array
+    {
+        return [
+            '0' => [ 
+                '0', 
+                \gmp_init(0), 
+            ], 
+            '0 surrounded by white spaces' => [ 
+                "   \r  \n   0    \t", 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign' => [ 
+                '+0', 
+                \gmp_init(0), 
+            ], 
+            '0 with leading zeroes' => [ 
+                '000', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign and leading zeroes' => [ 
+                '+000', 
+                \gmp_init(0), 
+            ], 
+            '1' => [ 
+                '1', 
+                \gmp_init(1), 
+            ], 
+            '1 surrounded by white spaces' => [ 
+                "   \r  \n   1    \t", 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign' => [ 
+                '+1', 
+                \gmp_init(1), 
+            ], 
+            '1 with leading zeroes' => [ 
+                '001', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign and leading zeroes' => [ 
+                '+001', 
+                \gmp_init(1), 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "nonNegativeInteger" datatype (with only 0 or 
+     * 1) values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidZeroOrOneNonNegativeIntegerValues():array
+    {
+        return [
+            'Non-negative integer other than 0 or 1' => [ 
+                '2', 
+            ], 
+            'Negative integer' => [ 
+                '-9', 
+            ], 
+        ];
+    }
 }

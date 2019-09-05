@@ -355,8 +355,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildMinOccursAttribute(string $value)
     {
-        if ($this->currentElement instanceof GroupElement) {
-            $this->currentElement->setMinOccurs($this->parseNonNegativeInteger($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ALL:
+                    $this->currentElement->setMinOccurs($this->parseZeroOrOneNonNegativeInteger($value));
+                    break;
+                case ElementId::ELT_GROUP:
+                    $this->currentElement->setMinOccurs($this->parseNonNegativeInteger($value));
+            }
         }
     }
     
@@ -1395,6 +1401,33 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return $limit;
+    }
+    
+    /**
+     * Parses the specified value in NonNegativeIntegerType value (only "0" 
+     * or "1" is accepted). 
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  NonNegativeIntegerType
+     * 
+     * @throws  InvalidValueException   When the value is not "0" or "1" non-negative integer.
+     */
+    private function parseZeroOrOneNonNegativeInteger(string $value):NonNegativeIntegerType
+    {
+        try {
+            $nni = $this->parseNonNegativeInteger($value);
+            
+            if ($nni->getInteger() != 0 && $nni->getInteger() != 1) {
+                throw new InvalidValueException();
+            }
+       } catch (\Throwable $ex) {
+            throw new InvalidValueException(\sprintf(
+                '"%s" is invalid, expected "0" or "1".', 
+                $value
+            ));
+        }
+        
+        return new NonNegativeIntegerType($nni->getInteger());
     }
     
     /**

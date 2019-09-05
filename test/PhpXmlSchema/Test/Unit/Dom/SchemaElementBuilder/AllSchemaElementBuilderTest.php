@@ -85,7 +85,6 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     
     /**
@@ -256,5 +255,51 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "1".', $value));
         
         $this->sut->buildMaxOccursAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() creates the attribute when the 
+     * current element is the "all" element (all) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidZeroOrOneNonNegativeIntegerValues
+     */
+    public function testBuildMinOccursAttributeCreatesAttrWhenAllAndValueIsValid(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMinOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $all = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasOnlyMinOccursAttribute($all);
+        self::assertEquals($nni, $all->getMinOccurs()->getInteger());
+        self::assertSame([], $all->getElements());
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() throws an exception when the 
+     * current element is the "all" element (all) and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidZeroOrOneNonNegativeIntegerValues
+     */
+    public function testBuildMinOccursAttributeThrowsExceptionWhenAllAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "0" or "1".', $value));
+        
+        $this->sut->buildMinOccursAttribute($value);
     }
 }
