@@ -203,7 +203,7 @@ class TotalDigitsParserTest extends AbstractParserTestCase
         $td = $res->getTotalDigitsElements()[0];
         self::assertElementNamespaceDeclarations([], $td);
         self::assertTotalDigitsElementHasOnlyValueAttribute($td);
-        self::assertEquals($pi, $td->getValue()->getInteger());
+        self::assertEquals($pi, $td->getValue()->getPositiveInteger());
         self::assertSame([], $td->getElements());
     }
     

@@ -29,7 +29,7 @@ class PositiveIntegerTypeTest extends TestCase
     {
         $value = \gmp_init(1);
         $sut = new PositiveIntegerType($value);
-        self::assertSame($value, $sut->getInteger());
+        self::assertSame($value, $sut->getPositiveInteger());
     }
     
     /**

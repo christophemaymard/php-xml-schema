@@ -282,7 +282,7 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
         $td = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $td);
         self::assertTotalDigitsElementHasOnlyValueAttribute($td);
-        self::assertEquals($pi, $td->getValue()->getInteger());
+        self::assertEquals($pi, $td->getValue()->getPositiveInteger());
         self::assertSame([], $td->getElements());
     }
     

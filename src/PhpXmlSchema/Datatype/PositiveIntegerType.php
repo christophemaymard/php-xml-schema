@@ -55,7 +55,7 @@ class PositiveIntegerType
      * 
      * @return  \GMP
      */
-    public function getInteger():\GMP
+    public function getPositiveInteger():\GMP
     {
         return $this->value;
     }
