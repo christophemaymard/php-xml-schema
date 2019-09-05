@@ -242,7 +242,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
                 case ElementId::ELT_GROUP:
                 case ElementId::ELT_ALL:
-                    $this->currentElement->setId(new IDType($this->collapseWhiteSpace($value)));
+                    $this->currentElement->setId($this->parseID($value));
             }
         }
     }
@@ -1617,6 +1617,20 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         }
         
         return new DerivationType($res, $ext, FALSE, FALSE, FALSE);
+    }
+    
+    /**
+     * Parses the specified value in IDType value.
+     * 
+     * White space characters (i.e. TAB, LF, CR and SPACE) are collapsed 
+     * before parsing.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  IDType
+     */
+    private function parseID(string $value):IDType
+    {
+        return new IDType($this->collapseWhiteSpace($value));
     }
     
     /**
