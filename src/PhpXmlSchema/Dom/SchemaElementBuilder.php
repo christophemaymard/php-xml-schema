@@ -162,16 +162,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildFinalDefaultAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {
-            if (NULL === $attr = $this->parseFullDerivationSetValue($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'finalDefault', 
-                    '', 
-                    [ '#all', 'List of (extension | restriction | list | union)', ]
-                ));
-            }
-            
-            $this->currentElement->setFinalDefault($attr);
+            $this->currentElement->setFinalDefault($this->parseFullDerivationSet($value));
         }
     }
     
@@ -1194,9 +1185,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * CR and SPACE) are collapsed before parsing.
      * 
      * @param   string  $value  The value to parse.
-     * @return  DerivationType|NULL A created instance of DerivationType if the value is valid, otherwise NULL.
+     * @return  DerivationType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid fullDerivationSet type.
      */
-    private function parseFullDerivationSetValue(string $value)
+    private function parseFullDerivationSet(string $value):DerivationType
     {
         $ext = $rest = $list = $union = FALSE;
         
@@ -1213,7 +1206,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 } elseif ($flag == 'union') {
                     $union = TRUE;
                 } else {
-                    return NULL;
+                    throw new InvalidValueException(\sprintf(
+                        '"%s" is an invalid fullDerivationSet type, '.
+                        'expected "#all" or a list of "extension", '.
+                        '"restriction", "list" and/or "union".', 
+                        $value
+                    ));
                 }
             }
         }

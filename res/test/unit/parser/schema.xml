@@ -193,73 +193,73 @@
   <test group="attribute" name="[schema][attribute::finalDefault] Not extension neither restriction neither list neither union">
     <schema fileName="schema_finald_0018.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "foo" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "foo" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all (uppercase)">
     <schema fileName="schema_finald_0019.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "#ALL" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "#ALL" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with white spaces">
     <schema fileName="schema_finald_0020.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "    #all    " is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "    #all    " is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] extension (uppercase)">
     <schema fileName="schema_finald_0021.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "Extension" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "Extension" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] restriction (uppercase)">
     <schema fileName="schema_finald_0022.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "Restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "Restriction" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] list (uppercase)">
     <schema fileName="schema_finald_0023.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "List" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "List" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] union (uppercase)">
     <schema fileName="schema_finald_0024.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "Union" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "Union" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with extension">
     <schema fileName="schema_finald_0025.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "#all extension" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "#all extension" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with restriction">
     <schema fileName="schema_finald_0026.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "#all restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "#all restriction" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with list">
     <schema fileName="schema_finald_0027.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "#all list" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "#all list" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] #all with union">
     <schema fileName="schema_finald_0028.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "#all union" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "#all union" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <test group="attribute" name="[schema][attribute::finalDefault] Value not extension neither restriction neither list neither union">
     <schema fileName="schema_finald_0029.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "finalDefault" attribute is invalid: "extension restriction foo list restriction" is an invalid value for the "finalDefault" attribute (from no namespace), expected: "#all" or "List of (extension | restriction | list | union)".</message>
+      <message>The "finalDefault" attribute is invalid: "extension restriction foo list restriction" is an invalid fullDerivationSet type, expected "#all" or a list of "extension", "restriction", "list" and/or "union".</message>
     </schema>
   </test>
   <!-- schema::id -->

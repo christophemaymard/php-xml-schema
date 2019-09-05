@@ -367,11 +367,11 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "finalDefault" '.
-            'attribute (from no namespace), expected: "#all" or '.
-            '"List of (extension | restriction | list | union)".'
-        );
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid fullDerivationSet type, expected "#all" or '.
+            'a list of "extension", "restriction", "list" and/or "union".', 
+            $value
+        ));
         
         $this->sut->buildFinalDefaultAttribute($value);
     }
