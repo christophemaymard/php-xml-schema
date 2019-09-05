@@ -53,98 +53,98 @@
   <test group="attribute" name="[complexType][attribute::block] Not extension neither restriction">
     <schema fileName="complexType_block_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "foo" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "foo" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] #all (uppercase)">
     <schema fileName="complexType_block_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "#ALL" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "#ALL" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] #all with white spaces">
     <schema fileName="complexType_block_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "    #all    " is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "    #all    " is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] extension (uppercase)">
     <schema fileName="complexType_block_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "Extension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "Extension" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] restriction (uppercase)">
     <schema fileName="complexType_block_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "Restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "Restriction" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] #all with extension">
     <schema fileName="complexType_block_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "#all extension" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "#all extension" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] #all with restriction">
     <schema fileName="complexType_block_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "restriction #all" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "restriction #all" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::block] Value not extension neither restriction in list">
     <schema fileName="complexType_block_0016.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "block" attribute is invalid: "extension foo restriction" is an invalid value for the "block" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "block" attribute is invalid: "extension foo restriction" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <!-- complexType::final -->
   <test group="attribute" name="[complexType][attribute::final] Not extension neither restriction">
     <schema fileName="complexType_final_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "foo" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "foo" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] #all (uppercase)">
     <schema fileName="complexType_final_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "#ALL" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "#ALL" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] #all with white spaces">
     <schema fileName="complexType_final_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "    #all    " is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "    #all    " is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] extension (uppercase)">
     <schema fileName="complexType_final_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "Extension" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "Extension" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] restriction (uppercase)">
     <schema fileName="complexType_final_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "Restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "Restriction" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] #all with extension">
     <schema fileName="complexType_final_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "#all extension" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "#all extension" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] #all with restriction">
     <schema fileName="complexType_final_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "restriction #all" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "restriction #all" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::final] Value not extension neither restriction in list">
     <schema fileName="complexType_final_0016.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "final" attribute is invalid: "extension foo restriction" is an invalid value for the "final" attribute (from no namespace), expected: "#all" or "List of (extension | restriction)".</message>
+      <message>The "final" attribute is invalid: "extension foo restriction" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
     </schema>
   </test>
   <!-- complexType::id -->

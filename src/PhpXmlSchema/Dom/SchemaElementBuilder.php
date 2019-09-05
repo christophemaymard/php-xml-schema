@@ -102,16 +102,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_COMPLEXTYPE:
-                    if (NULL === $attr = $this->parseDerivationSet($value)) {
-                        throw new InvalidValueException(Message::invalidAttributeValue(
-                            $value, 
-                            'block', 
-                            '', 
-                            [ '#all', 'List of (extension | restriction)', ]
-                        ));
-                    }
-                    
-                    $this->currentElement->setBlock($attr);
+                    $this->currentElement->setBlock($this->parseDerivationSet($value));
                     break;
                 case ElementId::ELT_ELEMENT:
                     $this->currentElement->setBlock($this->parseBlockSet($value));
@@ -170,16 +161,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             
             $this->currentElement->setFinal($attr);
         } elseif ($this->currentElement instanceof ComplexTypeElement) {
-            if (NULL === $attr = $this->parseDerivationSet($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'final', 
-                    '', 
-                    [ '#all', 'List of (extension | restriction)', ]
-                ));
-            }
-            
-            $this->currentElement->setFinal($attr);
+            $this->currentElement->setFinal($this->parseDerivationSet($value));
         }
     }
     
@@ -1619,9 +1601,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * CR and SPACE) are collapsed before parsing.
      * 
      * @param   string  $value  The value to parse.
-     * @return  DerivationType|NULL A created instance of DerivationType if the value is valid, otherwise NULL.
+     * @return  DerivationType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid derivationSet type.
      */
-    private function parseDerivationSet(string $value)
+    private function parseDerivationSet(string $value):DerivationType
     {
         $ext = $res = FALSE;
         
@@ -1634,7 +1618,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 } elseif ($flag == 'restriction') {
                     $res = TRUE;
                 } else {
-                    return NULL;
+                    throw new InvalidValueException(\sprintf(
+                        '"%s" is an invalid derivationSet type, expected "#all" '.
+                        'or a list of "extension" and/or "restriction".', 
+                        $value
+                    ));
                 }
             }
         }

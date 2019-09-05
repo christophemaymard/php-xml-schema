@@ -233,11 +233,11 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "block" '.
-            'attribute (from no namespace), expected: "#all" or '.
-            '"List of (extension | restriction)".'
-        );
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid derivationSet type, expected "#all" or a '.
+            'list of "extension" and/or "restriction".', 
+            $value
+        ));
         
         $this->sut->buildBlockAttribute($value);
     }
@@ -287,11 +287,11 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "final" '.
-            'attribute (from no namespace), expected: "#all" or '.
-            '"List of (extension | restriction)".'
-        );
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid derivationSet type, expected "#all" or a '.
+            'list of "extension" and/or "restriction".', 
+            $value
+        ));
         
         $this->sut->buildFinalAttribute($value);
     }
