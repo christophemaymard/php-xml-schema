@@ -371,9 +371,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildPublicAttribute(string $value)
     {
         if ($this->currentElement instanceof NotationElement) {
-            $this->currentElement->setPublic(
-                new TokenType($this->collapseWhiteSpace($value))
-            );
+            $this->currentElement->setPublic($this->parseToken($value));
         }
     }
     
@@ -505,9 +503,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildVersionAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {
-            $this->currentElement->setVersion(
-                new TokenType($this->collapseWhiteSpace($value))
-            );
+            $this->currentElement->setVersion($this->parseToken($value));
         }
     }
     
@@ -1647,6 +1643,20 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     private function parseAnyUri(string $value):AnyUriType
     {
         return new AnyUriType($this->collapseWhiteSpace($value));
+    }
+    
+    /**
+     * Parses the specified value in TokenType value.
+     * 
+     * White space characters (i.e. TAB, LF, CR and SPACE) are collapsed 
+     * before parsing.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  TokenType
+     */
+    private function parseToken(string $value):TokenType
+    {
+        return new TokenType($this->collapseWhiteSpace($value));
     }
     
     /**
