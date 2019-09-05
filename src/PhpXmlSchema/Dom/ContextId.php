@@ -52,4 +52,5 @@ class ContextId
     const ELT_COMPLEXCONTENT_RESTRICTION = 35;
     const ELT_GROUP_REF = 36;
     const ELT_ALL = 37;
+    const ELT_NARROW_ELEMENT = 38;
 }

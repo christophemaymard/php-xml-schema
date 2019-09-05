@@ -547,7 +547,48 @@
 - [x] Parse **minOccurs** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **element** elements (narrowMaxMin).
+- [x] Parse **element** elements (narrowMaxMin).
+
+## Element: "element" (narrowMaxMin)
+
+```
+
+<element
+  block = (#all | List of (extension | restriction | substitution))
+  default = string
+  fixed = string
+  form = (qualified | unqualified)
+  id = ID
+  maxOccurs = (0 | 1)
+  minOccurs = (0 | 1)
+  name = NCName
+  nillable = boolean
+  ref = QName
+  type = QName
+>
+  Content: (annotation?, ((simpleType | complexType)?, (unique | key | keyref)*))
+</element>
+```
+
+- [x] Parse **element** element.
+- [ ] Parse **block** attribute (collapsing white spaces).
+- [ ] Parse **default** attribute.
+- [ ] Parse **fixed** attribute (collapsing white spaces).
+- [ ] Parse **form** attribute.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **maxOccurs** attribute (collapsing white spaces).
+- [ ] Parse **minOccurs** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [ ] Parse **nillable** attribute (collapsing white spaces).
+- [ ] Parse **ref** attribute (collapsing white spaces).
+- [ ] Parse **type** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleType** element (localSimpleType).
+- [ ] Parse **complexType** element (localComplexType).
+- [ ] Parse **unique** elements.
+- [ ] Parse **key** elements.
+- [ ] Parse **keyref** elements.
 
 ## Element: "minExclusive"
 

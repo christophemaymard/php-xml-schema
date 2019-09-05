@@ -202,6 +202,7 @@ class SpecificationFactoryTest extends TestCase
             [ 35, 0, ], // ELT_COMPLEXCONTENT_RESTRICTION
             [ 36, 0, ], // ELT_GROUP_REF
             [ 37, 0, ], // ELT_ALL
+            [ 38, 0, ], // ELT_NARROW_ELEMENT
         ];
     }
     
@@ -434,6 +435,8 @@ class SpecificationFactoryTest extends TestCase
             [ 36, 0, 2, 'annotation', ], // ELT_ANNOTATION
             // Context: ELT_ALL
             [ 37, 0, 2, 'annotation', ], // ELT_ANNOTATION
+            [ 37, 0, 38, 'element', ], // ELT_NARROW_ELEMENT
+            [ 37, 1, 38, 'element', ], // ELT_NARROW_ELEMENT
         ];
     }
     
@@ -666,6 +669,8 @@ class SpecificationFactoryTest extends TestCase
             [ 36, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             // Context: ELT_ALL
             [ 37, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
+            [ 37, 0, 38, 'buildElementElement', ], // ELT_NARROW_ELEMENT
+            [ 37, 1, 38, 'buildElementElement', ], // ELT_NARROW_ELEMENT
         ];
     }
     
@@ -898,6 +903,8 @@ class SpecificationFactoryTest extends TestCase
             [ 36, 0, 2, 1, ], // ELT_ANNOTATION
             // Context: ELT_ALL
             [ 37, 0, 2, 1, ], // ELT_ANNOTATION
+            [ 37, 0, 38, 1, ], // ELT_NARROW_ELEMENT
+            [ 37, 1, 38, 1, ], // ELT_NARROW_ELEMENT
         ];
     }
     

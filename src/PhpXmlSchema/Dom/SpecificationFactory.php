@@ -61,6 +61,7 @@ class SpecificationFactory
         ContextId::ELT_COMPLEXCONTENT_RESTRICTION => 0, 
         ContextId::ELT_GROUP_REF => 0, 
         ContextId::ELT_ALL => 0, 
+        ContextId::ELT_NARROW_ELEMENT => 0, 
     ];
     
     /**
@@ -323,6 +324,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_ALL => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+            [ 0, ContextId::ELT_NARROW_ELEMENT, 'element', ], 
+            [ 1, ContextId::ELT_NARROW_ELEMENT, 'element', ], 
         ], 
     ];
     
@@ -587,6 +590,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_ALL => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+            [ 0, ContextId::ELT_NARROW_ELEMENT, 'buildElementElement', ], 
+            [ 1, ContextId::ELT_NARROW_ELEMENT, 'buildElementElement', ], 
         ], 
     ];
     
@@ -850,6 +855,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_ALL => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+            [ 0, ContextId::ELT_NARROW_ELEMENT, 1, ], 
+            [ 1, ContextId::ELT_NARROW_ELEMENT, 1, ], 
         ], 
     ];
     
