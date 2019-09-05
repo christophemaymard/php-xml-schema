@@ -45,12 +45,12 @@ class IDType
      * 
      * @param   string  $id The ID to set.
      * 
-     * @throws  InvalidValueException   When the ID is invalid.
+     * @throws  InvalidValueException   When the value is an invalid ID datatype.
      */
     private function setId(string $id)
     {
         if (!\preg_match('`^'.NCNameType::PATTERN.'$`u', $id)) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid ID.', $id));
+            throw new InvalidValueException(\sprintf('"%s" is an invalid ID datatype.', $id));
         }
         
         $this->id = $id;

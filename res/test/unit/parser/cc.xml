@@ -34,43 +34,43 @@
   <test group="attribute" name="[complexContent][attribute::id] Empty string">
     <schema fileName="complexContent_id_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexContent][attribute::id] Only white spaces">
     <schema fileName="complexContent_id_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "id" attribute is invalid: "" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "" is an invalid ID datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexContent][attribute::id] Separated by whitespaces">
     <schema fileName="complexContent_id_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "id" attribute is invalid: "foo bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexContent][attribute::id] Starts with digit">
     <schema fileName="complexContent_id_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "id" attribute is invalid: "8foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexContent][attribute::id] Starts with .">
     <schema fileName="complexContent_id_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "id" attribute is invalid: ".foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexContent][attribute::id] Starts with -">
     <schema fileName="complexContent_id_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "id" attribute is invalid: "-foo" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexContent][attribute::id] Contains invalid character">
     <schema fileName="complexContent_id_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID.</message>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
     </schema>
   </test>
   <!-- complexContent::mixed -->

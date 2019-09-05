@@ -256,7 +256,7 @@ trait ValueProviderTrait
     }
     
     /**
-     * Returns a set of valid ID values.
+     * Returns a set of valid ID datatype values.
      * 
      * @return  array[]
      */
@@ -291,7 +291,7 @@ trait ValueProviderTrait
     }
     
     /**
-     * Returns a set of invalid ID values.
+     * Returns a set of invalid ID datatype values.
      * 
      * @return  array[]
      */
@@ -300,31 +300,31 @@ trait ValueProviderTrait
         return [
             'Empty string' => [
                 '', 
-                '"" is an invalid ID.', 
+                '"" is an invalid ID datatype.', 
             ], 
             'Only white spaces' => [
                 '       ', 
-                '"" is an invalid ID.', 
+                '"" is an invalid ID datatype.', 
             ], 
             'Separated by whitespaces' => [
                 'foo bar', 
-                '"foo bar" is an invalid ID.', 
+                '"foo bar" is an invalid ID datatype.', 
             ], 
             'Starts with digit' => [
                 '8foo', 
-                '"8foo" is an invalid ID.', 
+                '"8foo" is an invalid ID datatype.', 
             ], 
             'Starts with .' => [
                 '.foo', 
-                '".foo" is an invalid ID.', 
+                '".foo" is an invalid ID datatype.', 
             ], 
             'Starts with -' => [
                 '-foo', 
-                '"-foo" is an invalid ID.', 
+                '"-foo" is an invalid ID datatype.', 
             ], 
             'Contains invalid character' => [
                 'foo:bar', 
-                '"foo:bar" is an invalid ID.', 
+                '"foo:bar" is an invalid ID datatype.', 
             ], 
         ];
     }

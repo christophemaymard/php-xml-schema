@@ -53,7 +53,7 @@ class IDTypeTest extends TestCase
     public function test__constructThrowsExceptionWhenIDIsInvalid(string $id)
     {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf('"%s" is an invalid ID.', $id));
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid ID datatype.', $id));
         
         $sut = new IDType($id);
     }
