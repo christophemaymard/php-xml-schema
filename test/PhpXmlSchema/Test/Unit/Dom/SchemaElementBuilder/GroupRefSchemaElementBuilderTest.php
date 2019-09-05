@@ -263,7 +263,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         $grp = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $grp);
         self::assertGroupElementHasOnlyMaxOccursAttribute($grp);
-        self::assertEquals($nni, $grp->getMaxOccurs()->getLimit()->getInteger());
+        self::assertEquals($nni, $grp->getMaxOccurs()->getLimit()->getNonNegativeInteger());
         self::assertSame([], $grp->getElements());
     }
     
@@ -312,7 +312,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         $grp = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $grp);
         self::assertGroupElementHasOnlyMinOccursAttribute($grp);
-        self::assertEquals($nni, $grp->getMinOccurs()->getInteger());
+        self::assertEquals($nni, $grp->getMinOccurs()->getNonNegativeInteger());
         self::assertSame([], $grp->getElements());
     }
     

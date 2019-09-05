@@ -282,7 +282,7 @@ class MinLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         $minl = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $minl);
         self::assertMinLengthElementHasOnlyValueAttribute($minl);
-        self::assertEquals($nni, $minl->getValue()->getInteger());
+        self::assertEquals($nni, $minl->getValue()->getNonNegativeInteger());
         self::assertSame([], $minl->getElements());
     }
     

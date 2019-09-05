@@ -282,7 +282,7 @@ class LengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $length = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $length);
         self::assertLengthElementHasOnlyValueAttribute($length);
-        self::assertEquals($nni, $length->getValue()->getInteger());
+        self::assertEquals($nni, $length->getValue()->getNonNegativeInteger());
         self::assertSame([], $length->getElements());
     }
     

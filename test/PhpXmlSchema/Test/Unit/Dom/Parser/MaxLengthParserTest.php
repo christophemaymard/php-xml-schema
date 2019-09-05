@@ -203,7 +203,7 @@ class MaxLengthParserTest extends AbstractParserTestCase
         $maxl = $res->getMaxLengthElements()[0];
         self::assertElementNamespaceDeclarations([], $maxl);
         self::assertMaxLengthElementHasOnlyValueAttribute($maxl);
-        self::assertEquals($nni, $maxl->getValue()->getInteger());
+        self::assertEquals($nni, $maxl->getValue()->getNonNegativeInteger());
         self::assertSame([], $maxl->getElements());
     }
     

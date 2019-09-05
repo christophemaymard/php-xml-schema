@@ -282,7 +282,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         $fd = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $fd);
         self::assertFractionDigitsElementHasOnlyValueAttribute($fd);
-        self::assertEquals($nni, $fd->getValue()->getInteger());
+        self::assertEquals($nni, $fd->getValue()->getNonNegativeInteger());
         self::assertSame([], $fd->getElements());
     }
     

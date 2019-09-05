@@ -55,7 +55,7 @@ class NonNegativeIntegerType
      * 
      * @return  \GMP
      */
-    public function getInteger():\GMP
+    public function getNonNegativeInteger():\GMP
     {
         return $this->value;
     }

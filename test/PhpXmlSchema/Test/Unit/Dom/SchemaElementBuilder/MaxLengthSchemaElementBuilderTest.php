@@ -282,7 +282,7 @@ class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         $maxl = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $maxl);
         self::assertMaxLengthElementHasOnlyValueAttribute($maxl);
-        self::assertEquals($nni, $maxl->getValue()->getInteger());
+        self::assertEquals($nni, $maxl->getValue()->getNonNegativeInteger());
         self::assertSame([], $maxl->getElements());
     }
     

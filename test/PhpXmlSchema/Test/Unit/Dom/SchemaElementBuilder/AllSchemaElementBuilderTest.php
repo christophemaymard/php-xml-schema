@@ -233,7 +233,7 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $all = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $all);
         self::assertAllElementHasOnlyMaxOccursAttribute($all);
-        self::assertEquals(\gmp_init(1), $all->getMaxOccurs()->getLimit()->getInteger());
+        self::assertEquals(\gmp_init(1), $all->getMaxOccurs()->getLimit()->getNonNegativeInteger());
         self::assertSame([], $all->getElements());
     }
     
@@ -279,7 +279,7 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $all = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $all);
         self::assertAllElementHasOnlyMinOccursAttribute($all);
-        self::assertEquals($nni, $all->getMinOccurs()->getInteger());
+        self::assertEquals($nni, $all->getMinOccurs()->getNonNegativeInteger());
         self::assertSame([], $all->getElements());
     }
     

@@ -203,7 +203,7 @@ class MinLengthParserTest extends AbstractParserTestCase
         $minl = $res->getMinLengthElements()[0];
         self::assertElementNamespaceDeclarations([], $minl);
         self::assertMinLengthElementHasOnlyValueAttribute($minl);
-        self::assertEquals($nni, $minl->getValue()->getInteger());
+        self::assertEquals($nni, $minl->getValue()->getNonNegativeInteger());
         self::assertSame([], $minl->getElements());
     }
     

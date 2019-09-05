@@ -32,7 +32,7 @@ class NonNegativeIntegerTypeTest extends TestCase
     public function test__constructStoresValueWhenItIsValid(\GMP $value)
     {
         $sut = new NonNegativeIntegerType($value);
-        self::assertSame($value, $sut->getInteger());
+        self::assertSame($value, $sut->getNonNegativeInteger());
     }
     
     /**

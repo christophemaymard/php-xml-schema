@@ -203,7 +203,7 @@ class LengthParserTest extends AbstractParserTestCase
         $length = $res->getLengthElements()[0];
         self::assertElementNamespaceDeclarations([], $length);
         self::assertLengthElementHasOnlyValueAttribute($length);
-        self::assertEquals($nni, $length->getValue()->getInteger());
+        self::assertEquals($nni, $length->getValue()->getNonNegativeInteger());
         self::assertSame([], $length->getElements());
     }
     

@@ -1418,7 +1418,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         try {
             $nni = $this->parseNonNegativeInteger($value);
             
-            if ($nni->getInteger() != 1) {
+            if ($nni->getNonNegativeInteger() != 1) {
                 throw new InvalidValueException();
             }
             
@@ -1447,7 +1447,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         try {
             $nni = $this->parseNonNegativeInteger($value);
             
-            if ($nni->getInteger() != 0 && $nni->getInteger() != 1) {
+            if ($nni->getNonNegativeInteger() != 0 && $nni->getNonNegativeInteger() != 1) {
                 throw new InvalidValueException();
             }
        } catch (\Throwable $ex) {
@@ -1457,7 +1457,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             ));
         }
         
-        return new NonNegativeIntegerType($nni->getInteger());
+        return new NonNegativeIntegerType($nni->getNonNegativeInteger());
     }
     
     /**

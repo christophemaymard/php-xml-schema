@@ -203,7 +203,7 @@ class FractionDigitsParserTest extends AbstractParserTestCase
         $fd = $res->getFractionDigitsElements()[0];
         self::assertElementNamespaceDeclarations([], $fd);
         self::assertFractionDigitsElementHasOnlyValueAttribute($fd);
-        self::assertEquals($nni, $fd->getValue()->getInteger());
+        self::assertEquals($nni, $fd->getValue()->getNonNegativeInteger());
         self::assertSame([], $fd->getElements());
     }
     
