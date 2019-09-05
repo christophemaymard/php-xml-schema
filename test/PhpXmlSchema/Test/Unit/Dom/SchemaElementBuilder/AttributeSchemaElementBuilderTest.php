@@ -747,11 +747,12 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "use" '.
-            'attribute (from no namespace), expected: "optional", '.
-            '"prohibited" or "required".'
-        );
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid use type, expected "optional", "prohibited" '.
+            'or "required".', 
+            $value
+        ));
+        
         $this->sut->buildUseAttribute($value);
     }
     

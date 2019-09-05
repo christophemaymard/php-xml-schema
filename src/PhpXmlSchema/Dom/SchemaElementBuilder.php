@@ -18,7 +18,6 @@ use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Datatype\TokenType;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
-use PhpXmlSchema\Exception\Message;
 use PhpXmlSchema\Exception\PhpXmlSchemaExceptionInterface;
 
 /**
@@ -475,16 +474,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof AttributeElement && 
             !$this->currentElement->getParent() instanceof SchemaElement
         ) {
-            if (NULL === $attr = $this->parseUse($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'use', 
-                    '', 
-                    [ 'optional', 'prohibited', 'required', ]
-                ));
-            }
-            
-            $this->currentElement->setUse($attr);
+            $this->currentElement->setUse($this->parseUse($value));
         }
     }
     
@@ -1496,18 +1486,24 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * Parses the specified value in UseType value.
      * 
      * @param   string  $value  The value to parse.
-     * @return  UseType|NULL    A created instance of UseType if the value is valid, otherwise NULL.
+     * @return  UseType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid use type.
      */
-    private function parseUse(string $value)
+    private function parseUse(string $value):UseType
     {
-        $use = NULL;
-        
         if ($value == 'optional') {
             $use = UseType::createOptional();
         } elseif ($value == 'prohibited') {
             $use = UseType::createProhibited();
         } elseif ($value == 'required') {
             $use = UseType::createRequired();
+        } else {
+            throw new InvalidValueException(\sprintf(
+                '"%s" is an invalid use type, expected "optional", '.
+                '"prohibited" or "required".', 
+                $value
+            ));
         }
         
         return $use;
