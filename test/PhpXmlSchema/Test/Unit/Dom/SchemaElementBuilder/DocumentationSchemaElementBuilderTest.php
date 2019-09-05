@@ -175,7 +175,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         $doc = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $doc);
         self::assertDocumentationElementHasOnlySourceAttribute($doc);
-        self::assertSame($uri, $doc->getSource()->getUri());
+        self::assertSame($uri, $doc->getSource()->getAnyUri());
         self::assertSame('', $doc->getContent());
     }
     

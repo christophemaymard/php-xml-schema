@@ -445,7 +445,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
-        self::assertSame($uri, $sch->getTargetNamespace()->getUri());
+        self::assertSame($uri, $sch->getTargetNamespace()->getAnyUri());
         self::assertSame([], $sch->getElements());
     }
     

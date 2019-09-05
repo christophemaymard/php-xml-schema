@@ -197,7 +197,7 @@ class UnionParserTest extends AbstractParserTestCase
         
         foreach ($qnames as $idx => list($localPart, $namespace)) {
             self::assertSame($localPart, $memberTypes[$idx]->getLocalPart()->getNCName());
-            self::assertSame($namespace, $memberTypes[$idx]->getNamespace()->getUri());
+            self::assertSame($namespace, $memberTypes[$idx]->getNamespace()->getAnyUri());
         }
         
         self::assertSame([], $union->getElements());

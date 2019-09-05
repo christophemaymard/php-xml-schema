@@ -110,7 +110,7 @@ class IncludeParserTest extends AbstractParserTestCase
         $inc = $sch->getIncludeElements()[0];
         self::assertElementNamespaceDeclarations([], $inc);
         self::assertIncludeElementHasOnlySchemaLocationAttribute($inc);
-        self::assertSame('http://example.org', $inc->getSchemaLocation()->getUri());
+        self::assertSame('http://example.org', $inc->getSchemaLocation()->getAnyUri());
         self::assertSame([], $inc->getElements());
     }
     

@@ -281,7 +281,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         self::assertElementNamespaceDeclarations([], $list);
         self::assertListElementHasOnlyItemTypeAttribute($list);
         self::assertSame($localPart, $list->getItemType()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org', $list->getItemType()->getNamespace()->getUri());
+        self::assertSame('http://example.org', $list->getItemType()->getNamespace()->getAnyUri());
         self::assertSame([], $list->getElements());
     }
     
@@ -344,7 +344,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         self::assertElementNamespaceDeclarations([], $list);
         self::assertListElementHasOnlyItemTypeAttribute($list);
         self::assertSame('bar', $list->getItemType()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $list->getItemType()->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $list->getItemType()->getNamespace()->getAnyUri());
         self::assertSame([], $list->getElements());
     }
     

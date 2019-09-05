@@ -149,7 +149,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
         $res = $sc->getDerivationElement();
         self::assertElementNamespaceDeclarations([], $res);
         self::assertSimpleContentRestrictionElementHasOnlyBaseAttribute($res);
-        self::assertSame($namespace, $res->getBase()->getNamespace()->getUri());
+        self::assertSame($namespace, $res->getBase()->getNamespace()->getAnyUri());
         self::assertSame($localPart, $res->getBase()->getLocalPart()->getNCName());
         self::assertSame([], $res->getElements());
     }

@@ -90,7 +90,7 @@ class AppInfoParserTest extends AbstractParserTestCase
         $appinfo = $ann->getAppInfoElements()[0];
         self::assertElementNamespaceDeclarations([], $appinfo);
         self::assertAppInfoElementHasOnlySourceAttribute($appinfo);
-        self::assertSame('http://example.org', $appinfo->getSource()->getUri());
+        self::assertSame('http://example.org', $appinfo->getSource()->getAnyUri());
         self::assertSame('', $appinfo->getContent());
     }
     

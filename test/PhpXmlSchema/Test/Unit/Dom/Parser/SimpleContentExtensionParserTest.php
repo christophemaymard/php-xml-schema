@@ -149,7 +149,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
         $ext = $sc->getDerivationElement();
         self::assertElementNamespaceDeclarations([], $ext);
         self::assertSimpleContentExtensionElementHasOnlyBaseAttribute($ext);
-        self::assertSame($namespace, $ext->getBase()->getNamespace()->getUri());
+        self::assertSame($namespace, $ext->getBase()->getNamespace()->getAnyUri());
         self::assertSame($localPart, $ext->getBase()->getLocalPart()->getNCName());
         self::assertSame([], $ext->getElements());
     }

@@ -400,7 +400,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyTypeAttribute($attr);
         self::assertSame($localPart, $attr->getType()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org', $attr->getType()->getNamespace()->getUri());
+        self::assertSame('http://example.org', $attr->getType()->getNamespace()->getAnyUri());
         self::assertSame([], $attr->getElements());
     }
     
@@ -453,7 +453,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyTypeAttribute($attr);
         self::assertSame('bar', $attr->getType()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $attr->getType()->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $attr->getType()->getNamespace()->getAnyUri());
         self::assertSame([], $attr->getElements());
     }
     

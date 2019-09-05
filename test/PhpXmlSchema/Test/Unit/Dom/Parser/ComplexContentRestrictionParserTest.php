@@ -149,7 +149,7 @@ class ComplexContentRestrictionParserTest extends AbstractParserTestCase
         $res = $cc->getDerivationElement();
         self::assertElementNamespaceDeclarations([], $res);
         self::assertComplexContentRestrictionElementHasOnlyBaseAttribute($res);
-        self::assertSame($namespace, $res->getBase()->getNamespace()->getUri());
+        self::assertSame($namespace, $res->getBase()->getNamespace()->getAnyUri());
         self::assertSame($localPart, $res->getBase()->getLocalPart()->getNCName());
         self::assertSame([], $res->getElements());
     }

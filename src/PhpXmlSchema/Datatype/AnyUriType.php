@@ -455,7 +455,7 @@ class AnyUriType
      * 
      * @return  string
      */
-    public function getUri():string
+    public function getAnyUri():string
     {
         $uri = '';
         

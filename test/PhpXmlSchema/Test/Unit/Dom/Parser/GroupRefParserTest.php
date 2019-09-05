@@ -337,7 +337,7 @@ class GroupRefParserTest extends AbstractParserTestCase
         $grp = $res->getTypeDefinitionParticleElement();
         self::assertElementNamespaceDeclarations([], $grp);
         self::assertGroupElementHasOnlyRefAttribute($grp);
-        self::assertSame($namespace, $grp->getRef()->getNamespace()->getUri());
+        self::assertSame($namespace, $grp->getRef()->getNamespace()->getAnyUri());
         self::assertSame($localPart, $grp->getRef()->getLocalPart()->getNCName());
         self::assertSame([], $grp->getElements());
     }

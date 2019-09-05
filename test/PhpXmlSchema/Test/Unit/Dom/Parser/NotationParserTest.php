@@ -164,7 +164,7 @@ class NotationParserTest extends AbstractParserTestCase
         $not = $sch->getNotationElements()[0];
         self::assertElementNamespaceDeclarations([], $not);
         self::assertNotationElementHasOnlySystemAttribute($not);
-        self::assertSame('http://example.org', $not->getSystem()->getUri());
+        self::assertSame('http://example.org', $not->getSystem()->getAnyUri());
         self::assertSame([], $not->getElements());
     }
     

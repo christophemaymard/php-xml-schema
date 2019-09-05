@@ -188,7 +188,7 @@ class ListParserTest extends AbstractParserTestCase
         $list = $st->getDerivationElement();
         self::assertElementNamespaceDeclarations([], $list);
         self::assertListElementHasOnlyItemTypeAttribute($list);
-        self::assertSame($namespace, $list->getItemType()->getNamespace()->getUri());
+        self::assertSame($namespace, $list->getItemType()->getNamespace()->getAnyUri());
         self::assertSame($localPart, $list->getItemType()->getLocalPart()->getNCName());
         self::assertSame([], $list->getElements());
     }

@@ -234,7 +234,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
         self::assertElementNamespaceDeclarations([], $ext);
         self::assertSimpleContentExtensionElementHasOnlyBaseAttribute($ext);
         self::assertSame($localPart, $ext->getBase()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org', $ext->getBase()->getNamespace()->getUri());
+        self::assertSame('http://example.org', $ext->getBase()->getNamespace()->getAnyUri());
         self::assertSame([], $ext->getElements());
     }
     
@@ -299,7 +299,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
         self::assertElementNamespaceDeclarations([], $ext);
         self::assertSimpleContentExtensionElementHasOnlyBaseAttribute($ext);
         self::assertSame('bar', $ext->getBase()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $ext->getBase()->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $ext->getBase()->getNamespace()->getAnyUri());
         self::assertSame([], $ext->getElements());
     }
     

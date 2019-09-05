@@ -274,7 +274,7 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
         self::assertElementNamespaceDeclarations([], $agRef);
         self::assertAttributeGroupElementHasOnlyRefAttribute($agRef);
         self::assertSame($localPart, $agRef->getRef()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org', $agRef->getRef()->getNamespace()->getUri());
+        self::assertSame('http://example.org', $agRef->getRef()->getNamespace()->getAnyUri());
         self::assertSame([], $agRef->getElements());
     }
     
@@ -333,7 +333,7 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
         self::assertElementNamespaceDeclarations([], $agRef);
         self::assertAttributeGroupElementHasOnlyRefAttribute($agRef);
         self::assertSame('bar', $agRef->getRef()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $agRef->getRef()->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $agRef->getRef()->getNamespace()->getAnyUri());
         self::assertSame([], $agRef->getElements());
     }
     

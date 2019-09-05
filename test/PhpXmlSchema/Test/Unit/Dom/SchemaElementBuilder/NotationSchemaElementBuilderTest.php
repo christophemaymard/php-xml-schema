@@ -304,7 +304,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         $not = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $not);
         self::assertNotationElementHasOnlySystemAttribute($not);
-        self::assertSame($uri, $not->getSystem()->getUri());
+        self::assertSame($uri, $not->getSystem()->getAnyUri());
         self::assertSame([], $not->getElements());
     }
     

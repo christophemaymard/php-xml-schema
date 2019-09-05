@@ -293,7 +293,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         
         foreach ($localParts as $idx => $localPart) {
             self::assertSame($localPart, $qnames[$idx]->getLocalPart()->getNCName());
-            self::assertSame('http://example.org', $qnames[$idx]->getNamespace()->getUri());
+            self::assertSame('http://example.org', $qnames[$idx]->getNamespace()->getAnyUri());
         }
         
         self::assertSame([], $union->getElements());
@@ -369,9 +369,9 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $qnames = $union->getMemberTypes();
         self::assertCount(2, $qnames);
         self::assertSame('bar', $qnames[0]->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $qnames[0]->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $qnames[0]->getNamespace()->getAnyUri());
         self::assertSame('qux', $qnames[1]->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/baz', $qnames[1]->getNamespace()->getUri());
+        self::assertSame('http://example.org/baz', $qnames[1]->getNamespace()->getAnyUri());
         self::assertSame([], $union->getElements());
     }
     

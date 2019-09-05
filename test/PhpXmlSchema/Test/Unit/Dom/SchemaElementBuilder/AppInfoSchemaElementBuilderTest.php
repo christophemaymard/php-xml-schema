@@ -176,7 +176,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         $appinfo = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $appinfo);
         self::assertAppInfoElementHasOnlySourceAttribute($appinfo);
-        self::assertSame($uri, $appinfo->getSource()->getUri());
+        self::assertSame($uri, $appinfo->getSource()->getAnyUri());
         self::assertSame('', $appinfo->getContent());
     }
     

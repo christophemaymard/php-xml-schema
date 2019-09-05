@@ -221,7 +221,7 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertElementNamespaceDeclarations([], $res);
         self::assertSimpleTypeRestrictionElementHasOnlyBaseAttribute($res);
         self::assertSame($localPart, $res->getBase()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org', $res->getBase()->getNamespace()->getUri());
+        self::assertSame('http://example.org', $res->getBase()->getNamespace()->getAnyUri());
         self::assertSame([], $res->getElements());
     }
     
@@ -285,7 +285,7 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertElementNamespaceDeclarations([], $res);
         self::assertSimpleTypeRestrictionElementHasOnlyBaseAttribute($res);
         self::assertSame('bar', $res->getBase()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $res->getBase()->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $res->getBase()->getNamespace()->getAnyUri());
         self::assertSame([], $res->getElements());
     }
     

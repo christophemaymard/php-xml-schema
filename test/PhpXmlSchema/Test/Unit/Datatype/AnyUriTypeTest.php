@@ -150,7 +150,7 @@ class AnyUriTypeTest extends TestCase
     public function test__constructStoresUriWhenItIsValid(string $uri)
     {
         $sut = new AnyUriType($uri);
-        self::assertSame($uri, $sut->getUri());
+        self::assertSame($uri, $sut->getAnyUri());
     }
     
     /**

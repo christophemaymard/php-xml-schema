@@ -1659,7 +1659,7 @@ trait ElementAssertTrait
         $namespaces = [];
         
         foreach ($sut->getNamespace()->getNamespaces() as $uri) {
-            $namespaces[] = $uri->getUri();
+            $namespaces[] = $uri->getAnyUri();
         }
         
         self::assertSame($uris, $namespaces);

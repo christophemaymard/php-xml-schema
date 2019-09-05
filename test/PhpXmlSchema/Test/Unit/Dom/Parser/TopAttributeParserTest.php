@@ -239,7 +239,7 @@ class TopAttributeParserTest extends AbstractParserTestCase
         $attr = $sch->getAttributeElements()[0];
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyTypeAttribute($attr);
-        self::assertSame($namespace, $attr->getType()->getNamespace()->getUri());
+        self::assertSame($namespace, $attr->getType()->getNamespace()->getAnyUri());
         self::assertSame($localPart, $attr->getType()->getLocalPart()->getNCName());
         self::assertSame([], $attr->getElements());
     }

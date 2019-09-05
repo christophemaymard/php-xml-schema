@@ -90,7 +90,7 @@ class DocumentationParserTest extends AbstractParserTestCase
         $doc = $ann->getDocumentationElements()[0];
         self::assertElementNamespaceDeclarations([], $doc);
         self::assertDocumentationElementHasOnlySourceAttribute($doc);
-        self::assertSame('http://example.org', $doc->getSource()->getUri());
+        self::assertSame('http://example.org', $doc->getSource()->getAnyUri());
         self::assertSame('', $doc->getContent());
     }
     

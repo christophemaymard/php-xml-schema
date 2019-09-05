@@ -471,7 +471,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyRefAttribute($attr);
         self::assertSame($localPart, $attr->getRef()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org', $attr->getRef()->getNamespace()->getUri());
+        self::assertSame('http://example.org', $attr->getRef()->getNamespace()->getAnyUri());
         self::assertSame([], $attr->getElements());
     }
     
@@ -529,7 +529,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyRefAttribute($attr);
         self::assertSame('bar', $attr->getRef()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $attr->getRef()->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $attr->getRef()->getNamespace()->getAnyUri());
         self::assertSame([], $attr->getElements());
     }
     
@@ -618,7 +618,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyTypeAttribute($attr);
         self::assertSame($localPart, $attr->getType()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org', $attr->getType()->getNamespace()->getUri());
+        self::assertSame('http://example.org', $attr->getType()->getNamespace()->getAnyUri());
         self::assertSame([], $attr->getElements());
     }
     
@@ -676,7 +676,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyTypeAttribute($attr);
         self::assertSame('bar', $attr->getType()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $attr->getType()->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $attr->getType()->getNamespace()->getAnyUri());
         self::assertSame([], $attr->getElements());
     }
     

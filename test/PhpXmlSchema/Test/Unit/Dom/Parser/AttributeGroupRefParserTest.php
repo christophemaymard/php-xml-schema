@@ -168,7 +168,7 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
         $agRef = $ag->getAttributeGroupElements()[0];
         self::assertElementNamespaceDeclarations([], $agRef);
         self::assertAttributeGroupElementHasOnlyRefAttribute($agRef);
-        self::assertSame($namespace, $agRef->getRef()->getNamespace()->getUri());
+        self::assertSame($namespace, $agRef->getRef()->getNamespace()->getAnyUri());
         self::assertSame($localPart, $agRef->getRef()->getLocalPart()->getNCName());
         self::assertSame([], $agRef->getElements());
     }

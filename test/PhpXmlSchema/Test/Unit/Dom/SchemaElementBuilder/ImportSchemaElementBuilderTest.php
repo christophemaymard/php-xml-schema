@@ -215,7 +215,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $import = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $import);
         self::assertImportElementHasOnlyNamespaceAttribute($import);
-        self::assertSame($uri, $import->getNamespace()->getUri());
+        self::assertSame($uri, $import->getNamespace()->getAnyUri());
         self::assertSame([], $import->getElements());
     }
     
@@ -256,7 +256,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $import = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $import);
         self::assertImportElementHasOnlySchemaLocationAttribute($import);
-        self::assertSame($uri, $import->getSchemaLocation()->getUri());
+        self::assertSame($uri, $import->getSchemaLocation()->getAnyUri());
         self::assertSame([], $import->getElements());
     }
     

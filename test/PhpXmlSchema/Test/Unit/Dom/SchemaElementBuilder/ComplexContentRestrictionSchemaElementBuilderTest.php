@@ -235,7 +235,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
         self::assertElementNamespaceDeclarations([], $res);
         self::assertComplexContentRestrictionElementHasOnlyBaseAttribute($res);
         self::assertSame($localPart, $res->getBase()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org', $res->getBase()->getNamespace()->getUri());
+        self::assertSame('http://example.org', $res->getBase()->getNamespace()->getAnyUri());
         self::assertSame([], $res->getElements());
     }
     
@@ -300,7 +300,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
         self::assertElementNamespaceDeclarations([], $res);
         self::assertComplexContentRestrictionElementHasOnlyBaseAttribute($res);
         self::assertSame('bar', $res->getBase()->getLocalPart()->getNCName());
-        self::assertSame('http://example.org/foo', $res->getBase()->getNamespace()->getUri());
+        self::assertSame('http://example.org/foo', $res->getBase()->getNamespace()->getAnyUri());
         self::assertSame([], $res->getElements());
     }
     

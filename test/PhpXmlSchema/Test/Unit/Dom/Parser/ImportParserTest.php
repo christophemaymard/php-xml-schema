@@ -110,7 +110,7 @@ class ImportParserTest extends AbstractParserTestCase
         $import = $sch->getImportElements()[0];
         self::assertElementNamespaceDeclarations([], $import);
         self::assertImportElementHasOnlyNamespaceAttribute($import);
-        self::assertSame('http://example.org', $import->getNamespace()->getUri());
+        self::assertSame('http://example.org', $import->getNamespace()->getAnyUri());
         self::assertSame([], $import->getElements());
     }
     
@@ -135,7 +135,7 @@ class ImportParserTest extends AbstractParserTestCase
         $import = $sch->getImportElements()[0];
         self::assertElementNamespaceDeclarations([], $import);
         self::assertImportElementHasOnlySchemaLocationAttribute($import);
-        self::assertSame('http://example.org', $import->getSchemaLocation()->getUri());
+        self::assertSame('http://example.org', $import->getSchemaLocation()->getAnyUri());
         self::assertSame([], $import->getElements());
     }
     

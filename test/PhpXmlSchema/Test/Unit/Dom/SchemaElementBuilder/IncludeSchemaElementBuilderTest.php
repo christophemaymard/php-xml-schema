@@ -216,7 +216,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
         $inc = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $inc);
         self::assertIncludeElementHasOnlySchemaLocationAttribute($inc);
-        self::assertSame($uri, $inc->getSchemaLocation()->getUri());
+        self::assertSame($uri, $inc->getSchemaLocation()->getAnyUri());
         self::assertSame([], $inc->getElements());
     }
     

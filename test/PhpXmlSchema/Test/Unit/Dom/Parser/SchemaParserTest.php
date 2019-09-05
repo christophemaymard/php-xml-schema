@@ -211,7 +211,7 @@ class SchemaParserTest extends AbstractParserTestCase
             $sch
         );
         self::assertSchemaElementHasOnlyTargetNamespaceAttribute($sch);
-        self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
+        self::assertSame('http://example.org', $sch->getTargetNamespace()->getAnyUri());
         self::assertSame([], $sch->getElements());
     }
     
@@ -284,7 +284,7 @@ class SchemaParserTest extends AbstractParserTestCase
         self::assertTrue($sch->getElementFormDefault()->isQualified());
         self::assertSchemaElementFinalDefaultAttribute(FALSE, TRUE, FALSE, FALSE, $sch);
         self::assertSame('schema', $sch->getId()->getId());
-        self::assertSame('http://example.org', $sch->getTargetNamespace()->getUri());
+        self::assertSame('http://example.org', $sch->getTargetNamespace()->getAnyUri());
         self::assertSame('1.0', $sch->getVersion()->getToken());
         self::assertSame('en', $sch->getLang()->getPrimarySubtag());
         self::assertSame([ 'us', ], $sch->getLang()->getSubtags());
