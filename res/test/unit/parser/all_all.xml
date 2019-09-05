@@ -73,6 +73,25 @@
       <message>"foo:bar" is an invalid ID.</message>
     </schema>
   </test>
+  <!-- all::maxOccurs -->
+  <test group="attribute" name="[all][attribute::maxOccurs] unbounded">
+    <schema fileName="all_maxOccurs_0006.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"unbounded" is invalid, expected "1".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[all][attribute::maxOccurs] Non-negative integer other than 1">
+    <schema fileName="all_maxOccurs_0007.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"0" is invalid, expected "1".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[all][attribute::maxOccurs] Negative integer">
+    <schema fileName="all_maxOccurs_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-9" is invalid, expected "1".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

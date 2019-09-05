@@ -120,6 +120,49 @@ class AllParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "maxOccurs" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidMaxOccursAttributes
+     */
+    public function testParseProcessMaxOccursAttribute(string $fileName)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasOnlyMaxOccursAttribute($all);
+        self::assertEquals(\gmp_init(1), $all->getMaxOccurs()->getLimit()->getInteger());
+        self::assertSame([], $all->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -150,6 +193,32 @@ class AllParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'all_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "maxOccurs" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidMaxOccursAttributes():array
+    {
+        return [
+            '1' => [
+                'all_maxOccurs_0001.xsd', 
+            ], 
+            '1 surrounded by white spaces' => [
+                'all_maxOccurs_0002.xsd', 
+            ], 
+            '1 with positive sign' => [
+                'all_maxOccurs_0003.xsd', 
+            ], 
+            '1 with leading zeroes' => [
+                'all_maxOccurs_0004.xsd', 
+            ], 
+            '1 with positive sign and leading zeroes' => [
+                'all_maxOccurs_0005.xsd', 
             ], 
         ];
     }
