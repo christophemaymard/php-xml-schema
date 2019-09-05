@@ -55,7 +55,7 @@ class NCNameType
     private function setNCName(string $ncName)
     {
         if (!\preg_match('`^'.self::PATTERN.'$`u', $ncName)) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid NCName.', $ncName));
+            throw new InvalidValueException(\sprintf('"%s" is an invalid NCName datatype.', $ncName));
         }
         
         $this->ncName = $ncName;

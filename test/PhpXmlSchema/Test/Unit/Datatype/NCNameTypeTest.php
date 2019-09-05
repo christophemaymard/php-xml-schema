@@ -278,7 +278,7 @@ class NCNameTypeTest extends TestCase
     public function test__constructThrowsExceptionWhenNCNameIsInvalid(string $name)
     {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf('"%s" is an invalid NCName.', $name));
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid NCName datatype.', $name));
         
         $sut = new NCNameType($name);
     }

@@ -138,43 +138,43 @@
   <test group="attribute" name="[simpleType][attribute::name] Empty string">
     <schema fileName="simpleType_name_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "name" attribute is invalid: "" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "" is an invalid NCName datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Only white spaces">
     <schema fileName="simpleType_name_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "name" attribute is invalid: "" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "" is an invalid NCName datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Separated by whitespaces">
     <schema fileName="simpleType_name_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "name" attribute is invalid: "foo bar" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Starts with digit">
     <schema fileName="simpleType_name_0012.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "name" attribute is invalid: "8foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Starts with .">
     <schema fileName="simpleType_name_0013.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "name" attribute is invalid: ".foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Starts with -">
     <schema fileName="simpleType_name_0014.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "name" attribute is invalid: "-foo" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[simpleType][attribute::name] Contains invalid character">
     <schema fileName="simpleType_name_0015.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName.</message>
+      <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName datatype.</message>
     </schema>
   </test>
   <!-- annotation -->
