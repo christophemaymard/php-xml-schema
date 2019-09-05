@@ -18,6 +18,7 @@ use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
+use PhpXmlSchema\Dom\ElementElement;
 use PhpXmlSchema\Dom\EnumerationElement;
 use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\GroupElement;
@@ -2151,5 +2152,29 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertTrue($sut->hasMinOccurs());
+    }
+    
+    /**
+     * Asserts that the specified "element" element has no attribute.
+     * 
+     * @param   ElementElement  $sut    The element to test.
+     */
+    public static function assertElementElementHasNoAttribute(
+        ElementElement $sut
+    ) {
+        self::assertFalse($sut->hasAbstract());
+        self::assertFalse($sut->hasBlock());
+        self::assertFalse($sut->hasDefault());
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasForm());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasNillable());
+        self::assertFalse($sut->hasRef());
+        self::assertFalse($sut->hasSubstitutionGroup());
+        self::assertFalse($sut->hasType());
     }
 }

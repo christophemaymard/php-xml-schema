@@ -85,6 +85,7 @@ class MaxInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
+    use BuildElementElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

@@ -85,6 +85,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
+    use BuildElementElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

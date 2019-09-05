@@ -86,6 +86,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
+    use BuildElementElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}
