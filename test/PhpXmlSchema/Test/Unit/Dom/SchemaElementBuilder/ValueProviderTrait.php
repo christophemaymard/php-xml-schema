@@ -799,12 +799,15 @@ trait ValueProviderTrait
         return [
             '0' => [ 
                 '0', 
+                '"0" is an invalid positiveInteger datatype.', 
             ], 
             '0 with positive sign' => [ 
                 '+0', 
+                '"+0" is an invalid positiveInteger datatype.', 
             ], 
             'Negative integer' => [ 
                 '-9', 
+                '"-9" is an invalid positiveInteger datatype.', 
             ], 
         ];
     }

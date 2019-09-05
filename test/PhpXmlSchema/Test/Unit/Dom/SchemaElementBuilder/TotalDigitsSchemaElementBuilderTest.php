@@ -291,16 +291,18 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
      * element is the "totalDigits" element and the value is invalid.
      * 
      * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
      * 
      * @group           attribute
      * @group           parsing
      * @dataProvider    getInvalidPositiveIntegerValues
      */
     public function testBuildValueAttributeThrowsExceptionWhenTotalDigitsAndValueIsInvalid(
-        string $value
+        string $value, 
+        string $message
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf('"%s" is an invalid positive integer.', $value));
+        $this->expectExceptionMessage($message);
         
         $this->sut->buildValueAttribute($value);
     }

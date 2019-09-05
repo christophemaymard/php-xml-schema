@@ -39,12 +39,12 @@ class PositiveIntegerType
      * 
      * @param   \GMP    $value  The value to set.
      * 
-     * @throws  InvalidValueException   When the value is invalid.
+     * @throws  InvalidValueException   When the value is an invalid positiveInteger datatype.
      */
     private function setValue(\GMP $value)
     {
         if ($value < 1) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid positive integer.', $value));
+            throw new InvalidValueException(\sprintf('"%s" is an invalid positiveInteger datatype.', $value));
         }
         
         $this->value = $value;

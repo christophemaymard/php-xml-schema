@@ -96,19 +96,19 @@
   <test group="attribute" name="[totalDigits][attribute::value] 0">
     <schema fileName="totalDigits_value_0007.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "value" attribute is invalid: "0" is an invalid positive integer.</message>
+      <message>The "value" attribute is invalid: "0" is an invalid positiveInteger datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[totalDigits][attribute::value] 0 with positive sign">
     <schema fileName="totalDigits_value_0008.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "value" attribute is invalid: "+0" is an invalid positive integer.</message>
+      <message>The "value" attribute is invalid: "+0" is an invalid positiveInteger datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[totalDigits][attribute::value] Negative integer">
     <schema fileName="totalDigits_value_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "value" attribute is invalid: "-9" is an invalid positive integer.</message>
+      <message>The "value" attribute is invalid: "-9" is an invalid positiveInteger datatype.</message>
     </schema>
   </test>
   <!-- annotation -->

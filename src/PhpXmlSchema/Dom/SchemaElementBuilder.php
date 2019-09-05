@@ -1473,7 +1473,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         $cvalue = $this->collapseWhiteSpace($value);
         
         if (!\preg_match('`^(\\+)?([1-9][0-9]*)$`', $cvalue, $matches)) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid positive integer.', $value));
+            throw new InvalidValueException(\sprintf('"%s" is an invalid positiveInteger datatype.', $value));
         }
         
         return new PositiveIntegerType(\gmp_init($matches[2], 10));

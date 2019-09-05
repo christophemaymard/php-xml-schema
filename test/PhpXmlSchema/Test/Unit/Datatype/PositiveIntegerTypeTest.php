@@ -43,7 +43,7 @@ class PositiveIntegerTypeTest extends TestCase
     public function test__constructThrowsExceptionWhenValueIsInvalid(\GMP $value)
     {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf('"%s" is an invalid positive integer.', $value));
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid positiveInteger datatype.', $value));
         
         $sut = new PositiveIntegerType($value);
     }
