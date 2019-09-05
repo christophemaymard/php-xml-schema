@@ -64,16 +64,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildAttributeFormDefaultAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {
-            if (NULL === $attr = $this->parseFormType($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'attributeFormDefault', 
-                    '', 
-                    [ 'qualified', 'unqualified', ]
-                ));
-            }
-            
-            $this->currentElement->setAttributeFormDefault($attr);
+            $this->currentElement->setAttributeFormDefault($this->parseFormChoice($value));
         }
     }
     
@@ -174,16 +165,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     public function buildElementFormDefaultAttribute(string $value)
     {
         if ($this->currentElement instanceof SchemaElement) {
-            if (NULL === $attr = $this->parseFormType($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'elementFormDefault', 
-                    '', 
-                    [ 'qualified', 'unqualified', ]
-                ));
-            }
-            
-            $this->currentElement->setElementFormDefault($attr);
+            $this->currentElement->setElementFormDefault($this->parseFormChoice($value));
         }
     }
     
@@ -272,16 +254,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof AttributeElement &&
             !$this->currentElement->getParent() instanceof SchemaElement
         ) {
-            if (NULL === $attr = $this->parseFormType($value)) {
-                throw new InvalidValueException(Message::invalidAttributeValue(
-                    $value, 
-                    'form', 
-                    '', 
-                    [ 'qualified', 'unqualified', ]
-                ));
-            }
-            
-            $this->currentElement->setForm($attr);
+            $this->currentElement->setForm($this->parseFormChoice($value));
         }
     }
     
@@ -1287,19 +1260,24 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     }
     
     /**
-     * Parses the specified value in FormType value.
+     * Parses the specified value in "formChoice" FormType value.
      * 
      * @param   string  $value  The value to parse.
-     * @return  FormType|NULL   A created instance of FormType if the value is valid, otherwise NULL.
+     * @return  FormType
+     * 
+     * @throws  InvalidValueException   When the value is an invalid formChoice type.
      */
-    private function parseFormType(string $value)
+    private function parseFormChoice(string $value):FormType
     {
-        $ft = NULL;
-        
         if ($value == 'qualified') {
             $ft = FormType::createQualified();
         } elseif ($value == 'unqualified') {
             $ft = FormType::createUnqualified();
+        } else {
+            throw new InvalidValueException(\sprintf(
+                '"%s" is an invalid formChoice type, expected "qualified" or "unqualified".', 
+                $value
+            ));
         }
         
         return $ft;

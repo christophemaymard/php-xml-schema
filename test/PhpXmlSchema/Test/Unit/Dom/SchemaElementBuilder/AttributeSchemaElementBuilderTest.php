@@ -302,9 +302,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     ) {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "form" '.
-            'attribute (from no namespace), expected: "qualified" or '.
-            '"unqualified".'
+            '"'.$value.'" is an invalid formChoice type, expected "qualified" or "unqualified".'
         );
         $this->sut->buildFormAttribute($value);
     }

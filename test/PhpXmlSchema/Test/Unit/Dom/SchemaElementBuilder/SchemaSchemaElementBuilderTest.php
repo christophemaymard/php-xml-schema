@@ -208,9 +208,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     ) {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "attributeFormDefault" '.
-            'attribute (from no namespace), expected: "qualified" or '.
-            '"unqualified".'
+            '"'.$value.'" is an invalid formChoice type, expected "qualified" or "unqualified".'
         );
         $this->sut->buildAttributeFormDefaultAttribute($value);
     }
@@ -319,9 +317,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     ) {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(
-            '"'.$value.'" is an invalid value for the "elementFormDefault" '.
-            'attribute (from no namespace), expected: "qualified" or '.
-            '"unqualified".'
+            '"'.$value.'" is an invalid formChoice type, expected "qualified" or "unqualified".'
         );
         
         $this->sut->buildElementFormDefaultAttribute($value);

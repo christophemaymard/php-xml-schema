@@ -34,49 +34,49 @@
   <test group="attribute" name="[attribute][attribute::form] Empty string">
     <schema fileName="attribute_form_0003.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "form" attribute is invalid: "" is an invalid value for the "form" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+      <message>The "form" attribute is invalid: "" is an invalid formChoice type, expected "qualified" or "unqualified".</message>
     </schema>
   </test>
   <test group="attribute" name="[attribute][attribute::form] Only white spaces">
     <schema fileName="attribute_form_0004.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "form" attribute is invalid: "       " is an invalid value for the "form" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+      <message>The "form" attribute is invalid: "       " is an invalid formChoice type, expected "qualified" or "unqualified".</message>
     </schema>
   </test>
   <test group="attribute" name="[attribute][attribute::form] Not qualified neither unqualified">
     <schema fileName="attribute_form_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "form" attribute is invalid: "foo" is an invalid value for the "form" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+      <message>The "form" attribute is invalid: "foo" is an invalid formChoice type, expected "qualified" or "unqualified".</message>
     </schema>
   </test>
   <test group="attribute" name="[attribute][attribute::form] qualified with whitespaces">
     <schema fileName="attribute_form_0006.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "form" attribute is invalid: "    qualified     " is an invalid value for the "form" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+      <message>The "form" attribute is invalid: "    qualified     " is an invalid formChoice type, expected "qualified" or "unqualified".</message>
     </schema>
   </test>
   <test group="attribute" name="[attribute][attribute::form] unqualified with whitespaces">
     <schema fileName="attribute_form_0007.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "form" attribute is invalid: "    unqualified     " is an invalid value for the "form" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+      <message>The "form" attribute is invalid: "    unqualified     " is an invalid formChoice type, expected "qualified" or "unqualified".</message>
     </schema>
   </test>
   <test group="attribute" name="[attribute][attribute::form] qualified (uppercase)">
     <schema fileName="attribute_form_0008.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "form" attribute is invalid: "Qualified" is an invalid value for the "form" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+      <message>The "form" attribute is invalid: "Qualified" is an invalid formChoice type, expected "qualified" or "unqualified".</message>
     </schema>
   </test>
   <test group="attribute" name="[attribute][attribute::form] unqualified (uppercase)">
     <schema fileName="attribute_form_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "form" attribute is invalid: "Unqualified" is an invalid value for the "form" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+      <message>The "form" attribute is invalid: "Unqualified" is an invalid formChoice type, expected "qualified" or "unqualified".</message>
     </schema>
   </test>
   <test group="attribute" name="[attribute][attribute::form] qualified and unqualified">
     <schema fileName="attribute_form_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>The "form" attribute is invalid: "qualified unqualified" is an invalid value for the "form" attribute (from no namespace), expected: "qualified" or "unqualified".</message>
+      <message>The "form" attribute is invalid: "qualified unqualified" is an invalid formChoice type, expected "qualified" or "unqualified".</message>
     </schema>
   </test>
   <!-- attribute::id -->
