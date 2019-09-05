@@ -46,7 +46,7 @@ class TokenTypeTest extends TestCase
     public function test__constructThrowsExceptionWhenValueIsInvalid(string $value)
     {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf('"%s" is an invalid token.', $value));
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid token datatype.', $value));
         
         $sut = new TokenType($value);
     }

@@ -491,15 +491,21 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * Tests that buildVersionAttribute() throws an exception when the 
      * current element is the "schema" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidTokenValues
      */
-    public function testBuildVersionAttributeThrowsExceptionWhenSchemaAndValueIsInvalid()
-    {
+    public function testBuildVersionAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage("\"\u{001F}\" is an invalid token.");
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildVersionAttribute("\u{001F}");
+        $this->sut->buildVersionAttribute($value);
     }
     
     /**

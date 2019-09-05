@@ -347,7 +347,7 @@ trait ValueProviderTrait
     }
     
     /**
-     * Returns a set of valid "token" values.
+     * Returns a set of valid "token" datatype values.
      * 
      * @return  array[]
      */
@@ -359,6 +359,21 @@ trait ValueProviderTrait
             ],
             '     foo       bar      baz      qux     ' => [ 
                 '     foo       bar      baz      qux     ', 'foo bar baz qux', 
+            ],
+        ];
+    }
+    
+    /**
+     * Returns a set of invalid "token" datatype values.
+     * 
+     * @return  array[]
+     */
+    public function getInvalidTokenValues():array
+    {
+        return [
+            'Contains invalid character (U+001F)' => [ 
+                "\u{001F}", 
+                "\"\u{001F}\" is an invalid token datatype.", 
             ],
         ];
     }

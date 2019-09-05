@@ -46,12 +46,12 @@ class TokenType
      * 
      * @param   string  $value  The value to set.
      * 
-     * @throws  InvalidValueException   When the value is invalid.
+     * @throws  InvalidValueException   When the value is an invalid token datatype.
      */
     private function setValue(string $value)
     {
         if ($value != '' && !\preg_match('`^(['.self::CHAR.']+( ['.self::CHAR.']+)*)$`u', $value)) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid token.', $value));
+            throw new InvalidValueException(\sprintf('"%s" is an invalid token datatype.', $value));
         }
         
         $this->value = $value;
