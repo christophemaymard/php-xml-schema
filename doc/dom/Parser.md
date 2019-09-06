@@ -412,7 +412,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleContent** element.
-- [ ] Parse **complexContent** element.
+- [x] Parse **complexContent** element.
 - [ ] Parse **group** element (groupRef).
 - [ ] Parse **all** element (all).
 - [ ] Parse **choice** element (explicitGroup).
