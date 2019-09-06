@@ -87,6 +87,7 @@ class DefinitionAnnotationSchemaElementBuilderTest extends AbstractSchemaElement
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
+    use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

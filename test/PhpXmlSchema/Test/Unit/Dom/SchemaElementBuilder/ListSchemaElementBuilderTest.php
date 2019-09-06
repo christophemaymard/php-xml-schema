@@ -87,6 +87,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
+    use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

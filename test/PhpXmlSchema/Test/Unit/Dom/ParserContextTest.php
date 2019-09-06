@@ -488,6 +488,7 @@ class ParserContextTest extends TestCase
             public function buildMixedAttribute(string $value) {}
             public function buildNameAttribute(string $value) {}
             public function buildNamespaceAttribute(string $value) {}
+            public function buildNillableAttribute(string $value) {}
             public function buildProcessContentsAttribute(string $value) {}
             public function buildPublicAttribute(string $value) {}
             public function buildRefAttribute(string $value) {}

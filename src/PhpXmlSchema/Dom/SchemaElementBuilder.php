@@ -378,6 +378,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildNillableAttribute(string $value)
+    {
+        if ($this->currentElement instanceof ElementElement) {
+            $this->currentElement->setNillable($this->parseBoolean($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildProcessContentsAttribute(string $value)
     {
         if ($this->currentElement instanceof AnyAttributeElement) {
