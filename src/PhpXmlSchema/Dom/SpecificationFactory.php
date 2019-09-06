@@ -1058,6 +1058,7 @@ class SpecificationFactory
             [ 'name', '', 'buildNameAttribute', ], 
             [ 'nillable', '', 'buildNillableAttribute', ], 
             [ 'ref', '', 'buildRefAttribute', ], 
+            [ 'type', '', 'buildTypeAttribute', ], 
         ], 
     ];
     
