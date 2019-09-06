@@ -201,10 +201,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildFormAttribute(string $value)
     {
-        if ($this->currentElement instanceof AttributeElement &&
-            !$this->currentElement->getParent() instanceof SchemaElement
-        ) {
-            $this->currentElement->setForm($this->parseFormChoice($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setForm($this->parseFormChoice($value));
+                    }
+                    
+                    break;
+                case ElementId::ELT_ELEMENT:
+                    $this->currentElement->setForm($this->parseFormChoice($value));
+                    break;
+            }
         }
     }
     
