@@ -157,38 +157,28 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * Tests that buildAttributeFormDefaultAttribute() creates the attribute 
      * when the current element is the "schema" element and the value is 
-     * "qualified".
+     * valid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value  The value to test.
+     * @param   bool    $qual   The expected value for the "qualified flag.
+     * @param   bool    $unqual The expected value for the "unqualified flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidFormChoiceValues
      */
-    public function testBuildAttributeFormDefaultAttributeCreatesAttrWhenSchemaAndValueIsQualified()
-    {
-        $this->sut->buildAttributeFormDefaultAttribute('qualified');
+    public function testBuildAttributeFormDefaultAttributeCreatesAttrWhenSchemaAndValueIsValid(
+        string $value, 
+        bool $qual, 
+        bool $unqual
+    ) {
+        $this->sut->buildAttributeFormDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
-        self::assertTrue($sch->getAttributeFormDefault()->isQualified());
-        self::assertSame([], $sch->getElements());
-    }
-    
-    /**
-     * Tests that buildAttributeFormDefaultAttribute() creates the attribute 
-     * when the current element is the "schema" element and the value is 
-     * "unqualified".
-     * 
-     * @group   attribute
-     * @group   parsing
-     */
-    public function testBuildAttributeFormDefaultAttributeCreatesAttrWhenSchemaAndValueIsUnqualified()
-    {
-        $this->sut->buildAttributeFormDefaultAttribute('unqualified');
-        $sch = $this->sut->getSchema();
-        
-        self::assertElementNamespaceDeclarations([], $sch);
-        self::assertSchemaElementHasOnlyAttributeFormDefaultAttribute($sch);
-        self::assertTrue($sch->getAttributeFormDefault()->isUnqualified());
+        self::assertSame($qual, $sch->getAttributeFormDefault()->isQualified());
+        self::assertSame($unqual, $sch->getAttributeFormDefault()->isUnqualified());
         self::assertSame([], $sch->getElements());
     }
     
@@ -267,38 +257,28 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * Tests that buildElementFormDefaultAttribute() creates the attribute 
      * when the current element is the "schema" element and the value is 
-     * "qualified".
+     * valid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value  The value to test.
+     * @param   bool    $qual   The expected value for the "qualified flag.
+     * @param   bool    $unqual The expected value for the "unqualified flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidFormChoiceValues
      */
-    public function testBuildElementFormDefaultAttributeCreatesAttrWhenSchemaAndValueIsQualified()
-    {
-        $this->sut->buildElementFormDefaultAttribute('qualified');
+    public function testBuildElementFormDefaultAttributeCreatesAttrWhenSchemaAndValueIsValid(
+        string $value, 
+        bool $qual, 
+        bool $unqual
+    ) {
+        $this->sut->buildElementFormDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
-        self::assertTrue($sch->getElementFormDefault()->isQualified());
-        self::assertSame([], $sch->getElements());
-    }
-    
-    /**
-     * Tests that buildElementFormDefaultAttribute() creates the attribute 
-     * when the current element is the "schema" element and the value is 
-     * "unqualified".
-     * 
-     * @group   attribute
-     * @group   parsing
-     */
-    public function testBuildElementFormDefaultAttributeCreatesAttrWhenSchemaAndValueIsUnqualified()
-    {
-        $this->sut->buildElementFormDefaultAttribute('unqualified');
-        $sch = $this->sut->getSchema();
-        
-        self::assertElementNamespaceDeclarations([], $sch);
-        self::assertSchemaElementHasOnlyElementFormDefaultAttribute($sch);
-        self::assertTrue($sch->getElementFormDefault()->isUnqualified());
+        self::assertSame($qual, $sch->getElementFormDefault()->isQualified());
+        self::assertSame($unqual, $sch->getElementFormDefault()->isUnqualified());
         self::assertSame([], $sch->getElements());
     }
     

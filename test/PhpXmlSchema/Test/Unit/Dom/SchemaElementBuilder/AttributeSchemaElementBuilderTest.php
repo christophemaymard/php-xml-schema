@@ -244,15 +244,22 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     
     /**
      * Tests that buildFormAttribute() creates the attribute when the current 
-     * element is the "attribute" element (attribute) and the value is 
-     * "qualified".
+     * element is the "attribute" element (attribute) and the value is valid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value  The value to test.
+     * @param   bool    $qual   The expected value for the "qualified flag.
+     * @param   bool    $unqual The expected value for the "unqualified flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidFormChoiceValues
      */
-    public function testBuildFormAttributeCreatesAttrWhenAttributeAndValueIsQualified()
-    {
-        $this->sut->buildFormAttribute('qualified');
+    public function testBuildFormAttributeCreatesAttrWhenAttributeAndValueIsValid(
+        string $value, 
+        bool $qual, 
+        bool $unqual
+    ) {
+        $this->sut->buildFormAttribute($value);
         $sch = $this->sut->getSchema();
         
         self::assertAncestorsNotChanged($sch);
@@ -260,29 +267,8 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
         $attr = self::getCurrentElement($sch);
         self::assertElementNamespaceDeclarations([], $attr);
         self::assertAttributeElementHasOnlyFormAttribute($attr);
-        self::assertTrue($attr->getForm()->isQualified());
-        self::assertSame([], $attr->getElements());
-    }
-    
-    /**
-     * Tests that buildFormAttribute() creates the attribute when the current 
-     * element is the "attribute" element (attribute) and the value is 
-     * "unqualified".
-     * 
-     * @group   attribute
-     * @group   parsing
-     */
-    public function testBuildFormAttributeCreatesAttrWhenAttributeAndValueIsUnqualified()
-    {
-        $this->sut->buildFormAttribute('unqualified');
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $attr = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $attr);
-        self::assertAttributeElementHasOnlyFormAttribute($attr);
-        self::assertTrue($attr->getForm()->isUnqualified());
+        self::assertSame($qual, $attr->getForm()->isQualified());
+        self::assertSame($unqual, $attr->getForm()->isUnqualified());
         self::assertSame([], $attr->getElements());
     }
     
