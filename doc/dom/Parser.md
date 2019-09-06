@@ -408,7 +408,7 @@
 
 - [x] Parse **complexType** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **mixed** attribute (collapsing white spaces).
+- [x] Parse **mixed** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleContent** element.

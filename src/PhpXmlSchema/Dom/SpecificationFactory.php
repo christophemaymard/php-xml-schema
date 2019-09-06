@@ -1084,6 +1084,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_LOCAL_COMPLEXTYPE => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'mixed', '', 'buildMixedAttribute', ], 
         ], 
     ];
     

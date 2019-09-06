@@ -73,6 +73,25 @@
       <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
     </schema>
   </test>
+  <!-- complexType::mixed -->
+  <test group="attribute" name="[complexType][attribute::mixed] true (uppercase)">
+    <schema fileName="complexType_mixed_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"True" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::mixed] false (uppercase)">
+    <schema fileName="complexType_mixed_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"False" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[complexType][attribute::mixed] Numeric other than 0 or 1">
+    <schema fileName="complexType_mixed_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"2" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

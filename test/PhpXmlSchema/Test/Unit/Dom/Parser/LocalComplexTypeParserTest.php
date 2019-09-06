@@ -140,6 +140,60 @@ class LocalComplexTypeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "mixed" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $bool       The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidMixedAttributes
+     */
+    public function testParseProcessMixedAttribute(string $fileName, bool $bool)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $ct2 = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasOnlyMixedAttribute($ct2);
+        self::assertSame($bool, $ct2->getMixed());
+        self::assertSame([], $ct2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -170,6 +224,49 @@ class LocalComplexTypeParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'complexType_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "mixed" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidMixedAttributes():array
+    {
+        return [
+            'true (string)' => [
+                'complexType_mixed_0001.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric)' => [
+                'complexType_mixed_0002.xsd', 
+                TRUE, 
+            ], 
+            'true (string) surrounded by white spaces' => [
+                'complexType_mixed_0003.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric) surrounded by white spaces' => [
+                'complexType_mixed_0004.xsd', 
+                TRUE, 
+            ], 
+            'false (string)' => [
+                'complexType_mixed_0005.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric)' => [
+                'complexType_mixed_0006.xsd', 
+                FALSE, 
+            ], 
+            'false (string) surrounded by white spaces' => [
+                'complexType_mixed_0007.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric) surrounded by white spaces' => [
+                'complexType_mixed_0008.xsd', 
+                FALSE, 
             ], 
         ];
     }
