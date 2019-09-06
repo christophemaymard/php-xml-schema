@@ -283,6 +283,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     break;
                 case ElementId::ELT_GROUP:
                     $this->currentElement->setMaxOccurs($this->parseNonNegativeIntegerLimit($value));
+                    break;
+                case ElementId::ELT_ELEMENT:
+                    $this->currentElement->setMaxOccurs($this->parseZeroOrOneNonNegativeIntegerLimit($value));
+                    break;
             }
         }
     }
@@ -1339,6 +1343,35 @@ class SchemaElementBuilder implements SchemaBuilderInterface
        } catch (\Throwable $ex) {
             throw new InvalidValueException(\sprintf(
                 '"%s" is invalid, expected "1".', 
+                $value
+            ));
+        }
+        
+        return $limit;
+    }
+    
+    /**
+     * Parses the specified value in NonNegativeIntegerLimitType value (only 
+     * "0" and "1" are accepted). 
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  NonNegativeIntegerLimitType
+     * 
+     * @throws  InvalidValueException   When the value is not the "1" non-negative integer.
+     */
+    private function parseZeroOrOneNonNegativeIntegerLimit(string $value):NonNegativeIntegerLimitType
+    {
+        try {
+            $nni = $this->parseNonNegativeInteger($value);
+            
+            if ($nni->getNonNegativeInteger() != 0 && $nni->getNonNegativeInteger() != 1) {
+                throw new InvalidValueException();
+            }
+            
+            $limit = new NonNegativeIntegerLimitType($nni);
+       } catch (\Throwable $ex) {
+            throw new InvalidValueException(\sprintf(
+                '"%s" is invalid, expected "0" or "1".', 
                 $value
             ));
         }
