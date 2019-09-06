@@ -255,6 +255,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
                 case ElementId::ELT_GROUP:
                 case ElementId::ELT_ALL:
+                case ElementId::ELT_ELEMENT:
                     $this->currentElement->setId($this->parseID($value));
             }
         }
