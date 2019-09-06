@@ -52,7 +52,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildAbstractAttribute(string $value)
     {
-        if ($this->currentElement instanceof ComplexTypeElement) {
+        if ($this->currentElement instanceof ComplexTypeElement && 
+            $this->currentElement->getParent() instanceof SchemaElement
+        ) {
             $this->currentElement->setAbstract($this->parseBoolean($value));
         }
     }
@@ -101,7 +103,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_COMPLEXTYPE:
-                    $this->currentElement->setBlock($this->parseDerivationSet($value));
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setBlock($this->parseDerivationSet($value));
+                    }
+                    
                     break;
                 case ElementId::ELT_ELEMENT:
                     $this->currentElement->setBlock($this->parseBlockSet($value));
@@ -150,12 +155,21 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildFinalAttribute(string $value)
     {
-        if ($this->currentElement instanceof SimpleTypeElement && 
-            $this->currentElement->getParent() instanceof SchemaElement
-        ) {
-            $this->currentElement->setFinal($this->parseSimpleDerivationSet($value));
-        } elseif ($this->currentElement instanceof ComplexTypeElement) {
-            $this->currentElement->setFinal($this->parseDerivationSet($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SIMPLETYPE:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setFinal($this->parseSimpleDerivationSet($value));
+                    }
+                    
+                    break;
+                case ElementId::ELT_COMPLEXTYPE:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setFinal($this->parseDerivationSet($value));
+                    }
+                    
+                    break;
+            }
         }
     }
     
@@ -223,6 +237,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_COMPLEXTYPE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_ATTRIBUTEGROUP:
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_SIMPLETYPE:
@@ -247,7 +265,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_LIST:
                 case ElementId::ELT_UNION:
                 case ElementId::ELT_ANYATTRIBUTE:
-                case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_SIMPLECONTENT:
                 case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
                 case ElementId::ELT_SIMPLECONTENT_EXTENSION:
@@ -328,6 +345,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_COMPLEXTYPE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_COMPLEXCONTENT:
                     $this->currentElement->setMixed($this->parseBoolean($value));
             }
@@ -343,12 +363,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()){
                 case ElementId::ELT_SIMPLETYPE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
+                case ElementId::ELT_COMPLEXTYPE:
                     if (!$this->currentElement->getParent() instanceof SchemaElement) {
                         break;
                     }
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_NOTATION:
-                case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_ELEMENT:
                     $this->currentElement->setName($this->parseNCName($value));
             }
@@ -579,6 +599,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_COMPLEXTYPE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_ATTRIBUTEGROUP:
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_SIMPLETYPE:
@@ -601,7 +625,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_LIST:
                 case ElementId::ELT_UNION:
                 case ElementId::ELT_ANYATTRIBUTE:
-                case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_SIMPLECONTENT:
                 case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
                 case ElementId::ELT_SIMPLECONTENT_EXTENSION:
@@ -720,7 +743,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildComplexContentElement()
     {
-        if ($this->currentElement instanceof ComplexTypeElement) {
+        if ($this->currentElement instanceof ComplexTypeElement && 
+            $this->currentElement->getParent() instanceof SchemaElement
+        ) {
             $elt = new ComplexContentElement();
             $this->currentElement->setContentElement($elt);
             $this->currentElement = $elt;
@@ -732,10 +757,19 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildComplexTypeElement()
     {
-        if ($this->currentElement instanceof SchemaElement) {
-            $elt = new ComplexTypeElement();
-            $this->currentElement->addComplexTypeElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SCHEMA:
+                    $elt = new ComplexTypeElement();
+                    $this->currentElement->addComplexTypeElement($elt);
+                    $this->currentElement = $elt;
+                    break;
+                case ElementId::ELT_ELEMENT:
+                    $elt = new ComplexTypeElement();
+                    $this->currentElement->setTypeElement($elt);
+                    $this->currentElement = $elt;
+                    break;
+            }
         }
     }
     
@@ -1026,7 +1060,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildSimpleContentElement()
     {
-        if ($this->currentElement instanceof ComplexTypeElement) {
+        if ($this->currentElement instanceof ComplexTypeElement && 
+            $this->currentElement->getParent() instanceof SchemaElement
+        ) {
             $elt = new SimpleContentElement();
             $this->currentElement->setContentElement($elt);
             $this->currentElement = $elt;
