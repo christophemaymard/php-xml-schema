@@ -47,7 +47,6 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
     use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
@@ -795,5 +794,188 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
         
         $this->sut->buildRefAttribute('foo:bar');
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() creates the attribute when:
+     * - the current element is the "element" element (narrowMaxMin), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - no default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildTypeAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyTypeAttribute($elt);
+        self::assertSame($localPart, $elt->getType()->getLocalPart()->getNCName());
+        self::assertFalse($elt->getType()->hasNamespace());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() creates the attribute when:
+     * - the current element is the "element" element (narrowMaxMin), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('', 'http://example.org');
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildAllElement();
+        $this->sut->buildElementElement();
+        $this->sut->buildTypeAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['' => 'http://example.org' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        self::assertCount(1, $all->getElementElements());
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyTypeAttribute($elt);
+        self::assertSame($localPart, $elt->getType()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org', $elt->getType()->getNamespace()->getAnyUri());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() throws an exception when the current 
+     * element is the "element" element (narrowMaxMin) and the value is an 
+     * invalid QName.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidQNameValues
+     */
+    public function testBuildTypeAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildTypeAttribute($value);
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() creates the attribute when:
+     * - the current element is the "element" element (narrowMaxMin), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidAndPrefixAssociatedNamespace()
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildAllElement();
+        $this->sut->buildElementElement();
+        $this->sut->buildTypeAttribute('foo:bar');
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['foo' => 'http://example.org/foo' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        self::assertCount(1, $all->getElementElements());
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyTypeAttribute($elt);
+        self::assertSame('bar', $elt->getType()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/foo', $elt->getType()->getNamespace()->getAnyUri());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildTypeAttribute() throws an exception when:
+     * - the current element is the "element" element (narrowMaxMin), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is not associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildTypeAttributeThrowsExceptionWhenNarrowElementAndValueIsValidAndPrefixNotAssociatedNamespace()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
+        
+        $this->sut->buildTypeAttribute('foo:bar');
     }
 }
