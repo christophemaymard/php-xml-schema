@@ -1063,6 +1063,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NARROW_ELEMENT
             [ 38, 'block', '', 'buildBlockAttribute', ], 
             [ 38, 'default', '', 'buildDefaultAttribute', ], 
+            [ 38, 'fixed', '', 'buildFixedAttribute', ], 
         ];
     }
 }

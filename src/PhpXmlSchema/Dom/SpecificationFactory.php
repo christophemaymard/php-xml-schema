@@ -1050,6 +1050,7 @@ class SpecificationFactory
         ContextId::ELT_NARROW_ELEMENT => [
             [ 'block', '', 'buildBlockAttribute', ], 
             [ 'default', '', 'buildDefaultAttribute', ], 
+            [ 'fixed', '', 'buildFixedAttribute', ], 
         ], 
     ];
     
