@@ -81,7 +81,6 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     
@@ -469,5 +468,53 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "0" or "1".', $value));
         
         $this->sut->buildMaxOccursAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() creates the attribute when the 
+     * current element is the "element" element (narrowMaxMin) and the value 
+     * is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidZeroOrOneNonNegativeIntegerValues
+     */
+    public function testBuildMinOccursAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMinOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyMinOccursAttribute($elt);
+        self::assertEquals($nni, $elt->getMinOccurs()->getNonNegativeInteger());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() throws an exception when the 
+     * current element is the "element" element (narrowMaxMin) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidZeroOrOneNonNegativeIntegerValues
+     */
+    public function testBuildMinOccursAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "0" or "1".', $value));
+        
+        $this->sut->buildMinOccursAttribute($value);
     }
 }
