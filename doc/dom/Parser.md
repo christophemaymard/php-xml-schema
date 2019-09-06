@@ -395,6 +395,32 @@
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
 - [ ] Parse **anyAttribute** element.
 
+## Element: "complexType" (localComplexType)
+
+```
+<complexType
+  id = ID
+  mixed = boolean
+>
+  Content: (annotation?, (simpleContent | complexContent | ((group | all | choice | sequence)?, ((attribute | attributeGroup)*, anyAttribute?))))
+</complexType>
+```
+
+- [x] Parse **complexType** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **mixed** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleContent** element.
+- [ ] Parse **complexContent** element.
+- [ ] Parse **group** element (groupRef).
+- [ ] Parse **all** element (all).
+- [ ] Parse **choice** element (explicitGroup).
+- [ ] Parse **sequence** element (explicitGroup).
+- [ ] Parse **attribute** elements (attribute).
+- [ ] Parse **attributeGroup** elements (attributeGroupRef).
+- [ ] Parse **anyAttribute** element.
+
 ## Element: "simpleContent"
 
 ```
@@ -584,7 +610,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
-- [ ] Parse **complexType** element (localComplexType).
+- [x] Parse **complexType** element (localComplexType).
 - [ ] Parse **unique** elements.
 - [ ] Parse **key** elements.
 - [ ] Parse **keyref** elements.
