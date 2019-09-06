@@ -411,7 +411,7 @@
 - [x] Parse **mixed** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **simpleContent** element.
+- [x] Parse **simpleContent** element.
 - [ ] Parse **complexContent** element.
 - [ ] Parse **group** element (groupRef).
 - [ ] Parse **all** element (all).
