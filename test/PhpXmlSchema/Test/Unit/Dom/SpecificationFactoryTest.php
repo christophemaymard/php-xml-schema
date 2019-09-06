@@ -1062,6 +1062,7 @@ class SpecificationFactoryTest extends TestCase
             [ 37, 'minOccurs', '', 'buildMinOccursAttribute', ], 
             // Context: ELT_NARROW_ELEMENT
             [ 38, 'block', '', 'buildBlockAttribute', ], 
+            [ 38, 'default', '', 'buildDefaultAttribute', ], 
         ];
     }
 }

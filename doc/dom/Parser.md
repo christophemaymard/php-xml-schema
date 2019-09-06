@@ -552,7 +552,6 @@
 ## Element: "element" (narrowMaxMin)
 
 ```
-
 <element
   block = (#all | List of (extension | restriction | substitution))
   default = string
@@ -572,7 +571,7 @@
 
 - [x] Parse **element** element.
 - [x] Parse **block** attribute (collapsing white spaces).
-- [ ] Parse **default** attribute.
+- [x] Parse **default** attribute.
 - [ ] Parse **fixed** attribute (collapsing white spaces).
 - [ ] Parse **form** attribute.
 - [ ] Parse **id** attribute (collapsing white spaces).

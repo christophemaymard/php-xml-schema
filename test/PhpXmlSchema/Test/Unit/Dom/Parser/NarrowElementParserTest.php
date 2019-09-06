@@ -136,6 +136,57 @@ class NarrowElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "default" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $string     The expected value for the string.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidDefaultAttributes
+     */
+    public function testParseProcessDefaultAttribute(
+        string $fileName, 
+        string $string
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyDefaultAttribute($elt);
+        self::assertSame($string, $elt->getDefault()->getString());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
@@ -182,6 +233,33 @@ class NarrowElementParserTest extends AbstractParserTestCase
             ], 
             'Duplicated substitution' => [
                 'element_block_0013.xsd', FALSE, FALSE, TRUE, 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "default" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidDefaultAttributes():array
+    {
+        return [
+            'Empty string' => [
+                'element_default_0001.xsd', 
+                '', 
+            ], 
+            'Only white spaces' => [
+                'element_default_0002.xsd', 
+                '                  ', 
+            ], 
+            'Alphanumeric' => [
+                'element_default_0003.xsd', 
+                'foo3bar6baz9', 
+            ], 
+            'Alphanumeric with white spaces' => [
+                'element_default_0004.xsd', 
+                '  foo2    bar9   baz8    qux1  ', 
             ], 
         ];
     }
