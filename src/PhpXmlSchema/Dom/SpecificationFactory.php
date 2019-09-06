@@ -1053,6 +1053,7 @@ class SpecificationFactory
             [ 'fixed', '', 'buildFixedAttribute', ], 
             [ 'form', '', 'buildFormAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
         ], 
     ];
     

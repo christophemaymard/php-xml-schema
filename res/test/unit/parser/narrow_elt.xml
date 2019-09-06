@@ -183,6 +183,19 @@
       <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
     </schema>
   </test>
+  <!-- element::maxOccurs -->
+  <test group="attribute" name="[element][attribute::maxOccurs] Non-negative integer other than 0 or 1">
+    <schema fileName="element_maxOccurs_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"2" is invalid, expected "0" or "1".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::maxOccurs] Negative integer">
+    <schema fileName="element_maxOccurs_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>"-9" is invalid, expected "0" or "1".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

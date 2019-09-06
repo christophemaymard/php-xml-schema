@@ -341,6 +341,55 @@ class NarrowElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "maxOccurs" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   \GMP    $nni        The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidMaxOccursAttributes
+     */
+    public function testParseProcessMaxOccursAttribute(string $fileName, \GMP $nni)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyMaxOccursAttribute($elt);
+        self::assertEquals($nni, $elt->getMaxOccurs()->getLimit()->getNonNegativeInteger());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
@@ -494,6 +543,57 @@ class NarrowElementParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'element_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "maxOccurs" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidMaxOccursAttributes():array
+    {
+        return [
+            '0' => [
+                'element_maxOccurs_0001.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 surrounded by white spaces' => [
+                'element_maxOccurs_0002.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign' => [
+                'element_maxOccurs_0003.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with leading zeroes' => [
+                'element_maxOccurs_0004.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign and leading zeroes' => [
+                'element_maxOccurs_0005.xsd', 
+                \gmp_init(0), 
+            ], 
+            '1' => [
+                'element_maxOccurs_0006.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 surrounded by white spaces' => [
+                'element_maxOccurs_0007.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign' => [
+                'element_maxOccurs_0008.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 with leading zeroes' => [
+                'element_maxOccurs_0009.xsd', 
+                \gmp_init(1), 
+            ], 
+            '1 with positive sign and leading zeroes' => [
+                'element_maxOccurs_0010.xsd', 
+                \gmp_init(1), 
             ], 
         ];
     }
