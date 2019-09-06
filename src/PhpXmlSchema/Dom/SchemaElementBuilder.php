@@ -1054,6 +1054,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->addSimpleTypeElement($elt);
                     $this->currentElement = $elt;
                     break;
+                case ElementId::ELT_ELEMENT:
+                    $elt = new SimpleTypeElement();
+                    $this->currentElement->setTypeElement($elt);
+                    $this->currentElement = $elt;
+                    break;
             }
         }
     }
