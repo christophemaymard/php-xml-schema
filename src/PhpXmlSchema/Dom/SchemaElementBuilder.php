@@ -420,6 +420,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     if ($this->currentElement->getParent() instanceof AttributeGroupElement) {
                         $this->currentElement->setRef($this->parseQName($value));
                     }
+                    
+                    break;
+                case ElementId::ELT_ELEMENT:
+                    $this->currentElement->setRef($this->parseQName($value));
+                    break;
             }
         }
     }
