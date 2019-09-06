@@ -238,6 +238,60 @@ class NarrowElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "form" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $qual       The expected value for the "qualified" flag.
+     * @param   bool    $unqual     The expected value for the "unqualified" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFormAttributes
+     */
+    public function testParseProcessFormAttribute(
+        string $fileName,
+        bool $qual, 
+        bool $unqual
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyFormAttribute($elt);
+        self::assertSame($qual, $elt->getForm()->isQualified());
+        self::assertSame($unqual, $elt->getForm()->isUnqualified());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
@@ -338,6 +392,24 @@ class NarrowElementParserTest extends AbstractParserTestCase
             'Alphanumeric with white spaces' => [
                 'element_fixed_0004.xsd', 
                 '  foo2    bar9   baz8    qux1  ', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "form" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFormAttributes():array
+    {
+        // [ $fileName, $qualified, $unqualified, ]
+        return [
+            'qualified' => [
+                'element_form_0001.xsd', TRUE, FALSE, 
+            ], 
+            'unqualified' => [
+                'element_form_0002.xsd', FALSE, TRUE, 
             ], 
         ];
     }
