@@ -1082,6 +1082,9 @@ class SpecificationFactory
             [ 'ref', '', 'buildRefAttribute', ], 
             [ 'type', '', 'buildTypeAttribute', ], 
         ], 
+        ContextId::ELT_LOCAL_COMPLEXTYPE => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**

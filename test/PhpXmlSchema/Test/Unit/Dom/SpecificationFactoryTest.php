@@ -1091,6 +1091,8 @@ class SpecificationFactoryTest extends TestCase
             [ 38, 'nillable', '', 'buildNillableAttribute', ], 
             [ 38, 'ref', '', 'buildRefAttribute', ], 
             [ 38, 'type', '', 'buildTypeAttribute', ], 
+            // Context: ELT_LOCAL_COMPLEXTYPE
+            [ 39, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
