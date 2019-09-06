@@ -734,9 +734,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildComplexContentElement()
     {
-        if ($this->currentElement instanceof ComplexTypeElement && 
-            $this->currentElement->getParent() instanceof SchemaElement
-        ) {
+        if ($this->currentElement instanceof ComplexTypeElement) {
             $elt = new ComplexContentElement();
             $this->currentElement->setContentElement($elt);
             $this->currentElement = $elt;

@@ -81,7 +81,6 @@ class LocalComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuil
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
-    use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
@@ -327,5 +326,30 @@ class LocalComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuil
         self::assertElementNamespaceDeclarations([], $sc);
         self::assertSimpleContentElementHasNoAttribute($sc);
         self::assertSame([], $sc->getElements());
+    }
+    
+    /**
+     * Tests that buildComplexContentElement() creates the element when the 
+     * current element is the "complexType" element (localComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildComplexContentElementCreateEltWhenLocalComplexType()
+    {
+        $this->sut->buildComplexContentElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertSame([], $cc->getElements());
     }
 }
