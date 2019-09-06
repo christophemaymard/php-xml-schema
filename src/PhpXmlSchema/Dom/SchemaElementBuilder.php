@@ -349,6 +349,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_NOTATION:
                 case ElementId::ELT_COMPLEXTYPE:
+                case ElementId::ELT_ELEMENT:
                     $this->currentElement->setName($this->parseNCName($value));
             }
             

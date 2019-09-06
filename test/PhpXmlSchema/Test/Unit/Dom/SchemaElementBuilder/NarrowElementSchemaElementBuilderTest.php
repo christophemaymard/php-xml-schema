@@ -42,7 +42,6 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
-    use BuildNameAttributeDoesNotCreateAttributeTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
@@ -516,5 +515,54 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "0" or "1".', $value));
         
         $this->sut->buildMinOccursAttribute($value);
+    }
+    
+    /**
+     * Tests that buildNameAttribute() creates the attribute when the current 
+     * element is the "element" element (narrowMaxMin) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $name   The expected value for the name.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNCNameValues
+     */
+    public function testBuildNameAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
+        string $value, 
+        string $name
+    ) {
+        $this->sut->buildNameAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyNameAttribute($elt);
+        self::assertSame($name, $elt->getName()->getNCName());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildNameAttribute() throws an exception when the current 
+     * element is the "element" element (narrowMaxMin) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNCNameValues
+     */
+    public function testBuildNameAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildNameAttribute($value);
     }
 }
