@@ -2229,4 +2229,29 @@ trait ElementAssertTrait
         self::assertFalse($sut->byList());
         self::assertFalse($sut->byUnion());
     }
+    
+    /**
+     * Asserts that the specified "element" element has only the "default" 
+     * attribute.
+     * 
+     * @param   ElementElement  $sut    The element to test.
+     */
+    public static function assertElementElementHasOnlyDefaultAttribute(
+        ElementElement $sut
+    ) {
+        self::assertFalse($sut->hasAbstract());
+        self::assertFalse($sut->hasBlock());
+        self::assertTrue($sut->hasDefault());
+        self::assertFalse($sut->hasFinal());
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasForm());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasNillable());
+        self::assertFalse($sut->hasRef());
+        self::assertFalse($sut->hasSubstitutionGroup());
+        self::assertFalse($sut->hasType());
+    }
 }

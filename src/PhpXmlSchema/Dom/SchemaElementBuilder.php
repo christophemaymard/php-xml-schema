@@ -126,8 +126,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildDefaultAttribute(string $value)
     {
-        if ($this->currentElement instanceof AttributeElement) {
-            $this->currentElement->setDefault($this->parseString($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ATTRIBUTE:
+                case ElementId::ELT_ELEMENT:
+                    $this->currentElement->setDefault($this->parseString($value));
+            }
         }
     }
     
