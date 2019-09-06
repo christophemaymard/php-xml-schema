@@ -439,6 +439,55 @@ class NarrowElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "name" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $name       The expected value for the name.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNameAttributes
+     */
+    public function testParseProcessNameAttribute(string $fileName, string $name)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyNameAttribute($elt);
+        self::assertSame($name, $elt->getName()->getNCName());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
@@ -694,6 +743,41 @@ class NarrowElementParserTest extends AbstractParserTestCase
             '1 with positive sign and leading zeroes' => [
                 'element_minOccurs_0010.xsd', 
                 \gmp_init(1), 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "name" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidNameAttributes():array
+    {
+        return [
+            'Starts with _' => [
+                'element_name_0001.xsd', '_foo', 
+            ], 
+            'Starts with letter' => [
+                'element_name_0002.xsd', 'f', 
+            ], 
+            'Contains letter' => [
+                'element_name_0003.xsd', 'foo', 
+            ], 
+            'Contains digit' => [
+                'element_name_0004.xsd', 'f00', 
+            ], 
+            'Contains .' => [
+                'element_name_0005.xsd', 'f.bar', 
+            ], 
+            'Contains -' => [
+                'element_name_0006.xsd', 'f-bar', 
+            ], 
+            'Contains _' => [
+                'element_name_0007.xsd', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [
+                'element_name_0008.xsd', 'foo_bar', 
             ], 
         ];
     }
