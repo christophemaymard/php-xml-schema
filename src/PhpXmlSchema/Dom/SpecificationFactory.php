@@ -1052,6 +1052,7 @@ class SpecificationFactory
             [ 'default', '', 'buildDefaultAttribute', ], 
             [ 'fixed', '', 'buildFixedAttribute', ], 
             [ 'form', '', 'buildFormAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     

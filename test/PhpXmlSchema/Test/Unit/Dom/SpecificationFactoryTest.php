@@ -1065,6 +1065,7 @@ class SpecificationFactoryTest extends TestCase
             [ 38, 'default', '', 'buildDefaultAttribute', ], 
             [ 38, 'fixed', '', 'buildFixedAttribute', ], 
             [ 38, 'form', '', 'buildFormAttribute', ], 
+            [ 38, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
