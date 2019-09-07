@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
@@ -69,7 +70,6 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
     use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
-    use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
     use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
@@ -663,5 +663,224 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
         $this->sut->buildNillableAttribute($value);
+    }
+    
+    /**
+     * Tests that buildRefAttribute() creates the attribute when:
+     * - the current element is the "element" element (localElement), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - no default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildRefAttributeCreatesAttrWhenLocalElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildRefAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyRefAttribute($elt);
+        self::assertSame($localPart, $elt->getRef()->getLocalPart()->getNCName());
+        self::assertFalse($elt->getRef()->hasNamespace());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildRefAttribute() creates the attribute when:
+     * - the current element is the "element" element (localElement), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidQNameLocalPartValues
+     */
+    public function testBuildRefAttributeCreatesAttrWhenLocalElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('', 'http://example.org');
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildAllElement();
+        $this->sut->buildElementElement();
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildChoiceElement();
+        $this->sut->buildElementElement();
+        $this->sut->buildRefAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['' => 'http://example.org' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $resElt = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $resElt);
+        self::assertComplexContentRestrictionElementHasNoAttribute($resElt);
+        self::assertCount(1, $resElt->getElements());
+        
+        $all = $resElt->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt1 = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt1);
+        self::assertElementElementHasNoAttribute($elt1);
+        self::assertCount(1, $elt1->getElements());
+        
+        $ct2 = $elt1->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        self::assertCount(1, $choice->getElementElements());
+        
+        $elt2 = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt2);
+        self::assertElementElementHasOnlyRefAttribute($elt2);
+        self::assertSame($localPart, $elt2->getRef()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org', $elt2->getRef()->getNamespace()->getAnyUri());
+        self::assertSame([], $elt2->getElements());
+    }
+    
+    /**
+     * Tests that buildRefAttribute() throws an exception when the current 
+     * element is the "element" element (localElement) and the value is an 
+     * invalid QName.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidQNameValues
+     */
+    public function testBuildRefAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildRefAttribute($value);
+    }
+    
+    /**
+     * Tests that buildRefAttribute() creates the attribute when:
+     * - the current element is the "element" element (localElement), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildRefAttributeCreatesAttrWhenLocalElementAndValueIsValidAndPrefixAssociatedNamespace()
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildAllElement();
+        $this->sut->buildElementElement();
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildChoiceElement();
+        $this->sut->buildElementElement();
+        $this->sut->buildRefAttribute('foo:bar');
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['foo' => 'http://example.org/foo' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $resElt = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $resElt);
+        self::assertComplexContentRestrictionElementHasNoAttribute($resElt);
+        self::assertCount(1, $resElt->getElements());
+        
+        $all = $resElt->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt1 = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt1);
+        self::assertElementElementHasNoAttribute($elt1);
+        self::assertCount(1, $elt1->getElements());
+        
+        $ct2 = $elt1->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        self::assertCount(1, $choice->getElementElements());
+        
+        $elt2 = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt2);
+        self::assertElementElementHasOnlyRefAttribute($elt2);
+        self::assertSame('bar', $elt2->getRef()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/foo', $elt2->getRef()->getNamespace()->getAnyUri());
+        self::assertSame([], $elt2->getElements());
+    }
+    
+    /**
+     * Tests that buildRefAttribute() throws an exception when:
+     * - the current element is the "element" element (localElement), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is not associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildRefAttributeThrowsExceptionWhenLocalElementAndValueIsValidAndPrefixNotAssociatedNamespace()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
+        
+        $this->sut->buildRefAttribute('foo:bar');
     }
 }

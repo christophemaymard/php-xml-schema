@@ -463,10 +463,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     
                     break;
                 case ElementId::ELT_ELEMENT:
-                    if ($this->currentElement->getParent() instanceof AllElement) {
-                        $this->currentElement->setRef($this->parseQName($value));
-                    }
-                    
+                    $this->currentElement->setRef($this->parseQName($value));
                     break;
             }
         }
