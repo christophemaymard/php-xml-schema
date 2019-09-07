@@ -1131,6 +1131,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_LOCAL_COMPLEXTYPE
             [ 39, 'id', '', 'buildIdAttribute', ], 
             [ 39, 'mixed', '', 'buildMixedAttribute', ], 
+            // Context: ELT_EXPLICIT_CHOICE
+            [ 40, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

@@ -588,10 +588,10 @@
 ```
 
 - [x] Parse **choice** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **maxOccurs** attribute (collapsing white spaces).
 - [ ] Parse **minOccurs** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **element** elements (localElement).
 - [ ] Parse **group** elements (groupRef).

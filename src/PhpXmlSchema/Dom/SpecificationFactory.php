@@ -1126,6 +1126,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'mixed', '', 'buildMixedAttribute', ], 
         ], 
+        ContextId::ELT_EXPLICIT_CHOICE => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
