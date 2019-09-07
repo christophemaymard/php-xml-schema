@@ -81,7 +81,6 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
@@ -445,5 +444,80 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "element" element (localElement) and the value 
+     * is "unbounded".
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidIdValues
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenLocalElementAndValueIsUnbounded()
+    {
+        $this->sut->buildMaxOccursAttribute('unbounded');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyMaxOccursAttribute($elt);
+        self::assertTrue($elt->getMaxOccurs()->isUnlimited());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "element" element (localElement) and the value 
+     * is a valid non-negative integer.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerValues
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenLocalElementAndValueIsNonNegativeInteger(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMaxOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyMaxOccursAttribute($elt);
+        self::assertEquals($nni, $elt->getMaxOccurs()->getLimit()->getNonNegativeInteger());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() throws an exception when the 
+     * current element is the "element" element (localElement) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerLimitValues
+     * @dataProvider    getInvalidNonNegativeIntegerValues
+     */
+    public function testBuildMaxOccursAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
+        
+        $this->sut->buildMaxOccursAttribute($value);
     }
 }

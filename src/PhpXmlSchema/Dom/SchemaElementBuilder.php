@@ -305,6 +305,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                         $this->currentElement->setMaxOccurs(
                             $this->parseZeroOrOneNonNegativeIntegerLimit($value)
                         );
+                    } else {
+                        $this->currentElement->setMaxOccurs(
+                            $this->parseNonNegativeIntegerLimit($value)
+                        );
                     }
                     
                     break;
