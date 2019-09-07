@@ -669,7 +669,7 @@
 - [x] Parse **minOccurs** attribute (collapsing white spaces).
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Parse **nillable** attribute (collapsing white spaces).
-- [ ] Parse **ref** attribute (collapsing white spaces).
+- [x] Parse **ref** attribute (collapsing white spaces).
 - [ ] Parse **type** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.

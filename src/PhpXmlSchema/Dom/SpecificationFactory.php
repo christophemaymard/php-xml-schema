@@ -1157,6 +1157,7 @@ class SpecificationFactory
             [ 'minOccurs', '', 'buildMinOccursAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
             [ 'nillable', '', 'buildNillableAttribute', ], 
+            [ 'ref', '', 'buildRefAttribute', ], 
         ], 
     ];
     
