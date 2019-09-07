@@ -85,7 +85,6 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
@@ -238,5 +237,80 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "choice" element (explicitGroup) and the value 
+     * is "unbounded".
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidIdValues
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitChoiceAndValueIsUnbounded()
+    {
+        $this->sut->buildMaxOccursAttribute('unbounded');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $choice = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasOnlyMaxOccursAttribute($choice);
+        self::assertTrue($choice->getMaxOccurs()->isUnlimited());
+        self::assertSame([], $choice->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "choice" element (explicitGroup) and the value 
+     * is a valid non-negative integer.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerValues
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitChoiceAndValueIsNonNegativeInteger(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMaxOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $choice = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasOnlyMaxOccursAttribute($choice);
+        self::assertEquals($nni, $choice->getMaxOccurs()->getLimit()->getNonNegativeInteger());
+        self::assertSame([], $choice->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() throws an exception when the 
+     * current element is the "choice" element (explicitGroup) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerLimitValues
+     * @dataProvider    getInvalidNonNegativeIntegerValues
+     */
+    public function testBuildMaxOccursAttributeThrowsExceptionWhenExplicitChoiceAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
+        
+        $this->sut->buildMaxOccursAttribute($value);
     }
 }

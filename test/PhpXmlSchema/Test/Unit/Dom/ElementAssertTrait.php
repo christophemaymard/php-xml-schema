@@ -2506,4 +2506,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
     }
+    
+    /**
+     * Asserts that the specified "choice" element has only the "maxOccurs" 
+     * attribute.
+     * 
+     * @param   ChoiceElement   $sut    The element to test.
+     */
+    public static function assertChoiceElementHasOnlyMaxOccursAttribute(
+        ChoiceElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+    }
 }
