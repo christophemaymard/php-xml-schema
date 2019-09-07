@@ -349,6 +349,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_ALL, 'all', ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 'choice', ], 
         ], 
+        ContextId::ELT_EXPLICIT_CHOICE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -635,6 +638,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_ALL, 'buildAllElement', ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 'buildChoiceElement', ], 
         ], 
+        ContextId::ELT_EXPLICIT_CHOICE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -919,6 +925,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_GROUP_REF, 2, ], 
             [ 1, ContextId::ELT_ALL, 2, ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 2, ], 
+        ], 
+        ContextId::ELT_EXPLICIT_CHOICE => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
