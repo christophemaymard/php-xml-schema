@@ -336,9 +336,17 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ELEMENT:
-                    if (!$this->currentElement->getParent() instanceof AllElement) {
-                        break;
+                    if ($this->currentElement->getParent() instanceof AllElement) {
+                        $this->currentElement->setMinOccurs(
+                            $this->parseZeroOrOneNonNegativeInteger($value)
+                        );
+                    } else {
+                        $this->currentElement->setMinOccurs(
+                            $this->parseNonNegativeInteger($value)
+                        );
                     }
+                    
+                    break;
                 case ElementId::ELT_ALL:
                     $this->currentElement->setMinOccurs($this->parseZeroOrOneNonNegativeInteger($value));
                     break;

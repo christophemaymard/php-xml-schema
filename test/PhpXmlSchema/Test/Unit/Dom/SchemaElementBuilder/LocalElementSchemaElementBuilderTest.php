@@ -81,7 +81,6 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
@@ -519,5 +518,55 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
         
         $this->sut->buildMaxOccursAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() creates the attribute when the 
+     * current element is the "element" element (localElement) and the value 
+     * is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerValues
+     */
+    public function testBuildMinOccursAttributeCreatesAttrWhenLocalElementAndValueIsValid(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMinOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyMinOccursAttribute($elt);
+        self::assertEquals($nni, $elt->getMinOccurs()->getNonNegativeInteger());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() throws an exception when the 
+     * current element is the "element" element (localElement) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerValues
+     */
+    public function testBuildMinOccursAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildMinOccursAttribute($value);
     }
 }
