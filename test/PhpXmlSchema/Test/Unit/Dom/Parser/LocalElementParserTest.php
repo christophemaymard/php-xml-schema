@@ -882,6 +882,140 @@ class LocalElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "type" attribute when the prefix is 
+     * absent and there is no default namespace.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNoNamespaceTypeAttributes
+     */
+    public function testParseProcessTypeAttributeWhenPrefixAbsentAndNoDefaultNamespace(
+        string $fileName, 
+        string $localPart
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt1 = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt1);
+        self::assertElementElementHasNoAttribute($elt1);
+        self::assertCount(1, $elt1->getElements());
+        
+        $ct2 = $elt1->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        
+        $elt2 = $choice->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt2);
+        self::assertElementElementHasOnlyTypeAttribute($elt2);
+        self::assertFalse($elt2->getType()->hasNamespace());
+        self::assertSame($localPart, $elt2->getType()->getLocalPart()->getNCName());
+        self::assertSame([], $elt2->getElements());
+    }
+    
+    /**
+     * Tests that parse() processes "type" attribute.
+     * 
+     * @param   string      $fileName   The name of the file used for the test.
+     * @param   string[]    $decls      The expected value for the namespace declarations.
+     * @param   string      $namespace  The expected value for the namespace.
+     * @param   string      $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidTypeAttributes
+     */
+    public function testParseProcessTypeAttribute(
+        string $fileName, 
+        array $decls, 
+        string $namespace, 
+        string $localPart
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations($decls, $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt1 = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt1);
+        self::assertElementElementHasNoAttribute($elt1);
+        self::assertCount(1, $elt1->getElements());
+        
+        $ct2 = $elt1->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        
+        $elt2 = $choice->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt2);
+        self::assertElementElementHasOnlyTypeAttribute($elt2);
+        self::assertSame($namespace, $elt2->getType()->getNamespace()->getAnyUri());
+        self::assertSame($localPart, $elt2->getType()->getLocalPart()->getNCName());
+        self::assertSame([], $elt2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
@@ -1383,6 +1517,196 @@ class LocalElementParserTest extends AbstractParserTestCase
             ], 
             'Prefix (contains _) and local part' => [
                 'element_ref_0023.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f_bar' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "type" attributes with no prefix and no default 
+     * namespace.
+     * 
+     * @return  array[]
+     */
+    public function getValidNoNamespaceTypeAttributes():array
+    {
+        return [
+            'Local part starts with _' => [
+                'element_type_0001.xsd', 
+                '_foo', 
+            ], 
+            'Local part starts with letter' => [
+                'element_type_0002.xsd', 
+                'f', 
+            ], 
+            'Local part contains letter' => [
+                'element_type_0003.xsd', 
+                'foo', 
+            ], 
+            'Local part contains digit' => [
+                'element_type_0004.xsd', 
+                'f00', 
+            ], 
+            'Local part contains .' => [
+                'element_type_0005.xsd', 
+                'f.bar', 
+            ], 
+            'Local part contains -' => [
+                'element_type_0006.xsd', 
+                'f-bar', 
+            ], 
+            'Local part contains _' => [
+                'element_type_0007.xsd', 
+                'f_bar', 
+            ], 
+            'Local part surrounded by white spaces' => [
+                'element_type_0008.xsd', 
+                'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "type" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidTypeAttributes():array
+    {
+        return [
+            'Prefix (absent) and bound to default namespace' => [
+                'element_type_0009.xsd', 
+                [
+                    '' => 'http://example.org', 
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                ], 
+                'http://example.org', 
+                'foo', 
+            ], 
+            'Prefix and local part (starts with _)' => [
+                'element_type_0010.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                '_foo', 
+            ], 
+            'Prefix and local part (starts with letter)' => [
+                'element_type_0011.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f', 
+            ], 
+            'Prefix and local part (contains letter)' => [
+                'element_type_0012.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'foo', 
+            ], 
+            'Prefix and local part (contains digit)' => [
+                'element_type_0013.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f00', 
+            ], 
+            'Prefix and local part (contains .)' => [
+                'element_type_0014.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f.bar', 
+            ], 
+            'Prefix and local part (contains -)' => [
+                'element_type_0015.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f-bar', 
+            ], 
+            'Prefix and local part (contains _)' => [
+                'element_type_0016.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f_bar', 
+            ], 
+            'Prefix (starts with _) and local part' => [
+                'element_type_0017.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    '_foo' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (starts with letter) and local part' => [
+                'element_type_0018.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains letter) and local part' => [
+                'element_type_0019.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'foo' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains digit) and local part' => [
+                'element_type_0020.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f00' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains .) and local part' => [
+                'element_type_0021.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f.bar' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains -) and local part' => [
+                'element_type_0022.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f-bar' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains _) and local part' => [
+                'element_type_0023.xsd', 
                 [
                     'xs' => 'http://www.w3.org/2001/XMLSchema', 
                     'f_bar' => 'http://example.org', 
