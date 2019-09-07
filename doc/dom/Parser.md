@@ -664,7 +664,7 @@
 - [x] Parse **default** attribute.
 - [x] Parse **fixed** attribute.
 - [x] Parse **form** attribute.
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **maxOccurs** attribute (collapsing white spaces).
 - [ ] Parse **minOccurs** attribute (collapsing white spaces).
 - [ ] Parse **name** attribute (collapsing white spaces).
