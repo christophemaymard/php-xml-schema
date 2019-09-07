@@ -1128,6 +1128,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_EXPLICIT_CHOICE => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
         ], 
     ];
     

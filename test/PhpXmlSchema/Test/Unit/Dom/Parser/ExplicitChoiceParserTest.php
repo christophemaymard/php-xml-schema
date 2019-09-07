@@ -150,6 +150,121 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "maxOccurs" attribute when the value is 
+     * "unbounded".
+     * 
+     * @group   attribute
+     */
+    public function testParseProcessMaxOccursAttributeWhenValueIsUnbounded()
+    {
+        $sch = $this->sut->parse($this->getXs('choice_maxOccurs_0001.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $ct2 = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasOnlyMaxOccursAttribute($choice);
+        self::assertTrue($choice->getMaxOccurs()->isUnlimited());
+        self::assertSame([], $choice->getElements());
+    }
+    
+    /**
+     * Tests that parse() processes "maxOccurs" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   \GMP    $nni        The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidMaxOccursAttributes
+     */
+    public function testParseProcessMaxOccursAttribute(string $fileName, \GMP $nni)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $ct2 = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasOnlyMaxOccursAttribute($choice);
+        self::assertEquals($nni, $choice->getMaxOccurs()->getLimit()->getNonNegativeInteger());
+        self::assertSame([], $choice->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -180,6 +295,49 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'choice_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "maxOccurs" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidMaxOccursAttributes():array
+    {
+        return [
+            '0' => [
+                'choice_maxOccurs_0002.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign' => [
+                'choice_maxOccurs_0003.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign and leading zeroes' => [
+                'choice_maxOccurs_0004.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign, leading zeroes and surrounded by white spaces' => [
+                'choice_maxOccurs_0005.xsd', 
+                \gmp_init(0), 
+            ], 
+            '1234567890' => [
+                'choice_maxOccurs_0006.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign' => [
+                'choice_maxOccurs_0007.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign and leading zeroes' => [
+                'choice_maxOccurs_0008.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign, leading zeroes and surrounded by white spaces' => [
+                'choice_maxOccurs_0009.xsd', 
+                \gmp_init(1234567890), 
             ], 
         ];
     }
