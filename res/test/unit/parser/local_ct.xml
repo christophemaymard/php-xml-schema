@@ -77,19 +77,19 @@
   <test group="attribute" name="[complexType][attribute::mixed] true (uppercase)">
     <schema fileName="complexType_mixed_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"True" is an invalid boolean datatype.</message>
+      <message>The "mixed" attribute is invalid: "True" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::mixed] false (uppercase)">
     <schema fileName="complexType_mixed_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"False" is an invalid boolean datatype.</message>
+      <message>The "mixed" attribute is invalid: "False" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <test group="attribute" name="[complexType][attribute::mixed] Numeric other than 0 or 1">
     <schema fileName="complexType_mixed_0011.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
-      <message>"2" is an invalid boolean datatype.</message>
+      <message>The "mixed" attribute is invalid: "2" is an invalid boolean datatype.</message>
     </schema>
   </test>
   <!-- annotation -->
