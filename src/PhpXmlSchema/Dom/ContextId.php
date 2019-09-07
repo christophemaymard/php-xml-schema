@@ -55,4 +55,5 @@ class ContextId
     const ELT_NARROW_ELEMENT = 38;
     const ELT_LOCAL_COMPLEXTYPE = 39;
     const ELT_EXPLICIT_CHOICE = 40;
+    const ELT_LOCAL_ELEMENT = 41;
 }

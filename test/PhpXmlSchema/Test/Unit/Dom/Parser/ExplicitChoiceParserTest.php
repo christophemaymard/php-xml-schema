@@ -384,6 +384,71 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "element" elements (localElement).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessElementElement()
+    {
+        $sch = $this->sut->parse($this->getXs('element_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $ct2 = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(2, $choice->getElements());
+        
+        $elts = $choice->getElementElements();
+        
+        self::assertElementNamespaceDeclarations([], $elts[0]);
+        self::assertElementElementHasNoAttribute($elts[0]);
+        self::assertSame([], $elts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $elts[1]);
+        self::assertElementElementHasNoAttribute($elts[1]);
+        self::assertSame([], $elts[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

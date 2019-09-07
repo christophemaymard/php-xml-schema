@@ -593,7 +593,7 @@
 - [x] Parse **minOccurs** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
-- [ ] Parse **element** elements (localElement).
+- [x] Parse **element** elements (localElement).
 - [ ] Parse **group** elements (groupRef).
 - [ ] Parse **choice** elements (explicitGroup).
 - [ ] Parse **sequence** elements (explicitGroup).
@@ -635,6 +635,46 @@
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
 - [x] Parse **complexType** element (localComplexType).
+- [ ] Parse **unique** elements.
+- [ ] Parse **key** elements.
+- [ ] Parse **keyref** elements.
+
+## Element: "element" (localElement)
+
+```
+<element
+  block = (#all | List of (extension | restriction | substitution))
+  default = string
+  fixed = string
+  form = (qualified | unqualified)
+  id = ID
+  maxOccurs = (nonNegativeInteger | unbounded)
+  minOccurs = nonNegativeInteger
+  name = NCName
+  nillable = boolean
+  ref = QName
+  type = QName
+>
+  Content: (annotation?, ((simpleType | complexType)?, (unique | key | keyref)*))
+</element>
+```
+
+- [x] Parse **element** element.
+- [ ] Parse **block** attribute (collapsing white spaces).
+- [ ] Parse **default** attribute.
+- [ ] Parse **fixed** attribute.
+- [ ] Parse **form** attribute.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **maxOccurs** attribute (collapsing white spaces).
+- [ ] Parse **minOccurs** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [ ] Parse **nillable** attribute (collapsing white spaces).
+- [ ] Parse **ref** attribute (collapsing white spaces).
+- [ ] Parse **type** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleType** element (localSimpleType).
+- [ ] Parse **complexType** element (localComplexType).
 - [ ] Parse **unique** elements.
 - [ ] Parse **key** elements.
 - [ ] Parse **keyref** elements.

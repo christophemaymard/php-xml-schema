@@ -205,6 +205,7 @@ class SpecificationFactoryTest extends TestCase
             [ 38, 0, ], // ELT_NARROW_ELEMENT
             [ 39, 0, ], // ELT_LOCAL_COMPLEXTYPE
             [ 40, 0, ], // ELT_EXPLICIT_CHOICE
+            [ 41, 0, ], // ELT_LOCAL_ELEMENT
         ];
     }
     
@@ -459,6 +460,8 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 'annotation', ], // ELT_ANNOTATION
+            [ 40, 0, 41, 'element', ], // ELT_LOCAL_ELEMENT
+            [ 40, 1, 41, 'element', ], // ELT_LOCAL_ELEMENT
         ];
     }
     
@@ -713,6 +716,8 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
+            [ 40, 0, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
+            [ 40, 1, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
         ];
     }
     
@@ -967,6 +972,8 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 1, 40, 2, ], // ELT_EXPLICIT_CHOICE
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 1, ], // ELT_ANNOTATION
+            [ 40, 0, 41, 1, ], // ELT_LOCAL_ELEMENT
+            [ 40, 1, 41, 1, ], // ELT_LOCAL_ELEMENT
         ];
     }
     
