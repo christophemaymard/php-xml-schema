@@ -579,10 +579,17 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildAllElement()
     {
-        if ($this->currentElement instanceof ComplexContentRestrictionElement) {
-            $elt = new AllElement();
-            $this->currentElement->setTypeDefinitionParticleElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_COMPLEXTYPE:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
+                case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
+                    $elt = new AllElement();
+                    $this->currentElement->setTypeDefinitionParticleElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     
