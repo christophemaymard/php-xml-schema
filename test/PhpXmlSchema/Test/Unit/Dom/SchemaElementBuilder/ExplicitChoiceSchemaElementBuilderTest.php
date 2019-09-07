@@ -85,7 +85,6 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
-    use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     
@@ -385,5 +384,37 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+    }
+    
+    /**
+     * Tests that buildElementElement() creates the element when the 
+     * current element is the "choice" element (explicitGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildElementElementCreateEltWhenExplicitChoice()
+    {
+        $this->sut->buildElementElement();
+        $this->sut->endElement();
+        $this->sut->buildElementElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $choice = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(2, $choice->getElements());
+        
+        $elts = $choice->getElementElements();
+        
+        self::assertElementNamespaceDeclarations([], $elts[0]);
+        self::assertElementElementHasNoAttribute($elts[0]);
+        self::assertSame([], $elts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $elts[1]);
+        self::assertElementElementHasNoAttribute($elts[1]);
+        self::assertSame([], $elts[1]->getElements());
     }
 }
