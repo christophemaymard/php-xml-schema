@@ -82,7 +82,6 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
-    use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     
     /**
@@ -616,5 +615,53 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage($message);
         
         $this->sut->buildNameAttribute($value);
+    }
+    
+    /**
+     * Tests that buildNillableAttribute() creates the attribute when the 
+     * current element is the "element" element (localElement) and the value 
+     * is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $bool   The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidBooleanValues
+     */
+    public function testBuildNillableAttributeCreatesAttrWhenLocalElementAndValueIsValid(
+        string $value, 
+        bool $bool
+    ) {
+        $this->sut->buildNillableAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyNillableAttribute($elt);
+        self::assertSame($bool, $elt->getNillable());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildNillableAttribute() throws an exception when the current 
+     * element is the "element" element (localElement) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidBooleanValues
+     */
+    public function testBuildNillableAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
+        
+        $this->sut->buildNillableAttribute($value);
     }
 }

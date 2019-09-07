@@ -420,9 +420,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildNillableAttribute(string $value)
     {
-        if ($this->currentElement instanceof ElementElement && 
-            $this->currentElement->getParent() instanceof AllElement
-        ) {
+        if ($this->currentElement instanceof ElementElement) {
             $this->currentElement->setNillable($this->parseBoolean($value));
         }
     }
