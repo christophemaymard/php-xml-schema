@@ -1151,6 +1151,7 @@ class SpecificationFactory
             [ 'block', '', 'buildBlockAttribute', ], 
             [ 'default', '', 'buildDefaultAttribute', ], 
             [ 'fixed', '', 'buildFixedAttribute', ], 
+            [ 'form', '', 'buildFormAttribute', ], 
         ], 
     ];
     

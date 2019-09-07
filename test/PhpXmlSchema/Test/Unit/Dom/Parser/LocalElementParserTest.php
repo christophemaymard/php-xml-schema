@@ -298,6 +298,75 @@ class LocalElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "form" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $qual       The expected value for the "qualified" flag.
+     * @param   bool    $unqual     The expected value for the "unqualified" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFormAttributes
+     */
+    public function testParseProcessFormAttribute(
+        string $fileName,
+        bool $qual, 
+        bool $unqual
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $resElt = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $resElt);
+        self::assertComplexContentRestrictionElementHasNoAttribute($resElt);
+        self::assertCount(1, $resElt->getElements());
+        
+        $all = $resElt->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt1 = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt1);
+        self::assertElementElementHasNoAttribute($elt1);
+        self::assertCount(1, $elt1->getElements());
+        
+        $ct2 = $elt1->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        
+        $elt2 = $choice->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt2);
+        self::assertElementElementHasOnlyFormAttribute($elt2);
+        self::assertSame($qual, $elt2->getForm()->isQualified());
+        self::assertSame($unqual, $elt2->getForm()->isUnqualified());
+        self::assertSame([], $elt2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
@@ -398,6 +467,24 @@ class LocalElementParserTest extends AbstractParserTestCase
             'Alphanumeric with white spaces' => [
                 'element_fixed_0004.xsd', 
                 '  foo2    bar9   baz8    qux1  ', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "form" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFormAttributes():array
+    {
+        // [ $fileName, $qualified, $unqualified, ]
+        return [
+            'qualified' => [
+                'element_form_0001.xsd', TRUE, FALSE, 
+            ], 
+            'unqualified' => [
+                'element_form_0002.xsd', FALSE, TRUE, 
             ], 
         ];
     }
