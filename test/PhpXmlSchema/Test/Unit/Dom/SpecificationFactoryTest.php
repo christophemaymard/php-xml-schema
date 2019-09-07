@@ -1134,6 +1134,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 'id', '', 'buildIdAttribute', ], 
             [ 40, 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
+            [ 40, 'minOccurs', '', 'buildMinOccursAttribute', ], 
         ];
     }
 }
