@@ -1155,6 +1155,7 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
             [ 'minOccurs', '', 'buildMinOccursAttribute', ], 
+            [ 'name', '', 'buildNameAttribute', ], 
         ], 
     ];
     
