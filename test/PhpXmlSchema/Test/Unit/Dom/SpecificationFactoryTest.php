@@ -1151,6 +1151,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_LOCAL_ELEMENT
             [ 41, 'block', '', 'buildBlockAttribute', ], 
             [ 41, 'default', '', 'buildDefaultAttribute', ], 
+            [ 41, 'fixed', '', 'buildFixedAttribute', ], 
         ];
     }
 }

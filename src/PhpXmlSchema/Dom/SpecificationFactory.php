@@ -1150,6 +1150,7 @@ class SpecificationFactory
         ContextId::ELT_LOCAL_ELEMENT => [
             [ 'block', '', 'buildBlockAttribute', ], 
             [ 'default', '', 'buildDefaultAttribute', ], 
+            [ 'fixed', '', 'buildFixedAttribute', ], 
         ], 
     ];
     
