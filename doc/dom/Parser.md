@@ -415,7 +415,7 @@
 - [x] Parse **complexContent** element.
 - [x] Parse **group** element (groupRef).
 - [x] Parse **all** element (all).
-- [ ] Parse **choice** element (explicitGroup).
+- [x] Parse **choice** element (explicitGroup).
 - [ ] Parse **sequence** element (explicitGroup).
 - [ ] Parse **attribute** elements (attribute).
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
@@ -574,6 +574,30 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **element** elements (narrowMaxMin).
+
+## Element: "choice" (explicitGroup)
+
+```
+<choice
+  id = ID
+  maxOccurs = (nonNegativeInteger | unbounded)
+  minOccurs = nonNegativeInteger
+>
+  Content: (annotation?, (element | group | choice | sequence | any)*)
+</choice>
+```
+
+- [x] Parse **choice** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **maxOccurs** attribute (collapsing white spaces).
+- [ ] Parse **minOccurs** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **element** elements (localElement).
+- [ ] Parse **group** elements (groupRef).
+- [ ] Parse **choice** elements (explicitGroup).
+- [ ] Parse **sequence** elements (explicitGroup).
+- [ ] Parse **any** elements.
 
 ## Element: "element" (narrowMaxMin)
 

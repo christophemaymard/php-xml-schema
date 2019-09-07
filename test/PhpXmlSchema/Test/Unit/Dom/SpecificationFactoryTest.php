@@ -204,6 +204,7 @@ class SpecificationFactoryTest extends TestCase
             [ 37, 0, ], // ELT_ALL
             [ 38, 0, ], // ELT_NARROW_ELEMENT
             [ 39, 0, ], // ELT_LOCAL_COMPLEXTYPE
+            [ 40, 0, ], // ELT_EXPLICIT_CHOICE
         ];
     }
     
@@ -450,10 +451,12 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             [ 39, 0, 36, 'group', ], // ELT_GROUP_REF
             [ 39, 0, 37, 'all', ], // ELT_ALL
+            [ 39, 0, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 39, 1, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 'group', ], // ELT_GROUP_REF
             [ 39, 1, 37, 'all', ], // ELT_ALL
+            [ 39, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
         ];
     }
     
@@ -700,10 +703,12 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             [ 39, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 39, 0, 37, 'buildAllElement', ], // ELT_ALL
+            [ 39, 0, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 39, 1, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 39, 1, 37, 'buildAllElement', ], // ELT_ALL
+            [ 39, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
         ];
     }
     
@@ -950,10 +955,12 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 34, 3, ], // ELT_COMPLEXCONTENT
             [ 39, 0, 36, 2, ], // ELT_GROUP_REF
             [ 39, 0, 37, 2, ], // ELT_ALL
+            [ 39, 0, 40, 2, ], // ELT_EXPLICIT_CHOICE
             [ 39, 1, 31, 3, ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 3, ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 2, ], // ELT_GROUP_REF
             [ 39, 1, 37, 2, ], // ELT_ALL
+            [ 39, 1, 40, 2, ], // ELT_EXPLICIT_CHOICE
         ];
     }
     

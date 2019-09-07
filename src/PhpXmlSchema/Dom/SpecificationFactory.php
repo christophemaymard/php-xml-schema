@@ -63,6 +63,7 @@ class SpecificationFactory
         ContextId::ELT_ALL => 0, 
         ContextId::ELT_NARROW_ELEMENT => 0, 
         ContextId::ELT_LOCAL_COMPLEXTYPE => 0, 
+        ContextId::ELT_EXPLICIT_CHOICE => 0, 
     ];
     
     /**
@@ -341,10 +342,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_COMPLEXCONTENT, 'complexContent', ], 
             [ 0, ContextId::ELT_GROUP_REF, 'group', ], 
             [ 0, ContextId::ELT_ALL, 'all', ], 
+            [ 0, ContextId::ELT_EXPLICIT_CHOICE, 'choice', ], 
             [ 1, ContextId::ELT_SIMPLECONTENT, 'simpleContent', ], 
             [ 1, ContextId::ELT_COMPLEXCONTENT, 'complexContent', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'group', ], 
             [ 1, ContextId::ELT_ALL, 'all', ], 
+            [ 1, ContextId::ELT_EXPLICIT_CHOICE, 'choice', ], 
         ], 
     ];
     
@@ -625,10 +628,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_COMPLEXCONTENT, 'buildComplexContentElement', ], 
             [ 0, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
             [ 0, ContextId::ELT_ALL, 'buildAllElement', ], 
+            [ 0, ContextId::ELT_EXPLICIT_CHOICE, 'buildChoiceElement', ], 
             [ 1, ContextId::ELT_SIMPLECONTENT, 'buildSimpleContentElement', ], 
             [ 1, ContextId::ELT_COMPLEXCONTENT, 'buildComplexContentElement', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
             [ 1, ContextId::ELT_ALL, 'buildAllElement', ], 
+            [ 1, ContextId::ELT_EXPLICIT_CHOICE, 'buildChoiceElement', ], 
         ], 
     ];
     
@@ -908,10 +913,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_COMPLEXCONTENT, 3, ], 
             [ 0, ContextId::ELT_GROUP_REF, 2, ], 
             [ 0, ContextId::ELT_ALL, 2, ], 
+            [ 0, ContextId::ELT_EXPLICIT_CHOICE, 2, ], 
             [ 1, ContextId::ELT_SIMPLECONTENT, 3, ], 
             [ 1, ContextId::ELT_COMPLEXCONTENT, 3, ], 
             [ 1, ContextId::ELT_GROUP_REF, 2, ], 
             [ 1, ContextId::ELT_ALL, 2, ], 
+            [ 1, ContextId::ELT_EXPLICIT_CHOICE, 2, ], 
         ], 
     ];
     
