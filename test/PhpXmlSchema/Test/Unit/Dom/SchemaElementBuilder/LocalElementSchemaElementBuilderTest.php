@@ -48,7 +48,6 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
@@ -299,5 +298,53 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage($message);
         
         $this->sut->buildDefaultAttribute($value);
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() creates the attribute when the 
+     * current element is the "element" element (localElement) and the value 
+     * is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidStringValues
+     */
+    public function testBuildFixedAttributeCreatesAttrWhenLocalElementAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildFixedAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyFixedAttribute($elt);
+        self::assertSame($value, $elt->getFixed()->getString());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() throws an exception when the 
+     * current element is the "element" element (localElement) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidStringValues
+     */
+    public function testBuildFixedAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildFixedAttribute($value);
     }
 }
