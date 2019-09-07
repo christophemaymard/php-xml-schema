@@ -1147,6 +1147,9 @@ class SpecificationFactory
             [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
             [ 'minOccurs', '', 'buildMinOccursAttribute', ], 
         ], 
+        ContextId::ELT_LOCAL_ELEMENT => [
+            [ 'block', '', 'buildBlockAttribute', ], 
+        ], 
     ];
     
     /**

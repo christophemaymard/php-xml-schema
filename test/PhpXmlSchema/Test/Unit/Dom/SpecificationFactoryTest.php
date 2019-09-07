@@ -1148,6 +1148,8 @@ class SpecificationFactoryTest extends TestCase
             [ 40, 'id', '', 'buildIdAttribute', ], 
             [ 40, 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
             [ 40, 'minOccurs', '', 'buildMinOccursAttribute', ], 
+            // Context: ELT_LOCAL_ELEMENT
+            [ 41, 'block', '', 'buildBlockAttribute', ], 
         ];
     }
 }
