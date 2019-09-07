@@ -48,7 +48,6 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
@@ -252,5 +251,53 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         ));
         
         $this->sut->buildBlockAttribute($value);
+    }
+    
+    /**
+     * Tests that buildDefaultAttribute() creates the attribute when the 
+     * current element is the "element" element (localElement) and the value 
+     * is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidStringValues
+     */
+    public function testBuildDefaultAttributeCreatesAttrWhenLocalElementAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildDefaultAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyDefaultAttribute($elt);
+        self::assertSame($value, $elt->getDefault()->getString());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildDefaultAttribute() throws an exception when the 
+     * current element is the "element" element (localElement) and the value 
+     * is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidStringValues
+     */
+    public function testBuildDefaultAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildDefaultAttribute($value);
     }
 }
