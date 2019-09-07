@@ -449,9 +449,11 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
             [ 39, 0, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             [ 39, 0, 36, 'group', ], // ELT_GROUP_REF
+            [ 39, 0, 37, 'all', ], // ELT_ALL
             [ 39, 1, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 'group', ], // ELT_GROUP_REF
+            [ 39, 1, 37, 'all', ], // ELT_ALL
         ];
     }
     
@@ -697,9 +699,11 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
             [ 39, 0, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             [ 39, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
+            [ 39, 0, 37, 'buildAllElement', ], // ELT_ALL
             [ 39, 1, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
+            [ 39, 1, 37, 'buildAllElement', ], // ELT_ALL
         ];
     }
     
@@ -945,9 +949,11 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 31, 3, ], // ELT_SIMPLECONTENT
             [ 39, 0, 34, 3, ], // ELT_COMPLEXCONTENT
             [ 39, 0, 36, 2, ], // ELT_GROUP_REF
+            [ 39, 0, 37, 2, ], // ELT_ALL
             [ 39, 1, 31, 3, ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 3, ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 2, ], // ELT_GROUP_REF
+            [ 39, 1, 37, 2, ], // ELT_ALL
         ];
     }
     

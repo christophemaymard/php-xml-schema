@@ -414,6 +414,61 @@ class LocalComplexTypeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "all" element (all).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAllElement()
+    {
+        $sch = $this->sut->parse($this->getXs('all_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all1 = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all1);
+        self::assertAllElementHasNoAttribute($all1);
+        self::assertCount(1, $all1->getElements());
+        
+        $elt = $all1->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $ct2 = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $all2 = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all2);
+        self::assertAllElementHasNoAttribute($all2);
+        self::assertSame([], $all2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]

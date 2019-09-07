@@ -340,9 +340,11 @@ class SpecificationFactory
             [ 0, ContextId::ELT_SIMPLECONTENT, 'simpleContent', ], 
             [ 0, ContextId::ELT_COMPLEXCONTENT, 'complexContent', ], 
             [ 0, ContextId::ELT_GROUP_REF, 'group', ], 
+            [ 0, ContextId::ELT_ALL, 'all', ], 
             [ 1, ContextId::ELT_SIMPLECONTENT, 'simpleContent', ], 
             [ 1, ContextId::ELT_COMPLEXCONTENT, 'complexContent', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'group', ], 
+            [ 1, ContextId::ELT_ALL, 'all', ], 
         ], 
     ];
     
@@ -622,9 +624,11 @@ class SpecificationFactory
             [ 0, ContextId::ELT_SIMPLECONTENT, 'buildSimpleContentElement', ], 
             [ 0, ContextId::ELT_COMPLEXCONTENT, 'buildComplexContentElement', ], 
             [ 0, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
+            [ 0, ContextId::ELT_ALL, 'buildAllElement', ], 
             [ 1, ContextId::ELT_SIMPLECONTENT, 'buildSimpleContentElement', ], 
             [ 1, ContextId::ELT_COMPLEXCONTENT, 'buildComplexContentElement', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
+            [ 1, ContextId::ELT_ALL, 'buildAllElement', ], 
         ], 
     ];
     
@@ -903,9 +907,11 @@ class SpecificationFactory
             [ 0, ContextId::ELT_SIMPLECONTENT, 3, ], 
             [ 0, ContextId::ELT_COMPLEXCONTENT, 3, ], 
             [ 0, ContextId::ELT_GROUP_REF, 2, ], 
+            [ 0, ContextId::ELT_ALL, 2, ], 
             [ 1, ContextId::ELT_SIMPLECONTENT, 3, ], 
             [ 1, ContextId::ELT_COMPLEXCONTENT, 3, ], 
             [ 1, ContextId::ELT_GROUP_REF, 2, ], 
+            [ 1, ContextId::ELT_ALL, 2, ], 
         ], 
     ];
     
