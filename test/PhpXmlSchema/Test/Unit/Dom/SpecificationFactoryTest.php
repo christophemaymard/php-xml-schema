@@ -1154,6 +1154,7 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 'fixed', '', 'buildFixedAttribute', ], 
             [ 41, 'form', '', 'buildFormAttribute', ], 
             [ 41, 'id', '', 'buildIdAttribute', ], 
+            [ 41, 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
         ];
     }
 }

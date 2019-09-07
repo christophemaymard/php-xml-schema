@@ -183,6 +183,19 @@
       <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
     </schema>
   </test>
+  <!-- element::maxOccurs -->
+  <test group="attribute" name="[element][attribute::maxOccurs] unbounded surrounded by white spaces">
+    <schema fileName="element_maxOccurs_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "maxOccurs" attribute is invalid: "     unbounded      " is an invalid non-negative integer limit type.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::maxOccurs] Negative integer">
+    <schema fileName="element_maxOccurs_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "maxOccurs" attribute is invalid: "-9" is an invalid non-negative integer limit type.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
