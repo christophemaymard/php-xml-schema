@@ -28,7 +28,6 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -397,5 +396,54 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
             $value
         ));
         $this->sut->buildFormAttribute($value);
+    }
+    
+    /**
+     * Tests that buildIdAttribute() creates the attribute when the current 
+     * element is the "element" element (localElement) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidIdValues
+     */
+    public function testBuildIdAttributeCreatesAttrWhenLocalElementAndValueIsValid(
+        string $value, 
+        string $id
+    ) {
+        $this->sut->buildIdAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyIdAttribute($elt);
+        self::assertSame($id, $elt->getId()->getId());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() throws an exception when the current 
+     * element is the "element" element (localElement) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidIdValues
+     */
+    public function testBuildIdAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildIdAttribute($value);
     }
 }
