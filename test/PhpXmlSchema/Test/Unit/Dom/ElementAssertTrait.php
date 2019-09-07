@@ -13,6 +13,7 @@ use PhpXmlSchema\Dom\AnyAttributeElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
+use PhpXmlSchema\Dom\ChoiceElement;
 use PhpXmlSchema\Dom\ComplexContentElement;
 use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
@@ -2478,5 +2479,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasRef());
         self::assertFalse($sut->hasSubstitutionGroup());
         self::assertTrue($sut->hasType());
+    }
+    
+    /**
+     * Asserts that the specified "choice" element has no attribute.
+     * 
+     * @param   ChoiceElement   $sut    The element to test.
+     */
+    public static function assertChoiceElementHasNoAttribute(ChoiceElement $sut)
+    {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
     }
 }

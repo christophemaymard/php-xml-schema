@@ -87,6 +87,7 @@ class MinLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
+    use BuildChoiceElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

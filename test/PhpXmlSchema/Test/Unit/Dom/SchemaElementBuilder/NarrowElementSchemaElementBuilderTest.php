@@ -78,6 +78,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
+    use BuildChoiceElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

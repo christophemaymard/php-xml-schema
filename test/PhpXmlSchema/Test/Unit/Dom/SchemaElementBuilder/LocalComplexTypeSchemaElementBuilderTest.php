@@ -400,4 +400,29 @@ class LocalComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuil
         self::assertAllElementHasNoAttribute($all);
         self::assertSame([], $all->getElements());
     }
+    
+    /**
+     * Tests that buildChoiceElement() creates the element when the current 
+     * element is the "complexType" element (localComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildChoiceElementCreateEltWhenLocalComplexType()
+    {
+        $this->sut->buildChoiceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $choice = $ct->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertSame([], $choice->getElements());
+    }
 }

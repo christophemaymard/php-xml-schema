@@ -739,6 +739,20 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildChoiceElement()
+    {
+        if ($this->currentElement instanceof ComplexTypeElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement
+        ) {
+            $elt = new ChoiceElement();
+            $this->currentElement->setTypeDefinitionParticleElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildComplexContentElement()
     {
         if ($this->currentElement instanceof ComplexTypeElement) {
