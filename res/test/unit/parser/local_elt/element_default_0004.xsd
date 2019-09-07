@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType>
+    <xs:complexContent>
+      <xs:restriction>
+        <xs:all>
+          <xs:element>
+            <xs:complexType>
+              <xs:choice>
+                <xs:element default="  foo2    bar9   baz8    qux1  ">
+                </xs:element>
+              </xs:choice>
+            </xs:complexType>
+          </xs:element>
+        </xs:all>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
