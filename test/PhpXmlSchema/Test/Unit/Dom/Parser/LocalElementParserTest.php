@@ -556,6 +556,70 @@ class LocalElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "minOccurs" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   \GMP    $nni        The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidMinOccursAttributes
+     */
+    public function testParseProcessMinOccursAttribute(string $fileName, \GMP $nni)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $resElt = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $resElt);
+        self::assertComplexContentRestrictionElementHasNoAttribute($resElt);
+        self::assertCount(1, $resElt->getElements());
+        
+        $all = $resElt->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt1 = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt1);
+        self::assertElementElementHasNoAttribute($elt1);
+        self::assertCount(1, $elt1->getElements());
+        
+        $ct2 = $elt1->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        
+        $elt2 = $choice->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt2);
+        self::assertElementElementHasOnlyMinOccursAttribute($elt2);
+        self::assertEquals($nni, $elt2->getMinOccurs()->getNonNegativeInteger());
+        self::assertSame([], $elt2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
@@ -751,6 +815,49 @@ class LocalElementParserTest extends AbstractParserTestCase
             ], 
             '1234567890 with positive sign, leading zeroes and surrounded by white spaces' => [
                 'element_maxOccurs_0009.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "minOccurs" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidMinOccursAttributes():array
+    {
+        return [
+            '0' => [
+                'element_minOccurs_0001.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign' => [
+                'element_minOccurs_0002.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign and leading zeroes' => [
+                'element_minOccurs_0003.xsd', 
+                \gmp_init(0), 
+            ], 
+            '0 with positive sign, leading zeroes and surrounded by white spaces' => [
+                'element_minOccurs_0004.xsd', 
+                \gmp_init(0), 
+            ], 
+            '1234567890' => [
+                'element_minOccurs_0005.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign' => [
+                'element_minOccurs_0006.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign and leading zeroes' => [
+                'element_minOccurs_0007.xsd', 
+                \gmp_init(1234567890), 
+            ], 
+            '1234567890 with positive sign, leading zeroes and surrounded by white spaces' => [
+                'element_minOccurs_0008.xsd', 
                 \gmp_init(1234567890), 
             ], 
         ];
