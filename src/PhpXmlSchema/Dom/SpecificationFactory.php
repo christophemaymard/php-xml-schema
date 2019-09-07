@@ -1156,6 +1156,7 @@ class SpecificationFactory
             [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
             [ 'minOccurs', '', 'buildMinOccursAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
+            [ 'nillable', '', 'buildNillableAttribute', ], 
         ], 
     ];
     

@@ -246,6 +246,25 @@
       <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName datatype.</message>
     </schema>
   </test>
+  <!-- element::nillable -->
+  <test group="attribute" name="[element][attribute::nillable] true (uppercase)">
+    <schema fileName="element_nillable_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "nillable" attribute is invalid: "True" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::nillable] false (uppercase)">
+    <schema fileName="element_nillable_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "nillable" attribute is invalid: "False" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::nillable] Numeric other than 0 or 1">
+    <schema fileName="element_nillable_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "nillable" attribute is invalid: "2" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

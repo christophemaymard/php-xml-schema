@@ -1157,6 +1157,7 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
             [ 41, 'minOccurs', '', 'buildMinOccursAttribute', ], 
             [ 41, 'name', '', 'buildNameAttribute', ], 
+            [ 41, 'nillable', '', 'buildNillableAttribute', ], 
         ];
     }
 }

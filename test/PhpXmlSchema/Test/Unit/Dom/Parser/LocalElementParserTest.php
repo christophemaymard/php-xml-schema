@@ -684,6 +684,70 @@ class LocalElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "nillable" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $bool       The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNillableAttributes
+     */
+    public function testParseProcessNillableAttribute(string $fileName, bool $bool)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $resElt = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $resElt);
+        self::assertComplexContentRestrictionElementHasNoAttribute($resElt);
+        self::assertCount(1, $resElt->getElements());
+        
+        $all = $resElt->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt1 = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt1);
+        self::assertElementElementHasNoAttribute($elt1);
+        self::assertCount(1, $elt1->getElements());
+        
+        $ct2 = $elt1->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        
+        $elt2 = $choice->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt2);
+        self::assertElementElementHasOnlyNillableAttribute($elt2);
+        self::assertSame($bool, $elt2->getNillable());
+        self::assertSame([], $elt2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
@@ -958,6 +1022,49 @@ class LocalElementParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'element_name_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "nillable" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidNillableAttributes():array
+    {
+        return [
+            'true (string)' => [
+                'element_nillable_0001.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric)' => [
+                'element_nillable_0002.xsd', 
+                TRUE, 
+            ], 
+            'true (string) surrounded by white spaces' => [
+                'element_nillable_0003.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric) surrounded by white spaces' => [
+                'element_nillable_0004.xsd', 
+                TRUE, 
+            ], 
+            'false (string)' => [
+                'element_nillable_0005.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric)' => [
+                'element_nillable_0006.xsd', 
+                FALSE, 
+            ], 
+            'false (string) surrounded by white spaces' => [
+                'element_nillable_0007.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric) surrounded by white spaces' => [
+                'element_nillable_0008.xsd', 
+                FALSE, 
             ], 
         ];
     }
