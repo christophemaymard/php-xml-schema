@@ -71,7 +71,6 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
     use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
-    use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
@@ -346,5 +345,57 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         $this->expectExceptionMessage($message);
         
         $this->sut->buildFixedAttribute($value);
+    }
+    
+    /**
+     * Tests that buildFormAttribute() creates the attribute when the current 
+     * element is the "element" element (localElement) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $qual   The expected value for the "qualified flag.
+     * @param   bool    $unqual The expected value for the "unqualified flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidFormChoiceValues
+     */
+    public function testBuildFormAttributeCreatesAttrWhenLocalElementAndValueIsValid(
+        string $value, 
+        bool $qual, 
+        bool $unqual
+    ) {
+        $this->sut->buildFormAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyFormAttribute($elt);
+        self::assertSame($qual, $elt->getForm()->isQualified());
+        self::assertSame($unqual, $elt->getForm()->isUnqualified());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildFormAttribute() throws an exception when the current 
+     * element is the "element" element (localElement) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidFormChoiceValues
+     */
+    public function testBuildFormAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid formChoice type, expected "qualified" or "unqualified".', 
+            $value
+        ));
+        $this->sut->buildFormAttribute($value);
     }
 }

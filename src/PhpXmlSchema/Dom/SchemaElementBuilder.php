@@ -224,10 +224,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     
                     break;
                 case ElementId::ELT_ELEMENT:
-                    if ($this->currentElement->getParent() instanceof AllElement) {
-                        $this->currentElement->setForm($this->parseFormChoice($value));
-                    }
-                    
+                    $this->currentElement->setForm($this->parseFormChoice($value));
                     break;
             }
         }
