@@ -805,12 +805,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement = $elt;
                     break;
                 case ElementId::ELT_ELEMENT:
-                    if ($this->currentElement->getParent() instanceof AllElement) {
-                        $elt = new ComplexTypeElement();
-                        $this->currentElement->setTypeElement($elt);
-                        $this->currentElement = $elt;
-                    }
-                    
+                    $elt = new ComplexTypeElement();
+                    $this->currentElement->setTypeElement($elt);
+                    $this->currentElement = $elt;
                     break;
             }
         }
