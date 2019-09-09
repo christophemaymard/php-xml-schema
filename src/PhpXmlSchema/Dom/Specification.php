@@ -29,6 +29,12 @@ class Specification
     private $initialState;
     
     /**
+     * The final states (default to an empty array).
+     * @var int[]
+     */
+    private $finalStates = [];
+    
+    /**
      * The map that associates a state and a symbol with an element name.
      * @var array[]
      */
@@ -99,6 +105,28 @@ class Specification
     public function hasInitialState():bool
     {
         return $this->initialState !== NULL;
+    }
+    
+    /**
+     * Adds a final state.
+     * 
+     * @param   int $state  The final state to add.
+     */
+    public function addFinalState(int $state)
+    {
+        if (!\in_array($state, $this->finalStates, TRUE)) {
+            $this->finalStates[] = $state;
+        }
+    }
+    
+    /**
+     * Returns all the final states.
+     * 
+     * @return  int[]   An indexed array of all the final states.
+     */
+    public function getFinalStates():array
+    {
+        return $this->finalStates;
     }
     
     /**

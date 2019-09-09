@@ -311,4 +311,22 @@ class SpecificationTest extends TestCase
         
         $this->sut->getAttributeBuilder('foo', '');
     }
+    
+    /**
+     * Tests that getFinalStates() returns the final states that have been 
+     * added.
+     */
+    public function testGetFinalStatesReturnsArrayOfInt()
+    {
+        self::assertSame([], $this->sut->getFinalStates());
+        
+        $this->sut->addFinalState(10);
+        self::assertSame([ 10, ], $this->sut->getFinalStates());
+        
+        $this->sut->addFinalState(100);
+        self::assertSame([ 10, 100, ], $this->sut->getFinalStates());
+        
+        $this->sut->addFinalState(10);
+        self::assertSame([ 10, 100, ], $this->sut->getFinalStates());
+    }
 }

@@ -72,6 +72,21 @@ class SpecificationFactoryTest extends TestCase
     }
     
     /**
+     * Tests that getFinalStates(), of the instance created by create(), 
+     * returns an array of integers.
+     * 
+     * @param   int     $cid    The context ID used to create the specification.
+     * @param   int[]   $states The expected final states.
+     * 
+     * @dataProvider    getFinalStates
+     */
+    public function testCreateGetFinalStatesReturnsArrayOfInt(int $cid, array $states)
+    {
+        $spec = $this->sut->create($cid);
+        self::assertSame($states, $spec->getFinalStates());
+    }
+    
+    /**
      * Tests that getTransitionElementName(), of the instance created by 
      * create(), returns the name that is associated with a state and a 
      * symbol.
@@ -206,6 +221,57 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, ], // ELT_LOCAL_COMPLEXTYPE
             [ 40, 0, ], // ELT_EXPLICIT_CHOICE
             [ 41, 0, ], // ELT_LOCAL_ELEMENT
+        ];
+    }
+    
+    /**
+     * Returns a set of final states with the context IDs.
+     * 
+     * @return  array[]
+     */
+    public function getFinalStates():array
+    {
+        return [
+            [ 0, [ 1, ], ], // ELT_ROOT
+            [ 1, [ 0, 1, ], ], // ELT_SCHEMA
+            [ 2, [ 0, ], ], // ELT_ANNOTATION
+            [ 5, [ 0, 1, ], ], // ELT_IMPORT
+            [ 6, [ 0, 1, ], ], // ELT_INCLUDE
+            [ 7, [ 0, 1, ], ], // ELT_NOTATION
+            [ 8, [ 0, 1, 2, ], ], // ELT_TOP_ATTRIBUTE
+            [ 9, [ 2, ], ], // ELT_LOCAL_SIMPLETYPE
+            [ 10, [ 0, 1, 2, ], ], // ELT_SIMPLETYPE_RESTRICTION
+            [ 11, [ 0, 1, ], ], // ELT_MINEXCLUSIVE
+            [ 12, [ 0, 1, ], ], // ELT_MININCLUSIVE
+            [ 13, [ 0, 1, ], ], // ELT_MAXEXCLUSIVE
+            [ 14, [ 0, 1, ], ], // ELT_MAXINCLUSIVE
+            [ 15, [ 0, 1, ], ], // ELT_TOTALDIGITS
+            [ 16, [ 0, 1, ], ], // ELT_FRACTIONDIGITS
+            [ 17, [ 0, 1, ], ], // ELT_LENGTH
+            [ 18, [ 0, 1, ], ], // ELT_MINLENGTH
+            [ 19, [ 0, 1, ], ], // ELT_MAXLENGTH
+            [ 20, [ 0, 1, ], ], // ELT_ENUMERATION
+            [ 21, [ 0, 1, ], ], // ELT_WHITESPACE
+            [ 22, [ 0, 1, ], ], // ELT_PATTERN
+            [ 23, [ 0, 1, 2, ], ], // ELT_LIST
+            [ 24, [ 0, 1, ], ], // ELT_UNION
+            [ 25, [ 2, ], ], // ELT_TOP_SIMPLETYPE
+            [ 26, [ 0, 1, 2, ], ], // ELT_NAMED_ATTRIBUTEGROUP
+            [ 27, [ 0, 1, 2, ], ], // ELT_ATTRIBUTE
+            [ 28, [ 0, 1, ], ], // ELT_ATTRIBUTEGROUP_REF
+            [ 29, [ 0, 1, ], ], // ELT_ANYATTRIBUTE
+            [ 30, [ 0, 1, 3, ], ], // ELT_TOP_COMPLEXTYPE
+            [ 31, [ 2, ], ], // ELT_SIMPLECONTENT
+            [ 32, [ 0, 1, 2, 3, 4, ], ], // ELT_SIMPLECONTENT_RESTRICTION
+            [ 33, [ 0, 1, 2, ], ], // ELT_SIMPLECONTENT_EXTENSION
+            [ 34, [ 2, ], ], // ELT_COMPLEXCONTENT
+            [ 35, [ 0, 1, 2, ], ], // ELT_COMPLEXCONTENT_RESTRICTION
+            [ 36, [ 0, 1, ], ], // ELT_GROUP_REF
+            [ 37, [ 0, 1, ], ], // ELT_ALL
+            [ 38, [ 0, 1, 2, ], ], // ELT_NARROW_ELEMENT
+            [ 39, [ 0, 1, 2, 3, ], ], // ELT_LOCAL_COMPLEXTYPE
+            [ 40, [ 0, 1, ], ], // ELT_EXPLICIT_CHOICE
+            [ 41, [ 0, 1, 2, ], ], // ELT_LOCAL_ELEMENT
         ];
     }
     

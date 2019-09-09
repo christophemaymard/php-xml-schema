@@ -68,6 +68,56 @@ class SpecificationFactory
     ];
     
     /**
+     * The map that associates a context ID with a set of initial states.
+     * An associative where:
+     * - the key is the context ID, and
+     * - the value is the set of final states.
+     * @var array[]
+     */
+    private $finalStates = [
+        ContextId::ELT_ROOT => [ 1, ], 
+        ContextId::ELT_SCHEMA => [ 0, 1, ], 
+        ContextId::ELT_ANNOTATION => [ 0, ], 
+        ContextId::ELT_IMPORT => [ 0, 1, ], 
+        ContextId::ELT_INCLUDE => [ 0, 1, ], 
+        ContextId::ELT_NOTATION => [ 0, 1, ], 
+        ContextId::ELT_TOP_ATTRIBUTE => [ 0, 1, 2, ], 
+        ContextId::ELT_LOCAL_SIMPLETYPE => [ 2, ], 
+        ContextId::ELT_SIMPLETYPE_RESTRICTION => [ 0, 1, 2, ], 
+        ContextId::ELT_MINEXCLUSIVE => [ 0, 1, ], 
+        ContextId::ELT_MININCLUSIVE => [ 0, 1, ], 
+        ContextId::ELT_MAXEXCLUSIVE => [ 0, 1, ], 
+        ContextId::ELT_MAXINCLUSIVE => [ 0, 1, ], 
+        ContextId::ELT_TOTALDIGITS => [ 0, 1, ], 
+        ContextId::ELT_FRACTIONDIGITS => [ 0, 1], 
+        ContextId::ELT_LENGTH => [ 0, 1, ], 
+        ContextId::ELT_MINLENGTH => [ 0, 1, ], 
+        ContextId::ELT_MAXLENGTH => [ 0, 1, ], 
+        ContextId::ELT_ENUMERATION => [ 0, 1, ], 
+        ContextId::ELT_WHITESPACE => [ 0, 1, ], 
+        ContextId::ELT_PATTERN => [ 0, 1, ], 
+        ContextId::ELT_LIST => [ 0, 1, 2, ], 
+        ContextId::ELT_UNION => [ 0, 1, ], 
+        ContextId::ELT_TOP_SIMPLETYPE => [ 2, ], 
+        ContextId::ELT_NAMED_ATTRIBUTEGROUP => [ 0, 1, 2, ], 
+        ContextId::ELT_ATTRIBUTE => [ 0, 1, 2, ], 
+        ContextId::ELT_ATTRIBUTEGROUP_REF => [ 0, 1, ], 
+        ContextId::ELT_ANYATTRIBUTE => [ 0, 1, ], 
+        ContextId::ELT_TOP_COMPLEXTYPE => [ 0, 1, 3, ], 
+        ContextId::ELT_SIMPLECONTENT => [ 2, ], 
+        ContextId::ELT_SIMPLECONTENT_RESTRICTION => [ 0, 1, 2, 3, 4, ], 
+        ContextId::ELT_SIMPLECONTENT_EXTENSION => [ 0, 1, 2, ], 
+        ContextId::ELT_COMPLEXCONTENT => [ 2, ], 
+        ContextId::ELT_COMPLEXCONTENT_RESTRICTION => [ 0, 1, 2, ], 
+        ContextId::ELT_GROUP_REF => [ 0, 1, ], 
+        ContextId::ELT_ALL => [ 0, 1, ], 
+        ContextId::ELT_NARROW_ELEMENT => [ 0, 1, 2, ], 
+        ContextId::ELT_LOCAL_COMPLEXTYPE => [ 0, 1, 2, 3, ], 
+        ContextId::ELT_EXPLICIT_CHOICE => [ 0, 1, ], 
+        ContextId::ELT_LOCAL_ELEMENT => [ 0, 1, 2, ], 
+    ];
+    
+    /**
      * The map that associates a state and a symbol with an element name.
      * @var array[]
      */
@@ -1205,6 +1255,13 @@ class SpecificationFactory
         // Initializes the initial state.
         if (isset($this->initialStates[$cid])) {
             $spec->setInitialState($this->initialStates[$cid]);
+        }
+        
+        // Initializes the final states.
+        if (isset($this->finalStates[$cid])) {
+            foreach ($this->finalStates[$cid] as $state) {
+                $spec->addFinalState($state);
+            }
         }
         
         // Associates transitions with element names.
