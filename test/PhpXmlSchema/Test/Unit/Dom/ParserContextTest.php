@@ -251,6 +251,7 @@ class ParserContextTest extends TestCase
         
         $specProphecy = $this->createCESpecificationProphecy(
             0,
+            [], 
             [
                 [ 0, $sym ], 
                 
@@ -396,6 +397,153 @@ class ParserContextTest extends TestCase
     }
     
     /**
+     * Tests that isContentValid() returns TRUE when the defined context is 
+     * for leaf element.
+     */
+    public function testIsContentValidReturnsTrueWhenLEC()
+    {
+        $specProphecy = $this->createLESpecificationProphecy();
+        $specMock = $specProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        self::assertTrue($sut->isContentValid());
+    }
+    
+    /**
+     * Tests that isContentValid() returns FALSE when:
+     * - the defined context is for a composite element, and 
+     * - there is no final state.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testIsContentValidReturnsFalseWhenCECNoFinalState()
+    {
+        $specProphecy = $this->createCESpecificationProphecy(0);
+        $specMock = $specProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        self::assertFalse($sut->isContentValid());
+    }
+    
+    /**
+     * Tests that isContentValid() returns FALSE when:
+     * - the defined context is for a composite element, and 
+     * - no element has been created, and 
+     * - the initial state is not among the set of final states.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testIsContentValidReturnsFalseWhenCECInitialStateNotInFinalStates()
+    {
+        $specProphecy = $this->createCESpecificationProphecy(0, [ 1, ]);
+        $specMock = $specProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        self::assertFalse($sut->isContentValid());
+    }
+    
+    /**
+     * Tests that isContentValid() returns TRUE when:
+     * - the defined context is for a composite element, and 
+     * - no element has been created, and 
+     * - the initial state is among the set of final states.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testIsContentValidReturnsTrueWhenCECInitialStateInFinalStates()
+    {
+        $specProphecy = $this->createCESpecificationProphecy(0, [ 0, ]);
+        $specMock = $specProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        self::assertTrue($sut->isContentValid());
+    }
+    
+    /**
+     * Tests that isContentValid() returns FALSE when:
+     * - the defined context is for a composite element, and 
+     * - an element has been created, and 
+     * - the current state is not among the set of final states.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testIsContentValidReturnsFalseWhenCECCreateElementAndCurrentStateNotInFinalStates()
+    {
+        $specProphecy = $this->createCESpecificationProphecy(
+            0,
+            [], 
+            [
+                [ 0, 10 ], 
+            ], 
+            [
+                [ 2, 0, 10, ], 
+            ]
+        );
+        $specProphecy->findTransitionElementNameSymbol(0, 'schema')
+            ->willReturn(10)->shouldBeCalled();
+        $specProphecy->hasTransitionElementBuilder(0, 10)
+            ->willReturn(TRUE)->shouldBeCalled();
+        $specProphecy->getTransitionElementBuilder(0, 10)
+            ->willReturn('buildSchemaElement')->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $builderProphecy = $this->prophesize(SchemaBuilderInterface::class);
+        $builderProphecy->buildSchemaElement()->shouldBeCalledOnce();
+        $builderMock = $builderProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createElement('schema', $builderMock);
+        self::assertFalse($sut->isContentValid());
+    }
+    
+    /**
+     * Tests that isContentValid() returns TRUE when:
+     * - the defined context is for a composite element, and 
+     * - an element has been created, and 
+     * - the current state is among the set of final states.
+     * 
+     * @group   element
+     * @group   content
+     * @group   fa
+     */
+    public function testIsContentValidReturnsTrueWhenCECCreateElementAndCurrentStateInFinalStates()
+    {
+        $specProphecy = $this->createCESpecificationProphecy(
+            0,
+            [ 2, ], 
+            [
+                [ 0, 10 ], 
+            ], 
+            [
+                [ 2, 0, 10, ], 
+            ]
+        );
+        $specProphecy->findTransitionElementNameSymbol(0, 'schema')
+            ->willReturn(10)->shouldBeCalled();
+        $specProphecy->hasTransitionElementBuilder(0, 10)
+            ->willReturn(TRUE)->shouldBeCalled();
+        $specProphecy->getTransitionElementBuilder(0, 10)
+            ->willReturn('buildSchemaElement')->shouldBeCalled();
+        $specMock = $specProphecy->reveal();
+        
+        $builderProphecy = $this->prophesize(SchemaBuilderInterface::class);
+        $builderProphecy->buildSchemaElement()->shouldBeCalledOnce();
+        $builderMock = $builderProphecy->reveal();
+        
+        $sut = new ParserContext($specMock);
+        $sut->createElement('schema', $builderMock);
+        self::assertTrue($sut->isContentValid());
+    }
+    
+    /**
      * Creates a prophecy of the {@see PhpXmlSchema\Dom\Specification} class, 
      * for the sepcification of a leaf element, where:
      * - hasInitialState() will return FALSE and should be called.
@@ -415,21 +563,26 @@ class ParserContextTest extends TestCase
      * for the sepcification of a leaf element, where:
      * - hasInitialState() will return TRUE and should be called, and 
      * - getInitialState() will return the specified value and should be 
+     * called, and 
+     * - getFinalStates() will return the specified value and should be 
      * called.
      * 
      * @param   int     $initialState           The value that getInitialState() will return.
+     * @param   int[]   $finalStates            The value that getFinalStates() will return (optional)(default to an empty array).
      * @param   array[] $transitions            The value that getNextStateTransitions() will return (optional)(default to an empty array).
      * @param   array[] $transitionNextStates   The input and return values that getTransitionNextState()s will have (optional)(default to an empty array).
      * @return  ObjectProphecy
      */
     private function createCESpecificationProphecy(
-        int $initialState,
+        int $initialState, 
+        array $finalStates = [], 
         array $transitions = [], 
         array $transitionNextStates = []
     ):ObjectProphecy {
         $prophecy = $this->prophesize(Specification::class);
         $prophecy->hasInitialState()->willReturn(TRUE)->shouldBeCalled();
         $prophecy->getInitialState()->willReturn($initialState)->shouldBeCalled();
+        $prophecy->getFinalStates()->willReturn($finalStates)->shouldBeCalled();
         $prophecy->getNextStateTransitions()
             ->willReturn($transitions)
             ->shouldBeCalled();

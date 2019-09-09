@@ -60,6 +60,11 @@ class ParserContext
                 $this->spec->getTransitionNextState($state, $sym)
             );
         }
+        
+        // Adds the final states.
+        foreach ($this->spec->getFinalStates() as $state) {
+            $this->fa->addFinalState($state);
+        }
     }
     
     /**
@@ -153,6 +158,19 @@ class ParserContext
         $this->fa->addSymbol($sym);
         
         return $sym;
+    }
+    
+    /**
+     * Indicates whether the content is valid.
+     * 
+     * If this context is defined for a leaf element then it always returns 
+     * TRUE.
+     * 
+     * @return  bool
+     */
+    public function isContentValid():bool
+    {
+        return !$this->isComposite() || $this->fa->isValid();
     }
     
     /**
