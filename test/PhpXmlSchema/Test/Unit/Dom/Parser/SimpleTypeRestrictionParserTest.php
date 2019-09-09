@@ -262,15 +262,20 @@ class SimpleTypeRestrictionParserTest extends AbstractParserTestCase
         self::assertSimpleTypeElementHasNoAttribute($st1);
         self::assertCount(1, $st1->getElements());
         
-        $res = $st1->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $res);
-        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
-        self::assertCount(1, $res->getElements());
+        $res1 = $st1->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res1);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res1);
+        self::assertCount(1, $res1->getElements());
         
-        $st2 = $res->getSimpleTypeElement();
+        $st2 = $res1->getSimpleTypeElement();
         self::assertElementNamespaceDeclarations([], $st2);
         self::assertSimpleTypeElementHasNoAttribute($st2);
-        self::assertSame([], $st2->getElements());
+        self::assertCount(1, $st2->getElements());
+        
+        $res2 = $st2->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res2);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res2);
+        self::assertSame([], $res2->getElements());
     }
     
     /**

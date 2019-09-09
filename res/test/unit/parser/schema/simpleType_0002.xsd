@@ -1,4 +1,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:simpleType></xs:simpleType>
-  <xs:simpleType></xs:simpleType>
+  <xs:simpleType>
+    <xs:restriction></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType>
+    <xs:restriction></xs:restriction>
+  </xs:simpleType>
 </xs:schema>

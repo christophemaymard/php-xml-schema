@@ -57,7 +57,12 @@ class TopSimpleTypeParserTest extends AbstractParserTestCase
             $st
         );
         self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertSame([], $st->getElements());
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -92,7 +97,12 @@ class TopSimpleTypeParserTest extends AbstractParserTestCase
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasOnlyFinalAttribute($st);
         self::assertSimpleTypeElementFinalAttribute($list, $union, $res, $st);
-        self::assertSame([], $st->getElements());
+        self::assertCount(1, $st->getElements());
+        
+        $resElt = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $resElt);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($resElt);
+        self::assertSame([], $resElt->getElements());
     }
     
     /**
@@ -121,7 +131,12 @@ class TopSimpleTypeParserTest extends AbstractParserTestCase
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasOnlyIdAttribute($st);
         self::assertSame($id, $st->getId()->getId());
-        self::assertSame([], $st->getElements());
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -150,7 +165,12 @@ class TopSimpleTypeParserTest extends AbstractParserTestCase
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasOnlyNameAttribute($st);
         self::assertSame($name, $st->getName()->getNCName());
-        self::assertSame([], $st->getElements());
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -175,12 +195,17 @@ class TopSimpleTypeParserTest extends AbstractParserTestCase
         $st = $sch->getSimpleTypeElements()[0];
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertCount(1, $st->getElements());
+        self::assertCount(2, $st->getElements());
         
         $ann = $st->getAnnotationElement();
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**

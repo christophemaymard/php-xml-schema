@@ -1,7 +1,9 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:attributeGroup>
     <xs:attribute>
-      <xs:simpleType></xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction></xs:restriction>
+      </xs:simpleType>
       <xs:annotation></xs:annotation>
     </xs:attribute>
   </xs:attributeGroup>

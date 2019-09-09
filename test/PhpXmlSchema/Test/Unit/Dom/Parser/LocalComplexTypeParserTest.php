@@ -277,12 +277,12 @@ class LocalComplexTypeParserTest extends AbstractParserTestCase
         self::assertComplexContentElementHasNoAttribute($cc);
         self::assertCount(1, $cc->getElements());
         
-        $res = $cc->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $res);
-        self::assertComplexContentRestrictionElementHasNoAttribute($res);
-        self::assertCount(1, $res->getElements());
+        $res1 = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res1);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res1);
+        self::assertCount(1, $res1->getElements());
         
-        $all = $res->getTypeDefinitionParticleElement();
+        $all = $res1->getTypeDefinitionParticleElement();
         self::assertElementNamespaceDeclarations([], $all);
         self::assertAllElementHasNoAttribute($all);
         self::assertCount(1, $all->getElements());
@@ -300,7 +300,12 @@ class LocalComplexTypeParserTest extends AbstractParserTestCase
         $sc = $ct2->getContentElement();
         self::assertElementNamespaceDeclarations([], $sc);
         self::assertSimpleContentElementHasNoAttribute($sc);
-        self::assertSame([], $sc->getElements());
+        self::assertCount(1, $sc->getElements());
+        
+        $res2 = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res2);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res2);
+        self::assertSame([], $res2->getElements());
     }
     
     /**
@@ -332,12 +337,12 @@ class LocalComplexTypeParserTest extends AbstractParserTestCase
         self::assertComplexContentElementHasNoAttribute($cc1);
         self::assertCount(1, $cc1->getElements());
         
-        $res = $cc1->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $res);
-        self::assertComplexContentRestrictionElementHasNoAttribute($res);
-        self::assertCount(1, $res->getElements());
+        $res1 = $cc1->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res1);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res1);
+        self::assertCount(1, $res1->getElements());
         
-        $all = $res->getTypeDefinitionParticleElement();
+        $all = $res1->getTypeDefinitionParticleElement();
         self::assertElementNamespaceDeclarations([], $all);
         self::assertAllElementHasNoAttribute($all);
         self::assertCount(1, $all->getElements());
@@ -355,7 +360,12 @@ class LocalComplexTypeParserTest extends AbstractParserTestCase
         $cc2 = $ct2->getContentElement();
         self::assertElementNamespaceDeclarations([], $cc2);
         self::assertComplexContentElementHasNoAttribute($cc2);
-        self::assertSame([], $cc2->getElements());
+        self::assertCount(1, $cc2->getElements());
+        
+        $res2 = $cc2->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res2);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res2);
+        self::assertSame([], $res2->getElements());
     }
     
     /**

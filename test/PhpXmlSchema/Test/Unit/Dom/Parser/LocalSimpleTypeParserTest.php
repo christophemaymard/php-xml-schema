@@ -62,7 +62,12 @@ class LocalSimpleTypeParserTest extends AbstractParserTestCase
             $st
         );
         self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertSame([], $st->getElements());
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -96,7 +101,12 @@ class LocalSimpleTypeParserTest extends AbstractParserTestCase
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasOnlyIdAttribute($st);
         self::assertSame($id, $st->getId()->getId());
-        self::assertSame([], $st->getElements());
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -126,12 +136,17 @@ class LocalSimpleTypeParserTest extends AbstractParserTestCase
         $st = $attr->getSimpleTypeElement();
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertCount(1, $st->getElements());
+        self::assertCount(2, $st->getElements());
         
         $ann = $st->getAnnotationElement();
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**

@@ -2,5 +2,7 @@
     <xs:simpleType final="list			union
 
 
-"></xs:simpleType>
+">
+      <xs:restriction></xs:restriction>
+    </xs:simpleType>
 </xs:schema>

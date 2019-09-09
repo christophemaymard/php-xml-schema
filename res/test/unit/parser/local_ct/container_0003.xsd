@@ -5,8 +5,12 @@
         <xs:all>
           <xs:element>
             <xs:complexType>
-              <xs:complexContent></xs:complexContent>
-              <xs:complexContent></xs:complexContent>
+              <xs:complexContent>
+                <xs:restriction></xs:restriction>
+              </xs:complexContent>
+              <xs:complexContent>
+                <xs:restriction></xs:restriction>
+              </xs:complexContent>
             </xs:complexType>
           </xs:element>
         </xs:all>

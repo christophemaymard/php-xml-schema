@@ -62,7 +62,12 @@ class SimpleContentParserTest extends AbstractParserTestCase
             $sc
         );
         self::assertSimpleContentElementHasNoAttribute($sc);
-        self::assertSame([], $sc->getElements());
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -96,7 +101,12 @@ class SimpleContentParserTest extends AbstractParserTestCase
         self::assertElementNamespaceDeclarations([], $sc);
         self::assertSimpleContentElementHasOnlyIdAttribute($sc);
         self::assertSame($id, $sc->getId()->getId());
-        self::assertSame([], $sc->getElements());
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -126,12 +136,17 @@ class SimpleContentParserTest extends AbstractParserTestCase
         $sc = $ct->getContentElement();
         self::assertElementNamespaceDeclarations([], $sc);
         self::assertSimpleContentElementHasNoAttribute($sc);
-        self::assertCount(1, $sc->getElements());
+        self::assertCount(2, $sc->getElements());
         
         $ann = $sc->getAnnotationElement();
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**

@@ -281,11 +281,21 @@ class UnionParserTest extends AbstractParserTestCase
         
         self::assertElementNamespaceDeclarations([], $sts[0]);
         self::assertSimpleTypeElementHasNoAttribute($sts[0]);
-        self::assertSame([], $sts[0]->getElements());
+        self::assertCount(1, $sts[0]->getElements());
+        
+        $res1 = $sts[0]->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res1);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res1);
+        self::assertSame([], $res1->getElements());
         
         self::assertElementNamespaceDeclarations([], $sts[1]);
         self::assertSimpleTypeElementHasNoAttribute($sts[1]);
-        self::assertSame([], $sts[1]->getElements());
+        self::assertCount(1, $sts[1]->getElements());
+        
+        $res2 = $sts[1]->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res2);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res2);
+        self::assertSame([], $res2->getElements());
     }
     
     /**

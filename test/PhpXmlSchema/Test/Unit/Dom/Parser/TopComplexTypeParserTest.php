@@ -299,7 +299,12 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
         $sc = $ct->getContentElement();
         self::assertElementNamespaceDeclarations([], $sc);
         self::assertSimpleContentElementHasNoAttribute($sc);
-        self::assertSame([], $sc->getElements());
+        self::assertCount(1, $sc->getElements());
+        
+        $res = $sc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -329,7 +334,12 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
         $cc = $ct->getContentElement();
         self::assertElementNamespaceDeclarations([], $cc);
         self::assertComplexContentElementHasNoAttribute($cc);
-        self::assertSame([], $cc->getElements());
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**

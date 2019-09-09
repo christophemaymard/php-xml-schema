@@ -301,7 +301,12 @@ class TopAttributeParserTest extends AbstractParserTestCase
         $st = $attr->getSimpleTypeElement();
         self::assertElementNamespaceDeclarations([], $st);
         self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertSame([], $st->getElements());
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**

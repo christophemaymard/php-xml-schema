@@ -1,3 +1,5 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:simpleType final="union union"></xs:simpleType>
+    <xs:simpleType final="union union">
+      <xs:restriction></xs:restriction>
+    </xs:simpleType>
 </xs:schema>

@@ -62,7 +62,12 @@ class ComplexContentParserTest extends AbstractParserTestCase
             $cc
         );
         self::assertComplexContentElementHasNoAttribute($cc);
-        self::assertSame([], $cc->getElements());
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -96,7 +101,12 @@ class ComplexContentParserTest extends AbstractParserTestCase
         self::assertElementNamespaceDeclarations([], $cc);
         self::assertComplexContentElementHasOnlyIdAttribute($cc);
         self::assertSame($id, $cc->getId()->getId());
-        self::assertSame([], $cc->getElements());
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -130,7 +140,12 @@ class ComplexContentParserTest extends AbstractParserTestCase
         self::assertElementNamespaceDeclarations([], $cc);
         self::assertComplexContentElementHasOnlyMixedAttribute($cc);
         self::assertSame($bool, $cc->getMixed());
-        self::assertSame([], $cc->getElements());
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**
@@ -160,12 +175,17 @@ class ComplexContentParserTest extends AbstractParserTestCase
         $cc = $ct->getContentElement();
         self::assertElementNamespaceDeclarations([], $cc);
         self::assertComplexContentElementHasNoAttribute($cc);
-        self::assertCount(1, $cc->getElements());
+        self::assertCount(2, $cc->getElements());
         
         $ann = $cc->getAnnotationElement();
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**

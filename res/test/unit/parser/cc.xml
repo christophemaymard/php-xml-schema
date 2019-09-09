@@ -119,6 +119,18 @@
       <message>The "restriction" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
+  <test group="content" name="[complexContent][container] Empty content">
+    <schema fileName="container_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The content is invalid.</message>
+    </schema>
+  </test>
+  <test group="content" name="[complexContent][container] annotation">
+    <schema fileName="container_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The content is invalid.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

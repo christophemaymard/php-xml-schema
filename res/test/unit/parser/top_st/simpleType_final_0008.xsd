@@ -1,5 +1,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:simpleType final="			 restriction 
-   list
- "></xs:simpleType>
+   
+list
+ ">
+      <xs:restriction></xs:restriction>
+    </xs:simpleType>
 </xs:schema>

@@ -1,7 +1,11 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:attribute>
     <xs:simpleType id="  	  
-    foo_bar  	  
-    "></xs:simpleType>
+  
+  foo_bar  	  
+  
+  ">
+      <xs:restriction></xs:restriction>
+    </xs:simpleType>
   </xs:attribute>
 </xs:schema>

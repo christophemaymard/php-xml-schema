@@ -2,8 +2,12 @@
   <xs:complexType>
     <xs:simpleContent>
       <xs:restriction>
-        <xs:simpleType></xs:simpleType>
-        <xs:simpleType></xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction></xs:restriction>
+        </xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction></xs:restriction>
+        </xs:simpleType>
       </xs:restriction>
     </xs:simpleContent>
   </xs:complexType>

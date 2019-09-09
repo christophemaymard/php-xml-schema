@@ -270,7 +270,12 @@ class ListParserTest extends AbstractParserTestCase
         $st2 = $list->getSimpleTypeElement();
         self::assertElementNamespaceDeclarations([], $st2);
         self::assertSimpleTypeElementHasNoAttribute($st2);
-        self::assertSame([], $st2->getElements());
+        self::assertCount(1, $st2->getElements());
+        
+        $res = $st2->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
     }
     
     /**

@@ -2,6 +2,7 @@
   <xs:attribute>
     <xs:simpleType>
       <xs:annotation></xs:annotation>
+      <xs:restriction></xs:restriction>
     </xs:simpleType>
   </xs:attribute>
 </xs:schema>

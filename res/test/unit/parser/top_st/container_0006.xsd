@@ -1,6 +1,5 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:simpleType>
     <xs:annotation></xs:annotation>
-    <xs:restriction></xs:restriction>
   </xs:simpleType>
 </xs:schema>

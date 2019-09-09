@@ -2,6 +2,7 @@
   <xs:complexType>
     <xs:complexContent>
       <xs:annotation></xs:annotation>
+      <xs:restriction></xs:restriction>
     </xs:complexContent>
   </xs:complexType>
 </xs:schema>

@@ -1,6 +1,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:attribute>
     <xs:simpleType xmlns="http://example.org" xmlns:foo="http://example.org/foo">
+      <xs:restriction></xs:restriction>
     </xs:simpleType>
   </xs:attribute>
 </xs:schema>

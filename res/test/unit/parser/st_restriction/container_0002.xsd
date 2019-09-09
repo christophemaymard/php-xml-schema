@@ -2,8 +2,12 @@
   <xs:attribute>
     <xs:simpleType>
       <xs:restriction>
-        <xs:simpleType></xs:simpleType>
-        <xs:simpleType></xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction></xs:restriction>
+        </xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction></xs:restriction>
+        </xs:simpleType>
       </xs:restriction>
     </xs:simpleType>
   </xs:attribute>

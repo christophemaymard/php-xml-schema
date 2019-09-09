@@ -1,3 +1,5 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:simpleType final="restriction restriction"></xs:simpleType>
+    <xs:simpleType final="restriction restriction">
+      <xs:restriction></xs:restriction>
+    </xs:simpleType>
 </xs:schema>

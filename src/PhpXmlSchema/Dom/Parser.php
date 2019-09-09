@@ -145,10 +145,16 @@ class Parser
     
     /**
      * Finish parsing the current element.
+     * 
+     * @throws  InvalidOperationException   When the content is invalid.
      */
     private function finishParsingElement()
     {
         $this->builder->endElement();
+        
+        if (!$this->ctx->isContentValid()) {
+            throw new InvalidOperationException('The content is invalid.');
+        }
         
         $this->ctx = \array_pop($this->ctxStack);
     }
