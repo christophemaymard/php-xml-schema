@@ -720,6 +720,16 @@ interface SchemaBuilderInterface
     public function buildRestrictionElement();
     
     /**
+     * Builds a "selector" element.
+     * 
+     * If the current element supports the element then:
+     * - a new instance is created, and 
+     * - the created instance is added or set to the current element, and 
+     * - the created instance becomes the current element.
+     */
+    public function buildSelectorElement();
+    
+    /**
      * Builds a "simpleContent" element.
      * 
      * If the current element supports the element then:

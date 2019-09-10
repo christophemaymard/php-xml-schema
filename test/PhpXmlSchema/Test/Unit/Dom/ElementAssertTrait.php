@@ -36,6 +36,7 @@ use PhpXmlSchema\Dom\MinLengthElement;
 use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\PatternElement;
 use PhpXmlSchema\Dom\SchemaElement;
+use PhpXmlSchema\Dom\SelectorElement;
 use PhpXmlSchema\Dom\SimpleContentElement;
 use PhpXmlSchema\Dom\SimpleContentExtensionElement;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
@@ -2545,5 +2546,17 @@ trait ElementAssertTrait
     {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
+    }
+    
+    /**
+     * Asserts that the specified "selector" element has no attribute.
+     * 
+     * @param   SelectorElement $sut    The element to test.
+     */
+    public static function assertSelectorElementHasNoAttribute(
+        SelectorElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasXPath());
     }
 }

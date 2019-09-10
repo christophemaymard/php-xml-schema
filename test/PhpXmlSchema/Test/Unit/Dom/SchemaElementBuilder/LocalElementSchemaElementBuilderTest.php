@@ -79,6 +79,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
+    use BuildSelectorElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

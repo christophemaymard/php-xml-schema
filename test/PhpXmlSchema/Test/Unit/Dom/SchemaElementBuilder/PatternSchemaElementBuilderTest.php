@@ -90,6 +90,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
+    use BuildSelectorElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

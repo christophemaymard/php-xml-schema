@@ -90,6 +90,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
+    use BuildSelectorElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

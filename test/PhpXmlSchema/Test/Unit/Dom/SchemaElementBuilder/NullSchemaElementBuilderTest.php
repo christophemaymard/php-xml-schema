@@ -90,6 +90,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
+    use BuildSelectorElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

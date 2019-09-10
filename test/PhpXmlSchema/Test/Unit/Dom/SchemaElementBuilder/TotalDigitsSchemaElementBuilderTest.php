@@ -89,6 +89,7 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
+    use BuildSelectorElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

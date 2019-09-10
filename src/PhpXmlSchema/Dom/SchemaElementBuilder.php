@@ -1109,6 +1109,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildSelectorElement()
+    {
+        if ($this->currentElement instanceof UniqueElement) {
+            $elt = new SelectorElement();
+            $this->currentElement->setSelectorElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSimpleContentElement()
     {
         if ($this->currentElement instanceof ComplexTypeElement) {

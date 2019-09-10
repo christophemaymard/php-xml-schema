@@ -9,18 +9,17 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is the "annotation" element (composition).
+ * class when the current element is the "selector" element.
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BindNamespaceTestTrait;
     
@@ -28,12 +27,15 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
+    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
     use BuildCompositionAnnotationElementDoesNotCreateElementTestTrait;
+    use BuildAppInfoElementDoesNotCreateElementTestTrait;
     use BuildSourceAttributeDoesNotCreateAttributeTestTrait;
     use BuildLeafElementContentDoesNotCreateContentTestTrait;
+    use BuildDocumentationElementDoesNotCreateElementTestTrait;
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
@@ -99,10 +101,10 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     {
         self::assertAncestorsNotChanged($sch);
         
-        $ann = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertSame([], $ann->getElements());
+        $sel = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $sel);
+        self::assertSelectorElementHasNoAttribute($sel);
+        self::assertSame([], $sel->getElements());
     }
     
     /**
@@ -113,7 +115,52 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
-        self::assertCount(1, $sch->getCompositionAnnotationElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt1 = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt1);
+        self::assertElementElementHasNoAttribute($elt1);
+        self::assertCount(1, $elt1->getElements());
+        
+        $ct2 = $elt1->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        
+        $elt2 = $choice->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt2);
+        self::assertElementElementHasNoAttribute($elt2);
+        self::assertCount(1, $elt2->getElements());
+        
+        $unique = $elt2->getUniqueElements()[0];
+        self::assertElementNamespaceDeclarations([], $unique);
+        self::assertUniqueElementHasNoAttribute($unique);
+        self::assertCount(1, $unique->getElements());
+        self::assertTrue($unique->hasSelectorElement());
     }
     
     /**
@@ -121,7 +168,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
-        self::assertAnnotationElementHasNoAttribute(self::getCurrentElement($sch));
+        self::assertSelectorElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -129,7 +176,16 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
      */
     protected static function getCurrentElement(SchemaElement $sch)
     {
-        return $sch->getCompositionAnnotationElements()[0];
+        return $sch->getComplexTypeElements()[0]
+            ->getContentElement()
+            ->getDerivationElement()
+            ->getTypeDefinitionParticleElement()
+            ->getElementElements()[0]
+            ->getTypeElement()
+            ->getTypeDefinitionParticleElement()
+            ->getElementElements()[0]
+            ->getUniqueElements()[0]
+            ->getSelectorElement();
     }
     
     /**
@@ -138,7 +194,16 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     protected function setUp()
     {
         $this->sut = new SchemaElementBuilder();
-        $this->sut->buildCompositionAnnotationElement();
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildRestrictionElement();
+        $this->sut->buildAllElement();
+        $this->sut->buildElementElement();
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildChoiceElement();
+        $this->sut->buildElementElement();
+        $this->sut->buildUniqueElement();
+        $this->sut->buildSelectorElement();
     }
     
     /**
@@ -147,116 +212,5 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that buildIdAttribute() creates the attribute when the current 
-     * element is the "annotation" element (composition) and the value is 
-     * valid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $id     The expected value for the ID.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidIdValues
-     */
-    public function testBuildIdAttributeCreatesAttrWhenCompositionAnnotationAndValueIsValid(
-        string $value, 
-        string $id
-    ) {
-        $this->sut->buildIdAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $ann = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasOnlyIdAttribute($ann);
-        self::assertSame($id, $ann->getId()->getId());
-        self::assertSame([], $ann->getElements());
-    }
-    
-    /**
-     * Tests that buildIdAttribute() throws an exception when the current 
-     * element is the "annotation" element (composition) and the value is 
-     * invalid.
-     * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getInvalidIdValues
-     */
-    public function testBuildIdAttributeThrowsExceptionWhenCompositionAnnotationAndValueIsInvalid(
-        string $value, 
-        string $message
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
-        
-        $this->sut->buildIdAttribute($value);
-    }
-    
-    /**
-     * Tests that buildAppInfoElement() creates the element when the current 
-     * element is the "annotation" element (composition).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildAppInfoElementCreateEltWhenCompositionAnnotation()
-    {
-        $this->sut->buildAppInfoElement();
-        $this->sut->endElement();
-        $this->sut->buildAppInfoElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $ann = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        $appinfos = $ann->getAppInfoElements();
-        self::assertCount(2, $appinfos);
-        
-        self::assertElementNamespaceDeclarations([], $appinfos[0]);
-        self::assertAppInfoElementHasNoAttribute($appinfos[0]);
-        self::assertSame('', $appinfos[0]->getContent());
-        
-        self::assertElementNamespaceDeclarations([], $appinfos[1]);
-        self::assertAppInfoElementHasNoAttribute($appinfos[1]);
-        self::assertSame('', $appinfos[1]->getContent());
-    }
-    
-    /**
-     * Tests that buildDocumentationElement() creates the element when the 
-     * current element is the "annotation" element (composition).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildDocumentationElementCreateEltWhenCompositionAnnotation()
-    {
-        $this->sut->buildDocumentationElement();
-        $this->sut->endElement();
-        $this->sut->buildDocumentationElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $ann = self::getCurrentElement($sch);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        $docs = $ann->getDocumentationElements();
-        self::assertCount(2, $docs);
-        
-        self::assertElementNamespaceDeclarations([], $docs[0]);
-        self::assertDocumentationElementHasNoAttribute($docs[0]);
-        self::assertSame('', $docs[0]->getContent());
-        
-        self::assertElementNamespaceDeclarations([], $docs[1]);
-        self::assertDocumentationElementHasNoAttribute($docs[1]);
-        self::assertSame('', $docs[1]->getContent());
     }
 }
