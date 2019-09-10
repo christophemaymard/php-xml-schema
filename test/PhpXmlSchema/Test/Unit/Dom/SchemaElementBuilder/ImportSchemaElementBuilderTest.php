@@ -88,6 +88,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
+    use BuildUniqueElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

@@ -88,6 +88,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
+    use BuildUniqueElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

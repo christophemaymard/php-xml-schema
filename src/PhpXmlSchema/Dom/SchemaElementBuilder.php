@@ -1180,6 +1180,20 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildUniqueElement()
+    {
+        if ($this->currentElement instanceof ElementElement && 
+            !$this->currentElement->getParent() instanceof AllElement
+        ) {
+            $elt = new UniqueElement();
+            $this->currentElement->addUniqueElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildWhiteSpaceElement()
     {
         if ($this->currentElement instanceof ElementInterface) {

@@ -87,6 +87,7 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
+    use BuildUniqueElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

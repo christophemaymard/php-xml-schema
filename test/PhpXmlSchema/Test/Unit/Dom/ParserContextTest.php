@@ -689,6 +689,7 @@ class ParserContextTest extends TestCase
             public function buildSimpleTypeElement() {}
             public function buildTotalDigitsElement() {}
             public function buildUnionElement() {}
+            public function buildUniqueElement() {}
             public function buildWhiteSpaceElement() {}
             public function buildSchemaElement() {}
             

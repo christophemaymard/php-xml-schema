@@ -1173,4 +1173,36 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertComplexTypeElementHasNoAttribute($ct);
         self::assertSame([], $ct->getElements());
     }
+    
+    /**
+     * Tests that buildUniqueElement() creates the element when the current 
+     * element is the "element" element (localElement).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildUniqueElementCreateEltWhenLocalElement()
+    {
+        $this->sut->buildUniqueElement();
+        $this->sut->endElement();
+        $this->sut->buildUniqueElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(2, $elt->getElements());
+        
+        $uniques = $elt->getUniqueElements();
+        
+        self::assertElementNamespaceDeclarations([], $uniques[0]);
+        self::assertUniqueElementHasNoAttribute($uniques[0]);
+        self::assertSame([], $uniques[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $uniques[1]);
+        self::assertUniqueElementHasNoAttribute($uniques[1]);
+        self::assertSame([], $uniques[1]->getElements());
+    }
 }

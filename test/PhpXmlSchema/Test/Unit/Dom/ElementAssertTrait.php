@@ -43,6 +43,7 @@ use PhpXmlSchema\Dom\SimpleTypeElement;
 use PhpXmlSchema\Dom\SimpleTypeRestrictionElement;
 use PhpXmlSchema\Dom\TotalDigitsElement;
 use PhpXmlSchema\Dom\UnionElement;
+use PhpXmlSchema\Dom\UniqueElement;
 use PhpXmlSchema\Dom\WhiteSpaceElement;
 
 /**
@@ -2533,5 +2534,16 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertTrue($sut->hasMinOccurs());
+    }
+    
+    /**
+     * Asserts that the specified "unique" element has no attribute.
+     * 
+     * @param   UniqueElement   $sut    The element to test.
+     */
+    public static function assertUniqueElementHasNoAttribute(UniqueElement $sut)
+    {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
     }
 }
