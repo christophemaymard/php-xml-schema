@@ -39,7 +39,6 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
@@ -356,5 +355,30 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->expectExceptionMessage($message);
         
         $this->sut->buildNameAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "unique" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenUnique()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $unique = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $unique);
+        self::assertUniqueElementHasNoAttribute($unique);
+        self::assertCount(1, $unique->getElements());
+        
+        $ann = $unique->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
