@@ -392,6 +392,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_ELEMENT:
                     $this->currentElement->setName($this->parseNCName($value));
                     break;
+                case ElementId::ELT_UNIQUE:
+                    $this->currentElement->setName($this->parseNCName($value));
+                    break;
             }
             
         }

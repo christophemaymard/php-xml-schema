@@ -42,7 +42,6 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
-    use BuildNameAttributeDoesNotCreateAttributeTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
@@ -309,5 +308,53 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->expectExceptionMessage($message);
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildNameAttribute() creates the attribute when the current 
+     * element is the "unique" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $name   The expected value for the name.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNCNameValues
+     */
+    public function testBuildNameAttributeCreatesAttrWhenUniqueAndValueIsValid(
+        string $value, 
+        string $name
+    ) {
+        $this->sut->buildNameAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $unique = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $unique);
+        self::assertUniqueElementHasOnlyNameAttribute($unique);
+        self::assertSame($name, $unique->getName()->getNCName());
+        self::assertSame([], $unique->getElements());
+    }
+    
+    /**
+     * Tests that buildNameAttribute() throws an exception when the current 
+     * element is the "unique" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNCNameValues
+     */
+    public function testBuildNameAttributeThrowsExceptionWhenUniqueAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildNameAttribute($value);
     }
 }
