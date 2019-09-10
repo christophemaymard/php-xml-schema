@@ -1266,6 +1266,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_UNIQUE => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'name', '', 'buildNameAttribute', ], 
         ], 
     ];
     
