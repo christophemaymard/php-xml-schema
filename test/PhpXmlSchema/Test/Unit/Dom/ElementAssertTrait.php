@@ -2588,6 +2588,19 @@ trait ElementAssertTrait
     }
     
     /**
+     * Asserts that the specified "selector" element has only the "id" 
+     * attribute.
+     * 
+     * @param   SelectorElement $sut    The element to test.
+     */
+    public static function assertSelectorElementHasOnlyIdAttribute(
+        SelectorElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasXPath());
+    }
+    
+    /**
      * Asserts that the specified "field" element has no attribute.
      * 
      * @param   FieldElement    $sut    The element to test.
