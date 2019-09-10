@@ -1280,6 +1280,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_UNIQUE
             [ 42, 'id', '', 'buildIdAttribute', ], 
             [ 42, 'name', '', 'buildNameAttribute', ], 
+            // Context: ELT_SELECTOR
+            [ 43, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

@@ -1271,6 +1271,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
         ], 
+        ContextId::ELT_SELECTOR => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
