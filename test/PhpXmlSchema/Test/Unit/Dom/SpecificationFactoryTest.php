@@ -221,6 +221,9 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, ], // ELT_LOCAL_COMPLEXTYPE
             [ 40, 0, ], // ELT_EXPLICIT_CHOICE
             [ 41, 0, ], // ELT_LOCAL_ELEMENT
+            [ 42, 0, ], // ELT_UNIQUE
+            [ 43, 0, ], // ELT_SELECTOR
+            [ 44, 0, ], // ELT_FIELD
         ];
     }
     
@@ -272,6 +275,9 @@ class SpecificationFactoryTest extends TestCase
             [ 39, [ 0, 1, 2, 3, ], ], // ELT_LOCAL_COMPLEXTYPE
             [ 40, [ 0, 1, ], ], // ELT_EXPLICIT_CHOICE
             [ 41, [ 0, 1, 2, ], ], // ELT_LOCAL_ELEMENT
+            [ 42, [ 3, ], ], // ELT_UNIQUE
+            [ 43, [ 0, ], ], // ELT_SELECTOR
+            [ 44, [ 0, ], ], // ELT_FIELD
         ];
     }
     
@@ -532,8 +538,16 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 41, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 0, 39, 'complexType', ], // ELT_LOCAL_COMPLEXTYPE
+            [ 41, 0, 42, 'unique', ], // ELT_UNIQUE
             [ 41, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 1, 39, 'complexType', ], // ELT_LOCAL_COMPLEXTYPE
+            [ 41, 1, 42, 'unique', ], // ELT_UNIQUE
+            [ 41, 2, 42, 'unique', ], // ELT_UNIQUE
+            // Context: ELT_UNIQUE
+            [ 42, 0, 43, 'selector', ], // ELT_SELECTOR
+            [ 42, 1, 43, 'selector', ], // ELT_SELECTOR
+            [ 42, 2, 44, 'field', ], // ELT_FIELD
+            [ 42, 3, 44, 'field', ], // ELT_FIELD
         ];
     }
     
@@ -794,8 +808,16 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 41, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 0, 39, 'buildComplexTypeElement', ], // ELT_LOCAL_COMPLEXTYPE
+            [ 41, 0, 42, 'buildUniqueElement', ], // ELT_UNIQUE
             [ 41, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 1, 39, 'buildComplexTypeElement', ], // ELT_LOCAL_COMPLEXTYPE
+            [ 41, 1, 42, 'buildUniqueElement', ], // ELT_UNIQUE
+            [ 41, 2, 42, 'buildUniqueElement', ], // ELT_UNIQUE
+            // Context: ELT_UNIQUE
+            [ 42, 0, 43, 'buildSelectorElement', ], // ELT_SELECTOR
+            [ 42, 1, 43, 'buildSelectorElement', ], // ELT_SELECTOR
+            [ 42, 2, 44, 'buildFieldElement', ], // ELT_FIELD
+            [ 42, 3, 44, 'buildFieldElement', ], // ELT_FIELD
         ];
     }
     
@@ -1056,8 +1078,16 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 0, 2, 1, ], // ELT_ANNOTATION
             [ 41, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 0, 39, 2, ], // ELT_LOCAL_COMPLEXTYPE
+            [ 41, 0, 42, 2, ], // ELT_UNIQUE
             [ 41, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 1, 39, 2, ], // ELT_LOCAL_COMPLEXTYPE
+            [ 41, 1, 42, 2, ], // ELT_UNIQUE
+            [ 41, 2, 42, 2, ], // ELT_UNIQUE
+            // Context: ELT_UNIQUE
+            [ 42, 0, 43, 2, ], // ELT_SELECTOR
+            [ 42, 1, 43, 2, ], // ELT_SELECTOR
+            [ 42, 2, 44, 3, ], // ELT_FIELD
+            [ 42, 3, 44, 3, ], // ELT_FIELD
         ];
     }
     

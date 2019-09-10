@@ -1,0 +1,41 @@
+<testSet>
+  <!-- selector -->
+  <test group="attribute" name="[selector] unsupported attribute from no namespace">
+    <schema fileName="selector_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from no namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[selector] unsupported attribute from XML 1.0 namespace">
+    <schema fileName="selector_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from http://www.w3.org/XML/1998/namespace namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[selector] unsupported attribute from other namespace">
+    <schema fileName="selector_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "bar" attribute (from http://example.org namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="content" name="[selector] node not white space neither comment">
+    <schema fileName="selector_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The node is not allowed ("foo").</message>
+    </schema>
+  </test>
+  <test group="content" name="[selector] foo child element is not supported">
+    <schema fileName="selector_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
+    </schema>
+  </test>
+  <!-- TEMPLATE
+  <test group="attribute|content" name="">
+    <schema fileName=".xsd">
+      <exception></exception>
+      <message></message>
+    </schema>
+  </test>
+  -->
+</testSet>

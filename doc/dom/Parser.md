@@ -675,9 +675,62 @@
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
 - [x] Parse **complexType** element (localComplexType).
-- [ ] Parse **unique** elements.
+- [x] Parse **unique** elements.
 - [ ] Parse **key** elements.
 - [ ] Parse **keyref** elements.
+
+## Element: "unique"
+
+```
+<unique
+  id = ID
+  name = NCName
+>
+  Content: (annotation?, (selector, field+))
+</unique>
+```
+
+- [x] Parse **unique** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [x] Parse **selector** element.
+- [x] Parse **field** elements.
+
+## Element: "selector"
+
+```
+<selector
+  id = ID
+  xpath = a subset of XPath expression
+>
+  Content: (annotation?)
+</selector>
+```
+
+- [x] Parse **selector** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **xpath** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+
+## Element: "field"
+
+```
+<field
+  id = ID
+  xpath = a subset of XPath expression
+>
+  Content: (annotation?)
+</field>
+```
+
+- [x] Parse **field** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **xpath** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
 ## Element: "minExclusive"
 

@@ -56,4 +56,7 @@ class ContextId
     const ELT_LOCAL_COMPLEXTYPE = 39;
     const ELT_EXPLICIT_CHOICE = 40;
     const ELT_LOCAL_ELEMENT = 41;
+    const ELT_UNIQUE = 42;
+    const ELT_SELECTOR = 43;
+    const ELT_FIELD = 44;
 }
