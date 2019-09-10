@@ -1274,6 +1274,8 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 'nillable', '', 'buildNillableAttribute', ], 
             [ 41, 'ref', '', 'buildRefAttribute', ], 
             [ 41, 'type', '', 'buildTypeAttribute', ], 
+            // Context: ELT_UNIQUE
+            [ 42, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

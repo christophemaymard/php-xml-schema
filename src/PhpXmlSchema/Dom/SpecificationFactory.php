@@ -1264,6 +1264,9 @@ class SpecificationFactory
             [ 'ref', '', 'buildRefAttribute', ], 
             [ 'type', '', 'buildTypeAttribute', ], 
         ], 
+        ContextId::ELT_UNIQUE => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
