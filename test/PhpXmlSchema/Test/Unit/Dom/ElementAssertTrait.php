@@ -2550,6 +2550,19 @@ trait ElementAssertTrait
     }
     
     /**
+     * Asserts that the specified "unique" element has only the "id" 
+     * attribute.
+     * 
+     * @param   UniqueElement   $sut    The element to test.
+     */
+    public static function assertUniqueElementHasOnlyIdAttribute(
+        UniqueElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasName());
+    }
+    
+    /**
      * Asserts that the specified "selector" element has no attribute.
      * 
      * @param   SelectorElement $sut    The element to test.
