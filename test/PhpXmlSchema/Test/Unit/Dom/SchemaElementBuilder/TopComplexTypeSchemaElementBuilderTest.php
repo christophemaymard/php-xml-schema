@@ -86,6 +86,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
+    use BuildFieldElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

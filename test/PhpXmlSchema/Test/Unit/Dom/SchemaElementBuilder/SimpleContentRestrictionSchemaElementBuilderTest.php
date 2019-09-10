@@ -77,6 +77,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
+    use BuildFieldElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

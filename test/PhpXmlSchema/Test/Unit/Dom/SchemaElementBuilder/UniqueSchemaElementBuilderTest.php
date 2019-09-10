@@ -230,4 +230,36 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertSelectorElementHasNoAttribute($sel);
         self::assertSame([], $sel->getElements());
     }
+    
+    /**
+     * Tests that buildFieldElement() creates the element when the current 
+     * element is the "unique" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildFieldElementCreateEltWhenUnique()
+    {
+        $this->sut->buildFieldElement();
+        $this->sut->endElement();
+        $this->sut->buildFieldElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $unique = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $unique);
+        self::assertUniqueElementHasNoAttribute($unique);
+        self::assertCount(2, $unique->getElements());
+        
+        $fields = $unique->getFieldElements();
+        
+        self::assertElementNamespaceDeclarations([], $fields[0]);
+        self::assertFieldElementHasNoAttribute($fields[0]);
+        self::assertSame([], $fields[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $fields[1]);
+        self::assertFieldElementHasNoAttribute($fields[1]);
+        self::assertSame([], $fields[1]->getElements());
+    }
 }

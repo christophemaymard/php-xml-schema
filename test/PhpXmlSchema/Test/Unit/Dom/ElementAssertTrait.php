@@ -21,6 +21,7 @@ use PhpXmlSchema\Dom\DocumentationElement;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\ElementElement;
 use PhpXmlSchema\Dom\EnumerationElement;
+use PhpXmlSchema\Dom\FieldElement;
 use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\ImportElement;
@@ -2556,6 +2557,17 @@ trait ElementAssertTrait
     public static function assertSelectorElementHasNoAttribute(
         SelectorElement $sut
     ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasXPath());
+    }
+    
+    /**
+     * Asserts that the specified "field" element has no attribute.
+     * 
+     * @param   FieldElement    $sut    The element to test.
+     */
+    public static function assertFieldElementHasNoAttribute(FieldElement $sut)
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasXPath());
     }
