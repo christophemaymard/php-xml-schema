@@ -653,6 +653,7 @@ class ParserContextTest extends TestCase
             public function buildUseAttribute(string $value) {}
             public function buildValueAttribute(string $value) {}
             public function buildVersionAttribute(string $value) {}
+            public function buildXPathAttribute(string $value) {}
             public function buildLangAttribute(string $value) {}
             
             public function buildAllElement() {}

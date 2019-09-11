@@ -262,4 +262,51 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         
         $this->sut->buildIdAttribute($value);
     }
+    
+    /**
+     * Tests that buildXPathAttribute() creates the attribute when the current 
+     * element is the "selector" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidSelectorXPathValues
+     */
+    public function testBuildXPathAttributeCreatesAttrWhenSelectorAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildXPathAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $sel = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $sel);
+        self::assertSelectorElementHasOnlyXPathAttribute($sel);
+        self::assertSame($value, $sel->getXPath()->getXPath());
+        self::assertSame([], $sel->getElements());
+    }
+    
+    /**
+     * Tests that buildXPathAttribute() throws an exception when the current 
+     * element is the "selector" element and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidSelectorXPathValues
+     */
+    public function testBuildXPathAttributeThrowsExceptionWhenSelectorAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid XPath expression for a "selector" element.', 
+            $value
+        ));
+        
+        $this->sut->buildXPathAttribute($value);
+    }
 }

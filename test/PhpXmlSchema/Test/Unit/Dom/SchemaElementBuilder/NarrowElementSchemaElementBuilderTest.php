@@ -82,6 +82,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
+    use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}
