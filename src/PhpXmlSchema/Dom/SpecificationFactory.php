@@ -1273,6 +1273,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_SELECTOR => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'xpath', '', 'buildXPathAttribute', ], 
         ], 
     ];
     

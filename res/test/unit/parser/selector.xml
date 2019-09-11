@@ -73,6 +73,43 @@
       <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
     </schema>
   </test>
+  <!-- selector::xpath -->
+  <test group="attribute" name="[selector][attribute::xpath] Empty string">
+    <schema fileName="selector_xpath_0162.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: "" is an invalid XPath expression for a "selector" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[selector][attribute::xpath] child::">
+    <schema fileName="selector_xpath_0163.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: "child::" is an invalid XPath expression for a "selector" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[selector][attribute::xpath] child::.">
+    <schema fileName="selector_xpath_0164.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: "child::." is an invalid XPath expression for a "selector" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[selector][attribute::xpath] .//">
+    <schema fileName="selector_xpath_0165.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: ".//" is an invalid XPath expression for a "selector" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[selector][attribute::xpath] .//.//QName">
+    <schema fileName="selector_xpath_0166.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: ".//.//q1:name1" is an invalid XPath expression for a "selector" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[selector][attribute::xpath] .//QName/.//QName">
+    <schema fileName="selector_xpath_0167.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: ".//q1:name1/.//q2:name2" is an invalid XPath expression for a "selector" element.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
