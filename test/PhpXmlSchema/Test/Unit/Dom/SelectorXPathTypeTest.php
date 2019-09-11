@@ -23,47 +23,6 @@ use PhpXmlSchema\Exception\InvalidValueException;
 class SelectorXPathTypeTest extends TestCase
 {
     /**
-     * Returns a set of valid "Step" values.
-     * 
-     * @param   string  $suffix
-     * @return  array[]
-     */
-    private static function getValidStepValues(string $suffix):array
-    {
-        return [
-            // Step '.'.
-            '.' => [
-                '.',
-            ],
-            
-            // Nametests.
-            
-            'QName' => [
-                'q'.$suffix.':name'.$suffix,
-            ],
-            '*' => [
-                '*',
-            ],
-            'NCName:*' => [
-                'n'.$suffix.':*',
-            ],
-            
-            // Nametests with child axis.
-            
-            'child::QName' => [
-                'child::q'.$suffix.':name'.$suffix,
-            ],
-            'child::*' => [
-                'child::*',
-            ],
-            'child::NCName:*' => [
-                'child::n'.$suffix.':*',
-            ],
-            
-        ];
-    }
-    
-    /**
      * Tests that __construct() stores the expression when it is valid.
      * 
      * @param   string  $expr   The expression to test.
@@ -100,39 +59,496 @@ class SelectorXPathTypeTest extends TestCase
      */
     public function getValidValues():array
     {
-        $steps1 = self::getValidStepValues('1');
-        
-        // 1 path (with 1 step).
-        $datasets = $steps1;
-        
-        $steps2 = self::getValidStepValues('2');
-        
-        // 1 path (with 2 steps separated by '/').
-        foreach ($steps1 as $name1 => $dataset1) {
-            foreach ($steps2 as $name2 => $dataset2) {
-                $datasets[$name1.'/'.$name2] = [ $dataset1[0].'/'.$dataset2[0], ];
-            }
-        }
-        
-        // 1 path (with 1 step) starts with './/'.
-        foreach ($steps1 as $name => $dataset) {
-            $datasets['.//'.$name] = [ './/'.$dataset[0], ];
-        }
-        
-        // 1 path (with 2 steps separated by '/') starts with './/' (USELESS TESTS).
-        
-        // 1 path (with 1 step) and 1 path (with 1 step) separated by '|'.
-        foreach ($steps1 as $name1 => $dataset1) {
-            foreach ($steps2 as $name2 => $dataset2) {
-                $datasets[$name1.'|'.$name2] = [ $dataset1[0].'|'.$dataset2[0], ];
-            }
-        }
-        
-        // 1 path (with 2 steps separated by '/') and 1 path (with 1 step) separated by '|' (USELESS TESTS).
-        
-        // 1 path (with 1 step) and 1 path (with 2 steps separated by '/') separated by '|' (USELESS TESTS).
-        
-        return $datasets;
+        return [
+            // 1 path (with 1 step).
+            '1 path (1 step .)' =>[
+                '.', 
+            ], 
+            '1 path (1 step QName)' =>[
+                'q1:name1', 
+            ], 
+            '1 path (1 step *)' =>[
+                '*', 
+            ], 
+            '1 path (1 step NCName:*)' =>[
+                'n1:*', 
+            ], 
+            '1 path (1 step child::QName)' =>[
+                'child::q1:name1', 
+            ], 
+            '1 path (1 step child::*)' =>[
+                'child::*', 
+            ], 
+            '1 path (1 step child::NCName:*)' =>[
+                'child::n1:*', 
+            ], 
+            // 1 path (with 2 steps separated by /).
+            '1 path (1 step . and 1 step . separated by /)' =>[
+                './.', 
+            ], 
+            '1 path (1 step . and 1 step QName separated by /)' =>[
+                './q2:name2', 
+            ], 
+            '1 path (1 step . and 1 step * separated by /)' =>[
+                './*', 
+            ], 
+            '1 path (1 step . and 1 step NCName:* separated by /)' =>[
+                './n2:*', 
+            ], 
+            '1 path (1 step . and 1 step child::QName separated by /)' =>[
+                './child::q2:name2', 
+            ], 
+            '1 path (1 step . and 1 step child::* separated by /)' =>[
+                './child::*', 
+            ], 
+            '1 path (1 step . and 1 step child::NCName:* separated by /)' =>[
+                './child::n2:*', 
+            ], 
+            '1 path (1 step QName and 1 step . separated by /)' =>[
+                'q1:name1/.', 
+            ], 
+            '1 path (1 step QName and 1 step QName separated by /)' =>[
+                'q1:name1/q2:name2', 
+            ], 
+            '1 path (1 step QName and 1 step * separated by /)' =>[
+                'q1:name1/*', 
+            ], 
+            '1 path (1 step QName and 1 step NCName:* separated by /)' =>[
+                'q1:name1/n2:*', 
+            ], 
+            '1 path (1 step QName and 1 step child::QName separated by /)' =>[
+                'q1:name1/child::q2:name2', 
+            ], 
+            '1 path (1 step QName and 1 step child::* separated by /)' =>[
+                'q1:name1/child::*', 
+            ], 
+            '1 path (1 step QName and 1 step child::NCName:* separated by /)' =>[
+                'q1:name1/child::n2:*', 
+            ], 
+            '1 path (1 step * and 1 step . separated by /)' =>[
+                '*/.', 
+            ], 
+            '1 path (1 step * and 1 step QName separated by /)' =>[
+                '*/q2:name2', 
+            ], 
+            '1 path (1 step * and 1 step * separated by /)' =>[
+                '*/*', 
+            ], 
+            '1 path (1 step * and 1 step NCName:* separated by /)' =>[
+                '*/n2:*', 
+            ], 
+            '1 path (1 step * and 1 step child::QName separated by /)' =>[
+                '*/child::q2:name2', 
+            ], 
+            '1 path (1 step * and 1 step child::* separated by /)' =>[
+                '*/child::*', 
+            ], 
+            '1 path (1 step * and 1 step child::NCName:* separated by /)' =>[
+                '*/child::n2:*', 
+            ], 
+            '1 path (1 step NCName:* and 1 step . separated by /)' =>[
+                'n1:*/.', 
+            ], 
+            '1 path (1 step NCName:* and 1 step QName separated by /)' =>[
+                'n1:*/q2:name2', 
+            ], 
+            '1 path (1 step NCName:* and 1 step * separated by /)' =>[
+                'n1:*/*', 
+            ], 
+            '1 path (1 step NCName:* and 1 step NCName:* separated by /)' =>[
+                'n1:*/n2:*', 
+            ], 
+            '1 path (1 step NCName:* and 1 step child::QName separated by /)' =>[
+                'n1:*/child::q2:name2', 
+            ], 
+            '1 path (1 step NCName:* and 1 step child::* separated by /)' =>[
+                'n1:*/child::*', 
+            ], 
+            '1 path (1 step NCName:* and 1 step child::NCName:* separated by /)' =>[
+                'n1:*/child::n2:*', 
+            ], 
+            '1 path (1 step child::QName and 1 step . separated by /)' =>[
+                'child::q1:name1/.', 
+            ], 
+            '1 path (1 step child::QName and 1 step QName separated by /)' =>[
+                'child::q1:name1/q2:name2', 
+            ], 
+            '1 path (1 step child::QName and 1 step * separated by /)' =>[
+                'child::q1:name1/*', 
+            ], 
+            '1 path (1 step child::QName and 1 step NCName:* separated by /)' =>[
+                'child::q1:name1/n2:*', 
+            ], 
+            '1 path (1 step child::QName and 1 step child::QName separated by /)' =>[
+                'child::q1:name1/child::q2:name2', 
+            ], 
+            '1 path (1 step child::QName and 1 step child::* separated by /)' =>[
+                'child::q1:name1/child::*', 
+            ], 
+            '1 path (1 step child::QName and 1 step child::NCName:* separated by /)' =>[
+                'child::q1:name1/child::n2:*', 
+            ], 
+            '1 path (1 step child::* and 1 step . separated by /)' =>[
+                'child::*/.', 
+            ], 
+            '1 path (1 step child::* and 1 step QName separated by /)' =>[
+                'child::*/q2:name2', 
+            ], 
+            '1 path (1 step child::* and 1 step * separated by /)' =>[
+                'child::*/*', 
+            ], 
+            '1 path (1 step child::* and 1 step NCName:* separated by /)' =>[
+                'child::*/n2:*', 
+            ], 
+            '1 path (1 step child::* and 1 step child::QName separated by /)' =>[
+                'child::*/child::q2:name2', 
+            ], 
+            '1 path (1 step child::* and 1 step child::* separated by /)' =>[
+                'child::*/child::*', 
+            ], 
+            '1 path (1 step child::* and 1 step child::NCName:* separated by /)' =>[
+                'child::*/child::n2:*', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step . separated by /)' =>[
+                'child::n1:*/.', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step QName separated by /)' =>[
+                'child::n1:*/q2:name2', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step * separated by /)' =>[
+                'child::n1:*/*', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step NCName:* separated by /)' =>[
+                'child::n1:*/n2:*', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step child::QName separated by /)' =>[
+                'child::n1:*/child::q2:name2', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step child::* separated by /)' =>[
+                'child::n1:*/child::*', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step child::NCName:* separated by /)' =>[
+                'child::n1:*/child::n2:*', 
+            ], 
+            // 1 path (with 1 step) starts with .//.
+            '1 path (1 step .) starts with .//' =>[
+                './/.', 
+            ], 
+            '1 path (1 step QName) starts with .//' =>[
+                './/q1:name1', 
+            ], 
+            '1 path (1 step *) starts with .//' =>[
+                './/*', 
+            ], 
+            '1 path (1 step NCName:*) starts with .//' =>[
+                './/n1:*', 
+            ], 
+            '1 path (1 step child::QName) starts with .//' =>[
+                './/child::q1:name1', 
+            ], 
+            '1 path (1 step child::*) starts with .//' =>[
+                './/child::*', 
+            ], 
+            '1 path (1 step child::NCName:*) starts with .//' =>[
+                './/child::n1:*', 
+            ], 
+            // 1 path (with 2 steps separated by /) starts with .//.
+            '1 path (1 step . and 1 step . separated by /) starts with .//' =>[
+                './/./.', 
+            ], 
+            '1 path (1 step . and 1 step QName separated by /) starts with .//' =>[
+                './/./q2:name2', 
+            ], 
+            '1 path (1 step . and 1 step * separated by /) starts with .//' =>[
+                './/./*', 
+            ], 
+            '1 path (1 step . and 1 step NCName:* separated by /) starts with .//' =>[
+                './/./n2:*', 
+            ], 
+            '1 path (1 step . and 1 step child::QName separated by /) starts with .//' =>[
+                './/./child::q2:name2', 
+            ], 
+            '1 path (1 step . and 1 step child::* separated by /) starts with .//' =>[
+                './/./child::*', 
+            ], 
+            '1 path (1 step . and 1 step child::NCName:* separated by /) starts with .//' =>[
+                './/./child::n2:*', 
+            ], 
+            '1 path (1 step QName and 1 step . separated by /) starts with .//' =>[
+                './/q1:name1/.', 
+            ], 
+            '1 path (1 step QName and 1 step QName separated by /) starts with .//' =>[
+                './/q1:name1/q2:name2', 
+            ], 
+            '1 path (1 step QName and 1 step * separated by /) starts with .//' =>[
+                './/q1:name1/*', 
+            ], 
+            '1 path (1 step QName and 1 step NCName:* separated by /) starts with .//' =>[
+                './/q1:name1/n2:*', 
+            ], 
+            '1 path (1 step QName and 1 step child::QName separated by /) starts with .//' =>[
+                './/q1:name1/child::q2:name2', 
+            ], 
+            '1 path (1 step QName and 1 step child::* separated by /) starts with .//' =>[
+                './/q1:name1/child::*', 
+            ], 
+            '1 path (1 step QName and 1 step child::NCName:* separated by /) starts with .//' =>[
+                './/q1:name1/child::n2:*', 
+            ], 
+            '1 path (1 step * and 1 step . separated by /) starts with .//' =>[
+                './/*/.', 
+            ], 
+            '1 path (1 step * and 1 step QName separated by /) starts with .//' =>[
+                './/*/q2:name2', 
+            ], 
+            '1 path (1 step * and 1 step * separated by /) starts with .//' =>[
+                './/*/*', 
+            ], 
+            '1 path (1 step * and 1 step NCName:* separated by /) starts with .//' =>[
+                './/*/n2:*', 
+            ], 
+            '1 path (1 step * and 1 step child::QName separated by /) starts with .//' =>[
+                './/*/child::q2:name2', 
+            ], 
+            '1 path (1 step * and 1 step child::* separated by /) starts with .//' =>[
+                './/*/child::*', 
+            ], 
+            '1 path (1 step * and 1 step child::NCName:* separated by /) starts with .//' =>[
+                './/*/child::n2:*', 
+            ], 
+            '1 path (1 step NCName:* and 1 step . separated by /) starts with .//' =>[
+                './/n1:*/.', 
+            ], 
+            '1 path (1 step NCName:* and 1 step QName separated by /) starts with .//' =>[
+                './/n1:*/q2:name2', 
+            ], 
+            '1 path (1 step NCName:* and 1 step * separated by /) starts with .//' =>[
+                './/n1:*/*', 
+            ], 
+            '1 path (1 step NCName:* and 1 step NCName:* separated by /) starts with .//' =>[
+                './/n1:*/n2:*', 
+            ], 
+            '1 path (1 step NCName:* and 1 step child::QName separated by /) starts with .//' =>[
+                './/n1:*/child::q2:name2', 
+            ], 
+            '1 path (1 step NCName:* and 1 step child::* separated by /) starts with .//' =>[
+                './/n1:*/child::*', 
+            ], 
+            '1 path (1 step NCName:* and 1 step child::NCName:* separated by /) starts with .//' =>[
+                './/n1:*/child::n2:*', 
+            ], 
+            '1 path (1 step child::QName and 1 step . separated by /) starts with .//' =>[
+                './/child::q1:name1/.', 
+            ], 
+            '1 path (1 step child::QName and 1 step QName separated by /) starts with .//' =>[
+                './/child::q1:name1/q2:name2', 
+            ], 
+            '1 path (1 step child::QName and 1 step * separated by /) starts with .//' =>[
+                './/child::q1:name1/*', 
+            ], 
+            '1 path (1 step child::QName and 1 step NCName:* separated by /) starts with .//' =>[
+                './/child::q1:name1/n2:*', 
+            ], 
+            '1 path (1 step child::QName and 1 step child::QName separated by /) starts with .//' =>[
+                './/child::q1:name1/child::q2:name2', 
+            ], 
+            '1 path (1 step child::QName and 1 step child::* separated by /) starts with .//' =>[
+                './/child::q1:name1/child::*', 
+            ], 
+            '1 path (1 step child::QName and 1 step child::NCName:* separated by /) starts with .//' =>[
+                './/child::q1:name1/child::n2:*', 
+            ], 
+            '1 path (1 step child::* and 1 step . separated by /) starts with .//' =>[
+                './/child::*/.', 
+            ], 
+            '1 path (1 step child::* and 1 step QName separated by /) starts with .//' =>[
+                './/child::*/q2:name2', 
+            ], 
+            '1 path (1 step child::* and 1 step * separated by /) starts with .//' =>[
+                './/child::*/*', 
+            ], 
+            '1 path (1 step child::* and 1 step NCName:* separated by /) starts with .//' =>[
+                './/child::*/n2:*', 
+            ], 
+            '1 path (1 step child::* and 1 step child::QName separated by /) starts with .//' =>[
+                './/child::*/child::q2:name2', 
+            ], 
+            '1 path (1 step child::* and 1 step child::* separated by /) starts with .//' =>[
+                './/child::*/child::*', 
+            ], 
+            '1 path (1 step child::* and 1 step child::NCName:* separated by /) starts with .//' =>[
+                './/child::*/child::n2:*', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step . separated by /) starts with .//' =>[
+                './/child::n1:*/.', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step QName separated by /) starts with .//' =>[
+                './/child::n1:*/q2:name2', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step * separated by /) starts with .//' =>[
+                './/child::n1:*/*', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step NCName:* separated by /) starts with .//' =>[
+                './/child::n1:*/n2:*', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step child::QName separated by /) starts with .//' =>[
+                './/child::n1:*/child::q2:name2', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step child::* separated by /) starts with .//' =>[
+                './/child::n1:*/child::*', 
+            ], 
+            '1 path (1 step child::NCName:* and 1 step child::NCName:* separated by /) starts with .//' =>[
+                './/child::n1:*/child::n2:*', 
+            ], 
+            // 1 path (with 1 step) and 1 path (with 1 step) separated by |.
+            '1 path (with 1 step .) and 1 path (with 1 step .) separated by |' =>[
+                '.|.', 
+            ], 
+            '1 path (with 1 step .) and 1 path (with 1 step QName) separated by |' =>[
+                '.|q2:name2', 
+            ], 
+            '1 path (with 1 step .) and 1 path (with 1 step *) separated by |' =>[
+                '.|*', 
+            ], 
+            '1 path (with 1 step .) and 1 path (with 1 step NCName:*) separated by |' =>[
+                '.|n2:*', 
+            ], 
+            '1 path (with 1 step .) and 1 path (with 1 step child::QName) separated by |' =>[
+                '.|child::q2:name2', 
+            ], 
+            '1 path (with 1 step .) and 1 path (with 1 step child::*) separated by |' =>[
+                '.|child::*', 
+            ], 
+            '1 path (with 1 step .) and 1 path (with 1 step child::NCName:*) separated by |' =>[
+                '.|child::n2:*', 
+            ], 
+            '1 path (with 1 step QName) and 1 path (with 1 step .) separated by |' =>[
+                'q1:name1|.', 
+            ], 
+            '1 path (with 1 step QName) and 1 path (with 1 step QName) separated by |' =>[
+                'q1:name1|q2:name2', 
+            ], 
+            '1 path (with 1 step QName) and 1 path (with 1 step *) separated by |' =>[
+                'q1:name1|*', 
+            ], 
+            '1 path (with 1 step QName) and 1 path (with 1 step NCName:*) separated by |' =>[
+                'q1:name1|n2:*', 
+            ], 
+            '1 path (with 1 step QName) and 1 path (with 1 step child::QName) separated by |' =>[
+                'q1:name1|child::q2:name2', 
+            ], 
+            '1 path (with 1 step QName) and 1 path (with 1 step child::*) separated by |' =>[
+                'q1:name1|child::*', 
+            ], 
+            '1 path (with 1 step QName) and 1 path (with 1 step child::NCName:*) separated by |' =>[
+                'q1:name1|child::n2:*', 
+            ], 
+            '1 path (with 1 step *) and 1 path (with 1 step .) separated by |' =>[
+                '*|.', 
+            ], 
+            '1 path (with 1 step *) and 1 path (with 1 step QName) separated by |' =>[
+                '*|q2:name2', 
+            ], 
+            '1 path (with 1 step *) and 1 path (with 1 step *) separated by |' =>[
+                '*|*', 
+            ], 
+            '1 path (with 1 step *) and 1 path (with 1 step NCName:*) separated by |' =>[
+                '*|n2:*', 
+            ], 
+            '1 path (with 1 step *) and 1 path (with 1 step child::QName) separated by |' =>[
+                '*|child::q2:name2', 
+            ], 
+            '1 path (with 1 step *) and 1 path (with 1 step child::*) separated by |' =>[
+                '*|child::*', 
+            ], 
+            '1 path (with 1 step *) and 1 path (with 1 step child::NCName:*) separated by |' =>[
+                '*|child::n2:*', 
+            ], 
+            '1 path (with 1 step NCName:*) and 1 path (with 1 step .) separated by |' =>[
+                'n1:*|.', 
+            ], 
+            '1 path (with 1 step NCName:*) and 1 path (with 1 step QName) separated by |' =>[
+                'n1:*|q2:name2', 
+            ], 
+            '1 path (with 1 step NCName:*) and 1 path (with 1 step *) separated by |' =>[
+                'n1:*|*', 
+            ], 
+            '1 path (with 1 step NCName:*) and 1 path (with 1 step NCName:*) separated by |' =>[
+                'n1:*|n2:*', 
+            ], 
+            '1 path (with 1 step NCName:*) and 1 path (with 1 step child::QName) separated by |' =>[
+                'n1:*|child::q2:name2', 
+            ], 
+            '1 path (with 1 step NCName:*) and 1 path (with 1 step child::*) separated by |' =>[
+                'n1:*|child::*', 
+            ], 
+            '1 path (with 1 step NCName:*) and 1 path (with 1 step child::NCName:*) separated by |' =>[
+                'n1:*|child::n2:*', 
+            ], 
+            '1 path (with 1 step child::QName) and 1 path (with 1 step .) separated by |' =>[
+                'child::q1:name1|.', 
+            ], 
+            '1 path (with 1 step child::QName) and 1 path (with 1 step QName) separated by |' =>[
+                'child::q1:name1|q2:name2', 
+            ], 
+            '1 path (with 1 step child::QName) and 1 path (with 1 step *) separated by |' =>[
+                'child::q1:name1|*', 
+            ], 
+            '1 path (with 1 step child::QName) and 1 path (with 1 step NCName:*) separated by |' =>[
+                'child::q1:name1|n2:*', 
+            ], 
+            '1 path (with 1 step child::QName) and 1 path (with 1 step child::QName) separated by |' =>[
+                'child::q1:name1|child::q2:name2', 
+            ], 
+            '1 path (with 1 step child::QName) and 1 path (with 1 step child::*) separated by |' =>[
+                'child::q1:name1|child::*', 
+            ], 
+            '1 path (with 1 step child::QName) and 1 path (with 1 step child::NCName:*) separated by |' =>[
+                'child::q1:name1|child::n2:*', 
+            ], 
+            '1 path (with 1 step child::*) and 1 path (with 1 step .) separated by |' =>[
+                'child::*|.', 
+            ], 
+            '1 path (with 1 step child::*) and 1 path (with 1 step QName) separated by |' =>[
+                'child::*|q2:name2', 
+            ], 
+            '1 path (with 1 step child::*) and 1 path (with 1 step *) separated by |' =>[
+                'child::*|*', 
+            ], 
+            '1 path (with 1 step child::*) and 1 path (with 1 step NCName:*) separated by |' =>[
+                'child::*|n2:*', 
+            ], 
+            '1 path (with 1 step child::*) and 1 path (with 1 step child::QName) separated by |' =>[
+                'child::*|child::q2:name2', 
+            ], 
+            '1 path (with 1 step child::*) and 1 path (with 1 step child::*) separated by |' =>[
+                'child::*|child::*', 
+            ], 
+            '1 path (with 1 step child::*) and 1 path (with 1 step child::NCName:*) separated by |' =>[
+                'child::*|child::n2:*', 
+            ], 
+            '1 path (with 1 step child::NCName:*) and 1 path (with 1 step .) separated by |' =>[
+                'child::n1:*|.', 
+            ], 
+            '1 path (with 1 step child::NCName:*) and 1 path (with 1 step QName) separated by |' =>[
+                'child::n1:*|q2:name2', 
+            ], 
+            '1 path (with 1 step child::NCName:*) and 1 path (with 1 step *) separated by |' =>[
+                'child::n1:*|*', 
+            ], 
+            '1 path (with 1 step child::NCName:*) and 1 path (with 1 step NCName:*) separated by |' =>[
+                'child::n1:*|n2:*', 
+            ], 
+            '1 path (with 1 step child::NCName:*) and 1 path (with 1 step child::QName) separated by |' =>[
+                'child::n1:*|child::q2:name2', 
+            ], 
+            '1 path (with 1 step child::NCName:*) and 1 path (with 1 step child::*) separated by |' =>[
+                'child::n1:*|child::*', 
+            ], 
+            '1 path (with 1 step child::NCName:*) and 1 path (with 1 step child::NCName:*) separated by |' =>[
+                'child::n1:*|child::n2:*', 
+            ], 
+        ];
     }
     
     /**
