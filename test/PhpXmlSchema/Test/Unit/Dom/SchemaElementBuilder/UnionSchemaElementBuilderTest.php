@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Dom\QNameListTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use QNameListTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -225,7 +228,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameListLValues
+     * @dataProvider    getValidQNameListTypeValues
      */
     public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidLAndNoDefaultNamespace(
         string $value, 
@@ -262,7 +265,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameListLValues
+     * @dataProvider    getValidQNameListTypeValues
      */
     public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidLAndDefaultNamespace(
         string $value, 
@@ -315,7 +318,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameListValues
+     * @dataProvider    getInvalidQNameListTypeValues
      */
     public function testBuildMemberTypesAttributeThrowsExceptionWhenUnionAndValueIsInvalid(
         string $value, 
