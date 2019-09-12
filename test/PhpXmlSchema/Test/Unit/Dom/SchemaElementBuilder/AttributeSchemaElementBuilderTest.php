@@ -13,6 +13,7 @@ use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\UseTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -27,6 +28,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
 {
     use FormChoiceTypeProviderTrait;
     use StringTypeProviderTrait;
+    use UseTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -709,7 +711,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidUseSetValues
+     * @dataProvider    getValidUseTypeValues
      */
     public function testBuildUseAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value, 
@@ -740,7 +742,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidUseValues
+     * @dataProvider    getInvalidUseTypeValues
      */
     public function testBuildUseAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value
