@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Dom\SelectorXPathTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use SelectorXPathTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -271,7 +274,7 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidSelectorXPathValues
+     * @dataProvider    getValidSelectorXPathTypeValues
      */
     public function testBuildXPathAttributeCreatesAttrWhenSelectorAndValueIsValid(
         string $value
@@ -296,7 +299,7 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidSelectorXPathValues
+     * @dataProvider    getInvalidSelectorXPathTypeValues
      */
     public function testBuildXPathAttributeThrowsExceptionWhenSelectorAndValueIsInvalid(
         string $value
