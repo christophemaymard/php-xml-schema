@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use DerivationTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -205,7 +208,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidDerivationSetValues
+     * @dataProvider    getValidDerivationSetTypeValues
      */
     public function testBuildBlockAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
         string $value, 
@@ -233,7 +236,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidDerivationSetValues
+     * @dataProvider    getInvalidDerivationSetTypeValues
      */
     public function testBuildBlockAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value
@@ -259,7 +262,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidDerivationSetValues
+     * @dataProvider    getValidDerivationSetTypeValues
      */
     public function testBuildFinalAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
         string $value, 
@@ -287,7 +290,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidDerivationSetValues
+     * @dataProvider    getInvalidDerivationSetTypeValues
      */
     public function testBuildFinalAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value

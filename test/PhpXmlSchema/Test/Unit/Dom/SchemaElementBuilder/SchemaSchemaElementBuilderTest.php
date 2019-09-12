@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
 
 /**
@@ -23,6 +24,7 @@ use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
  */
 class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -223,7 +225,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidBlockSetValues
+     * @dataProvider    getValidBlockSetTypeValues
      */
     public function testBuildBlockDefaultAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value, 
@@ -248,7 +250,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidBlockSetValues
+     * @dataProvider    getInvalidBlockSetTypeValues
      */
     public function testBuildBlockDefaultAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value
@@ -324,7 +326,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidFullDerivationSetValues
+     * @dataProvider    getValidFullDerivationSetTypeValues
      */
     public function testBuildFinalDefaultAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value,
@@ -350,7 +352,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidFullDerivationSetValues
+     * @dataProvider    getInvalidFullDerivationSetTypeValues
      */
     public function testBuildFinalDefaultAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value

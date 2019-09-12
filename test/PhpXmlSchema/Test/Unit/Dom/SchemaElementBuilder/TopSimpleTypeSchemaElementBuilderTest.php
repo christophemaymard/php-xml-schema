@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use DerivationTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -160,7 +163,7 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidSimpleDerivationSetValues
+     * @dataProvider    getValidSimpleDerivationSetTypeValues
      */
     public function testBuildFinalAttributeCreatesAttrWhenTopSimpleTypeAndValueIsValid(
         string $value, 
@@ -189,7 +192,7 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidSimpleDerivationSetValues
+     * @dataProvider    getInvalidSimpleDerivationSetTypeValues
      */
     public function testBuildFinalAttributeThrowsExceptionWhenTopSimpleTypeAndValueIsInvalid(
         string $value

@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
 
 /**
@@ -25,6 +26,7 @@ use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
  */
 class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
     use StringTypeProviderTrait;
     
@@ -186,7 +188,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidBlockSetValues
+     * @dataProvider    getValidBlockSetTypeValues
      */
     public function testBuildBlockAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
@@ -215,7 +217,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidBlockSetValues
+     * @dataProvider    getInvalidBlockSetTypeValues
      */
     public function testBuildBlockAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
