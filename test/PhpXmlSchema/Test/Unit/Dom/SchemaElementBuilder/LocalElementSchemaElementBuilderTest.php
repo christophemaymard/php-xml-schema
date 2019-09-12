@@ -16,6 +16,7 @@ use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -31,6 +32,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
+    use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
     use StringTypeProviderTrait;
     
@@ -518,7 +520,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNonNegativeIntegerLimitValues
+     * @dataProvider    getInvalidNonNegativeIntegerLimitTypeValues
      * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(

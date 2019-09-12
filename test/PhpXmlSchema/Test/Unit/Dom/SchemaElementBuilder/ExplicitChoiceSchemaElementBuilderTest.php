@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,7 @@ use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
  */
 class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -306,7 +308,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNonNegativeIntegerLimitValues
+     * @dataProvider    getInvalidNonNegativeIntegerLimitTypeValues
      * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenExplicitChoiceAndValueIsInvalid(

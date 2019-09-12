@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,7 @@ use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
  */
 class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -229,7 +231,7 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidOneNonNegativeIntegerLimitValues
+     * @dataProvider    getValidOneNonNegativeIntegerLimitTypeValues
      */
     public function testBuildMaxOccursAttributeCreatesAttrWhenAllAndValueIsValid(
         string $value
@@ -254,7 +256,7 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidOneNonNegativeIntegerLimitValues
+     * @dataProvider    getInvalidOneNonNegativeIntegerLimitTypeValues
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenAllAndValueIsInvalid(
         string $value
