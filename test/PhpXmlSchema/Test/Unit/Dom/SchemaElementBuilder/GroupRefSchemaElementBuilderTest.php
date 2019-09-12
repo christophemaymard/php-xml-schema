@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NonNegativeIntegerTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -255,7 +258,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNonNegativeIntegerValues
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeCreatesAttrWhenGroupRefAndValueIsNonNegativeInteger(
         string $value, 
@@ -283,7 +286,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * @group           attribute
      * @group           parsing
      * @dataProvider    getInvalidNonNegativeIntegerLimitValues
-     * @dataProvider    getInvalidNonNegativeIntegerValues
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
         string $value
@@ -304,7 +307,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNonNegativeIntegerValues
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeCreatesAttrWhenGroupRefAndValueIsValid(
         string $value, 
@@ -327,19 +330,20 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * current element is the "group" element (groupRef) and the value is 
      * invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNonNegativeIntegerValues
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid nonNegativeInteger datatype.', 
+            $value
+        ));
         
         $this->sut->buildMinOccursAttribute($value);
     }

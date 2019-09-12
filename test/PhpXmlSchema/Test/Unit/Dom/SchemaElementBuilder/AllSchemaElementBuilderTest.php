@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NonNegativeIntegerTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -271,7 +274,7 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidZeroOrOneNonNegativeIntegerValues
+     * @dataProvider    getValidZeroOrOneNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeCreatesAttrWhenAllAndValueIsValid(
         string $value, 
@@ -297,7 +300,7 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidZeroOrOneNonNegativeIntegerValues
+     * @dataProvider    getInvalidZeroOrOneNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenAllAndValueIsInvalid(
         string $value

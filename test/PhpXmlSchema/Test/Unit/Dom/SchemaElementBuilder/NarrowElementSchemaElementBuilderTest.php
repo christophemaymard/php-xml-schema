@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
@@ -30,6 +31,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
+    use NonNegativeIntegerTypeProviderTrait;
     use StringTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -443,7 +445,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidZeroOrOneNonNegativeIntegerValues
+     * @dataProvider    getValidZeroOrOneNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
@@ -470,7 +472,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidZeroOrOneNonNegativeIntegerValues
+     * @dataProvider    getInvalidZeroOrOneNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
@@ -491,7 +493,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidZeroOrOneNonNegativeIntegerValues
+     * @dataProvider    getValidZeroOrOneNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
@@ -518,7 +520,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidZeroOrOneNonNegativeIntegerValues
+     * @dataProvider    getInvalidZeroOrOneNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value

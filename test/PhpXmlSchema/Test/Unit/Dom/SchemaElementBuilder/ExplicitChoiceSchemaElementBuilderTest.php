@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NonNegativeIntegerTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -276,7 +279,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNonNegativeIntegerValues
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitChoiceAndValueIsNonNegativeInteger(
         string $value, 
@@ -304,7 +307,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * @group           attribute
      * @group           parsing
      * @dataProvider    getInvalidNonNegativeIntegerLimitValues
-     * @dataProvider    getInvalidNonNegativeIntegerValues
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenExplicitChoiceAndValueIsInvalid(
         string $value
@@ -325,7 +328,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNonNegativeIntegerValues
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeCreatesAttrWhenExplicitChoiceAndValueIsValid(
         string $value, 
@@ -348,19 +351,20 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * current element is the "choice" element (explicitGroup) and the value 
      * is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNonNegativeIntegerValues
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenExplicitChoiceAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid nonNegativeInteger datatype.', 
+            $value
+        ));
         
         $this->sut->buildMinOccursAttribute($value);
     }

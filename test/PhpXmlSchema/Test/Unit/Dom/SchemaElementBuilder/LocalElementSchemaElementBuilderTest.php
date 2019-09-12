@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
@@ -30,6 +31,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
+    use NonNegativeIntegerTypeProviderTrait;
     use StringTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -489,7 +491,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNonNegativeIntegerValues
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeCreatesAttrWhenLocalElementAndValueIsNonNegativeInteger(
         string $value, 
@@ -517,7 +519,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * @group           attribute
      * @group           parsing
      * @dataProvider    getInvalidNonNegativeIntegerLimitValues
-     * @dataProvider    getInvalidNonNegativeIntegerValues
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
         string $value
@@ -538,7 +540,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNonNegativeIntegerValues
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeCreatesAttrWhenLocalElementAndValueIsValid(
         string $value, 
@@ -561,19 +563,20 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * current element is the "element" element (localElement) and the value 
      * is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNonNegativeIntegerValues
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid nonNegativeInteger datatype.', 
+            $value
+        ));
         
         $this->sut->buildMinOccursAttribute($value);
     }

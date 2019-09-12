@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -24,6 +25,7 @@ use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BooleanTypeProviderTrait;
+    use NonNegativeIntegerTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -277,7 +279,7 @@ class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNonNegativeIntegerValues
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
      */
     public function testBuildValueAttributeCreatesAttrWhenMaxLengthAndValueIsValid(
         string $value, 
@@ -299,19 +301,20 @@ class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * Tests that buildValueAttribute() throws an exception when the current 
      * element is the "maxLength" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNonNegativeIntegerValues
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
      */
     public function testBuildValueAttributeThrowsExceptionWhenMaxLengthAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid nonNegativeInteger datatype.', 
+            $value
+        ));
         
         $this->sut->buildValueAttribute($value);
     }
