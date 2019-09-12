@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\LanguageTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
 
@@ -26,6 +27,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
 {
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
+    use LanguageTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -504,7 +506,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidLanguageValues
+     * @dataProvider    getValidLanguageTypeValues
      */
     public function testBuildLangAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value, 
@@ -530,7 +532,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidLanguageValues
+     * @dataProvider    getInvalidLanguageTypeValues
      */
     public function testBuildLangAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value,

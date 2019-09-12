@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\LanguageTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use LanguageTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -208,7 +211,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidLanguageValues
+     * @dataProvider    getValidLanguageTypeValues
      */
     public function testBuildLangAttributeCreatesAttrWhenDocumentationAndValueIsValid(
         string $value, 
@@ -237,7 +240,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidLanguageValues
+     * @dataProvider    getInvalidLanguageTypeValues
      */
     public function testBuildLangAttributeThrowsExceptionWhenDocumentationAndValueIsInvalid(
         string $value,
