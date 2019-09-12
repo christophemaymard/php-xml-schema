@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use StringTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -234,7 +237,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidStringValues
+     * @dataProvider    getValidStringTypeValues
      */
     public function testBuildDefaultAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value
@@ -256,19 +259,20 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * current element is the "element" element (narrowMaxMin) and the value 
      * is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidStringValues
+     * @dataProvider    getInvalidStringTypeValues
      */
     public function testBuildDefaultAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid string datatype.', 
+            $value
+        ));
         
         $this->sut->buildDefaultAttribute($value);
     }
@@ -282,7 +286,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidStringValues
+     * @dataProvider    getValidStringTypeValues
      */
     public function testBuildFixedAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value
@@ -304,19 +308,20 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * current element is the "element" element (narrowMaxMin) and the value 
      * is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidStringValues
+     * @dataProvider    getInvalidStringTypeValues
      */
     public function testBuildFixedAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid string datatype.', 
+            $value
+        ));
         
         $this->sut->buildFixedAttribute($value);
     }

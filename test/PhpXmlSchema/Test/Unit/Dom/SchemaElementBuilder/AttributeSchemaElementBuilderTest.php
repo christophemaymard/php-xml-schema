@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use StringTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -161,7 +164,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidStringValues
+     * @dataProvider    getValidStringTypeValues
      */
     public function testBuildDefaultAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value
@@ -183,19 +186,20 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * current element is the "attribute" element (attribute) and the value 
      * is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidStringValues
+     * @dataProvider    getInvalidStringTypeValues
      */
     public function testBuildDefaultAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid string datatype.', 
+            $value
+        ));
         
         $this->sut->buildDefaultAttribute($value);
     }
@@ -209,7 +213,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidStringValues
+     * @dataProvider    getValidStringTypeValues
      */
     public function testBuildFixedAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value
@@ -231,19 +235,20 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * current element is the "attribute" element (attribute) and the value 
      * is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidStringValues
+     * @dataProvider    getInvalidStringTypeValues
      */
     public function testBuildFixedAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid string datatype.', 
+            $value
+        ));
         
         $this->sut->buildFixedAttribute($value);
     }
