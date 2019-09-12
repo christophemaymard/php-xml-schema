@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
@@ -26,6 +27,7 @@ use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
  */
 class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
     use StringTypeProviderTrait;
@@ -586,7 +588,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidBooleanValues
+     * @dataProvider    getValidBooleanTypeValues
      */
     public function testBuildNillableAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
@@ -613,7 +615,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidBooleanValues
+     * @dataProvider    getInvalidBooleanTypeValues
      */
     public function testBuildNillableAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value

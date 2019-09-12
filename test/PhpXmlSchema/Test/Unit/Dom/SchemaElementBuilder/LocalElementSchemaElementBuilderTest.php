@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
@@ -26,6 +27,7 @@ use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
  */
 class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
     use StringTypeProviderTrait;
@@ -635,7 +637,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidBooleanValues
+     * @dataProvider    getValidBooleanTypeValues
      */
     public function testBuildNillableAttributeCreatesAttrWhenLocalElementAndValueIsValid(
         string $value, 
@@ -662,7 +664,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidBooleanValues
+     * @dataProvider    getInvalidBooleanTypeValues
      */
     public function testBuildNillableAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
         string $value

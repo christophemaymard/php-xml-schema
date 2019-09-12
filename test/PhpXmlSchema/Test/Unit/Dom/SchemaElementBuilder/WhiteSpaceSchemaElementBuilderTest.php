@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\WhiteSpaceTypeProviderTrait;
 
 /**
@@ -23,6 +24,7 @@ use PhpXmlSchema\Test\Unit\Dom\WhiteSpaceTypeProviderTrait;
  */
 class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BooleanTypeProviderTrait;
     use WhiteSpaceTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -183,7 +185,7 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidBooleanValues
+     * @dataProvider    getValidBooleanTypeValues
      */
     public function testBuildFixedAttributeCreatesAttrWhenWhiteSpaceAndValueIsValid(
         string $value, 
@@ -209,7 +211,7 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidBooleanValues
+     * @dataProvider    getInvalidBooleanTypeValues
      */
     public function testBuildFixedAttributeThrowsExceptionWhenWhiteSpaceAndValueIsInvalid(
         string $value

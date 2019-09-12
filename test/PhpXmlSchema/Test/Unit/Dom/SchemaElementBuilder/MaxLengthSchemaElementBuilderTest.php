@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BooleanTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -180,7 +183,7 @@ class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidBooleanValues
+     * @dataProvider    getValidBooleanTypeValues
      */
     public function testBuildFixedAttributeCreatesAttrWhenMaxLengthAndValueIsValid(
         string $value, 
@@ -206,7 +209,7 @@ class MaxLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidBooleanValues
+     * @dataProvider    getInvalidBooleanTypeValues
      */
     public function testBuildFixedAttributeThrowsExceptionWhenMaxLengthAndValueIsInvalid(
         string $value

@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
 /**
@@ -24,6 +25,7 @@ use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
  */
 class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -159,7 +161,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidBooleanValues
+     * @dataProvider    getValidBooleanTypeValues
      */
     public function testBuildAbstractAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
         string $value, 
@@ -186,7 +188,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidBooleanValues
+     * @dataProvider    getInvalidBooleanTypeValues
      */
     public function testBuildAbstractAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value
@@ -365,7 +367,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidBooleanValues
+     * @dataProvider    getValidBooleanTypeValues
      */
     public function testBuildMixedAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
         string $value, 
@@ -392,7 +394,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidBooleanValues
+     * @dataProvider    getInvalidBooleanTypeValues
      */
     public function testBuildMixedAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value
