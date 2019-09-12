@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 
 /**
@@ -27,6 +28,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
 {
     use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
+    use QNameTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -361,7 +363,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -391,7 +393,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -444,7 +446,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildRefAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
         string $value, 

@@ -13,6 +13,7 @@ use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
@@ -34,6 +35,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use FormChoiceTypeProviderTrait;
     use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
+    use QNameTypeProviderTrait;
     use StringTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -691,7 +693,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenLocalElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -721,7 +723,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenLocalElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -798,7 +800,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildRefAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
         string $value, 
@@ -910,7 +912,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildTypeAttributeCreatesAttrWhenLocalElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -940,7 +942,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildTypeAttributeCreatesAttrWhenLocalElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -1017,7 +1019,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildTypeAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
         string $value, 

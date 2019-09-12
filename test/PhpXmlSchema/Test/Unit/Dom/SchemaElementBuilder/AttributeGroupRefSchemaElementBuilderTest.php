@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -24,6 +25,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use QNameTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -222,7 +225,7 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenAttributeGroupRefAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -253,7 +256,7 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenAttributeGroupRefAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -294,7 +297,7 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildRefAttributeThrowsExceptionWhenAttributeGroupRefAndValueIsInvalid(
         string $value, 

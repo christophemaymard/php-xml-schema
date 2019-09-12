@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 
 /**
@@ -25,6 +26,7 @@ use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
  */
 class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use QNameTypeProviderTrait;
     use StringTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -362,7 +364,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildTypeAttributeCreatesAttrWhenTopAttributeAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -393,7 +395,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildTypeAttributeCreatesAttrWhenTopAttributeAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -428,7 +430,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildTypeAttributeThrowsExceptionWhenTopAttributeAndValueIsInvalid(
         string $value, 

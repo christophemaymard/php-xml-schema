@@ -13,6 +13,7 @@ use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
@@ -32,6 +33,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
+    use QNameTypeProviderTrait;
     use StringTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -639,7 +641,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -669,7 +671,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -728,7 +730,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildRefAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value, 
@@ -822,7 +824,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -852,7 +854,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -911,7 +913,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildTypeAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value, 

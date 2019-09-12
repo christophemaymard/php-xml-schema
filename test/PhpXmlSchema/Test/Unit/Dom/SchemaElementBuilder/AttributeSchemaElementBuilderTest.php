@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\UseTypeProviderTrait;
@@ -27,6 +28,7 @@ use PhpXmlSchema\Test\Unit\Dom\UseTypeProviderTrait;
 class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use FormChoiceTypeProviderTrait;
+    use QNameTypeProviderTrait;
     use StringTypeProviderTrait;
     use UseTypeProviderTrait;
     
@@ -417,7 +419,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenAttributeAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -447,7 +449,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildRefAttributeCreatesAttrWhenAttributeAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -488,7 +490,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildRefAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value, 
@@ -564,7 +566,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildTypeAttributeCreatesAttrWhenAttributeAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -594,7 +596,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildTypeAttributeCreatesAttrWhenAttributeAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -635,7 +637,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildTypeAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value, 

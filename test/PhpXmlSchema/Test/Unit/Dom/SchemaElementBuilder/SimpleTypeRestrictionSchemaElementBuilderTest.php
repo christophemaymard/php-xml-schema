@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use QNameTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -164,7 +167,7 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildBaseAttributeCreatesAttrWhenSimpleTypeRestrictionAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -194,7 +197,7 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildBaseAttributeCreatesAttrWhenSimpleTypeRestrictionAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -241,7 +244,7 @@ class SimpleTypeRestrictionSchemaElementBuilderTest extends AbstractSchemaElemen
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildBaseAttributeThrowsExceptionWhenSimpleTypeRestrictionAndValueIsInvalid(
         string $value, 

@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use QNameTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -224,7 +227,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
@@ -254,7 +257,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidQNameLocalPartValues
+     * @dataProvider    getValidLocalPartQNameTypeValues
      */
     public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
@@ -300,7 +303,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidQNameValues
+     * @dataProvider    getInvalidQNameTypeValues
      */
     public function testBuildItemTypeAttributeThrowsExceptionWhenListAndValueIsInvalid(
         string $value, 
