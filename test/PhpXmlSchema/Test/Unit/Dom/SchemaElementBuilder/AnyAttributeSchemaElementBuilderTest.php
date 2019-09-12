@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Dom\NamespaceListTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NamespaceListTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -218,7 +221,7 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNamespaceListValues
+     * @dataProvider    getValidNamespaceListTypeValues
      */
     public function testBuildNamespaceAttributeCreatesAttrWhenAnyAttributeAndValueIsValid(
         string $value, 
@@ -256,7 +259,7 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNamespaceListValues
+     * @dataProvider    getInvalidNamespaceListTypeValues
      */
     public function testBuildNamespaceAttributeThrowsExceptionWhenAnyAttributeAndValueIsInvalid(
         string $value
