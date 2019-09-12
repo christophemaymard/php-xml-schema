@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Dom\WhiteSpaceTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use WhiteSpaceTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -276,7 +279,7 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidWhiteSpaceValues
+     * @dataProvider    getValidWhiteSpaceTypeValues
      */
     public function testBuildValueAttributeCreatesAttrWhenWhiteSpaceAndValueIsValid(
         string $value, 
@@ -306,7 +309,7 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidWhiteSpaceValues
+     * @dataProvider    getInvalidWhiteSpaceTypeValues
      */
     public function testBuildValueAttributeThrowsExceptionWhenWhiteSpaceAndValueIsInvalid(
         string $value
