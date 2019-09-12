@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Dom\NamespaceListTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\ProcessingModeTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -24,6 +25,7 @@ use PhpXmlSchema\Test\Unit\Dom\NamespaceListTypeProviderTrait;
 class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use NamespaceListTypeProviderTrait;
+    use ProcessingModeTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -282,7 +284,7 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidProcessingModeValues
+     * @dataProvider    getValidProcessingModeTypeValues
      */
     public function testBuildProcessContentsAttributeCreatesAttrWhenAnyAttributeAndValueIsValid(
         string $value, 
@@ -313,7 +315,7 @@ class AnyAttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidProcessingModeValues
+     * @dataProvider    getInvalidProcessingModeTypeValues
      */
     public function testBuildProcessContentsAttributeThrowsExceptionWhenAnyAttributeAndValueIsInvalid(
         string $value
