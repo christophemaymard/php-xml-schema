@@ -16,58 +16,6 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 trait ValueProviderTrait
 {
     /**
-     * Returns a set of valid "formChoice" values.
-     * 
-     * @return  array[]
-     */
-    public function getValidFormChoiceValues():array
-    {
-        return [
-            'qualified' => [
-                'qualified', TRUE, FALSE, 
-            ], 
-            'unqualified' => [
-                'unqualified', FALSE, TRUE, 
-            ], 
-        ];
-    }
-    
-    /**
-     * Returns a set of invalid "formChoice" values.
-     * 
-     * @return  array[]
-     */
-    public function getInvalidFormChoiceValues():array
-    {
-        return [
-            'Empty string' => [
-                '', 
-            ], 
-            'Only white spaces' => [
-                '       ', 
-            ], 
-            'Not qualified neither unqualified' => [ 
-                'foo', 
-            ], 
-            'qualified with whitespaces' => [
-                '    qualified     ', 
-            ], 
-            'unqualified with whitespaces' => [
-                '    unqualified     ', 
-            ], 
-            'qualified (uppercase)' => [ 
-                'Qualified', 
-            ], 
-            'unqualified (uppercase)' => [ 
-                'Unqualified', 
-            ], 
-            'qualified and unqualified' => [ 
-                'qualified unqualified', 
-            ], 
-        ];
-    }
-    
-    /**
      * Returns a set of valid "blockSet" values.
      * 
      * @return  array[]

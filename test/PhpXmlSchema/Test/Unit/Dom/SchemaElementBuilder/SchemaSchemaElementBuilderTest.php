@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use FormChoiceTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAppInfoElementDoesNotCreateElementTestTrait;
@@ -171,7 +174,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidFormChoiceValues
+     * @dataProvider    getValidFormChoiceTypeValues
      */
     public function testBuildAttributeFormDefaultAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value, 
@@ -197,7 +200,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidFormChoiceValues
+     * @dataProvider    getInvalidFormChoiceTypeValues
      */
     public function testBuildAttributeFormDefaultAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value
@@ -271,7 +274,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidFormChoiceValues
+     * @dataProvider    getValidFormChoiceTypeValues
      */
     public function testBuildElementFormDefaultAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value, 
@@ -296,7 +299,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidFormChoiceValues
+     * @dataProvider    getInvalidFormChoiceTypeValues
      */
     public function testBuildElementFormDefaultAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value
