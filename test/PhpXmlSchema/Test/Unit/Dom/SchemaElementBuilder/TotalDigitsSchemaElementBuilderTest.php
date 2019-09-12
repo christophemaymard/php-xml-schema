@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\PositiveIntegerTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -24,6 +25,7 @@ use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BooleanTypeProviderTrait;
+    use PositiveIntegerTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -277,7 +279,7 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidPositiveIntegerValues
+     * @dataProvider    getValidPositiveIntegerTypeValues
      */
     public function testBuildValueAttributeCreatesAttrWhenTotalDigitsAndValueIsValid(
         string $value, 
@@ -299,19 +301,20 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
      * Tests that buildValueAttribute() throws an exception when the current 
      * element is the "totalDigits" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidPositiveIntegerValues
+     * @dataProvider    getInvalidPositiveIntegerTypeValues
      */
     public function testBuildValueAttributeThrowsExceptionWhenTotalDigitsAndValueIsInvalid(
-        string $value, 
-        string $message
+        string $value
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid positiveInteger datatype.', 
+            $value
+        ));
         
         $this->sut->buildValueAttribute($value);
     }
