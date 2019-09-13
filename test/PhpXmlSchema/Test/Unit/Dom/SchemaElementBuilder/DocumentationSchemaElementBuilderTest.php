@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\LanguageTypeProviderTrait;
 
 /**
@@ -23,6 +24,7 @@ use PhpXmlSchema\Test\Unit\Datatype\LanguageTypeProviderTrait;
  */
 class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use AnyUriTypeProviderTrait;
     use LanguageTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -170,7 +172,8 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidAnyUriValues
+     * @dataProvider    getValidAnyUriTypeValues
+     * @dataProvider    getValidAnyUriTypeWSValues
      */
     public function testBuildSourceAttributeCreatesAttrWhenDocumentationAndValueIsValid(
         string $value, 
@@ -192,14 +195,21 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * Tests that buildSourceAttribute() throws an exception when the current 
      * element is the "documentation" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidAnyUriTypeValues
      */
-    public function testBuildSourceAttributeThrowsExceptionWhenDocumentationAndValueIsInvalid()
-    {
+    public function testBuildSourceAttributeThrowsExceptionWhenDocumentationAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildSourceAttribute(':');
+        $this->sut->buildSourceAttribute($value);
     }
     
     /**

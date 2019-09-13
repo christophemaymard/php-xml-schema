@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use AnyUriTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -208,7 +211,8 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidAnyUriValues
+     * @dataProvider    getValidAnyUriTypeValues
+     * @dataProvider    getValidAnyUriTypeWSValues
      */
     public function testBuildSchemaLocationAttributeCreatesAttrWhenIncludeAndValueIsValid(
         string $value, 
@@ -230,14 +234,21 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * Tests that buildSchemaLocationAttribute() throws an exception when the 
      * current element is the "include" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidAnyUriTypeValues
      */
-    public function testBuildSchemaLocationAttributeThrowsExceptionWhenIncludeAndValueIsInvalid()
-    {
+    public function testBuildSchemaLocationAttributeThrowsExceptionWhenIncludeAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildSchemaLocationAttribute(':');
+        $this->sut->buildSchemaLocationAttribute($value);
     }
     
     /**

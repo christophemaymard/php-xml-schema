@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use AnyUriTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -168,7 +171,8 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidAnyUriValues
+     * @dataProvider    getValidAnyUriTypeValues
+     * @dataProvider    getValidAnyUriTypeWSValues
      */
     public function testBuildSourceAttributeCreatesAttrWhenAppInfoAndValueIsValid(
         string $value, 
@@ -190,14 +194,21 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * Tests that buildSourceAttribute() throws an exception when the current 
      * element is the "appinfo" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidAnyUriTypeValues
      */
-    public function testBuildSourceAttributeThrowsExceptionWhenAppInfoAndValueIsInvalid()
-    {
+    public function testBuildSourceAttributeThrowsExceptionWhenAppInfoAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildSourceAttribute(':');
+        $this->sut->buildSourceAttribute($value);
     }
     
     /**

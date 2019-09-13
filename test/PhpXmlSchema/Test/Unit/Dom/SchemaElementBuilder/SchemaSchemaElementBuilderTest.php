@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\LanguageTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
@@ -25,6 +26,7 @@ use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
  */
 class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use AnyUriTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
     use LanguageTypeProviderTrait;
@@ -423,7 +425,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidAnyUriValues
+     * @dataProvider    getValidAnyUriTypeValues
+     * @dataProvider    getValidAnyUriTypeWSValues
      */
     public function testBuildTargetNamespaceAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value, 
@@ -442,14 +445,21 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * Tests that buildTargetNamespaceAttribute() throws an exception when 
      * the current element is the "schema" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidAnyUriTypeValues
      */
-    public function testBuildTargetNamespaceAttributeThrowsExceptionWhenSchemaAndValueIsInvalid()
-    {
+    public function testBuildTargetNamespaceAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildTargetNamespaceAttribute(':');
+        $this->sut->buildTargetNamespaceAttribute($value);
     }
     
     /**

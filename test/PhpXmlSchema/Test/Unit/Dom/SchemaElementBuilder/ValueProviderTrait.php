@@ -90,23 +90,6 @@ trait ValueProviderTrait
     }
     
     /**
-     * Returns a set of valid "anyURI" values.
-     * 
-     * @return  array[]
-     */
-    public function getValidAnyUriValues():array
-    {
-        return [
-            'http://example.org' => [ 
-                'http://example.org', 'http://example.org', 
-            ],
-            '  http://example.org  ' => [ 
-                '  http://example.org  ', 'http://example.org', 
-            ],
-        ];
-    }
-    
-    /**
      * Returns a set of valid "token" datatype values.
      * 
      * @return  array[]

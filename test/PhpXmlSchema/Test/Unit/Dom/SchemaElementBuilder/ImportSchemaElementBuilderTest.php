@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use AnyUriTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -207,7 +210,8 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidAnyUriValues
+     * @dataProvider    getValidAnyUriTypeValues
+     * @dataProvider    getValidAnyUriTypeWSValues
      */
     public function testBuildNamespaceAttributeCreatesAttrWhenImportAndValueIsValid(
         string $value, 
@@ -229,14 +233,21 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * Tests that buildNamespaceAttribute() throws an exception when the 
      * current element is the "import" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidAnyUriTypeValues
      */
-    public function testBuildNamespaceAttributeThrowsExceptionWhenImportAndValueIsInvalid()
-    {
+    public function testBuildNamespaceAttributeThrowsExceptionWhenImportAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildNamespaceAttribute(':');
+        $this->sut->buildNamespaceAttribute($value);
     }
     
     /**
@@ -248,7 +259,8 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidAnyUriValues
+     * @dataProvider    getValidAnyUriTypeValues
+     * @dataProvider    getValidAnyUriTypeWSValues
      */
     public function testBuildSchemaLocationAttributeCreatesAttrWhenImportAndValueIsValid(
         string $value, 
@@ -270,14 +282,21 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * Tests that buildSchemaLocationAttribute() throws an exception when the 
      * current element is the "import" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidAnyUriTypeValues
      */
-    public function testBuildSchemaLocationAttributeThrowsExceptionWhenImportAndValueIsInvalid()
-    {
+    public function testBuildSchemaLocationAttributeThrowsExceptionWhenImportAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildSchemaLocationAttribute(':');
+        $this->sut->buildSchemaLocationAttribute($value);
     }
     
     /**

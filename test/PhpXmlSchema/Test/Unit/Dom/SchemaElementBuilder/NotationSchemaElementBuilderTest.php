@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use AnyUriTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -302,7 +305,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidAnyUriValues
+     * @dataProvider    getValidAnyUriTypeValues
+     * @dataProvider    getValidAnyUriTypeWSValues
      */
     public function testBuildSystemAttributeCreatesAttrWhenNotationAndValueIsValid(
         string $value, 
@@ -324,14 +328,21 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * Tests that buildSystemAttribute() throws an exception when the current 
      * element is the "notation" element and the value is invalid.
      * 
-     * @group   attribute
-     * @group   parsing
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidAnyUriTypeValues
      */
-    public function testBuildSystemAttributeThrowsExceptionWhenNotationAndValueIsInvalid()
-    {
+    public function testBuildSystemAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
         $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
         
-        $this->sut->buildSystemAttribute(':');
+        $this->sut->buildSystemAttribute($value);
     }
     
     /**
