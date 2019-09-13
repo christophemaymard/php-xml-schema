@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\TokenTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -24,6 +25,7 @@ use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
 class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use AnyUriTypeProviderTrait;
+    use TokenTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -257,7 +259,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidTokenValues
+     * @dataProvider    getValidTokenTypeWSValues
      */
     public function testBuildPublicAttributeCreatesAttrWhenNotationAndValueIsValid(
         string $value, 
@@ -279,19 +281,22 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * Tests that buildPublicAttribute() throws an exception when the 
      * current element is the "notation" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidTokenValues
+     * @dataProvider    getInvalidTokenTypeWSValues
      */
     public function testBuildPublicAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid token datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildPublicAttribute($value);
     }
