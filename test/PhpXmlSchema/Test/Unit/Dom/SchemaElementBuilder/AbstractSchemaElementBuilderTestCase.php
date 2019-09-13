@@ -22,7 +22,6 @@ use PhpXmlSchema\Test\Unit\Dom\ElementAssertTrait;
 abstract class AbstractSchemaElementBuilderTestCase extends TestCase
 {
     use ElementAssertTrait;
-    use ValueProviderTrait;
     
     /**
      * The system under test.
