@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
@@ -28,6 +29,7 @@ use PhpXmlSchema\Test\Unit\Dom\UseTypeProviderTrait;
 class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use FormChoiceTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     use QNameTypeProviderTrait;
     use StringTypeProviderTrait;
     use UseTypeProviderTrait;
@@ -319,7 +321,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value, 
@@ -342,19 +344,22 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * element is the "attribute" element (attribute) and the value is 
      * invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }
@@ -368,7 +373,7 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNCNameValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildNameAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value, 
@@ -391,19 +396,22 @@ class AttributeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
      * element is the "attribute" element (attribute) and the value is 
      * invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNCNameValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildNameAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid NCName datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildNameAttribute($value);
     }

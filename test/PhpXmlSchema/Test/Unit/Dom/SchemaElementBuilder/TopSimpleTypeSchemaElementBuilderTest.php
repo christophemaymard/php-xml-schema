@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
 /**
@@ -25,6 +26,7 @@ use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use DerivationTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -217,7 +219,7 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenTopSimpleTypeAndValueIsValid(
         string $value, 
@@ -240,19 +242,22 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * element is the "simpleType" element (topLevelSimpleType) and the value 
      * is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenTopSimpleTypeAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }
@@ -267,7 +272,7 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNCNameValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildNameAttributeCreatesAttrWhenTopSimpleTypeAndValueIsValid(
         string $value, 
@@ -290,19 +295,22 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * element is the "simpleType" element (topLevelSimpleType) and the value 
      * is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNCNameValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildNameAttributeThrowsExceptionWhenTopSimpleTypeAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid NCName datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildNameAttribute($value);
     }

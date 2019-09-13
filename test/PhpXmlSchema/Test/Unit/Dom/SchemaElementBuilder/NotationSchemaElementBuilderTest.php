@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\TokenTypeProviderTrait;
 
 /**
@@ -25,6 +26,7 @@ use PhpXmlSchema\Test\Unit\Datatype\TokenTypeProviderTrait;
 class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use AnyUriTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     use TokenTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -163,7 +165,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenNotationAndValueIsValid(
         string $value, 
@@ -185,19 +187,22 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * Tests that buildIdAttribute() throws an exception when the current 
      * element is the "notation" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }
@@ -211,7 +216,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNCNameValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildNameAttributeCreatesAttrWhenNotationAndValueIsValid(
         string $value, 
@@ -233,19 +238,22 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * Tests that buildNameAttribute() throws an exception when the current 
      * element is the "notation" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNCNameValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildNameAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid NCName datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildNameAttribute($value);
     }

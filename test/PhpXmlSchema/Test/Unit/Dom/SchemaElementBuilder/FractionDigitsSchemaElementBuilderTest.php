@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 
 /**
@@ -25,6 +26,7 @@ use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BooleanTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -231,7 +233,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenFractionDigitsAndValueIsValid(
         string $value, 
@@ -253,19 +255,22 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * Tests that buildIdAttribute() throws an exception when the current 
      * element is the "fractionDigits" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenFractionDigitsAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }

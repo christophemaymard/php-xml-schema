@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
 /**
@@ -27,6 +28,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
 {
     use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -317,7 +319,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
         string $value, 
@@ -340,19 +342,22 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * element is the "complexType" element (topLevelComplexType) and the 
      * value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }
@@ -415,7 +420,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNCNameValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildNameAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
         string $value, 
@@ -438,19 +443,22 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * element is the "complexType" element (topLevelComplexType) and the 
      * value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNCNameValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildNameAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid NCName datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildNameAttribute($value);
     }

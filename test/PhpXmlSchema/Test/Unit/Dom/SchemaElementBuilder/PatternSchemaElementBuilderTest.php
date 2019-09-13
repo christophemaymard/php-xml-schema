@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 
 /**
@@ -23,6 +24,7 @@ use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
  */
 class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NCNameTypeProviderTrait;
     use StringTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -184,7 +186,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenPatternAndValueIsValid(
         string $value, 
@@ -206,19 +208,22 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * Tests that buildIdAttribute() throws an exception when the current 
      * element is the "pattern" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenPatternAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }

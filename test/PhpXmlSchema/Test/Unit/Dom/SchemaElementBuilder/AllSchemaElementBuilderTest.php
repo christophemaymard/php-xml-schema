@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 
@@ -24,6 +25,7 @@ use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
  */
 class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NCNameTypeProviderTrait;
     use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
     
@@ -184,7 +186,7 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenAllAndValueIsValid(
         string $value, 
@@ -206,19 +208,22 @@ class AllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * Tests that buildIdAttribute() throws an exception when the current 
      * element is the "all" element (all) and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenAllAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }

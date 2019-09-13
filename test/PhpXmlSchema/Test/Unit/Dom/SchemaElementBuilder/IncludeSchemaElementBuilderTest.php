@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -24,6 +25,7 @@ use PhpXmlSchema\Test\Unit\Datatype\AnyUriTypeProviderTrait;
 class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use AnyUriTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -163,7 +165,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenIncludeAndValueIsValid(
         string $value, 
@@ -185,19 +187,22 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * Tests that buildIdAttribute() throws an exception when the current 
      * element is the "include" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenIncludeAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }

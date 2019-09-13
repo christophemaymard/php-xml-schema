@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\WhiteSpaceTypeProviderTrait;
 
 /**
@@ -25,6 +26,7 @@ use PhpXmlSchema\Test\Unit\Dom\WhiteSpaceTypeProviderTrait;
 class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BooleanTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     use WhiteSpaceTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -231,7 +233,7 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenWhiteSpaceAndValueIsValid(
         string $value, 
@@ -253,19 +255,22 @@ class WhiteSpaceSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * Tests that buildIdAttribute() throws an exception when the current 
      * element is the "whiteSpace" element and the value is invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenWhiteSpaceAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }

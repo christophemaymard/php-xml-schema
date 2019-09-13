@@ -22,25 +22,7 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class IDTypeTest extends TestCase
 {
-    /**
-     * Returns a set of invalid ID values.
-     * 
-     * @return  array[]
-     */
-    public static function getInvalidIDValues():array
-    {
-        return NCNameTypeTest::getInvalidNCNameValues();
-    }
-    
-    /**
-     * Returns a set of valid ID values.
-     * 
-     * @return  array[]
-     */
-    public static function getValidIDValues():array
-    {
-        return NCNameTypeTest::getValidNCNameValues();
-    }
+    use NCNameTypeProviderTrait;
     
     /**
      * Tests that __construct() throws an exception when the specified ID 
@@ -48,7 +30,7 @@ class IDTypeTest extends TestCase
      * 
      * @param   string  $id The ID to test.
      * 
-     * @dataProvider    getInvalidIDValues
+     * @dataProvider    getInvalidNCNameTypeValues
      */
     public function test__constructThrowsExceptionWhenIDIsInvalid(string $id)
     {
@@ -63,7 +45,7 @@ class IDTypeTest extends TestCase
      * 
      * @param   string  $id The ID to test.
      * 
-     * @dataProvider    getValidIDValues
+     * @dataProvider    getValidNCNameTypeValues
      */
     public function test__constructStoresIDWhenItIsValid(string $id)
     {

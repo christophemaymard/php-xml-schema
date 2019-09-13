@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
@@ -32,6 +33,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
     use QNameTypeProviderTrait;
     use StringTypeProviderTrait;
@@ -397,7 +399,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
@@ -420,19 +422,22 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * element is the "element" element (narrowMaxMin) and the value is 
      * invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }
@@ -542,7 +547,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNCNameValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildNameAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
@@ -565,19 +570,22 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * element is the "element" element (narrowMaxMin) and the value is 
      * invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNCNameValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildNameAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid NCName datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildNameAttribute($value);
     }

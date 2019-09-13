@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
@@ -33,6 +34,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use FormChoiceTypeProviderTrait;
+    use NCNameTypeProviderTrait;
     use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
     use QNameTypeProviderTrait;
@@ -419,7 +421,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildIdAttributeCreatesAttrWhenLocalElementAndValueIsValid(
         string $value, 
@@ -442,19 +444,22 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * element is the "element" element (localElement) and the value is 
      * invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidIdValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildIdAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildIdAttribute($value);
     }
@@ -467,9 +472,8 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * @param   string  $value  The value to test.
      * @param   string  $id     The expected value for the ID.
      * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidIdValues
+     * @group   attribute
+     * @group   parsing
      */
     public function testBuildMaxOccursAttributeCreatesAttrWhenLocalElementAndValueIsUnbounded()
     {
@@ -594,7 +598,7 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getValidNCNameValues
+     * @dataProvider    getValidNCNameTypeWSValues
      */
     public function testBuildNameAttributeCreatesAttrWhenLocalElementAndValueIsValid(
         string $value, 
@@ -617,19 +621,22 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * element is the "element" element (localElement) and the value is 
      * invalid.
      * 
-     * @param   string  $value      The value to test.
-     * @param   string  $message    The expected exception message.
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
      * 
      * @group           attribute
      * @group           parsing
-     * @dataProvider    getInvalidNCNameValues
+     * @dataProvider    getInvalidNCNameTypeWSValues
      */
     public function testBuildNameAttributeThrowsExceptionWhenLocalElementAndValueIsInvalid(
         string $value, 
-        string $message
+        string $mValue
     ) {
         $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid NCName datatype.', 
+            $mValue
+        ));
         
         $this->sut->buildNameAttribute($value);
     }
