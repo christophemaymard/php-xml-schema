@@ -27,7 +27,7 @@
   <test group="content" name="[selector] foo child element is not supported">
     <schema fileName="selector_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation".</message>
     </schema>
   </test>
   <!-- selector::id -->
@@ -108,6 +108,20 @@
     <schema fileName="selector_xpath_0167.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
       <message>The "xpath" attribute is invalid: ".//q1:name1/.//q2:name2" is an invalid XPath expression for a "selector" element.</message>
+    </schema>
+  </test>
+  <!-- annotation -->
+  <test group="content" name="[selector][annotation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation".</message>
+    </schema>
+  </test>
+  <!-- container -->
+  <test group="content" name="[selector][container] annotation unexpected annotation">
+    <schema fileName="container_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
   <!-- TEMPLATE
