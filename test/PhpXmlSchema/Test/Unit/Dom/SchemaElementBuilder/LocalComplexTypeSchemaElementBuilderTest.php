@@ -94,6 +94,7 @@ class LocalComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuil
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
+    use BuildKeyElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

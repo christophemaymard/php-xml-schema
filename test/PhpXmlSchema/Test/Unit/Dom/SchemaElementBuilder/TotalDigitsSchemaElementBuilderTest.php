@@ -99,6 +99,7 @@ class TotalDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
+    use BuildKeyElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

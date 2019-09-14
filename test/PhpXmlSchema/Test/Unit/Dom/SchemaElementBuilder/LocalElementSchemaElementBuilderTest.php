@@ -1233,4 +1233,36 @@ class LocalElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertUniqueElementHasNoAttribute($uniques[1]);
         self::assertSame([], $uniques[1]->getElements());
     }
+    
+    /**
+     * Tests that buildKeyElement() creates the element when the current 
+     * element is the "element" element (localElement).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildKeyElementCreateEltWhenLocalElement()
+    {
+        $this->sut->buildKeyElement();
+        $this->sut->endElement();
+        $this->sut->buildKeyElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(2, $elt->getElements());
+        
+        $keys = $elt->getKeyElements();
+        
+        self::assertElementNamespaceDeclarations([], $keys[0]);
+        self::assertKeyElementHasNoAttribute($keys[0]);
+        self::assertSame([], $keys[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $keys[1]);
+        self::assertKeyElementHasNoAttribute($keys[1]);
+        self::assertSame([], $keys[1]->getElements());
+    }
 }

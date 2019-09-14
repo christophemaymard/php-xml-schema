@@ -26,6 +26,7 @@ use PhpXmlSchema\Dom\FractionDigitsElement;
 use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
+use PhpXmlSchema\Dom\KeyElement;
 use PhpXmlSchema\Dom\LengthElement;
 use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
@@ -2647,5 +2648,16 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasXPath());
+    }
+    
+    /**
+     * Asserts that the specified "key" element has no attribute.
+     * 
+     * @param   KeyElement  $sut    The element to test.
+     */
+    public static function assertKeyElementHasNoAttribute(KeyElement $sut)
+    {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
     }
 }

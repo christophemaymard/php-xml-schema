@@ -676,6 +676,7 @@ class ParserContextTest extends TestCase
             public function buildGroupElement() {}
             public function buildImportElement() {}
             public function buildIncludeElement() {}
+            public function buildKeyElement() {}
             public function buildLengthElement() {}
             public function buildListElement() {}
             public function buildMaxExclusiveElement() {}

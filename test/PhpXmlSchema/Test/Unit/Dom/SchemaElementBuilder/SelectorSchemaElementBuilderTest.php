@@ -98,6 +98,7 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
+    use BuildKeyElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}
