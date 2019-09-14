@@ -120,7 +120,7 @@ class SpecificationFactory
         ContextId::ELT_LOCAL_ELEMENT => [ 0, 1, 2, ], 
         ContextId::ELT_UNIQUE => [ 3, ], 
         ContextId::ELT_SELECTOR => [ 0, 1, ], 
-        ContextId::ELT_FIELD => [ 0, ], 
+        ContextId::ELT_FIELD => [ 0, 1, ], 
     ];
     
     /**
@@ -429,6 +429,9 @@ class SpecificationFactory
             [ 3, ContextId::ELT_FIELD, 'field', ], 
         ], 
         ContextId::ELT_SELECTOR => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
+        ContextId::ELT_FIELD => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
         ], 
     ];
@@ -742,6 +745,9 @@ class SpecificationFactory
         ContextId::ELT_SELECTOR => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
         ], 
+        ContextId::ELT_FIELD => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -1050,6 +1056,9 @@ class SpecificationFactory
             [ 3, ContextId::ELT_FIELD, 3, ], 
         ], 
         ContextId::ELT_SELECTOR => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+        ], 
+        ContextId::ELT_FIELD => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
