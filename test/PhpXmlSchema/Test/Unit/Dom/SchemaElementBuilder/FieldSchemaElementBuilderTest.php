@@ -44,7 +44,6 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -316,5 +315,30 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         ));
         
         $this->sut->buildXPathAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "field" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenField()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $field = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $field);
+        self::assertFieldElementHasNoAttribute($field);
+        self::assertCount(1, $field->getElements());
+        
+        $ann = $field->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
