@@ -1291,6 +1291,7 @@ class SpecificationFactoryTest extends TestCase
             [ 43, 'xpath', '', 'buildXPathAttribute', ], 
             // Context: ELT_FIELD
             [ 44, 'id', '', 'buildIdAttribute', ], 
+            [ 44, 'xpath', '', 'buildXPathAttribute', ], 
         ];
     }
 }

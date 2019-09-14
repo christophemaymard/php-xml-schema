@@ -73,6 +73,49 @@
       <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
     </schema>
   </test>
+  <!-- field::xpath -->
+  <test group="attribute" name="[field][attribute::xpath] Empty string">
+    <schema fileName="field_xpath_0657.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: "" is an invalid XPath expression for a "field" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::xpath] child::">
+    <schema fileName="field_xpath_0658.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: "child::" is an invalid XPath expression for a "field" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::xpath] child::.">
+    <schema fileName="field_xpath_0659.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: "child::." is an invalid XPath expression for a "field" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::xpath] @">
+    <schema fileName="field_xpath_0660.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: "@" is an invalid XPath expression for a "field" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::xpath] attribute::">
+    <schema fileName="field_xpath_0661.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: "attribute::" is an invalid XPath expression for a "field" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::xpath] .//">
+    <schema fileName="field_xpath_0662.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: ".//" is an invalid XPath expression for a "field" element.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::xpath] .//.//">
+    <schema fileName="field_xpath_0663.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "xpath" attribute is invalid: ".//.//" is an invalid XPath expression for a "field" element.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

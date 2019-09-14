@@ -1286,6 +1286,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_FIELD => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'xpath', '', 'buildXPathAttribute', ], 
         ], 
     ];
     

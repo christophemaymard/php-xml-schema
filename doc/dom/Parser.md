@@ -728,7 +728,7 @@
 
 - [x] Parse **field** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **xpath** attribute (collapsing white spaces).
+- [x] Parse **xpath** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 
