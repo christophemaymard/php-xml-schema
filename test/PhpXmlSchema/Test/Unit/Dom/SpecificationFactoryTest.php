@@ -224,6 +224,7 @@ class SpecificationFactoryTest extends TestCase
             [ 42, 0, ], // ELT_UNIQUE
             [ 43, 0, ], // ELT_SELECTOR
             [ 44, 0, ], // ELT_FIELD
+            [ 45, 0, ], // ELT_KEY
         ];
     }
     
@@ -278,6 +279,7 @@ class SpecificationFactoryTest extends TestCase
             [ 42, [ 3, ], ], // ELT_UNIQUE
             [ 43, [ 0, 1, ], ], // ELT_SELECTOR
             [ 44, [ 0, 1, ], ], // ELT_FIELD
+            [ 45, [ 3, ], ], // ELT_UNIQUE
         ];
     }
     
@@ -539,10 +541,13 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 0, 39, 'complexType', ], // ELT_LOCAL_COMPLEXTYPE
             [ 41, 0, 42, 'unique', ], // ELT_UNIQUE
+            [ 41, 0, 45, 'key', ], // ELT_KEY
             [ 41, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 1, 39, 'complexType', ], // ELT_LOCAL_COMPLEXTYPE
             [ 41, 1, 42, 'unique', ], // ELT_UNIQUE
+            [ 41, 1, 45, 'key', ], // ELT_KEY
             [ 41, 2, 42, 'unique', ], // ELT_UNIQUE
+            [ 41, 2, 45, 'key', ], // ELT_KEY
             // Context: ELT_UNIQUE
             [ 42, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 42, 0, 43, 'selector', ], // ELT_SELECTOR
@@ -553,6 +558,11 @@ class SpecificationFactoryTest extends TestCase
             [ 43, 0, 2, 'annotation', ], // ELT_ANNOTATION
             // Context: ELT_FIELD
             [ 44, 0, 2, 'annotation', ], // ELT_ANNOTATION
+            // Context: ELT_KEY
+            [ 45, 0, 43, 'selector', ], // ELT_SELECTOR
+            [ 45, 1, 43, 'selector', ], // ELT_SELECTOR
+            [ 45, 2, 44, 'field', ], // ELT_FIELD
+            [ 45, 3, 44, 'field', ], // ELT_FIELD
         ];
     }
     
@@ -814,10 +824,13 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 0, 39, 'buildComplexTypeElement', ], // ELT_LOCAL_COMPLEXTYPE
             [ 41, 0, 42, 'buildUniqueElement', ], // ELT_UNIQUE
+            [ 41, 0, 45, 'buildKeyElement', ], // ELT_KEY
             [ 41, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 1, 39, 'buildComplexTypeElement', ], // ELT_LOCAL_COMPLEXTYPE
             [ 41, 1, 42, 'buildUniqueElement', ], // ELT_UNIQUE
+            [ 41, 1, 45, 'buildKeyElement', ], // ELT_KEY
             [ 41, 2, 42, 'buildUniqueElement', ], // ELT_UNIQUE
+            [ 41, 2, 45, 'buildKeyElement', ], // ELT_KEY
             // Context: ELT_UNIQUE
             [ 42, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 42, 0, 43, 'buildSelectorElement', ], // ELT_SELECTOR
@@ -828,6 +841,11 @@ class SpecificationFactoryTest extends TestCase
             [ 43, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             // Context: ELT_FIELD
             [ 44, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
+            // Context: ELT_KEY
+            [ 45, 0, 43, 'buildSelectorElement', ], // ELT_SELECTOR
+            [ 45, 1, 43, 'buildSelectorElement', ], // ELT_SELECTOR
+            [ 45, 2, 44, 'buildFieldElement', ], // ELT_FIELD
+            [ 45, 3, 44, 'buildFieldElement', ], // ELT_FIELD
         ];
     }
     
@@ -1089,10 +1107,13 @@ class SpecificationFactoryTest extends TestCase
             [ 41, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 0, 39, 2, ], // ELT_LOCAL_COMPLEXTYPE
             [ 41, 0, 42, 2, ], // ELT_UNIQUE
+            [ 41, 0, 45, 2, ], // ELT_KEY
             [ 41, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 41, 1, 39, 2, ], // ELT_LOCAL_COMPLEXTYPE
             [ 41, 1, 42, 2, ], // ELT_UNIQUE
+            [ 41, 1, 45, 2, ], // ELT_KEY
             [ 41, 2, 42, 2, ], // ELT_UNIQUE
+            [ 41, 2, 45, 2, ], // ELT_KEY
             // Context: ELT_UNIQUE
             [ 42, 0, 2, 1, ], // ELT_ANNOTATION
             [ 42, 0, 43, 2, ], // ELT_SELECTOR
@@ -1103,6 +1124,11 @@ class SpecificationFactoryTest extends TestCase
             [ 43, 0, 2, 1, ], // ELT_ANNOTATION
             // Context: ELT_FIELD
             [ 44, 0, 2, 1, ], // ELT_ANNOTATION
+            // Context: ELT_KEY
+            [ 45, 0, 43, 2, ], // ELT_SELECTOR
+            [ 45, 1, 43, 2, ], // ELT_SELECTOR
+            [ 45, 2, 44, 3, ], // ELT_FIELD
+            [ 45, 3, 44, 3, ], // ELT_FIELD
         ];
     }
     
