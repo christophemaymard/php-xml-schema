@@ -600,8 +600,15 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildXPathAttribute(string $value)
     {
-        if ($this->currentElement instanceof SelectorElement) {
-            $this->currentElement->setXPath($this->parseSelectorXPath($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SELECTOR:
+                    $this->currentElement->setXPath($this->parseSelectorXPath($value));
+                    break;
+                case ElementId::ELT_FIELD:
+                    $this->currentElement->setXPath($this->parseFieldXPath($value));
+                    break;
+            }
         }
     }
     
@@ -1907,6 +1914,17 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     private function parseSelectorXPath(string $value):SelectorXPathType
     {
         return new SelectorXPathType($value);
+    }
+    
+    /**
+     * Parses the specified value in FieldXPathType value.
+     * 
+     * @param   string  $value  The value to parse.
+     * @return  FieldXPathType
+     */
+    private function parseFieldXPath(string $value):FieldXPathType
+    {
+        return new FieldXPathType($value);
     }
     
     /**

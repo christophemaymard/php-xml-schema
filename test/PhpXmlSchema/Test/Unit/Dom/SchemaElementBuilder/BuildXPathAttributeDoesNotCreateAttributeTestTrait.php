@@ -31,6 +31,10 @@ trait BuildXPathAttributeDoesNotCreateAttributeTestTrait
         $this->sut->buildXPathAttribute('');
         $this->sut->buildXPathAttribute('*');
         
+        // "field" xpath.
+        $this->sut->buildXPathAttribute('attribute::');
+        $this->sut->buildXPathAttribute('*');
+        
         $sch = $this->sut->getSchema();
         
         self::assertSchemaElementNotChanged($sch);

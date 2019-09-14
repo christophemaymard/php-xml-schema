@@ -2635,4 +2635,17 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasXPath());
     }
+    
+    /**
+     * Asserts that the specified "field" element has only the "xpath" 
+     * attribute.
+     * 
+     * @param   FieldElement    $sut    The element to test.
+     */
+    public static function assertFieldElementHasOnlyXPathAttribute(
+        FieldElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasXPath());
+    }
 }

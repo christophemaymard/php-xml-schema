@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\FieldXPathTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -23,6 +24,7 @@ use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
  */
 class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use FieldXPathTypeProviderTrait;
     use NCNameTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -97,7 +99,6 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
-    use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}
@@ -268,5 +269,52 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         ));
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildXPathAttribute() creates the attribute when the current 
+     * element is the "field" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidFieldXPathTypeValues
+     */
+    public function testBuildXPathAttributeCreatesAttrWhenFieldAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildXPathAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $field = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $field);
+        self::assertFieldElementHasOnlyXPathAttribute($field);
+        self::assertSame($value, $field->getXPath()->getXPath());
+        self::assertSame([], $field->getElements());
+    }
+    
+    /**
+     * Tests that buildXPathAttribute() throws an exception when the current 
+     * element is the "field" element and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidFieldXPathTypeValues
+     */
+    public function testBuildXPathAttributeThrowsExceptionWhenFieldAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid XPath expression for a "field" element.', 
+            $value
+        ));
+        
+        $this->sut->buildXPathAttribute($value);
     }
 }
