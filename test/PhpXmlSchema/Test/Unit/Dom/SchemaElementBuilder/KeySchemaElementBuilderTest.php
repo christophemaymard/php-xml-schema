@@ -92,7 +92,6 @@ class KeySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
-    use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
@@ -208,5 +207,30 @@ class KeySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildSelectorElement() creates the element when the current 
+     * element is the "key" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSelectorElementCreateEltWhenKey()
+    {
+        $this->sut->buildSelectorElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $key = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $key);
+        self::assertKeyElementHasNoAttribute($key);
+        self::assertCount(1, $key->getElements());
+        
+        $sel = $key->getSelectorElement();
+        self::assertElementNamespaceDeclarations([], $sel);
+        self::assertSelectorElementHasNoAttribute($sel);
+        self::assertSame([], $sel->getElements());
     }
 }

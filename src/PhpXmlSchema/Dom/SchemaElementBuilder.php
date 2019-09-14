@@ -1163,10 +1163,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildSelectorElement()
     {
-        if ($this->currentElement instanceof UniqueElement) {
-            $elt = new SelectorElement();
-            $this->currentElement->setSelectorElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_UNIQUE:
+                case ElementId::ELT_KEY:
+                    $elt = new SelectorElement();
+                    $this->currentElement->setSelectorElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     
