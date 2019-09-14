@@ -30,6 +30,49 @@
       <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
+  <!-- field::id -->
+  <test group="attribute" name="[field][attribute::id] Empty string">
+    <schema fileName="field_id_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::id] Only white spaces">
+    <schema fileName="field_id_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::id] Separated by whitespaces">
+    <schema fileName="field_id_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::id] Starts with digit">
+    <schema fileName="field_id_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::id] Starts with .">
+    <schema fileName="field_id_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::id] Starts with -">
+    <schema fileName="field_id_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[field][attribute::id] Contains invalid character">
+    <schema fileName="field_id_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
