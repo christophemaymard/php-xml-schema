@@ -44,7 +44,6 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -316,5 +315,30 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         ));
         
         $this->sut->buildXPathAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "selector" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenTopSimpleType()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $sel = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $sel);
+        self::assertSelectorElementHasNoAttribute($sel);
+        self::assertCount(1, $sel->getElements());
+        
+        $ann = $sel->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
