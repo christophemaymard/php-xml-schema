@@ -900,10 +900,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildFieldElement()
     {
-        if ($this->currentElement instanceof UniqueElement) {
-            $elt = new FieldElement();
-            $this->currentElement->addFieldElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_UNIQUE:
+                case ElementId::ELT_KEY:
+                    $elt = new FieldElement();
+                    $this->currentElement->addFieldElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     

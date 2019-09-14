@@ -92,7 +92,6 @@ class KeySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
-    use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
     
@@ -232,5 +231,37 @@ class KeySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         self::assertElementNamespaceDeclarations([], $sel);
         self::assertSelectorElementHasNoAttribute($sel);
         self::assertSame([], $sel->getElements());
+    }
+    
+    /**
+     * Tests that buildFieldElement() creates the element when the current 
+     * element is the "key" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildFieldElementCreateEltWhenKey()
+    {
+        $this->sut->buildFieldElement();
+        $this->sut->endElement();
+        $this->sut->buildFieldElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $key = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $key);
+        self::assertKeyElementHasNoAttribute($key);
+        self::assertCount(2, $key->getElements());
+        
+        $fields = $key->getFieldElements();
+        
+        self::assertElementNamespaceDeclarations([], $fields[0]);
+        self::assertFieldElementHasNoAttribute($fields[0]);
+        self::assertSame([], $fields[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $fields[1]);
+        self::assertFieldElementHasNoAttribute($fields[1]);
+        self::assertSame([], $fields[1]->getElements());
     }
 }
