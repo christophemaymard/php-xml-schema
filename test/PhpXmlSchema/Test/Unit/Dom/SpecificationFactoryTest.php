@@ -537,7 +537,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 40, 0, 41, 'element', ], // ELT_LOCAL_ELEMENT
+            [ 40, 0, 36, 'group', ], // ELT_GROUP_REF
             [ 40, 1, 41, 'element', ], // ELT_LOCAL_ELEMENT
+            [ 40, 1, 36, 'group', ], // ELT_GROUP_REF
             // Context: ELT_LOCAL_ELEMENT
             [ 41, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 41, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
@@ -830,7 +832,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 40, 0, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
+            [ 40, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 40, 1, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
+            [ 40, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             // Context: ELT_LOCAL_ELEMENT
             [ 41, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 41, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
@@ -1123,7 +1127,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 1, ], // ELT_ANNOTATION
             [ 40, 0, 41, 1, ], // ELT_LOCAL_ELEMENT
+            [ 40, 0, 36, 1, ], // ELT_GROUP_REF
             [ 40, 1, 41, 1, ], // ELT_LOCAL_ELEMENT
+            [ 40, 1, 36, 1, ], // ELT_GROUP_REF
             // Context: ELT_LOCAL_ELEMENT
             [ 41, 0, 2, 1, ], // ELT_ANNOTATION
             [ 41, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
