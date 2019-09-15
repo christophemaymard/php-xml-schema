@@ -73,6 +73,49 @@
       <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
     </schema>
   </test>
+  <!-- keyref::name -->
+  <test group="attribute" name="[keyref][attribute::name] Empty string">
+    <schema fileName="keyref_name_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "name" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::name] Only white spaces">
+    <schema fileName="keyref_name_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "name" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::name] Separated by whitespaces">
+    <schema fileName="keyref_name_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "name" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::name] Starts with digit">
+    <schema fileName="keyref_name_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "name" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::name] Starts with .">
+    <schema fileName="keyref_name_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "name" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::name] Starts with -">
+    <schema fileName="keyref_name_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "name" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::name] Contains invalid character">
+    <schema fileName="keyref_name_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
   <!-- selector -->
   <test group="content" name="[keyref][selector] not part of the XML Schema 1.0 namespace">
     <schema fileName="selector_0001.xsd">

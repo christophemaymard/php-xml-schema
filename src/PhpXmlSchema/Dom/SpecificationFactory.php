@@ -1364,6 +1364,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_KEYREF => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'name', '', 'buildNameAttribute', ], 
         ], 
     ];
     
