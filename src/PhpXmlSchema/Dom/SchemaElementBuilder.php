@@ -274,6 +274,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_UNIQUE:
                 case ElementId::ELT_SELECTOR:
                 case ElementId::ELT_FIELD:
+                case ElementId::ELT_KEY:
                     $this->currentElement->setId($this->parseID($value));
             }
         }
