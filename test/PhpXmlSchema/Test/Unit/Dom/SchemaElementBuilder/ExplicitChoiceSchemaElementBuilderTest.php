@@ -496,4 +496,36 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         self::assertChoiceElementHasNoAttribute($choices[1]);
         self::assertSame([], $choices[1]->getElements());
     }
+    
+    /**
+     * Tests that buildSequenceElement() creates the element when the current 
+     * element is the "choice" element (explicitGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSequenceElementCreateEltWhenExplicitChoice()
+    {
+        $this->sut->buildSequenceElement();
+        $this->sut->endElement();
+        $this->sut->buildSequenceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $choice = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(2, $choice->getElements());
+        
+        $seqs = $choice->getSequenceElements();
+        
+        self::assertElementNamespaceDeclarations([], $seqs[0]);
+        self::assertSequenceElementHasNoAttribute($seqs[0]);
+        self::assertSame([], $seqs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $seqs[1]);
+        self::assertSequenceElementHasNoAttribute($seqs[1]);
+        self::assertSame([], $seqs[1]->getElements());
+    }
 }

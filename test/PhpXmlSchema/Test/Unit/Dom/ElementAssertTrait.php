@@ -40,6 +40,7 @@ use PhpXmlSchema\Dom\NotationElement;
 use PhpXmlSchema\Dom\PatternElement;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SelectorElement;
+use PhpXmlSchema\Dom\SequenceElement;
 use PhpXmlSchema\Dom\SimpleContentElement;
 use PhpXmlSchema\Dom\SimpleContentExtensionElement;
 use PhpXmlSchema\Dom\SimpleContentRestrictionElement;
@@ -2738,5 +2739,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertTrue($sut->hasRefer());
+    }
+    
+    /**
+     * Asserts that the specified "sequence" element has no attribute.
+     * 
+     * @param   SequenceElement $sut    The element to test.
+     */
+    public static function assertSequenceElementHasNoAttribute(
+        SequenceElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
     }
 }

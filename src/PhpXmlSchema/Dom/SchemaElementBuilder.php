@@ -1229,6 +1229,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildSequenceElement()
+    {
+        if ($this->currentElement instanceof ChoiceElement) {
+            $elt = new SequenceElement();
+            $this->currentElement->addSequenceElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSimpleContentElement()
     {
         if ($this->currentElement instanceof ComplexTypeElement) {
