@@ -732,7 +732,7 @@
 - [x] Parse **keyref** element.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **name** attribute (collapsing white spaces).
-- [ ] Parse **refer** attribute (collapsing white spaces).
+- [x] Parse **refer** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [x] Parse **selector** element.

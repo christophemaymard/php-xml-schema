@@ -116,6 +116,139 @@
       <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName datatype.</message>
     </schema>
   </test>
+  <!-- keyref::refer -->
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (absent), local part (empty string)">
+    <schema fileName="keyref_refer_0024.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (absent), local part (only white spaces)">
+    <schema fileName="keyref_refer_0025.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (absent), local part (separated by white spaces)">
+    <schema fileName="keyref_refer_0026.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (absent), local part (starts with digit)">
+    <schema fileName="keyref_refer_0027.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (absent), local part (starts with .)">
+    <schema fileName="keyref_refer_0028.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (absent), local part (starts with -)">
+    <schema fileName="keyref_refer_0029.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (absent), local part (contains invalid character)">
+    <schema fileName="keyref_refer_0030.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (empty string), local part (valid)">
+    <schema fileName="keyref_refer_0031.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (only white spaces), local part (valid)">
+    <schema fileName="keyref_refer_0032.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (separated by white spaces), local part (valid)">
+    <schema fileName="keyref_refer_0033.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (starts with digit), local part (valid)">
+    <schema fileName="keyref_refer_0034.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (starts with .), local part (valid)">
+    <schema fileName="keyref_refer_0035.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (starts with -), local part (valid)">
+    <schema fileName="keyref_refer_0036.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (contains invalid character), local part (valid)">
+    <schema fileName="keyref_refer_0037.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (valid), local part (empty string)">
+    <schema fileName="keyref_refer_0038.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (valid), local part (only white spaces)">
+    <schema fileName="keyref_refer_0039.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (valid), local part (separated by white spaces)">
+    <schema fileName="keyref_refer_0040.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (valid), local part (starts with digit)">
+    <schema fileName="keyref_refer_0041.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (valid), local part (starts with .)">
+    <schema fileName="keyref_refer_0042.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (valid), local part (starts with -)">
+    <schema fileName="keyref_refer_0043.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix (valid), local part (contains invalid character)">
+    <schema fileName="keyref_refer_0044.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "refer" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[keyref][attribute::refer] Prefix not bound to namespace">
+    <schema fileName="keyref_refer_0045.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "refer" attribute is invalid: The "foo" prefix is not bound to a namespace.</message>
+    </schema>
+  </test>
   <!-- selector -->
   <test group="content" name="[keyref][selector] not part of the XML Schema 1.0 namespace">
     <schema fileName="selector_0001.xsd">
