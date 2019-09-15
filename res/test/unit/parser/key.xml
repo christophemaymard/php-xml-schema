@@ -27,7 +27,7 @@
   <test group="content" name="[key] foo child element is not supported">
     <schema fileName="key_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "selector".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation" or "selector".</message>
     </schema>
   </test>
   <!-- key::id -->
@@ -116,11 +116,18 @@
       <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName datatype.</message>
     </schema>
   </test>
+  <!-- annotation -->
+  <test group="content" name="[key][annotation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation" or "selector".</message>
+    </schema>
+  </test>
   <!-- selector -->
   <test group="content" name="[key][selector] not part of the XML Schema 1.0 namespace">
     <schema fileName="selector_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "selector" element (from no namespace) is unexpected, expected: "selector".</message>
+      <message>The "selector" element (from no namespace) is unexpected, expected: "annotation" or "selector".</message>
     </schema>
   </test>
   <!-- field -->
@@ -141,6 +148,18 @@
     <schema fileName="container_0002.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
       <message>The content is invalid.</message>
+    </schema>
+  </test>
+  <test group="content" name="[key][container] annotation">
+    <schema fileName="container_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The content is invalid.</message>
+    </schema>
+  </test>
+  <test group="content" name="[key][container] annotation unexpected annotation">
+    <schema fileName="container_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "selector".</message>
     </schema>
   </test>
   <!-- TEMPLATE

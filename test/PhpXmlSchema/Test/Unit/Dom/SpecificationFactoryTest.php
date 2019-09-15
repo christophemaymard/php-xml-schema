@@ -279,7 +279,7 @@ class SpecificationFactoryTest extends TestCase
             [ 42, [ 3, ], ], // ELT_UNIQUE
             [ 43, [ 0, 1, ], ], // ELT_SELECTOR
             [ 44, [ 0, 1, ], ], // ELT_FIELD
-            [ 45, [ 3, ], ], // ELT_UNIQUE
+            [ 45, [ 3, ], ], // ELT_KEY
         ];
     }
     
@@ -559,6 +559,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_FIELD
             [ 44, 0, 2, 'annotation', ], // ELT_ANNOTATION
             // Context: ELT_KEY
+            [ 45, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 45, 0, 43, 'selector', ], // ELT_SELECTOR
             [ 45, 1, 43, 'selector', ], // ELT_SELECTOR
             [ 45, 2, 44, 'field', ], // ELT_FIELD
@@ -842,6 +843,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_FIELD
             [ 44, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             // Context: ELT_KEY
+            [ 45, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 45, 0, 43, 'buildSelectorElement', ], // ELT_SELECTOR
             [ 45, 1, 43, 'buildSelectorElement', ], // ELT_SELECTOR
             [ 45, 2, 44, 'buildFieldElement', ], // ELT_FIELD
@@ -1125,6 +1127,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_FIELD
             [ 44, 0, 2, 1, ], // ELT_ANNOTATION
             // Context: ELT_KEY
+            [ 45, 0, 2, 1, ], // ELT_ANNOTATION
             [ 45, 0, 43, 2, ], // ELT_SELECTOR
             [ 45, 1, 43, 2, ], // ELT_SELECTOR
             [ 45, 2, 44, 3, ], // ELT_FIELD

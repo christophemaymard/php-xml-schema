@@ -440,6 +440,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
         ], 
         ContextId::ELT_KEY => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_SELECTOR, 'selector', ], 
             [ 1, ContextId::ELT_SELECTOR, 'selector', ], 
             [ 2, ContextId::ELT_FIELD, 'field', ], 
@@ -763,6 +764,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
         ], 
         ContextId::ELT_KEY => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
             [ 0, ContextId::ELT_SELECTOR, 'buildSelectorElement', ], 
             [ 1, ContextId::ELT_SELECTOR, 'buildSelectorElement', ], 
             [ 2, ContextId::ELT_FIELD, 'buildFieldElement', ], 
@@ -1085,6 +1087,7 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
         ContextId::ELT_KEY => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_SELECTOR, 2, ], 
             [ 1, ContextId::ELT_SELECTOR, 2, ], 
             [ 2, ContextId::ELT_FIELD, 3, ], 
