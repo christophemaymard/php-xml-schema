@@ -734,7 +734,7 @@
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Parse **refer** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
 - [x] Parse **selector** element.
 - [x] Parse **field** elements.
 

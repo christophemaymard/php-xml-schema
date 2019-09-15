@@ -570,6 +570,7 @@ class SpecificationFactoryTest extends TestCase
             [ 45, 2, 44, 'field', ], // ELT_FIELD
             [ 45, 3, 44, 'field', ], // ELT_FIELD
             // Context: ELT_KEYREF
+            [ 46, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 46, 0, 43, 'selector', ], // ELT_SELECTOR
             [ 46, 1, 43, 'selector', ], // ELT_SELECTOR
             [ 46, 2, 44, 'field', ], // ELT_FIELD
@@ -862,6 +863,7 @@ class SpecificationFactoryTest extends TestCase
             [ 45, 2, 44, 'buildFieldElement', ], // ELT_FIELD
             [ 45, 3, 44, 'buildFieldElement', ], // ELT_FIELD
             // Context: ELT_KEYREF
+            [ 46, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 46, 0, 43, 'buildSelectorElement', ], // ELT_SELECTOR
             [ 46, 1, 43, 'buildSelectorElement', ], // ELT_SELECTOR
             [ 46, 2, 44, 'buildFieldElement', ], // ELT_FIELD
@@ -1154,6 +1156,7 @@ class SpecificationFactoryTest extends TestCase
             [ 45, 2, 44, 3, ], // ELT_FIELD
             [ 45, 3, 44, 3, ], // ELT_FIELD
             // Context: ELT_KEYREF
+            [ 46, 0, 2, 1, ], // ELT_ANNOTATION
             [ 46, 0, 43, 2, ], // ELT_SELECTOR
             [ 46, 1, 43, 2, ], // ELT_SELECTOR
             [ 46, 2, 44, 3, ], // ELT_FIELD
