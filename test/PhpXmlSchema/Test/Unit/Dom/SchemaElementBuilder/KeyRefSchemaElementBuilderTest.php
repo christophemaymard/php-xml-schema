@@ -45,7 +45,6 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
@@ -602,5 +601,30 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
         
         $this->sut->buildReferAttribute('foo:bar');
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "keyref" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenKeyRef()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $keyRef = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $keyRef);
+        self::assertKeyRefElementHasNoAttribute($keyRef);
+        self::assertCount(1, $keyRef->getElements());
+        
+        $ann = $keyRef->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
