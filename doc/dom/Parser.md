@@ -711,7 +711,7 @@
 
 - [x] Parse **key** element.
 - [x] Parse **id** attribute (collapsing white spaces).
-- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Parse **name** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [x] Parse **selector** element.

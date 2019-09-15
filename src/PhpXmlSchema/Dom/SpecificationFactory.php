@@ -1328,6 +1328,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_KEY => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'name', '', 'buildNameAttribute', ], 
         ], 
     ];
     
