@@ -98,6 +98,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
+    use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

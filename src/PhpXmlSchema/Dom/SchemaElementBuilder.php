@@ -482,6 +482,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildReferAttribute(string $value)
+    {
+        if ($this->currentElement instanceof KeyRefElement) {
+            $this->currentElement->setRefer($this->parseQName($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSchemaLocationAttribute(string $value)
     {
         if ($this->currentElement instanceof ElementInterface) {

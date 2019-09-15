@@ -101,6 +101,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
+    use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

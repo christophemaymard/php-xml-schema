@@ -96,6 +96,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
+    use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

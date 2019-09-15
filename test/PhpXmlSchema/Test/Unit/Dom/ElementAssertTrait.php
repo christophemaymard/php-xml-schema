@@ -2725,4 +2725,18 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasName());
         self::assertFalse($sut->hasRefer());
     }
+    
+    /**
+     * Asserts that the specified "keyref" element has only the "refer" 
+     * attribute.
+     * 
+     * @param   KeyRefElement   $sut    The element to test.
+     */
+    public static function assertKeyRefElementHasOnlyReferAttribute(
+        KeyRefElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertTrue($sut->hasRefer());
+    }
 }
