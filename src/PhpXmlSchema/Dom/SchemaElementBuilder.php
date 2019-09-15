@@ -907,6 +907,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_UNIQUE:
                 case ElementId::ELT_KEY:
+                case ElementId::ELT_KEYREF:
                     $elt = new FieldElement();
                     $this->currentElement->addFieldElement($elt);
                     $this->currentElement = $elt;
