@@ -595,7 +595,7 @@
 - [x] Parse **annotation** element.
 - [x] Parse **element** elements (localElement).
 - [x] Parse **group** elements (groupRef).
-- [ ] Parse **choice** elements (explicitGroup).
+- [x] Parse **choice** elements (explicitGroup).
 - [ ] Parse **sequence** elements (explicitGroup).
 - [ ] Parse **any** elements.
 
