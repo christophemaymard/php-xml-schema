@@ -959,6 +959,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $elt = new GroupElement();
                     $this->currentElement->setTypeDefinitionParticleElement($elt);
                     $this->currentElement = $elt;
+                    break;
+                case ElementId::ELT_CHOICE:
+                    $elt = new GroupElement();
+                    $this->currentElement->addGroupElement($elt);
+                    $this->currentElement = $elt;
+                    break;
             }
         }
     }
