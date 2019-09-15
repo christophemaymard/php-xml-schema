@@ -1188,6 +1188,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_UNIQUE:
                 case ElementId::ELT_KEY:
+                case ElementId::ELT_KEYREF:
                     $elt = new SelectorElement();
                     $this->currentElement->setSelectorElement($elt);
                     $this->currentElement = $elt;

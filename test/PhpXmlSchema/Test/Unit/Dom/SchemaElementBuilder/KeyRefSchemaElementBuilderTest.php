@@ -92,7 +92,6 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
-    use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
@@ -209,5 +208,30 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildSelectorElement() creates the element when the current 
+     * element is the "keyref" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSelectorElementCreateEltWhenKeyRef()
+    {
+        $this->sut->buildSelectorElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $keyRef = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $keyRef);
+        self::assertKeyRefElementHasNoAttribute($keyRef);
+        self::assertCount(1, $keyRef->getElements());
+        
+        $sel = $keyRef->getSelectorElement();
+        self::assertElementNamespaceDeclarations([], $sel);
+        self::assertSelectorElementHasNoAttribute($sel);
+        self::assertSame([], $sel->getElements());
     }
 }
