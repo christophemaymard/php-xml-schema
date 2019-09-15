@@ -69,6 +69,7 @@ class SpecificationFactory
         ContextId::ELT_SELECTOR => 0, 
         ContextId::ELT_FIELD => 0, 
         ContextId::ELT_KEY => 0, 
+        ContextId::ELT_KEYREF => 0, 
     ];
     
     /**
@@ -123,6 +124,7 @@ class SpecificationFactory
         ContextId::ELT_SELECTOR => [ 0, 1, ], 
         ContextId::ELT_FIELD => [ 0, 1, ], 
         ContextId::ELT_KEY => [ 3, ], 
+        ContextId::ELT_KEYREF => [ 3, ], 
     ];
     
     /**
@@ -419,12 +421,15 @@ class SpecificationFactory
             [ 0, ContextId::ELT_LOCAL_COMPLEXTYPE, 'complexType', ], 
             [ 0, ContextId::ELT_UNIQUE, 'unique', ], 
             [ 0, ContextId::ELT_KEY, 'key', ], 
+            [ 0, ContextId::ELT_KEYREF, 'keyref', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'simpleType', ], 
             [ 1, ContextId::ELT_LOCAL_COMPLEXTYPE, 'complexType', ], 
             [ 1, ContextId::ELT_UNIQUE, 'unique', ], 
             [ 1, ContextId::ELT_KEY, 'key', ], 
+            [ 1, ContextId::ELT_KEYREF, 'keyref', ], 
             [ 2, ContextId::ELT_UNIQUE, 'unique', ], 
             [ 2, ContextId::ELT_KEY, 'key', ], 
+            [ 2, ContextId::ELT_KEYREF, 'keyref', ], 
         ], 
         ContextId::ELT_UNIQUE => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
@@ -441,6 +446,12 @@ class SpecificationFactory
         ], 
         ContextId::ELT_KEY => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+            [ 0, ContextId::ELT_SELECTOR, 'selector', ], 
+            [ 1, ContextId::ELT_SELECTOR, 'selector', ], 
+            [ 2, ContextId::ELT_FIELD, 'field', ], 
+            [ 3, ContextId::ELT_FIELD, 'field', ], 
+        ], 
+        ContextId::ELT_KEYREF => [
             [ 0, ContextId::ELT_SELECTOR, 'selector', ], 
             [ 1, ContextId::ELT_SELECTOR, 'selector', ], 
             [ 2, ContextId::ELT_FIELD, 'field', ], 
@@ -743,12 +754,15 @@ class SpecificationFactory
             [ 0, ContextId::ELT_LOCAL_COMPLEXTYPE, 'buildComplexTypeElement', ], 
             [ 0, ContextId::ELT_UNIQUE, 'buildUniqueElement', ], 
             [ 0, ContextId::ELT_KEY, 'buildKeyElement', ], 
+            [ 0, ContextId::ELT_KEYREF, 'buildKeyRefElement', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 1, ContextId::ELT_LOCAL_COMPLEXTYPE, 'buildComplexTypeElement', ], 
             [ 1, ContextId::ELT_UNIQUE, 'buildUniqueElement', ], 
             [ 1, ContextId::ELT_KEY, 'buildKeyElement', ], 
+            [ 1, ContextId::ELT_KEYREF, 'buildKeyRefElement', ], 
             [ 2, ContextId::ELT_UNIQUE, 'buildUniqueElement', ], 
             [ 2, ContextId::ELT_KEY, 'buildKeyElement', ], 
+            [ 2, ContextId::ELT_KEYREF, 'buildKeyRefElement', ], 
         ], 
         ContextId::ELT_UNIQUE => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
@@ -765,6 +779,12 @@ class SpecificationFactory
         ], 
         ContextId::ELT_KEY => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+            [ 0, ContextId::ELT_SELECTOR, 'buildSelectorElement', ], 
+            [ 1, ContextId::ELT_SELECTOR, 'buildSelectorElement', ], 
+            [ 2, ContextId::ELT_FIELD, 'buildFieldElement', ], 
+            [ 3, ContextId::ELT_FIELD, 'buildFieldElement', ], 
+        ], 
+        ContextId::ELT_KEYREF => [
             [ 0, ContextId::ELT_SELECTOR, 'buildSelectorElement', ], 
             [ 1, ContextId::ELT_SELECTOR, 'buildSelectorElement', ], 
             [ 2, ContextId::ELT_FIELD, 'buildFieldElement', ], 
@@ -1066,12 +1086,15 @@ class SpecificationFactory
             [ 0, ContextId::ELT_LOCAL_COMPLEXTYPE, 2, ], 
             [ 0, ContextId::ELT_UNIQUE, 2, ], 
             [ 0, ContextId::ELT_KEY, 2, ], 
+            [ 0, ContextId::ELT_KEYREF, 2, ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 2, ], 
             [ 1, ContextId::ELT_LOCAL_COMPLEXTYPE, 2, ], 
             [ 1, ContextId::ELT_UNIQUE, 2, ], 
             [ 1, ContextId::ELT_KEY, 2, ], 
+            [ 1, ContextId::ELT_KEYREF, 2, ], 
             [ 2, ContextId::ELT_UNIQUE, 2, ], 
             [ 2, ContextId::ELT_KEY, 2, ], 
+            [ 2, ContextId::ELT_KEYREF, 2, ], 
         ], 
         ContextId::ELT_UNIQUE => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
@@ -1088,6 +1111,12 @@ class SpecificationFactory
         ], 
         ContextId::ELT_KEY => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+            [ 0, ContextId::ELT_SELECTOR, 2, ], 
+            [ 1, ContextId::ELT_SELECTOR, 2, ], 
+            [ 2, ContextId::ELT_FIELD, 3, ], 
+            [ 3, ContextId::ELT_FIELD, 3, ], 
+        ], 
+        ContextId::ELT_KEYREF => [
             [ 0, ContextId::ELT_SELECTOR, 2, ], 
             [ 1, ContextId::ELT_SELECTOR, 2, ], 
             [ 2, ContextId::ELT_FIELD, 3, ], 

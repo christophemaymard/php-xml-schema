@@ -60,4 +60,5 @@ class ContextId
     const ELT_SELECTOR = 43;
     const ELT_FIELD = 44;
     const ELT_KEY = 45;
+    const ELT_KEYREF = 46;
 }

@@ -677,7 +677,7 @@
 - [x] Parse **complexType** element (localComplexType).
 - [x] Parse **unique** elements.
 - [x] Parse **key** elements.
-- [ ] Parse **keyref** elements.
+- [x] Parse **keyref** elements.
 
 ## Element: "unique"
 
@@ -714,6 +714,27 @@
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+- [x] Parse **selector** element.
+- [x] Parse **field** elements.
+
+## Element: "keyref"
+
+```
+<keyref
+  id = ID
+  name = NCName
+  refer = QName
+>
+  Content: (annotation?, (selector, field+))
+</keyref>
+```
+
+- [x] Parse **keyref** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [ ] Parse **refer** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 - [x] Parse **selector** element.
 - [x] Parse **field** elements.
 
