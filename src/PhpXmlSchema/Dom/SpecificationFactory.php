@@ -1326,6 +1326,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'xpath', '', 'buildXPathAttribute', ], 
         ], 
+        ContextId::ELT_KEY => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**

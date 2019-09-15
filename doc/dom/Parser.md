@@ -710,9 +710,9 @@
 ```
 
 - [x] Parse **key** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **name** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [x] Parse **selector** element.
 - [x] Parse **field** elements.

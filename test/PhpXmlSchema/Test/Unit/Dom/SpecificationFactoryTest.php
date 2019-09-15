@@ -1324,6 +1324,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_FIELD
             [ 44, 'id', '', 'buildIdAttribute', ], 
             [ 44, 'xpath', '', 'buildXPathAttribute', ], 
+            // Context: ELT_KEY
+            [ 45, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
