@@ -1356,6 +1356,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_KEY
             [ 45, 'id', '', 'buildIdAttribute', ], 
             [ 45, 'name', '', 'buildNameAttribute', ], 
+            // Context: ELT_KEYREF
+            [ 46, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
