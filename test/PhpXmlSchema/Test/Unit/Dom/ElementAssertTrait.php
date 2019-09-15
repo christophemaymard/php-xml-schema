@@ -2672,4 +2672,16 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasName());
     }
+    
+    /**
+     * Asserts that the specified "key" element has only the "name" attribute.
+     * 
+     * @param   KeyElement  $sut    The element to test.
+     */
+    public static function assertKeyElementHasOnlyNameAttribute(
+        KeyElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasName());
+    }
 }
