@@ -99,6 +99,7 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
+    use BuildKeyRefElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

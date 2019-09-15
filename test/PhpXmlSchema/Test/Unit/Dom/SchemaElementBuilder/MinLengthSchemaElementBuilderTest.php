@@ -100,6 +100,7 @@ class MinLengthSchemaElementBuilderTest extends AbstractSchemaElementBuilderTest
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
+    use BuildKeyRefElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

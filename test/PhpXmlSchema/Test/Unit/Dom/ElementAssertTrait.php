@@ -27,6 +27,7 @@ use PhpXmlSchema\Dom\GroupElement;
 use PhpXmlSchema\Dom\ImportElement;
 use PhpXmlSchema\Dom\IncludeElement;
 use PhpXmlSchema\Dom\KeyElement;
+use PhpXmlSchema\Dom\KeyRefElement;
 use PhpXmlSchema\Dom\LengthElement;
 use PhpXmlSchema\Dom\ListElement;
 use PhpXmlSchema\Dom\MaxExclusiveElement;
@@ -2683,5 +2684,17 @@ trait ElementAssertTrait
     ) {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasName());
+    }
+    
+    /**
+     * Asserts that the specified "keyref" element has no attribute.
+     * 
+     * @param   KeyRefElement   $sut    The element to test.
+     */
+    public static function assertKeyRefElementHasNoAttribute(KeyRefElement $sut)
+    {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasRefer());
     }
 }

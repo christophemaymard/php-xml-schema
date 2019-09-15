@@ -95,6 +95,7 @@ class KeySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
+    use BuildKeyRefElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

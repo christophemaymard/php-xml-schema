@@ -990,6 +990,20 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildKeyRefElement()
+    {
+        if ($this->currentElement instanceof ElementElement && 
+            !$this->currentElement->getParent() instanceof AllElement
+        ) {
+            $elt = new KeyRefElement();
+            $this->currentElement->addKeyRefElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildLengthElement()
     {
         if ($this->currentElement instanceof ElementInterface) {
