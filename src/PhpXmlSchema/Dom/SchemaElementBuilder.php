@@ -813,12 +813,22 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildChoiceElement()
     {
-        if ($this->currentElement instanceof ComplexTypeElement && 
-            !$this->currentElement->getParent() instanceof SchemaElement
-        ) {
-            $elt = new ChoiceElement();
-            $this->currentElement->setTypeDefinitionParticleElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_COMPLEXTYPE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $elt = new ChoiceElement();
+                        $this->currentElement->setTypeDefinitionParticleElement($elt);
+                        $this->currentElement = $elt;
+                    }
+                    
+                    break;
+                case ElementId::ELT_CHOICE:
+                    $elt = new ChoiceElement();
+                    $this->currentElement->addChoiceElement($elt);
+                    $this->currentElement = $elt;
+                    break;
+            }
         }
     }
     
