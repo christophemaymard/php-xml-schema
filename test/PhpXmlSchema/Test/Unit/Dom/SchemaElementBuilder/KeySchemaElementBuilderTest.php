@@ -42,7 +42,6 @@ class KeySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
@@ -367,5 +366,30 @@ class KeySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         ));
         
         $this->sut->buildNameAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "key" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenKey()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $key = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $key);
+        self::assertKeyElementHasNoAttribute($key);
+        self::assertCount(1, $key->getElements());
+        
+        $ann = $key->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
