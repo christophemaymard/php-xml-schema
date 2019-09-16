@@ -374,6 +374,92 @@ class AnyParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "namespace" attribute.
+     * 
+     * @param   string      $fileName   The name of the file used for the test.
+     * @param   bool        $any        The expected value for the "any" flag.
+     * @param   bool        $other      The expected value for the "other" flag.
+     * @param   bool        $targetNs   The expected value for the "targetNamespace" flag.
+     * @param   bool        $local      The expected value for the "local" flag.
+     * @param   string[]    $uris       The expected value for the anyURIs.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNamespaceAttributes
+     */
+    public function testParseProcessNamespaceAttribute(
+        string $fileName, 
+        bool $any, 
+        bool $other, 
+        bool $targetNs, 
+        bool $local, 
+        array $uris
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $ct2 = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        
+        $seq = $choice->getSequenceElements()[0];
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertCount(1, $seq->getElements());
+        
+        $anyElt = $seq->getAnyElements()[0];
+        self::assertElementNamespaceDeclarations([], $anyElt);
+        self::assertAnyElementHasOnlyNamespaceAttribute($anyElt);
+        self::assertAnyElementNamespaceAttribute(
+            $any, 
+            $other, 
+            $targetNs, 
+            $local, 
+            $uris, 
+            $anyElt
+        );
+        self::assertSame([], $anyElt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -490,6 +576,159 @@ class AnyParserTest extends AbstractParserTestCase
             '1234567890 with positive sign, leading zeroes and surrounded by white spaces' => [
                 'any_minOccurs_0008.xsd', 
                 \gmp_init(1234567890), 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "namespace" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidNamespaceAttributes():array
+    {
+        // [ $fileName, $any, $other, $targetNamespace, $local, $uris, ]
+        return [
+            'Empty string' => [
+                'any_namespace_0001.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                [], 
+            ], 
+            'Only white spaces' => [
+                'any_namespace_0002.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                [], 
+            ], 
+            '##any' => [
+                'any_namespace_0003.xsd', 
+                TRUE, 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                [], 
+            ], 
+            '##other' => [
+                'any_namespace_0004.xsd', 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                FALSE, 
+                [], 
+            ], 
+            '##targetNamespace' => [
+                'any_namespace_0005.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [], 
+            ], 
+            '##targetNamespace surrounded by white spaces' => [
+                'any_namespace_0006.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [], 
+            ], 
+            'Duplicated ##targetNamespace' => [
+                'any_namespace_0007.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [], 
+            ], 
+            '##local' => [
+                'any_namespace_0008.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [], 
+            ], 
+            '##local surrounded by white spaces' => [
+                'any_namespace_0009.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [], 
+            ], 
+            'Duplicated ##local' => [
+                'any_namespace_0010.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [], 
+            ], 
+            '##targetNamespace and ##local' => [
+                'any_namespace_0011.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                TRUE, 
+                [], 
+            ], 
+            '##targetNamespace and 1 anyURI' => [
+                'any_namespace_0012.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [
+                    'http://example.org/foo', 
+                ], 
+            ], 
+            '##local and 1 anyURI' => [
+                'any_namespace_0013.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [
+                    'http://example.org/foo', 
+                ], 
+            ], 
+            '##targetNamespace and 2 anyURI' => [
+                'any_namespace_0014.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                FALSE, 
+                [
+                    'http://example.org/foo', 
+                    'http://example.org/bar', 
+                ], 
+            ], 
+            '##local and 2 anyURI' => [
+                'any_namespace_0015.xsd', 
+                FALSE, 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                [
+                    'http://example.org/foo', 
+                    'http://example.org/bar', 
+                ], 
+            ], 
+            '##targetNamespace, ##local and 2 AnyURI' => [
+                'any_namespace_0016.xsd', 
+                FALSE, 
+                FALSE, 
+                TRUE, 
+                TRUE, 
+                [
+                    'http://example.org/foo', 
+                    'http://example.org/bar', 
+                ], 
             ], 
         ];
     }
