@@ -466,6 +466,9 @@ class SpecificationFactory
             [ 2, ContextId::ELT_FIELD, 'field', ], 
             [ 3, ContextId::ELT_FIELD, 'field', ], 
         ], 
+        ContextId::ELT_EXPLICIT_SEQUENCE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -806,6 +809,9 @@ class SpecificationFactory
             [ 2, ContextId::ELT_FIELD, 'buildFieldElement', ], 
             [ 3, ContextId::ELT_FIELD, 'buildFieldElement', ], 
         ], 
+        ContextId::ELT_EXPLICIT_SEQUENCE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -1144,6 +1150,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_SELECTOR, 2, ], 
             [ 2, ContextId::ELT_FIELD, 3, ], 
             [ 3, ContextId::ELT_FIELD, 3, ], 
+        ], 
+        ContextId::ELT_EXPLICIT_SEQUENCE => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
