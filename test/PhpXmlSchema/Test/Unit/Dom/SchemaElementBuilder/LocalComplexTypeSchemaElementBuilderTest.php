@@ -75,7 +75,6 @@ class LocalComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuil
     use BuildUnionElementDoesNotCreateElementTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
@@ -496,5 +495,37 @@ class LocalComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuil
         self::assertElementNamespaceDeclarations([], $attrs[1]);
         self::assertAttributeElementHasNoAttribute($attrs[1]);
         self::assertSame([], $attrs[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildAttributeGroupElement() creates the element when the 
+     * current element is the "complexType" element (localComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAttributeGroupElementCreateEltWhenLocalComplexType()
+    {
+        $this->sut->buildAttributeGroupElement();
+        $this->sut->endElement();
+        $this->sut->buildAttributeGroupElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(2, $ct->getElements());
+        
+        $ags = $ct->getAttributeGroupElements();
+        
+        self::assertElementNamespaceDeclarations([], $ags[0]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[0]);
+        self::assertSame([], $ags[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $ags[1]);
+        self::assertAttributeGroupElementHasNoAttribute($ags[1]);
+        self::assertSame([], $ags[1]->getElements());
     }
 }
