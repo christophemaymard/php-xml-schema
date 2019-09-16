@@ -92,7 +92,6 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSchemaElementBuil
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
@@ -337,5 +336,56 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSchemaElementBuil
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
         
         $this->sut->buildMaxOccursAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() creates the attribute when the 
+     * current element is the "sequence" element (explicitGroup) and the 
+     * value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
+     */
+    public function testBuildMinOccursAttributeCreatesAttrWhenExplicitSequenceAndValueIsValid(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMinOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $seq = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasOnlyMinOccursAttribute($seq);
+        self::assertEquals($nni, $seq->getMinOccurs()->getNonNegativeInteger());
+        self::assertSame([], $seq->getElements());
+    }
+    
+    /**
+     * Tests that buildMinOccursAttribute() throws an exception when the 
+     * current element is the "sequence" element (explicitGroup) and the 
+     * value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
+     */
+    public function testBuildMinOccursAttributeThrowsExceptionWhenExplicitSequenceAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid nonNegativeInteger datatype.', 
+            $value
+        ));
+        
+        $this->sut->buildMinOccursAttribute($value);
     }
 }

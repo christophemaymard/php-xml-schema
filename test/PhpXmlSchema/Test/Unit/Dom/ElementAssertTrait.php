@@ -2781,4 +2781,18 @@ trait ElementAssertTrait
         self::assertTrue($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
     }
+    
+    /**
+     * Asserts that the specified "sequence" element has only the "minOccurs" 
+     * attribute.
+     * 
+     * @param   SequenceElement $sut    The element to test.
+     */
+    public static function assertSequenceElementHasOnlyMinOccursAttribute(
+        SequenceElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertTrue($sut->hasMinOccurs());
+    }
 }
