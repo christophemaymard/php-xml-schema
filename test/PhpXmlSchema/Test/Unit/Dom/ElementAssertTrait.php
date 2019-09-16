@@ -2841,4 +2841,20 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasProcessContents());
     }
+    
+    /**
+     * Asserts that the specified "any" element has only the "minOccurs" 
+     * attribute.
+     * 
+     * @param   AnyElement  $sut    The element to test.
+     */
+    public static function assertAnyElementHasOnlyMinOccursAttribute(
+        AnyElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertTrue($sut->hasMinOccurs());
+        self::assertFalse($sut->hasNamespace());
+        self::assertFalse($sut->hasProcessContents());
+    }
 }

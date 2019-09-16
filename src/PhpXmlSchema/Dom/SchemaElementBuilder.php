@@ -362,6 +362,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_GROUP:
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
+                case ElementId::ELT_ANY:
                     $this->currentElement->setMinOccurs($this->parseNonNegativeInteger($value));
             }
         }
