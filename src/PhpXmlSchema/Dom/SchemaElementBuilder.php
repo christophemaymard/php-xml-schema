@@ -304,6 +304,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     break;
                 case ElementId::ELT_GROUP:
                 case ElementId::ELT_CHOICE:
+                case ElementId::ELT_SEQUENCE:
                     $this->currentElement->setMaxOccurs($this->parseNonNegativeIntegerLimit($value));
                     break;
                 case ElementId::ELT_ELEMENT:
