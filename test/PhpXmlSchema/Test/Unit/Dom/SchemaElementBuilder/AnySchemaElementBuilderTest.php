@@ -14,6 +14,7 @@ use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\NamespaceListTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\ProcessingModeTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -30,6 +31,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use NCNameTypeProviderTrait;
     use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
+    use ProcessingModeTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -84,7 +86,6 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
-    use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
@@ -451,5 +452,61 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid namespace list.', $value));
         
         $this->sut->buildNamespaceAttribute($value);
+    }
+    
+    /**
+     * Tests that buildProcessContentsAttribute() creates the attribute when 
+     * the current element is the "any" element and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $lax    The expected value for the "lax" flag.
+     * @param   bool    $skip   The expected value for the "skip" flag.
+     * @param   bool    $strict The expected value for the "strict" flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidProcessingModeTypeValues
+     */
+    public function testBuildProcessContentsAttributeCreatesAttrWhenAnyAndValueIsValid(
+        string $value, 
+        bool $lax, 
+        bool $skip, 
+        bool $strict
+    ) {
+        $this->sut->buildProcessContentsAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $any = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $any);
+        self::assertAnyElementHasOnlyProcessContentsAttribute($any);
+        self::assertSame($lax, $any->getProcessContents()->isLax());
+        self::assertSame($skip, $any->getProcessContents()->isSkip());
+        self::assertSame($strict, $any->getProcessContents()->isStrict());
+        self::assertSame([], $any->getElements());
+    }
+    
+    /**
+     * Tests that buildProcessContentsAttribute() throws an exception when 
+     * the current element is the "any" element and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidProcessingModeTypeValues
+     */
+    public function testBuildProcessContentsAttributeThrowsExceptionWhenAnyAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid mode of content processing, expected "lax", '.
+            '"skip" or "strict".', 
+            $value
+        ));
+        
+        $this->sut->buildProcessContentsAttribute($value);
     }
 }

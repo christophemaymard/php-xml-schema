@@ -447,8 +447,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildProcessContentsAttribute(string $value)
     {
-        if ($this->currentElement instanceof AnyAttributeElement) {
-            $this->currentElement->setProcessContents($this->parseProcessingMode($value));
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ANYATTRIBUTE:
+                case ElementId::ELT_ANY:
+                    $this->currentElement->setProcessContents($this->parseProcessingMode($value));
+            }
         }
     }
     
