@@ -1392,6 +1392,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_EXPLICIT_SEQUENCE => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
         ], 
     ];
     
