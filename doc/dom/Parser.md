@@ -596,6 +596,30 @@
 - [x] Parse **element** elements (localElement).
 - [x] Parse **group** elements (groupRef).
 - [x] Parse **choice** elements (explicitGroup).
+- [x] Parse **sequence** elements (explicitGroup).
+- [ ] Parse **any** elements.
+
+## Element: "sequence" (explicitGroup)
+
+```
+<sequence
+  id = ID
+  maxOccurs = (nonNegativeInteger | unbounded)
+  minOccurs = nonNegativeInteger
+>
+  Content: (annotation?, (element | group | choice | sequence | any)*)
+</sequence>
+```
+
+- [x] Parse **sequence** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **maxOccurs** attribute (collapsing white spaces).
+- [ ] Parse **minOccurs** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **element** elements (localElement).
+- [ ] Parse **group** elements (groupRef).
+- [ ] Parse **choice** elements (explicitGroup).
 - [ ] Parse **sequence** elements (explicitGroup).
 - [ ] Parse **any** elements.
 

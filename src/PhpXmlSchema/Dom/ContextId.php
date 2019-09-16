@@ -61,4 +61,5 @@ class ContextId
     const ELT_FIELD = 44;
     const ELT_KEY = 45;
     const ELT_KEYREF = 46;
+    const ELT_EXPLICIT_SEQUENCE = 47;
 }
