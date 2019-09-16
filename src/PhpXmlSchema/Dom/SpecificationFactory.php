@@ -1390,6 +1390,9 @@ class SpecificationFactory
             [ 'name', '', 'buildNameAttribute', ], 
             [ 'refer', '', 'buildReferAttribute', ], 
         ], 
+        ContextId::ELT_EXPLICIT_SEQUENCE => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**

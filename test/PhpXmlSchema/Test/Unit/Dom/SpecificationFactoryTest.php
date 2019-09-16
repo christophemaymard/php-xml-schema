@@ -1383,6 +1383,8 @@ class SpecificationFactoryTest extends TestCase
             [ 46, 'id', '', 'buildIdAttribute', ], 
             [ 46, 'name', '', 'buildNameAttribute', ], 
             [ 46, 'refer', '', 'buildReferAttribute', ], 
+            // Context: ELT_EXPLICIT_SEQUENCE
+            [ 47, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
