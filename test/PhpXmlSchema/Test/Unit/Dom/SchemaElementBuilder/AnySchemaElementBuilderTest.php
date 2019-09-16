@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\NamespaceListTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 
 /**
@@ -25,6 +26,7 @@ use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
  */
 class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NamespaceListTypeProviderTrait;
     use NCNameTypeProviderTrait;
     use NonNegativeIntegerLimitTypeProviderTrait;
     use NonNegativeIntegerTypeProviderTrait;
@@ -44,7 +46,6 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildLeafElementContentDoesNotCreateContentTestTrait;
     use BuildDocumentationElementDoesNotCreateElementTestTrait;
     use BuildImportElementDoesNotCreateElementTestTrait;
-    use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
@@ -389,5 +390,66 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         ));
         
         $this->sut->buildMinOccursAttribute($value);
+    }
+    
+    /**
+     * Tests that buildNamespaceAttribute() creates the attribute when the 
+     * current element is the "any" element and the value is valid.
+     * 
+     * @param   string      $value      The value to test.
+     * @param   bool        $any        The expected value for the "any" flag.
+     * @param   bool        $other      The expected value for the "other" flag.
+     * @param   bool        $targetNs   The expected value for the "targetNamespace" flag.
+     * @param   bool        $local      The expected value for the "local" flag.
+     * @param   string[]    $uris       The expected value for the anyURIs.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNamespaceListTypeValues
+     */
+    public function testBuildNamespaceAttributeCreatesAttrWhenAnyAndValueIsValid(
+        string $value, 
+        bool $any, 
+        bool $other, 
+        bool $targetNs, 
+        bool $local, 
+        array $uris
+    ) {
+        $this->sut->buildNamespaceAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $anyElt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $anyElt);
+        self::assertAnyElementHasOnlyNamespaceAttribute($anyElt);
+        self::assertAnyElementNamespaceAttribute(
+            $any, 
+            $other, 
+            $targetNs, 
+            $local, 
+            $uris, 
+            $anyElt
+        );
+        self::assertSame([], $anyElt->getElements());
+    }
+    
+    /**
+     * Tests that buildNamespaceAttribute() throws an exception when the 
+     * current element is the "any" element and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNamespaceListTypeValues
+     */
+    public function testBuildNamespaceAttributeThrowsExceptionWhenAnyAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid namespace list.', $value));
+        
+        $this->sut->buildNamespaceAttribute($value);
     }
 }

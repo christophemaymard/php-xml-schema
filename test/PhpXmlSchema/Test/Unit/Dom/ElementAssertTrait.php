@@ -2857,4 +2857,57 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasProcessContents());
     }
+    
+    /**
+     * Asserts that the specified "any" element has only the "namespace" 
+     * attribute.
+     * 
+     * @param   AnyElement  $sut    The element to test.
+     */
+    public static function assertAnyElementHasOnlyNamespaceAttribute(
+        AnyElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertTrue($sut->hasNamespace());
+        self::assertFalse($sut->hasProcessContents());
+    }
+    
+    /**
+     * Asserts that the "namespace" attribute:
+     * - hasAny() returns the same value as the expected "any" flag
+     * - hasOther() returns the same value as the expected "other" flag
+     * - hasTargetNamespace() returns the same value as the expected "targetNamespace" flag
+     * - hasLocal() returns the same value as the expected "local" flag
+     * - getNamespaces() returns the same anyURI list
+     * 
+     * @param   bool        $any        The expected value for the "any" flag.
+     * @param   bool        $other      The expected value for the "other" flag.
+     * @param   bool        $targetNs   The expected value for the "targetNamespace" flag.
+     * @param   bool        $local      The expected value for the "local" flag.
+     * @param   string[]    $uris       The expected value for the anyURI list.
+     * @param   AnyElement  $sut        The element to test.
+     */
+    public static function assertAnyElementNamespaceAttribute(
+        bool $any, 
+        bool $other, 
+        bool $targetNs, 
+        bool $local, 
+        array $uris, 
+        AnyElement $sut
+    ) {
+        self::assertSame($any, $sut->getNamespace()->hasAny());
+        self::assertSame($other, $sut->getNamespace()->hasOther());
+        self::assertSame($targetNs, $sut->getNamespace()->hasTargetNamespace());
+        self::assertSame($local, $sut->getNamespace()->hasLocal());
+        
+        $namespaces = [];
+        
+        foreach ($sut->getNamespace()->getNamespaces() as $uri) {
+            $namespaces[] = $uri->getAnyUri();
+        }
+        
+        self::assertSame($uris, $namespaces);
+    }
 }

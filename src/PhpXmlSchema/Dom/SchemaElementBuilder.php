@@ -423,6 +423,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setNamespace($this->parseAnyUri($value));
                     break;
                 case ElementId::ELT_ANYATTRIBUTE:
+                case ElementId::ELT_ANY:
                     $this->currentElement->setNamespace(
                         $this->parseNamespaceList($value)
                     );
