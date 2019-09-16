@@ -638,12 +638,12 @@
 ```
 
 - [x] Parse **any** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **maxOccurs** attribute (collapsing white spaces).
 - [ ] Parse **minOccurs** attribute (collapsing white spaces).
 - [ ] Parse **namespace** attribute (collapsing white spaces).
 - [ ] Parse **processContents** attribute.
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 
 ## Element: "element" (narrowMaxMin)
