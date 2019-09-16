@@ -770,6 +770,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_COMPLEXTYPE:
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $elt = new AnyAttributeElement();
+                        $this->currentElement->setAnyAttributeElement($elt);
+                        $this->currentElement = $elt;
+                    }
+                    
+                    break;
                 case ElementId::ELT_ATTRIBUTEGROUP:
                     if (!$this->currentElement->getParent() instanceof SchemaElement) {
                         break;
