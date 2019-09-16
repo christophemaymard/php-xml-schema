@@ -1428,6 +1428,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_ANY
             [ 48, 'id', '', 'buildIdAttribute', ], 
             [ 48, 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
+            [ 48, 'minOccurs', '', 'buildMinOccursAttribute', ], 
         ];
     }
 }

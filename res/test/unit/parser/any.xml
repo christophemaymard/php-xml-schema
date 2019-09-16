@@ -86,6 +86,13 @@
       <message>The "maxOccurs" attribute is invalid: "-9" is an invalid non-negative integer limit type.</message>
     </schema>
   </test>
+  <!-- any::minOccurs -->
+  <test group="attribute" name="[any][attribute::minOccurs] Negative integer">
+    <schema fileName="any_minOccurs_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "minOccurs" attribute is invalid: "-9" is an invalid nonNegativeInteger datatype.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
