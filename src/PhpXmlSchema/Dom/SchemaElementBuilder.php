@@ -1238,10 +1238,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildSequenceElement()
     {
-        if ($this->currentElement instanceof ChoiceElement) {
-            $elt = new SequenceElement();
-            $this->currentElement->addSequenceElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_CHOICE:
+                case ElementId::ELT_SEQUENCE:
+                    $elt = new SequenceElement();
+                    $this->currentElement->addSequenceElement($elt);
+                    $this->currentElement = $elt;
+            }
         }
     }
     
