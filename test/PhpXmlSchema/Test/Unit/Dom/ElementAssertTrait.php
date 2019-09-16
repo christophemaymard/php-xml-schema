@@ -2753,4 +2753,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
     }
+    
+    /**
+     * Asserts that the specified "sequence" element has only the "id" 
+     * attribute.
+     * 
+     * @param   SequenceElement $sut    The element to test.
+     */
+    public static function assertSequenceElementHasOnlyIdAttribute(
+        SequenceElement $sut
+    ) {
+        self::assertTrue($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+    }
 }
