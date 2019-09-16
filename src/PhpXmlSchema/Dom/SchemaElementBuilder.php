@@ -277,6 +277,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_KEY:
                 case ElementId::ELT_KEYREF:
                 case ElementId::ELT_SEQUENCE:
+                case ElementId::ELT_ANY:
                     $this->currentElement->setId($this->parseID($value));
             }
         }
