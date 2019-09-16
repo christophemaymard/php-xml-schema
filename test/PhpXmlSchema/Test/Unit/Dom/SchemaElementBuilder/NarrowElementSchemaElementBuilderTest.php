@@ -94,7 +94,6 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
-    use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
@@ -1082,5 +1081,37 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertElementNamespaceDeclarations([], $ct);
         self::assertComplexTypeElementHasNoAttribute($ct);
         self::assertSame([], $ct->getElements());
+    }
+    
+    /**
+     * Tests that buildUniqueElement() creates the element when the current 
+     * element is the "element" element (narrowMaxMin).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildUniqueElementCreateEltWhenNarrowElement()
+    {
+        $this->sut->buildUniqueElement();
+        $this->sut->endElement();
+        $this->sut->buildUniqueElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(2, $elt->getElements());
+        
+        $uniques = $elt->getUniqueElements();
+        
+        self::assertElementNamespaceDeclarations([], $uniques[0]);
+        self::assertUniqueElementHasNoAttribute($uniques[0]);
+        self::assertSame([], $uniques[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $uniques[1]);
+        self::assertUniqueElementHasNoAttribute($uniques[1]);
+        self::assertSame([], $uniques[1]->getElements());
     }
 }
