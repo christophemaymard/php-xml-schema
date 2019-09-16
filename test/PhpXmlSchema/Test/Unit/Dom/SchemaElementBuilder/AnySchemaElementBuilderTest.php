@@ -49,7 +49,6 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildDocumentationElementDoesNotCreateElementTestTrait;
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -508,5 +507,30 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         ));
         
         $this->sut->buildProcessContentsAttribute($value);
+    }
+    
+    /**
+     * Tests that buildAnnotationElement() creates the element when the 
+     * current element is the "any" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnnotationElementCreateEltWhenAny()
+    {
+        $this->sut->buildAnnotationElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $any = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $any);
+        self::assertAnyElementHasNoAttribute($any);
+        self::assertCount(1, $any->getElements());
+        
+        $ann = $any->getAnnotationElement();
+        self::assertElementNamespaceDeclarations([], $ann);
+        self::assertAnnotationElementHasNoAttribute($ann);
+        self::assertSame([], $ann->getElements());
     }
 }
