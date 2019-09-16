@@ -92,7 +92,6 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSchemaElementBuil
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
-    use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
@@ -411,5 +410,37 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSchemaElementBuil
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+    }
+    
+    /**
+     * Tests that buildElementElement() creates the element when the 
+     * current element is the "sequence" element (explicitGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildElementElementCreateEltWhenExplicitSequence()
+    {
+        $this->sut->buildElementElement();
+        $this->sut->endElement();
+        $this->sut->buildElementElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $seq = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertCount(2, $seq->getElements());
+        
+        $elts = $seq->getElementElements();
+        
+        self::assertElementNamespaceDeclarations([], $elts[0]);
+        self::assertElementElementHasNoAttribute($elts[0]);
+        self::assertSame([], $elts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $elts[1]);
+        self::assertElementElementHasNoAttribute($elts[1]);
+        self::assertSame([], $elts[1]->getElements());
     }
 }

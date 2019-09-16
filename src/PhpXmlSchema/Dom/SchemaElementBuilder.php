@@ -890,6 +890,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ALL:
                 case ElementId::ELT_CHOICE:
+                case ElementId::ELT_SEQUENCE:
                     $elt = new ElementElement();
                     $this->currentElement->addElementElement($elt);
                     $this->currentElement = $elt;
