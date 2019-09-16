@@ -1438,6 +1438,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_ANY => [
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
         ], 
     ];
     
