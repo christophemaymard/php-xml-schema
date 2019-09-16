@@ -828,6 +828,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     
                     break;
                 case ElementId::ELT_CHOICE:
+                case ElementId::ELT_SEQUENCE:
                     $elt = new ChoiceElement();
                     $this->currentElement->addChoiceElement($elt);
                     $this->currentElement = $elt;

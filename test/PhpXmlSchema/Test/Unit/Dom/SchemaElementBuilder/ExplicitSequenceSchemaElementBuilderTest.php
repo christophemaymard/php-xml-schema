@@ -92,7 +92,6 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSchemaElementBuil
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
-    use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
@@ -473,5 +472,37 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSchemaElementBuil
         self::assertElementNamespaceDeclarations([], $grps[1]);
         self::assertGroupElementHasNoAttribute($grps[1]);
         self::assertSame([], $grps[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildChoiceElement() creates the element when the current 
+     * element is the "sequence" element (explicitGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildChoiceElementCreateEltWhenExplicitSequence()
+    {
+        $this->sut->buildChoiceElement();
+        $this->sut->endElement();
+        $this->sut->buildChoiceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $seq = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertCount(2, $seq->getElements());
+        
+        $choices = $seq->getChoiceElements();
+        
+        self::assertElementNamespaceDeclarations([], $choices[0]);
+        self::assertChoiceElementHasNoAttribute($choices[0]);
+        self::assertSame([], $choices[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $choices[1]);
+        self::assertChoiceElementHasNoAttribute($choices[1]);
+        self::assertSame([], $choices[1]->getElements());
     }
 }
