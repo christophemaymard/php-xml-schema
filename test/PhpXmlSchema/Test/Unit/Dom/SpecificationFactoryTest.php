@@ -1386,6 +1386,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_EXPLICIT_SEQUENCE
             [ 47, 'id', '', 'buildIdAttribute', ], 
             [ 47, 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
+            [ 47, 'minOccurs', '', 'buildMinOccursAttribute', ], 
         ];
     }
 }
