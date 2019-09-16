@@ -533,11 +533,13 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 36, 'group', ], // ELT_GROUP_REF
             [ 39, 0, 37, 'all', ], // ELT_ALL
             [ 39, 0, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
+            [ 39, 0, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             [ 39, 1, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 'group', ], // ELT_GROUP_REF
             [ 39, 1, 37, 'all', ], // ELT_ALL
             [ 39, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
+            [ 39, 1, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 40, 0, 41, 'element', ], // ELT_LOCAL_ELEMENT
@@ -848,11 +850,13 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 39, 0, 37, 'buildAllElement', ], // ELT_ALL
             [ 39, 0, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
+            [ 39, 0, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             [ 39, 1, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 39, 1, 37, 'buildAllElement', ], // ELT_ALL
             [ 39, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
+            [ 39, 1, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 40, 0, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
@@ -1163,11 +1167,13 @@ class SpecificationFactoryTest extends TestCase
             [ 39, 0, 36, 2, ], // ELT_GROUP_REF
             [ 39, 0, 37, 2, ], // ELT_ALL
             [ 39, 0, 40, 2, ], // ELT_EXPLICIT_CHOICE
+            [ 39, 0, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
             [ 39, 1, 31, 3, ], // ELT_SIMPLECONTENT
             [ 39, 1, 34, 3, ], // ELT_COMPLEXCONTENT
             [ 39, 1, 36, 2, ], // ELT_GROUP_REF
             [ 39, 1, 37, 2, ], // ELT_ALL
             [ 39, 1, 40, 2, ], // ELT_EXPLICIT_CHOICE
+            [ 39, 1, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
             // Context: ELT_EXPLICIT_CHOICE
             [ 40, 0, 2, 1, ], // ELT_ANNOTATION
             [ 40, 0, 41, 1, ], // ELT_LOCAL_ELEMENT
