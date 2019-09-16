@@ -1441,6 +1441,7 @@ class SpecificationFactory
             [ 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
             [ 'minOccurs', '', 'buildMinOccursAttribute', ], 
             [ 'namespace', '', 'buildNamespaceAttribute', ], 
+            [ 'processContents', '', 'buildProcessContentsAttribute', ], 
         ], 
     ];
     

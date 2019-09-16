@@ -460,6 +460,83 @@ class AnyParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "processContents" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $lax        The expected value for the "lax" flag.
+     * @param   bool    $skip       The expected value for the "skip" flag.
+     * @param   bool    $strict     The expected value for the "strict" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidProcessContentsAttributes
+     */
+    public function testParseProcessProcessContentsAttribute(
+        string $fileName, 
+        bool $lax, 
+        bool $skip, 
+        bool $strict
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $ct2 = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct2);
+        self::assertComplexTypeElementHasNoAttribute($ct2);
+        self::assertCount(1, $ct2->getElements());
+        
+        $choice = $ct2->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(1, $choice->getElements());
+        
+        $seq = $choice->getSequenceElements()[0];
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertCount(1, $seq->getElements());
+        
+        $any = $seq->getAnyElements()[0];
+        self::assertElementNamespaceDeclarations([], $any);
+        self::assertAnyElementHasOnlyProcessContentsAttribute($any);
+        self::assertSame($lax, $any->getProcessContents()->isLax());
+        self::assertSame($skip, $any->getProcessContents()->isSkip());
+        self::assertSame($strict, $any->getProcessContents()->isStrict());
+        self::assertSame([], $any->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
@@ -729,6 +806,27 @@ class AnyParserTest extends AbstractParserTestCase
                     'http://example.org/foo', 
                     'http://example.org/bar', 
                 ], 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "processContents" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidProcessContentsAttributes():array
+    {
+        // [ $fileName, $lax, $skip, $strict, ]
+        return [
+            'lax' => [
+                'any_processContents_0001.xsd', TRUE, FALSE, FALSE, 
+            ], 
+            'skip' => [
+                'any_processContents_0002.xsd', FALSE, TRUE, FALSE, 
+            ], 
+            'strict' => [
+                'any_processContents_0003.xsd', FALSE, FALSE, TRUE, 
             ], 
         ];
     }

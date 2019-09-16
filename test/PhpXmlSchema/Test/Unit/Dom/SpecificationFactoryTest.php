@@ -1430,6 +1430,7 @@ class SpecificationFactoryTest extends TestCase
             [ 48, 'maxOccurs', '', 'buildMaxOccursAttribute', ], 
             [ 48, 'minOccurs', '', 'buildMinOccursAttribute', ], 
             [ 48, 'namespace', '', 'buildNamespaceAttribute', ], 
+            [ 48, 'processContents', '', 'buildProcessContentsAttribute', ], 
         ];
     }
 }
