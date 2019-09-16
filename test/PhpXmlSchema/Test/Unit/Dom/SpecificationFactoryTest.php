@@ -227,6 +227,7 @@ class SpecificationFactoryTest extends TestCase
             [ 45, 0, ], // ELT_KEY
             [ 46, 0, ], // ELT_KEYREF
             [ 47, 0, ], // ELT_EXPLICIT_SEQUENCE
+            [ 48, 0, ], // ELT_ANY
         ];
     }
     
@@ -284,6 +285,7 @@ class SpecificationFactoryTest extends TestCase
             [ 45, [ 3, ], ], // ELT_KEY
             [ 46, [ 3, ], ], // ELT_KEYREF
             [ 47, [ 0, 1, ], ], // ELT_EXPLICIT_SEQUENCE
+            [ 48, [ 0, 1, ], ], // ELT_ANY
         ];
     }
     
@@ -589,10 +591,12 @@ class SpecificationFactoryTest extends TestCase
             [ 47, 0, 36, 'group', ], // ELT_GROUP_REF
             [ 47, 0, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 47, 0, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
+            [ 47, 0, 48, 'any', ], // ELT_ANY
             [ 47, 1, 41, 'element', ], // ELT_LOCAL_ELEMENT
             [ 47, 1, 36, 'group', ], // ELT_GROUP_REF
             [ 47, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 47, 1, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
+            [ 47, 1, 48, 'any', ], // ELT_ANY
         ];
     }
     
@@ -898,10 +902,12 @@ class SpecificationFactoryTest extends TestCase
             [ 47, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 47, 0, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 47, 0, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
+            [ 47, 0, 48, 'buildAnyElement', ], // ELT_ANY
             [ 47, 1, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
             [ 47, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 47, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 47, 1, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
+            [ 47, 1, 48, 'buildAnyElement', ], // ELT_ANY
         ];
     }
     
@@ -1207,10 +1213,12 @@ class SpecificationFactoryTest extends TestCase
             [ 47, 0, 36, 1, ], // ELT_GROUP_REF
             [ 47, 0, 40, 1, ], // ELT_EXPLICIT_CHOICE
             [ 47, 0, 47, 1, ], // ELT_EXPLICIT_SEQUENCE
+            [ 47, 0, 48, 1, ], // ELT_ANY
             [ 47, 1, 41, 1, ], // ELT_LOCAL_ELEMENT
             [ 47, 1, 36, 1, ], // ELT_GROUP_REF
             [ 47, 1, 40, 1, ], // ELT_EXPLICIT_CHOICE
             [ 47, 1, 47, 1, ], // ELT_EXPLICIT_SEQUENCE
+            [ 47, 1, 48, 1, ], // ELT_ANY
         ];
     }
     

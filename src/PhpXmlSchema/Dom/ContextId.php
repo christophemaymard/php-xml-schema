@@ -62,4 +62,5 @@ class ContextId
     const ELT_KEY = 45;
     const ELT_KEYREF = 46;
     const ELT_EXPLICIT_SEQUENCE = 47;
+    const ELT_ANY = 48;
 }

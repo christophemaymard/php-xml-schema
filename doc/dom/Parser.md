@@ -621,7 +621,30 @@
 - [x] Parse **group** elements (groupRef).
 - [x] Parse **choice** elements (explicitGroup).
 - [x] Parse **sequence** elements (explicitGroup).
-- [ ] Parse **any** elements.
+- [x] Parse **any** elements.
+
+## Element: "any"
+
+```
+<any
+  id = ID
+  maxOccurs = (nonNegativeInteger | unbounded)
+  minOccurs = nonNegativeInteger
+  namespace = ((##any | ##other) | List of (anyURI | (##targetNamespace | ##local)))
+  processContents = (lax | skip | strict)
+>
+  Content: (annotation?)
+</any>
+```
+
+- [x] Parse **any** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **maxOccurs** attribute (collapsing white spaces).
+- [ ] Parse **minOccurs** attribute (collapsing white spaces).
+- [ ] Parse **namespace** attribute (collapsing white spaces).
+- [ ] Parse **processContents** attribute.
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
 
 ## Element: "element" (narrowMaxMin)
 
