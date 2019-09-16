@@ -11,6 +11,8 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\NonNegativeIntegerTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -24,6 +26,8 @@ use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use NCNameTypeProviderTrait;
+    use NonNegativeIntegerLimitTypeProviderTrait;
+    use NonNegativeIntegerTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -88,7 +92,6 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
@@ -266,5 +269,77 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         ));
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "any" element and the value is "unbounded".
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenAnyAndValueIsUnbounded()
+    {
+        $this->sut->buildMaxOccursAttribute('unbounded');
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $any = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $any);
+        self::assertAnyElementHasOnlyMaxOccursAttribute($any);
+        self::assertTrue($any->getMaxOccurs()->isUnlimited());
+        self::assertSame([], $any->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() creates the attribute when the 
+     * current element is the "any" element and the value is a valid 
+     * non-negative integer.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   \GMP    $nni    The expected value for the non-negative integer.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNonNegativeIntegerTypeValues
+     */
+    public function testBuildMaxOccursAttributeCreatesAttrWhenAnyAndValueIsNonNegativeInteger(
+        string $value, 
+        \GMP $nni
+    ) {
+        $this->sut->buildMaxOccursAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $any = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $any);
+        self::assertAnyElementHasOnlyMaxOccursAttribute($any);
+        self::assertEquals($nni, $any->getMaxOccurs()->getLimit()->getNonNegativeInteger());
+        self::assertSame([], $any->getElements());
+    }
+    
+    /**
+     * Tests that buildMaxOccursAttribute() throws an exception when the 
+     * current element is the "any" element and the value is invalid.
+     * 
+     * @param   string  $value      The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNonNegativeIntegerLimitTypeValues
+     * @dataProvider    getInvalidNonNegativeIntegerTypeValues
+     */
+    public function testBuildMaxOccursAttributeThrowsExceptionWhenAnyAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
+        
+        $this->sut->buildMaxOccursAttribute($value);
     }
 }

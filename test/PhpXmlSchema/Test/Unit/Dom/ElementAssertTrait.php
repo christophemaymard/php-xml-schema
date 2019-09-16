@@ -2825,4 +2825,20 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasProcessContents());
     }
+    
+    /**
+     * Asserts that the specified "any" element has only the "maxOccurs" 
+     * attribute.
+     * 
+     * @param   AnyElement  $sut    The element to test.
+     */
+    public static function assertAnyElementHasOnlyMaxOccursAttribute(
+        AnyElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertTrue($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertFalse($sut->hasNamespace());
+        self::assertFalse($sut->hasProcessContents());
+    }
 }
