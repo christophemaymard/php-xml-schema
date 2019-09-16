@@ -468,6 +468,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_EXPLICIT_SEQUENCE => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+            [ 0, ContextId::ELT_LOCAL_ELEMENT, 'element', ], 
+            [ 1, ContextId::ELT_LOCAL_ELEMENT, 'element', ], 
         ], 
     ];
     
@@ -811,6 +813,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_EXPLICIT_SEQUENCE => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+            [ 0, ContextId::ELT_LOCAL_ELEMENT, 'buildElementElement', ], 
+            [ 1, ContextId::ELT_LOCAL_ELEMENT, 'buildElementElement', ], 
         ], 
     ];
     
@@ -1153,6 +1157,8 @@ class SpecificationFactory
         ], 
         ContextId::ELT_EXPLICIT_SEQUENCE => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+            [ 0, ContextId::ELT_LOCAL_ELEMENT, 1, ], 
+            [ 1, ContextId::ELT_LOCAL_ELEMENT, 1, ], 
         ], 
     ];
     
