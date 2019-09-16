@@ -100,6 +100,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     use BuildSequenceElementDoesNotCreateElementTestTrait;
+    use BuildAnyElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

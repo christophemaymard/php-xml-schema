@@ -97,6 +97,7 @@ class NullSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     use BuildSequenceElementDoesNotCreateElementTestTrait;
+    use BuildAnyElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

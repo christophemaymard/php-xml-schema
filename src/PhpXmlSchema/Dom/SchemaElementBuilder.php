@@ -741,6 +741,18 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildAnyElement()
+    {
+        if ($this->currentElement instanceof SequenceElement) {
+            $elt = new AnyElement();
+            $this->currentElement->addAnyElement($elt);
+            $this->currentElement = $elt;
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildAnyAttributeElement()
     {
         if ($this->currentElement instanceof ElementInterface) {

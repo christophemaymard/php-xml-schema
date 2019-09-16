@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PhpXmlSchema\Dom\AllElement;
 use PhpXmlSchema\Dom\AnnotationElement;
 use PhpXmlSchema\Dom\AnyAttributeElement;
+use PhpXmlSchema\Dom\AnyElement;
 use PhpXmlSchema\Dom\AppInfoElement;
 use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
@@ -2794,5 +2795,20 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertTrue($sut->hasMinOccurs());
+    }
+    
+    /**
+     * Asserts that the specified "any" element has no attribute.
+     * 
+     * @param   AnyElement  $sut    The element to test.
+     */
+    public static function assertAnyElementHasNoAttribute(
+        AnyElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertFalse($sut->hasNamespace());
+        self::assertFalse($sut->hasProcessContents());
     }
 }

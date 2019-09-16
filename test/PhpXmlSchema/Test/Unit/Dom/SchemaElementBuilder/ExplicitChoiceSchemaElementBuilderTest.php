@@ -99,6 +99,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAnyElementDoesNotCreateElementTestTrait;
     
     /**
      * {@inheritDoc}

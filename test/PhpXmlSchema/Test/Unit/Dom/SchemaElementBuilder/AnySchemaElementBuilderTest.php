@@ -9,30 +9,25 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
-use PhpXmlSchema\Exception\InvalidValueException;
-use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\SelectorXPathTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is the "selector" element.
+ * class when the current element is the "any" element.
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
-    use NCNameTypeProviderTrait;
-    use SelectorXPathTypeProviderTrait;
-    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
+    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -44,6 +39,7 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildImportElementDoesNotCreateElementTestTrait;
     use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
@@ -98,6 +94,7 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
+    use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
     use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
@@ -111,10 +108,10 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     {
         self::assertAncestorsNotChanged($sch);
         
-        $sel = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $sel);
-        self::assertSelectorElementHasNoAttribute($sel);
-        self::assertSame([], $sel->getElements());
+        $any = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $any);
+        self::assertAnyElementHasNoAttribute($any);
+        self::assertSame([], $any->getElements());
     }
     
     /**
@@ -146,12 +143,12 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         self::assertAllElementHasNoAttribute($all);
         self::assertCount(1, $all->getElements());
         
-        $elt1 = $all->getElementElements()[0];
-        self::assertElementNamespaceDeclarations([], $elt1);
-        self::assertElementElementHasNoAttribute($elt1);
-        self::assertCount(1, $elt1->getElements());
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
         
-        $ct2 = $elt1->getTypeElement();
+        $ct2 = $elt->getTypeElement();
         self::assertElementNamespaceDeclarations([], $ct2);
         self::assertComplexTypeElementHasNoAttribute($ct2);
         self::assertCount(1, $ct2->getElements());
@@ -161,16 +158,11 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         self::assertChoiceElementHasNoAttribute($choice);
         self::assertCount(1, $choice->getElements());
         
-        $elt2 = $choice->getElementElements()[0];
-        self::assertElementNamespaceDeclarations([], $elt2);
-        self::assertElementElementHasNoAttribute($elt2);
-        self::assertCount(1, $elt2->getElements());
-        
-        $unique = $elt2->getUniqueElements()[0];
-        self::assertElementNamespaceDeclarations([], $unique);
-        self::assertUniqueElementHasNoAttribute($unique);
-        self::assertCount(1, $unique->getElements());
-        self::assertTrue($unique->hasSelectorElement());
+        $seq = $choice->getSequenceElements()[0];
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertCount(1, $seq->getElements());
+        self::assertCount(1, $seq->getAnyElements());
     }
     
     /**
@@ -178,7 +170,7 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
-        self::assertSelectorElementHasNoAttribute(self::getCurrentElement($sch));
+        self::assertAnyElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -193,9 +185,8 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
             ->getElementElements()[0]
             ->getTypeElement()
             ->getTypeDefinitionParticleElement()
-            ->getElementElements()[0]
-            ->getUniqueElements()[0]
-            ->getSelectorElement();
+            ->getSequenceElements()[0]
+            ->getAnyElements()[0];
     }
     
     /**
@@ -211,9 +202,8 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
         $this->sut->buildElementElement();
         $this->sut->buildComplexTypeElement();
         $this->sut->buildChoiceElement();
-        $this->sut->buildElementElement();
-        $this->sut->buildUniqueElement();
-        $this->sut->buildSelectorElement();
+        $this->sut->buildSequenceElement();
+        $this->sut->buildAnyElement();
     }
     
     /**
@@ -222,128 +212,5 @@ class SelectorSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that buildIdAttribute() creates the attribute when the current 
-     * element is the "selector" element and the value is valid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $id     The expected value for the ID.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidNCNameTypeWSValues
-     */
-    public function testBuildIdAttributeCreatesAttrWhenSelectorAndValueIsValid(
-        string $value, 
-        string $id
-    ) {
-        $this->sut->buildIdAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $sel = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $sel);
-        self::assertSelectorElementHasOnlyIdAttribute($sel);
-        self::assertSame($id, $sel->getId()->getId());
-        self::assertSame([], $sel->getElements());
-    }
-    
-    /**
-     * Tests that buildIdAttribute() throws an exception when the current 
-     * element is the "selector" element and the value is invalid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $mValue The string representation of the value in the exception message.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getInvalidNCNameTypeWSValues
-     */
-    public function testBuildIdAttributeThrowsExceptionWhenSelectorAndValueIsInvalid(
-        string $value, 
-        string $mValue
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf(
-            '"%s" is an invalid ID datatype.', 
-            $mValue
-        ));
-        
-        $this->sut->buildIdAttribute($value);
-    }
-    
-    /**
-     * Tests that buildXPathAttribute() creates the attribute when the current 
-     * element is the "selector" element and the value is valid.
-     * 
-     * @param   string  $value  The value to test.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidSelectorXPathTypeValues
-     */
-    public function testBuildXPathAttributeCreatesAttrWhenSelectorAndValueIsValid(
-        string $value
-    ) {
-        $this->sut->buildXPathAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $sel = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $sel);
-        self::assertSelectorElementHasOnlyXPathAttribute($sel);
-        self::assertSame($value, $sel->getXPath()->getXPath());
-        self::assertSame([], $sel->getElements());
-    }
-    
-    /**
-     * Tests that buildXPathAttribute() throws an exception when the current 
-     * element is the "selector" element and the value is invalid.
-     * 
-     * @param   string  $value  The value to test.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getInvalidSelectorXPathTypeValues
-     */
-    public function testBuildXPathAttributeThrowsExceptionWhenSelectorAndValueIsInvalid(
-        string $value
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf(
-            '"%s" is an invalid XPath expression for a "selector" element.', 
-            $value
-        ));
-        
-        $this->sut->buildXPathAttribute($value);
-    }
-    
-    /**
-     * Tests that buildAnnotationElement() creates the element when the 
-     * current element is the "selector" element.
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildAnnotationElementCreateEltWhenTopSimpleType()
-    {
-        $this->sut->buildAnnotationElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $sel = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $sel);
-        self::assertSelectorElementHasNoAttribute($sel);
-        self::assertCount(1, $sel->getElements());
-        
-        $ann = $sel->getAnnotationElement();
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertSame([], $ann->getElements());
     }
 }

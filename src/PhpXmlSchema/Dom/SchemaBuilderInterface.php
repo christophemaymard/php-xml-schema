@@ -485,6 +485,16 @@ interface SchemaBuilderInterface
     public function buildDefinitionAnnotationElement();
     
     /**
+     * Builds an "any" element.
+     * 
+     * If the current element supports the element then:
+     * - a new instance is created, and 
+     * - the created instance is added or set to the current element, and 
+     * - the created instance becomes the current element.
+     */
+    public function buildAnyElement();
+    
+    /**
      * Builds an "anyAttribute" element.
      * 
      * If the current element supports the element then:

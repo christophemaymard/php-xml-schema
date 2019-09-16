@@ -536,4 +536,36 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSchemaElementBuil
         self::assertSequenceElementHasNoAttribute($seqs[1]);
         self::assertSame([], $seqs[1]->getElements());
     }
+    
+    /**
+     * Tests that buildAnyElement() creates the element when the current 
+     * element is the "sequence" element (explicitGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnyElementCreateEltWhenExplicitSequence()
+    {
+        $this->sut->buildAnyElement();
+        $this->sut->endElement();
+        $this->sut->buildAnyElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $seq = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertCount(2, $seq->getElements());
+        
+        $anys = $seq->getAnyElements();
+        
+        self::assertElementNamespaceDeclarations([], $anys[0]);
+        self::assertAnyElementHasNoAttribute($anys[0]);
+        self::assertSame([], $anys[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $anys[1]);
+        self::assertAnyElementHasNoAttribute($anys[1]);
+        self::assertSame([], $anys[1]->getElements());
+    }
 }
