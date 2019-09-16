@@ -51,7 +51,6 @@ class LocalComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuil
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
-    use BuildAttributeElementDoesNotCreateElementTestTrait;
     use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
@@ -465,5 +464,37 @@ class LocalComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuil
         self::assertElementNamespaceDeclarations([], $seq);
         self::assertSequenceElementHasNoAttribute($seq);
         self::assertSame([], $seq->getElements());
+    }
+    
+    /**
+     * Tests that buildAttributeElement() creates the element when the 
+     * current element is the "complexType" element (localComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAttributeElementCreateEltWhenLocalComplexType()
+    {
+        $this->sut->buildAttributeElement();
+        $this->sut->endElement();
+        $this->sut->buildAttributeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(2, $ct->getElements());
+        
+        $attrs = $ct->getAttributeElements();
+        
+        self::assertElementNamespaceDeclarations([], $attrs[0]);
+        self::assertAttributeElementHasNoAttribute($attrs[0]);
+        self::assertSame([], $attrs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $attrs[1]);
+        self::assertAttributeElementHasNoAttribute($attrs[1]);
+        self::assertSame([], $attrs[1]->getElements());
     }
 }
