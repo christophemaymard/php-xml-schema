@@ -682,7 +682,7 @@
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
 - [x] Parse **complexType** element (localComplexType).
-- [ ] Parse **unique** elements.
+- [x] Parse **unique** elements.
 - [ ] Parse **key** elements.
 - [ ] Parse **keyref** elements.
 
