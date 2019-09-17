@@ -88,7 +88,6 @@ class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElem
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
-    use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
@@ -411,5 +410,30 @@ class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElem
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+    }
+    
+    /**
+     * Tests that buildGroupElement() creates the element when the current 
+     * element is the "extension" element (extensionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildGroupElementCreateEltWhenComplexContentExtension()
+    {
+        $this->sut->buildGroupElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertComplexContentExtensionElementHasNoAttribute($ext);
+        self::assertCount(1, $ext->getElements());
+        
+        $grp = $ext->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertSame([], $grp->getElements());
     }
 }
