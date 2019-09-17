@@ -163,6 +163,49 @@
       <message>The "base" attribute is invalid: The "foo" prefix is not bound to a namespace.</message>
     </schema>
   </test>
+  <!-- extension::id -->
+  <test group="attribute" name="[extension][attribute::id] Empty string">
+    <schema fileName="extension_id_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[extension][attribute::id] Only white spaces">
+    <schema fileName="extension_id_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[extension][attribute::id] Separated by whitespaces">
+    <schema fileName="extension_id_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "foo bar" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[extension][attribute::id] Starts with digit">
+    <schema fileName="extension_id_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "8foo" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[extension][attribute::id] Starts with .">
+    <schema fileName="extension_id_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: ".foo" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[extension][attribute::id] Starts with -">
+    <schema fileName="extension_id_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "-foo" is an invalid ID datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[extension][attribute::id] Contains invalid character">
+    <schema fileName="extension_id_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "id" attribute is invalid: "foo:bar" is an invalid ID datatype.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

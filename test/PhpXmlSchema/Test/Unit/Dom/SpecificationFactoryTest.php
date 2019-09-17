@@ -1552,6 +1552,7 @@ class SpecificationFactoryTest extends TestCase
             [ 48, 'processContents', '', 'buildProcessContentsAttribute', ], 
             // Context: ELT_COMPLEXCONTENT_EXTENSION
             [ 49, 'base', '', 'buildBaseAttribute', ], 
+            [ 49, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

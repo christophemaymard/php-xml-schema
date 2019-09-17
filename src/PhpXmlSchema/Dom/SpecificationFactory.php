@@ -1567,6 +1567,7 @@ class SpecificationFactory
         ], 
         ContextId::ELT_COMPLEXCONTENT_EXTENSION => [
             [ 'base', '', 'buildBaseAttribute', ], 
+            [ 'id', '', 'buildIdAttribute', ], 
         ], 
     ];
     
