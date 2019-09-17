@@ -512,8 +512,10 @@ class SpecificationFactoryTest extends TestCase
             [ 35, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 35, 0, 36, 'group', ], // ELT_GROUP_REF
             [ 35, 0, 37, 'all', ], // ELT_ALL
+            [ 35, 0, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 35, 1, 36, 'group', ], // ELT_GROUP_REF
             [ 35, 1, 37, 'all', ], // ELT_ALL
+            [ 35, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             // Context: ELT_GROUP_REF
             [ 36, 0, 2, 'annotation', ], // ELT_ANNOTATION
             // Context: ELT_ALL
@@ -847,8 +849,10 @@ class SpecificationFactoryTest extends TestCase
             [ 35, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 35, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 35, 0, 37, 'buildAllElement', ], // ELT_ALL
+            [ 35, 0, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 35, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 35, 1, 37, 'buildAllElement', ], // ELT_ALL
+            [ 35, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             // Context: ELT_GROUP_REF
             [ 36, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             // Context: ELT_ALL
@@ -1182,8 +1186,10 @@ class SpecificationFactoryTest extends TestCase
             [ 35, 0, 2, 1, ], // ELT_ANNOTATION
             [ 35, 0, 36, 2, ], // ELT_GROUP_REF
             [ 35, 0, 37, 2, ], // ELT_ALL
+            [ 35, 0, 40, 2, ], // ELT_EXPLICIT_CHOICE
             [ 35, 1, 36, 2, ], // ELT_GROUP_REF
             [ 35, 1, 37, 2, ], // ELT_ALL
+            [ 35, 1, 40, 2, ], // ELT_EXPLICIT_CHOICE
             // Context: ELT_GROUP_REF
             [ 36, 0, 2, 1, ], // ELT_ANNOTATION
             // Context: ELT_ALL
