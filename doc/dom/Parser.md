@@ -508,7 +508,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **restriction** element (complexRestrictionType).
-- [ ] Parse **extension** element (extensionType).
+- [x] Parse **extension** element (extensionType).
 
 ## Element: "restriction" (complexRestrictionType)
 
@@ -533,6 +533,30 @@
 - [x] Parse **attribute** elements (attribute).
 - [x] Parse **attributeGroup** elements (attributeGroupRef).
 - [x] Parse **anyAttribute** element.
+
+## Element: "extension" (extensionType)
+
+```
+<extension
+  base = QName
+  id = ID
+>
+  Content: (annotation?, (group | all | choice | sequence)?, ((attribute | attributeGroup)*, anyAttribute?))
+</extension>
+```
+
+- [x] Parse **extension** element.
+- [ ] Parse **base** attribute (collapsing white spaces).
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **group** element (groupRef).
+- [ ] Parse **all** element (all).
+- [ ] Parse **choice** element (explicitGroup).
+- [ ] Parse **sequence** element (explicitGroup).
+- [ ] Parse **attribute** elements (attribute).
+- [ ] Parse **attributeGroup** elements (attributeGroupRef).
+- [ ] Parse **anyAttribute** element.
 
 ## Element: "group" (groupRef)
 

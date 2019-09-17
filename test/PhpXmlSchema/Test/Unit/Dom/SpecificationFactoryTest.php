@@ -228,6 +228,7 @@ class SpecificationFactoryTest extends TestCase
             [ 46, 0, ], // ELT_KEYREF
             [ 47, 0, ], // ELT_EXPLICIT_SEQUENCE
             [ 48, 0, ], // ELT_ANY
+            [ 49, 0, ], // ELT_COMPLEXCONTENT_EXTENSION
         ];
     }
     
@@ -286,6 +287,7 @@ class SpecificationFactoryTest extends TestCase
             [ 46, [ 3, ], ], // ELT_KEYREF
             [ 47, [ 0, 1, ], ], // ELT_EXPLICIT_SEQUENCE
             [ 48, [ 0, 1, ], ], // ELT_ANY
+            [ 49, [ 0, 1, 2, 3, ], ], // ELT_COMPLEXCONTENT_EXTENSION
         ];
     }
     
@@ -507,7 +509,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_COMPLEXCONTENT
             [ 34, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 34, 0, 35, 'restriction', ], // ELT_COMPLEXCONTENT_RESTRICTION
+            [ 34, 0, 49, 'extension', ], // ELT_COMPLEXCONTENT_EXTENSION
             [ 34, 1, 35, 'restriction', ], // ELT_COMPLEXCONTENT_RESTRICTION
+            [ 34, 1, 49, 'extension', ], // ELT_COMPLEXCONTENT_EXTENSION
             // Context: ELT_COMPLEXCONTENT_RESTRICTION
             [ 35, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 35, 0, 36, 'group', ], // ELT_GROUP_REF
@@ -855,7 +859,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_COMPLEXCONTENT
             [ 34, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 34, 0, 35, 'buildRestrictionElement', ], // ELT_COMPLEXCONTENT_RESTRICTION
+            [ 34, 0, 49, 'buildExtensionElement', ], // ELT_COMPLEXCONTENT_EXTENSION
             [ 34, 1, 35, 'buildRestrictionElement', ], // ELT_COMPLEXCONTENT_RESTRICTION
+            [ 34, 1, 49, 'buildExtensionElement', ], // ELT_COMPLEXCONTENT_EXTENSION
             // Context: ELT_COMPLEXCONTENT_RESTRICTION
             [ 35, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 35, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
@@ -1203,7 +1209,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_COMPLEXCONTENT
             [ 34, 0, 2, 1, ], // ELT_ANNOTATION
             [ 34, 0, 35, 2, ], // ELT_COMPLEXCONTENT_RESTRICTION
+            [ 34, 0, 49, 2, ], // ELT_COMPLEXCONTENT_EXTENSION
             [ 34, 1, 35, 2, ], // ELT_COMPLEXCONTENT_RESTRICTION
+            [ 34, 1, 49, 2, ], // ELT_COMPLEXCONTENT_EXTENSION
             // Context: ELT_COMPLEXCONTENT_RESTRICTION
             [ 35, 0, 2, 1, ], // ELT_ANNOTATION
             [ 35, 0, 36, 2, ], // ELT_GROUP_REF
