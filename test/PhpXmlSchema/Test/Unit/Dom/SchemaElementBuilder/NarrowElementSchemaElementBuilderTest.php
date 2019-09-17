@@ -97,7 +97,6 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
-    use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     use BuildSequenceElementDoesNotCreateElementTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
@@ -1144,5 +1143,37 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertElementNamespaceDeclarations([], $keys[1]);
         self::assertKeyElementHasNoAttribute($keys[1]);
         self::assertSame([], $keys[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildKeyRefElement() creates the element when the current 
+     * element is the "element" element (narrowMaxMin).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildKeyRefElementCreateEltWhenNarrowElement()
+    {
+        $this->sut->buildKeyRefElement();
+        $this->sut->endElement();
+        $this->sut->buildKeyRefElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(2, $elt->getElements());
+        
+        $keyRefs = $elt->getKeyRefElements();
+        
+        self::assertElementNamespaceDeclarations([], $keyRefs[0]);
+        self::assertKeyRefElementHasNoAttribute($keyRefs[0]);
+        self::assertSame([], $keyRefs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $keyRefs[1]);
+        self::assertKeyRefElementHasNoAttribute($keyRefs[1]);
+        self::assertSame([], $keyRefs[1]->getElements());
     }
 }
