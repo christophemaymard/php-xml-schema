@@ -523,6 +523,9 @@ class SpecificationFactory
         ContextId::ELT_ANY => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
         ], 
+        ContextId::ELT_COMPLEXCONTENT_EXTENSION => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -916,6 +919,9 @@ class SpecificationFactory
         ContextId::ELT_ANY => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
         ], 
+        ContextId::ELT_COMPLEXCONTENT_EXTENSION => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -1306,6 +1312,9 @@ class SpecificationFactory
             [ 1, ContextId::ELT_ANY, 1, ], 
         ], 
         ContextId::ELT_ANY => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
+        ], 
+        ContextId::ELT_COMPLEXCONTENT_EXTENSION => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
