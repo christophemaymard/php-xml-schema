@@ -1565,6 +1565,9 @@ class SpecificationFactory
             [ 'namespace', '', 'buildNamespaceAttribute', ], 
             [ 'processContents', '', 'buildProcessContentsAttribute', ], 
         ], 
+        ContextId::ELT_COMPLEXCONTENT_EXTENSION => [
+            [ 'base', '', 'buildBaseAttribute', ], 
+        ], 
     ];
     
     /**
