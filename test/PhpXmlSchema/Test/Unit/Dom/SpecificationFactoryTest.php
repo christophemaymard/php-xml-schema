@@ -641,7 +641,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_COMPLEXCONTENT_EXTENSION
             [ 49, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 49, 0, 36, 'group', ], // ELT_GROUP_REF
+            [ 49, 0, 37, 'all', ], // ELT_ALL
             [ 49, 1, 36, 'group', ], // ELT_GROUP_REF
+            [ 49, 1, 37, 'all', ], // ELT_ALL
         ];
     }
     
@@ -995,7 +997,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_COMPLEXCONTENT_EXTENSION
             [ 49, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 49, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
+            [ 49, 0, 37, 'buildAllElement', ], // ELT_ALL
             [ 49, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
+            [ 49, 1, 37, 'buildAllElement', ], // ELT_ALL
         ];
     }
     
@@ -1349,7 +1353,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_COMPLEXCONTENT_EXTENSION
             [ 49, 0, 2, 1, ], // ELT_ANNOTATION
             [ 49, 0, 36, 2, ], // ELT_GROUP_REF
+            [ 49, 0, 37, 2, ], // ELT_ALL
             [ 49, 1, 36, 2, ], // ELT_GROUP_REF
+            [ 49, 1, 37, 2, ], // ELT_ALL
         ];
     }
     

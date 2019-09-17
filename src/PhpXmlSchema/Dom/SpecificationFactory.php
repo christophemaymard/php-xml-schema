@@ -526,7 +526,9 @@ class SpecificationFactory
         ContextId::ELT_COMPLEXCONTENT_EXTENSION => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_GROUP_REF, 'group', ], 
+            [ 0, ContextId::ELT_ALL, 'all', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'group', ], 
+            [ 1, ContextId::ELT_ALL, 'all', ], 
         ], 
     ];
     
@@ -924,7 +926,9 @@ class SpecificationFactory
         ContextId::ELT_COMPLEXCONTENT_EXTENSION => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
             [ 0, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
+            [ 0, ContextId::ELT_ALL, 'buildAllElement', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
+            [ 1, ContextId::ELT_ALL, 'buildAllElement', ], 
         ], 
     ];
     
@@ -1321,7 +1325,9 @@ class SpecificationFactory
         ContextId::ELT_COMPLEXCONTENT_EXTENSION => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_GROUP_REF, 2, ], 
+            [ 0, ContextId::ELT_ALL, 2, ], 
             [ 1, ContextId::ELT_GROUP_REF, 2, ], 
+            [ 1, ContextId::ELT_ALL, 2, ], 
         ], 
     ];
     
