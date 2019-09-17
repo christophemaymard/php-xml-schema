@@ -99,7 +99,6 @@ class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElem
     use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSequenceElementDoesNotCreateElementTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
     
     /**
@@ -483,5 +482,30 @@ class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElem
         self::assertElementNamespaceDeclarations([], $choice);
         self::assertChoiceElementHasNoAttribute($choice);
         self::assertSame([], $choice->getElements());
+    }
+    
+    /**
+     * Tests that buildSequenceElement() creates the element when the current 
+     * element is the "extension" element (extensionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSequenceElementCreateEltWhenComplexContentExtension()
+    {
+        $this->sut->buildSequenceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertComplexContentExtensionElementHasNoAttribute($ext);
+        self::assertCount(1, $ext->getElements());
+        
+        $seq = $ext->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertSame([], $seq->getElements());
     }
 }

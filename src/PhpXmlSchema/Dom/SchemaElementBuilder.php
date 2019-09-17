@@ -1321,6 +1321,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
+                case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
                     $elt = new SequenceElement();
                     $this->currentElement->setTypeDefinitionParticleElement($elt);
                     $this->currentElement = $elt;
