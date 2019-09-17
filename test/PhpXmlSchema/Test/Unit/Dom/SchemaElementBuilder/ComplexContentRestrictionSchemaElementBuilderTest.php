@@ -100,7 +100,6 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSequenceElementDoesNotCreateElementTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
     
     /**
@@ -488,5 +487,30 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
         self::assertElementNamespaceDeclarations([], $choice);
         self::assertChoiceElementHasNoAttribute($choice);
         self::assertSame([], $choice->getElements());
+    }
+    
+    /**
+     * Tests that buildSequenceElement() creates the element when the current 
+     * element is the "restriction" element (complexRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSequenceElementCreateEltWhenComplexContentRestriction()
+    {
+        $this->sut->buildSequenceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $seq = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertSame([], $seq->getElements());
     }
 }
