@@ -665,6 +665,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                         break;
                     }
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
+                case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
                     $elt = new AllElement();
                     $this->currentElement->setTypeDefinitionParticleElement($elt);
                     $this->currentElement = $elt;
