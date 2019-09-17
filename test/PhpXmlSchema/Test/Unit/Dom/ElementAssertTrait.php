@@ -2940,4 +2940,17 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
+    
+    /**
+     * Asserts that the specified "extension" element (extensionType) element 
+     * has only the "base" attribute.
+     * 
+     * @param   ComplexContentExtensionElement  $sut    The element to test.
+     */
+    public static function assertComplexContentExtensionElementHasOnlyBaseAttribute(
+        ComplexContentExtensionElement $sut
+    ) {
+        self::assertTrue($sut->hasBase());
+        self::assertFalse($sut->hasId());
+    }
 }

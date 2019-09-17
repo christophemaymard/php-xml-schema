@@ -9,6 +9,9 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidOperationException;
+use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -21,6 +24,8 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
  */
 class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use QNameTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
@@ -52,7 +57,6 @@ class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElem
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
-    use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
     use BuildValueAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
@@ -170,5 +174,164 @@ class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElem
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildBaseAttribute() creates the attribute when:
+     * - the current element is the "extension" element (extensionType), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - no default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidLocalPartQNameTypeValues
+     */
+    public function testBuildBaseAttributeCreatesAttrWhenComplexContentExtensionAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildBaseAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertComplexContentExtensionElementHasOnlyBaseAttribute($ext);
+        self::assertSame($localPart, $ext->getBase()->getLocalPart()->getNCName());
+        self::assertFalse($ext->getBase()->hasNamespace());
+        self::assertSame([], $ext->getElements());
+    }
+    
+    /**
+     * Tests that buildBaseAttribute() creates the attribute when:
+     * - the current element is the "extension" element (extensionType), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidLocalPartQNameTypeValues
+     */
+    public function testBuildBaseAttributeCreatesAttrWhenComplexContentExtensionAndValueIsValidQNameLocalPartAndDefaultNamespace(
+        string $value, 
+        string $localPart
+    ) {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('', 'http://example.org');
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildExtensionElement();
+        $this->sut->buildBaseAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['' => 'http://example.org' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        self::assertNotNull($cc->getDerivationElement());
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertComplexContentExtensionElementHasOnlyBaseAttribute($ext);
+        self::assertSame($localPart, $ext->getBase()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org', $ext->getBase()->getNamespace()->getAnyUri());
+        self::assertSame([], $ext->getElements());
+    }
+    
+    /**
+     * Tests that buildBaseAttribute() throws an exception when the current 
+     * element is the "extension" element (extensionType) and the value is an 
+     * invalid QName.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidQNameTypeValues
+     */
+    public function testBuildBaseAttributeThrowsExceptionWhenComplexContentExtensionAndValueIsInvalid(
+        string $value, 
+        string $message
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildBaseAttribute($value);
+    }
+    
+    /**
+     * Tests that buildBaseAttribute() creates the attribute when:
+     * - the current element is the "extension" element (extensionType), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildBaseAttributeCreatesAttrWhenComplexContentExtensionAndValueIsValidAndPrefixAssociatedNamespace()
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->buildComplexTypeElement();
+        $this->sut->buildComplexContentElement();
+        $this->sut->buildExtensionElement();
+        $this->sut->buildBaseAttribute('foo:bar');
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['foo' => 'http://example.org/foo' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        self::assertNotNull($cc->getDerivationElement());
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertComplexContentExtensionElementHasOnlyBaseAttribute($ext);
+        self::assertSame('bar', $ext->getBase()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/foo', $ext->getBase()->getNamespace()->getAnyUri());
+        self::assertSame([], $ext->getElements());
+    }
+    
+    /**
+     * Tests that buildBaseAttribute() throws an exception when:
+     * - the current element is the "extension" element (extensionType), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is not associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildBaseAttributeThrowsExceptionWhenComplexContentExtensionAndValueIsValidAndPrefixNotAssociatedNamespace()
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
+        
+        $this->sut->buildBaseAttribute('foo:bar');
     }
 }

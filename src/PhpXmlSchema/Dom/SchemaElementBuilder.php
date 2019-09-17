@@ -90,6 +90,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_SIMPLECONTENT_RESTRICTION:
                 case ElementId::ELT_SIMPLECONTENT_EXTENSION:
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
+                case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
                     $this->currentElement->setBase($this->parseQName($value));
             }
         }
