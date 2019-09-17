@@ -93,7 +93,6 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
-    use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
@@ -464,5 +463,30 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
         self::assertElementNamespaceDeclarations([], $all);
         self::assertAllElementHasNoAttribute($all);
         self::assertSame([], $all->getElements());
+    }
+    
+    /**
+     * Tests that buildChoiceElement() creates the element when the current 
+     * element is the "restriction" element (complexRestrictionType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildChoiceElementCreateEltWhenComplexContentRestriction()
+    {
+        $this->sut->buildChoiceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $res = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $choice = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertSame([], $choice->getElements());
     }
 }
