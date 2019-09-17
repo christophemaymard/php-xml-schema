@@ -272,7 +272,7 @@ class SpecificationFactoryTest extends TestCase
             [ 32, [ 0, 1, 2, 3, 4, ], ], // ELT_SIMPLECONTENT_RESTRICTION
             [ 33, [ 0, 1, 2, ], ], // ELT_SIMPLECONTENT_EXTENSION
             [ 34, [ 2, ], ], // ELT_COMPLEXCONTENT
-            [ 35, [ 0, 1, 2, ], ], // ELT_COMPLEXCONTENT_RESTRICTION
+            [ 35, [ 0, 1, 2, 3, ], ], // ELT_COMPLEXCONTENT_RESTRICTION
             [ 36, [ 0, 1, ], ], // ELT_GROUP_REF
             [ 37, [ 0, 1, ], ], // ELT_ALL
             [ 38, [ 0, 1, 2, ], ], // ELT_NARROW_ELEMENT
@@ -516,14 +516,17 @@ class SpecificationFactoryTest extends TestCase
             [ 35, 0, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             [ 35, 0, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 35, 0, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 0, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             [ 35, 1, 36, 'group', ], // ELT_GROUP_REF
             [ 35, 1, 37, 'all', ], // ELT_ALL
             [ 35, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 35, 1, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             [ 35, 1, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 35, 1, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 1, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             [ 35, 2, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 35, 2, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 2, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             // Context: ELT_GROUP_REF
             [ 36, 0, 2, 'annotation', ], // ELT_ANNOTATION
             // Context: ELT_ALL
@@ -861,14 +864,17 @@ class SpecificationFactoryTest extends TestCase
             [ 35, 0, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             [ 35, 0, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 35, 0, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 0, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             [ 35, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 35, 1, 37, 'buildAllElement', ], // ELT_ALL
             [ 35, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 35, 1, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             [ 35, 1, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 35, 1, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 1, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             [ 35, 2, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 35, 2, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 2, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             // Context: ELT_GROUP_REF
             [ 36, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             // Context: ELT_ALL
@@ -1206,14 +1212,17 @@ class SpecificationFactoryTest extends TestCase
             [ 35, 0, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
             [ 35, 0, 27, 2, ], // ELT_ATTRIBUTE
             [ 35, 0, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 0, 29, 3, ], // ELT_ANYATTRIBUTE
             [ 35, 1, 36, 2, ], // ELT_GROUP_REF
             [ 35, 1, 37, 2, ], // ELT_ALL
             [ 35, 1, 40, 2, ], // ELT_EXPLICIT_CHOICE
             [ 35, 1, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
             [ 35, 1, 27, 2, ], // ELT_ATTRIBUTE
             [ 35, 1, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 1, 29, 3, ], // ELT_ANYATTRIBUTE
             [ 35, 2, 27, 2, ], // ELT_ATTRIBUTE
             [ 35, 2, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 35, 2, 29, 3, ], // ELT_ANYATTRIBUTE
             // Context: ELT_GROUP_REF
             [ 36, 0, 2, 1, ], // ELT_ANNOTATION
             // Context: ELT_ALL

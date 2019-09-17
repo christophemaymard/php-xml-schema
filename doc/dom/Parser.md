@@ -532,7 +532,7 @@
 - [x] Parse **sequence** element (explicitGroup).
 - [x] Parse **attribute** elements (attribute).
 - [x] Parse **attributeGroup** elements (attributeGroupRef).
-- [ ] Parse **anyAttribute** element.
+- [x] Parse **anyAttribute** element.
 
 ## Element: "group" (groupRef)
 
