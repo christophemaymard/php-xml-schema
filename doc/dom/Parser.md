@@ -684,7 +684,7 @@
 - [x] Parse **complexType** element (localComplexType).
 - [x] Parse **unique** elements.
 - [x] Parse **key** elements.
-- [ ] Parse **keyref** elements.
+- [x] Parse **keyref** elements.
 
 ## Element: "element" (localElement)
 

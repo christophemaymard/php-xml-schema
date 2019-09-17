@@ -1050,6 +1050,81 @@ class NarrowElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "keyref" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessKeyRefElement()
+    {
+        $sch = $this->sut->parse($this->getXs('keyref_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct1 = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct1);
+        self::assertComplexTypeElementHasNoAttribute($ct1);
+        self::assertCount(1, $ct1->getElements());
+        
+        $cc = $ct1->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $res = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertComplexContentRestrictionElementHasNoAttribute($res);
+        self::assertCount(1, $res->getElements());
+        
+        $all = $res->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(1, $all->getElements());
+        
+        $elt = $all->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(2, $elt->getElements());
+        
+        $keyRefs = $elt->getKeyRefElements();
+        
+        self::assertElementNamespaceDeclarations([], $keyRefs[0]);
+        self::assertKeyRefElementHasNoAttribute($keyRefs[0]);
+        self::assertCount(2, $keyRefs[0]->getElements());
+        
+        $sel1 = $keyRefs[0]->getSelectorElement();
+        self::assertElementNamespaceDeclarations([], $sel1);
+        self::assertSelectorElementHasNoAttribute($sel1);
+        self::assertSame([], $sel1->getElements());
+        
+        $field1 = $keyRefs[0]->getFieldElements()[0];
+        self::assertElementNamespaceDeclarations([], $field1);
+        self::assertFieldElementHasNoAttribute($field1);
+        self::assertSame([], $field1->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $keyRefs[1]);
+        self::assertKeyRefElementHasNoAttribute($keyRefs[1]);
+        self::assertCount(2, $keyRefs[1]->getElements());
+        
+        $sel2 = $keyRefs[1]->getSelectorElement();
+        self::assertElementNamespaceDeclarations([], $sel2);
+        self::assertSelectorElementHasNoAttribute($sel2);
+        self::assertSame([], $sel2->getElements());
+        
+        $field2 = $keyRefs[1]->getFieldElements()[0];
+        self::assertElementNamespaceDeclarations([], $field2);
+        self::assertFieldElementHasNoAttribute($field2);
+        self::assertSame([], $field2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "block" attributes.
      * 
      * @return  array[]
