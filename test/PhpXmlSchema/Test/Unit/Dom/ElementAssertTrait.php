@@ -16,6 +16,7 @@ use PhpXmlSchema\Dom\AttributeElement;
 use PhpXmlSchema\Dom\AttributeGroupElement;
 use PhpXmlSchema\Dom\ChoiceElement;
 use PhpXmlSchema\Dom\ComplexContentElement;
+use PhpXmlSchema\Dom\ComplexContentExtensionElement;
 use PhpXmlSchema\Dom\ComplexContentRestrictionElement;
 use PhpXmlSchema\Dom\ComplexTypeElement;
 use PhpXmlSchema\Dom\DocumentationElement;
@@ -2925,5 +2926,18 @@ trait ElementAssertTrait
         self::assertFalse($sut->hasMinOccurs());
         self::assertFalse($sut->hasNamespace());
         self::assertTrue($sut->hasProcessContents());
+    }
+    
+    /**
+     * Asserts that the specified "extension" element (extensionType) has no 
+     * attribute.
+     * 
+     * @param   ComplexContentExtensionElement  $sut    The element to test.
+     */
+    public static function assertComplexContentExtensionElementHasNoAttribute(
+        ComplexContentExtensionElement $sut
+    ) {
+        self::assertFalse($sut->hasBase());
+        self::assertFalse($sut->hasId());
     }
 }

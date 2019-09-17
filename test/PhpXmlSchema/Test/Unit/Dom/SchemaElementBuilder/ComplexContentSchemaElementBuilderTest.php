@@ -84,7 +84,6 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
-    use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
@@ -312,5 +311,30 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         self::assertElementNamespaceDeclarations([], $res);
         self::assertComplexContentRestrictionElementHasNoAttribute($res);
         self::assertSame([], $res->getElements());
+    }
+    
+    /**
+     * Tests that buildExtensionElement() creates the element when the 
+     * current element is the "complexContent" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildExtensionElementCreateEltWhenComplexContent()
+    {
+        $this->sut->buildExtensionElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $cc = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $ext = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertComplexContentExtensionElementHasNoAttribute($ext);
+        self::assertSame([], $ext->getElements());
     }
 }

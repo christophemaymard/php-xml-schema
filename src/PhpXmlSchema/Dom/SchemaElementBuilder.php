@@ -989,10 +989,19 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildExtensionElement()
     {
-        if ($this->currentElement instanceof SimpleContentElement) {
-            $elt = new SimpleContentExtensionElement();
-            $this->currentElement->setDerivationElement($elt);
-            $this->currentElement = $elt;
+        if ($this->currentElement instanceof ElementInterface) {
+            switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_COMPLEXCONTENT:
+                    $elt = new ComplexContentExtensionElement();
+                    $this->currentElement->setDerivationElement($elt);
+                    $this->currentElement = $elt;
+                    break;
+                case ElementId::ELT_SIMPLECONTENT:
+                    $elt = new SimpleContentExtensionElement();
+                    $this->currentElement->setDerivationElement($elt);
+                    $this->currentElement = $elt;
+                    break;
+            }
         }
     }
     
