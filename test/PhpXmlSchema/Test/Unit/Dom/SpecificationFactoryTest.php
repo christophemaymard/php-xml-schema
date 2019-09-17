@@ -525,10 +525,13 @@ class SpecificationFactoryTest extends TestCase
             [ 38, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 38, 0, 39, 'complexType', ], // ELT_LOCAL_COMPLEXTYPE
             [ 38, 0, 42, 'unique', ], // ELT_UNIQUE
+            [ 38, 0, 45, 'key', ], // ELT_KEY
             [ 38, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
             [ 38, 1, 39, 'complexType', ], // ELT_LOCAL_COMPLEXTYPE
             [ 38, 1, 42, 'unique', ], // ELT_UNIQUE
+            [ 38, 1, 45, 'key', ], // ELT_KEY
             [ 38, 2, 42, 'unique', ], // ELT_UNIQUE
+            [ 38, 2, 45, 'key', ], // ELT_KEY
             // Context: ELT_LOCAL_COMPLEXTYPE
             [ 39, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 39, 0, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
@@ -854,10 +857,13 @@ class SpecificationFactoryTest extends TestCase
             [ 38, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 38, 0, 39, 'buildComplexTypeElement', ], // ELT_LOCAL_COMPLEXTYPE
             [ 38, 0, 42, 'buildUniqueElement', ], // ELT_UNIQUE
+            [ 38, 0, 45, 'buildKeyElement', ], // ELT_KEY
             [ 38, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
             [ 38, 1, 39, 'buildComplexTypeElement', ], // ELT_LOCAL_COMPLEXTYPE
             [ 38, 1, 42, 'buildUniqueElement', ], // ELT_UNIQUE
+            [ 38, 1, 45, 'buildKeyElement', ], // ELT_KEY
             [ 38, 2, 42, 'buildUniqueElement', ], // ELT_UNIQUE
+            [ 38, 2, 45, 'buildKeyElement', ], // ELT_KEY
             // Context: ELT_LOCAL_COMPLEXTYPE
             [ 39, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 39, 0, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
@@ -1183,10 +1189,13 @@ class SpecificationFactoryTest extends TestCase
             [ 38, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 38, 0, 39, 2, ], // ELT_LOCAL_COMPLEXTYPE
             [ 38, 0, 42, 2, ], // ELT_UNIQUE
+            [ 38, 0, 45, 2, ], // ELT_KEY
             [ 38, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
             [ 38, 1, 39, 2, ], // ELT_LOCAL_COMPLEXTYPE
             [ 38, 1, 42, 2, ], // ELT_UNIQUE
+            [ 38, 1, 45, 2, ], // ELT_KEY
             [ 38, 2, 42, 2, ], // ELT_UNIQUE
+            [ 38, 2, 45, 2, ], // ELT_KEY
             // Context: ELT_LOCAL_COMPLEXTYPE
             [ 39, 0, 2, 1, ], // ELT_ANNOTATION
             [ 39, 0, 31, 3, ], // ELT_SIMPLECONTENT

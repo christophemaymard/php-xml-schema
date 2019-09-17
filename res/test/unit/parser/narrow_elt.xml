@@ -27,7 +27,7 @@
   <test group="content" name="[element] foo child element is not supported">
     <schema fileName="element_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType" or "unique".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType", "unique" or "key".</message>
     </schema>
   </test>
   <!-- element::block -->
@@ -541,47 +541,54 @@
   <test group="content" name="[element][annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType" or "unique".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType", "unique" or "key".</message>
     </schema>
   </test>
   <!-- simpleType -->
   <test group="content" name="[element][simpleType] not part of the XML Schema 1.0 namespace">
     <schema fileName="simpletype_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "simpleType" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType" or "unique".</message>
+      <message>The "simpleType" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType", "unique" or "key".</message>
     </schema>
   </test>
   <!-- complexType -->
   <test group="content" name="[element][complexType] not part of the XML Schema 1.0 namespace">
     <schema fileName="complexType_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "complexType" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType" or "unique".</message>
+      <message>The "complexType" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType", "unique" or "key".</message>
     </schema>
   </test>
   <!-- unique -->
   <test group="content" name="[element][unique] not part of the XML Schema 1.0 namespace">
     <schema fileName="unique_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "unique" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType" or "unique".</message>
+      <message>The "unique" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType", "unique" or "key".</message>
+    </schema>
+  </test>
+  <!-- key -->
+  <test group="content" name="[element][key] not part of the XML Schema 1.0 namespace">
+    <schema fileName="key_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "key" element (from no namespace) is unexpected, expected: "annotation", "simpleType", "complexType", "unique" or "key".</message>
     </schema>
   </test>
   <!-- container -->
   <test group="content" name="[element][container] annotation unexpected annotation">
     <schema fileName="container_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType" or "unique".</message>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "unique" or "key".</message>
     </schema>
   </test>
   <test group="content" name="[element][container] simpleType unexpected simpleType">
     <schema fileName="container_0002.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "simpleType" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "unique".</message>
+      <message>The "simpleType" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "unique" or "key".</message>
     </schema>
   </test>
   <test group="content" name="[element][container] complexType unexpected complexType">
     <schema fileName="container_0003.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "complexType" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "unique".</message>
+      <message>The "complexType" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "unique" or "key".</message>
     </schema>
   </test>
   <!-- TEMPLATE
