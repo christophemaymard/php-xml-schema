@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 
 /**
@@ -24,6 +25,7 @@ use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
  */
 class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NCNameTypeProviderTrait;
     use QNameTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -32,7 +34,6 @@ class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElem
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -333,5 +334,58 @@ class ComplexContentExtensionSchemaElementBuilderTest extends AbstractSchemaElem
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
         
         $this->sut->buildBaseAttribute('foo:bar');
+    }
+    
+    /**
+     * Tests that buildIdAttribute() creates the attribute when the current 
+     * element is the "extension" element (extensionType) and the value is 
+     * valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNCNameTypeWSValues
+     */
+    public function testBuildIdAttributeCreatesAttrWhenComplexContentExtensionAndValueIsValid(
+        string $value, 
+        string $id
+    ) {
+        $this->sut->buildIdAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ext = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertComplexContentExtensionElementHasOnlyIdAttribute($ext);
+        self::assertSame($id, $ext->getId()->getId());
+        self::assertSame([], $ext->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() throws an exception when the current 
+     * element is the "extension" element (extensionType) and the value is 
+     * invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNCNameTypeWSValues
+     */
+    public function testBuildIdAttributeThrowsExceptionWhenComplexContentExtensionAndValueIsInvalid(
+        string $value, 
+        string $mValue
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
+        
+        $this->sut->buildIdAttribute($value);
     }
 }
