@@ -234,6 +234,46 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "group" element (groupRef).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessGroupElement()
+    {
+        $sch = $this->sut->parse($this->getXs('group_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $cc = $ct->getContentElement();
+        self::assertElementNamespaceDeclarations([], $cc);
+        self::assertComplexContentElementHasNoAttribute($cc);
+        self::assertCount(1, $cc->getElements());
+        
+        $ext = $cc->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $ext);
+        self::assertComplexContentExtensionElementHasNoAttribute($ext);
+        self::assertCount(1, $ext->getElements());
+        
+        $grp = $ext->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
      * Returns a set of valid "base" attributes with no prefix and no default 
      * namespace.
      * 
