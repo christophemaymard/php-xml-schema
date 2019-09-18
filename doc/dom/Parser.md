@@ -388,7 +388,7 @@
 - [x] Parse **simpleContent** element.
 - [x] Parse **complexContent** element.
 - [x] Parse **group** element (groupRef).
-- [ ] Parse **all** element (all).
+- [x] Parse **all** element (all).
 - [ ] Parse **choice** element (explicitGroup).
 - [ ] Parse **sequence** element (explicitGroup).
 - [ ] Parse **attribute** elements (attribute).
