@@ -1,0 +1,10 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType>
+    <xs:complexContent>
+      <xs:extension>
+        <xs:attribute></xs:attribute>
+        <xs:attribute></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

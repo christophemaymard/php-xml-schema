@@ -529,10 +529,13 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ALL, 'all', ], 
             [ 0, ContextId::ELT_EXPLICIT_CHOICE, 'choice', ], 
             [ 0, ContextId::ELT_EXPLICIT_SEQUENCE, 'sequence', ], 
+            [ 0, ContextId::ELT_ATTRIBUTE, 'attribute', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'group', ], 
             [ 1, ContextId::ELT_ALL, 'all', ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 'choice', ], 
             [ 1, ContextId::ELT_EXPLICIT_SEQUENCE, 'sequence', ], 
+            [ 1, ContextId::ELT_ATTRIBUTE, 'attribute', ], 
+            [ 2, ContextId::ELT_ATTRIBUTE, 'attribute', ], 
         ], 
     ];
     
@@ -933,10 +936,13 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ALL, 'buildAllElement', ], 
             [ 0, ContextId::ELT_EXPLICIT_CHOICE, 'buildChoiceElement', ], 
             [ 0, ContextId::ELT_EXPLICIT_SEQUENCE, 'buildSequenceElement', ], 
+            [ 0, ContextId::ELT_ATTRIBUTE, 'buildAttributeElement', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
             [ 1, ContextId::ELT_ALL, 'buildAllElement', ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 'buildChoiceElement', ], 
             [ 1, ContextId::ELT_EXPLICIT_SEQUENCE, 'buildSequenceElement', ], 
+            [ 1, ContextId::ELT_ATTRIBUTE, 'buildAttributeElement', ], 
+            [ 2, ContextId::ELT_ATTRIBUTE, 'buildAttributeElement', ], 
         ], 
     ];
     
@@ -1336,10 +1342,13 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ALL, 2, ], 
             [ 0, ContextId::ELT_EXPLICIT_CHOICE, 2, ], 
             [ 0, ContextId::ELT_EXPLICIT_SEQUENCE, 2, ], 
+            [ 0, ContextId::ELT_ATTRIBUTE, 2, ], 
             [ 1, ContextId::ELT_GROUP_REF, 2, ], 
             [ 1, ContextId::ELT_ALL, 2, ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 2, ], 
             [ 1, ContextId::ELT_EXPLICIT_SEQUENCE, 2, ], 
+            [ 1, ContextId::ELT_ATTRIBUTE, 2, ], 
+            [ 2, ContextId::ELT_ATTRIBUTE, 2, ], 
         ], 
     ];
     
