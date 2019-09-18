@@ -1054,9 +1054,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_COMPLEXTYPE:
-                    if ($this->currentElement->getParent() instanceof SchemaElement) {
-                        break;
-                    }
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
                 case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
                     $elt = new GroupElement();
