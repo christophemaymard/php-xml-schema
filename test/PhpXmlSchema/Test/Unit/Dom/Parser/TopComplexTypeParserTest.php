@@ -463,6 +463,41 @@ class TopComplexTypeParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "attribute" elements (attribute).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAttributeElement()
+    {
+        $sch = $this->sut->parse($this->getXs('attribute_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $ct = $sch->getComplexTypeElements()[0];
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(2, $ct->getElements());
+        
+        $attrs = $ct->getAttributeElements();
+        
+        self::assertElementNamespaceDeclarations([], $attrs[0]);
+        self::assertAttributeElementHasNoAttribute($attrs[0]);
+        self::assertSame([], $attrs[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $attrs[1]);
+        self::assertAttributeElementHasNoAttribute($attrs[1]);
+        self::assertSame([], $attrs[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]

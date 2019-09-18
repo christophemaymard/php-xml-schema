@@ -391,7 +391,7 @@
 - [x] Parse **all** element (all).
 - [x] Parse **choice** element (explicitGroup).
 - [x] Parse **sequence** element (explicitGroup).
-- [ ] Parse **attribute** elements (attribute).
+- [x] Parse **attribute** elements (attribute).
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
 - [ ] Parse **anyAttribute** element.
 

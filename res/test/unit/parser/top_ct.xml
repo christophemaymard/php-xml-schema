@@ -27,7 +27,7 @@
   <test group="content" name="[complexType] foo child element is not supported">
     <schema fileName="complexType_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <!-- complexType::abstract -->
@@ -256,56 +256,63 @@
   <test group="content" name="[complexType][annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <!-- simpleContent -->
   <test group="content" name="[complexType][simpleContent] not part of the XML Schema 1.0 namespace">
     <schema fileName="simpleContent_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "simpleContent" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "simpleContent" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <!-- complexContent -->
   <test group="content" name="[complexType][complexContent] not part of the XML Schema 1.0 namespace">
     <schema fileName="complexContent_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "complexContent" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "complexContent" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <!-- group -->
   <test group="content" name="[complexType][group] not part of the XML Schema 1.0 namespace">
     <schema fileName="group_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "group" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "group" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <!-- all -->
   <test group="content" name="[complexType][all] not part of the XML Schema 1.0 namespace">
     <schema fileName="all_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "all" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "all" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <!-- choice -->
   <test group="content" name="[complexType][choice] not part of the XML Schema 1.0 namespace">
     <schema fileName="choice_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "choice" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "choice" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <!-- sequence -->
   <test group="content" name="[complexType][sequence] not part of the XML Schema 1.0 namespace">
     <schema fileName="sequence_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "sequence" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "sequence" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
+    </schema>
+  </test>
+  <!-- attribute -->
+  <test group="content" name="[complexType][attribute] not part of the XML Schema 1.0 namespace">
+    <schema fileName="attribute_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "attribute" element (from no namespace) is unexpected, expected: "annotation", "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <!-- container -->
   <test group="content" name="[complexType][container] annotation unexpected annotation">
     <schema fileName="container_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleContent", "complexContent", "group", "all", "choice" or "sequence".</message>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleContent", "complexContent", "group", "all", "choice", "sequence" or "attribute".</message>
     </schema>
   </test>
   <test group="content" name="[complexType][container] simpleContent unexpected simpleContent">
@@ -323,25 +330,31 @@
   <test group="content" name="[complexType][container] group unexpected group">
     <schema fileName="container_0004.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "group" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+      <message>The "group" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute".</message>
     </schema>
   </test>
   <test group="content" name="[complexType][container] all unexpected all">
     <schema fileName="container_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "all" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+      <message>The "all" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute".</message>
     </schema>
   </test>
   <test group="content" name="[complexType][container] choice unexpected choice">
     <schema fileName="container_0006.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "choice" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+      <message>The "choice" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute".</message>
     </schema>
   </test>
   <test group="content" name="[complexType][container] sequence unexpected sequence">
     <schema fileName="container_0007.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "sequence" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+      <message>The "sequence" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute".</message>
+    </schema>
+  </test>
+  <test group="content" name="[complexType][container] attribute unexpected annotation">
+    <schema fileName="container_0008.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "attribute".</message>
     </schema>
   </test>
   <!-- TEMPLATE

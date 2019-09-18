@@ -442,12 +442,15 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 37, 'all', ], // ELT_ALL
             [ 30, 0, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 30, 0, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
+            [ 30, 0, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 30, 1, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             [ 30, 1, 36, 'group', ], // ELT_GROUP_REF
             [ 30, 1, 37, 'all', ], // ELT_ALL
             [ 30, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 30, 1, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
+            [ 30, 1, 27, 'attribute', ], // ELT_ATTRIBUTE
+            [ 30, 2, 27, 'attribute', ], // ELT_ATTRIBUTE
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'restriction', ], // ELT_SIMPLECONTENT_RESTRICTION
@@ -819,12 +822,15 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 37, 'buildAllElement', ], // ELT_ALL
             [ 30, 0, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 30, 0, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
+            [ 30, 0, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 30, 1, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             [ 30, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 30, 1, 37, 'buildAllElement', ], // ELT_ALL
             [ 30, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 30, 1, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
+            [ 30, 1, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
+            [ 30, 2, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'buildRestrictionElement', ], // ELT_SIMPLECONTENT_RESTRICTION
@@ -1196,12 +1202,15 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 37, 2, ], // ELT_ALL
             [ 30, 0, 40, 2, ], // ELT_EXPLICIT_CHOICE
             [ 30, 0, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
+            [ 30, 0, 27, 2, ], // ELT_ATTRIBUTE
             [ 30, 1, 31, 3, ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 3, ], // ELT_COMPLEXCONTENT
             [ 30, 1, 36, 2, ], // ELT_GROUP_REF
             [ 30, 1, 37, 2, ], // ELT_ALL
             [ 30, 1, 40, 2, ], // ELT_EXPLICIT_CHOICE
             [ 30, 1, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
+            [ 30, 1, 27, 2, ], // ELT_ATTRIBUTE
+            [ 30, 2, 27, 2, ], // ELT_ATTRIBUTE
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 1, ], // ELT_ANNOTATION
             [ 31, 0, 32, 2, ], // ELT_SIMPLECONTENT_RESTRICTION
