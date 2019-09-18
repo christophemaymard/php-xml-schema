@@ -238,6 +238,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_GROUP:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_ELEMENT:
                 case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
@@ -269,7 +273,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_SIMPLECONTENT_EXTENSION:
                 case ElementId::ELT_COMPLEXCONTENT:
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
-                case ElementId::ELT_GROUP:
                 case ElementId::ELT_ALL:
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_UNIQUE:
@@ -306,6 +309,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setMaxOccurs($this->parseOneNonNegativeIntegerLimit($value));
                     break;
                 case ElementId::ELT_GROUP:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_ANY:
@@ -362,6 +368,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setMinOccurs($this->parseZeroOrOneNonNegativeInteger($value));
                     break;
                 case ElementId::ELT_GROUP:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_ANY:
@@ -476,7 +485,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_GROUP:
-                    $this->currentElement->setRef($this->parseQName($value));
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setRef($this->parseQName($value));
+                    }
+                    
                     break;
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
@@ -677,6 +689,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_GROUP:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_ELEMENT:
                 case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
@@ -706,7 +722,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_SIMPLECONTENT_EXTENSION:
                 case ElementId::ELT_COMPLEXCONTENT:
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
-                case ElementId::ELT_GROUP:
                 case ElementId::ELT_ALL:
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_UNIQUE:
@@ -1031,6 +1046,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     break;
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
+                case ElementId::ELT_SCHEMA:
                     $elt = new GroupElement();
                     $this->currentElement->addGroupElement($elt);
                     $this->currentElement = $elt;

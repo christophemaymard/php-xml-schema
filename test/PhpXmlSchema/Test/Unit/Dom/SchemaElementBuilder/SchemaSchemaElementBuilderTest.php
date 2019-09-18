@@ -81,7 +81,6 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildSimpleContentElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
     use BuildComplexContentElementDoesNotCreateElementTestTrait;
-    use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
@@ -834,5 +833,34 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         self::assertElementNamespaceDeclarations([], $cts[1]);
         self::assertComplexTypeElementHasNoAttribute($cts[1]);
         self::assertSame([], $cts[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildGroupElement() creates the element when the current 
+     * element is the "schema" element.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildGroupElementCreateEltWhenSchema()
+    {
+        $this->sut->buildGroupElement();
+        $this->sut->endElement();
+        $this->sut->buildGroupElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations([], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $grps = $sch->getGroupElements();
+        
+        self::assertElementNamespaceDeclarations([], $grps[0]);
+        self::assertGroupElementHasNoAttribute($grps[0]);
+        self::assertSame([], $grps[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $grps[1]);
+        self::assertGroupElementHasNoAttribute($grps[1]);
+        self::assertSame([], $grps[1]->getElements());
     }
 }
