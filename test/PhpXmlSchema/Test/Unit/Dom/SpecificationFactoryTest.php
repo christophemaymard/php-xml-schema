@@ -645,12 +645,15 @@ class SpecificationFactoryTest extends TestCase
             [ 49, 0, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 49, 0, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             [ 49, 0, 27, 'attribute', ], // ELT_ATTRIBUTE
+            [ 49, 0, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 1, 36, 'group', ], // ELT_GROUP_REF
             [ 49, 1, 37, 'all', ], // ELT_ALL
             [ 49, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
             [ 49, 1, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             [ 49, 1, 27, 'attribute', ], // ELT_ATTRIBUTE
+            [ 49, 1, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 2, 27, 'attribute', ], // ELT_ATTRIBUTE
+            [ 49, 2, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
         ];
     }
     
@@ -1008,12 +1011,15 @@ class SpecificationFactoryTest extends TestCase
             [ 49, 0, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 49, 0, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             [ 49, 0, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
+            [ 49, 0, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 49, 1, 37, 'buildAllElement', ], // ELT_ALL
             [ 49, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
             [ 49, 1, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             [ 49, 1, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
+            [ 49, 1, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 2, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
+            [ 49, 2, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
         ];
     }
     
@@ -1371,12 +1377,15 @@ class SpecificationFactoryTest extends TestCase
             [ 49, 0, 40, 2, ], // ELT_EXPLICIT_CHOICE
             [ 49, 0, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
             [ 49, 0, 27, 2, ], // ELT_ATTRIBUTE
+            [ 49, 0, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 1, 36, 2, ], // ELT_GROUP_REF
             [ 49, 1, 37, 2, ], // ELT_ALL
             [ 49, 1, 40, 2, ], // ELT_EXPLICIT_CHOICE
             [ 49, 1, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
             [ 49, 1, 27, 2, ], // ELT_ATTRIBUTE
+            [ 49, 1, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 2, 27, 2, ], // ELT_ATTRIBUTE
+            [ 49, 2, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
         ];
     }
     
