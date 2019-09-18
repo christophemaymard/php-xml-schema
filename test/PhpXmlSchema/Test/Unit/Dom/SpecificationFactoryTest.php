@@ -444,6 +444,7 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             [ 30, 0, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 30, 0, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 0, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             [ 30, 1, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
             [ 30, 1, 36, 'group', ], // ELT_GROUP_REF
@@ -452,8 +453,10 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 1, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             [ 30, 1, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 30, 1, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 1, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             [ 30, 2, 27, 'attribute', ], // ELT_ATTRIBUTE
             [ 30, 2, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 2, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'restriction', ], // ELT_SIMPLECONTENT_RESTRICTION
@@ -827,6 +830,7 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             [ 30, 0, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 30, 0, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 0, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             [ 30, 1, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
             [ 30, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
@@ -835,8 +839,10 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 1, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             [ 30, 1, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 30, 1, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 1, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             [ 30, 2, 27, 'buildAttributeElement', ], // ELT_ATTRIBUTE
             [ 30, 2, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 2, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'buildRestrictionElement', ], // ELT_SIMPLECONTENT_RESTRICTION
@@ -1210,6 +1216,7 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
             [ 30, 0, 27, 2, ], // ELT_ATTRIBUTE
             [ 30, 0, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 0, 29, 3, ], // ELT_ANYATTRIBUTE
             [ 30, 1, 31, 3, ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 3, ], // ELT_COMPLEXCONTENT
             [ 30, 1, 36, 2, ], // ELT_GROUP_REF
@@ -1218,8 +1225,10 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 1, 47, 2, ], // ELT_EXPLICIT_SEQUENCE
             [ 30, 1, 27, 2, ], // ELT_ATTRIBUTE
             [ 30, 1, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 1, 29, 3, ], // ELT_ANYATTRIBUTE
             [ 30, 2, 27, 2, ], // ELT_ATTRIBUTE
             [ 30, 2, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
+            [ 30, 2, 29, 3, ], // ELT_ANYATTRIBUTE
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 1, ], // ELT_ANNOTATION
             [ 31, 0, 32, 2, ], // ELT_SIMPLECONTENT_RESTRICTION
