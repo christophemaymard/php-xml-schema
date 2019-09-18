@@ -268,7 +268,7 @@ class SpecificationFactoryTest extends TestCase
             [ 27, [ 0, 1, 2, ], ], // ELT_ATTRIBUTE
             [ 28, [ 0, 1, ], ], // ELT_ATTRIBUTEGROUP_REF
             [ 29, [ 0, 1, ], ], // ELT_ANYATTRIBUTE
-            [ 30, [ 0, 1, 3, ], ], // ELT_TOP_COMPLEXTYPE
+            [ 30, [ 0, 1, 2, 3, ], ], // ELT_TOP_COMPLEXTYPE
             [ 31, [ 2, ], ], // ELT_SIMPLECONTENT
             [ 32, [ 0, 1, 2, 3, 4, ], ], // ELT_SIMPLECONTENT_RESTRICTION
             [ 33, [ 0, 1, 2, ], ], // ELT_SIMPLECONTENT_EXTENSION
@@ -438,8 +438,10 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 30, 0, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
             [ 30, 0, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
+            [ 30, 0, 36, 'group', ], // ELT_GROUP_REF
             [ 30, 1, 31, 'simpleContent', ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 'complexContent', ], // ELT_COMPLEXCONTENT
+            [ 30, 1, 36, 'group', ], // ELT_GROUP_REF
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'restriction', ], // ELT_SIMPLECONTENT_RESTRICTION
@@ -807,8 +809,10 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 30, 0, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
             [ 30, 0, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
+            [ 30, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 30, 1, 31, 'buildSimpleContentElement', ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 'buildComplexContentElement', ], // ELT_COMPLEXCONTENT
+            [ 30, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 31, 0, 32, 'buildRestrictionElement', ], // ELT_SIMPLECONTENT_RESTRICTION
@@ -1176,8 +1180,10 @@ class SpecificationFactoryTest extends TestCase
             [ 30, 0, 2, 1, ], // ELT_ANNOTATION
             [ 30, 0, 31, 3, ], // ELT_SIMPLECONTENT
             [ 30, 0, 34, 3, ], // ELT_COMPLEXCONTENT
+            [ 30, 0, 36, 2, ], // ELT_GROUP_REF
             [ 30, 1, 31, 3, ], // ELT_SIMPLECONTENT
             [ 30, 1, 34, 3, ], // ELT_COMPLEXCONTENT
+            [ 30, 1, 36, 2, ], // ELT_GROUP_REF
             // Context: ELT_SIMPLECONTENT
             [ 31, 0, 2, 1, ], // ELT_ANNOTATION
             [ 31, 0, 32, 2, ], // ELT_SIMPLECONTENT_RESTRICTION

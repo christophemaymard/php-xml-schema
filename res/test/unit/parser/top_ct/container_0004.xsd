@@ -1,0 +1,6 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType>
+    <xs:group></xs:group>
+    <xs:group></xs:group>
+  </xs:complexType>
+</xs:schema>
