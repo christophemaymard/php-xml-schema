@@ -889,17 +889,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
                 case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
+                case ElementId::ELT_COMPLEXTYPE:
                     $elt = new ChoiceElement();
                     $this->currentElement->setTypeDefinitionParticleElement($elt);
                     $this->currentElement = $elt;
-                    break;
-                case ElementId::ELT_COMPLEXTYPE:
-                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
-                        $elt = new ChoiceElement();
-                        $this->currentElement->setTypeDefinitionParticleElement($elt);
-                        $this->currentElement = $elt;
-                    }
-                    
                     break;
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:

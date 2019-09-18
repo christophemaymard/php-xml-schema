@@ -88,7 +88,6 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
-    use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
@@ -589,5 +588,30 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         self::assertElementNamespaceDeclarations([], $all);
         self::assertAllElementHasNoAttribute($all);
         self::assertSame([], $all->getElements());
+    }
+    
+    /**
+     * Tests that buildChoiceElement() creates the element when the current 
+     * element is the "complexType" element (topLevelComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildChoiceElementCreateEltWhenTopComplexType()
+    {
+        $this->sut->buildChoiceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $choice = $ct->getTypeDefinitionParticleElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertSame([], $choice->getElements());
     }
 }
