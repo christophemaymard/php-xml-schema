@@ -847,17 +847,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
                 case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
+                case ElementId::ELT_COMPLEXTYPE:
                     $elt = new AttributeGroupElement();
                     $this->currentElement->addAttributeGroupElement($elt);
                     $this->currentElement = $elt;
-                    break;
-                case ElementId::ELT_COMPLEXTYPE:
-                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
-                        $elt = new AttributeGroupElement();
-                        $this->currentElement->addAttributeGroupElement($elt);
-                        $this->currentElement = $elt;
-                    }
-                    
                     break;
                 case ElementId::ELT_ATTRIBUTEGROUP:
                     if (!$this->currentElement->getParent() instanceof SchemaElement) {
