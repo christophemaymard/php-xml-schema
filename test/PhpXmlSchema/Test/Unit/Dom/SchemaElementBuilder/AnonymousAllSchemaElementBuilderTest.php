@@ -12,14 +12,14 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
- * class when the current element is the "group" element (namedGroup).
+ * class when the current element is the "all" element (anonymous).
  * 
  * @group   element
  * @group   dom
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class AnonymousAllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
     use BindNamespaceTestTrait;
     
@@ -87,6 +87,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildGroupElementDoesNotCreateElementTestTrait;
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
+    use BuildAllElementDoesNotCreateElementTestTrait;
     use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
@@ -107,10 +108,10 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     {
         self::assertAncestorsNotChanged($sch);
         
-        $grp = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $grp);
-        self::assertGroupElementHasNoAttribute($grp);
-        self::assertSame([], $grp->getElements());
+        $all = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertSame([], $all->getElements());
     }
     
     /**
@@ -121,7 +122,12 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
-        self::assertCount(1, $sch->getGroupElements());
+        
+        $grp = $sch->getGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertCount(1, $grp->getElements());
+        self::assertNotNull($grp->getModelGroupElement());
     }
     
     /**
@@ -129,7 +135,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
     {
-        self::assertGroupElementHasNoAttribute(self::getCurrentElement($sch));
+        self::assertAllElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -137,7 +143,8 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     protected static function getCurrentElement(SchemaElement $sch)
     {
-        return $sch->getGroupElements()[0];
+        return $sch->getGroupElements()[0]
+            ->getModelGroupElement();
     }
     
     /**
@@ -147,6 +154,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildGroupElement();
+        $this->sut->buildAllElement();
     }
     
     /**
@@ -155,30 +163,5 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that buildAllElement() creates the element when the current 
-     * element is the "group" element (namedGroup).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildAllElementCreateEltWhenNamedGroup()
-    {
-        $this->sut->buildAllElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $grp = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $grp);
-        self::assertGroupElementHasNoAttribute($grp);
-        self::assertCount(1, $grp->getElements());
-        
-        $all = $grp->getModelGroupElement();
-        self::assertElementNamespaceDeclarations([], $all);
-        self::assertAllElementHasNoAttribute($all);
-        self::assertSame([], $all->getElements());
     }
 }

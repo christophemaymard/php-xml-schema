@@ -238,6 +238,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_ALL:
+                    if (!$this->currentElement->getParent() instanceof GroupElement) {
+                        $this->currentElement->setId($this->parseID($value));
+                    }
+                    
+                    break;
                 case ElementId::ELT_GROUP:
                     if ($this->currentElement->getParent() instanceof SchemaElement) {
                         break;
@@ -273,7 +279,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_SIMPLECONTENT_EXTENSION:
                 case ElementId::ELT_COMPLEXCONTENT:
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
-                case ElementId::ELT_ALL:
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_UNIQUE:
                 case ElementId::ELT_SELECTOR:
@@ -306,7 +311,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ALL:
-                    $this->currentElement->setMaxOccurs($this->parseOneNonNegativeIntegerLimit($value));
+                    if (!$this->currentElement->getParent() instanceof GroupElement) {
+                        $this->currentElement->setMaxOccurs($this->parseOneNonNegativeIntegerLimit($value));
+                    }
+                    
                     break;
                 case ElementId::ELT_GROUP:
                     if ($this->currentElement->getParent() instanceof SchemaElement) {
@@ -365,7 +373,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     
                     break;
                 case ElementId::ELT_ALL:
-                    $this->currentElement->setMinOccurs($this->parseZeroOrOneNonNegativeInteger($value));
+                    if (!$this->currentElement->getParent() instanceof GroupElement) {
+                        $this->currentElement->setMinOccurs($this->parseZeroOrOneNonNegativeInteger($value));
+                    }
+                    
                     break;
                 case ElementId::ELT_GROUP:
                     if ($this->currentElement->getParent() instanceof SchemaElement) {
@@ -672,6 +683,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_GROUP:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        $elt = new AllElement();
+                        $this->currentElement->setModelGroupElement($elt);
+                        $this->currentElement = $elt;
+                    }
+                    
+                    break;
                 case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
                 case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
@@ -689,6 +708,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ALL:
+                    if (!$this->currentElement->getParent() instanceof GroupElement) {
+                        $elt = new AnnotationElement();
+                        $this->currentElement->setAnnotationElement($elt);
+                        $this->currentElement = $elt;
+                    }
+                    
+                    break;
                 case ElementId::ELT_GROUP:
                     if ($this->currentElement->getParent() instanceof SchemaElement) {
                         break;
@@ -722,7 +749,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_SIMPLECONTENT_EXTENSION:
                 case ElementId::ELT_COMPLEXCONTENT:
                 case ElementId::ELT_COMPLEXCONTENT_RESTRICTION:
-                case ElementId::ELT_ALL:
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_UNIQUE:
                 case ElementId::ELT_SELECTOR:
@@ -951,6 +977,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ALL:
+                    if ($this->currentElement->getParent() instanceof GroupElement) {
+                        break;
+                    }
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
                     $elt = new ElementElement();
