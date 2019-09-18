@@ -78,7 +78,6 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
     use BuildUseAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
     use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
     use BuildComplexTypeElementDoesNotCreateElementTestTrait;
     use BuildExtensionElementDoesNotCreateElementTestTrait;
@@ -699,5 +698,30 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilde
         self::assertElementNamespaceDeclarations([], $ags[1]);
         self::assertAttributeGroupElementHasNoAttribute($ags[1]);
         self::assertSame([], $ags[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildAnyAttributeElement() creates the element when the 
+     * current element is the "complexType" element (topLevelComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildAnyAttributeElementCreateEltWhenTopComplexType()
+    {
+        $this->sut->buildAnyAttributeElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $ct = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertCount(1, $ct->getElements());
+        
+        $anyAttr = $ct->getAnyAttributeElement();
+        self::assertElementNamespaceDeclarations([], $anyAttr);
+        self::assertAnyAttributeElementHasNoAttribute($anyAttr);
+        self::assertSame([], $anyAttr->getElements());
     }
 }
