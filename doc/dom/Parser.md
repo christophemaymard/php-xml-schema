@@ -389,7 +389,7 @@
 - [x] Parse **complexContent** element.
 - [x] Parse **group** element (groupRef).
 - [x] Parse **all** element (all).
-- [ ] Parse **choice** element (explicitGroup).
+- [x] Parse **choice** element (explicitGroup).
 - [ ] Parse **sequence** element (explicitGroup).
 - [ ] Parse **attribute** elements (attribute).
 - [ ] Parse **attributeGroup** elements (attributeGroupRef).
