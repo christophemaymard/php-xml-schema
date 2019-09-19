@@ -960,9 +960,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ALL:
-                    if ($this->currentElement->getParent() instanceof GroupElement) {
-                        break;
-                    }
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
                     $elt = new ElementElement();

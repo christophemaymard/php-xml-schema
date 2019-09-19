@@ -90,7 +90,6 @@ class AnonymousAllSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
     use BuildAllElementDoesNotCreateElementTestTrait;
-    use BuildElementElementDoesNotCreateElementTestTrait;
     use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
     use BuildChoiceElementDoesNotCreateElementTestTrait;
     use BuildUniqueElementDoesNotCreateElementTestTrait;
@@ -241,5 +240,37 @@ class AnonymousAllSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
         self::assertElementNamespaceDeclarations([], $ann);
         self::assertAnnotationElementHasNoAttribute($ann);
         self::assertSame([], $ann->getElements());
+    }
+    
+    /**
+     * Tests that buildElementElement() creates the element when the 
+     * current element is the "all" element (anonymous).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildElementElementCreateEltWhenAnonymousAll()
+    {
+        $this->sut->buildElementElement();
+        $this->sut->endElement();
+        $this->sut->buildElementElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $all = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertCount(2, $all->getElements());
+        
+        $elts = $all->getElementElements();
+        
+        self::assertElementNamespaceDeclarations([], $elts[0]);
+        self::assertElementElementHasNoAttribute($elts[0]);
+        self::assertSame([], $elts[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $elts[1]);
+        self::assertElementElementHasNoAttribute($elts[1]);
+        self::assertSame([], $elts[1]->getElements());
     }
 }
