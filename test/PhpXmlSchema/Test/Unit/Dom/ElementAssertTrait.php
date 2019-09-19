@@ -2095,6 +2095,22 @@ trait ElementAssertTrait
     }
     
     /**
+     * Asserts that the specified "group" element has only the "name" 
+     * attribute.
+     * 
+     * @param   GroupElement    $sut    The element to test.
+     */
+    public static function assertGroupElementHasOnlyNameAttribute(
+        GroupElement $sut
+    ) {
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertTrue($sut->hasName());
+        self::assertFalse($sut->hasRef());
+    }
+    
+    /**
      * Asserts that the specified "group" element has only the "ref" 
      * attribute.
      * 

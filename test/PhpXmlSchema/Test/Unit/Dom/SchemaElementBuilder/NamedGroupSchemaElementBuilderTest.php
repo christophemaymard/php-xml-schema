@@ -45,7 +45,6 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildAnnotationElementDoesNotCreateElementTestTrait;
     use BuildIncludeElementDoesNotCreateElementTestTrait;
     use BuildNotationElementDoesNotCreateElementTestTrait;
-    use BuildNameAttributeDoesNotCreateAttributeTestTrait;
     use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
@@ -234,5 +233,56 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         ));
         
         $this->sut->buildIdAttribute($value);
+    }
+    
+    /**
+     * Tests that buildNameAttribute() creates the attribute when the current 
+     * element is the "group" element (namedGroup) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $name   The expected value for the name.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNCNameTypeWSValues
+     */
+    public function testBuildNameAttributeCreatesAttrWhenNamedGroupAndValueIsValid(
+        string $value, 
+        string $name
+    ) {
+        $this->sut->buildNameAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyNameAttribute($grp);
+        self::assertSame($name, $grp->getName()->getNCName());
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
+     * Tests that buildNameAttribute() throws an exception when the current 
+     * element is the "group" element (namedGroup) and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNCNameTypeWSValues
+     */
+    public function testBuildNameAttributeThrowsExceptionWhenNamedGroupAndValueIsInvalid(
+        string $value, 
+        string $mValue
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid NCName datatype.', 
+            $mValue
+        ));
+        
+        $this->sut->buildNameAttribute($value);
     }
 }

@@ -411,6 +411,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_SIMPLETYPE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
                 case ElementId::ELT_COMPLEXTYPE:
+                case ElementId::ELT_GROUP:
                     if (!$this->currentElement->getParent() instanceof SchemaElement) {
                         break;
                     }
