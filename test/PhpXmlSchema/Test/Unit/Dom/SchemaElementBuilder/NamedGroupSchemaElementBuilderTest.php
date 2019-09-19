@@ -9,6 +9,8 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -21,13 +23,14 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
  */
 class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NCNameTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -180,5 +183,56 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         self::assertElementNamespaceDeclarations([], $all);
         self::assertAllElementHasNoAttribute($all);
         self::assertSame([], $all->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() creates the attribute when the current 
+     * element is the "group" element (namedGroup) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNCNameTypeWSValues
+     */
+    public function testBuildIdAttributeCreatesAttrWhenNamedGroupAndValueIsValid(
+        string $value, 
+        string $id
+    ) {
+        $this->sut->buildIdAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyIdAttribute($grp);
+        self::assertSame($id, $grp->getId()->getId());
+        self::assertSame([], $grp->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() throws an exception when the current 
+     * element is the "group" element (namedGroup) and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNCNameTypeWSValues
+     */
+    public function testBuildIdAttributeThrowsExceptionWhenNamedGroupAndValueIsInvalid(
+        string $value, 
+        string $mValue
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
+        
+        $this->sut->buildIdAttribute($value);
     }
 }
