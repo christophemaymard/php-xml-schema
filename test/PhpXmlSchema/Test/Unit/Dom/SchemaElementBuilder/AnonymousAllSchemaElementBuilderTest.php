@@ -9,6 +9,8 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
@@ -21,13 +23,14 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
  */
 class AnonymousAllSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
 {
+    use NCNameTypeProviderTrait;
+    
     use BindNamespaceTestTrait;
     
     use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIdAttributeDoesNotCreateAttributeTestTrait;
     use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
     use BuildLangAttributeDoesNotCreateAttributeTestTrait;
@@ -163,5 +166,56 @@ class AnonymousAllSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     protected function tearDown()
     {
         $this->sut = NULL;
+    }
+    
+    /**
+     * Tests that buildIdAttribute() creates the attribute when the current 
+     * element is the "all" element (anonymous) and the value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $id     The expected value for the ID.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidNCNameTypeWSValues
+     */
+    public function testBuildIdAttributeCreatesAttrWhenAnonymousAllAndValueIsValid(
+        string $value, 
+        string $id
+    ) {
+        $this->sut->buildIdAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $all = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasOnlyIdAttribute($all);
+        self::assertSame($id, $all->getId()->getId());
+        self::assertSame([], $all->getElements());
+    }
+    
+    /**
+     * Tests that buildIdAttribute() throws an exception when the current 
+     * element is the "all" element (anonymous) and the value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   string  $mValue The string representation of the value in the exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidNCNameTypeWSValues
+     */
+    public function testBuildIdAttributeThrowsExceptionWhenAnonymousAllAndValueIsInvalid(
+        string $value, 
+        string $mValue
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid ID datatype.', 
+            $mValue
+        ));
+        
+        $this->sut->buildIdAttribute($value);
     }
 }
