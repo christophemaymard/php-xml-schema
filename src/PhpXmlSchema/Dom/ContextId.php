@@ -66,4 +66,5 @@ class ContextId
     const ELT_COMPLEXCONTENT_EXTENSION = 49;
     const ELT_NAMED_GROUP = 50;
     const ELT_ANONYMOUS_ALL = 51;
+    const ELT_SIMPLE_CHOICE = 52;
 }

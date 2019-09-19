@@ -231,6 +231,7 @@ class SpecificationFactoryTest extends TestCase
             [ 49, 0, ], // ELT_COMPLEXCONTENT_EXTENSION
             [ 50, 0, ], // ELT_NAMED_GROUP
             [ 51, 0, ], // ELT_ANONYMOUS_ALL
+            [ 52, 0, ], // ELT_SIMPLE_CHOICE
         ];
     }
     
@@ -292,6 +293,7 @@ class SpecificationFactoryTest extends TestCase
             [ 49, [ 0, 1, 2, 3, ], ], // ELT_COMPLEXCONTENT_EXTENSION
             [ 50, [ 2, ], ], // ELT_NAMED_GROUP
             [ 51, [ 0, 1, ], ], // ELT_ANONYMOUS_ALL
+            [ 52, [ 0, 1, ], ], // ELT_SIMPLE_CHOICE
         ];
     }
     
@@ -683,7 +685,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NAMED_GROUP
             [ 50, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 50, 0, 51, 'all', ], // ELT_ANONYMOUS_ALL
+            [ 50, 0, 52, 'choice', ], // ELT_SIMPLE_CHOICE
             [ 50, 1, 51, 'all', ], // ELT_ANONYMOUS_ALL
+            [ 50, 1, 52, 'choice', ], // ELT_SIMPLE_CHOICE
             // Context: ELT_ANONYMOUS_ALL
             [ 51, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 51, 0, 38, 'element', ], // ELT_NARROW_ELEMENT
@@ -1079,7 +1083,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NAMED_GROUP
             [ 50, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 50, 0, 51, 'buildAllElement', ], // ELT_ANONYMOUS_ALL
+            [ 50, 0, 52, 'buildChoiceElement', ], // ELT_SIMPLE_CHOICE
             [ 50, 1, 51, 'buildAllElement', ], // ELT_ANONYMOUS_ALL
+            [ 50, 1, 52, 'buildChoiceElement', ], // ELT_SIMPLE_CHOICE
             // Context: ELT_ANONYMOUS_ALL
             [ 51, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 51, 0, 38, 'buildElementElement', ], // ELT_NARROW_ELEMENT
@@ -1475,7 +1481,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NAMED_GROUP
             [ 50, 0, 2, 1, ], // ELT_ANNOTATION
             [ 50, 0, 51, 2, ], // ELT_ANONYMOUS_ALL
+            [ 50, 0, 52, 2, ], // ELT_SIMPLE_CHOICE
             [ 50, 1, 51, 2, ], // ELT_ANONYMOUS_ALL
+            [ 50, 1, 52, 2, ], // ELT_SIMPLE_CHOICE
             // Context: ELT_ANONYMOUS_ALL
             [ 51, 0, 2, 1, ], // ELT_ANNOTATION
             [ 51, 0, 38, 1, ], // ELT_NARROW_ELEMENT

@@ -199,6 +199,36 @@ class NamedGroupParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "choice" element (simpleExplicitGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessChoiceElement()
+    {
+        $sch = $this->sut->parse($this->getXs('choice_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $grp = $sch->getGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertCount(1, $grp->getElements());
+        
+        $choice = $grp->getModelGroupElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertSame([], $choice->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
