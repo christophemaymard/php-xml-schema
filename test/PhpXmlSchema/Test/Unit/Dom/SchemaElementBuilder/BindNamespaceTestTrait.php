@@ -31,9 +31,9 @@ trait BindNamespaceTestTrait
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
         $sch = $this->sut->getSchema();
         
-        self::assertAncestorsNotChanged($sch);
+        static::assertAncestorsNotChanged($sch);
         self::assertCurrentElementHasNotAttribute($sch);
-        $elt = self::getCurrentElement($sch);
+        $elt = static::getCurrentElement($sch);
         self::assertSame('http://example.org/foo', $elt->lookupNamespace('foo'));        
     }
     
