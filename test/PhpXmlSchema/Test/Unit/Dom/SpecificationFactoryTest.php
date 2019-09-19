@@ -1680,6 +1680,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_COMPLEXCONTENT_EXTENSION
             [ 49, 'base', '', 'buildBaseAttribute', ], 
             [ 49, 'id', '', 'buildIdAttribute', ], 
+            // Context: ELT_NAMED_GROUP
+            [ 50, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

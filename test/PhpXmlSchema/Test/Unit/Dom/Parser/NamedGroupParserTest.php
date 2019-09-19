@@ -94,4 +94,73 @@ class NamedGroupParserTest extends AbstractParserTestCase
         self::assertAllElementHasNoAttribute($all);
         self::assertSame([], $all->getElements());
     }
+    
+    /**
+     * Tests that parse() processes "id" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $id         The expected value for the ID.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidIdAttributes
+     */
+    public function testParseProcessIdAttribute(string $fileName, string $id)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $grp = $sch->getGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasOnlyIdAttribute($grp);
+        self::assertSame($id, $grp->getId()->getId());
+        self::assertCount(1, $grp->getElements());
+        
+        $all = $grp->getModelGroupElement();
+        self::assertElementNamespaceDeclarations([], $all);
+        self::assertAllElementHasNoAttribute($all);
+        self::assertSame([], $all->getElements());
+    }
+    
+    /**
+     * Returns a set of valid "id" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidIdAttributes():array
+    {
+        return [
+            'Starts with _' => [
+                'group_id_0001.xsd', '_foo', 
+            ], 
+            'Starts with letter' => [
+                'group_id_0002.xsd', 'f', 
+            ], 
+            'Contains letter' => [
+                'group_id_0003.xsd', 'foo', 
+            ], 
+            'Contains digit' => [
+                'group_id_0004.xsd', 'f00', 
+            ], 
+            'Contains .' => [
+                'group_id_0005.xsd', 'f.bar', 
+            ], 
+            'Contains -' => [
+                'group_id_0006.xsd', 'f-bar', 
+            ], 
+            'Contains _' => [
+                'group_id_0007.xsd', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [
+                'group_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
 }

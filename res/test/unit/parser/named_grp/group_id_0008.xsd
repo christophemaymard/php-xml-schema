@@ -1,0 +1,7 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:group id="  	  
+    foo_bar  	  
+    ">
+    <xs:all></xs:all>
+  </xs:group>
+</xs:schema>

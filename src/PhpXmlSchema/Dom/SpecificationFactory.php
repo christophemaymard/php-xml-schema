@@ -1702,6 +1702,9 @@ class SpecificationFactory
             [ 'base', '', 'buildBaseAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
         ], 
+        ContextId::ELT_NAMED_GROUP => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
