@@ -702,13 +702,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ALL:
-                    if (!$this->currentElement->getParent() instanceof GroupElement) {
-                        $elt = new AnnotationElement();
-                        $this->currentElement->setAnnotationElement($elt);
-                        $this->currentElement = $elt;
-                    }
-                    
-                    break;
                 case ElementId::ELT_GROUP:
                 case ElementId::ELT_ELEMENT:
                 case ElementId::ELT_COMPLEXTYPE:
