@@ -694,6 +694,8 @@ class SpecificationFactoryTest extends TestCase
             [ 51, 1, 38, 'element', ], // ELT_NARROW_ELEMENT
             // Context: ELT_SIMPLE_CHOICE
             [ 52, 0, 2, 'annotation', ], // ELT_ANNOTATION
+            [ 52, 0, 41, 'element', ], // ELT_LOCAL_ELEMENT
+            [ 52, 1, 41, 'element', ], // ELT_LOCAL_ELEMENT
         ];
     }
     
@@ -1094,6 +1096,8 @@ class SpecificationFactoryTest extends TestCase
             [ 51, 1, 38, 'buildElementElement', ], // ELT_NARROW_ELEMENT
             // Context: ELT_SIMPLE_CHOICE
             [ 52, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
+            [ 52, 0, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
+            [ 52, 1, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
         ];
     }
     
@@ -1494,6 +1498,8 @@ class SpecificationFactoryTest extends TestCase
             [ 51, 1, 38, 1, ], // ELT_NARROW_ELEMENT
             // Context: ELT_SIMPLE_CHOICE
             [ 52, 0, 2, 1, ], // ELT_ANNOTATION
+            [ 52, 0, 41, 1, ], // ELT_LOCAL_ELEMENT
+            [ 52, 1, 41, 1, ], // ELT_LOCAL_ELEMENT
         ];
     }
     
