@@ -681,6 +681,7 @@ class SpecificationFactoryTest extends TestCase
             [ 49, 2, 28, 'attributeGroup', ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 2, 29, 'anyAttribute', ], // ELT_ANYATTRIBUTE
             // Context: ELT_NAMED_GROUP
+            [ 50, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 50, 0, 51, 'all', ], // ELT_ANONYMOUS_ALL
             [ 50, 1, 51, 'all', ], // ELT_ANONYMOUS_ALL
         ];
@@ -1072,6 +1073,7 @@ class SpecificationFactoryTest extends TestCase
             [ 49, 2, 28, 'buildAttributeGroupElement', ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 2, 29, 'buildAnyAttributeElement', ], // ELT_ANYATTRIBUTE
             // Context: ELT_NAMED_GROUP
+            [ 50, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 50, 0, 51, 'buildAllElement', ], // ELT_ANONYMOUS_ALL
             [ 50, 1, 51, 'buildAllElement', ], // ELT_ANONYMOUS_ALL
         ];
@@ -1463,6 +1465,7 @@ class SpecificationFactoryTest extends TestCase
             [ 49, 2, 28, 2, ], // ELT_ATTRIBUTEGROUP_REF
             [ 49, 2, 29, 3, ], // ELT_ANYATTRIBUTE
             // Context: ELT_NAMED_GROUP
+            [ 50, 0, 2, 1, ], // ELT_ANNOTATION
             [ 50, 0, 51, 2, ], // ELT_ANONYMOUS_ALL
             [ 50, 1, 51, 2, ], // ELT_ANONYMOUS_ALL
         ];

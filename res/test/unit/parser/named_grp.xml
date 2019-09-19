@@ -27,7 +27,7 @@
   <test group="content" name="[group] foo child element is not supported">
     <schema fileName="group_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "all".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation" or "all".</message>
     </schema>
   </test>
   <!-- group::id -->
@@ -116,11 +116,18 @@
       <message>The "name" attribute is invalid: "foo:bar" is an invalid NCName datatype.</message>
     </schema>
   </test>
+  <!-- annotation -->
+  <test group="content" name="[group][annotation] not part of the XML Schema 1.0 namespace">
+    <schema fileName="annotation_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation" or "all".</message>
+    </schema>
+  </test>
   <!-- all -->
   <test group="content" name="[group][all] not part of the XML Schema 1.0 namespace">
     <schema fileName="all_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "all" element (from no namespace) is unexpected, expected: "all".</message>
+      <message>The "all" element (from no namespace) is unexpected, expected: "annotation" or "all".</message>
     </schema>
   </test>
   <!-- container -->
@@ -134,6 +141,12 @@
     <schema fileName="container_0002.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
       <message>The "all" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+    </schema>
+  </test>
+  <test group="content" name="[group][container] annotation unexpected annotation">
+    <schema fileName="container_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "all".</message>
     </schema>
   </test>
   <!-- TEMPLATE

@@ -567,6 +567,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_ANYATTRIBUTE, 'anyAttribute', ], 
         ], 
         ContextId::ELT_NAMED_GROUP => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 'all', ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 'all', ], 
         ], 
@@ -1003,6 +1004,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_ANYATTRIBUTE, 'buildAnyAttributeElement', ], 
         ], 
         ContextId::ELT_NAMED_GROUP => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 'buildAllElement', ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 'buildAllElement', ], 
         ], 
@@ -1438,6 +1440,7 @@ class SpecificationFactory
             [ 2, ContextId::ELT_ANYATTRIBUTE, 3, ], 
         ], 
         ContextId::ELT_NAMED_GROUP => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 2, ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 2, ], 
         ], 

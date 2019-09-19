@@ -573,7 +573,7 @@
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **name** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
 - [x] Parse **all** element (anonymous).
 - [ ] Parse **choice** element (simpleExplicitGroup).
 - [ ] Parse **sequence** element (simpleExplicitGroup).
