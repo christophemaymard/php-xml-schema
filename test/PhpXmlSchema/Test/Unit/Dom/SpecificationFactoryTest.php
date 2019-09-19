@@ -1708,6 +1708,8 @@ class SpecificationFactoryTest extends TestCase
             [ 50, 'name', '', 'buildNameAttribute', ], 
             // Context: ELT_ANONYMOUS_ALL
             [ 51, 'id', '', 'buildIdAttribute', ], 
+            // Context: ELT_SIMPLE_CHOICE
+            [ 52, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

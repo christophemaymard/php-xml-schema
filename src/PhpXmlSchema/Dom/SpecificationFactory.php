@@ -1735,6 +1735,9 @@ class SpecificationFactory
         ContextId::ELT_ANONYMOUS_ALL => [
             [ 'id', '', 'buildIdAttribute', ], 
         ], 
+        ContextId::ELT_SIMPLE_CHOICE => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
