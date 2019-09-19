@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:group>
+    <xs:choice>
+      <xs:any></xs:any>
+      <xs:any></xs:any>
+    </xs:choice>
+  </xs:group>
+</xs:schema>

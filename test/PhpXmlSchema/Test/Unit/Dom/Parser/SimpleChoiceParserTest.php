@@ -295,6 +295,46 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "any" elements.
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessAnyElement()
+    {
+        $sch = $this->sut->parse($this->getXs('any_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $grp = $sch->getGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertCount(1, $grp->getElements());
+        
+        $choice = $grp->getModelGroupElement();
+        self::assertElementNamespaceDeclarations([], $choice);
+        self::assertChoiceElementHasNoAttribute($choice);
+        self::assertCount(2, $choice->getElements());
+        
+        $anys = $choice->getAnyElements();
+        
+        self::assertElementNamespaceDeclarations([], $anys[0]);
+        self::assertAnyElementHasNoAttribute($anys[0]);
+        self::assertSame([], $anys[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $anys[1]);
+        self::assertAnyElementHasNoAttribute($anys[1]);
+        self::assertSame([], $anys[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
