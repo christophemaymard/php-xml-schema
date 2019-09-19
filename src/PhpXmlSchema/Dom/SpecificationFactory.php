@@ -571,6 +571,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 'all', ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 'all', ], 
         ], 
+        ContextId::ELT_ANONYMOUS_ALL => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -1008,6 +1011,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 'buildAllElement', ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 'buildAllElement', ], 
         ], 
+        ContextId::ELT_ANONYMOUS_ALL => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -1443,6 +1449,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 2, ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 2, ], 
+        ], 
+        ContextId::ELT_ANONYMOUS_ALL => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
