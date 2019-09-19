@@ -648,7 +648,7 @@
 - [x] Parse **choice** element.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.
-- [ ] Parse **annotation** element.
+- [x] Parse **annotation** element.
 - [ ] Parse **element** elements (localElement).
 - [ ] Parse **group** elements (groupRef).
 - [ ] Parse **choice** elements (explicitGroup).

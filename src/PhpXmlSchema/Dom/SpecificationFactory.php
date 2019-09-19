@@ -580,6 +580,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_NARROW_ELEMENT, 'element', ], 
             [ 1, ContextId::ELT_NARROW_ELEMENT, 'element', ], 
         ], 
+        ContextId::ELT_SIMPLE_CHOICE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
+        ], 
     ];
     
     /**
@@ -1024,6 +1027,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_NARROW_ELEMENT, 'buildElementElement', ], 
             [ 1, ContextId::ELT_NARROW_ELEMENT, 'buildElementElement', ], 
         ], 
+        ContextId::ELT_SIMPLE_CHOICE => [
+            [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
+        ], 
     ];
     
     /**
@@ -1466,6 +1472,9 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_NARROW_ELEMENT, 1, ], 
             [ 1, ContextId::ELT_NARROW_ELEMENT, 1, ], 
+        ], 
+        ContextId::ELT_SIMPLE_CHOICE => [
+            [ 0, ContextId::ELT_ANNOTATION, 1, ], 
         ], 
     ];
     
