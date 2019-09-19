@@ -630,8 +630,8 @@
 ```
 
 - [x] Parse **all** element.
-- [ ] Parse **id** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Parse **id** attribute (collapsing white spaces).
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **element** elements (narrowMaxMin).
 

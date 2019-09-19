@@ -1686,6 +1686,8 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_NAMED_GROUP
             [ 50, 'id', '', 'buildIdAttribute', ], 
             [ 50, 'name', '', 'buildNameAttribute', ], 
+            // Context: ELT_ANONYMOUS_ALL
+            [ 51, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }

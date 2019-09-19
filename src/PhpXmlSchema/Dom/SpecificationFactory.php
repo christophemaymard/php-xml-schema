@@ -1709,6 +1709,9 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
         ], 
+        ContextId::ELT_ANONYMOUS_ALL => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**
