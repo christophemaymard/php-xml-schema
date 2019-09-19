@@ -1,0 +1,61 @@
+<testSet>
+  <!-- group -->
+  <test group="attribute" name="[group] unsupported attribute from no namespace">
+    <schema fileName="group_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from no namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group] unsupported attribute from XML 1.0 namespace">
+    <schema fileName="group_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" attribute (from http://www.w3.org/XML/1998/namespace namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[group] unsupported attribute from other namespace">
+    <schema fileName="group_0003.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "bar" attribute (from http://example.org namespace) is not supported.</message>
+    </schema>
+  </test>
+  <test group="content" name="[group] node not white space neither comment">
+    <schema fileName="group_0004.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The node is not allowed ("foo").</message>
+    </schema>
+  </test>
+  <test group="content" name="[group] foo child element is not supported">
+    <schema fileName="group_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "all".</message>
+    </schema>
+  </test>
+  <!-- all -->
+  <test group="content" name="[group][all] not part of the XML Schema 1.0 namespace">
+    <schema fileName="all_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "all" element (from no namespace) is unexpected, expected: "all".</message>
+    </schema>
+  </test>
+  <!-- container -->
+  <test group="content" name="[group][container] Empty content">
+    <schema fileName="container_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The content is invalid.</message>
+    </schema>
+  </test>
+  <test group="content" name="[group][container] all unexpected all">
+    <schema fileName="container_0002.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "all" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+    </schema>
+  </test>
+  <!-- TEMPLATE
+  <test group="attribute|content" name="">
+    <schema fileName=".xsd">
+      <exception></exception>
+      <message></message>
+    </schema>
+  </test>
+  -->
+</testSet>

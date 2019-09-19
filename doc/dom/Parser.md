@@ -33,7 +33,7 @@
 - [x] Parse **annotation** elements (composition).
 - [x] Parse **simpleType** elements (topLevelSimpleType).
 - [x] Parse **complexType** elements (topLevelComplexType).
-- [ ] Parse **group** elements.
+- [x] Parse **group** elements (namedGroup).
 - [x] Parse **attributeGroup** elements (namedAttributeGroup).
 - [ ] Parse **element** elements.
 - [x] Parse **attribute** elements (topLevelAttributeType).
@@ -558,6 +558,26 @@
 - [x] Parse **attributeGroup** elements (attributeGroupRef).
 - [x] Parse **anyAttribute** element.
 
+## Element: "group" (namedGroup)
+
+```
+<group
+  id = ID
+  name = NCName
+>
+  Content: (annotation?, (all | choice | sequence))
+</group>
+```
+
+- [x] Parse **group** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [x] Parse **all** element (anonymous).
+- [ ] Parse **choice** element (simpleExplicitGroup).
+- [ ] Parse **sequence** element (simpleExplicitGroup).
+
 ## Element: "group" (groupRef)
 
 ```
@@ -598,6 +618,22 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **element** elements (narrowMaxMin).
+
+## Element: "all" (anonymous)
+
+```
+<all
+  id = ID
+>
+  Content: (annotation?, element*)
+</all>
+```
+
+- [x] Parse **all** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **element** elements (narrowMaxMin).
 
 ## Element: "choice" (explicitGroup)
 

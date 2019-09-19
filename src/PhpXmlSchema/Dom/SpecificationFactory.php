@@ -73,6 +73,8 @@ class SpecificationFactory
         ContextId::ELT_EXPLICIT_SEQUENCE => 0, 
         ContextId::ELT_ANY => 0, 
         ContextId::ELT_COMPLEXCONTENT_EXTENSION => 0, 
+        ContextId::ELT_NAMED_GROUP => 0, 
+        ContextId::ELT_ANONYMOUS_ALL => 0, 
     ];
     
     /**
@@ -131,6 +133,8 @@ class SpecificationFactory
         ContextId::ELT_EXPLICIT_SEQUENCE => [ 0, 1, ], 
         ContextId::ELT_ANY => [ 0, 1, ], 
         ContextId::ELT_COMPLEXCONTENT_EXTENSION => [ 0, 1, 2, 3, ], 
+        ContextId::ELT_NAMED_GROUP => [ 2, ], 
+        ContextId::ELT_ANONYMOUS_ALL => [ 0, 1, ], 
     ];
     
     /**
@@ -147,11 +151,13 @@ class SpecificationFactory
             [ 0, ContextId::ELT_INCLUDE, 'include', ], 
             [ 0, ContextId::ELT_TOP_SIMPLETYPE, 'simpleType', ], 
             [ 0, ContextId::ELT_TOP_COMPLEXTYPE, 'complexType', ], 
+            [ 0, ContextId::ELT_NAMED_GROUP, 'group', ], 
             [ 0, ContextId::ELT_NAMED_ATTRIBUTEGROUP, 'attributeGroup', ], 
             [ 0, ContextId::ELT_TOP_ATTRIBUTE, 'attribute', ], 
             [ 0, ContextId::ELT_NOTATION, 'notation', ], 
             [ 1, ContextId::ELT_TOP_SIMPLETYPE, 'simpleType', ], 
             [ 1, ContextId::ELT_TOP_COMPLEXTYPE, 'complexType', ], 
+            [ 1, ContextId::ELT_NAMED_GROUP, 'group', ], 
             [ 1, ContextId::ELT_NAMED_ATTRIBUTEGROUP, 'attributeGroup', ], 
             [ 1, ContextId::ELT_TOP_ATTRIBUTE, 'attribute', ], 
             [ 1, ContextId::ELT_NOTATION, 'notation', ], 
@@ -560,6 +566,10 @@ class SpecificationFactory
             [ 2, ContextId::ELT_ATTRIBUTEGROUP_REF, 'attributeGroup', ], 
             [ 2, ContextId::ELT_ANYATTRIBUTE, 'anyAttribute', ], 
         ], 
+        ContextId::ELT_NAMED_GROUP => [
+            [ 0, ContextId::ELT_ANONYMOUS_ALL, 'all', ], 
+            [ 1, ContextId::ELT_ANONYMOUS_ALL, 'all', ], 
+        ], 
     ];
     
     /**
@@ -577,11 +587,13 @@ class SpecificationFactory
             [ 0, ContextId::ELT_INCLUDE, 'buildIncludeElement', ], 
             [ 0, ContextId::ELT_TOP_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 0, ContextId::ELT_TOP_COMPLEXTYPE, 'buildComplexTypeElement', ], 
+            [ 0, ContextId::ELT_NAMED_GROUP, 'buildGroupElement', ], 
             [ 0, ContextId::ELT_NAMED_ATTRIBUTEGROUP, 'buildAttributeGroupElement', ], 
             [ 0, ContextId::ELT_TOP_ATTRIBUTE, 'buildAttributeElement', ], 
             [ 0, ContextId::ELT_NOTATION, 'buildNotationElement', ], 
             [ 1, ContextId::ELT_TOP_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 1, ContextId::ELT_TOP_COMPLEXTYPE, 'buildComplexTypeElement', ], 
+            [ 1, ContextId::ELT_NAMED_GROUP, 'buildGroupElement', ], 
             [ 1, ContextId::ELT_NAMED_ATTRIBUTEGROUP, 'buildAttributeGroupElement', ], 
             [ 1, ContextId::ELT_TOP_ATTRIBUTE, 'buildAttributeElement', ], 
             [ 1, ContextId::ELT_NOTATION, 'buildNotationElement', ], 
@@ -990,6 +1002,10 @@ class SpecificationFactory
             [ 2, ContextId::ELT_ATTRIBUTEGROUP_REF, 'buildAttributeGroupElement', ], 
             [ 2, ContextId::ELT_ANYATTRIBUTE, 'buildAnyAttributeElement', ], 
         ], 
+        ContextId::ELT_NAMED_GROUP => [
+            [ 0, ContextId::ELT_ANONYMOUS_ALL, 'buildAllElement', ], 
+            [ 1, ContextId::ELT_ANONYMOUS_ALL, 'buildAllElement', ], 
+        ], 
     ];
     
     /**
@@ -1006,11 +1022,13 @@ class SpecificationFactory
             [ 0, ContextId::ELT_INCLUDE, 0, ], 
             [ 0, ContextId::ELT_TOP_SIMPLETYPE, 1, ], 
             [ 0, ContextId::ELT_TOP_COMPLEXTYPE, 1, ], 
+            [ 0, ContextId::ELT_NAMED_GROUP, 1, ], 
             [ 0, ContextId::ELT_NAMED_ATTRIBUTEGROUP, 1, ], 
             [ 0, ContextId::ELT_TOP_ATTRIBUTE, 1, ], 
             [ 0, ContextId::ELT_NOTATION, 1, ], 
             [ 1, ContextId::ELT_TOP_SIMPLETYPE, 1, ], 
             [ 1, ContextId::ELT_TOP_COMPLEXTYPE, 1, ], 
+            [ 1, ContextId::ELT_NAMED_GROUP, 1, ], 
             [ 1, ContextId::ELT_NAMED_ATTRIBUTEGROUP, 1, ], 
             [ 1, ContextId::ELT_TOP_ATTRIBUTE, 1, ], 
             [ 1, ContextId::ELT_NOTATION, 1, ], 
@@ -1418,6 +1436,10 @@ class SpecificationFactory
             [ 2, ContextId::ELT_ATTRIBUTE, 2, ], 
             [ 2, ContextId::ELT_ATTRIBUTEGROUP_REF, 2, ], 
             [ 2, ContextId::ELT_ANYATTRIBUTE, 3, ], 
+        ], 
+        ContextId::ELT_NAMED_GROUP => [
+            [ 0, ContextId::ELT_ANONYMOUS_ALL, 2, ], 
+            [ 1, ContextId::ELT_ANONYMOUS_ALL, 2, ], 
         ], 
     ];
     

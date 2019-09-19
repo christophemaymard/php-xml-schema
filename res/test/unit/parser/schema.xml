@@ -27,7 +27,7 @@
   <test group="content" name="[schema] foo child element is not supported">
     <schema fileName="schema_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- schema::attributeFormDefault -->
@@ -359,123 +359,136 @@
   <test group="content" name="[schema][composition_annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][definition_annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0003.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <!-- import -->
   <test group="content" name="[schema][import] not part of the XML Schema 1.0 namespace">
     <schema fileName="import_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "import" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "import" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- include -->
   <test group="content" name="[schema][include] not part of the XML Schema 1.0 namespace">
     <schema fileName="include_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "include" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "include" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- simpleType -->
   <test group="content" name="[schema][simpleType] not part of the XML Schema 1.0 namespace">
     <schema fileName="simpleType_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "simpleType" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "simpleType" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- complexType -->
   <test group="content" name="[schema][complexType] not part of the XML Schema 1.0 namespace">
     <schema fileName="complexType_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "complexType" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "complexType" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
+    </schema>
+  </test>
+  <!-- group -->
+  <test group="content" name="[schema][group] not part of the XML Schema 1.0 namespace">
+    <schema fileName="group_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "group" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- attributeGroup -->
   <test group="content" name="[schema][attributeGroup] not part of the XML Schema 1.0 namespace">
     <schema fileName="attributeGroup_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "attributeGroup" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "attributeGroup" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- attribute -->
   <test group="content" name="[schema][attribute] not part of the XML Schema 1.0 namespace">
     <schema fileName="attribute_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "attribute" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "attribute" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- notation -->
   <test group="content" name="[schema][notation] not part of the XML Schema 1.0 namespace">
     <schema fileName="notation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "notation" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "attributeGroup", "attribute" or "notation".</message>
+      <message>The "notation" element (from no namespace) is unexpected, expected: "annotation", "import", "include", "simpleType", "complexType", "group", "attributeGroup", "attribute" or "notation".</message>
     </schema>
   </test>
   <!-- container -->
   <test group="content" name="[schema][container] notation unexpected import">
     <schema fileName="container_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] notation unexpected include">
     <schema fileName="container_0002.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] attribute unexpected import">
     <schema fileName="container_0003.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] attribute unexpected include">
     <schema fileName="container_0004.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] simpleType unexpected import">
     <schema fileName="container_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] simpleType unexpected include">
     <schema fileName="container_0006.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] attributeGroup unexpected import">
     <schema fileName="container_0007.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] attributeGroup unexpected include">
     <schema fileName="container_0008.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] complexType unexpected import">
     <schema fileName="container_0009.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <test group="content" name="[schema][container] complexType unexpected include">
     <schema fileName="container_0010.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "attributeGroup", "attribute", "notation" or "annotation".</message>
+      <message>The "include" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
+    </schema>
+  </test>
+  <test group="content" name="[schema][container] group unexpected import">
+    <schema fileName="container_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "import" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "simpleType", "complexType", "group", "attributeGroup", "attribute", "notation" or "annotation".</message>
     </schema>
   </test>
   <!-- TEMPLATE

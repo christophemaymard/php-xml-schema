@@ -584,6 +584,46 @@ class SchemaParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "group" elements (namedGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessGroupElement()
+    {
+        $sch = $this->sut->parse($this->getXs('group_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(2, $sch->getElements());
+        
+        $grps = $sch->getGroupElements();
+        
+        self::assertElementNamespaceDeclarations([], $grps[0]);
+        self::assertGroupElementHasNoAttribute($grps[0]);
+        self::assertCount(1, $grps[0]->getElements());
+        
+        $all1 = $grps[0]->getModelGroupElement();
+        self::assertElementNamespaceDeclarations([], $all1);
+        self::assertAllElementHasNoAttribute($all1);
+        self::assertSame([], $all1->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $grps[1]);
+        self::assertGroupElementHasNoAttribute($grps[1]);
+        self::assertCount(1, $grps[1]->getElements());
+        
+        $all2 = $grps[1]->getModelGroupElement();
+        self::assertElementNamespaceDeclarations([], $all2);
+        self::assertAllElementHasNoAttribute($all2);
+        self::assertSame([], $all2->getElements());
+    }
+    
+    /**
      * Returns a set of valid "attributeFormDefault" attributes.
      * 
      * @return  array[]
