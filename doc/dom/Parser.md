@@ -652,7 +652,7 @@
 - [x] Parse **element** elements (localElement).
 - [x] Parse **group** elements (groupRef).
 - [x] Parse **choice** elements (explicitGroup).
-- [ ] Parse **sequence** elements (explicitGroup).
+- [x] Parse **sequence** elements (explicitGroup).
 - [ ] Parse **any** elements.
 
 ## Element: "choice" (explicitGroup)
