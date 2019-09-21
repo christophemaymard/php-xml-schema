@@ -10,7 +10,6 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
-use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
 /**
@@ -23,96 +22,9 @@ use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class TopSimpleTypeSchemaElementBuilderTest extends AbstractSimpleTypeSchemaElementBuilderTestCase
 {
     use DerivationTypeProviderTrait;
-    use NCNameTypeProviderTrait;
-    
-    use BindNamespaceTestTrait;
-    
-    use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
-    use BuildLangAttributeDoesNotCreateAttributeTestTrait;
-    use BuildCompositionAnnotationElementDoesNotCreateElementTestTrait;
-    use BuildAppInfoElementDoesNotCreateElementTestTrait;
-    use BuildSourceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildLeafElementContentDoesNotCreateContentTestTrait;
-    use BuildDocumentationElementDoesNotCreateElementTestTrait;
-    use BuildImportElementDoesNotCreateElementTestTrait;
-    use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIncludeElementDoesNotCreateElementTestTrait;
-    use BuildNotationElementDoesNotCreateElementTestTrait;
-    use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
-    use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
-    use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
-    use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
-    use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
-    use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
-    use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
-    use BuildLengthElementDoesNotCreateElementTestTrait;
-    use BuildMinLengthElementDoesNotCreateElementTestTrait;
-    use BuildMaxLengthElementDoesNotCreateElementTestTrait;
-    use BuildEnumerationElementDoesNotCreateElementTestTrait;
-    use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
-    use BuildPatternElementDoesNotCreateElementTestTrait;
-    use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
-    use BuildFormAttributeDoesNotCreateAttributeTestTrait;
-    use BuildRefAttributeDoesNotCreateAttributeTestTrait;
-    use BuildUseAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
-    use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
-    use BuildComplexTypeElementDoesNotCreateElementTestTrait;
-    use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
-    use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSimpleContentElementDoesNotCreateElementTestTrait;
-    use BuildExtensionElementDoesNotCreateElementTestTrait;
-    use BuildComplexContentElementDoesNotCreateElementTestTrait;
-    use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAllElementDoesNotCreateElementTestTrait;
-    use BuildElementElementDoesNotCreateElementTestTrait;
-    use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
-    use BuildChoiceElementDoesNotCreateElementTestTrait;
-    use BuildUniqueElementDoesNotCreateElementTestTrait;
-    use BuildSelectorElementDoesNotCreateElementTestTrait;
-    use BuildFieldElementDoesNotCreateElementTestTrait;
-    use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
-    use BuildKeyElementDoesNotCreateElementTestTrait;
-    use BuildKeyRefElementDoesNotCreateElementTestTrait;
-    use BuildReferAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSequenceElementDoesNotCreateElementTestTrait;
-    use BuildAnyElementDoesNotCreateElementTestTrait;
-    
-    /**
-     * {@inheritDoc}
-     */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
-    {
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertSame([], $st->getElements());
-    }
     
     /**
      * {@inheritDoc}
@@ -123,14 +35,6 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertCount(1, $sch->getElements());
         self::assertCount(1, $sch->getSimpleTypeElements());
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
-    {
-        self::assertSimpleTypeElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -215,59 +119,6 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     }
     
     /**
-     * Tests that buildIdAttribute() creates the attribute when the current 
-     * element is the "simpleType" element (topLevelSimpleType) and the value 
-     * is valid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $id     The expected value for the ID.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidNCNameTypeWSValues
-     */
-    public function testBuildIdAttributeCreatesAttrWhenTopSimpleTypeAndValueIsValid(
-        string $value, 
-        string $id
-    ) {
-        $this->sut->buildIdAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasOnlyIdAttribute($st);
-        self::assertSame($id, $st->getId()->getId());
-        self::assertSame([], $st->getElements());
-    }
-    
-    /**
-     * Tests that buildIdAttribute() throws an exception when the current 
-     * element is the "simpleType" element (topLevelSimpleType) and the value 
-     * is invalid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $mValue The string representation of the value in the exception message.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getInvalidNCNameTypeWSValues
-     */
-    public function testBuildIdAttributeThrowsExceptionWhenTopSimpleTypeAndValueIsInvalid(
-        string $value, 
-        string $mValue
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf(
-            '"%s" is an invalid ID datatype.', 
-            $mValue
-        ));
-        
-        $this->sut->buildIdAttribute($value);
-    }
-    
-    /**
      * Tests that buildNameAttribute() creates the attribute when the current 
      * element is the "simpleType" element (topLevelSimpleType) and the value 
      * is valid.
@@ -318,105 +169,5 @@ class TopSimpleTypeSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         ));
         
         $this->sut->buildNameAttribute($value);
-    }
-    
-    /**
-     * Tests that buildAnnotationElement() creates the element when the 
-     * current element is the "simpleType" element (topLevelSimpleType).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildAnnotationElementCreateEltWhenTopSimpleType()
-    {
-        $this->sut->buildAnnotationElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertCount(1, $st->getElements());
-        
-        $ann = $st->getAnnotationElement();
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertSame([], $ann->getElements());
-    }
-    
-    /**
-     * Tests that buildRestrictionElement() creates the element when the 
-     * current element is the "simpleType" element (topLevelSimpleType).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildRestrictionElementCreateEltWhenTopSimpleType()
-    {
-        $this->sut->buildRestrictionElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertCount(1, $st->getElements());
-        
-        $res = $st->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $res);
-        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
-        self::assertSame([], $res->getElements());
-    }
-    
-    /**
-     * Tests that buildListElement() creates the element when the current 
-     * element is the "simpleType" element (topLevelSimpleType).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildListElementCreateEltWhenTopSimpleType()
-    {
-        $this->sut->buildListElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertCount(1, $st->getElements());
-        
-        $list = $st->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $list);
-        self::assertListElementHasNoAttribute($list);
-        self::assertSame([], $list->getElements());
-    }
-    
-    /**
-     * Tests that buildUnionElement() creates the element when the current 
-     * element is the "simpleType" element (topLevelSimpleType).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildUnionElementCreateEltWhenTopSimpleType()
-    {
-        $this->sut->buildUnionElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $st = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $st);
-        self::assertSimpleTypeElementHasNoAttribute($st);
-        self::assertCount(1, $st->getElements());
-        
-        $union = $st->getDerivationElement();
-        self::assertElementNamespaceDeclarations([], $union);
-        self::assertUnionElementHasNoAttribute($union);
-        self::assertSame([], $union->getElements());
     }
 }
