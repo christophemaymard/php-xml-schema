@@ -11,7 +11,6 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
-use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 
 /**
@@ -24,100 +23,14 @@ use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
-class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
+class AttributeGroupRefSchemaElementBuilderTest extends AbstractAttributeGroupSchemaElementBuilderTestCase
 {
-    use NCNameTypeProviderTrait;
     use QNameTypeProviderTrait;
     
-    use BindNamespaceTestTrait;
-    
-    use BuildAttributeFormDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildBlockDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildTargetNamespaceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildVersionAttributeDoesNotCreateAttributeTestTrait;
-    use BuildLangAttributeDoesNotCreateAttributeTestTrait;
-    use BuildCompositionAnnotationElementDoesNotCreateElementTestTrait;
-    use BuildAppInfoElementDoesNotCreateElementTestTrait;
-    use BuildSourceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildLeafElementContentDoesNotCreateContentTestTrait;
-    use BuildDocumentationElementDoesNotCreateElementTestTrait;
-    use BuildImportElementDoesNotCreateElementTestTrait;
-    use BuildNamespaceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait;
-    use BuildIncludeElementDoesNotCreateElementTestTrait;
-    use BuildNotationElementDoesNotCreateElementTestTrait;
     use BuildNameAttributeDoesNotCreateAttributeTestTrait;
-    use BuildPublicAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
-    use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
-    use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
-    use BuildRestrictionElementDoesNotCreateElementTestTrait;
-    use BuildBaseAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMinExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildValueAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMinInclusiveElementDoesNotCreateElementTestTrait;
-    use BuildMaxExclusiveElementDoesNotCreateElementTestTrait;
-    use BuildMaxInclusiveElementDoesNotCreateElementTestTrait;
-    use BuildTotalDigitsElementDoesNotCreateElementTestTrait;
-    use BuildFractionDigitsElementDoesNotCreateElementTestTrait;
-    use BuildLengthElementDoesNotCreateElementTestTrait;
-    use BuildMinLengthElementDoesNotCreateElementTestTrait;
-    use BuildMaxLengthElementDoesNotCreateElementTestTrait;
-    use BuildEnumerationElementDoesNotCreateElementTestTrait;
-    use BuildWhiteSpaceElementDoesNotCreateElementTestTrait;
-    use BuildPatternElementDoesNotCreateElementTestTrait;
-    use BuildListElementDoesNotCreateElementTestTrait;
-    use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
-    use BuildUnionElementDoesNotCreateElementTestTrait;
-    use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
     use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
-    use BuildFormAttributeDoesNotCreateAttributeTestTrait;
-    use BuildUseAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyAttributeElementDoesNotCreateElementTestTrait;
-    use BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait;
-    use BuildComplexTypeElementDoesNotCreateElementTestTrait;
-    use BuildAbstractAttributeDoesNotCreateAttributeTestTrait;
-    use BuildBlockAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMixedAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSimpleContentElementDoesNotCreateElementTestTrait;
-    use BuildExtensionElementDoesNotCreateElementTestTrait;
-    use BuildComplexContentElementDoesNotCreateElementTestTrait;
-    use BuildGroupElementDoesNotCreateElementTestTrait;
-    use BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait;
-    use BuildMinOccursAttributeDoesNotCreateAttributeTestTrait;
-    use BuildAllElementDoesNotCreateElementTestTrait;
-    use BuildElementElementDoesNotCreateElementTestTrait;
-    use BuildNillableAttributeDoesNotCreateAttributeTestTrait;
-    use BuildChoiceElementDoesNotCreateElementTestTrait;
-    use BuildUniqueElementDoesNotCreateElementTestTrait;
-    use BuildSelectorElementDoesNotCreateElementTestTrait;
-    use BuildFieldElementDoesNotCreateElementTestTrait;
-    use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
-    use BuildKeyElementDoesNotCreateElementTestTrait;
-    use BuildKeyRefElementDoesNotCreateElementTestTrait;
-    use BuildReferAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSequenceElementDoesNotCreateElementTestTrait;
-    use BuildAnyElementDoesNotCreateElementTestTrait;
-    
-    /**
-     * {@inheritDoc}
-     */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
-    {
-        self::assertAncestorsNotChanged($sch);
-        
-        $ag = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $ag);
-        self::assertAttributeGroupElementHasNoAttribute($ag);
-        self::assertSame([], $ag->getElements());
-    }
     
     /**
      * {@inheritDoc}
@@ -133,14 +46,6 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
         self::assertAttributeGroupElementHasNoAttribute($ag);
         self::assertCount(1, $ag->getElements());
         self::assertCount(1, $ag->getAttributeGroupElements());
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
-    {
-        self::assertAttributeGroupElementHasNoAttribute(self::getCurrentElement($sch));
     }
     
     /**
@@ -168,59 +73,6 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
     protected function tearDown()
     {
         $this->sut = NULL;
-    }
-    
-    /**
-     * Tests that buildIdAttribute() creates the attribute when the current 
-     * element is the "attributeGroup" element (attributeGroupRef) and the 
-     * value is valid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $id     The expected value for the ID.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getValidNCNameTypeWSValues
-     */
-    public function testBuildIdAttributeCreatesAttrWhenAttributeGroupRefAndValueIsValid(
-        string $value, 
-        string $id
-    ) {
-        $this->sut->buildIdAttribute($value);
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $ag = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $ag);
-        self::assertAttributeGroupElementHasOnlyIdAttribute($ag);
-        self::assertSame($id, $ag->getId()->getId());
-        self::assertSame([], $ag->getElements());
-    }
-    
-    /**
-     * Tests that buildIdAttribute() throws an exception when the current 
-     * element is the "attributeGroup" element (attributeGroupRef) and the 
-     * value is invalid.
-     * 
-     * @param   string  $value  The value to test.
-     * @param   string  $mValue The string representation of the value in the exception message.
-     * 
-     * @group           attribute
-     * @group           parsing
-     * @dataProvider    getInvalidNCNameTypeWSValues
-     */
-    public function testBuildIdAttributeThrowsExceptionWhenAttributeGroupRefAndValueIsInvalid(
-        string $value, 
-        string $mValue
-    ) {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage(\sprintf(
-            '"%s" is an invalid ID datatype.', 
-            $mValue
-        ));
-        
-        $this->sut->buildIdAttribute($value);
     }
     
     /**
@@ -372,30 +224,5 @@ class AttributeGroupRefSchemaElementBuilderTest extends AbstractSchemaElementBui
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
         
         $this->sut->buildRefAttribute('foo:bar');
-    }
-    
-    /**
-     * Tests that buildAnnotationElement() creates the element when the 
-     * current element is the "attributeGroup" element (attributeGroupRef).
-     * 
-     * @group   content
-     * @group   element
-     */
-    public function testBuildAnnotationElementCreateEltWhenAttributeGroupRef()
-    {
-        $this->sut->buildAnnotationElement();
-        $sch = $this->sut->getSchema();
-        
-        self::assertAncestorsNotChanged($sch);
-        
-        $ag = self::getCurrentElement($sch);
-        self::assertElementNamespaceDeclarations([], $ag);
-        self::assertAttributeGroupElementHasNoAttribute($ag);
-        self::assertCount(1, $ag->getElements());
-        
-        $ann = $ag->getAnnotationElement();
-        self::assertElementNamespaceDeclarations([], $ann);
-        self::assertAnnotationElementHasNoAttribute($ann);
-        self::assertSame([], $ann->getElements());
     }
 }
