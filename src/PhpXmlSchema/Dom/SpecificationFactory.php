@@ -1785,6 +1785,9 @@ class SpecificationFactory
         ContextId::ELT_SIMPLE_CHOICE => [
             [ 'id', '', 'buildIdAttribute', ], 
         ], 
+        ContextId::ELT_SIMPLE_SEQUENCE => [
+            [ 'id', '', 'buildIdAttribute', ], 
+        ], 
     ];
     
     /**

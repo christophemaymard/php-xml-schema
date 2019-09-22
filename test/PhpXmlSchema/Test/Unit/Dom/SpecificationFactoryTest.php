@@ -1754,6 +1754,8 @@ class SpecificationFactoryTest extends TestCase
             [ 51, 'id', '', 'buildIdAttribute', ], 
             // Context: ELT_SIMPLE_CHOICE
             [ 52, 'id', '', 'buildIdAttribute', ], 
+            // Context: ELT_SIMPLE_SEQUENCE
+            [ 53, 'id', '', 'buildIdAttribute', ], 
         ];
     }
 }
