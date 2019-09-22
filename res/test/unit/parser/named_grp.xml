@@ -27,7 +27,7 @@
   <test group="content" name="[group] foo child element is not supported">
     <schema fileName="group_0005.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "all" or "choice".</message>
+      <message>The "foo" element (from no namespace) is unexpected, expected: "annotation", "all", "choice" or "sequence".</message>
     </schema>
   </test>
   <!-- group::id -->
@@ -120,21 +120,28 @@
   <test group="content" name="[group][annotation] not part of the XML Schema 1.0 namespace">
     <schema fileName="annotation_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "all" or "choice".</message>
+      <message>The "annotation" element (from no namespace) is unexpected, expected: "annotation", "all", "choice" or "sequence".</message>
     </schema>
   </test>
   <!-- all -->
   <test group="content" name="[group][all] not part of the XML Schema 1.0 namespace">
     <schema fileName="all_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "all" element (from no namespace) is unexpected, expected: "annotation", "all" or "choice".</message>
+      <message>The "all" element (from no namespace) is unexpected, expected: "annotation", "all", "choice" or "sequence".</message>
     </schema>
   </test>
   <!-- choice -->
   <test group="content" name="[group][choice] not part of the XML Schema 1.0 namespace">
     <schema fileName="choice_0001.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "choice" element (from no namespace) is unexpected, expected: "annotation", "all" or "choice".</message>
+      <message>The "choice" element (from no namespace) is unexpected, expected: "annotation", "all", "choice" or "sequence".</message>
+    </schema>
+  </test>
+  <!-- sequence -->
+  <test group="content" name="[group][sequence] not part of the XML Schema 1.0 namespace">
+    <schema fileName="sequence_0001.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "sequence" element (from no namespace) is unexpected, expected: "annotation", "all", "choice" or "sequence".</message>
     </schema>
   </test>
   <!-- container -->
@@ -153,13 +160,19 @@
   <test group="content" name="[group][container] annotation unexpected annotation">
     <schema fileName="container_0003.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
-      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "all" or "choice".</message>
+      <message>The "annotation" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: "all", "choice" or "sequence".</message>
     </schema>
   </test>
   <test group="content" name="[group][container] choice unexpected choice">
     <schema fileName="container_0004.xsd">
       <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
       <message>The "choice" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
+    </schema>
+  </test>
+  <test group="content" name="[group][container] sequence unexpected sequence">
+    <schema fileName="container_0005.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "sequence" element (from http://www.w3.org/2001/XMLSchema namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
   <!-- TEMPLATE

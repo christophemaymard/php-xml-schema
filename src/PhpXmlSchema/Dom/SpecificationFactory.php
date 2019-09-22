@@ -76,6 +76,7 @@ class SpecificationFactory
         ContextId::ELT_NAMED_GROUP => 0, 
         ContextId::ELT_ANONYMOUS_ALL => 0, 
         ContextId::ELT_SIMPLE_CHOICE => 0, 
+        ContextId::ELT_SIMPLE_SEQUENCE => 0, 
     ];
     
     /**
@@ -137,6 +138,7 @@ class SpecificationFactory
         ContextId::ELT_NAMED_GROUP => [ 2, ], 
         ContextId::ELT_ANONYMOUS_ALL => [ 0, 1, ], 
         ContextId::ELT_SIMPLE_CHOICE => [ 0, 1, ], 
+        ContextId::ELT_SIMPLE_SEQUENCE => [ 0, 1, ], 
     ];
     
     /**
@@ -572,8 +574,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 'all', ], 
             [ 0, ContextId::ELT_SIMPLE_CHOICE, 'choice', ], 
+            [ 0, ContextId::ELT_SIMPLE_SEQUENCE, 'sequence', ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 'all', ], 
             [ 1, ContextId::ELT_SIMPLE_CHOICE, 'choice', ], 
+            [ 1, ContextId::ELT_SIMPLE_SEQUENCE, 'sequence', ], 
         ], 
         ContextId::ELT_ANONYMOUS_ALL => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
@@ -1029,8 +1033,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 'buildAllElement', ], 
             [ 0, ContextId::ELT_SIMPLE_CHOICE, 'buildChoiceElement', ], 
+            [ 0, ContextId::ELT_SIMPLE_SEQUENCE, 'buildSequenceElement', ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 'buildAllElement', ], 
             [ 1, ContextId::ELT_SIMPLE_CHOICE, 'buildChoiceElement', ], 
+            [ 1, ContextId::ELT_SIMPLE_SEQUENCE, 'buildSequenceElement', ], 
         ], 
         ContextId::ELT_ANONYMOUS_ALL => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
@@ -1485,8 +1491,10 @@ class SpecificationFactory
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_ANONYMOUS_ALL, 2, ], 
             [ 0, ContextId::ELT_SIMPLE_CHOICE, 2, ], 
+            [ 0, ContextId::ELT_SIMPLE_SEQUENCE, 2, ], 
             [ 1, ContextId::ELT_ANONYMOUS_ALL, 2, ], 
             [ 1, ContextId::ELT_SIMPLE_CHOICE, 2, ], 
+            [ 1, ContextId::ELT_SIMPLE_SEQUENCE, 2, ], 
         ], 
         ContextId::ELT_ANONYMOUS_ALL => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 

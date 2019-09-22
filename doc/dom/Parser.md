@@ -576,7 +576,7 @@
 - [x] Parse **annotation** element.
 - [x] Parse **all** element (anonymous).
 - [x] Parse **choice** element (simpleExplicitGroup).
-- [ ] Parse **sequence** element (simpleExplicitGroup).
+- [x] Parse **sequence** element (simpleExplicitGroup).
 
 ## Element: "group" (groupRef)
 
@@ -678,6 +678,26 @@
 - [x] Parse **choice** elements (explicitGroup).
 - [x] Parse **sequence** elements (explicitGroup).
 - [x] Parse **any** elements.
+
+## Element: "sequence" (simpleExplicitGroup)
+
+```
+<sequence
+  id = ID
+>
+  Content: (annotation?, (element | group | choice | sequence | any)*)
+</sequence>
+```
+
+- [x] Parse **sequence** element.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **element** elements (localElement).
+- [ ] Parse **group** elements (groupRef).
+- [ ] Parse **choice** elements (explicitGroup).
+- [ ] Parse **sequence** elements (explicitGroup).
+- [ ] Parse **any** elements.
 
 ## Element: "sequence" (explicitGroup)
 
