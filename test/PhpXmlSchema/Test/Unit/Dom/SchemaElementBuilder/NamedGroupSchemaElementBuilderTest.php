@@ -97,7 +97,6 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
-    use BuildSequenceElementDoesNotCreateElementTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
     
     /**
@@ -332,5 +331,30 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         self::assertElementNamespaceDeclarations([], $choice);
         self::assertChoiceElementHasNoAttribute($choice);
         self::assertSame([], $choice->getElements());
+    }
+    
+    /**
+     * Tests that buildSequenceElement() creates the element when the current 
+     * element is the "group" element (namedGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildSequenceElementCreateEltWhenNamedGroup()
+    {
+        $this->sut->buildSequenceElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $grp = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertCount(1, $grp->getElements());
+        
+        $seq = $grp->getModelGroupElement();
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertSame([], $seq->getElements());
     }
 }

@@ -238,6 +238,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_SEQUENCE:
+                    if ($this->currentElement->getParent() instanceof GroupElement) {
+                        break;
+                    }
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_ALL:
                 case ElementId::ELT_GROUP:
@@ -277,7 +281,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_FIELD:
                 case ElementId::ELT_KEY:
                 case ElementId::ELT_KEYREF:
-                case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_ANY:
                 case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
                     $this->currentElement->setId($this->parseID($value));
@@ -314,11 +317,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     }
                     
                     break;
+                case ElementId::ELT_SEQUENCE:
+                    if (!$this->currentElement->getParent() instanceof GroupElement) {
+                        $this->currentElement->setMaxOccurs($this->parseNonNegativeIntegerLimit($value));
+                    }
+                    
+                    break;
                 case ElementId::ELT_GROUP:
                     if ($this->currentElement->getParent() instanceof SchemaElement) {
                         break;
                     }
-                case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_ANY:
                     $this->currentElement->setMaxOccurs($this->parseNonNegativeIntegerLimit($value));
                     break;
@@ -381,11 +389,16 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     }
                     
                     break;
+                case ElementId::ELT_SEQUENCE:
+                    if (!$this->currentElement->getParent() instanceof GroupElement) {
+                        $this->currentElement->setMinOccurs($this->parseNonNegativeInteger($value));
+                    }
+                    
+                    break;
                 case ElementId::ELT_GROUP:
                     if ($this->currentElement->getParent() instanceof SchemaElement) {
                         break;
                     }
-                case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_ANY:
                     $this->currentElement->setMinOccurs($this->parseNonNegativeInteger($value));
             }
@@ -711,6 +724,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SEQUENCE:
+                    if ($this->currentElement->getParent() instanceof GroupElement) {
+                        break;
+                    }
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_ALL:
                 case ElementId::ELT_GROUP:
@@ -748,7 +765,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_FIELD:
                 case ElementId::ELT_KEY:
                 case ElementId::ELT_KEYREF:
-                case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_ANY:
                 case ElementId::ELT_COMPLEXCONTENT_EXTENSION:
                     $elt = new AnnotationElement();
@@ -789,8 +805,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
-                case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
+                    if ($this->currentElement->getParent() instanceof GroupElement) {
+                        break;
+                    }
+                case ElementId::ELT_CHOICE:
                     $elt = new AnyElement();
                     $this->currentElement->addAnyElement($elt);
                     $this->currentElement = $elt;
@@ -907,8 +926,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setTypeDefinitionParticleElement($elt);
                     $this->currentElement = $elt;
                     break;
-                case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
+                    if ($this->currentElement->getParent() instanceof GroupElement) {
+                        break;
+                    }
+                case ElementId::ELT_CHOICE:
                     $elt = new ChoiceElement();
                     $this->currentElement->addChoiceElement($elt);
                     $this->currentElement = $elt;
@@ -977,9 +999,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_SEQUENCE:
+                    if ($this->currentElement->getParent() instanceof GroupElement) {
+                        break;
+                    }
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_ALL:
-                case ElementId::ELT_SEQUENCE:
                     $elt = new ElementElement();
                     $this->currentElement->addElementElement($elt);
                     $this->currentElement = $elt;
@@ -1071,8 +1096,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setTypeDefinitionParticleElement($elt);
                     $this->currentElement = $elt;
                     break;
-                case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
+                    if ($this->currentElement->getParent() instanceof GroupElement) {
+                        break;
+                    }
+                case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SCHEMA:
                     $elt = new GroupElement();
                     $this->currentElement->addGroupElement($elt);
@@ -1339,11 +1367,23 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setTypeDefinitionParticleElement($elt);
                     $this->currentElement = $elt;
                     break;
-                case ElementId::ELT_CHOICE:
                 case ElementId::ELT_SEQUENCE:
+                    if ($this->currentElement->getParent() instanceof GroupElement) {
+                        break;
+                    }
+                case ElementId::ELT_CHOICE:
                     $elt = new SequenceElement();
                     $this->currentElement->addSequenceElement($elt);
                     $this->currentElement = $elt;
+                    break;
+                case ElementId::ELT_GROUP:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        $elt = new SequenceElement();
+                        $this->currentElement->setModelGroupElement($elt);
+                        $this->currentElement = $elt;
+                    }
+                    
+                    break;
             }
         }
     }
