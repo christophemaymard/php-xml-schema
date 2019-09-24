@@ -110,7 +110,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     
                     break;
                 case ElementId::ELT_ELEMENT:
-                    $this->currentElement->setBlock($this->parseBlockSet($value));
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setBlock($this->parseBlockSet($value));
+                    }
+                    
                     break;
             }
             
@@ -135,6 +138,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ELEMENT:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_ATTRIBUTE:
                     $this->currentElement->setDefault($this->parseString($value));
             }
@@ -192,6 +198,9 @@ class SchemaElementBuilder implements SchemaBuilderInterface
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
                 case ElementId::ELT_ELEMENT:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_ATTRIBUTE:
                     $this->currentElement->setFixed($this->parseString($value));
                     break;
@@ -225,7 +234,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     
                     break;
                 case ElementId::ELT_ELEMENT:
-                    $this->currentElement->setForm($this->parseFormChoice($value));
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setForm($this->parseFormChoice($value));
+                    }
+                    
                     break;
             }
         }
@@ -238,11 +250,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
+                case ElementId::ELT_ELEMENT:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_ALL:
                 case ElementId::ELT_GROUP:
-                case ElementId::ELT_ELEMENT:
                 case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
                 case ElementId::ELT_ATTRIBUTE:
@@ -332,7 +347,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                         $this->currentElement->setMaxOccurs(
                             $this->parseZeroOrOneNonNegativeIntegerLimit($value)
                         );
-                    } else {
+                    } elseif (!$this->currentElement->getParent() instanceof SchemaElement) {
                         $this->currentElement->setMaxOccurs(
                             $this->parseNonNegativeIntegerLimit($value)
                         );
@@ -367,7 +382,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                         $this->currentElement->setMinOccurs(
                             $this->parseZeroOrOneNonNegativeInteger($value)
                         );
-                    } else {
+                    } elseif (!$this->currentElement->getParent() instanceof SchemaElement) {
                         $this->currentElement->setMinOccurs(
                             $this->parseNonNegativeInteger($value)
                         );
@@ -435,7 +450,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setName($this->parseNCName($value));
                     break;
                 case ElementId::ELT_ELEMENT:
-                    $this->currentElement->setName($this->parseNCName($value));
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setName($this->parseNCName($value));
+                    }
+                    
                     break;
                 case ElementId::ELT_UNIQUE:
                 case ElementId::ELT_KEY:
@@ -472,7 +490,8 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildNillableAttribute(string $value)
     {
-        if ($this->currentElement instanceof ElementElement) {
+        if ($this->currentElement instanceof ElementElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement) {
             $this->currentElement->setNillable($this->parseBoolean($value));
         }
     }
@@ -522,7 +541,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     
                     break;
                 case ElementId::ELT_ELEMENT:
-                    $this->currentElement->setRef($this->parseQName($value));
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setRef($this->parseQName($value));
+                    }
+                    
                     break;
             }
         }
@@ -597,7 +619,10 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setType($this->parseQName($value));
                     break;
                 case ElementId::ELT_ELEMENT:
-                    $this->currentElement->setType($this->parseQName($value));
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $this->currentElement->setType($this->parseQName($value));
+                    }
+                    
                     break;
             }
         }
@@ -721,11 +746,14 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
+                case ElementId::ELT_ELEMENT:
+                    if ($this->currentElement->getParent() instanceof SchemaElement) {
+                        break;
+                    }
                 case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_ALL:
                 case ElementId::ELT_GROUP:
-                case ElementId::ELT_ELEMENT:
                 case ElementId::ELT_COMPLEXTYPE:
                 case ElementId::ELT_ATTRIBUTEGROUP:
                 case ElementId::ELT_ATTRIBUTE:
@@ -960,9 +988,12 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement = $elt;
                     break;
                 case ElementId::ELT_ELEMENT:
-                    $elt = new ComplexTypeElement();
-                    $this->currentElement->setTypeElement($elt);
-                    $this->currentElement = $elt;
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $elt = new ComplexTypeElement();
+                        $this->currentElement->setTypeElement($elt);
+                        $this->currentElement = $elt;
+                    }
+                    
                     break;
             }
         }
@@ -990,6 +1021,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                 case ElementId::ELT_SEQUENCE:
                 case ElementId::ELT_CHOICE:
                 case ElementId::ELT_ALL:
+                case ElementId::ELT_SCHEMA:
                     $elt = new ElementElement();
                     $this->currentElement->addElementElement($elt);
                     $this->currentElement = $elt;
@@ -1121,7 +1153,8 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildKeyElement()
     {
-        if ($this->currentElement instanceof ElementElement) {
+        if ($this->currentElement instanceof ElementElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement) {
             $elt = new KeyElement();
             $this->currentElement->addKeyElement($elt);
             $this->currentElement = $elt;
@@ -1133,7 +1166,8 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildKeyRefElement()
     {
-        if ($this->currentElement instanceof ElementElement) {
+        if ($this->currentElement instanceof ElementElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement) {
             $elt = new KeyRefElement();
             $this->currentElement->addKeyRefElement($elt);
             $this->currentElement = $elt;
@@ -1401,9 +1435,11 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement = $elt;
                     break;
                 case ElementId::ELT_ELEMENT:
-                    $elt = new SimpleTypeElement();
-                    $this->currentElement->setTypeElement($elt);
-                    $this->currentElement = $elt;
+                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
+                        $elt = new SimpleTypeElement();
+                        $this->currentElement->setTypeElement($elt);
+                        $this->currentElement = $elt;
+                    }
                     
                     break;
             }
@@ -1443,7 +1479,8 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildUniqueElement()
     {
-        if ($this->currentElement instanceof ElementElement) {
+        if ($this->currentElement instanceof ElementElement && 
+            !$this->currentElement->getParent() instanceof SchemaElement) {
             $elt = new UniqueElement();
             $this->currentElement->addUniqueElement($elt);
             $this->currentElement = $elt;
