@@ -215,6 +215,46 @@ class SimpleSequenceParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "choice" elements (explicitGroup).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessChoiceElement()
+    {
+        $sch = $this->sut->parse($this->getXs('choice_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $grp = $sch->getGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertCount(1, $grp->getElements());
+        
+        $seq = $grp->getModelGroupElement();
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertCount(2, $seq->getElements());
+        
+        $choices = $seq->getChoiceElements();
+        
+        self::assertElementNamespaceDeclarations([], $choices[0]);
+        self::assertChoiceElementHasNoAttribute($choices[0]);
+        self::assertSame([], $choices[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $choices[1]);
+        self::assertChoiceElementHasNoAttribute($choices[1]);
+        self::assertSame([], $choices[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
