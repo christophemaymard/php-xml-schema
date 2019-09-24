@@ -713,9 +713,11 @@ class SpecificationFactoryTest extends TestCase
             [ 53, 0, 41, 'element', ], // ELT_LOCAL_ELEMENT
             [ 53, 0, 36, 'group', ], // ELT_GROUP_REF
             [ 53, 0, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
+            [ 53, 0, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
             [ 53, 1, 41, 'element', ], // ELT_LOCAL_ELEMENT
             [ 53, 1, 36, 'group', ], // ELT_GROUP_REF
             [ 53, 1, 40, 'choice', ], // ELT_EXPLICIT_CHOICE
+            [ 53, 1, 47, 'sequence', ], // ELT_EXPLICIT_SEQUENCE
         ];
     }
     
@@ -1133,9 +1135,11 @@ class SpecificationFactoryTest extends TestCase
             [ 53, 0, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
             [ 53, 0, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 53, 0, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
+            [ 53, 0, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
             [ 53, 1, 41, 'buildElementElement', ], // ELT_LOCAL_ELEMENT
             [ 53, 1, 36, 'buildGroupElement', ], // ELT_GROUP_REF
             [ 53, 1, 40, 'buildChoiceElement', ], // ELT_EXPLICIT_CHOICE
+            [ 53, 1, 47, 'buildSequenceElement', ], // ELT_EXPLICIT_SEQUENCE
         ];
     }
     
@@ -1553,9 +1557,11 @@ class SpecificationFactoryTest extends TestCase
             [ 53, 0, 41, 1, ], // ELT_LOCAL_ELEMENT
             [ 53, 0, 36, 1, ], // ELT_GROUP_REF
             [ 53, 0, 40, 1, ], // ELT_EXPLICIT_CHOICE
+            [ 53, 0, 47, 1, ], // ELT_EXPLICIT_SEQUENCE
             [ 53, 1, 41, 1, ], // ELT_LOCAL_ELEMENT
             [ 53, 1, 36, 1, ], // ELT_GROUP_REF
             [ 53, 1, 40, 1, ], // ELT_EXPLICIT_CHOICE
+            [ 53, 1, 47, 1, ], // ELT_EXPLICIT_SEQUENCE
         ];
     }
     
