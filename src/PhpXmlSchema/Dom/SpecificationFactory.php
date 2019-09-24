@@ -603,10 +603,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_GROUP_REF, 'group', ], 
             [ 0, ContextId::ELT_EXPLICIT_CHOICE, 'choice', ], 
             [ 0, ContextId::ELT_EXPLICIT_SEQUENCE, 'sequence', ], 
+            [ 0, ContextId::ELT_ANY, 'any', ], 
             [ 1, ContextId::ELT_LOCAL_ELEMENT, 'element', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'group', ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 'choice', ], 
             [ 1, ContextId::ELT_EXPLICIT_SEQUENCE, 'sequence', ], 
+            [ 1, ContextId::ELT_ANY, 'any', ], 
         ], 
     ];
     
@@ -1073,10 +1075,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
             [ 0, ContextId::ELT_EXPLICIT_CHOICE, 'buildChoiceElement', ], 
             [ 0, ContextId::ELT_EXPLICIT_SEQUENCE, 'buildSequenceElement', ], 
+            [ 0, ContextId::ELT_ANY, 'buildAnyElement', ], 
             [ 1, ContextId::ELT_LOCAL_ELEMENT, 'buildElementElement', ], 
             [ 1, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 'buildChoiceElement', ], 
             [ 1, ContextId::ELT_EXPLICIT_SEQUENCE, 'buildSequenceElement', ], 
+            [ 1, ContextId::ELT_ANY, 'buildAnyElement', ], 
         ], 
     ];
     
@@ -1542,10 +1546,12 @@ class SpecificationFactory
             [ 0, ContextId::ELT_GROUP_REF, 1, ], 
             [ 0, ContextId::ELT_EXPLICIT_CHOICE, 1, ], 
             [ 0, ContextId::ELT_EXPLICIT_SEQUENCE, 1, ], 
+            [ 0, ContextId::ELT_ANY, 1, ], 
             [ 1, ContextId::ELT_LOCAL_ELEMENT, 1, ], 
             [ 1, ContextId::ELT_GROUP_REF, 1, ], 
             [ 1, ContextId::ELT_EXPLICIT_CHOICE, 1, ], 
             [ 1, ContextId::ELT_EXPLICIT_SEQUENCE, 1, ], 
+            [ 1, ContextId::ELT_ANY, 1, ], 
         ], 
     ];
     
