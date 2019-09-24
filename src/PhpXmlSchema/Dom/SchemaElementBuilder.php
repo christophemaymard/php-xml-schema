@@ -1353,9 +1353,6 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement = $elt;
                     break;
                 case ElementId::ELT_SEQUENCE:
-                    if ($this->currentElement->getParent() instanceof GroupElement) {
-                        break;
-                    }
                 case ElementId::ELT_CHOICE:
                     $elt = new SequenceElement();
                     $this->currentElement->addSequenceElement($elt);
