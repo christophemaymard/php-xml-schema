@@ -694,7 +694,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **element** elements (localElement).
-- [ ] Parse **group** elements (groupRef).
+- [x] Parse **group** elements (groupRef).
 - [ ] Parse **choice** elements (explicitGroup).
 - [ ] Parse **sequence** elements (explicitGroup).
 - [ ] Parse **any** elements.

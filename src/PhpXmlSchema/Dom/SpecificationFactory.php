@@ -600,7 +600,9 @@ class SpecificationFactory
         ContextId::ELT_SIMPLE_SEQUENCE => [
             [ 0, ContextId::ELT_ANNOTATION, 'annotation', ], 
             [ 0, ContextId::ELT_LOCAL_ELEMENT, 'element', ], 
+            [ 0, ContextId::ELT_GROUP_REF, 'group', ], 
             [ 1, ContextId::ELT_LOCAL_ELEMENT, 'element', ], 
+            [ 1, ContextId::ELT_GROUP_REF, 'group', ], 
         ], 
     ];
     
@@ -1064,7 +1066,9 @@ class SpecificationFactory
         ContextId::ELT_SIMPLE_SEQUENCE => [
             [ 0, ContextId::ELT_ANNOTATION, 'buildAnnotationElement', ], 
             [ 0, ContextId::ELT_LOCAL_ELEMENT, 'buildElementElement', ], 
+            [ 0, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
             [ 1, ContextId::ELT_LOCAL_ELEMENT, 'buildElementElement', ], 
+            [ 1, ContextId::ELT_GROUP_REF, 'buildGroupElement', ], 
         ], 
     ];
     
@@ -1527,7 +1531,9 @@ class SpecificationFactory
         ContextId::ELT_SIMPLE_SEQUENCE => [
             [ 0, ContextId::ELT_ANNOTATION, 1, ], 
             [ 0, ContextId::ELT_LOCAL_ELEMENT, 1, ], 
+            [ 0, ContextId::ELT_GROUP_REF, 1, ], 
             [ 1, ContextId::ELT_LOCAL_ELEMENT, 1, ], 
+            [ 1, ContextId::ELT_GROUP_REF, 1, ], 
         ], 
     ];
     

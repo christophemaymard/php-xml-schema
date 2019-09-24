@@ -175,6 +175,46 @@ class SimpleSequenceParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "group" elements (groupRef).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessGroupElement()
+    {
+        $sch = $this->sut->parse($this->getXs('group_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $grp = $sch->getGroupElements()[0];
+        self::assertElementNamespaceDeclarations([], $grp);
+        self::assertGroupElementHasNoAttribute($grp);
+        self::assertCount(1, $grp->getElements());
+        
+        $seq = $grp->getModelGroupElement();
+        self::assertElementNamespaceDeclarations([], $seq);
+        self::assertSequenceElementHasNoAttribute($seq);
+        self::assertCount(2, $seq->getElements());
+        
+        $grps = $seq->getGroupElements();
+        
+        self::assertElementNamespaceDeclarations([], $grps[0]);
+        self::assertGroupElementHasNoAttribute($grps[0]);
+        self::assertSame([], $grps[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $grps[1]);
+        self::assertGroupElementHasNoAttribute($grps[1]);
+        self::assertSame([], $grps[1]->getElements());
+    }
+    
+    /**
      * Returns a set of valid "id" attributes.
      * 
      * @return  array[]
