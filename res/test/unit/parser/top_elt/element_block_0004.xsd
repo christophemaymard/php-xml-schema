@@ -1,0 +1,6 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element block=" substitution	  
+extension	  
+restriction  ">
+  </xs:element>
+</xs:schema>
