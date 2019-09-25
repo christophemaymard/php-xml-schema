@@ -11,6 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
 /**
@@ -26,6 +27,7 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
 {
     use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
+    use StringTypeProviderTrait;
     
     use BindNamespaceTestTrait;
     
@@ -53,7 +55,6 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildDefaultAttributeDoesNotCreateAttributeTestTrait;
     use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
@@ -264,5 +265,54 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         ));
         
         $this->sut->buildBlockAttribute($value);
+    }
+    
+    /**
+     * Tests that buildDefaultAttribute() creates the attribute when the 
+     * current element is the "element" element (topLevelElement) and the 
+     * value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidStringTypeValues
+     */
+    public function testBuildDefaultAttributeCreatesAttrWhenTopElementAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildDefaultAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyDefaultAttribute($elt);
+        self::assertSame($value, $elt->getDefault()->getString());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildDefaultAttribute() throws an exception when the 
+     * current element is the "element" element (topLevelElement) and the 
+     * value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidStringTypeValues
+     */
+    public function testBuildDefaultAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid string datatype.', 
+            $value
+        ));
+        
+        $this->sut->buildDefaultAttribute($value);
     }
 }
