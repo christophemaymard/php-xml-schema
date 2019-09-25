@@ -1803,6 +1803,7 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_TOP_ELEMENT
             [ 54, 'abstract', '', 'buildAbstractAttribute', ], 
             [ 54, 'block', '', 'buildBlockAttribute', ], 
+            [ 54, 'default', '', 'buildDefaultAttribute', ], 
         ];
     }
 }

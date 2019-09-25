@@ -1838,6 +1838,7 @@ class SpecificationFactory
         ContextId::ELT_TOP_ELEMENT => [
             [ 'abstract', '', 'buildAbstractAttribute', ], 
             [ 'block', '', 'buildBlockAttribute', ], 
+            [ 'default', '', 'buildDefaultAttribute', ], 
         ], 
     ];
     

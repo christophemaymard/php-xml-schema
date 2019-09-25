@@ -1,0 +1,4 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element default="foo3bar6baz9">
+  </xs:element>
+</xs:schema>
