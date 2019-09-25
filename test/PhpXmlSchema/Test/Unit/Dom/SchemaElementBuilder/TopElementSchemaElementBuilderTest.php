@@ -55,7 +55,6 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait;
     use BuildDefinitionAnnotationElementDoesNotCreateElementTestTrait;
     use BuildAttributeElementDoesNotCreateElementTestTrait;
-    use BuildFixedAttributeDoesNotCreateAttributeTestTrait;
     use BuildTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildSimpleTypeElementDoesNotCreateElementTestTrait;
     use BuildRestrictionElementDoesNotCreateElementTestTrait;
@@ -367,5 +366,54 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         ));
         
         $this->sut->buildFinalAttribute($value);
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() creates the attribute when the 
+     * current element is the "element" element (topLevelElement) and the 
+     * value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidStringTypeValues
+     */
+    public function testBuildFixedAttributeCreatesAttrWhenTopElementAndValueIsValid(
+        string $value
+    ) {
+        $this->sut->buildFixedAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyFixedAttribute($elt);
+        self::assertSame($value, $elt->getFixed()->getString());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildFixedAttribute() throws an exception when the 
+     * current element is the "element" element (topLevelElement) and the 
+     * value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidStringTypeValues
+     */
+    public function testBuildFixedAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid string datatype.', 
+            $value
+        ));
+        
+        $this->sut->buildFixedAttribute($value);
     }
 }
