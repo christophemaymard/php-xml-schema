@@ -440,13 +440,8 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     }
                 case ElementId::ELT_ATTRIBUTE:
                 case ElementId::ELT_NOTATION:
-                    $this->currentElement->setName($this->parseNCName($value));
-                    break;
                 case ElementId::ELT_ELEMENT:
-                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
-                        $this->currentElement->setName($this->parseNCName($value));
-                    }
-                    
+                    $this->currentElement->setName($this->parseNCName($value));
                     break;
                 case ElementId::ELT_UNIQUE:
                 case ElementId::ELT_KEY:
