@@ -59,4 +59,76 @@ class TopElementParserTest extends AbstractParserTestCase
         self::assertElementElementHasNoAttribute($elt);
         self::assertSame([], $elt->getElements());
     }
+    
+    /**
+     * Tests that parse() processes "abstract" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $bool       The expected value for the boolean.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidAbstractAttributes
+     */
+    public function testParseProcessAbstractAttribute(string $fileName, bool $bool)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $elt = $sch->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyAbstractAttribute($elt);
+        self::assertSame($bool, $elt->getAbstract());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Returns a set of valid "abstract" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidAbstractAttributes():array
+    {
+        return [
+            'true (string)' => [
+                'element_abstract_0001.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric)' => [
+                'element_abstract_0002.xsd', 
+                TRUE, 
+            ], 
+            'true (string) surrounded by white spaces' => [
+                'element_abstract_0003.xsd', 
+                TRUE, 
+            ], 
+            'true (numeric) surrounded by white spaces' => [
+                'element_abstract_0004.xsd', 
+                TRUE, 
+            ], 
+            'false (string)' => [
+                'element_abstract_0005.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric)' => [
+                'element_abstract_0006.xsd', 
+                FALSE, 
+            ], 
+            'false (string) surrounded by white spaces' => [
+                'element_abstract_0007.xsd', 
+                FALSE, 
+            ], 
+            'false (numeric) surrounded by white spaces' => [
+                'element_abstract_0008.xsd', 
+                FALSE, 
+            ], 
+        ];
+    }
 }

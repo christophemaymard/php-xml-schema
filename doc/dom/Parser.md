@@ -766,7 +766,7 @@
 ```
 
 - [x] Parse **element** element.
-- [ ] Parse **abstract** attribute (collapsing white spaces).
+- [x] Parse **abstract** attribute (collapsing white spaces).
 - [ ] Parse **block** attribute (collapsing white spaces).
 - [ ] Parse **default** attribute.
 - [ ] Parse **final** attribute (collapsing white spaces).
@@ -776,7 +776,7 @@
 - [ ] Parse **nillable** attribute (collapsing white spaces).
 - [ ] Parse **substitutionGroup** attribute (collapsing white spaces).
 - [ ] Parse **type** attribute (collapsing white spaces).
-- [x] Attributes are not supported.
+- [x] Other attributes are not supported.
 - [ ] Parse **annotation** element.
 - [ ] Parse **simpleType** element (localSimpleType).
 - [ ] Parse **complexType** element (localComplexType).

@@ -1835,6 +1835,9 @@ class SpecificationFactory
         ContextId::ELT_SIMPLE_SEQUENCE => [
             [ 'id', '', 'buildIdAttribute', ], 
         ], 
+        ContextId::ELT_TOP_ELEMENT => [
+            [ 'abstract', '', 'buildAbstractAttribute', ], 
+        ], 
     ];
     
     /**

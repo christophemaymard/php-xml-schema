@@ -30,6 +30,25 @@
       <message>The "foo" element (from no namespace) is unexpected, expected: none.</message>
     </schema>
   </test>
+  <!-- element::abstract -->
+  <test group="attribute" name="[element][attribute::abstract] true (uppercase)">
+    <schema fileName="element_abstract_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "abstract" attribute is invalid: "True" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::abstract] false (uppercase)">
+    <schema fileName="element_abstract_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "abstract" attribute is invalid: "False" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::abstract] Numeric other than 0 or 1">
+    <schema fileName="element_abstract_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "abstract" attribute is invalid: "2" is an invalid boolean datatype.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
