@@ -769,7 +769,7 @@
 - [x] Parse **abstract** attribute (collapsing white spaces).
 - [x] Parse **block** attribute (collapsing white spaces).
 - [x] Parse **default** attribute.
-- [ ] Parse **final** attribute (collapsing white spaces).
+- [x] Parse **final** attribute (collapsing white spaces).
 - [ ] Parse **fixed** attribute.
 - [ ] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **name** attribute (collapsing white spaces).

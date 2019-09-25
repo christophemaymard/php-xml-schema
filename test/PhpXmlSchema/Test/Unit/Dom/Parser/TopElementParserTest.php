@@ -156,6 +156,39 @@ class TopElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "final" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   bool    $ext        The expected value for the "extension" flag.
+     * @param   bool    $res        The expected value for the "restriction" flag.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFinalAttributes
+     */
+    public function testParseProcessFinalAttribute(
+        string $fileName,
+        bool $ext, 
+        bool $res
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $elt = $sch->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyFinalAttribute($elt);
+        self::assertElementElementFinalAttribute($ext, $res, $elt);
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]
@@ -272,6 +305,42 @@ class TopElementParserTest extends AbstractParserTestCase
             'Alphanumeric with white spaces' => [
                 'element_default_0004.xsd', 
                 '  foo2    bar9   baz8    qux1  ', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "final" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFinalAttributes():array
+    {
+        // [ $fileName, $extension, $restriction, ]
+        return [
+            'Empty string' => [
+                'element_final_0001.xsd', FALSE, FALSE, 
+            ], 
+            'Only white spaces' => [
+                'element_final_0002.xsd', FALSE, FALSE, 
+            ], 
+            '#all' => [
+                'element_final_0003.xsd', TRUE, TRUE, 
+            ], 
+            'extension and restriction with white spaces' => [
+                'element_final_0004.xsd', TRUE, TRUE, 
+            ], 
+            'extension with white spaces' => [
+                'element_final_0005.xsd', TRUE, FALSE, 
+            ], 
+            'restriction with white spaces' => [
+                'element_final_0006.xsd', FALSE, TRUE, 
+            ], 
+            'Duplicated extension' => [
+                'element_final_0007.xsd', TRUE, FALSE, 
+            ], 
+            'Duplicated restriction' => [
+                'element_final_0008.xsd', FALSE, TRUE, 
             ], 
         ];
     }

@@ -110,6 +110,55 @@
       <message>The "block" attribute is invalid: "substitution extension foo restriction" is an invalid blockSet type, expected "#all" or a list of "extension", "restriction" and/or "substitution".</message>
     </schema>
   </test>
+  <!-- element::final -->
+  <test group="attribute" name="[element][attribute::final] Not extension neither restriction">
+    <schema fileName="element_final_0009.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "final" attribute is invalid: "foo" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::final] #all (uppercase)">
+    <schema fileName="element_final_0010.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "final" attribute is invalid: "#ALL" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::final] #all with white spaces">
+    <schema fileName="element_final_0011.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "final" attribute is invalid: "    #all    " is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::final] extension (uppercase)">
+    <schema fileName="element_final_0012.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "final" attribute is invalid: "Extension" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::final] restriction (uppercase)">
+    <schema fileName="element_final_0013.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "final" attribute is invalid: "Restriction" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::final] #all with extension">
+    <schema fileName="element_final_0014.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "final" attribute is invalid: "#all extension" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::final] #all with restriction">
+    <schema fileName="element_final_0015.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "final" attribute is invalid: "restriction #all" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::final] Value not extension neither restriction in list">
+    <schema fileName="element_final_0016.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "final" attribute is invalid: "extension foo restriction" is an invalid derivationSet type, expected "#all" or a list of "extension" and/or "restriction".</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">
