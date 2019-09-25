@@ -189,6 +189,37 @@ class TopElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "fixed" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $string     The expected value for the string.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidFixedAttributes
+     */
+    public function testParseProcessFixedAttribute(
+        string $fileName, 
+        string $string
+    ) {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $elt = $sch->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyFixedAttribute($elt);
+        self::assertSame($string, $elt->getFixed()->getString());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]
@@ -341,6 +372,33 @@ class TopElementParserTest extends AbstractParserTestCase
             ], 
             'Duplicated restriction' => [
                 'element_final_0008.xsd', FALSE, TRUE, 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "fixed" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidFixedAttributes():array
+    {
+        return [
+            'Empty string' => [
+                'element_fixed_0001.xsd', 
+                '', 
+            ], 
+            'Only white spaces' => [
+                'element_fixed_0002.xsd', 
+                '                  ', 
+            ], 
+            'Alphanumeric' => [
+                'element_fixed_0003.xsd', 
+                'foo3bar6baz9', 
+            ], 
+            'Alphanumeric with white spaces' => [
+                'element_fixed_0004.xsd', 
+                '  foo2    bar9   baz8    qux1  ', 
             ], 
         ];
     }

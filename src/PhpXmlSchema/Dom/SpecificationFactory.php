@@ -1840,6 +1840,7 @@ class SpecificationFactory
             [ 'block', '', 'buildBlockAttribute', ], 
             [ 'default', '', 'buildDefaultAttribute', ], 
             [ 'final', '', 'buildFinalAttribute', ], 
+            [ 'fixed', '', 'buildFixedAttribute', ], 
         ], 
     ];
     

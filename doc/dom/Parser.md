@@ -770,7 +770,7 @@
 - [x] Parse **block** attribute (collapsing white spaces).
 - [x] Parse **default** attribute.
 - [x] Parse **final** attribute (collapsing white spaces).
-- [ ] Parse **fixed** attribute.
+- [x] Parse **fixed** attribute.
 - [ ] Parse **id** attribute (collapsing white spaces).
 - [ ] Parse **name** attribute (collapsing white spaces).
 - [ ] Parse **nillable** attribute (collapsing white spaces).
