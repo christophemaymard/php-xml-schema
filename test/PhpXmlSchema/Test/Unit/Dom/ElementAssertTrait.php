@@ -2306,6 +2306,56 @@ trait ElementAssertTrait
     }
     
     /**
+     * Asserts that the specified "element" element has only the "final" 
+     * attribute.
+     * 
+     * @param   ElementElement  $sut    The element to test.
+     */
+    public static function assertElementElementHasOnlyFinalAttribute(
+        ElementElement $sut
+    ) {
+        self::assertFalse($sut->hasAbstract());
+        self::assertFalse($sut->hasBlock());
+        self::assertFalse($sut->hasDefault());
+        self::assertTrue($sut->hasFinal());
+        self::assertFalse($sut->hasFixed());
+        self::assertFalse($sut->hasForm());
+        self::assertFalse($sut->hasId());
+        self::assertFalse($sut->hasMaxOccurs());
+        self::assertFalse($sut->hasMinOccurs());
+        self::assertFalse($sut->hasName());
+        self::assertFalse($sut->hasNillable());
+        self::assertFalse($sut->hasRef());
+        self::assertFalse($sut->hasSubstitutionGroup());
+        self::assertFalse($sut->hasType());
+    }
+    
+    /**
+     * Asserts that the "final" attribute:
+     * - byRestriction() returns the same value as the expected "restriction" flag
+     * - byExtension() returns the same value as the expected "extension" flag
+     * - bySubstitution() returns FALSE
+     * - byList() returns FALSE
+     * - byUnion() returns FALSE
+     * 
+     * @param   bool            $ext    The expected value for the "extension" flag.
+     * @param   bool            $res    The expected value for the "restriction" flag.
+     * @param   ElementElement  $elt    The element that holds the attribute.
+     */
+    public static function assertElementElementFinalAttribute(
+        bool $ext, 
+        bool $res, 
+        ElementElement $elt
+    ) {
+        $sut = $elt->getFinal();
+        self::assertSame($res, $sut->byRestriction());
+        self::assertSame($ext, $sut->byExtension());
+        self::assertFalse($sut->bySubstitution());
+        self::assertFalse($sut->byList());
+        self::assertFalse($sut->byUnion());
+    }
+    
+    /**
      * Asserts that the specified "element" element has only the "fixed" 
      * attribute.
      * 

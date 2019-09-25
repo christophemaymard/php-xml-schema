@@ -77,7 +77,6 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildItemTypeAttributeDoesNotCreateAttributeTestTrait;
     use BuildUnionElementDoesNotCreateElementTestTrait;
     use BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait;
-    use BuildFinalAttributeDoesNotCreateAttributeTestTrait;
     use BuildAttributeGroupElementDoesNotCreateElementTestTrait;
     use BuildFormAttributeDoesNotCreateAttributeTestTrait;
     use BuildRefAttributeDoesNotCreateAttributeTestTrait;
@@ -314,5 +313,59 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         ));
         
         $this->sut->buildDefaultAttribute($value);
+    }
+    
+    /**
+     * Tests that buildFinalAttribute() creates the attribute when the 
+     * current element is the "element" element (topLevelElement) and the 
+     * value is valid.
+     * 
+     * @param   string  $value  The value to test.
+     * @param   bool    $ext    The expected value for the "extension" flag.
+     * @param   bool    $res    The expected value for the "restriction" flag.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidDerivationSetTypeValues
+     */
+    public function testBuildFinalAttributeCreatesAttrWhenTopElementAndValueIsValid(
+        string $value, 
+        bool $ext, 
+        bool $res
+    ) {
+        $this->sut->buildFinalAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyFinalAttribute($elt);
+        self::assertElementElementFinalAttribute($ext, $res, $elt);
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildFinalAttribute() throws an exception when the 
+     * current element is the "element" element (topLevelElement) and the 
+     * value is invalid.
+     * 
+     * @param   string  $value  The value to test.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidDerivationSetTypeValues
+     */
+    public function testBuildFinalAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
+        string $value
+    ) {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage(\sprintf(
+            '"%s" is an invalid derivationSet type, expected "#all" or a '.
+            'list of "extension" and/or "restriction".', 
+            $value
+        ));
+        
+        $this->sut->buildFinalAttribute($value);
     }
 }

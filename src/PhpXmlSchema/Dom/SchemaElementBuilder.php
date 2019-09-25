@@ -169,6 +169,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     
                     break;
                 case ElementId::ELT_COMPLEXTYPE:
+                case ElementId::ELT_ELEMENT:
                     if ($this->currentElement->getParent() instanceof SchemaElement) {
                         $this->currentElement->setFinal($this->parseDerivationSet($value));
                     }
