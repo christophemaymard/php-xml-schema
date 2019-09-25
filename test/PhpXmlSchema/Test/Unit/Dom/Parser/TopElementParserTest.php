@@ -249,6 +249,35 @@ class TopElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "name" attribute.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $name       The expected value for the name.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNameAttributes
+     */
+    public function testParseProcessNameAttribute(string $fileName, string $name)
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $elt = $sch->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlyNameAttribute($elt);
+        self::assertSame($name, $elt->getName()->getNCName());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]
@@ -463,6 +492,41 @@ class TopElementParserTest extends AbstractParserTestCase
             ], 
             'Surrounded by whitespaces' => [
                 'element_id_0008.xsd', 'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "name" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidNameAttributes():array
+    {
+        return [
+            'Starts with _' => [
+                'element_name_0001.xsd', '_foo', 
+            ], 
+            'Starts with letter' => [
+                'element_name_0002.xsd', 'f', 
+            ], 
+            'Contains letter' => [
+                'element_name_0003.xsd', 'foo', 
+            ], 
+            'Contains digit' => [
+                'element_name_0004.xsd', 'f00', 
+            ], 
+            'Contains .' => [
+                'element_name_0005.xsd', 'f.bar', 
+            ], 
+            'Contains -' => [
+                'element_name_0006.xsd', 'f-bar', 
+            ], 
+            'Contains _' => [
+                'element_name_0007.xsd', 'f_bar', 
+            ], 
+            'Surrounded by whitespaces' => [
+                'element_name_0008.xsd', 'foo_bar', 
             ], 
         ];
     }

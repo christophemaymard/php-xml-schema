@@ -1842,6 +1842,7 @@ class SpecificationFactory
             [ 'final', '', 'buildFinalAttribute', ], 
             [ 'fixed', '', 'buildFixedAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
+            [ 'name', '', 'buildNameAttribute', ], 
         ], 
     ];
     
