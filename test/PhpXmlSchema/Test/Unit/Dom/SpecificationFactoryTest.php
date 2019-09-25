@@ -233,6 +233,7 @@ class SpecificationFactoryTest extends TestCase
             [ 51, 0, ], // ELT_ANONYMOUS_ALL
             [ 52, 0, ], // ELT_SIMPLE_CHOICE
             [ 53, 0, ], // ELT_SIMPLE_SEQUENCE
+            [ 54, 0, ], // ELT_TOP_ELEMENT
         ];
     }
     
@@ -296,6 +297,7 @@ class SpecificationFactoryTest extends TestCase
             [ 51, [ 0, 1, ], ], // ELT_ANONYMOUS_ALL
             [ 52, [ 0, 1, ], ], // ELT_SIMPLE_CHOICE
             [ 53, [ 0, 1, ], ], // ELT_SIMPLE_SEQUENCE
+            [ 54, [ 0, 1, 2, ], ], // ELT_LOCAL_ELEMENT
         ];
     }
     
@@ -318,12 +320,14 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 30, 'complexType', ], // ELT_TOP_COMPLEXTYPE
             [ 1, 0, 50, 'group', ], // ELT_NAMED_GROUP
             [ 1, 0, 26, 'attributeGroup', ], // ELT_NAMED_ATTRIBUTEGROUP
+            [ 1, 0, 54, 'element', ], // ELT_TOP_ELEMENT
             [ 1, 0, 8, 'attribute', ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 'notation', ], // ELT_NOTATION
             [ 1, 1, 25, 'simpleType', ], // ELT_TOP_SIMPLETYPE
             [ 1, 1, 30, 'complexType', ], // ELT_TOP_COMPLEXTYPE
             [ 1, 1, 50, 'group', ], // ELT_NAMED_GROUP
             [ 1, 1, 26, 'attributeGroup', ], // ELT_NAMED_ATTRIBUTEGROUP
+            [ 1, 1, 54, 'element', ], // ELT_TOP_ELEMENT
             [ 1, 1, 8, 'attribute', ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 'notation', ], // ELT_NOTATION
             [ 1, 1, 2, 'annotation', ], // ELT_ANNOTATION
@@ -742,12 +746,14 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 30, 'buildComplexTypeElement', ], // ELT_TOP_COMPLEXTYPE
             [ 1, 0, 50, 'buildGroupElement', ], // ELT_NAMED_GROUP
             [ 1, 0, 26, 'buildAttributeGroupElement', ], // ELT_NAMED_ATTRIBUTEGROUP
+            [ 1, 0, 54, 'buildElementElement', ], // ELT_TOP_ELEMENT
             [ 1, 0, 8, 'buildAttributeElement', ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 'buildNotationElement', ], // ELT_NOTATION
             [ 1, 1, 25, 'buildSimpleTypeElement', ], // ELT_TOP_SIMPLETYPE
             [ 1, 1, 30, 'buildComplexTypeElement', ], // ELT_TOP_COMPLEXTYPE
             [ 1, 1, 50, 'buildGroupElement', ], // ELT_NAMED_GROUP
             [ 1, 1, 26, 'buildAttributeGroupElement', ], // ELT_NAMED_ATTRIBUTEGROUP
+            [ 1, 1, 54, 'buildElementElement', ], // ELT_TOP_ELEMENT
             [ 1, 1, 8, 'buildAttributeElement', ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 'buildNotationElement', ], // ELT_NOTATION
             [ 1, 1, 2, 'buildDefinitionAnnotationElement', ], // ELT_ANNOTATION
@@ -1166,12 +1172,14 @@ class SpecificationFactoryTest extends TestCase
             [ 1, 0, 30, 1, ], // ELT_TOP_COMPLEXTYPE
             [ 1, 0, 50, 1, ], // ELT_NAMED_GROUP
             [ 1, 0, 26, 1, ], // ELT_NAMED_ATTRIBUTEGROUP
+            [ 1, 0, 54, 1, ], // ELT_TOP_ELEMENT
             [ 1, 0, 8, 1, ], // ELT_TOP_ATTRIBUTE
             [ 1, 0, 7, 1, ], // ELT_NOTATION
             [ 1, 1, 25, 1, ], // ELT_TOP_SIMPLETYPE
             [ 1, 1, 30, 1, ], // ELT_TOP_COMPLEXTYPE
             [ 1, 1, 50, 1, ], // ELT_NAMED_GROUP
             [ 1, 1, 26, 1, ], // ELT_NAMED_ATTRIBUTEGROUP
+            [ 1, 1, 54, 1, ], // ELT_TOP_ELEMENT
             [ 1, 1, 8, 1, ], // ELT_TOP_ATTRIBUTE
             [ 1, 1, 7, 1, ], // ELT_NOTATION
             [ 1, 1, 2, 1, ], // ELT_ANNOTATION

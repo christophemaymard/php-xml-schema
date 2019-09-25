@@ -35,7 +35,7 @@
 - [x] Parse **complexType** elements (topLevelComplexType).
 - [x] Parse **group** elements (namedGroup).
 - [x] Parse **attributeGroup** elements (namedAttributeGroup).
-- [ ] Parse **element** elements.
+- [x] Parse **element** elements (topLevelElement).
 - [x] Parse **attribute** elements (topLevelAttributeType).
 - [x] Parse **notation** elements.
 - [x] Parse **annotation** elements (definition).
@@ -745,6 +745,44 @@
 - [x] Parse **processContents** attribute.
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
+
+## Element: "element" (topLevelElement)
+
+```
+<element
+  abstract = boolean
+  block = (#all | List of (extension | restriction | substitution))
+  default = string
+  final = (#all | List of (extension | restriction))
+  fixed = string
+  id = ID
+  name = NCName
+  nillable = boolean
+  substitutionGroup = QName
+  type = QName
+>
+  Content: (annotation?, ((simpleType | complexType)?, (unique | key | keyref)*))
+</element>
+```
+
+- [x] Parse **element** element.
+- [ ] Parse **abstract** attribute (collapsing white spaces).
+- [ ] Parse **block** attribute (collapsing white spaces).
+- [ ] Parse **default** attribute.
+- [ ] Parse **final** attribute (collapsing white spaces).
+- [ ] Parse **fixed** attribute.
+- [ ] Parse **id** attribute (collapsing white spaces).
+- [ ] Parse **name** attribute (collapsing white spaces).
+- [ ] Parse **nillable** attribute (collapsing white spaces).
+- [ ] Parse **substitutionGroup** attribute (collapsing white spaces).
+- [ ] Parse **type** attribute (collapsing white spaces).
+- [x] Attributes are not supported.
+- [ ] Parse **annotation** element.
+- [ ] Parse **simpleType** element (localSimpleType).
+- [ ] Parse **complexType** element (localComplexType).
+- [ ] Parse **unique** elements.
+- [ ] Parse **key** elements.
+- [ ] Parse **keyref** elements.
 
 ## Element: "element" (narrowMaxMin)
 
