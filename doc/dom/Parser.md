@@ -773,7 +773,7 @@
 - [x] Parse **fixed** attribute.
 - [x] Parse **id** attribute (collapsing white spaces).
 - [x] Parse **name** attribute (collapsing white spaces).
-- [ ] Parse **nillable** attribute (collapsing white spaces).
+- [x] Parse **nillable** attribute (collapsing white spaces).
 - [ ] Parse **substitutionGroup** attribute (collapsing white spaces).
 - [ ] Parse **type** attribute (collapsing white spaces).
 - [x] Other attributes are not supported.

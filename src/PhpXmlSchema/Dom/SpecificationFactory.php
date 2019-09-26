@@ -1843,6 +1843,7 @@ class SpecificationFactory
             [ 'fixed', '', 'buildFixedAttribute', ], 
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
+            [ 'nillable', '', 'buildNillableAttribute', ], 
         ], 
     ];
     
