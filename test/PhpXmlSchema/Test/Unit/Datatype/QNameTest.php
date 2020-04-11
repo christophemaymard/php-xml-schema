@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Datatype;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\QNameType;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Datatype\QNameType} 
@@ -22,6 +23,7 @@ use PhpXmlSchema\Datatype\QNameType;
 class QNameTest extends TestCase
 {
     use DatatypeDummyFactoryTrait;
+    use ProphecyTrait;
     
     /**
      * Tests that __construct() stores the local part.

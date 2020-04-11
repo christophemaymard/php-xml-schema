@@ -19,7 +19,9 @@ use PhpXmlSchema\Dom\SelectorXPathType;
 use PhpXmlSchema\Dom\UseType;
 use PhpXmlSchema\Dom\WhiteSpaceType;
 use PhpXmlSchema\Exception\InvalidOperationException;
+use PhpXmlSchema\Test\Dom\XmlAssertTrait;
 use PhpXmlSchema\Test\Unit\Datatype\DatatypeDummyFactoryTrait;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
@@ -31,6 +33,8 @@ abstract class AbstractAbstractElementTestCase extends TestCase
 {
     use DatatypeDummyFactoryTrait;
     use ElementAssertTrait;
+    use ProphecyTrait;
+    use XmlAssertTrait;
     
     /**
      * The element to test.

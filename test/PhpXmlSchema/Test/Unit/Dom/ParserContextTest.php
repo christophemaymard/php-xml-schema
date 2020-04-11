@@ -12,6 +12,7 @@ use PhpXmlSchema\Dom\ParserContext;
 use PhpXmlSchema\Dom\SchemaBuilderInterface;
 use PhpXmlSchema\Dom\Specification;
 use PhpXmlSchema\Exception\InvalidOperationException;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
@@ -26,6 +27,8 @@ use Prophecy\Prophecy\ProphecySubjectInterface;
  */
 class ParserContextTest extends TestCase
 {
+    use ProphecyTrait;
+    
     /**
      * Tests that isComposite() returns FALSE when the context is for a leaf 
      * element.

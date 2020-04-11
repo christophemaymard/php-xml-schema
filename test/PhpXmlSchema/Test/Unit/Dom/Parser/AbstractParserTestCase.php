@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\Parser;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\Parser;
+use PhpXmlSchema\Test\Dom\XmlAssertTrait;
 use PhpXmlSchema\Test\Unit\Dom\ElementAssertTrait;
 
 /**
@@ -23,6 +24,7 @@ use PhpXmlSchema\Test\Unit\Dom\ElementAssertTrait;
 abstract class AbstractParserTestCase extends TestCase
 {
     use ElementAssertTrait;
+    use XmlAssertTrait;
     
     const RES_PATH = __DIR__.'/../../../../../../res/test/unit/parser/';
     

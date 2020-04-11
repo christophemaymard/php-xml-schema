@@ -57,7 +57,7 @@ use PhpXmlSchema\Dom\WhiteSpaceElement;
  * Represents a trait to assert XML Schema elements.
  * 
  * It must be used in a class that extends the {@see PHPUnit\Framework\TestCase} 
- * class.
+ * class and uses the {@see PhpXmlSchema\Test\Dom\XmlAssertTrait} trait.
  * 
  * @author  Christophe Maymard  <christophe.maymard@hotmail.com>
  */
@@ -71,8 +71,7 @@ trait ElementAssertTrait
      */
     public static function assertElementNamespaceDeclarations(array $decls, ElementInterface $sut): void
     {
-        self::assertArraySubset($decls, $sut->getNamespaceDeclarations(), TRUE);
-        self::assertCount(0, \array_diff_assoc($sut->getNamespaceDeclarations(), $decls));
+        self::assertNamespaceDeclarations($decls, $sut->getNamespaceDeclarations());
     }
     
     /**

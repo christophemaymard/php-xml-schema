@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Dom\NamespaceListType;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
@@ -23,6 +24,8 @@ use Prophecy\Prophecy\ProphecySubjectInterface;
  */
 class NamespaceListTypeTest extends TestCase
 {
+    use ProphecyTrait;
+    
     /**
      * Tests that __construct() creates an instance of NamespaceListType where:
      * - any namespace is not present,

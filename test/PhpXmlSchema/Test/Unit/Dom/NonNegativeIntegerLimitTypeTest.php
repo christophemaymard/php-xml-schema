@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\NonNegativeIntegerType;
 use PhpXmlSchema\Dom\NonNegativeIntegerLimitType;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
 /**
@@ -23,6 +24,8 @@ use Prophecy\Prophecy\ProphecySubjectInterface;
  */
 class NonNegativeIntegerLimitTypeTest extends TestCase
 {
+    use ProphecyTrait;
+    
     /**
      * Tests that __construct() stores an unlimited limit.
      */

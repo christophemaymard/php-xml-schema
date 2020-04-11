@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\XmlTraverser;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Dom\XmlAssertTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\XmlTraverser} 
@@ -22,6 +23,8 @@ use PhpXmlSchema\Exception\InvalidValueException;
  */
 class XmlTraverserTest extends TestCase
 {
+    use XmlAssertTrait;
+    
     /**
      * Tests that __construct() throws an exception the source is an invalid 
      * XML.
@@ -857,8 +860,7 @@ class XmlTraverserTest extends TestCase
         $sut = new XmlTraverser($this->getXml($fileName));
         
         self::assertTrue($sut->isElementNode());
-        self::assertArraySubset($decls, $sut->getNamespaceDeclarations(), TRUE);
-        self::assertCount(0, \array_diff_assoc($sut->getNamespaceDeclarations(), $decls));
+        self::assertNamespaceDeclarations($decls, $sut->getNamespaceDeclarations());
     }
     
     /**
@@ -880,8 +882,7 @@ class XmlTraverserTest extends TestCase
         $sut->moveToFirstChildNode();
         
         self::assertTrue($sut->isElementNode());
-        self::assertArraySubset($decls, $sut->getNamespaceDeclarations(), TRUE);
-        self::assertCount(0, \array_diff_assoc($sut->getNamespaceDeclarations(), $decls));
+        self::assertNamespaceDeclarations($decls, $sut->getNamespaceDeclarations());
     }
     
     /**
