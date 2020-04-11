@@ -617,10 +617,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
                     $this->currentElement->setType($this->parseQName($value));
                     break;
                 case ElementId::ELT_ELEMENT:
-                    if (!$this->currentElement->getParent() instanceof SchemaElement) {
-                        $this->currentElement->setType($this->parseQName($value));
-                    }
-                    
+                    $this->currentElement->setType($this->parseQName($value));
                     break;
             }
         }
