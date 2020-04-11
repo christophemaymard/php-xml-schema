@@ -512,6 +512,36 @@ class TopElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "complexType" element (localComplexType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessComplexTypeElement(): void
+    {
+        $sch = $this->sut->parse($this->getXs('complexType_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $elt = $sch->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $ct = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $ct);
+        self::assertComplexTypeElementHasNoAttribute($ct);
+        self::assertSame([], $ct->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]

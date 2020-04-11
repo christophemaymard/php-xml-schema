@@ -779,7 +779,7 @@
 - [x] Other attributes are not supported.
 - [x] Parse **annotation** element.
 - [x] Parse **simpleType** element (localSimpleType).
-- [ ] Parse **complexType** element (localComplexType).
+- [x] Parse **complexType** element (localComplexType).
 - [ ] Parse **unique** elements.
 - [ ] Parse **key** elements.
 - [ ] Parse **keyref** elements.

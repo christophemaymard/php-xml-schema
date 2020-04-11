@@ -731,7 +731,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_TOP_ELEMENT
             [ 54, 0, 2, 'annotation', ], // ELT_ANNOTATION
             [ 54, 0, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
+            [ 54, 0, 39, 'complexType', ], // ELT_LOCAL_COMPLEXTYPE
             [ 54, 1, 9, 'simpleType', ], // ELT_LOCAL_SIMPLETYPE
+            [ 54, 1, 39, 'complexType', ], // ELT_LOCAL_COMPLEXTYPE
         ];
     }
     
@@ -1161,7 +1163,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_TOP_ELEMENT
             [ 54, 0, 2, 'buildAnnotationElement', ], // ELT_ANNOTATION
             [ 54, 0, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
+            [ 54, 0, 39, 'buildComplexTypeElement', ], // ELT_LOCAL_COMPLEXTYPE
             [ 54, 1, 9, 'buildSimpleTypeElement', ], // ELT_LOCAL_SIMPLETYPE
+            [ 54, 1, 39, 'buildComplexTypeElement', ], // ELT_LOCAL_COMPLEXTYPE
         ];
     }
     
@@ -1591,7 +1595,9 @@ class SpecificationFactoryTest extends TestCase
             // Context: ELT_TOP_ELEMENT
             [ 54, 0, 2, 1, ], // ELT_ANNOTATION
             [ 54, 0, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
+            [ 54, 0, 39, 2, ], // ELT_LOCAL_COMPLEXTYPE
             [ 54, 1, 9, 2, ], // ELT_LOCAL_SIMPLETYPE
+            [ 54, 1, 39, 2, ], // ELT_LOCAL_COMPLEXTYPE
         ];
     }
     
