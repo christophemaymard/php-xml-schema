@@ -1,5 +1,6 @@
 {
     "name": "cmaymard/php-xml-schema",
+    "description": "Provides support to parse and create an in-memory representation of a XML Schema document.", 
     "type": "library",
     "license": "MIT",
     "authors": [
