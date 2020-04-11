@@ -264,6 +264,139 @@
       <message>The "nillable" attribute is invalid: "2" is an invalid boolean datatype.</message>
     </schema>
   </test>
+  <!-- element::substitutionGroup -->
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (absent), local part (empty string)">
+    <schema fileName="element_substitutionGroup_0024.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (absent), local part (only white spaces)">
+    <schema fileName="element_substitutionGroup_0025.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (absent), local part (separated by white spaces)">
+    <schema fileName="element_substitutionGroup_0026.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (absent), local part (starts with digit)">
+    <schema fileName="element_substitutionGroup_0027.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (absent), local part (starts with .)">
+    <schema fileName="element_substitutionGroup_0028.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (absent), local part (starts with -)">
+    <schema fileName="element_substitutionGroup_0029.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (absent), local part (contains invalid character)">
+    <schema fileName="element_substitutionGroup_0030.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (empty string), local part (valid)">
+    <schema fileName="element_substitutionGroup_0031.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (only white spaces), local part (valid)">
+    <schema fileName="element_substitutionGroup_0032.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (separated by white spaces), local part (valid)">
+    <schema fileName="element_substitutionGroup_0033.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (starts with digit), local part (valid)">
+    <schema fileName="element_substitutionGroup_0034.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (starts with .), local part (valid)">
+    <schema fileName="element_substitutionGroup_0035.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (starts with -), local part (valid)">
+    <schema fileName="element_substitutionGroup_0036.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (contains invalid character), local part (valid)">
+    <schema fileName="element_substitutionGroup_0037.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (valid), local part (empty string)">
+    <schema fileName="element_substitutionGroup_0038.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (valid), local part (only white spaces)">
+    <schema fileName="element_substitutionGroup_0039.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (valid), local part (separated by white spaces)">
+    <schema fileName="element_substitutionGroup_0040.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (valid), local part (starts with digit)">
+    <schema fileName="element_substitutionGroup_0041.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (valid), local part (starts with .)">
+    <schema fileName="element_substitutionGroup_0042.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (valid), local part (starts with -)">
+    <schema fileName="element_substitutionGroup_0043.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix (valid), local part (contains invalid character)">
+    <schema fileName="element_substitutionGroup_0044.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "substitutionGroup" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::substitutionGroup] Prefix not bound to namespace">
+    <schema fileName="element_substitutionGroup_0045.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "substitutionGroup" attribute is invalid: The "foo" prefix is not bound to a namespace.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

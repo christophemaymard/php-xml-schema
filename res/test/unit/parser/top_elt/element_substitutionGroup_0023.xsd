@@ -1,0 +1,4 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f_bar="http://example.org">
+  <xs:element substitutionGroup="f_bar:baz">
+  </xs:element>
+</xs:schema>

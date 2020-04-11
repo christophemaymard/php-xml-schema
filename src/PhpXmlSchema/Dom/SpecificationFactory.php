@@ -1844,6 +1844,7 @@ class SpecificationFactory
             [ 'id', '', 'buildIdAttribute', ], 
             [ 'name', '', 'buildNameAttribute', ], 
             [ 'nillable', '', 'buildNillableAttribute', ], 
+            [ 'substitutionGroup', '', 'buildSubstitutionGroupAttribute', ], 
         ], 
     ];
     

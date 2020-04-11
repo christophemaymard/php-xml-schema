@@ -311,6 +311,74 @@ class TopElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "substitutionGroup" attribute when the 
+     * prefix is absent and there is no default namespace.
+     * 
+     * @param   string  $fileName   The name of the file used for the test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidNoNamespaceSubstitutionGroupAttributes
+     */
+    public function testParseProcessSubstitutionGroupAttributeWhenPrefixAbsentAndNoDefaultNamespace(
+        string $fileName, 
+        string $localPart
+    ): void
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getElementElements());
+        
+        $elt = $sch->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlySubstitutionGroupAttribute($elt);
+        self::assertFalse($elt->getSubstitutionGroup()->hasNamespace());
+        self::assertSame($localPart, $elt->getSubstitutionGroup()->getLocalPart()->getNCName());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that parse() processes "substitutionGroup" attribute.
+     * 
+     * @param   string      $fileName   The name of the file used for the test.
+     * @param   string[]    $decls      The expected value for the namespace declarations.
+     * @param   string      $namespace  The expected value for the namespace.
+     * @param   string      $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @dataProvider    getValidSubstitutionGroupAttributes
+     */
+    public function testParseProcessSubstitutionGroupAttribute(
+        string $fileName, 
+        array $decls, 
+        string $namespace, 
+        string $localPart
+    ): void
+    {
+        $sch = $this->sut->parse($this->getXs($fileName));
+        
+        self::assertElementNamespaceDeclarations($decls, $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getElementElements());
+        
+        $elt = $sch->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlySubstitutionGroupAttribute($elt);
+        self::assertSame($namespace, $elt->getSubstitutionGroup()->getNamespace()->getAnyUri());
+        self::assertSame($localPart, $elt->getSubstitutionGroup()->getLocalPart()->getNCName());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]
@@ -603,6 +671,196 @@ class TopElementParserTest extends AbstractParserTestCase
             'false (numeric) surrounded by white spaces' => [
                 'element_nillable_0008.xsd', 
                 FALSE, 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "substitutionGroup" attributes with no prefix 
+     * and no default namespace.
+     * 
+     * @return  array[]
+     */
+    public function getValidNoNamespaceSubstitutionGroupAttributes():array
+    {
+        return [
+            'Local part starts with _' => [
+                'element_substitutionGroup_0001.xsd', 
+                '_foo', 
+            ], 
+            'Local part starts with letter' => [
+                'element_substitutionGroup_0002.xsd', 
+                'f', 
+            ], 
+            'Local part contains letter' => [
+                'element_substitutionGroup_0003.xsd', 
+                'foo', 
+            ], 
+            'Local part contains digit' => [
+                'element_substitutionGroup_0004.xsd', 
+                'f00', 
+            ], 
+            'Local part contains .' => [
+                'element_substitutionGroup_0005.xsd', 
+                'f.bar', 
+            ], 
+            'Local part contains -' => [
+                'element_substitutionGroup_0006.xsd', 
+                'f-bar', 
+            ], 
+            'Local part contains _' => [
+                'element_substitutionGroup_0007.xsd', 
+                'f_bar', 
+            ], 
+            'Local part surrounded by white spaces' => [
+                'element_substitutionGroup_0008.xsd', 
+                'foo_bar', 
+            ], 
+        ];
+    }
+    
+    /**
+     * Returns a set of valid "substitutionGroup" attributes.
+     * 
+     * @return  array[]
+     */
+    public function getValidSubstitutionGroupAttributes():array
+    {
+        return [
+            'Prefix (absent) and bound to default namespace' => [
+                'element_substitutionGroup_0009.xsd', 
+                [
+                    '' => 'http://example.org', 
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                ], 
+                'http://example.org', 
+                'foo', 
+            ], 
+            'Prefix and local part (starts with _)' => [
+                'element_substitutionGroup_0010.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                '_foo', 
+            ], 
+            'Prefix and local part (starts with letter)' => [
+                'element_substitutionGroup_0011.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f', 
+            ], 
+            'Prefix and local part (contains letter)' => [
+                'element_substitutionGroup_0012.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'foo', 
+            ], 
+            'Prefix and local part (contains digit)' => [
+                'element_substitutionGroup_0013.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f00', 
+            ], 
+            'Prefix and local part (contains .)' => [
+                'element_substitutionGroup_0014.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f.bar', 
+            ], 
+            'Prefix and local part (contains -)' => [
+                'element_substitutionGroup_0015.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f-bar', 
+            ], 
+            'Prefix and local part (contains _)' => [
+                'element_substitutionGroup_0016.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'baz' => 'http://example.org/baz', 
+                ], 
+                'http://example.org/baz', 
+                'f_bar', 
+            ], 
+            'Prefix (starts with _) and local part' => [
+                'element_substitutionGroup_0017.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    '_foo' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (starts with letter) and local part' => [
+                'element_substitutionGroup_0018.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains letter) and local part' => [
+                'element_substitutionGroup_0019.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'foo' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains digit) and local part' => [
+                'element_substitutionGroup_0020.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f00' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains .) and local part' => [
+                'element_substitutionGroup_0021.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f.bar' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains -) and local part' => [
+                'element_substitutionGroup_0022.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f-bar' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
+            ], 
+            'Prefix (contains _) and local part' => [
+                'element_substitutionGroup_0023.xsd', 
+                [
+                    'xs' => 'http://www.w3.org/2001/XMLSchema', 
+                    'f_bar' => 'http://example.org', 
+                ], 
+                'http://example.org', 
+                'baz', 
             ], 
         ];
     }
