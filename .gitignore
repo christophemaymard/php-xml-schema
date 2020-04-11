@@ -2,5 +2,5 @@
 /composer.phar
 /phpunit.xml
 /bin/
-/temp/
+/tmp/
 /vendor/
