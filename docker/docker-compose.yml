@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  php-cli:
+    build:
+      context: ./php-cli
+    image: php-xml-schema-php-cli
+    container_name: php-xml-schema-php-cli
+    tty: true
+    volumes:
+      - ..:/var/www/php-xml-schema
