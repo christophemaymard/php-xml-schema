@@ -25,7 +25,7 @@ trait BlockAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasBlock()
+    public function testHasBlock(): void
     {
         self::assertFalse($this->sut->hasBlock(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait BlockAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetBlock()
+    public function testGetBlock(): void
     {
         self::assertNull($this->sut->getBlock(), 'The attribute has not been set.');
         

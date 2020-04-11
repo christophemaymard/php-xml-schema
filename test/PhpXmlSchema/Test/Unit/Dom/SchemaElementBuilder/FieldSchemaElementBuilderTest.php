@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -107,7 +108,7 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -120,7 +121,7 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -176,7 +177,7 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertFieldElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -184,7 +185,7 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -201,7 +202,7 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -219,7 +220,7 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -238,7 +239,8 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildIdAttributeCreatesAttrWhenFieldAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -265,7 +267,8 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildIdAttributeThrowsExceptionWhenFieldAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -287,7 +290,8 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public function testBuildXPathAttributeCreatesAttrWhenFieldAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildXPathAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -312,7 +316,8 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public function testBuildXPathAttributeThrowsExceptionWhenFieldAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid XPath expression for a "field" element.', 
@@ -329,7 +334,7 @@ class FieldSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenField()
+    public function testBuildAnnotationElementCreateEltWhenField(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

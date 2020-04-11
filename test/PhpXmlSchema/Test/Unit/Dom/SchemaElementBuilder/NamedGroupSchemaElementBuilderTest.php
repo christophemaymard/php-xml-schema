@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -102,7 +103,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -115,7 +116,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -126,7 +127,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertGroupElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -134,7 +135,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getGroupElements()[0];
     }
@@ -142,7 +143,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildGroupElement();
@@ -151,7 +152,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -163,7 +164,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * @group   content
      * @group   element
      */
-    public function testBuildAllElementCreateEltWhenNamedGroup()
+    public function testBuildAllElementCreateEltWhenNamedGroup(): void
     {
         $this->sut->buildAllElement();
         $sch = $this->sut->getSchema();
@@ -195,7 +196,8 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildIdAttributeCreatesAttrWhenNamedGroupAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -222,7 +224,8 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildIdAttributeThrowsExceptionWhenNamedGroupAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -246,7 +249,8 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildNameAttributeCreatesAttrWhenNamedGroupAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -273,7 +277,8 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildNameAttributeThrowsExceptionWhenNamedGroupAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 
@@ -290,7 +295,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenNamedGroup()
+    public function testBuildAnnotationElementCreateEltWhenNamedGroup(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -315,7 +320,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * @group   content
      * @group   element
      */
-    public function testBuildChoiceElementCreateEltWhenNamedGroup()
+    public function testBuildChoiceElementCreateEltWhenNamedGroup(): void
     {
         $this->sut->buildChoiceElement();
         $sch = $this->sut->getSchema();
@@ -340,7 +345,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * @group   content
      * @group   element
      */
-    public function testBuildSequenceElementCreateEltWhenNamedGroup()
+    public function testBuildSequenceElementCreateEltWhenNamedGroup(): void
     {
         $this->sut->buildSequenceElement();
         $sch = $this->sut->getSchema();

@@ -25,7 +25,7 @@ class AllElement extends AbstractModelGroupElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_ALL;
     }
@@ -33,7 +33,7 @@ class AllElement extends AbstractModelGroupElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'all';
     }

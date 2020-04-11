@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -107,7 +108,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -120,7 +121,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -141,7 +142,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertListElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -149,7 +150,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeElements()[0]
             ->getSimpleTypeElement()
@@ -159,7 +160,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
@@ -170,7 +171,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -189,7 +190,8 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildIdAttributeCreatesAttrWhenListAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -216,7 +218,8 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildIdAttributeThrowsExceptionWhenListAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -242,7 +245,8 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildItemTypeAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -272,7 +276,8 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildAttributeElement();
@@ -318,7 +323,8 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildItemTypeAttributeThrowsExceptionWhenListAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -334,7 +340,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildItemTypeAttributeCreatesAttrWhenListAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -376,7 +382,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildItemTypeAttributeThrowsExceptionWhenListAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildItemTypeAttributeThrowsExceptionWhenListAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -391,7 +397,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenList()
+    public function testBuildAnnotationElementCreateEltWhenList(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -416,7 +422,7 @@ class ListSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   content
      * @group   element
      */
-    public function testBuildSimpleTypeElementCreateEltWhenList()
+    public function testBuildSimpleTypeElementCreateEltWhenList(): void
     {
         $this->sut->buildSimpleTypeElement();
         $sch = $this->sut->getSchema();

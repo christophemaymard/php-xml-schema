@@ -24,7 +24,7 @@ class PatternParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'pattern';
     }
@@ -35,7 +35,7 @@ class PatternParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('pattern_0006.xsd'));
         
@@ -84,7 +84,7 @@ class PatternParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -131,7 +131,8 @@ class PatternParserTest extends AbstractParserTestCase
     public function testParseProcessValueAttribute(
         string $fileName, 
         string $string
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -171,7 +172,7 @@ class PatternParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -215,7 +216,7 @@ class PatternParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -250,7 +251,7 @@ class PatternParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidValueAttributes():array
+    public function getValidValueAttributes(): array
     {
         return [
             'Empty string' => [

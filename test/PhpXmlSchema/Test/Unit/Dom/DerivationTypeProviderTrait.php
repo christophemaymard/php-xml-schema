@@ -19,7 +19,7 @@ trait DerivationTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidBlockSetTypeValues():array
+    public function getValidBlockSetTypeValues(): array
     {
         // [ $value, $restriction, $extension, $substitution, ]
         return [
@@ -70,7 +70,7 @@ trait DerivationTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidBlockSetTypeValues():array
+    public function getInvalidBlockSetTypeValues(): array
     {
         return [
             'Not substitution neither extension neither restriction' => [ 
@@ -111,7 +111,7 @@ trait DerivationTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidFullDerivationSetTypeValues():array
+    public function getValidFullDerivationSetTypeValues(): array
     {
         // [ $value, $extension, $restriction, $list, $union, ]
         return [
@@ -177,7 +177,7 @@ trait DerivationTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidFullDerivationSetTypeValues():array
+    public function getInvalidFullDerivationSetTypeValues(): array
     {
         return [
             'Not extension neither restriction neither list neither union' => [ 
@@ -224,7 +224,7 @@ trait DerivationTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidSimpleDerivationSetTypeValues():array
+    public function getValidSimpleDerivationSetTypeValues(): array
     {
         // [ $value, $list, $union, $restriction, ]
         return [
@@ -275,7 +275,7 @@ trait DerivationTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidSimpleDerivationSetTypeValues():array
+    public function getInvalidSimpleDerivationSetTypeValues(): array
     {
         return [
             'Not list neither union neither restriction' => [ 
@@ -316,7 +316,7 @@ trait DerivationTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidDerivationSetTypeValues():array
+    public function getValidDerivationSetTypeValues(): array
     {
         // [ $value, $extension, $restriction, ]
         return [
@@ -352,7 +352,7 @@ trait DerivationTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidDerivationSetTypeValues():array
+    public function getInvalidDerivationSetTypeValues(): array
     {
         return [
             'Not extension neither restriction' => [ 

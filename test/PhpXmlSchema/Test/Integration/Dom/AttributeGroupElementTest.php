@@ -26,7 +26,7 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AttributeGroupElement();
     }
@@ -34,7 +34,7 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_ATTRIBUTEGROUP, $this->sut->getElementId());
     }
@@ -51,7 +51,8 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
      */
     public function testAttributeGroupElementWhenAddedToAttributeNamingElement(
         AttributeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->addAttributeGroupElement($this->sut);
         self::assertTrue($this->sut->hasParent());
         self::assertSame($parent, $this->sut->getParent());
@@ -71,7 +72,8 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
     public function testAttributeGroupElementWithParentThrowsExceptionWhenAttributeNamingElementAddAttributeGroupElement(
         AttributeNamingElementInterface $parent1,
         AttributeNamingElementInterface $parent2
-    ) {
+    ): void
+    {
         $parent1->addAttributeGroupElement($this->sut);
         
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
@@ -84,7 +86,7 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAttributeGroupElementWhenAddedToRedefineElement()
+    public function testAttributeGroupElementWhenAddedToRedefineElement(): void
     {
         $parent = new RedefineElement();
         $parent->addAttributeGroupElement($this->sut);
@@ -98,7 +100,7 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAttributeGroupElementWithParentThrowsExceptionWhenRedefineElementAddAttributeGroupElement()
+    public function testAttributeGroupElementWithParentThrowsExceptionWhenRedefineElementAddAttributeGroupElement(): void
     {
         $parent1 = new RedefineElement();
         $parent1->addAttributeGroupElement($this->sut);
@@ -114,7 +116,7 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAttributeGroupElementWhenAddedToSchemaElement()
+    public function testAttributeGroupElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addAttributeGroupElement($this->sut);
@@ -128,7 +130,7 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAttributeGroupElementWithParentThrowsExceptionWhenSchemaElementAddAttributeGroupElement()
+    public function testAttributeGroupElementWithParentThrowsExceptionWhenSchemaElementAddAttributeGroupElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addAttributeGroupElement($this->sut);
@@ -151,7 +153,8 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
      */
     public function testLookupNamespaceReturnsStringWhenAddedToAttributeNamingElementAndParentPrefixBoundToNamespace(
         AttributeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->addAttributeGroupElement($this->sut);
         $parent->bindNamespace('foo', 'http://example.org/foo');
         self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
@@ -165,7 +168,7 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new RedefineElement();
         $parent->addAttributeGroupElement($this->sut);
@@ -181,7 +184,7 @@ class AttributeGroupElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addAttributeGroupElement($this->sut);

@@ -75,7 +75,7 @@ class Specification
      * 
      * @throws  InvalidOperationException   When no initial state has been set.
      */
-    public function getInitialState():int
+    public function getInitialState(): int
     {
         if (!$this->hasInitialState()) {
             throw new InvalidOperationException(\sprintf(
@@ -92,7 +92,7 @@ class Specification
      * 
      * @param   int $state  The initial state to set.
      */
-    public function setInitialState(int $state)
+    public function setInitialState(int $state): void
     {
         $this->initialState = $state;
     }
@@ -102,7 +102,7 @@ class Specification
      * 
      * @return  bool    TRUE if an initial state has been set, otherwise FALSE.
      */
-    public function hasInitialState():bool
+    public function hasInitialState(): bool
     {
         return $this->initialState !== NULL;
     }
@@ -112,7 +112,7 @@ class Specification
      * 
      * @param   int $state  The final state to add.
      */
-    public function addFinalState(int $state)
+    public function addFinalState(int $state): void
     {
         if (!\in_array($state, $this->finalStates, TRUE)) {
             $this->finalStates[] = $state;
@@ -124,7 +124,7 @@ class Specification
      * 
      * @return  int[]   An indexed array of all the final states.
      */
-    public function getFinalStates():array
+    public function getFinalStates(): array
     {
         return $this->finalStates;
     }
@@ -139,7 +139,7 @@ class Specification
      * 
      * @throws  InvalidOperationException   When no name is associated with the transition.
      */
-    public function getTransitionElementName(int $state, int $sym):string
+    public function getTransitionElementName(int $state, int $sym): string
     {
         if (!$this->hasTransitionElementName($state, $sym)) {
             throw new InvalidOperationException(\sprintf(
@@ -160,7 +160,7 @@ class Specification
      * @param   int     $sym    The symbol of the transition.
      * @param   string  $name   The name to associate with the transition.
      */
-    public function setTransitionElementName(int $state, int $sym, string $name)
+    public function setTransitionElementName(int $state, int $sym, string $name): void
     {
         $this->transitionElementNames[$state][$sym] = $name;
     }
@@ -173,7 +173,7 @@ class Specification
      * @param   int $sym    The symbol of the transition.
      * @return  bool    TRUE if a name is associated with a transition, otherwise FALSE.
      */
-    public function hasTransitionElementName(int $state, int $sym):bool
+    public function hasTransitionElementName(int $state, int $sym): bool
     {
         return isset($this->transitionElementNames[$state][$sym]);
     }
@@ -185,7 +185,7 @@ class Specification
      * @param   int $state  The state of the transitions.
      * @return  string[]    An indexed array of names.
      */
-    public function getTransitionElementNames(int $state):array
+    public function getTransitionElementNames(int $state): array
     {
         return isset($this->transitionElementNames[$state]) ? 
             \array_values($this->transitionElementNames[$state]) : 
@@ -200,7 +200,7 @@ class Specification
      * @param   string  $name   The name associated with the transition.
      * @return  int|NULL    An integer if the symbol has been found, otherwise NULL.
      */
-    public function findTransitionElementNameSymbol(int $state, string $name)
+    public function findTransitionElementNameSymbol(int $state, string $name): ?int
     {
         return (isset($this->transitionElementNames[$state]) && 
             (FALSE !== $sym = \array_search($name, $this->transitionElementNames[$state], TRUE))) ? 
@@ -218,7 +218,7 @@ class Specification
      * 
      * @throws  InvalidOperationException   When no next state is associated with the transition.
      */
-    public function getTransitionNextState(int $state, int $sym):int
+    public function getTransitionNextState(int $state, int $sym): int
     {
         if (!$this->hasTransitionNextState($state, $sym)) {
             throw new InvalidOperationException(\sprintf(
@@ -239,7 +239,7 @@ class Specification
      * @param   int $sym        The symbol of the transition.
      * @param   int $nextState  The next state to associate with the transition.
      */
-    public function setTransitionNextState(int $state, int $sym, int $nextState)
+    public function setTransitionNextState(int $state, int $sym, int $nextState): void
     {
         $this->transitionNextStates[$state][$sym] = $nextState;
     }
@@ -252,7 +252,7 @@ class Specification
      * @param   int $sym    The symbol of the transition.
      * @return  bool    TRUE if a next state is associated with a transition, otherwise FALSE.
      */
-    public function hasTransitionNextState(int $state, int $sym):bool
+    public function hasTransitionNextState(int $state, int $sym): bool
     {
         return isset($this->transitionNextStates[$state][$sym]);
     }
@@ -262,7 +262,7 @@ class Specification
      * 
      * @return  array[] An indexed array of indexed array of 2 values: the first is the state, the second is the symbol.
      */
-    public function getNextStateTransitions():array
+    public function getNextStateTransitions(): array
     {
         $transitions = [];
         
@@ -285,7 +285,7 @@ class Specification
      * 
      * @throws  InvalidOperationException   When no method name is associated with the transition.
      */
-    public function getTransitionElementBuilder(int $state, int $sym):string
+    public function getTransitionElementBuilder(int $state, int $sym): string
     {
         if (!$this->hasTransitionElementBuilder($state, $sym)) {
             throw new InvalidOperationException(\sprintf(
@@ -306,7 +306,7 @@ class Specification
      * @param   int     $sym    The symbol of the transition.
      * @param   string  $name   The method name to associate with the transition.
      */
-    public function setTransitionElementBuilder(int $state, int $sym, string $name)
+    public function setTransitionElementBuilder(int $state, int $sym, string $name): void
     {
         $this->transitionElementBuilders[$state][$sym] = $name;
     }
@@ -319,7 +319,7 @@ class Specification
      * @param   int $sym    The symbol of the transition.
      * @return  bool    TRUE if a method name is associated with a transition, otherwise FALSE.
      */
-    public function hasTransitionElementBuilder(int $state, int $sym):bool
+    public function hasTransitionElementBuilder(int $state, int $sym): bool
     {
         return isset($this->transitionElementBuilders[$state][$sym]);
     }
@@ -334,7 +334,7 @@ class Specification
      * 
      * @throws  InvalidOperationException   When no method name is associated with the attribute.
      */
-    public function getAttributeBuilder(string $name, string $ns):string
+    public function getAttributeBuilder(string $name, string $ns): string
     {
         if (!$this->hasAttributeBuilder($name, $ns)) {
             throw new InvalidOperationException(\sprintf(
@@ -356,7 +356,7 @@ class Specification
      * @param   string  $ns     The namespace of the attribute.
      * @param   string  $method The method name to associate with the attribute.
      */
-    public function setAttributeBuilder(string $name, string $ns, string $method)
+    public function setAttributeBuilder(string $name, string $ns, string $method): void
     {
         $this->attributeBuilders[$ns][$name] = $method;
     }
@@ -369,7 +369,7 @@ class Specification
      * @param   string  $ns    The namespace of the attribute.
      * @return  bool    TRUE if a method name is associated with an attribute, otherwise FALSE.
      */
-    public function hasAttributeBuilder(string $name, string $ns):bool
+    public function hasAttributeBuilder(string $name, string $ns): bool
     {
         return isset($this->attributeBuilders[$ns][$name]);
     }

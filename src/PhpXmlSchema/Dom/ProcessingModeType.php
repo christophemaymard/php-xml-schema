@@ -21,19 +21,19 @@ class ProcessingModeType
      * obtain schema information, but it will not signal errors for those it 
      * cannot obtain any schema information.
      */
-    const LAX = 1;
+    public const LAX = 1;
     
     /**
      * XML processor does not attempt to validate any elements from the 
      * specified namespaces.
      */
-    const SKIP = 2;
+    public const SKIP = 2;
     
     /**
      * XML processor must obtain the schema associated with the required 
      * namespaces and validate the elements.
      */
-    const STRICT = 3;
+    public const STRICT = 3;
     
     /**
      * The mode of the content processing.
@@ -46,7 +46,7 @@ class ProcessingModeType
      * 
      * @return  ProcessingModeType  A new instance of ProcessingModeType.
      */
-    public static function createLax():self
+    public static function createLax(): self
     {
         return new self(self::LAX);
     }
@@ -56,7 +56,7 @@ class ProcessingModeType
      * 
      * @return  ProcessingModeType  A new instance of ProcessingModeType.
      */
-    public static function createSkip():self
+    public static function createSkip(): self
     {
         return new self(self::SKIP);
     }
@@ -66,7 +66,7 @@ class ProcessingModeType
      * 
      * @return  ProcessingModeType  A new instance of ProcessingModeType.
      */
-    public static function createStrict():self
+    public static function createStrict(): self
     {
         return new self(self::STRICT);
     }
@@ -88,7 +88,7 @@ class ProcessingModeType
      * 
      * @throws  InvalidValueException   When the mode of the content processing is an invalid value.
      */
-    private function setMode(int $mode)
+    private function setMode(int $mode): void
     {
         if ($mode != self::LAX && $mode != self::SKIP && $mode != self::STRICT) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid mode of content processing.', $mode));
@@ -102,7 +102,7 @@ class ProcessingModeType
      * 
      * @return  bool    TRUE if the mode is "lax", otherwise FALSE.
      */
-    public function isLax():bool
+    public function isLax(): bool
     {
         return $this->mode == self::LAX;
     }
@@ -112,7 +112,7 @@ class ProcessingModeType
      * 
      * @return  bool    TRUE if the mode is "skip", otherwise FALSE.
      */
-    public function isSkip():bool
+    public function isSkip(): bool
     {
         return $this->mode == self::SKIP;
     }
@@ -122,7 +122,7 @@ class ProcessingModeType
      * 
      * @return  bool    TRUE if the mode is "strict", otherwise FALSE.
      */
-    public function isStrict():bool
+    public function isStrict(): bool
     {
         return $this->mode == self::STRICT;
     }

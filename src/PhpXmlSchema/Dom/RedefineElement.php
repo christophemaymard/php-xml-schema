@@ -32,7 +32,7 @@ class RedefineElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_REDEFINE;
     }
@@ -40,7 +40,7 @@ class RedefineElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'redefine';
     }
@@ -50,7 +50,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getSchemaLocation()
+    public function getSchemaLocation(): ?AnyUriType
     {
         return $this->schemaLocationAttr;
     }
@@ -60,7 +60,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @param   AnyUriType  $value  The value to set.
      */
-    public function setSchemaLocation(AnyUriType $value)
+    public function setSchemaLocation(AnyUriType $value): void
     {
         $this->schemaLocationAttr = $value;
     }
@@ -70,7 +70,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasSchemaLocation():bool
+    public function hasSchemaLocation(): bool
     {
         return $this->schemaLocationAttr !== NULL;
     }
@@ -80,7 +80,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @param   AnnotationElement   $element    The element to add.
      */
-    public function addAnnotationElement(AnnotationElement $element)
+    public function addAnnotationElement(AnnotationElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -90,7 +90,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @return  AnnotationElement[] An indexed array of AnnotationElement instances.
      */
-    public function getAnnotationElements():array
+    public function getAnnotationElements(): array
     {
         return $this->getChildElementsByType(0, AnnotationElement::class);
     }
@@ -100,7 +100,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @param   SimpleTypeElement   $element    The element to add.
      */
-    public function addSimpleTypeElement(SimpleTypeElement $element)
+    public function addSimpleTypeElement(SimpleTypeElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -110,7 +110,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @return  SimpleTypeElement[] An indexed array of SimpleTypeElement instances.
      */
-    public function getSimpleTypeElements():array
+    public function getSimpleTypeElements(): array
     {
         return $this->getChildElementsByType(0, SimpleTypeElement::class);
     }
@@ -120,7 +120,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @param   ComplexTypeElement  $element    The element to add.
      */
-    public function addComplexTypeElement(ComplexTypeElement $element)
+    public function addComplexTypeElement(ComplexTypeElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -130,7 +130,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @return  ComplexTypeElement[]    An indexed array of ComplexTypeElement instances.
      */
-    public function getComplexTypeElements():array
+    public function getComplexTypeElements(): array
     {
         return $this->getChildElementsByType(0, ComplexTypeElement::class);
     }
@@ -140,7 +140,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @param   GroupElement    $element    The element to add.
      */
-    public function addGroupElement(GroupElement $element)
+    public function addGroupElement(GroupElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -150,7 +150,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @return  GroupElement[]  An indexed array of GroupElement instances.
      */
-    public function getGroupElements():array
+    public function getGroupElements(): array
     {
         return $this->getChildElementsByType(0, GroupElement::class);
     }
@@ -160,7 +160,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @param   AttributeGroupElement   $element    The element to add.
      */
-    public function addAttributeGroupElement(AttributeGroupElement $element)
+    public function addAttributeGroupElement(AttributeGroupElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -170,7 +170,7 @@ class RedefineElement extends AbstractCompositeElement
      * 
      * @return  AttributeGroupElement[] An indexed array of AttributeGroupElement instances.
      */
-    public function getAttributeGroupElements():array
+    public function getAttributeGroupElements(): array
     {
         return $this->getChildElementsByType(0, AttributeGroupElement::class);
     }

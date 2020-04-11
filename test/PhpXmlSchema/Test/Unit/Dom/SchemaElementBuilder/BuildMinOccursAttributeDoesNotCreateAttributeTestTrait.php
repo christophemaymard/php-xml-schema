@@ -25,7 +25,7 @@ trait BuildMinOccursAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildMinOccursAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildMinOccursAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildMinOccursAttribute('-1');
         $this->sut->buildMinOccursAttribute('0');

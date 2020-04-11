@@ -26,7 +26,7 @@ trait BuildChoiceElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildChoiceElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildChoiceElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildChoiceElement();
         $sch = $this->sut->getSchema();

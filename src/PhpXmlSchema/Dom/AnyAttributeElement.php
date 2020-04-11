@@ -37,7 +37,7 @@ class AnyAttributeElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_ANYATTRIBUTE;
     }
@@ -45,7 +45,7 @@ class AnyAttributeElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'anyAttribute';
     }
@@ -55,7 +55,7 @@ class AnyAttributeElement extends AbstractAnnotatedElement
      * 
      * @return  NamespaceListType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getNamespace()
+    public function getNamespace(): ?NamespaceListType
     {
         return $this->namespaceAttr;
     }
@@ -65,7 +65,7 @@ class AnyAttributeElement extends AbstractAnnotatedElement
      * 
      * @param   NamespaceListType   $value  The value to set.
      */
-    public function setNamespace(NamespaceListType $value)
+    public function setNamespace(NamespaceListType $value): void
     {
         $this->namespaceAttr = $value;
     }
@@ -75,7 +75,7 @@ class AnyAttributeElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasNamespace():bool
+    public function hasNamespace(): bool
     {
         return $this->namespaceAttr !== NULL;
     }
@@ -85,7 +85,7 @@ class AnyAttributeElement extends AbstractAnnotatedElement
      * 
      * @return  ProcessingModeType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getProcessContents()
+    public function getProcessContents(): ?ProcessingModeType
     {
         return $this->processContentsAttr;
     }
@@ -95,7 +95,7 @@ class AnyAttributeElement extends AbstractAnnotatedElement
      * 
      * @param   ProcessingModeType  $value  The value to set.
      */
-    public function setProcessContents(ProcessingModeType $value)
+    public function setProcessContents(ProcessingModeType $value): void
     {
         $this->processContentsAttr = $value;
     }
@@ -105,7 +105,7 @@ class AnyAttributeElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasProcessContents():bool
+    public function hasProcessContents(): bool
     {
         return $this->processContentsAttr !== NULL;
     }

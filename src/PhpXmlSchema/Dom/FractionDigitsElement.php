@@ -25,7 +25,7 @@ class FractionDigitsElement extends AbstractNumericFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_FRACTIONDIGITS;
     }
@@ -33,7 +33,7 @@ class FractionDigitsElement extends AbstractNumericFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'fractionDigits';
     }

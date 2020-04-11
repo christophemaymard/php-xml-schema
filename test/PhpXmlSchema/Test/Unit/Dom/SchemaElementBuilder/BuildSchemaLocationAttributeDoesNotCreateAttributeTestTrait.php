@@ -27,7 +27,7 @@ trait BuildSchemaLocationAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildSchemaLocationAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildSchemaLocationAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildSchemaLocationAttribute(':');
         $this->sut->buildSchemaLocationAttribute('http://example.org/schemaLocation');

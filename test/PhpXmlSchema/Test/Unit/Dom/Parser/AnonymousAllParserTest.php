@@ -24,7 +24,7 @@ class AnonymousAllParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'anonymous_all';
     }
@@ -35,7 +35,7 @@ class AnonymousAllParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('all_0006.xsd'));
         
@@ -74,7 +74,7 @@ class AnonymousAllParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -105,7 +105,7 @@ class AnonymousAllParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -140,7 +140,7 @@ class AnonymousAllParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessElementElement()
+    public function testParseProcessElementElement(): void
     {
         $sch = $this->sut->parse($this->getXs('element_0002.xsd'));
         
@@ -179,7 +179,7 @@ class AnonymousAllParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

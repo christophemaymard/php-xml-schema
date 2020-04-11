@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 
@@ -29,7 +30,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElemen
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -40,7 +41,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElemen
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeElements()[0];
     }
@@ -48,7 +49,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElemen
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
@@ -57,7 +58,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElemen
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -79,7 +80,8 @@ class TopAttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElemen
     public function testBuildTypeAttributeCreatesAttrWhenTopAttributeAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildAttributeElement();
@@ -109,7 +111,7 @@ class TopAttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElemen
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildTypeAttributeCreatesAttrWhenTopAttributeAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildTypeAttributeCreatesAttrWhenTopAttributeAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');

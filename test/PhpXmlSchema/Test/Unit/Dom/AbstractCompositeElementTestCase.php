@@ -22,7 +22,7 @@ abstract class AbstractCompositeElementTestCase extends AbstractAbstractElementT
      * 
      * @group   content
      */
-    public function testGetElementsReturnsEmptyArrayWhenNoElementHasBeenAdded()
+    public function testGetElementsReturnsEmptyArrayWhenNoElementHasBeenAdded(): void
     {
         self::assertSame([], $this->sut->getElements(), 'No element has been added.');
     }
@@ -34,7 +34,7 @@ abstract class AbstractCompositeElementTestCase extends AbstractAbstractElementT
      * 
      * @group   attribute
      */
-    public function testHasId()
+    public function testHasId(): void
     {
         self::assertFalse($this->sut->hasId(), 'The attribute has not been set.');
         
@@ -49,7 +49,7 @@ abstract class AbstractCompositeElementTestCase extends AbstractAbstractElementT
      * 
      * @group   attribute
      */
-    public function testGetId()
+    public function testGetId(): void
     {
         self::assertNull($this->sut->getId(), 'The attribute has not been set.');
         

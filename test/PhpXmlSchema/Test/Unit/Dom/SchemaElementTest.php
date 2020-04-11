@@ -23,7 +23,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElement();
     }
@@ -31,7 +31,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('schema', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasAttributeFormDefault()
+    public function testHasAttributeFormDefault(): void
     {
         self::assertFalse($this->sut->hasAttributeFormDefault(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetAttributeFormDefault()
+    public function testGetAttributeFormDefault(): void
     {
         self::assertNull($this->sut->getAttributeFormDefault(), 'The attribute has not been set.');
         
@@ -78,7 +78,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasBlockDefault()
+    public function testHasBlockDefault(): void
     {
         self::assertFalse($this->sut->hasBlockDefault(), 'The attribute has not been set.');
         
@@ -93,7 +93,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetBlockDefault()
+    public function testGetBlockDefault(): void
     {
         self::assertNull($this->sut->getBlockDefault(), 'The attribute has not been set.');
         
@@ -113,7 +113,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasElementFormDefault()
+    public function testHasElementFormDefault(): void
     {
         self::assertFalse($this->sut->hasElementFormDefault(), 'The attribute has not been set.');
         
@@ -128,7 +128,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetElementFormDefault()
+    public function testGetElementFormDefault(): void
     {
         self::assertNull($this->sut->getElementFormDefault(), 'The attribute has not been set.');
         
@@ -148,7 +148,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasFinalDefault()
+    public function testHasFinalDefault(): void
     {
         self::assertFalse($this->sut->hasFinalDefault(), 'The attribute has not been set.');
         
@@ -163,7 +163,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetFinalDefault()
+    public function testGetFinalDefault(): void
     {
         self::assertNull($this->sut->getFinalDefault(), 'The attribute has not been set.');
         
@@ -183,7 +183,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasLang()
+    public function testHasLang(): void
     {
         self::assertFalse($this->sut->hasLang(), 'The attribute has not been set.');
         
@@ -198,7 +198,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetLang()
+    public function testGetLang(): void
     {
         self::assertNull($this->sut->getLang(), 'The attribute has not been set.');
         
@@ -218,7 +218,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasTargetNamespace()
+    public function testHasTargetNamespace(): void
     {
         self::assertFalse($this->sut->hasTargetNamespace(), 'The attribute has not been set.');
         
@@ -233,7 +233,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetTargetNamespace()
+    public function testGetTargetNamespace(): void
     {
         self::assertNull($this->sut->getTargetNamespace(), 'The attribute has not been set.');
         
@@ -253,7 +253,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasVersion()
+    public function testHasVersion(): void
     {
         self::assertFalse($this->sut->hasVersion(), 'The attribute has not been set.');
         
@@ -268,7 +268,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetVersion()
+    public function testGetVersion(): void
     {
         self::assertNull($this->sut->getVersion(), 'The attribute has not been set.');
         
@@ -289,7 +289,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetIncludeElements()
+    public function testGetIncludeElements(): void
     {
         $elements = [];
         
@@ -320,7 +320,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetImportElements()
+    public function testGetImportElements(): void
     {
         $elements = [];
         
@@ -351,7 +351,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetRedefineElements()
+    public function testGetRedefineElements(): void
     {
         $elements = [];
         
@@ -382,7 +382,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetCompositionAnnotationElements()
+    public function testGetCompositionAnnotationElements(): void
     {
         $elements = [];
         
@@ -411,7 +411,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer0()
+    public function testGetElementsReturnsElementsOfContainer0(): void
     {
         $children = [];
         $children[] = $this->createIncludeElementHasParentFalse1TimeMock();
@@ -441,7 +441,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetSimpleTypeElements()
+    public function testGetSimpleTypeElements(): void
     {
         $elements = [];
         
@@ -476,7 +476,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetComplexTypeElements()
+    public function testGetComplexTypeElements(): void
     {
         $elements = [];
         
@@ -511,7 +511,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetGroupElements()
+    public function testGetGroupElements(): void
     {
         $elements = [];
         
@@ -546,7 +546,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetAttributeGroupElements()
+    public function testGetAttributeGroupElements(): void
     {
         $elements = [];
         
@@ -581,7 +581,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementElements()
+    public function testGetElementElements(): void
     {
         $elements = [];
         
@@ -616,7 +616,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetAttributeElements()
+    public function testGetAttributeElements(): void
     {
         $elements = [];
         
@@ -651,7 +651,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetNotationElements()
+    public function testGetNotationElements(): void
     {
         $elements = [];
         
@@ -686,7 +686,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetDefinitionAnnotationElements()
+    public function testGetDefinitionAnnotationElements(): void
     {
         $elements = [];
         
@@ -719,7 +719,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
@@ -765,7 +765,7 @@ class SchemaElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
+    public function testGetElementsReturnsElementsOrderedByContainer01(): void
     {
         $children = [];
         $children[] = $this->createIncludeElementHasParentFalse1TimeMock();

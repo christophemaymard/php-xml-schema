@@ -26,7 +26,7 @@ abstract class AbstractAnyFacetElement extends AbstractFixedFacetElement
      * 
      * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getValue()
+    public function getValue(): ?string
     {
         return $this->valueAttr;
     }
@@ -36,7 +36,7 @@ abstract class AbstractAnyFacetElement extends AbstractFixedFacetElement
      * 
      * @param   string  $value  The value to set.
      */
-    public function setValue(string $value)
+    public function setValue(string $value): void
     {
         $this->valueAttr = $value;
     }
@@ -46,7 +46,7 @@ abstract class AbstractAnyFacetElement extends AbstractFixedFacetElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasValue():bool
+    public function hasValue(): bool
     {
         return $this->valueAttr !== NULL;
     }

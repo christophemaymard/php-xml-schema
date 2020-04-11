@@ -23,7 +23,7 @@ class UniqueElementTest extends AbstractIdentityConstraintElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new UniqueElement();
     }
@@ -31,7 +31,7 @@ class UniqueElementTest extends AbstractIdentityConstraintElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('unique', $this->sut->getLocalName());
     }

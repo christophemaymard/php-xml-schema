@@ -24,7 +24,7 @@ class NotationParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'notation';
     }
@@ -35,7 +35,7 @@ class NotationParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('notation_0006.xsd'));
         
@@ -69,7 +69,7 @@ class NotationParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -98,7 +98,7 @@ class NotationParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidNameAttributes
      */
-    public function testParseProcessNameAttribute(string $fileName, string $name)
+    public function testParseProcessNameAttribute(string $fileName, string $name): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -123,7 +123,7 @@ class NotationParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessPublicAttribute()
+    public function testParseProcessPublicAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('notation_public_0001.xsd'));
         
@@ -148,7 +148,7 @@ class NotationParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessSystemAttribute()
+    public function testParseProcessSystemAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('notation_system_0001.xsd'));
         
@@ -174,7 +174,7 @@ class NotationParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -203,7 +203,7 @@ class NotationParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -238,7 +238,7 @@ class NotationParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNameAttributes():array
+    public function getValidNameAttributes(): array
     {
         return [
             'Starts with _' => [

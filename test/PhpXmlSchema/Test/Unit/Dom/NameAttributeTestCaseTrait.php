@@ -25,7 +25,7 @@ trait NameAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasName()
+    public function testHasName(): void
     {
         self::assertFalse($this->sut->hasName(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait NameAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetName()
+    public function testGetName(): void
     {
         self::assertNull($this->sut->getName(), 'The attribute has not been set.');
         

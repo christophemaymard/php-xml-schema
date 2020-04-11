@@ -25,7 +25,7 @@ class PatternElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new PatternElement();
     }
@@ -33,7 +33,7 @@ class PatternElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_PATTERN, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class PatternElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testPatternElementWhenAddedToSimpleContentRestrictionElement()
+    public function testPatternElementWhenAddedToSimpleContentRestrictionElement(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addPatternElement($this->sut);
@@ -58,7 +58,7 @@ class PatternElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testPatternElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddPatternElement()
+    public function testPatternElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddPatternElement(): void
     {
         $parent1 = new SimpleContentRestrictionElement();
         $parent1->addPatternElement($this->sut);
@@ -74,7 +74,7 @@ class PatternElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testPatternElementWhenAddedToSimpleTypeRestrictionElement()
+    public function testPatternElementWhenAddedToSimpleTypeRestrictionElement(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addPatternElement($this->sut);
@@ -88,7 +88,7 @@ class PatternElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testPatternElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddPatternElement()
+    public function testPatternElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddPatternElement(): void
     {
         $parent1 = new SimpleTypeRestrictionElement();
         $parent1->addPatternElement($this->sut);
@@ -106,7 +106,7 @@ class PatternElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addPatternElement($this->sut);
@@ -122,7 +122,7 @@ class PatternElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addPatternElement($this->sut);

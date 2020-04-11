@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -107,7 +108,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -120,7 +121,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -146,7 +147,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertPatternElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -154,7 +155,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeElements()[0]
             ->getSimpleTypeElement()
@@ -165,7 +166,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
@@ -177,7 +178,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -196,7 +197,8 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public function testBuildIdAttributeCreatesAttrWhenPatternAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -223,7 +225,8 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public function testBuildIdAttributeThrowsExceptionWhenPatternAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -245,7 +248,8 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      */
     public function testBuildValueAttributeCreatesAttrWhenPatternAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildValueAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -270,7 +274,8 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      */
     public function testBuildValueAttributeThrowsExceptionWhenPatternAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid string datatype.', 
@@ -287,7 +292,7 @@ class PatternSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenPattern()
+    public function testBuildAnnotationElementCreateEltWhenPattern(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

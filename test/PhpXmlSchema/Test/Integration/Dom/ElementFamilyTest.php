@@ -69,7 +69,7 @@ class ElementFamilyTest extends TestCase
      * Tests that getElementId() of all the elements returns an unique 
      * identifier.
      */
-    public function testGetElementIdIsUnique()
+    public function testGetElementIdIsUnique(): void
     {
         $elts = [];
         $id = NULL;
@@ -91,7 +91,7 @@ class ElementFamilyTest extends TestCase
      * 
      * @return  ElementInterface[]
      */
-    private function getAllXmlSchemaElements():array
+    private function getAllXmlSchemaElements(): array
     {
         return [
             new AllElement(), 

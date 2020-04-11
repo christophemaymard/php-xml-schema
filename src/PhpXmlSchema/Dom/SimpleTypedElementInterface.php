@@ -20,19 +20,19 @@ interface SimpleTypedElementInterface
      * 
      * @return  SimpleTypeElement|NULL  The instance of the element if it has been set, otherwise NULL.
      */
-    public function getSimpleTypeElement();
+    public function getSimpleTypeElement(): ?SimpleTypeElement;
     
     /**
      * Sets the "simpleType" element.
      * 
      * @param   SimpleTypeElement   $element    The element to set.
      */
-    public function setSimpleTypeElement(SimpleTypeElement $element);
+    public function setSimpleTypeElement(SimpleTypeElement $element): void;
     
     /**
      * Indicates whether a "simpleType" element has been set.
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasSimpleTypeElement():bool;
+    public function hasSimpleTypeElement(): bool;
 }

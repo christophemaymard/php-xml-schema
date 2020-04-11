@@ -24,7 +24,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'cc';
     }
@@ -35,7 +35,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('complexContent_0006.xsd'));
         
@@ -79,7 +79,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -118,7 +118,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidMixedAttributes
      */
-    public function testParseProcessMixedAttribute(string $fileName, bool $bool)
+    public function testParseProcessMixedAttribute(string $fileName, bool $bool): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -154,7 +154,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -195,7 +195,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessRestrictionElement()
+    public function testParseProcessRestrictionElement(): void
     {
         $sch = $this->sut->parse($this->getXs('restriction_0002.xsd'));
         
@@ -230,7 +230,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessExtensionElement()
+    public function testParseProcessExtensionElement(): void
     {
         $sch = $this->sut->parse($this->getXs('extension_0002.xsd'));
         
@@ -264,7 +264,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -299,7 +299,7 @@ class ComplexContentParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidMixedAttributes():array
+    public function getValidMixedAttributes(): array
     {
         return [
             'true (string)' => [

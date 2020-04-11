@@ -60,7 +60,7 @@ class XmlTraverser
      * 
      * @throws  InvalidValueException   When the source is an invalid XML.
      */
-    private function loadSource(string $src)
+    private function loadSource(string $src): void
     {
         $this->doc = new \DOMDocument();
         $this->doc->formatOutput = FALSE;
@@ -79,7 +79,7 @@ class XmlTraverser
      * 
      * @return  string
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return (string)$this->currentNode->localName;
     }
@@ -89,7 +89,7 @@ class XmlTraverser
      * 
      * @return  string
      */
-    public function getNamespace():string
+    public function getNamespace(): string
     {
         return (string)$this->currentNode->namespaceURI;
     }
@@ -99,7 +99,7 @@ class XmlTraverser
      * 
      * @return  string
      */
-    public function getValue():string
+    public function getValue(): string
     {
         $value = '';
         
@@ -121,7 +121,7 @@ class XmlTraverser
      * 
      * @return  string[]    An associative array where the key is the prefix, and the value is the binded namespace.
      */
-    public function getNamespaceDeclarations():array
+    public function getNamespaceDeclarations(): array
     {
         $decls = [];
         
@@ -145,7 +145,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the cursor has been moved, otherwise FALSE.
      */
-    public function moveToParentNode():bool
+    public function moveToParentNode(): bool
     {
         $moved = FALSE;
         $node = $this->currentNode->parentNode;
@@ -166,7 +166,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the cursor has been moved, otherwise FALSE.
      */
-    public function moveToFirstAttribute():bool
+    public function moveToFirstAttribute(): bool
     {
         $moved = FALSE;
         
@@ -190,7 +190,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the cursor has been moved, otherwise FALSE.
      */
-    public function moveToNextAttribute():bool
+    public function moveToNextAttribute(): bool
     {
         $moved = FALSE;
         $node = $this->currentNode->nextSibling;
@@ -211,7 +211,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the cursor has been moved, otherwise FALSE.
      */
-    public function moveToNextNode():bool
+    public function moveToNextNode(): bool
     {
         $moved = FALSE;
         $node = $this->currentNode->nextSibling;
@@ -232,7 +232,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the cursor has been moved, otherwise FALSE.
      */
-    public function moveToFirstChildNode():bool
+    public function moveToFirstChildNode(): bool
     {
         $moved = FALSE;
         $node = $this->currentNode->firstChild;
@@ -250,7 +250,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the current node is a comment, otherwise FALSE.
      */
-    public function isCommentNode():bool
+    public function isCommentNode(): bool
     {
         return $this->currentNode->nodeType == XML_COMMENT_NODE;
     }
@@ -260,7 +260,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the current node is an element, otherwise FALSE.
      */
-    public function isElementNode():bool
+    public function isElementNode(): bool
     {
         return $this->currentNode->nodeType == XML_ELEMENT_NODE;
     }
@@ -270,7 +270,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the current node is a text, otherwise FALSE.
      */
-    public function isTextNode():bool
+    public function isTextNode(): bool
     {
         return $this->currentNode->nodeType == XML_TEXT_NODE;
     }
@@ -281,7 +281,7 @@ class XmlTraverser
      * 
      * @return  bool    TRUE if the current node is a white space, otherwise FALSE.
      */
-    public function isWhiteSpaceNode():bool
+    public function isWhiteSpaceNode(): bool
     {
         return $this->currentNode->nodeType == XML_TEXT_NODE && 
             $this->currentNode->isElementContentWhitespace();

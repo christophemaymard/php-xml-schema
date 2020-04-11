@@ -26,7 +26,7 @@ trait BuildProcessContentsAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildProcessContentsAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildProcessContentsAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildProcessContentsAttribute('foo');
         $this->sut->buildProcessContentsAttribute('strict');

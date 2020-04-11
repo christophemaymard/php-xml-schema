@@ -32,7 +32,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SimpleTypeElement();
     }
@@ -40,7 +40,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_SIMPLETYPE, $this->sut->getElementId());
     }
@@ -57,7 +57,8 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      */
     public function testSimpleTypeElementWhenAddedToSimpleTypedElement(
         SimpleTypedElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setSimpleTypeElement($this->sut);
         self::assertTrue($this->sut->hasParent());
         self::assertSame($parent, $this->sut->getParent());
@@ -77,7 +78,8 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
     public function testSimpleTypeElementWithParentThrowsExceptionWhenSimpleTypedElementSetSimpleTypeElement(
         SimpleTypedElementInterface $parent1,
         SimpleTypedElementInterface $parent2
-    ) {
+    ): void
+    {
         $parent1->setSimpleTypeElement($this->sut);
         
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
@@ -90,7 +92,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeElementWhenAddedToElementElement()
+    public function testSimpleTypeElementWhenAddedToElementElement(): void
     {
         $parent = new ElementElement();
         $parent->setTypeElement($this->sut);
@@ -104,7 +106,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeElementWithParentThrowsExceptionWhenElementElementSetTypeElement()
+    public function testSimpleTypeElementWithParentThrowsExceptionWhenElementElementSetTypeElement(): void
     {
         $parent1 = new ElementElement();
         $parent1->setTypeElement($this->sut);
@@ -120,7 +122,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeElementWhenAddedToRedefineElement()
+    public function testSimpleTypeElementWhenAddedToRedefineElement(): void
     {
         $parent = new RedefineElement();
         $parent->addSimpleTypeElement($this->sut);
@@ -134,7 +136,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeElementWithParentThrowsExceptionWhenRedefineElementAddSimpleTypeElement()
+    public function testSimpleTypeElementWithParentThrowsExceptionWhenRedefineElementAddSimpleTypeElement(): void
     {
         $parent1 = new RedefineElement();
         $parent1->addSimpleTypeElement($this->sut);
@@ -150,7 +152,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeElementWhenAddedToSchemaElement()
+    public function testSimpleTypeElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addSimpleTypeElement($this->sut);
@@ -164,7 +166,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeElementWithParentThrowsExceptionWhenSchemaElementAddSimpleTypeElement()
+    public function testSimpleTypeElementWithParentThrowsExceptionWhenSchemaElementAddSimpleTypeElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addSimpleTypeElement($this->sut);
@@ -180,7 +182,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeElementWhenAddedToUnionElement()
+    public function testSimpleTypeElementWhenAddedToUnionElement(): void
     {
         $parent = new UnionElement();
         $parent->addSimpleTypeElement($this->sut);
@@ -194,7 +196,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeElementWithParentThrowsExceptionWhenUnionElementAddSimpleTypeElement()
+    public function testSimpleTypeElementWithParentThrowsExceptionWhenUnionElementAddSimpleTypeElement(): void
     {
         $parent1 = new UnionElement();
         $parent1->addSimpleTypeElement($this->sut);
@@ -217,7 +219,8 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      */
     public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypedElementAndParentPrefixBoundToNamespace(
         SimpleTypedElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setSimpleTypeElement($this->sut);
         $parent->bindNamespace('foo', 'http://example.org/foo');
         self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
@@ -231,7 +234,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToElementElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToElementElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ElementElement();
         $parent->setTypeElement($this->sut);
@@ -247,7 +250,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new RedefineElement();
         $parent->addSimpleTypeElement($this->sut);
@@ -263,7 +266,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addSimpleTypeElement($this->sut);
@@ -279,7 +282,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToUnionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToUnionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new UnionElement();
         $parent->addSimpleTypeElement($this->sut);
@@ -292,7 +295,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @return  array[]
      */
-    public function getAllSimpleTypedElementValues():array
+    public function getAllSimpleTypedElementValues(): array
     {
         $datasets = [];
         
@@ -308,7 +311,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @return  array[]
      */
-    public function getAllSimpleTypedElementParentValues():array
+    public function getAllSimpleTypedElementParentValues(): array
     {
         $datasets = [];
         
@@ -328,7 +331,7 @@ class SimpleTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @return  SimpleTypedElementInterface[]
      */
-    private function getAllSimpleTypedElements():array
+    private function getAllSimpleTypedElements(): array
     {
         return [
             new AttributeElement(),

@@ -66,7 +66,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AnnotationElement();
     }
@@ -74,7 +74,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_ANNOTATION, $this->sut->getElementId());
     }
@@ -91,7 +91,8 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      */
     public function testAnnotationElementWhenAddedToAnnotatedElement(
         AnnotatedElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setAnnotationElement($this->sut);
         self::assertTrue($this->sut->hasParent());
         self::assertSame($parent, $this->sut->getParent());
@@ -111,7 +112,8 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
     public function testAnnotationElementWithParentThrowsExceptionWhenAnnotatedElementSetAnnotationElement(
         AnnotatedElementInterface $parent1,
         AnnotatedElementInterface $parent2
-    ) {
+    ): void
+    {
         $parent1->setAnnotationElement($this->sut);
         
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
@@ -124,7 +126,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAnnotationElementWhenAddedToRedefineElement()
+    public function testAnnotationElementWhenAddedToRedefineElement(): void
     {
         $parent = new RedefineElement();
         $parent->addAnnotationElement($this->sut);
@@ -138,7 +140,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAnnotationElementWithParentThrowsExceptionWhenRedefineElementAddAnnotationElement()
+    public function testAnnotationElementWithParentThrowsExceptionWhenRedefineElementAddAnnotationElement(): void
     {
         $parent1 = new RedefineElement();
         $parent1->addAnnotationElement($this->sut);
@@ -154,7 +156,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testCompositionAnnotationElementWhenAddedToSchemaElement()
+    public function testCompositionAnnotationElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addCompositionAnnotationElement($this->sut);
@@ -168,7 +170,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testCompositionAnnotationElementWithParentThrowsExceptionWhenSchemaElementAddCompositionAnnotationElement()
+    public function testCompositionAnnotationElementWithParentThrowsExceptionWhenSchemaElementAddCompositionAnnotationElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addCompositionAnnotationElement($this->sut);
@@ -184,7 +186,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testDefinitionAnnotationElementWhenAddedToSchemaElement()
+    public function testDefinitionAnnotationElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addDefinitionAnnotationElement($this->sut);
@@ -198,7 +200,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testDefinitionAnnotationElementWithParentThrowsExceptionWhenSchemaElementAddDefinitionAnnotationElement()
+    public function testDefinitionAnnotationElementWithParentThrowsExceptionWhenSchemaElementAddDefinitionAnnotationElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addDefinitionAnnotationElement($this->sut);
@@ -221,7 +223,8 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      */
     public function testLookupNamespaceReturnsStringWhenAddedToAnnotatedElementAndParentPrefixBoundToNamespace(
         AnnotatedElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setAnnotationElement($this->sut);
         $parent->bindNamespace('foo', 'http://example.org/foo');
         self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
@@ -235,7 +238,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new RedefineElement();
         $parent->addAnnotationElement($this->sut);
@@ -251,7 +254,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementCompositionAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementCompositionAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addCompositionAnnotationElement($this->sut);
@@ -267,7 +270,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementDefinitionAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementDefinitionAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addDefinitionAnnotationElement($this->sut);
@@ -280,7 +283,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @return  array[]
      */
-    public function getAllAnnotatedElementValues():array
+    public function getAllAnnotatedElementValues(): array
     {
         $datasets = [];
         
@@ -296,7 +299,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @return  array[]
      */
-    public function getAllAnnotatedElementParentValues():array
+    public function getAllAnnotatedElementParentValues(): array
     {
         $datasets = [];
         
@@ -316,7 +319,7 @@ class AnnotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @return  AnnotatedElementInterface[]
      */
-    private function getAllAnnotatedElements():array
+    private function getAllAnnotatedElements(): array
     {
         return [
             new AllElement(),

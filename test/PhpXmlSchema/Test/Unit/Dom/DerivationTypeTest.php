@@ -25,7 +25,7 @@ class DerivationTypeTest extends TestCase
      * Tests that byRestriction() returns TRUE, and the others FALSE, when 
      * TRUE is provided in construct(). 
      */
-    public function testByRestrictionReturnsTrue()
+    public function testByRestrictionReturnsTrue(): void
     {
         $sut = new DerivationType(TRUE, FALSE, FALSE, FALSE, FALSE);
         self::assertTrue($sut->byRestriction());
@@ -39,7 +39,7 @@ class DerivationTypeTest extends TestCase
      * Tests that byExtension() returns TRUE, and the others FALSE, when 
      * TRUE is provided in construct(). 
      */
-    public function testByExtensionReturnsTrue()
+    public function testByExtensionReturnsTrue(): void
     {
         $sut = new DerivationType(FALSE, TRUE, FALSE, FALSE, FALSE);
         self::assertFalse($sut->byRestriction());
@@ -53,7 +53,7 @@ class DerivationTypeTest extends TestCase
      * Tests that bySubstitution() returns TRUE, and the others FALSE, when 
      * TRUE is provided in construct(). 
      */
-    public function testBySubstitutionReturnsTrue()
+    public function testBySubstitutionReturnsTrue(): void
     {
         $sut = new DerivationType(FALSE, FALSE, TRUE, FALSE, FALSE);
         self::assertFalse($sut->byRestriction());
@@ -67,7 +67,7 @@ class DerivationTypeTest extends TestCase
      * Tests that byList() returns TRUE, and the others FALSE, when 
      * TRUE is provided in construct(). 
      */
-    public function testByListReturnsTrue()
+    public function testByListReturnsTrue(): void
     {
         $sut = new DerivationType(FALSE, FALSE, FALSE, TRUE, FALSE);
         self::assertFalse($sut->byRestriction());
@@ -81,7 +81,7 @@ class DerivationTypeTest extends TestCase
      * Tests that byUnion() returns TRUE, and the others FALSE, when 
      * TRUE is provided in construct(). 
      */
-    public function testByUnionReturnsTrue()
+    public function testByUnionReturnsTrue(): void
     {
         $sut = new DerivationType(FALSE, FALSE, FALSE, FALSE, TRUE);
         self::assertFalse($sut->byRestriction());

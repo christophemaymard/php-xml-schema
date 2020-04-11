@@ -68,7 +68,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAllElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createAllElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(AllElement::class);
     }
@@ -79,7 +79,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAnnotationElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createAnnotationElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(AnnotationElement::class);
     }
@@ -90,7 +90,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAnyAttributeElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createAnyAttributeElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(AnyAttributeElement::class);
     }
@@ -100,7 +100,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAnyElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createAnyElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(AnyElement::class);
     }
@@ -110,7 +110,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAppInfoElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createAppInfoElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(AppInfoElement::class);
     }
@@ -120,7 +120,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAttributeElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createAttributeElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(AttributeElement::class);
     }
@@ -131,7 +131,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAttributeGroupElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createAttributeGroupElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(AttributeGroupElement::class);
     }
@@ -141,7 +141,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createChoiceElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createChoiceElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(ChoiceElement::class);
     }
@@ -152,7 +152,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createComplexContentElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createComplexContentElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(ComplexContentElement::class);
     }
@@ -163,7 +163,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createComplexContentExtensionElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createComplexContentExtensionElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(ComplexContentExtensionElement::class);
     }
@@ -174,7 +174,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createComplexContentRestrictionElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createComplexContentRestrictionElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(ComplexContentRestrictionElement::class);
     }
@@ -185,7 +185,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createComplexTypeElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createComplexTypeElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(ComplexTypeElement::class);
     }
@@ -196,7 +196,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createDocumentationElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createDocumentationElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(DocumentationElement::class);
     }
@@ -206,7 +206,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createElementElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createElementElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(ElementElement::class);
     }
@@ -217,7 +217,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createEnumerationElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createEnumerationElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(EnumerationElement::class);
     }
@@ -227,7 +227,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createFieldElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createFieldElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(FieldElement::class);
     }
@@ -238,7 +238,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createFractionDigitsElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createFractionDigitsElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(FractionDigitsElement::class);
     }
@@ -248,7 +248,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createGroupElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createGroupElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(GroupElement::class);
     }
@@ -258,7 +258,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createImportElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createImportElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(ImportElement::class);
     }
@@ -268,7 +268,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createIncludeElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createIncludeElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(IncludeElement::class);
     }
@@ -278,7 +278,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createKeyElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createKeyElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(KeyElement::class);
     }
@@ -288,7 +288,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createKeyRefElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createKeyRefElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(KeyRefElement::class);
     }
@@ -298,7 +298,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createLengthElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createLengthElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(LengthElement::class);
     }
@@ -308,7 +308,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createListElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createListElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(ListElement::class);
     }
@@ -319,7 +319,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMaxExclusiveElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createMaxExclusiveElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(MaxExclusiveElement::class);
     }
@@ -330,7 +330,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMaxInclusiveElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createMaxInclusiveElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(MaxInclusiveElement::class);
     }
@@ -340,7 +340,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMaxLengthElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createMaxLengthElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(MaxLengthElement::class);
     }
@@ -351,7 +351,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMinExclusiveElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createMinExclusiveElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(MinExclusiveElement::class);
     }
@@ -362,7 +362,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMinInclusiveElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createMinInclusiveElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(MinInclusiveElement::class);
     }
@@ -373,7 +373,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createMinLengthElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createMinLengthElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(MinLengthElement::class);
     }
@@ -383,7 +383,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createNotationElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createNotationElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(NotationElement::class);
     }
@@ -393,7 +393,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createPatternElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createPatternElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(PatternElement::class);
     }
@@ -403,7 +403,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createRedefineElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createRedefineElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(RedefineElement::class);
     }
@@ -413,7 +413,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSelectorElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createSelectorElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(SelectorElement::class);
     }
@@ -423,7 +423,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSequenceElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createSequenceElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(SequenceElement::class);
     }
@@ -434,7 +434,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleContentElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createSimpleContentElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(SimpleContentElement::class);
     }
@@ -445,7 +445,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleContentExtensionElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createSimpleContentExtensionElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(SimpleContentExtensionElement::class);
     }
@@ -456,7 +456,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleContentRestrictionElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createSimpleContentRestrictionElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(SimpleContentRestrictionElement::class);
     }
@@ -466,7 +466,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleTypeElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createSimpleTypeElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(SimpleTypeElement::class);
     }
@@ -477,7 +477,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSimpleTypeRestrictionElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createSimpleTypeRestrictionElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(SimpleTypeRestrictionElement::class);
     }
@@ -488,7 +488,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createTotalDigitsElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createTotalDigitsElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(TotalDigitsElement::class);
     }
@@ -498,7 +498,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createUnionElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createUnionElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(UnionElement::class);
     }
@@ -508,7 +508,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createUniqueElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createUniqueElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(UniqueElement::class);
     }
@@ -519,7 +519,7 @@ trait ElementMockFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createWhiteSpaceElementHasParentFalse1TimeMock():ProphecySubjectInterface
+    protected function createWhiteSpaceElementHasParentFalse1TimeMock(): ProphecySubjectInterface
     {
         return $this->createElementHasParentFalse1TimeMock(WhiteSpaceElement::class);
     }
@@ -531,7 +531,7 @@ trait ElementMockFactoryTrait
      * @param   string  $className  The element class name used to create a mock.
      * @return  ProphecySubjectInterface
      */
-    protected function createElementHasParentFalse1TimeMock(string $className):ProphecySubjectInterface
+    protected function createElementHasParentFalse1TimeMock(string $className): ProphecySubjectInterface
     {
         $p = $this->prophesize($className);
         $p->hasParent()->willReturn(FALSE)->shouldBeCalledTimes(1);

@@ -50,7 +50,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAbstractAttribute(string $value)
+    public function buildAbstractAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -66,7 +66,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAttributeFormDefaultAttribute(string $value)
+    public function buildAttributeFormDefaultAttribute(string $value): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $this->currentElement->setAttributeFormDefault($this->parseFormChoice($value));
@@ -76,7 +76,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function bindNamespace(string $prefix, string $namespace)
+    public function bindNamespace(string $prefix, string $namespace): void
     {
         if ($this->currentElement !== NULL) {
             $this->currentElement->bindNamespace($prefix, $namespace);
@@ -86,7 +86,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildBaseAttribute(string $value)
+    public function buildBaseAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -103,7 +103,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildBlockAttribute(string $value)
+    public function buildBlockAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -124,7 +124,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildBlockDefaultAttribute(string $value)
+    public function buildBlockDefaultAttribute(string $value): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $this->currentElement->setBlockDefault($this->parseBlockSet($value));
@@ -134,7 +134,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildDefaultAttribute(string $value)
+    public function buildDefaultAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -148,7 +148,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildElementFormDefaultAttribute(string $value)
+    public function buildElementFormDefaultAttribute(string $value): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $this->currentElement->setElementFormDefault($this->parseFormChoice($value));
@@ -158,7 +158,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildFinalAttribute(string $value)
+    public function buildFinalAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -182,7 +182,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildFinalDefaultAttribute(string $value)
+    public function buildFinalDefaultAttribute(string $value): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $this->currentElement->setFinalDefault($this->parseFullDerivationSet($value));
@@ -192,7 +192,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildFixedAttribute(string $value)
+    public function buildFixedAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -219,7 +219,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildFormAttribute(string $value)
+    public function buildFormAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -242,7 +242,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildIdAttribute(string $value)
+    public function buildIdAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
@@ -296,7 +296,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildItemTypeAttribute(string $value)
+    public function buildItemTypeAttribute(string $value): void
     {
         if ($this->currentElement instanceof ListElement) {
             $this->currentElement->setItemType($this->parseQName($value));
@@ -306,7 +306,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMaxOccursAttribute(string $value)
+    public function buildMaxOccursAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -354,7 +354,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMemberTypesAttribute(string $value)
+    public function buildMemberTypesAttribute(string $value): void
     {
         if ($this->currentElement instanceof UnionElement) {
             foreach ($this->parseQNameList($value) as $qname) {
@@ -366,7 +366,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMinOccursAttribute(string $value)
+    public function buildMinOccursAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -413,7 +413,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMixedAttribute(string $value)
+    public function buildMixedAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -427,7 +427,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildNameAttribute(string $value)
+    public function buildNameAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()){
@@ -456,7 +456,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildNamespaceAttribute(string $value)
+    public function buildNamespaceAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -476,7 +476,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildNillableAttribute(string $value)
+    public function buildNillableAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementElement) {
             $this->currentElement->setNillable($this->parseBoolean($value));
@@ -486,7 +486,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildProcessContentsAttribute(string $value)
+    public function buildProcessContentsAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -500,7 +500,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildPublicAttribute(string $value)
+    public function buildPublicAttribute(string $value): void
     {
         if ($this->currentElement instanceof NotationElement) {
             $this->currentElement->setPublic($this->parseToken($value));
@@ -510,7 +510,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildRefAttribute(string $value)
+    public function buildRefAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -540,7 +540,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildReferAttribute(string $value)
+    public function buildReferAttribute(string $value): void
     {
         if ($this->currentElement instanceof KeyRefElement) {
             $this->currentElement->setRefer($this->parseQName($value));
@@ -550,7 +550,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildSchemaLocationAttribute(string $value)
+    public function buildSchemaLocationAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch($this->currentElement->getElementId()) {
@@ -564,7 +564,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildSourceAttribute(string $value)
+    public function buildSourceAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             $eid = $this->currentElement->getElementId();
@@ -578,7 +578,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildSystemAttribute(string $value)
+    public function buildSystemAttribute(string $value): void
     {
         if ($this->currentElement instanceof NotationElement) {
             $this->currentElement->setSystem($this->parseAnyUri($value));
@@ -588,7 +588,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildTargetNamespaceAttribute(string $value)
+    public function buildTargetNamespaceAttribute(string $value): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $this->currentElement->setTargetNamespace($this->parseAnyUri($value));
@@ -598,7 +598,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildTypeAttribute(string $value)
+    public function buildTypeAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -618,7 +618,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildUseAttribute(string $value)
+    public function buildUseAttribute(string $value): void
     {
         if ($this->currentElement instanceof AttributeElement && 
             !$this->currentElement->getParent() instanceof SchemaElement
@@ -630,7 +630,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildValueAttribute(string $value)
+    public function buildValueAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -663,7 +663,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildVersionAttribute(string $value)
+    public function buildVersionAttribute(string $value): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $this->currentElement->setVersion($this->parseToken($value));
@@ -673,7 +673,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildXPathAttribute(string $value)
+    public function buildXPathAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -690,7 +690,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildLangAttribute(string $value)
+    public function buildLangAttribute(string $value): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -704,7 +704,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAllElement()
+    public function buildAllElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -729,7 +729,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAnnotationElement()
+    public function buildAnnotationElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -786,7 +786,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildCompositionAnnotationElement()
+    public function buildCompositionAnnotationElement(): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $elt = new AnnotationElement();
@@ -798,7 +798,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildDefinitionAnnotationElement()
+    public function buildDefinitionAnnotationElement(): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $elt = new AnnotationElement();
@@ -810,7 +810,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAnyElement()
+    public function buildAnyElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -826,7 +826,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAnyAttributeElement()
+    public function buildAnyAttributeElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -853,7 +853,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAppInfoElement()
+    public function buildAppInfoElement(): void
     {
         if ($this->currentElement instanceof AnnotationElement) {
             $elt = new AppInfoElement();
@@ -865,7 +865,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAttributeElement()
+    public function buildAttributeElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -893,7 +893,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildAttributeGroupElement()
+    public function buildAttributeGroupElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -921,7 +921,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildChoiceElement()
+    public function buildChoiceElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -953,7 +953,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildComplexContentElement()
+    public function buildComplexContentElement(): void
     {
         if ($this->currentElement instanceof ComplexTypeElement) {
             $elt = new ComplexContentElement();
@@ -965,7 +965,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildComplexTypeElement()
+    public function buildComplexTypeElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -989,7 +989,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildDocumentationElement()
+    public function buildDocumentationElement(): void
     {
         if ($this->currentElement instanceof AnnotationElement) {
             $elt = new DocumentationElement();
@@ -1001,7 +1001,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildElementElement()
+    public function buildElementElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1019,7 +1019,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildEnumerationElement()
+    public function buildEnumerationElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1035,7 +1035,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildExtensionElement()
+    public function buildExtensionElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1056,7 +1056,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildFieldElement()
+    public function buildFieldElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1073,7 +1073,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildFractionDigitsElement()
+    public function buildFractionDigitsElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1089,7 +1089,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildGroupElement()
+    public function buildGroupElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1114,7 +1114,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildImportElement()
+    public function buildImportElement(): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $elt = new ImportElement();
@@ -1126,7 +1126,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildIncludeElement()
+    public function buildIncludeElement(): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $elt = new IncludeElement();
@@ -1138,7 +1138,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildKeyElement()
+    public function buildKeyElement(): void
     {
         if ($this->currentElement instanceof ElementElement && 
             !$this->currentElement->getParent() instanceof SchemaElement) {
@@ -1151,7 +1151,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildKeyRefElement()
+    public function buildKeyRefElement(): void
     {
         if ($this->currentElement instanceof ElementElement && 
             !$this->currentElement->getParent() instanceof SchemaElement) {
@@ -1164,7 +1164,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildLengthElement()
+    public function buildLengthElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1180,7 +1180,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildListElement()
+    public function buildListElement(): void
     {
         if ($this->currentElement instanceof SimpleTypeElement) {
             $elt = new ListElement();
@@ -1192,7 +1192,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMaxExclusiveElement()
+    public function buildMaxExclusiveElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1208,7 +1208,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMaxInclusiveElement()
+    public function buildMaxInclusiveElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1224,7 +1224,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMaxLengthElement()
+    public function buildMaxLengthElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1240,7 +1240,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMinExclusiveElement()
+    public function buildMinExclusiveElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1256,7 +1256,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMinInclusiveElement()
+    public function buildMinInclusiveElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1272,7 +1272,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildMinLengthElement()
+    public function buildMinLengthElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1288,7 +1288,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildNotationElement()
+    public function buildNotationElement(): void
     {
         if ($this->currentElement instanceof SchemaElement) {
             $elt = new NotationElement();
@@ -1300,7 +1300,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildPatternElement()
+    public function buildPatternElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1316,7 +1316,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildRestrictionElement()
+    public function buildRestrictionElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1342,7 +1342,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildSelectorElement()
+    public function buildSelectorElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1359,7 +1359,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildSequenceElement()
+    public function buildSequenceElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1391,7 +1391,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildSimpleContentElement()
+    public function buildSimpleContentElement(): void
     {
         if ($this->currentElement instanceof ComplexTypeElement) {
             $elt = new SimpleContentElement();
@@ -1403,7 +1403,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildSimpleTypeElement()
+    public function buildSimpleTypeElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1436,7 +1436,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildTotalDigitsElement()
+    public function buildTotalDigitsElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1452,7 +1452,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildUnionElement()
+    public function buildUnionElement(): void
     {
         if ($this->currentElement instanceof SimpleTypeElement) {
             $elt = new UnionElement();
@@ -1464,7 +1464,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildUniqueElement()
+    public function buildUniqueElement(): void
     {
         if ($this->currentElement instanceof ElementElement && 
             !$this->currentElement->getParent() instanceof SchemaElement) {
@@ -1477,7 +1477,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildWhiteSpaceElement()
+    public function buildWhiteSpaceElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             switch ($this->currentElement->getElementId()) {
@@ -1493,7 +1493,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildSchemaElement()
+    public function buildSchemaElement(): void
     {
         $this->schemaElement = $this->currentElement = new SchemaElement();
     }
@@ -1501,7 +1501,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function buildLeafElementContent(string $content)
+    public function buildLeafElementContent(string $content): void
     {
         if ($this->currentElement instanceof LeafElementInterface) {
             $this->currentElement->setContent($content);
@@ -1513,7 +1513,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @return  SchemaElement
      */
-    public function getSchema():SchemaElement
+    public function getSchema(): SchemaElement
     {
         return $this->schemaElement;
     }
@@ -1521,7 +1521,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
-    public function endElement()
+    public function endElement(): void
     {
         if ($this->currentElement instanceof ElementInterface) {
             $this->currentElement = $this->currentElement->getParent();
@@ -1539,7 +1539,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid blockSet type.
      */
-    private function parseBlockSet(string $value):DerivationType
+    private function parseBlockSet(string $value): DerivationType
     {
         $rest = $ext = $sub = FALSE;
         
@@ -1578,7 +1578,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid fullDerivationSet type.
      */
-    private function parseFullDerivationSet(string $value):DerivationType
+    private function parseFullDerivationSet(string $value): DerivationType
     {
         $ext = $rest = $list = $union = FALSE;
         
@@ -1616,7 +1616,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid formChoice type.
      */
-    private function parseFormChoice(string $value):FormType
+    private function parseFormChoice(string $value): FormType
     {
         if ($value == 'qualified') {
             $ft = FormType::createQualified();
@@ -1638,7 +1638,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  QNameType[] An indexed array of QName instances.
      */
-    private function parseQNameList(string $value):array
+    private function parseQNameList(string $value): array
     {
         $qnames = [];
         
@@ -1657,7 +1657,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidOperationException   When the prefix is not bound to a namespace.
      */
-    private function parseQName(string $value):QNameType
+    private function parseQName(string $value): QNameType
     {
         $parts = \explode(':', $this->collapseWhiteSpace($value), 2);
         
@@ -1689,7 +1689,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid boolean datatype.
      */
-    private function parseBoolean(string $value):bool
+    private function parseBoolean(string $value): bool
     {
         $cvalue = $this->collapseWhiteSpace($value);
         
@@ -1712,7 +1712,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid non-negative integer limit type.
      */
-    private function parseNonNegativeIntegerLimit(string $value):NonNegativeIntegerLimitType
+    private function parseNonNegativeIntegerLimit(string $value): NonNegativeIntegerLimitType
     {
         try {
             if ($value == 'unbounded') {
@@ -1740,7 +1740,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is not the "1" non-negative integer.
      */
-    private function parseOneNonNegativeIntegerLimit(string $value):NonNegativeIntegerLimitType
+    private function parseOneNonNegativeIntegerLimit(string $value): NonNegativeIntegerLimitType
     {
         try {
             $nni = $this->parseNonNegativeInteger($value);
@@ -1769,7 +1769,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is not the "1" non-negative integer.
      */
-    private function parseZeroOrOneNonNegativeIntegerLimit(string $value):NonNegativeIntegerLimitType
+    private function parseZeroOrOneNonNegativeIntegerLimit(string $value): NonNegativeIntegerLimitType
     {
         try {
             $nni = $this->parseNonNegativeInteger($value);
@@ -1798,7 +1798,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is not "0" or "1" non-negative integer.
      */
-    private function parseZeroOrOneNonNegativeInteger(string $value):NonNegativeIntegerType
+    private function parseZeroOrOneNonNegativeInteger(string $value): NonNegativeIntegerType
     {
         try {
             $nni = $this->parseNonNegativeInteger($value);
@@ -1824,7 +1824,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid positive integer datatype.
      */
-    private function parsePositiveInteger(string $value):PositiveIntegerType
+    private function parsePositiveInteger(string $value): PositiveIntegerType
     {
         $cvalue = $this->collapseWhiteSpace($value);
         
@@ -1843,7 +1843,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid non-negative integer datatype.
      */
-    private function parseNonNegativeInteger(string $value):NonNegativeIntegerType
+    private function parseNonNegativeInteger(string $value): NonNegativeIntegerType
     {
         $cvalue = $this->collapseWhiteSpace($value);
         
@@ -1864,7 +1864,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid white space type.
      */
-    private function parseWhiteSpace(string $value):WhiteSpaceType
+    private function parseWhiteSpace(string $value): WhiteSpaceType
     {
         if ($value == 'collapse') {
             $ws = WhiteSpaceType::createCollapse();
@@ -1891,7 +1891,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid simpleDerivationSet type.
      */
-    private function parseSimpleDerivationSet(string $value):DerivationType
+    private function parseSimpleDerivationSet(string $value): DerivationType
     {
         $list = $union = $res = FALSE;
         
@@ -1927,7 +1927,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid use type.
      */
-    private function parseUse(string $value):UseType
+    private function parseUse(string $value): UseType
     {
         if ($value == 'optional') {
             $use = UseType::createOptional();
@@ -1957,7 +1957,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid namespace list.
      */
-    private function parseNamespaceList(string $value):NamespaceListType
+    private function parseNamespaceList(string $value): NamespaceListType
     {
         $nsList = NULL;
         
@@ -2001,7 +2001,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid mode of content processing.
      */
-    private function parseProcessingMode(string $value):ProcessingModeType
+    private function parseProcessingMode(string $value): ProcessingModeType
     {
         if ($value == 'lax') {
             $pm = ProcessingModeType::createLax();
@@ -2031,7 +2031,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the value is an invalid derivationSet type.
      */
-    private function parseDerivationSet(string $value):DerivationType
+    private function parseDerivationSet(string $value): DerivationType
     {
         $ext = $res = FALSE;
         
@@ -2065,7 +2065,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  IDType
      */
-    private function parseID(string $value):IDType
+    private function parseID(string $value): IDType
     {
         return new IDType($this->collapseWhiteSpace($value));
     }
@@ -2079,7 +2079,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  NCNameType
      */
-    private function parseNCName(string $value):NCNameType
+    private function parseNCName(string $value): NCNameType
     {
         return new NCNameType($this->collapseWhiteSpace($value));
     }
@@ -2093,7 +2093,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  AnyUriType
      */
-    private function parseAnyUri(string $value):AnyUriType
+    private function parseAnyUri(string $value): AnyUriType
     {
         return new AnyUriType($this->collapseWhiteSpace($value));
     }
@@ -2107,7 +2107,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  TokenType
      */
-    private function parseToken(string $value):TokenType
+    private function parseToken(string $value): TokenType
     {
         return new TokenType($this->collapseWhiteSpace($value));
     }
@@ -2121,7 +2121,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  LanguageType
      */
-    private function parseLanguage(string $value):LanguageType
+    private function parseLanguage(string $value): LanguageType
     {
         $tags = \explode('-', $this->collapseWhiteSpace($value));
         
@@ -2134,7 +2134,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  StringType
      */
-    private function parseString(string $value):StringType
+    private function parseString(string $value): StringType
     {
         return new StringType($value);
     }
@@ -2145,7 +2145,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  SelectorXPathType
      */
-    private function parseSelectorXPath(string $value):SelectorXPathType
+    private function parseSelectorXPath(string $value): SelectorXPathType
     {
         return new SelectorXPathType($value);
     }
@@ -2156,7 +2156,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to parse.
      * @return  FieldXPathType
      */
-    private function parseFieldXPath(string $value):FieldXPathType
+    private function parseFieldXPath(string $value): FieldXPathType
     {
         return new FieldXPathType($value);
     }
@@ -2169,7 +2169,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to process.
      * @return  string
      */
-    private function collapseWhiteSpace(string $value):string
+    private function collapseWhiteSpace(string $value): string
     {
         return \implode(
             ' ', 
@@ -2187,7 +2187,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      * @param   string  $value  The value to process.
      * @return  string
      */
-    private function replaceWhiteSpace(string $value):string
+    private function replaceWhiteSpace(string $value): string
     {
         return \str_replace(
             [ "\t", "\n", "\r", ],

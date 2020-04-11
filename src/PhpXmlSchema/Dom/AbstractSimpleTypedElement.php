@@ -19,7 +19,7 @@ abstract class AbstractSimpleTypedElement extends AbstractAnnotatedElement imple
     /**
      * {@inheritDoc}
      */
-    public function getSimpleTypeElement()
+    public function getSimpleTypeElement(): ?SimpleTypeElement
     {
         return $this->getChildElement(1);
     }
@@ -27,7 +27,7 @@ abstract class AbstractSimpleTypedElement extends AbstractAnnotatedElement imple
     /**
      * {@inheritDoc}
      */
-    public function setSimpleTypeElement(SimpleTypeElement $element)
+    public function setSimpleTypeElement(SimpleTypeElement $element): void
     {
         $this->setChildElement(1, $element);
     }
@@ -35,7 +35,7 @@ abstract class AbstractSimpleTypedElement extends AbstractAnnotatedElement imple
     /**
      * {@inheritDoc}
      */
-    public function hasSimpleTypeElement():bool
+    public function hasSimpleTypeElement(): bool
     {
         return $this->isChildElementSet(1);
     }

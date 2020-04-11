@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -106,7 +107,7 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -119,7 +120,7 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -130,7 +131,7 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertElementElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -138,7 +139,7 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getElementElements()[0];
     }
@@ -146,7 +147,7 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildElementElement();
@@ -155,7 +156,7 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -175,7 +176,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildAbstractAttributeCreatesAttrWhenTopElementAndValueIsValid(
         string $value, 
         bool $bool
-    ) {
+    ): void
+    {
         $this->sut->buildAbstractAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -201,7 +203,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public function testBuildAbstractAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
@@ -227,7 +230,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         bool $res, 
         bool $ext, 
         bool $sub
-    ) {
+    ): void
+    {
         $this->sut->buildBlockAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -253,7 +257,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public function testBuildBlockAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid blockSet type, expected "#all" or a list of '.
@@ -277,7 +282,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public function testBuildDefaultAttributeCreatesAttrWhenTopElementAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -303,7 +309,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public function testBuildDefaultAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid string datatype.', 
@@ -330,7 +337,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         string $value, 
         bool $ext, 
         bool $res
-    ) {
+    ): void
+    {
         $this->sut->buildFinalAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -356,7 +364,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public function testBuildFinalAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid derivationSet type, expected "#all" or a '.
@@ -380,7 +389,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public function testBuildFixedAttributeCreatesAttrWhenTopElementAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildFixedAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -406,7 +416,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public function testBuildFixedAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid string datatype.', 
@@ -431,7 +442,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildIdAttributeCreatesAttrWhenTopElementAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -459,7 +471,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildIdAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -484,7 +497,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildNameAttributeCreatesAttrWhenTopElementAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -512,7 +526,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildNameAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 
@@ -537,7 +552,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildNillableAttributeCreatesAttrWhenTopElementAndValueIsValid(
         string $value, 
         bool $bool
-    ) {
+    ): void
+    {
         $this->sut->buildNillableAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -563,7 +579,8 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      */
     public function testBuildNillableAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         

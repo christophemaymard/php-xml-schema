@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -107,7 +108,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -120,7 +121,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -131,7 +132,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertNotationElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -139,7 +140,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getNotationElements()[0];
     }
@@ -147,7 +148,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildNotationElement();
@@ -156,7 +157,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -175,7 +176,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildIdAttributeCreatesAttrWhenNotationAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -202,7 +204,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildIdAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -226,7 +229,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildNameAttributeCreatesAttrWhenNotationAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -253,7 +257,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildNameAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 
@@ -277,7 +282,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildPublicAttributeCreatesAttrWhenNotationAndValueIsValid(
         string $value, 
         string $public
-    ) {
+    ): void
+    {
         $this->sut->buildPublicAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -304,7 +310,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildPublicAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid token datatype.', 
@@ -329,7 +336,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildSystemAttributeCreatesAttrWhenNotationAndValueIsValid(
         string $value, 
         string $uri
-    ) {
+    ): void
+    {
         $this->sut->buildSystemAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -356,7 +364,8 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildSystemAttributeThrowsExceptionWhenNotationAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -370,7 +379,7 @@ class NotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenNotation()
+    public function testBuildAnnotationElementCreateEltWhenNotation(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

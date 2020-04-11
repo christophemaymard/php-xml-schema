@@ -22,92 +22,92 @@ class AnyUriType
      * 
      * path-abempty = *( "/" segment )
      */
-    const PATH_ABEMPTY = '((/'.self::SEGMENT.')*)';
+    private const PATH_ABEMPTY = '((/'.self::SEGMENT.')*)';
     
     /**
      * The "path-absolute" pattern.
      * 
      * path-absolute = "/" [ segment-nz *( "/" segment ) ]
      */
-    const PATH_ABSOLUTE = '(/('.self::SEGMENT_NZ.'(/'.self::SEGMENT.')*)?)';
+    private const PATH_ABSOLUTE = '(/('.self::SEGMENT_NZ.'(/'.self::SEGMENT.')*)?)';
     
     /**
      * The "path-noscheme" pattern.
      * 
      * path-noscheme = segment-nz-nc *( "/" segment )
      */
-    const PATH_NOSCHEME = '('.self::SEGMENT_NZ_NC.'(/'.self::SEGMENT.')*)';
+    private const PATH_NOSCHEME = '('.self::SEGMENT_NZ_NC.'(/'.self::SEGMENT.')*)';
     
     /**
      * The "path-rootless" pattern.
      * 
      * path-rootless = segment-nz *( "/" segment )
      */
-    const PATH_ROOTLESS = '('.self::SEGMENT_NZ.'(/'.self::SEGMENT.')*)';
+    private const PATH_ROOTLESS = '('.self::SEGMENT_NZ.'(/'.self::SEGMENT.')*)';
     
     /**
      * The "segment" pattern.
      * 
      * segment = *pchar
      */
-    const SEGMENT = '('.self::PCHAR.'*)';
+    private const SEGMENT = '('.self::PCHAR.'*)';
     
     /**
      * The "segment-nz" pattern.
      * 
      * segment-nz = 1*pchar
      */
-    const SEGMENT_NZ = '('.self::PCHAR.'+)';
+    private const SEGMENT_NZ = '('.self::PCHAR.'+)';
     
     /**
      * The "segment-nz-nc" pattern.
      * 
      * segment-nz-nc = 1*( unreserved / pct-encoded / sub-delims / "@" )
      */
-    const SEGMENT_NZ_NC = '((['.self::UNRESERVED.self::SUB_DELIMS.'@]|'.self::PCT_ENC.')+)';
+    private const SEGMENT_NZ_NC = '((['.self::UNRESERVED.self::SUB_DELIMS.'@]|'.self::PCT_ENC.')+)';
     
     /**
      * The "pchar" pattern.
      * 
      * pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
      */
-    const PCHAR = '(['.self::UNRESERVED.self::SUB_DELIMS.':@]|'.self::PCT_ENC.')';
+    private const PCHAR = '(['.self::UNRESERVED.self::SUB_DELIMS.':@]|'.self::PCT_ENC.')';
     
     /**
      * The "pct-encoded" pattern.
      * 
      * pct-encoded = "%" HEXDIG HEXDIG
      */
-    const PCT_ENC = '(%['.self::HEXDIG.']{2})';
+    private const PCT_ENC = '(%['.self::HEXDIG.']{2})';
     
     /**
      * The "unreserved" character class.
      * 
      * unreserved = ALPHA / DIGIT / "-" / "." / "_" / "~"
      */
-    const UNRESERVED = self::ALPHA.self::DIGIT.'\\-\\._~';
+    private const UNRESERVED = self::ALPHA.self::DIGIT.'\\-\\._~';
     
     /**
      * The "sub-delims" character class.
      * 
      * sub-delims = "!" / "$" / "&" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
      */
-    const SUB_DELIMS = '!$&\'\\(\\)*+,;=';
+    private const SUB_DELIMS = '!$&\'\\(\\)*+,;=';
     
     /**
      * The "alpha" character class.
      */
-    const ALPHA = 'a-zA-Z';
+    private const ALPHA = 'a-zA-Z';
     
     /**
      * The "alpha" character class.
      */
-    const DIGIT = '0-9';
+    private const DIGIT = '0-9';
     
     /**
      * The "HEXDIG" character class.
      */
-    const HEXDIG = '0-9a-fA-F';
+    private const HEXDIG = '0-9a-fA-F';
     
     /**
      * The scheme component of the URI.
@@ -170,7 +170,7 @@ class AnyUriType
      * @throws  InvalidValueException   When the path is an invalid path-abempty path.
      * @throws  InvalidValueException   When the path is invalid.
      */
-    private function setUri(string $uri)
+    private function setUri(string $uri): void
     {
         //                  12        2 1 3  4       43 5      56  7     76 8 9  98 
         if (!\preg_match('`^(([^:/?#]*):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$`', $uri, $matches)) {
@@ -227,7 +227,7 @@ class AnyUriType
      * 
      * @return  bool    TRUE if the URI is relative, otherwise FALSE.
      */
-    public function isRelative():bool
+    public function isRelative(): bool
     {
         return $this->scheme === NULL;
     }
@@ -237,7 +237,7 @@ class AnyUriType
      * 
      * @return  string|NULL
      */
-    public function getScheme()
+    public function getScheme(): ?string
     {
         return $this->scheme;
     }
@@ -249,7 +249,7 @@ class AnyUriType
      * 
      * @throws  InvalidValueException   When the scheme is invalid.
      */
-    private function setScheme(string $scheme)
+    private function setScheme(string $scheme): void
     {
         if (!\preg_match('`^['.self::ALPHA.'](['.self::ALPHA.self::DIGIT.'+\\-\\.])*$`', $scheme)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid scheme.', $scheme));
@@ -263,7 +263,7 @@ class AnyUriType
      * 
      * @return  string|NULL
      */
-    public function getAuthority()
+    public function getAuthority(): ?string
     {
         $authority = NULL;
         
@@ -293,7 +293,7 @@ class AnyUriType
      * 
      * @throws  InvalidValueException   When the authority is invalid.
      */
-    private function setAuthority(string $authority)
+    private function setAuthority(string $authority): void
     {
         if (FALSE !== $aPos = strpos($authority, '@')) {
             $this->setUserInfo(substr($authority, 0, $aPos));
@@ -315,7 +315,7 @@ class AnyUriType
      * 
      * @return  string|NULL
      */
-    public function getUserInfo()
+    public function getUserInfo(): ?string
     {
         return $this->userInfo;
     }
@@ -327,7 +327,7 @@ class AnyUriType
      * 
      * @throws  InvalidValueException   When the user information is invalid.
      */
-    private function setUserInfo(string $userInfo)
+    private function setUserInfo(string $userInfo): void
     {
         if (!\preg_match('`^(['.self::UNRESERVED.self::SUB_DELIMS.':]|'.self::PCT_ENC.')*$`', $userInfo)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid user information.', $userInfo));
@@ -341,7 +341,7 @@ class AnyUriType
      * 
      * @return  string|NULL
      */
-    public function getHost()
+    public function getHost(): ?string
     {
         return $this->host;
     }
@@ -353,7 +353,7 @@ class AnyUriType
      * 
      * @throws  InvalidValueException   When the host is invalid.
      */
-    private function setHost(string $host)
+    private function setHost(string $host): void
     {
         if (!\preg_match('`^(['.self::UNRESERVED.self::SUB_DELIMS.']|'.self::PCT_ENC.')*$`', $host)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid host.', $host));
@@ -367,7 +367,7 @@ class AnyUriType
      * 
      * @return  string|NULL
      */
-    public function getPort()
+    public function getPort(): ?string
     {
         return $this->port;
     }
@@ -379,7 +379,7 @@ class AnyUriType
      * 
      * @throws  InvalidValueException   When the port is invalid.
      */
-    private function setPort(string $port)
+    private function setPort(string $port): void
     {
         if (!\preg_match('`^['.self::DIGIT.']*$`', $port)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid port.', $port));
@@ -393,7 +393,7 @@ class AnyUriType
      * 
      * @return  string
      */
-    public function getPath():string
+    public function getPath(): string
     {
         return $this->path;
     }
@@ -403,7 +403,7 @@ class AnyUriType
      * 
      * @return  string|NULL
      */
-    public function getQuery()
+    public function getQuery(): ?string
     {
         return $this->query;
     }
@@ -415,7 +415,7 @@ class AnyUriType
      * 
      * @throws  InvalidValueException   When the query is invalid.
      */
-    private function setQuery(string $query)
+    private function setQuery(string $query): void
     {
         if (!\preg_match('`^('.self::PCHAR.'|[/\\?])*$`', $query)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid query.', $query));
@@ -429,7 +429,7 @@ class AnyUriType
      * 
      * @return  string|NULL
      */
-    public function getFragment()
+    public function getFragment(): ?string
     {
         return $this->fragment;
     }
@@ -441,7 +441,7 @@ class AnyUriType
      * 
      * @throws  InvalidValueException   When the fragment is invalid.
      */
-    private function setFragment(string $fragment)
+    private function setFragment(string $fragment): void
     {
         if (!\preg_match('`^('.self::PCHAR.'|[/\\?])*$`', $fragment)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid fragment.', $fragment));
@@ -455,7 +455,7 @@ class AnyUriType
      * 
      * @return  string
      */
-    public function getAnyUri():string
+    public function getAnyUri(): string
     {
         $uri = '';
         

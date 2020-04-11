@@ -26,7 +26,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SelectorElement();
     }
@@ -34,7 +34,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_SELECTOR, $this->sut->getElementId());
     }
@@ -45,7 +45,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSelectorElementWhenAddedToKeyElement()
+    public function testSelectorElementWhenAddedToKeyElement(): void
     {
         $parent = new KeyElement();
         $parent->setSelectorElement($this->sut);
@@ -59,7 +59,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSelectorElementWithParentThrowsExceptionWhenKeyElementSetSelectorElement()
+    public function testSelectorElementWithParentThrowsExceptionWhenKeyElementSetSelectorElement(): void
     {
         $parent1 = new KeyElement();
         $parent1->setSelectorElement($this->sut);
@@ -75,7 +75,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSelectorElementWhenAddedToKeyRefElement()
+    public function testSelectorElementWhenAddedToKeyRefElement(): void
     {
         $parent = new KeyRefElement();
         $parent->setSelectorElement($this->sut);
@@ -89,7 +89,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSelectorElementWithParentThrowsExceptionWhenKeyRefElementSetSelectorElement()
+    public function testSelectorElementWithParentThrowsExceptionWhenKeyRefElementSetSelectorElement(): void
     {
         $parent1 = new KeyRefElement();
         $parent1->setSelectorElement($this->sut);
@@ -105,7 +105,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSelectorElementWhenAddedToUniqueElement()
+    public function testSelectorElementWhenAddedToUniqueElement(): void
     {
         $parent = new UniqueElement();
         $parent->setSelectorElement($this->sut);
@@ -119,7 +119,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSelectorElementWithParentThrowsExceptionWhenUniqueElementSetSelectorElement()
+    public function testSelectorElementWithParentThrowsExceptionWhenUniqueElementSetSelectorElement(): void
     {
         $parent1 = new UniqueElement();
         $parent1->setSelectorElement($this->sut);
@@ -137,7 +137,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToKeyElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToKeyElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new KeyElement();
         $parent->setSelectorElement($this->sut);
@@ -153,7 +153,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToKeyRefElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToKeyRefElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new KeyRefElement();
         $parent->setSelectorElement($this->sut);
@@ -169,7 +169,7 @@ class SelectorElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToUniqueElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToUniqueElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new UniqueElement();
         $parent->setSelectorElement($this->sut);

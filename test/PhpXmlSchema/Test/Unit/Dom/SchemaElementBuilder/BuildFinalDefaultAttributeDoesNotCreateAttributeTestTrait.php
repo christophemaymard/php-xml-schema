@@ -27,7 +27,7 @@ trait BuildFinalDefaultAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildFinalDefaultAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildFinalDefaultAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildFinalDefaultAttribute('foo');
         $this->sut->buildFinalDefaultAttribute('restriction');

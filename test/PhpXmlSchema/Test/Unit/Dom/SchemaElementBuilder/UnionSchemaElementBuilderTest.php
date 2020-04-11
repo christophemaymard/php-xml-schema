@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -107,7 +108,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -120,7 +121,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -141,7 +142,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertUnionElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -149,7 +150,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeElements()[0]
             ->getSimpleTypeElement()
@@ -159,7 +160,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
@@ -170,7 +171,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -189,7 +190,8 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildIdAttributeCreatesAttrWhenUnionAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -216,7 +218,8 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildIdAttributeThrowsExceptionWhenUnionAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -243,7 +246,8 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidLAndNoDefaultNamespace(
         string $value, 
         array $localParts
-    ) {
+    ): void
+    {
         $this->sut->buildMemberTypesAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -280,7 +284,8 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidLAndDefaultNamespace(
         string $value, 
         array $localParts
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildAttributeElement();
@@ -333,7 +338,8 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildMemberTypesAttributeThrowsExceptionWhenUnionAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -350,7 +356,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildMemberTypesAttributeCreatesAttrWhenUnionAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -403,7 +409,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildMemberTypesAttributeThrowsExceptionWhenUnionAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildMemberTypesAttributeThrowsExceptionWhenUnionAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "bar" prefix is not bound to a namespace.');
@@ -418,7 +424,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenUnion()
+    public function testBuildAnnotationElementCreateEltWhenUnion(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -443,7 +449,7 @@ class UnionSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   content
      * @group   element
      */
-    public function testBuildSimpleTypeElementCreateEltWhenUnion()
+    public function testBuildSimpleTypeElementCreateEltWhenUnion(): void
     {
         $this->sut->buildSimpleTypeElement();
         $this->sut->endElement();

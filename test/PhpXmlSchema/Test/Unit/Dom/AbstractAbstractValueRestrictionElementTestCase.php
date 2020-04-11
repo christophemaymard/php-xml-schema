@@ -25,7 +25,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetMinExclusiveElements()
+    public function testGetMinExclusiveElements(): void
     {
         $elements = [];
         
@@ -64,7 +64,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetMinInclusiveElements()
+    public function testGetMinInclusiveElements(): void
     {
         $elements = [];
         
@@ -103,7 +103,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetMaxExclusiveElements()
+    public function testGetMaxExclusiveElements(): void
     {
         $elements = [];
         
@@ -142,7 +142,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetMaxInclusiveElements()
+    public function testGetMaxInclusiveElements(): void
     {
         $elements = [];
         
@@ -181,7 +181,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetTotalDigitsElements()
+    public function testGetTotalDigitsElements(): void
     {
         $elements = [];
         
@@ -220,7 +220,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetFractionDigitsElements()
+    public function testGetFractionDigitsElements(): void
     {
         $elements = [];
         
@@ -259,7 +259,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetLengthElements()
+    public function testGetLengthElements(): void
     {
         $elements = [];
         
@@ -298,7 +298,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetMinLengthElements()
+    public function testGetMinLengthElements(): void
     {
         $elements = [];
         
@@ -337,7 +337,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetMaxLengthElements()
+    public function testGetMaxLengthElements(): void
     {
         $elements = [];
         
@@ -376,7 +376,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetEnumerationElements()
+    public function testGetEnumerationElements(): void
     {
         $elements = [];
         
@@ -415,7 +415,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetWhiteSpaceElements()
+    public function testGetWhiteSpaceElements(): void
     {
         $elements = [];
         
@@ -454,7 +454,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetPatternElements()
+    public function testGetPatternElements(): void
     {
         $elements = [];
         
@@ -492,7 +492,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetFacetElements()
+    public function testGetFacetElements(): void
     {
         self::assertSame([], $this->sut->getFacetElements(), 'No element has been added.');
         
@@ -505,7 +505,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer2()
+    public function testGetElementsReturnsElementsOfContainer2(): void
     {
         self::assertSame($this->fillSutContainer2(), $this->sut->getElements(), 'Elements in container 2.');
     }
@@ -516,7 +516,7 @@ abstract class AbstractAbstractValueRestrictionElementTestCase extends AbstractA
      * 
      * @return  ProphecySubjectInterface[]  An indexed array of all the created elements.
      */
-    private function fillSutContainer2():array
+    private function fillSutContainer2(): array
     {
         $elements = [];
         $elements[] = $this->createMinExclusiveElementHasParentFalse1TimeMock();

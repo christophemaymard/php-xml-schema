@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -102,7 +103,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -115,7 +116,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -136,7 +137,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertComplexContentRestrictionElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -144,7 +145,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -154,7 +155,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -165,7 +166,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -187,7 +188,8 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     public function testBuildBaseAttributeCreatesAttrWhenComplexContentRestrictionAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildBaseAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -218,7 +220,8 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     public function testBuildBaseAttributeCreatesAttrWhenComplexContentRestrictionAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildComplexTypeElement();
@@ -265,7 +268,8 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     public function testBuildBaseAttributeThrowsExceptionWhenComplexContentRestrictionAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -282,7 +286,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildBaseAttributeCreatesAttrWhenComplexContentRestrictionAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildBaseAttributeCreatesAttrWhenComplexContentRestrictionAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -325,7 +329,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildBaseAttributeThrowsExceptionWhenComplexContentRestrictionAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildBaseAttributeThrowsExceptionWhenComplexContentRestrictionAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -348,7 +352,8 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     public function testBuildIdAttributeCreatesAttrWhenComplexContentRestrictionAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -376,7 +381,8 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     public function testBuildIdAttributeThrowsExceptionWhenComplexContentRestrictionAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -393,7 +399,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenComplexContentRestriction()
+    public function testBuildAnnotationElementCreateEltWhenComplexContentRestriction(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -418,7 +424,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   content
      * @group   element
      */
-    public function testBuildGroupElementCreateEltWhenComplexContentRestriction()
+    public function testBuildGroupElementCreateEltWhenComplexContentRestriction(): void
     {
         $this->sut->buildGroupElement();
         $sch = $this->sut->getSchema();
@@ -443,7 +449,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   content
      * @group   element
      */
-    public function testBuildAllElementCreateEltWhenComplexContentRestriction()
+    public function testBuildAllElementCreateEltWhenComplexContentRestriction(): void
     {
         $this->sut->buildAllElement();
         $sch = $this->sut->getSchema();
@@ -468,7 +474,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   content
      * @group   element
      */
-    public function testBuildChoiceElementCreateEltWhenComplexContentRestriction()
+    public function testBuildChoiceElementCreateEltWhenComplexContentRestriction(): void
     {
         $this->sut->buildChoiceElement();
         $sch = $this->sut->getSchema();
@@ -493,7 +499,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   content
      * @group   element
      */
-    public function testBuildSequenceElementCreateEltWhenComplexContentRestriction()
+    public function testBuildSequenceElementCreateEltWhenComplexContentRestriction(): void
     {
         $this->sut->buildSequenceElement();
         $sch = $this->sut->getSchema();
@@ -518,7 +524,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeElementCreateEltWhenComplexContentRestriction()
+    public function testBuildAttributeElementCreateEltWhenComplexContentRestriction(): void
     {
         $this->sut->buildAttributeElement();
         $this->sut->endElement();
@@ -550,7 +556,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeGroupElementCreateEltWhenComplexContentRestriction()
+    public function testBuildAttributeGroupElementCreateEltWhenComplexContentRestriction(): void
     {
         $this->sut->buildAttributeGroupElement();
         $this->sut->endElement();
@@ -582,7 +588,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
      * @group   content
      * @group   element
      */
-    public function testBuildAnyAttributeElementCreateEltWhenComplexContentRestriction()
+    public function testBuildAnyAttributeElementCreateEltWhenComplexContentRestriction(): void
     {
         $this->sut->buildAnyAttributeElement();
         $sch = $this->sut->getSchema();

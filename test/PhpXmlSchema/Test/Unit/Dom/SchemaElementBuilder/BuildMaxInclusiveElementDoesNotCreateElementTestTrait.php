@@ -27,7 +27,7 @@ trait BuildMaxInclusiveElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildMaxInclusiveElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildMaxInclusiveElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildMaxInclusiveElement();
         $sch = $this->sut->getSchema();

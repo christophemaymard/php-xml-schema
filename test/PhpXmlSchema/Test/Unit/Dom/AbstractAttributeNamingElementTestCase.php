@@ -25,7 +25,7 @@ abstract class AbstractAttributeNamingElementTestCase extends AbstractAbstractAt
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer034()
+    public function testGetElementsReturnsElementsOrderedByContainer034(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

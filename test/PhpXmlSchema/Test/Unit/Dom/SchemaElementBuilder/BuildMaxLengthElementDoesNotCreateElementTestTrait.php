@@ -26,7 +26,7 @@ trait BuildMaxLengthElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildMaxLengthElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildMaxLengthElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildMaxLengthElement();
         $sch = $this->sut->getSchema();

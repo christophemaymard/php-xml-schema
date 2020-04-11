@@ -60,7 +60,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_COMPLEXTYPE;
     }
@@ -68,7 +68,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'complexType';
     }
@@ -78,7 +78,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getAbstract()
+    public function getAbstract(): ?bool
     {
         return $this->abstractAttr;
     }
@@ -88,7 +88,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @param   bool    $value  The value to set.
      */
-    public function setAbstract(bool $value)
+    public function setAbstract(bool $value): void
     {
         $this->abstractAttr = $value;
     }
@@ -98,7 +98,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasAbstract():bool
+    public function hasAbstract(): bool
     {
         return $this->abstractAttr !== NULL;
     }
@@ -108,7 +108,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getBlock()
+    public function getBlock(): ?DerivationType
     {
         return $this->blockAttr;
     }
@@ -118,7 +118,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @param   DerivationType  $value  The value to set.
      */
-    public function setBlock(DerivationType $value)
+    public function setBlock(DerivationType $value): void
     {
         $this->blockAttr = $value;
     }
@@ -128,7 +128,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasBlock():bool
+    public function hasBlock(): bool
     {
         return $this->blockAttr !== NULL;
     }
@@ -138,7 +138,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getFinal()
+    public function getFinal(): ?DerivationType
     {
         return $this->finalAttr;
     }
@@ -148,7 +148,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @param   DerivationType  $value  The value to set.
      */
-    public function setFinal(DerivationType $value)
+    public function setFinal(DerivationType $value): void
     {
         $this->finalAttr = $value;
     }
@@ -158,7 +158,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasFinal():bool
+    public function hasFinal(): bool
     {
         return $this->finalAttr !== NULL;
     }
@@ -168,7 +168,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getMixed()
+    public function getMixed(): ?bool
     {
         return $this->mixedAttr;
     }
@@ -178,7 +178,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @param   bool    $value  The value to set.
      */
-    public function setMixed(bool $value)
+    public function setMixed(bool $value): void
     {
         $this->mixedAttr = $value;
     }
@@ -188,7 +188,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasMixed():bool
+    public function hasMixed(): bool
     {
         return $this->mixedAttr !== NULL;
     }
@@ -198,7 +198,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getName()
+    public function getName(): ?NCNameType
     {
         return $this->nameAttr;
     }
@@ -208,7 +208,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @param   NCNameType  $value  The value to set.
      */
-    public function setName(NCNameType $value)
+    public function setName(NCNameType $value): void
     {
         $this->nameAttr = $value;
     }
@@ -218,7 +218,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasName():bool
+    public function hasName(): bool
     {
         return $this->nameAttr !== NULL;
     }
@@ -228,7 +228,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  ContentElementInterface|NULL    The instance of the element if it has been set, otherwise NULL.
      */
-    public function getContentElement()
+    public function getContentElement(): ?ContentElementInterface
     {
         return $this->getChildElement(1);
     }
@@ -238,7 +238,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @param   ContentElementInterface $element    The element to set.
      */
-    public function setContentElement(ContentElementInterface $element)
+    public function setContentElement(ContentElementInterface $element): void
     {
         $this->setChildElement(1, $element);
     }
@@ -248,7 +248,7 @@ class ComplexTypeElement extends AbstractTypeNamingElement implements TypeElemen
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasContentElement():bool
+    public function hasContentElement(): bool
     {
         return $this->isChildElementSet(1);
     }

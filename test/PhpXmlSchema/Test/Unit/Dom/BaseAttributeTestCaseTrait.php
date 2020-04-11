@@ -24,7 +24,7 @@ trait BaseAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasBase()
+    public function testHasBase(): void
     {
         self::assertFalse($this->sut->hasBase(), 'The attribute has not been set.');
         
@@ -39,7 +39,7 @@ trait BaseAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetBase()
+    public function testGetBase(): void
     {
         self::assertNull($this->sut->getBase(), 'The attribute has not been set.');
         

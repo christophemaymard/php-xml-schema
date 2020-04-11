@@ -23,7 +23,7 @@ class AllElementTest extends AbstractModelGroupElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AllElement();
     }
@@ -31,7 +31,7 @@ class AllElementTest extends AbstractModelGroupElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('all', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class AllElementTest extends AbstractModelGroupElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementElements()
+    public function testGetElementElements(): void
     {
         $elements = [];
         
@@ -66,7 +66,7 @@ class AllElementTest extends AbstractModelGroupElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
+    public function testGetElementsReturnsElementsOrderedByContainer01(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
@@ -88,7 +88,7 @@ class AllElementTest extends AbstractModelGroupElementTestCase
      * 
      * @return  ProphecySubjectInterface[]  An indexed array of all the created elements.
      */
-    protected function fillSutContainer1():array
+    protected function fillSutContainer1(): array
     {
         $elements = [];
         $elements[] = $this->createElementElementHasParentFalse1TimeMock();

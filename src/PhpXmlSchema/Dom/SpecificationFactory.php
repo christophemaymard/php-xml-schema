@@ -1855,7 +1855,7 @@ class SpecificationFactory
      * 
      * @throws  InvalidOperationException   When the context ID is not supported.
      */
-    public function create(int $cid):Specification
+    public function create(int $cid): Specification
     {
         if (!isset($this->initialStates[$cid]) && !isset($this->attributeBuilders[$cid])) {
             throw new InvalidOperationException(\sprintf(

@@ -20,7 +20,7 @@ trait QNameListTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidQNameListTypeValues():array
+    public function getValidQNameListTypeValues(): array
     {
         return [
             // 1 QName
@@ -97,7 +97,7 @@ trait QNameListTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidQNameListTypeValues():array
+    public function getInvalidQNameListTypeValues(): array
     {
         return [
             'Empty string' => [

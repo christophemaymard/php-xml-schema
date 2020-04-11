@@ -23,7 +23,7 @@ class WhiteSpaceElementTest extends AbstractFixedFacetElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new WhiteSpaceElement();
     }
@@ -31,7 +31,7 @@ class WhiteSpaceElementTest extends AbstractFixedFacetElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('whiteSpace', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class WhiteSpaceElementTest extends AbstractFixedFacetElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasValue()
+    public function testHasValue(): void
     {
         self::assertFalse($this->sut->hasValue(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class WhiteSpaceElementTest extends AbstractFixedFacetElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetValue()
+    public function testGetValue(): void
     {
         self::assertNull($this->sut->getValue(), 'The attribute has not been set.');
         

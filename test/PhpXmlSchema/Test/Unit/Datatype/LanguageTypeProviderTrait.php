@@ -19,7 +19,7 @@ trait LanguageTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidLanguageTypeValues():array
+    public function getValidLanguageTypeValues(): array
     {
         return [
             'Primary subtag of 1 character' => [
@@ -55,7 +55,7 @@ trait LanguageTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidLanguageTypeValues():array
+    public function getInvalidLanguageTypeValues(): array
     {
         return [
             'Empty string' => [

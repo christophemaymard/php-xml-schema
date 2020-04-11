@@ -28,7 +28,7 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new GroupElement();
     }
@@ -36,7 +36,7 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('group', $this->sut->getLocalName());
     }
@@ -48,7 +48,7 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testHasModelGroupElement()
+    public function testHasModelGroupElement(): void
     {
         self::assertFalse($this->sut->hasModelGroupElement(), 'No element has been set.');
         
@@ -63,7 +63,7 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetModelGroupElement()
+    public function testGetModelGroupElement(): void
     {
         self::assertNull($this->sut->getModelGroupElement(), 'No element has been set.');
         
@@ -86,7 +86,7 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createChoiceElementHasParentFalse1TimeMock();
@@ -102,7 +102,7 @@ class GroupElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
+    public function testGetElementsReturnsElementsOrderedByContainer01(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

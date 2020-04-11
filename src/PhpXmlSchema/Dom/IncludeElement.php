@@ -32,7 +32,7 @@ class IncludeElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_INCLUDE;
     }
@@ -40,7 +40,7 @@ class IncludeElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'include';
     }
@@ -50,7 +50,7 @@ class IncludeElement extends AbstractAnnotatedElement
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getSchemaLocation()
+    public function getSchemaLocation(): ?AnyUriType
     {
         return $this->schemaLocationAttr;
     }
@@ -60,7 +60,7 @@ class IncludeElement extends AbstractAnnotatedElement
      * 
      * @param   AnyUriType  $value  The value to set.
      */
-    public function setSchemaLocation(AnyUriType $value)
+    public function setSchemaLocation(AnyUriType $value): void
     {
         $this->schemaLocationAttr = $value;
     }
@@ -70,7 +70,7 @@ class IncludeElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasSchemaLocation():bool
+    public function hasSchemaLocation(): bool
     {
         return $this->schemaLocationAttr !== NULL;
     }

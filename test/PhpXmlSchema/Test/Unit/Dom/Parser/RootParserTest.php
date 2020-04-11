@@ -25,7 +25,7 @@ class RootParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'root';
     }
@@ -36,7 +36,7 @@ class RootParserTest extends AbstractParserTestCase
      * 
      * @group   xml
      */
-    public function testParseThrowsExceptionWhenXsIsNotXml()
+    public function testParseThrowsExceptionWhenXsIsNotXml(): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('The source is an invalid XML.');
@@ -47,7 +47,7 @@ class RootParserTest extends AbstractParserTestCase
     /**
      * Tests that parse() returns an empty "schema" element.
      */
-    public function testParseReturnsEmptySchema()
+    public function testParseReturnsEmptySchema(): void
     {
         $sch = $this->sut->parse($this->getXs('schema_0004.xsd'));
         
@@ -64,7 +64,7 @@ class RootParserTest extends AbstractParserTestCase
     /**
      * Tests that parse() skip all nodes before the root element.
      */
-    public function testParseSkipAllNodesBeforeRootElement()
+    public function testParseSkipAllNodesBeforeRootElement(): void
     {
         $sch = $this->sut->parse($this->getXs('schema_0005.xsd'));
         

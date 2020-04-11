@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -105,7 +106,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -118,7 +119,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -129,7 +130,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertAnnotationElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -137,7 +138,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getCompositionAnnotationElements()[0];
     }
@@ -145,7 +146,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildCompositionAnnotationElement();
@@ -154,7 +155,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -174,7 +175,8 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     public function testBuildIdAttributeCreatesAttrWhenCompositionAnnotationAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -202,7 +204,8 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
     public function testBuildIdAttributeThrowsExceptionWhenCompositionAnnotationAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -219,7 +222,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
      * @group   content
      * @group   element
      */
-    public function testBuildAppInfoElementCreateEltWhenCompositionAnnotation()
+    public function testBuildAppInfoElementCreateEltWhenCompositionAnnotation(): void
     {
         $this->sut->buildAppInfoElement();
         $this->sut->endElement();
@@ -250,7 +253,7 @@ class CompositionAnnotationSchemaElementBuilderTest extends AbstractSchemaElemen
      * @group   content
      * @group   element
      */
-    public function testBuildDocumentationElementCreateEltWhenCompositionAnnotation()
+    public function testBuildDocumentationElementCreateEltWhenCompositionAnnotation(): void
     {
         $this->sut->buildDocumentationElement();
         $this->sut->endElement();

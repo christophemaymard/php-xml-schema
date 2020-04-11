@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -105,7 +106,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -118,7 +119,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -144,7 +145,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertEnumerationElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -152,7 +153,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeElements()[0]
             ->getSimpleTypeElement()
@@ -163,7 +164,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
@@ -175,7 +176,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -194,7 +195,8 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     public function testBuildIdAttributeCreatesAttrWhenEnumerationAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -221,7 +223,8 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
     public function testBuildIdAttributeThrowsExceptionWhenEnumerationAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -238,7 +241,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildValueAttributeCreatesAttrWhenEnumerationAndValueIsValid()
+    public function testBuildValueAttributeCreatesAttrWhenEnumerationAndValueIsValid(): void
     {
         $this->sut->buildValueAttribute('foo');
         $sch = $this->sut->getSchema();
@@ -259,7 +262,7 @@ class EnumerationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTe
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenEnumeration()
+    public function testBuildAnnotationElementCreateEltWhenEnumeration(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -30,7 +31,7 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -76,7 +77,7 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -91,7 +92,7 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -107,7 +108,7 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -123,7 +124,7 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitSequenceAndValueIsUnbounded()
+    public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitSequenceAndValueIsUnbounded(): void
     {
         $this->sut->buildMaxOccursAttribute('unbounded');
         $sch = $this->sut->getSchema();
@@ -152,7 +153,8 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
     public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitSequenceAndValueIsNonNegativeInteger(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMaxOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -179,7 +181,8 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenExplicitSequenceAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
         
@@ -201,7 +204,8 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
     public function testBuildMinOccursAttributeCreatesAttrWhenExplicitSequenceAndValueIsValid(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMinOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -227,7 +231,8 @@ class ExplicitSequenceSchemaElementBuilderTest extends AbstractSequenceSchemaEle
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenExplicitSequenceAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid nonNegativeInteger datatype.', 

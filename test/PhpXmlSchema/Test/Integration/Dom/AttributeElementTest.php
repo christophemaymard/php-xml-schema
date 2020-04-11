@@ -25,7 +25,7 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AttributeElement();
     }
@@ -33,7 +33,7 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_ATTRIBUTE, $this->sut->getElementId());
     }
@@ -50,7 +50,8 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
      */
     public function testAttributeElementWhenAddedToAttributeNamingElement(
         AttributeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->addAttributeElement($this->sut);
         self::assertTrue($this->sut->hasParent());
         self::assertSame($parent, $this->sut->getParent());
@@ -70,7 +71,8 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
     public function testAttributeElementWithParentThrowsExceptionWhenAttributeNamingElementAddAttributeElement(
         AttributeNamingElementInterface $parent1,
         AttributeNamingElementInterface $parent2
-    ) {
+    ): void
+    {
         $parent1->addAttributeElement($this->sut);
         
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
@@ -83,7 +85,7 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAttributeElementWhenAddedToSchemaElement()
+    public function testAttributeElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addAttributeElement($this->sut);
@@ -97,7 +99,7 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAttributeElementWithParentThrowsExceptionWhenSchemaElementAddAttributeElement()
+    public function testAttributeElementWithParentThrowsExceptionWhenSchemaElementAddAttributeElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addAttributeElement($this->sut);
@@ -120,7 +122,8 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
      */
     public function testLookupNamespaceReturnsStringWhenAddedToAttributeNamingElementAndParentPrefixBoundToNamespace(
         AttributeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->addAttributeElement($this->sut);
         $parent->bindNamespace('foo', 'http://example.org/foo');
         self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
@@ -134,7 +137,7 @@ class AttributeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addAttributeElement($this->sut);

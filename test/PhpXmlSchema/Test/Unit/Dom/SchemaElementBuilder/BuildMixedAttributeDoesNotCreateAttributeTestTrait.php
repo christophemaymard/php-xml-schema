@@ -25,7 +25,7 @@ trait BuildMixedAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildMixedAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildMixedAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildMixedAttribute('foo');
         $this->sut->buildMixedAttribute('true');

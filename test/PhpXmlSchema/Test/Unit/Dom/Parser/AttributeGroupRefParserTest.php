@@ -24,7 +24,7 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'ag_ref';
     }
@@ -35,7 +35,7 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('attributeGroup_0006.xsd'));
         
@@ -74,7 +74,7 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -112,7 +112,8 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
     public function testParseProcessRefAttributeWhenPrefixAbsentAndNoDefaultNamespace(
         string $fileName, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -153,7 +154,8 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
         array $decls, 
         string $namespace, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations($decls, $sch);
@@ -179,7 +181,7 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -213,7 +215,7 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -249,7 +251,7 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNoNamespaceRefAttributes():array
+    public function getValidNoNamespaceRefAttributes(): array
     {
         return [
             'Local part starts with _' => [
@@ -292,7 +294,7 @@ class AttributeGroupRefParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidRefAttributes():array
+    public function getValidRefAttributes(): array
     {
         return [
             'Prefix (absent) and bound to default namespace' => [

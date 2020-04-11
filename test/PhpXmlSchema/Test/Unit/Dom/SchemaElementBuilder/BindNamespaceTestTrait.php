@@ -26,7 +26,7 @@ trait BindNamespaceTestTrait
      * @group   namespace
      * @group   xml
      */
-    public function testBindNamespaceAssociatesPrefixWithNamespace()
+    public function testBindNamespaceAssociatesPrefixWithNamespace(): void
     {
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
         $sch = $this->sut->getSchema();
@@ -44,7 +44,7 @@ trait BindNamespaceTestTrait
      * @group   namespace
      * @group   xml
      */
-    public function testBindNamespaceThrowsExceptionWhenBindingXmlPrefixToNamespaceOtherXml10()
+    public function testBindNamespaceThrowsExceptionWhenBindingXmlPrefixToNamespaceOtherXml10(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('"xml" prefix can be bound only to '.
@@ -60,7 +60,7 @@ trait BindNamespaceTestTrait
      * @group   namespace
      * @group   xml
      */
-    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXml10()
+    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXml10(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('"foo" prefix cannot be bound to '.
@@ -76,7 +76,7 @@ trait BindNamespaceTestTrait
      * @group   namespace
      * @group   xml
      */
-    public function testBindNamespaceThrowsExceptionWhenPrefixIsXmlns()
+    public function testBindNamespaceThrowsExceptionWhenPrefixIsXmlns(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('"xmlns" prefix is reserved.');
@@ -91,7 +91,7 @@ trait BindNamespaceTestTrait
      * @group   namespace
      * @group   xml
      */
-    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXmlns10()
+    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXmlns10(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('"foo" prefix cannot be bound to '.

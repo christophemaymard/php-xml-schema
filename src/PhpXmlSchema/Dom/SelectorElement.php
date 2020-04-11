@@ -30,7 +30,7 @@ class SelectorElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_SELECTOR;
     }
@@ -38,7 +38,7 @@ class SelectorElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'selector';
     }
@@ -48,7 +48,7 @@ class SelectorElement extends AbstractAnnotatedElement
      * 
      * @return  SelectorXPathType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getXPath()
+    public function getXPath(): ?SelectorXPathType
     {
         return $this->xpathAttr;
     }
@@ -58,7 +58,7 @@ class SelectorElement extends AbstractAnnotatedElement
      * 
      * @param   SelectorXPathType   $value  The value to set.
      */
-    public function setXPath(SelectorXPathType $value)
+    public function setXPath(SelectorXPathType $value): void
     {
         $this->xpathAttr = $value;
     }
@@ -68,7 +68,7 @@ class SelectorElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasXPath():bool
+    public function hasXPath(): bool
     {
         return $this->xpathAttr !== NULL;
     }

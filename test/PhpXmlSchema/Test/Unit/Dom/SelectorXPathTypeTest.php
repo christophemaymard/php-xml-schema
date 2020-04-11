@@ -31,7 +31,7 @@ class SelectorXPathTypeTest extends TestCase
      * 
      * @dataProvider    getValidSelectorXPathTypeValues
      */
-    public function test__constructStoresExpressionWhenItIsValid(string $expr)
+    public function test__constructStoresExpressionWhenItIsValid(string $expr): void
     {
         $sut =  new SelectorXPathType($expr);
         self::assertSame($expr, $sut->getXPath());
@@ -45,7 +45,7 @@ class SelectorXPathTypeTest extends TestCase
      * 
      * @dataProvider    getInvalidSelectorXPathTypeValues
      */
-    public function test__constructThrowsExceptionWhenExpressionIsInvalid(string $expr)
+    public function test__constructThrowsExceptionWhenExpressionIsInvalid(string $expr): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(

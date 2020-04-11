@@ -26,7 +26,7 @@ trait BuildSystemNamespaceAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildSystemAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildSystemAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildSystemAttribute(':');
         $this->sut->buildSystemAttribute('http://example.org');

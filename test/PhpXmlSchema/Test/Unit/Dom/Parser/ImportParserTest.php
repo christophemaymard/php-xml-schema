@@ -24,7 +24,7 @@ class ImportParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'import';
     }
@@ -35,7 +35,7 @@ class ImportParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('import_0006.xsd'));
         
@@ -69,7 +69,7 @@ class ImportParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -94,7 +94,7 @@ class ImportParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessNamespaceAttribute()
+    public function testParseProcessNamespaceAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('import_ns_0001.xsd'));
         
@@ -119,7 +119,7 @@ class ImportParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessSchemaLocationAttribute()
+    public function testParseProcessSchemaLocationAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('import_schloc_0001.xsd'));
         
@@ -145,7 +145,7 @@ class ImportParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -174,7 +174,7 @@ class ImportParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -106,7 +107,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -119,7 +120,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -140,7 +141,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertSimpleContentExtensionElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -148,7 +149,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -158,7 +159,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -169,7 +170,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -191,7 +192,8 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     public function testBuildBaseAttributeCreatesAttrWhenSimpleContentExtensionAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildBaseAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -222,7 +224,8 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     public function testBuildBaseAttributeCreatesAttrWhenSimpleContentExtensionAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildComplexTypeElement();
@@ -269,7 +272,8 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     public function testBuildBaseAttributeThrowsExceptionWhenSimpleContentExtensionAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -286,7 +290,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildBaseAttributeCreatesAttrWhenSimpleContentExtensionAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildBaseAttributeCreatesAttrWhenSimpleContentExtensionAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -329,7 +333,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildBaseAttributeThrowsExceptionWhenSimpleContentExtensionAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildBaseAttributeThrowsExceptionWhenSimpleContentExtensionAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -352,7 +356,8 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     public function testBuildIdAttributeCreatesAttrWhenSimpleContentExtensionAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -380,7 +385,8 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
     public function testBuildIdAttributeThrowsExceptionWhenSimpleContentExtensionAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -397,7 +403,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenSimpleContentExtension()
+    public function testBuildAnnotationElementCreateEltWhenSimpleContentExtension(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -422,7 +428,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeElementCreateEltWhenSimpleContentExtension()
+    public function testBuildAttributeElementCreateEltWhenSimpleContentExtension(): void
     {
         $this->sut->buildAttributeElement();
         $this->sut->endElement();
@@ -454,7 +460,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeGroupElementCreateEltWhenSimpleContentExtension()
+    public function testBuildAttributeGroupElementCreateEltWhenSimpleContentExtension(): void
     {
         $this->sut->buildAttributeGroupElement();
         $this->sut->endElement();
@@ -486,7 +492,7 @@ class SimpleContentExtensionSchemaElementBuilderTest extends AbstractSchemaEleme
      * @group   content
      * @group   element
      */
-    public function testBuildAnyAttributeElementCreateEltWhenSimpleContentExtension()
+    public function testBuildAnyAttributeElementCreateEltWhenSimpleContentExtension(): void
     {
         $this->sut->buildAnyAttributeElement();
         $sch = $this->sut->getSchema();

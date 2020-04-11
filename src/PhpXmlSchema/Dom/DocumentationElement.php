@@ -39,7 +39,7 @@ class DocumentationElement extends AbstractLeafElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_DOCUMENTATION;
     }
@@ -47,7 +47,7 @@ class DocumentationElement extends AbstractLeafElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'documentation';
     }
@@ -57,7 +57,7 @@ class DocumentationElement extends AbstractLeafElement
      * 
      * @return  LanguageType|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getLang()
+    public function getLang(): ?LanguageType
     {
         return $this->langAttr;
     }
@@ -67,7 +67,7 @@ class DocumentationElement extends AbstractLeafElement
      * 
      * @param   LanguageType    $value  The value to set.
      */
-    public function setLang(LanguageType $value)
+    public function setLang(LanguageType $value): void
     {
         $this->langAttr = $value;
     }
@@ -77,7 +77,7 @@ class DocumentationElement extends AbstractLeafElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasLang():bool
+    public function hasLang(): bool
     {
         return $this->langAttr !== NULL;
     }
@@ -87,7 +87,7 @@ class DocumentationElement extends AbstractLeafElement
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getSource()
+    public function getSource(): ?AnyUriType
     {
         return $this->sourceAttr;
     }
@@ -97,7 +97,7 @@ class DocumentationElement extends AbstractLeafElement
      * 
      * @param   AnyUriType  $value  The value to set.
      */
-    public function setSource(AnyUriType $value)
+    public function setSource(AnyUriType $value): void
     {
         $this->sourceAttr = $value;
     }
@@ -107,7 +107,7 @@ class DocumentationElement extends AbstractLeafElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasSource():bool
+    public function hasSource(): bool
     {
         return $this->sourceAttr !== NULL;
     }

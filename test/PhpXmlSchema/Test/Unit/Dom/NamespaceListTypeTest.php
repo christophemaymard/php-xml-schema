@@ -32,7 +32,7 @@ class NamespaceListTypeTest extends TestCase
      * - entities, that are not qualified with a namespace, are not present,
      * - there is no URI references of namespaces.
      */
-    public function test__construct()
+    public function test__construct(): void
     {
         $sut = new NamespaceListType();
         self::assertFalse($sut->hasAny());
@@ -46,7 +46,7 @@ class NamespaceListTypeTest extends TestCase
      * Tests that createAny() creates a new instance of NamespaceListType 
      * where any namespace is present.
      */
-    public function testCreateAnyReturnsNewInstanceWithAnyNamespace()
+    public function testCreateAnyReturnsNewInstanceWithAnyNamespace(): void
     {
         $sut = NamespaceListType::createAny();
         $nsl2 = NamespaceListType::createAny();
@@ -63,7 +63,7 @@ class NamespaceListTypeTest extends TestCase
      * where any namespace, that is not the target namespace of the parent 
      * element, is present.
      */
-    public function testCreateOtherReturnsNewInstanceWithOtherNamespace()
+    public function testCreateOtherReturnsNewInstanceWithOtherNamespace(): void
     {
         $sut = NamespaceListType::createOther();
         $nsl2 = NamespaceListType::createOther();
@@ -81,7 +81,7 @@ class NamespaceListTypeTest extends TestCase
      * - entities, that are not qualified with a namespace, are not present,
      * - there is no URI references of namespaces.
      */
-    public function testCreateReturnsNewInstance()
+    public function testCreateReturnsNewInstance(): void
     {
         $sut = NamespaceListType::create(FALSE, FALSE, []);
         $nsl2 = NamespaceListType::create(FALSE, FALSE, []);
@@ -99,7 +99,7 @@ class NamespaceListTypeTest extends TestCase
      * - entities, that are not qualified with a namespace, are not present,
      * - there is no URI references of namespaces.
      */
-    public function testCreateReturnsNewInstanceWithTargetNamespace()
+    public function testCreateReturnsNewInstanceWithTargetNamespace(): void
     {
         $sut = NamespaceListType::create(TRUE, FALSE, []);
         $nsl2 = NamespaceListType::create(TRUE, FALSE, []);
@@ -117,7 +117,7 @@ class NamespaceListTypeTest extends TestCase
      * - entities, that are not qualified with a namespace, are present,
      * - there is no URI references of namespaces.
      */
-    public function testCreateReturnsNewInstanceWithLocalNamespace()
+    public function testCreateReturnsNewInstanceWithLocalNamespace(): void
     {
         $sut = NamespaceListType::create(FALSE, TRUE, []);
         $nsl2 = NamespaceListType::create(FALSE, TRUE, []);
@@ -135,7 +135,7 @@ class NamespaceListTypeTest extends TestCase
      * - entities, that are not qualified with a namespace, are not present,
      * - there is a set of URI references of namespaces.
      */
-    public function testCreateReturnsNewInstanceWithNamespaces()
+    public function testCreateReturnsNewInstanceWithNamespaces(): void
     {
         $namespaces = [];
         $namespaces[] = $this->createAnyUriTypeDummy();
@@ -157,7 +157,7 @@ class NamespaceListTypeTest extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    private function createAnyUriTypeDummy():ProphecySubjectInterface
+    private function createAnyUriTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(AnyUriType::class)->reveal();
     }

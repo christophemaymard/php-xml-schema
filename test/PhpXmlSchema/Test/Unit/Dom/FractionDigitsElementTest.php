@@ -23,7 +23,7 @@ class FractionDigitsElementTest extends AbstractNumericFacetElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new FractionDigitsElement();
     }
@@ -31,7 +31,7 @@ class FractionDigitsElementTest extends AbstractNumericFacetElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('fractionDigits', $this->sut->getLocalName());
     }

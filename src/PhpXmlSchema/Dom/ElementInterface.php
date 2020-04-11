@@ -21,28 +21,28 @@ interface ElementInterface
      * 
      * @return  int
      */
-    public function getElementId():int;
+    public function getElementId(): int;
     
     /**
      * Returns the local name of this element.
      * 
      * @return  string
      */
-    public function getLocalName():string;
+    public function getLocalName(): string;
     
     /**
      * Returns the instance of the element that holds this element.
      * 
      * @return  ElementInterface|NULL   The instance of the element that holds this element, otherwise NULL.
      */
-    public function getParent();
+    public function getParent(): ?ElementInterface;
     
     /**
      * Indicates whether this element belongs to another element.
      * 
      * @return  bool    TRUE if this element belongs to another element, otherwise FALSE.
      */
-    public function hasParent():bool;
+    public function hasParent(): bool;
     
     /**
      * Binds the specified prefix to the specified namespace.
@@ -55,7 +55,7 @@ interface ElementInterface
      * @throws  InvalidOperationException   When the prefix is 'xmlns'.
      * @throws  InvalidOperationException   When the prefix, other than 'xmlns', is bound to the XML NS 1.0 namespace.
      */
-    public function bindNamespace(string $prefix, string $namespace);
+    public function bindNamespace(string $prefix, string $namespace): void;
     
     /**
      * Returns the namespace that is associated with the specified prefix.
@@ -63,12 +63,12 @@ interface ElementInterface
      * @param   string  $prefix The prefix 
      * @return  string|NULL The namespace that is associated with prefix if found, otherwise NULL.
      */
-    public function lookupNamespace(string $prefix);
+    public function lookupNamespace(string $prefix): ?string;
     
     /**
      * Returns all the namespace declarations of this element.
      * 
      * @return  string[]
      */
-    public function getNamespaceDeclarations():array;
+    public function getNamespaceDeclarations(): array;
 }

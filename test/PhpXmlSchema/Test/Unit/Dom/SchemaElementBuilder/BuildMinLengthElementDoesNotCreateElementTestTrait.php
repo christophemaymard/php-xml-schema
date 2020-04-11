@@ -26,7 +26,7 @@ trait BuildMinLengthElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildMinLengthElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildMinLengthElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildMinLengthElement();
         $sch = $this->sut->getSchema();

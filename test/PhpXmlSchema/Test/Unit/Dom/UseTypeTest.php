@@ -27,7 +27,7 @@ class UseTypeTest extends TestCase
      * 
      * @param   UseType $sut
      */
-    private static function assertUseOptional(UseType $sut)
+    private static function assertUseOptional(UseType $sut): void
     {
         self::assertTrue($sut->isOptional());
         self::assertFalse($sut->isProhibited());
@@ -40,7 +40,7 @@ class UseTypeTest extends TestCase
      * 
      * @param   UseType $sut
      */
-    private static function assertUseProhibited(UseType $sut)
+    private static function assertUseProhibited(UseType $sut): void
     {
         self::assertTrue($sut->isProhibited());
         self::assertFalse($sut->isOptional());
@@ -53,7 +53,7 @@ class UseTypeTest extends TestCase
      * 
      * @param   UseType $sut
      */
-    private static function assertUseRequired(UseType $sut)
+    private static function assertUseRequired(UseType $sut): void
     {
         self::assertTrue($sut->isRequired());
         self::assertFalse($sut->isOptional());
@@ -64,7 +64,7 @@ class UseTypeTest extends TestCase
      * Tests that isOptional() returns TRUE, isProhibited() and isRequired() 
      * return FALSE when the specified use is "optional".
      */
-    public function testIsOptionalReturnsTrueWhenUseOptional()
+    public function testIsOptionalReturnsTrueWhenUseOptional(): void
     {
         $sut = new UseType(1);
         self::assertUseOptional($sut);
@@ -74,7 +74,7 @@ class UseTypeTest extends TestCase
      * Tests that isProhibited() returns TRUE, isOptional() and isRequired() 
      * return FALSE when the specified use is "prohibited".
      */
-    public function testIsProhibitedReturnsTrueWhenUseProhibited()
+    public function testIsProhibitedReturnsTrueWhenUseProhibited(): void
     {
         $sut = new UseType(2);
         self::assertUseProhibited($sut);
@@ -84,7 +84,7 @@ class UseTypeTest extends TestCase
      * Tests that isRequired() returns TRUE, isOptional() and isProhibited() 
      * return FALSE when the specified use is "required".
      */
-    public function testIsRequiredReturnsTrueWhenUseRequired()
+    public function testIsRequiredReturnsTrueWhenUseRequired(): void
     {
         $sut = new UseType(3);
         self::assertUseRequired($sut);
@@ -94,7 +94,7 @@ class UseTypeTest extends TestCase
      * Tests that __construct() throws an exception when the specified use is 
      * invalid.
      */
-    public function test__constructThrowsExceptionWhenUseIsInvalid()
+    public function test__constructThrowsExceptionWhenUseIsInvalid(): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('"4" is an invalid use.');
@@ -106,7 +106,7 @@ class UseTypeTest extends TestCase
      * Tests that createOptional() creates a new instance of UseType 
      * configured in "optional" use.
      */
-    public function testCreateOptionalReturnsInstanceUseOptional()
+    public function testCreateOptionalReturnsInstanceUseOptional(): void
     {
         $sut = UseType::createOptional();
         self::assertUseOptional($sut);
@@ -115,7 +115,7 @@ class UseTypeTest extends TestCase
     /**
      * Tests that createOptional() creates a new instance.
      */
-    public function testCreateOptionalReturnsNewInstance()
+    public function testCreateOptionalReturnsNewInstance(): void
     {
         $sut1 = UseType::createOptional();
         $sut2 = UseType::createOptional();
@@ -126,7 +126,7 @@ class UseTypeTest extends TestCase
      * Tests that createProhibited() creates a new instance of UseType 
      * configured in "prohibited" use.
      */
-    public function testCreateProhibitedReturnsInstanceUseProhibited()
+    public function testCreateProhibitedReturnsInstanceUseProhibited(): void
     {
         $sut = UseType::createProhibited();
         self::assertUseProhibited($sut);
@@ -135,7 +135,7 @@ class UseTypeTest extends TestCase
     /**
      * Tests that createProhibited() creates a new instance.
      */
-    public function testCreateProhibitedReturnsNewInstance()
+    public function testCreateProhibitedReturnsNewInstance(): void
     {
         $sut1 = UseType::createProhibited();
         $sut2 = UseType::createProhibited();
@@ -146,7 +146,7 @@ class UseTypeTest extends TestCase
      * Tests that createRequired() creates a new instance of UseType 
      * configured in "required" use.
      */
-    public function testCreateRequiredReturnsInstanceUseRequired()
+    public function testCreateRequiredReturnsInstanceUseRequired(): void
     {
         $sut = UseType::createRequired();
         self::assertUseRequired($sut);
@@ -155,7 +155,7 @@ class UseTypeTest extends TestCase
     /**
      * Tests that createRequired() creates a new instance.
      */
-    public function testCreateRequiredReturnsNewInstance()
+    public function testCreateRequiredReturnsNewInstance(): void
     {
         $sut1 = UseType::createRequired();
         $sut2 = UseType::createRequired();

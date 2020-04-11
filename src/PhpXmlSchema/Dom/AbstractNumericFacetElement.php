@@ -28,7 +28,7 @@ abstract class AbstractNumericFacetElement extends AbstractFixedFacetElement
      * 
      * @return  NonNegativeIntegerType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getValue()
+    public function getValue(): ?NonNegativeIntegerType
     {
         return $this->valueAttr;
     }
@@ -38,7 +38,7 @@ abstract class AbstractNumericFacetElement extends AbstractFixedFacetElement
      * 
      * @param   NonNegativeIntegerType  $value  The value to set.
      */
-    public function setValue(NonNegativeIntegerType $value)
+    public function setValue(NonNegativeIntegerType $value): void
     {
         $this->valueAttr = $value;
     }
@@ -48,7 +48,7 @@ abstract class AbstractNumericFacetElement extends AbstractFixedFacetElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasValue():bool
+    public function hasValue(): bool
     {
         return $this->valueAttr !== NULL;
     }

@@ -24,7 +24,7 @@ abstract class AbstractLeafElement extends AbstractElement implements LeafElemen
     /**
      * {@inheritDoc}
      */
-    public function getContent():string
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -32,7 +32,7 @@ abstract class AbstractLeafElement extends AbstractElement implements LeafElemen
     /**
      * {@inheritDoc}
      */
-    public function setContent(string $content)
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }

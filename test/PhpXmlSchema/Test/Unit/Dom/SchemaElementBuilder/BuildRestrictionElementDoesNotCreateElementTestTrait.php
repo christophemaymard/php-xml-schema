@@ -27,7 +27,7 @@ trait BuildRestrictionElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildRestrictionElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildRestrictionElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildRestrictionElement();
         $sch = $this->sut->getSchema();

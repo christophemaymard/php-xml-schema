@@ -24,7 +24,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'sc_restriction';
     }
@@ -35,7 +35,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('restriction_0006.xsd'));
         
@@ -83,7 +83,8 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
     public function testParseProcessBaseAttributeWhenPrefixAbsentAndNoDefaultNamespace(
         string $fileName, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -129,7 +130,8 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
         array $decls, 
         string $namespace, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations($decls, $sch);
@@ -163,7 +165,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -199,7 +201,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -239,7 +241,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSimpleTypeElement()
+    public function testParseProcessSimpleTypeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
         
@@ -284,7 +286,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessMinExclusiveElement()
+    public function testParseProcessMinExclusiveElement(): void
     {
         $sch = $this->sut->parse($this->getXs('minExclusive_0002.xsd'));
         
@@ -329,7 +331,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessMinInclusiveElement()
+    public function testParseProcessMinInclusiveElement(): void
     {
         $sch = $this->sut->parse($this->getXs('minInclusive_0002.xsd'));
         
@@ -374,7 +376,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessMaxExclusiveElement()
+    public function testParseProcessMaxExclusiveElement(): void
     {
         $sch = $this->sut->parse($this->getXs('maxExclusive_0002.xsd'));
         
@@ -419,7 +421,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessMaxInclusiveElement()
+    public function testParseProcessMaxInclusiveElement(): void
     {
         $sch = $this->sut->parse($this->getXs('maxInclusive_0002.xsd'));
         
@@ -464,7 +466,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessTotalDigitsElement()
+    public function testParseProcessTotalDigitsElement(): void
     {
         $sch = $this->sut->parse($this->getXs('totalDigits_0002.xsd'));
         
@@ -509,7 +511,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessFractionDigitsElement()
+    public function testParseProcessFractionDigitsElement(): void
     {
         $sch = $this->sut->parse($this->getXs('fractionDigits_0002.xsd'));
         
@@ -554,7 +556,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessLengthElement()
+    public function testParseProcessLengthElement(): void
     {
         $sch = $this->sut->parse($this->getXs('length_0002.xsd'));
         
@@ -599,7 +601,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessMinLengthElement()
+    public function testParseProcessMinLengthElement(): void
     {
         $sch = $this->sut->parse($this->getXs('minLength_0002.xsd'));
         
@@ -644,7 +646,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessMaxLengthElement()
+    public function testParseProcessMaxLengthElement(): void
     {
         $sch = $this->sut->parse($this->getXs('maxLength_0002.xsd'));
         
@@ -689,7 +691,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessEnumerationElement()
+    public function testParseProcessEnumerationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('enumeration_0002.xsd'));
         
@@ -734,7 +736,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessWhiteSpaceElement()
+    public function testParseProcessWhiteSpaceElement(): void
     {
         $sch = $this->sut->parse($this->getXs('whiteSpace_0002.xsd'));
         
@@ -779,7 +781,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessPatternElement()
+    public function testParseProcessPatternElement(): void
     {
         $sch = $this->sut->parse($this->getXs('pattern_0002.xsd'));
         
@@ -824,7 +826,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeElement()
+    public function testParseProcessAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attribute_0002.xsd'));
         
@@ -870,7 +872,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeGroupElement()
+    public function testParseProcessAttributeGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attributeGroup_0002.xsd'));
         
@@ -915,7 +917,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnyAttributeElement()
+    public function testParseProcessAnyAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('anyAttribute_0002.xsd'));
         
@@ -955,7 +957,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNoNamespaceBaseAttributes():array
+    public function getValidNoNamespaceBaseAttributes(): array
     {
         return [
             'Local part starts with _' => [
@@ -998,7 +1000,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidBaseAttributes():array
+    public function getValidBaseAttributes(): array
     {
         return [
             'Prefix (absent) and bound to default namespace' => [
@@ -1144,7 +1146,7 @@ class SimpleContentRestrictionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

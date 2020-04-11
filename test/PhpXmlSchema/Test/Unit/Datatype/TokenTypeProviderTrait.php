@@ -19,7 +19,7 @@ trait TokenTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidTokenTypeValues():array
+    public function getValidTokenTypeValues(): array
     {
         return $this->getCommonValidTokenTypeValues();
     }
@@ -30,7 +30,7 @@ trait TokenTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidTokenTypeWSValues():array
+    public function getValidTokenTypeWSValues(): array
     {
         return \array_merge(
             $this->getCommonValidTokenTypeValues(), 
@@ -60,7 +60,7 @@ trait TokenTypeProviderTrait
      * 
      * @return  array[]
      */
-    private function getCommonValidTokenTypeValues():array
+    private function getCommonValidTokenTypeValues(): array
     {
         return [
             'Empty string' => [
@@ -111,7 +111,7 @@ trait TokenTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidTokenTypeValues():array
+    public function getInvalidTokenTypeValues(): array
     {
         return \array_merge(
             $this->getCommonInvalidTokenTypeValues(),
@@ -150,7 +150,7 @@ trait TokenTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidTokenTypeWSValues():array
+    public function getInvalidTokenTypeWSValues(): array
     {
         return $this->getCommonInvalidTokenTypeValues();
     }
@@ -160,7 +160,7 @@ trait TokenTypeProviderTrait
      * 
      * @return  array[]
      */
-    private function getCommonInvalidTokenTypeValues():array
+    private function getCommonInvalidTokenTypeValues(): array
     {
         return [
             'Contains invalid character (U+0000)' => [ 

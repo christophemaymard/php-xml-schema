@@ -41,7 +41,7 @@ class PositiveIntegerType
      * 
      * @throws  InvalidValueException   When the value is an invalid positiveInteger datatype.
      */
-    private function setValue(\GMP $value)
+    private function setValue(\GMP $value): void
     {
         if ($value < 1) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid positiveInteger datatype.', $value));
@@ -55,7 +55,7 @@ class PositiveIntegerType
      * 
      * @return  \GMP
      */
-    public function getPositiveInteger():\GMP
+    public function getPositiveInteger(): \GMP
     {
         return $this->value;
     }

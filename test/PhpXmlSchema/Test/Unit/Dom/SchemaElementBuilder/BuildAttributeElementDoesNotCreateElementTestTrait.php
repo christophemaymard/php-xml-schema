@@ -27,7 +27,7 @@ trait BuildAttributeElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildAttributeElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildAttributeElement();
         $sch = $this->sut->getSchema();

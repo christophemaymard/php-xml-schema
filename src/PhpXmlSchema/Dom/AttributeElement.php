@@ -76,7 +76,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_ATTRIBUTE;
     }
@@ -84,7 +84,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'attribute';
     }
@@ -94,7 +94,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getDefault()
+    public function getDefault(): ?StringType
     {
         return $this->defaultAttr;
     }
@@ -104,7 +104,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @param   StringType  $value  The value to set.
      */
-    public function setDefault(StringType $value)
+    public function setDefault(StringType $value): void
     {
         $this->defaultAttr = $value;
     }
@@ -114,7 +114,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasDefault():bool
+    public function hasDefault(): bool
     {
         return $this->defaultAttr !== NULL;
     }
@@ -124,7 +124,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getFixed()
+    public function getFixed(): ?StringType
     {
         return $this->fixedAttr;
     }
@@ -134,7 +134,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @param   StringType  $value  The value to set.
      */
-    public function setFixed(StringType $value)
+    public function setFixed(StringType $value): void
     {
         $this->fixedAttr = $value;
     }
@@ -144,7 +144,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasFixed():bool
+    public function hasFixed(): bool
     {
         return $this->fixedAttr !== NULL;
     }
@@ -154,7 +154,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  FormType|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getForm()
+    public function getForm(): ?FormType
     {
         return $this->formAttr;
     }
@@ -164,7 +164,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @param   FormType    $value  The value to set.
      */
-    public function setForm(FormType $value)
+    public function setForm(FormType $value): void
     {
         $this->formAttr = $value;
     }
@@ -174,7 +174,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasForm():bool
+    public function hasForm(): bool
     {
         return $this->formAttr !== NULL;
     }
@@ -184,7 +184,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getName()
+    public function getName(): ?NCNameType
     {
         return $this->nameAttr;
     }
@@ -194,7 +194,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @param   NCNameType  $value  The value to set.
      */
-    public function setName(NCNameType $value)
+    public function setName(NCNameType $value): void
     {
         $this->nameAttr = $value;
     }
@@ -204,7 +204,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasName():bool
+    public function hasName(): bool
     {
         return $this->nameAttr !== NULL;
     }
@@ -214,7 +214,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getRef()
+    public function getRef(): ?QNameType
     {
         return $this->refAttr;
     }
@@ -224,7 +224,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setRef(QNameType $value)
+    public function setRef(QNameType $value): void
     {
         $this->refAttr = $value;
     }
@@ -234,7 +234,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasRef():bool
+    public function hasRef(): bool
     {
         return $this->refAttr !== NULL;
     }
@@ -244,7 +244,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getType()
+    public function getType(): ?QNameType
     {
         return $this->typeAttr;
     }
@@ -254,7 +254,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setType(QNameType $value)
+    public function setType(QNameType $value): void
     {
         $this->typeAttr = $value;
     }
@@ -264,7 +264,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasType():bool
+    public function hasType(): bool
     {
         return $this->typeAttr !== NULL;
     }
@@ -274,7 +274,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  UseType|NULL    The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getUse()
+    public function getUse(): ?UseType
     {
         return $this->useAttr;
     }
@@ -284,7 +284,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @param   UseType $value  The value to set.
      */
-    public function setUse(UseType $value)
+    public function setUse(UseType $value): void
     {
         $this->useAttr = $value;
     }
@@ -294,7 +294,7 @@ class AttributeElement extends AbstractSimpleTypedElement implements AttributeDe
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasUse():bool
+    public function hasUse(): bool
     {
         return $this->useAttr !== NULL;
     }

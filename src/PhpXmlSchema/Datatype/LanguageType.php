@@ -56,7 +56,7 @@ class LanguageType
      * 
      * @throws  InvalidValueException   When the primary subtag is invalid.
      */
-    private function setPrimarySubtag(string $primary)
+    private function setPrimarySubtag(string $primary): void
     {
         if (!\preg_match('`^[a-zA-Z]{1,8}$`', $primary)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid primary subtag.', $primary));
@@ -70,7 +70,7 @@ class LanguageType
      * 
      * @return  string
      */
-    public function getPrimarySubtag():string
+    public function getPrimarySubtag(): string
     {
         return $this->primarySubtag;
     }
@@ -80,7 +80,7 @@ class LanguageType
      * 
      * @param   string[]    $subtags    The subtags to set.
      */
-    private function setSubtags(array $subtags)
+    private function setSubtags(array $subtags): void
     {
         $this->subtags = [];
         
@@ -96,7 +96,7 @@ class LanguageType
      * 
      * @throws  InvalidValueException   When the subtag is invalid.
      */
-    private function addSubtag(string $subtag)
+    private function addSubtag(string $subtag): void
     {
         if (!\preg_match('`^[a-zA-Z0-9]{1,8}$`', $subtag)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid subtag.', $subtag));
@@ -110,7 +110,7 @@ class LanguageType
      * 
      * @return  string[]    An indexed array of subtags.
      */
-    public function getSubtags():array
+    public function getSubtags(): array
     {
         return $this->subtags;
     }

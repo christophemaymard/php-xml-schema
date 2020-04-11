@@ -24,7 +24,7 @@ class KeyElement extends AbstractIdentityConstraintElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_KEY;
     }
@@ -32,7 +32,7 @@ class KeyElement extends AbstractIdentityConstraintElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'key';
     }

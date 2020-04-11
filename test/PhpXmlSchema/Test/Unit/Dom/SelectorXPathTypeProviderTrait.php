@@ -20,7 +20,7 @@ trait SelectorXPathTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidSelectorXPathTypeValues():array
+    public function getValidSelectorXPathTypeValues(): array
     {
         return [
             // 1 path (with 1 step).
@@ -519,7 +519,7 @@ trait SelectorXPathTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidSelectorXPathTypeValues():array
+    public function getInvalidSelectorXPathTypeValues(): array
     {
         return [
             'Empty string' => [

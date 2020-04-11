@@ -24,7 +24,7 @@ class KeyRefElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new KeyRefElement();
     }
@@ -32,7 +32,7 @@ class KeyRefElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_KEYREF, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class KeyRefElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testKeyRefElementWhenAddedToElementElement()
+    public function testKeyRefElementWhenAddedToElementElement(): void
     {
         $parent = new ElementElement();
         $parent->addKeyRefElement($this->sut);
@@ -57,7 +57,7 @@ class KeyRefElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testKeyRefElementWithParentThrowsExceptionWhenElementElementAddKeyRefElement()
+    public function testKeyRefElementWithParentThrowsExceptionWhenElementElementAddKeyRefElement(): void
     {
         $parent1 = new ElementElement();
         $parent1->addKeyRefElement($this->sut);
@@ -75,7 +75,7 @@ class KeyRefElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToElementElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToElementElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ElementElement();
         $parent->addKeyRefElement($this->sut);

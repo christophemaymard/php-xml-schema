@@ -27,7 +27,7 @@ trait BuildElementFormDefaultAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildElementFormDefaultAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildElementFormDefaultAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildElementFormDefaultAttribute('foo');
         $this->sut->buildElementFormDefaultAttribute('qualified');

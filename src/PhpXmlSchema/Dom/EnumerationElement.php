@@ -30,7 +30,7 @@ class EnumerationElement extends AbstractAnnotatedElement implements FacetElemen
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_ENUMERATION;
     }
@@ -38,7 +38,7 @@ class EnumerationElement extends AbstractAnnotatedElement implements FacetElemen
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'enumeration';
     }
@@ -48,7 +48,7 @@ class EnumerationElement extends AbstractAnnotatedElement implements FacetElemen
      * 
      * @return  string|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getValue()
+    public function getValue(): ?string
     {
         return $this->valueAttr;
     }
@@ -58,7 +58,7 @@ class EnumerationElement extends AbstractAnnotatedElement implements FacetElemen
      * 
      * @param   string  $value  The value to set.
      */
-    public function setValue(string $value)
+    public function setValue(string $value): void
     {
         $this->valueAttr = $value;
     }
@@ -68,7 +68,7 @@ class EnumerationElement extends AbstractAnnotatedElement implements FacetElemen
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasValue():bool
+    public function hasValue(): bool
     {
         return $this->valueAttr !== NULL;
     }

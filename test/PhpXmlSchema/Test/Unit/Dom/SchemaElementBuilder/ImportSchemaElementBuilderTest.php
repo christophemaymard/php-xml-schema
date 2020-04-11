@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -106,7 +107,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -119,7 +120,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -130,7 +131,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertImportElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -138,7 +139,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getImportElements()[0];
     }
@@ -146,7 +147,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildImportElement();
@@ -155,7 +156,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -174,7 +175,8 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildIdAttributeCreatesAttrWhenImportAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -201,7 +203,8 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildIdAttributeThrowsExceptionWhenImportAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -226,7 +229,8 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildNamespaceAttributeCreatesAttrWhenImportAndValueIsValid(
         string $value, 
         string $uri
-    ) {
+    ): void
+    {
         $this->sut->buildNamespaceAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -253,7 +257,8 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildNamespaceAttributeThrowsExceptionWhenImportAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -275,7 +280,8 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildSchemaLocationAttributeCreatesAttrWhenImportAndValueIsValid(
         string $value, 
         string $uri
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaLocationAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -302,7 +308,8 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildSchemaLocationAttributeThrowsExceptionWhenImportAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -316,7 +323,7 @@ class ImportSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenImport()
+    public function testBuildAnnotationElementCreateEltWhenImport(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

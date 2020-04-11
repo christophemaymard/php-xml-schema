@@ -23,7 +23,7 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AnnotationElement();
     }
@@ -31,7 +31,7 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('annotation', $this->sut->getLocalName());
     }
@@ -44,7 +44,7 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetAppInfoElements()
+    public function testGetAppInfoElements(): void
     {
         $elements = [];
         
@@ -73,7 +73,7 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetDocumentationElements()
+    public function testGetDocumentationElements(): void
     {
         $elements = [];
         
@@ -100,7 +100,7 @@ class AnnotationElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer0()
+    public function testGetElementsReturnsElementsOfContainer0(): void
     {
         $children = [];
         $children[] = $this->createAppInfoElementHasParentFalse1TimeMock();

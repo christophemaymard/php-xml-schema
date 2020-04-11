@@ -19,7 +19,7 @@ trait QNameTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidLocalPartQNameTypeValues():array
+    public function getValidLocalPartQNameTypeValues(): array
     {
         return [
             'Starts with _' => [ 
@@ -54,7 +54,7 @@ trait QNameTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidQNameTypeValues():array
+    public function getInvalidQNameTypeValues(): array
     {
         return [
             // Prefix is absent and local part is invalid.

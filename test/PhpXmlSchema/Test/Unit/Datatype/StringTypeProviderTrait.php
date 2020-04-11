@@ -19,7 +19,7 @@ trait StringTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidStringTypeValues():array
+    public function getValidStringTypeValues(): array
     {
         return [
             'Empty string' => [
@@ -72,7 +72,7 @@ trait StringTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidStringTypeValues():array
+    public function getInvalidStringTypeValues(): array
     {
         return [
             'Contains invalid character (U+0000)' => [

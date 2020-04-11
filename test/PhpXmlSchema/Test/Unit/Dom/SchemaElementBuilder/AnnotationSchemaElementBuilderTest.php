@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -105,7 +106,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -118,7 +119,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -133,7 +134,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertAnnotationElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -141,7 +142,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getImportElements()[0]
             ->getAnnotationElement();
@@ -150,7 +151,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildImportElement();
@@ -160,7 +161,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -179,7 +180,8 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildIdAttributeCreatesAttrWhenAnnotationAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -206,7 +208,8 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     public function testBuildIdAttributeThrowsExceptionWhenAnnotationAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -223,7 +226,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * @group   content
      * @group   element
      */
-    public function testBuildAppInfoElementCreateEltWhenAnnotation()
+    public function testBuildAppInfoElementCreateEltWhenAnnotation(): void
     {
         $this->sut->buildAppInfoElement();
         $this->sut->endElement();
@@ -254,7 +257,7 @@ class AnnotationSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
      * @group   content
      * @group   element
      */
-    public function testBuildDocumentationElementCreateEltWhenAnnotation()
+    public function testBuildDocumentationElementCreateEltWhenAnnotation(): void
     {
         $this->sut->buildDocumentationElement();
         $this->sut->endElement();

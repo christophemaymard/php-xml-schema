@@ -49,7 +49,7 @@ class ParserContext
     /**
      * Initializes a DFA.
      */
-    private function initDFA()
+    private function initDFA(): void
     {
         $this->fa = new DFA($this->spec->getInitialState());
         
@@ -72,7 +72,7 @@ class ParserContext
      * 
      * @return  bool    TRUE if this context is defined for a composite element, otherwise FALSE for a leaf element.
      */
-    public function isComposite():bool
+    public function isComposite(): bool
     {
         return $this->fa !== NULL;
     }
@@ -87,7 +87,7 @@ class ParserContext
      * @param   string  $name   The local name of the element to check.
      * @return  bool    TRUE if the element with the specified local name is accepted, otherwise FALSE.
      */
-    public function isElementAccepted(string $name):bool
+    public function isElementAccepted(string $name): bool
     {
         return $this->isComposite() && 
             $this->spec->findTransitionElementNameSymbol(
@@ -104,7 +104,7 @@ class ParserContext
      * 
      * @return  string[]    An indexed array of all the local names of the accepted elements.
      */
-    public function getAcceptedElements():array
+    public function getAcceptedElements(): array
     {
         return ($this->isComposite()) ? 
             $this->spec->getTransitionElementNames($this->fa->getCurrentState()) : 
@@ -122,7 +122,7 @@ class ParserContext
      * @throws  InvalidOperationException   When the element to create is not supported in the current state.
      * @throws  InvalidOperationException   When the method to create the element is not part of the builder instance.
      */
-    public function createElement(string $name, SchemaBuilderInterface $builder):int
+    public function createElement(string $name, SchemaBuilderInterface $builder): int
     {
         if (!$this->isComposite()) {
             throw new InvalidOperationException(\sprintf(
@@ -168,7 +168,7 @@ class ParserContext
      * 
      * @return  bool
      */
-    public function isContentValid():bool
+    public function isContentValid(): bool
     {
         return !$this->isComposite() || $this->fa->isValid();
     }
@@ -181,7 +181,7 @@ class ParserContext
      * @param   string  $ns    The namespace of the attribute.
      * @return  bool    TRUE if the attribute is supported, otherwise FALSE.
      */
-    public function isAttributeSupported(string $name, string $ns):bool
+    public function isAttributeSupported(string $name, string $ns): bool
     {
         return $this->spec->hasAttributeBuilder($name, $ns);
     }
@@ -201,7 +201,8 @@ class ParserContext
         string $ns, 
         string $value, 
         SchemaBuilderInterface $builder
-    ) {
+    ): void
+    {
         if (!$this->spec->hasAttributeBuilder($name, $ns)) {
             throw new InvalidOperationException(\sprintf(
                 'The attribute with the local name "%s" and the namespace '.

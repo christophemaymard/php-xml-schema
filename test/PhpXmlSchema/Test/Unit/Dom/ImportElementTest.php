@@ -23,7 +23,7 @@ class ImportElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ImportElement();
     }
@@ -31,7 +31,7 @@ class ImportElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('import', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class ImportElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasNamespace()
+    public function testHasNamespace(): void
     {
         self::assertFalse($this->sut->hasNamespace(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class ImportElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetNamespace()
+    public function testGetNamespace(): void
     {
         self::assertNull($this->sut->getNamespace(), 'The attribute has not been set.');
         
@@ -78,7 +78,7 @@ class ImportElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasSchemaLocation()
+    public function testHasSchemaLocation(): void
     {
         self::assertFalse($this->sut->hasSchemaLocation(), 'The attribute has not been set.');
         
@@ -93,7 +93,7 @@ class ImportElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetSchemaLocation()
+    public function testGetSchemaLocation(): void
     {
         self::assertNull($this->sut->getSchemaLocation(), 'The attribute has not been set.');
         

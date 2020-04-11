@@ -25,7 +25,7 @@ trait BuildAbstractAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildAbstractAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildAbstractAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildAbstractAttribute('foo');
         $this->sut->buildAbstractAttribute('true');

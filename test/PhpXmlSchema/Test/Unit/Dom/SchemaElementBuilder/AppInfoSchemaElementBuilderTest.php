@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -106,7 +107,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -119,7 +120,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertSchemaElementHasNoAttribute($sch);
         self::assertElementNamespaceDeclarations([], $sch);
@@ -135,7 +136,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertAppInfoElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -143,7 +144,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getCompositionAnnotationElements()[0]
             ->getAppInfoElements()[0];
@@ -152,7 +153,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildCompositionAnnotationElement();
@@ -162,7 +163,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -182,7 +183,8 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public function testBuildSourceAttributeCreatesAttrWhenAppInfoAndValueIsValid(
         string $value, 
         string $uri
-    ) {
+    ): void
+    {
         $this->sut->buildSourceAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -209,7 +211,8 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public function testBuildSourceAttributeThrowsExceptionWhenAppInfoAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -223,7 +226,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * @group   content
      * @group   element
      */
-    public function testbuildLeafElementContentCreatesContentWhenAppInfo()
+    public function testbuildLeafElementContentCreatesContentWhenAppInfo(): void
     {
         $this->sut->buildLeafElementContent('foo bar baz content');
         $sch = $this->sut->getSchema();
@@ -243,7 +246,7 @@ class AppInfoSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * @group   content
      * @group   element
      */
-    public function testbuildLeafElementContentUpdatesContentWhenAppInfo()
+    public function testbuildLeafElementContentUpdatesContentWhenAppInfo(): void
     {
         $this->sut->buildLeafElementContent('foo');
         $this->sut->buildLeafElementContent('bar');

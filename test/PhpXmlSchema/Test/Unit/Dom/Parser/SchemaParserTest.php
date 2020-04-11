@@ -24,7 +24,7 @@ class SchemaParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'schema';
     }
@@ -35,7 +35,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('schema_0007.xsd'));
         
@@ -65,7 +65,8 @@ class SchemaParserTest extends AbstractParserTestCase
         string $fileName,
         bool $qual, 
         bool $unqual
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -96,7 +97,8 @@ class SchemaParserTest extends AbstractParserTestCase
         bool $res, 
         bool $ext, 
         bool $sub
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -124,7 +126,8 @@ class SchemaParserTest extends AbstractParserTestCase
         string $fileName,
         bool $qual, 
         bool $unqual
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -157,7 +160,8 @@ class SchemaParserTest extends AbstractParserTestCase
         bool $res, 
         bool $lst, 
         bool $unn
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -180,7 +184,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -200,7 +204,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessTargetNamespaceAttribute()
+    public function testParseProcessTargetNamespaceAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('schema_target_0001.xsd'));
         
@@ -220,7 +224,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessVersionAttribute()
+    public function testParseProcessVersionAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('schema_version_0001.xsd'));
         
@@ -249,7 +253,8 @@ class SchemaParserTest extends AbstractParserTestCase
         string $fileName, 
         string $prim, 
         array $subtags
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -269,7 +274,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessAllAttributes()
+    public function testParseProcessAllAttributes(): void
     {
         $sch = $this->sut->parse($this->getXs('schema_0006.xsd'));
         
@@ -297,7 +302,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessCompositionAnnotationElement()
+    public function testParseProcessCompositionAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -328,7 +333,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessImportElement()
+    public function testParseProcessImportElement(): void
     {
         $sch = $this->sut->parse($this->getXs('import_0002.xsd'));
         
@@ -359,7 +364,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessIncludeElement()
+    public function testParseProcessIncludeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('include_0002.xsd'));
         
@@ -390,7 +395,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessNotationElement()
+    public function testParseProcessNotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('notation_0002.xsd'));
         
@@ -421,7 +426,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessDefinitionAnnotationElement()
+    public function testParseProcessDefinitionAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0004.xsd'));
         
@@ -456,7 +461,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeElement()
+    public function testParseProcessAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attribute_0002.xsd'));
         
@@ -487,7 +492,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSimpleTypeElement()
+    public function testParseProcessSimpleTypeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
         
@@ -528,7 +533,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeGroupElement()
+    public function testParseProcessAttributeGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attributeGroup_0002.xsd'));
         
@@ -559,7 +564,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessComplexTypeElement()
+    public function testParseProcessComplexTypeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('complexType_0002.xsd'));
         
@@ -589,7 +594,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessGroupElement()
+    public function testParseProcessGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('group_0002.xsd'));
         
@@ -629,7 +634,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessElementElement()
+    public function testParseProcessElementElement(): void
     {
         $sch = $this->sut->parse($this->getXs('element_0002.xsd'));
         
@@ -658,7 +663,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidAttributeFormDefaultAttributes():array
+    public function getValidAttributeFormDefaultAttributes(): array
     {
         // [ $fileName, $qualified, $unqualified, ]
         return [
@@ -676,7 +681,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidBlockDefaultAttributes():array
+    public function getValidBlockDefaultAttributes(): array
     {
         // [ $fileName, $restriction, $extension, $substitution, ]
         return [
@@ -727,7 +732,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidElementFormDefaultAttributes():array
+    public function getValidElementFormDefaultAttributes(): array
     {
         // [ $fileName, $qualified, $unqualified, ]
         return [
@@ -745,7 +750,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidFinalDefaultAttributes():array
+    public function getValidFinalDefaultAttributes(): array
     {
         // [ $fileName, $extension, $restriction, $list, $union, ]
         return [
@@ -808,7 +813,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -843,7 +848,7 @@ class SchemaParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidLangAttributes():array
+    public function getValidLangAttributes(): array
     {
         return [
             'Primary subtag of 1 character' => [

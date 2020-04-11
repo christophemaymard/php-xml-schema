@@ -23,7 +23,7 @@ class AppInfoElementTest extends AbstractLeafElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AppInfoElement();
     }
@@ -31,7 +31,7 @@ class AppInfoElementTest extends AbstractLeafElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('appinfo', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class AppInfoElementTest extends AbstractLeafElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasSource()
+    public function testHasSource(): void
     {
         self::assertFalse($this->sut->hasSource(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class AppInfoElementTest extends AbstractLeafElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetSource()
+    public function testGetSource(): void
     {
         self::assertNull($this->sut->getSource(), 'The attribute has not been set.');
         

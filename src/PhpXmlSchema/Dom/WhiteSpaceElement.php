@@ -31,7 +31,7 @@ class WhiteSpaceElement extends AbstractFixedFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_WHITESPACE;
     }
@@ -39,7 +39,7 @@ class WhiteSpaceElement extends AbstractFixedFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'whiteSpace';
     }
@@ -49,7 +49,7 @@ class WhiteSpaceElement extends AbstractFixedFacetElement
      * 
      * @return  WhiteSpaceType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getValue()
+    public function getValue(): ?WhiteSpaceType
     {
         return $this->valueAttr;
     }
@@ -59,7 +59,7 @@ class WhiteSpaceElement extends AbstractFixedFacetElement
      * 
      * @param   WhiteSpaceType  $value  The value to set.
      */
-    public function setValue(WhiteSpaceType $value)
+    public function setValue(WhiteSpaceType $value): void
     {
         $this->valueAttr = $value;
     }
@@ -69,7 +69,7 @@ class WhiteSpaceElement extends AbstractFixedFacetElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasValue():bool
+    public function hasValue(): bool
     {
         return $this->valueAttr !== NULL;
     }

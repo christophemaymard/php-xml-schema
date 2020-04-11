@@ -28,7 +28,7 @@ class WhiteSpaceTypeTest extends TestCase
      * 
      * @param   WhiteSpaceType  $sut
      */
-    private static function assertWhiteSpaceCollapse(WhiteSpaceType $sut)
+    private static function assertWhiteSpaceCollapse(WhiteSpaceType $sut): void
     {
         self::assertTrue($sut->isCollapse());
         self::assertFalse($sut->isPreserve());
@@ -41,7 +41,7 @@ class WhiteSpaceTypeTest extends TestCase
      * 
      * @param   WhiteSpaceType  $sut
      */
-    private static function assertWhiteSpacePreserve(WhiteSpaceType $sut)
+    private static function assertWhiteSpacePreserve(WhiteSpaceType $sut): void
     {
         self::assertTrue($sut->isPreserve());
         self::assertFalse($sut->isCollapse());
@@ -54,7 +54,7 @@ class WhiteSpaceTypeTest extends TestCase
      * 
      * @param   WhiteSpaceType  $sut
      */
-    private static function assertWhiteSpaceReplace(WhiteSpaceType $sut)
+    private static function assertWhiteSpaceReplace(WhiteSpaceType $sut): void
     {
         self::assertTrue($sut->isReplace());
         self::assertFalse($sut->isCollapse());
@@ -65,7 +65,7 @@ class WhiteSpaceTypeTest extends TestCase
      * Tests that isCollapse() returns TRUE, isPreserve() and isReplace() 
      * return FALSE when the specified white space is "collapse".
      */
-    public function testIsCollapseReturnsTrueWhenWhiteSpaceCollapse()
+    public function testIsCollapseReturnsTrueWhenWhiteSpaceCollapse(): void
     {
         $sut = new WhiteSpaceType(1);
         self::assertWhiteSpaceCollapse($sut);
@@ -75,7 +75,7 @@ class WhiteSpaceTypeTest extends TestCase
      * Tests that isPreserve() returns TRUE, isCollapse() and isReplace() 
      * return FALSE when the specified white space is "preserve".
      */
-    public function testIsPreserveReturnsTrueWhenWhiteSpacePreserve()
+    public function testIsPreserveReturnsTrueWhenWhiteSpacePreserve(): void
     {
         $sut = new WhiteSpaceType(2);
         self::assertWhiteSpacePreserve($sut);
@@ -85,7 +85,7 @@ class WhiteSpaceTypeTest extends TestCase
      * Tests that isReplace() returns TRUE, isCollapse() and isPreserve() 
      * return FALSE when the specified white space is "replace".
      */
-    public function testIsReplaceReturnsTrueWhenWhiteSpaceReplace()
+    public function testIsReplaceReturnsTrueWhenWhiteSpaceReplace(): void
     {
         $sut = new WhiteSpaceType(3);
         self::assertWhiteSpaceReplace($sut);
@@ -95,7 +95,7 @@ class WhiteSpaceTypeTest extends TestCase
      * Tests that __construct() throws an exception when the specified white 
      * space is invalid.
      */
-    public function test__constructThrowsExceptionWhenWhiteSpaceIsInvalid()
+    public function test__constructThrowsExceptionWhenWhiteSpaceIsInvalid(): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('"4" is an invalid white space.');
@@ -107,7 +107,7 @@ class WhiteSpaceTypeTest extends TestCase
      * Tests that createCollapse() creates a new instance of WhiteSpaceType 
      * configured in "collapse" white space.
      */
-    public function testCreateCollapseReturnsInstanceWhiteSpaceCollapse()
+    public function testCreateCollapseReturnsInstanceWhiteSpaceCollapse(): void
     {
         $sut = WhiteSpaceType::createCollapse();
         self::assertWhiteSpaceCollapse($sut);
@@ -116,7 +116,7 @@ class WhiteSpaceTypeTest extends TestCase
     /**
      * Tests that createCollapse() creates a new instance.
      */
-    public function testCreateCollapseReturnsNewInstance()
+    public function testCreateCollapseReturnsNewInstance(): void
     {
         $sut1 = WhiteSpaceType::createCollapse();
         $sut2 = WhiteSpaceType::createCollapse();
@@ -127,7 +127,7 @@ class WhiteSpaceTypeTest extends TestCase
      * Tests that createPreserve() creates a new instance of WhiteSpaceType 
      * configured in "preserve" white space.
      */
-    public function testCreatePreserveReturnsInstanceWhiteSpacePreserve()
+    public function testCreatePreserveReturnsInstanceWhiteSpacePreserve(): void
     {
         $sut = WhiteSpaceType::createPreserve();
         self::assertWhiteSpacePreserve($sut);
@@ -136,7 +136,7 @@ class WhiteSpaceTypeTest extends TestCase
     /**
      * Tests that createPreserve() creates a new instance.
      */
-    public function testCreatePreserveReturnsNewInstance()
+    public function testCreatePreserveReturnsNewInstance(): void
     {
         $sut1 = WhiteSpaceType::createPreserve();
         $sut2 = WhiteSpaceType::createPreserve();
@@ -147,7 +147,7 @@ class WhiteSpaceTypeTest extends TestCase
      * Tests that createReplace() creates a new instance of WhiteSpaceType 
      * configured in "replace" white space.
      */
-    public function testCreateReplaceReturnsInstanceWhiteSpaceReplace()
+    public function testCreateReplaceReturnsInstanceWhiteSpaceReplace(): void
     {
         $sut = WhiteSpaceType::createReplace();
         self::assertWhiteSpaceReplace($sut);
@@ -156,7 +156,7 @@ class WhiteSpaceTypeTest extends TestCase
     /**
      * Tests that createReplace() creates a new instance.
      */
-    public function testCreateReplaceReturnsNewInstance()
+    public function testCreateReplaceReturnsNewInstance(): void
     {
         $sut1 = WhiteSpaceType::createReplace();
         $sut2 = WhiteSpaceType::createReplace();

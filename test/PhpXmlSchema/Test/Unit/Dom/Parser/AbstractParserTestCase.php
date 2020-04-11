@@ -35,7 +35,7 @@ abstract class AbstractParserTestCase extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new Parser();
     }
@@ -43,7 +43,7 @@ abstract class AbstractParserTestCase extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -54,7 +54,7 @@ abstract class AbstractParserTestCase extends TestCase
      * @param   string  $group
      * @return  array[]
      */
-    protected function createDataSets(string $group):array
+    protected function createDataSets(string $group): array
     {
         $sxe = \simplexml_load_file(
             self::RES_PATH.$this->getContextName().'.xml'
@@ -83,7 +83,7 @@ abstract class AbstractParserTestCase extends TestCase
      * @param   string  $fileName   The name of the file.
      * @return  string
      */
-    protected function getXs(string $fileName):string
+    protected function getXs(string $fileName): string
     {
         return \file_get_contents(
             self::RES_PATH.$this->getContextName().'/'.$fileName
@@ -95,5 +95,5 @@ abstract class AbstractParserTestCase extends TestCase
      * 
      * @return  string
      */
-    abstract protected function getContextName():string;
+    abstract protected function getContextName(): string;
 }

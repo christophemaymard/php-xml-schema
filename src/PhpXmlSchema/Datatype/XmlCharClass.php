@@ -20,39 +20,39 @@ class XmlCharClass
      * 
      * Char ::= #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
      */
-    const CHAR = "\u{0009}\u{000A}\u{000D}\u{0020}-\u{D7FF}\u{E000}-\u{FFFD}\u{10000}-\u{10FFFF}";
+    public const CHAR = "\u{0009}\u{000A}\u{000D}\u{0020}-\u{D7FF}\u{E000}-\u{FFFD}\u{10000}-\u{10FFFF}";
     
     /**
      * The "NCNameChar" character class.
      * 
      * NCNameChar ::= Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
      */
-    const NCNAMECHAR = self::LETTER.self::DIGIT.'.\\-_'.self::COMBININGCHAR.self::EXTENDER;
+    public const NCNAMECHAR = self::LETTER.self::DIGIT.'.\\-_'.self::COMBININGCHAR.self::EXTENDER;
     
     /**
      * The "Letter" character class.
      * 
      * Letter ::= BaseChar | Ideographic
      */
-    const LETTER = self::BASECHAR.self::IDEOGRAPHIC;
+    public const LETTER = self::BASECHAR.self::IDEOGRAPHIC;
     
     /**
      * The "BaseChar" character class (partially implemented).
      */
-    const BASECHAR = "\u{0041}-\u{005A}". // Latin: Uppercase alphabet.
+    public const BASECHAR = "\u{0041}-\u{005A}". // Latin: Uppercase alphabet.
         "\u{0061}-\u{007A}"; // Latin: Lowercase alphabet.
     
     /**
      * The "Ideographic" character class.
      */
-    const IDEOGRAPHIC = "\u{4E00}-\u{9FA5}". // CJK: Unified ideographs.
+    public const IDEOGRAPHIC = "\u{4E00}-\u{9FA5}". // CJK: Unified ideographs.
         "\u{3007}". // CJK: Number 0.
         "\u{3021}-\u{3029}"; // CJK: Suzhou numerals.
     
     /**
      * The "Digit" character class.
      */
-    const DIGIT = "\u{0030}-\u{0039}". // Latin: ASCII digits.
+    public const DIGIT = "\u{0030}-\u{0039}". // Latin: ASCII digits.
         "\u{0660}-\u{0669}". // Arabic: Arabic-Indic digits.
         "\u{06F0}-\u{06F9}". // Arabic: Eastern Arabic-Indic digits.
         "\u{0966}-\u{096F}". // Devanagari: Digits.
@@ -71,12 +71,12 @@ class XmlCharClass
     /**
      * The "CombiningChar" character class (partially implemented).
      */
-    const COMBININGCHAR = "\u{0300}-\u{0345}"; // Combining diacritical marks.
+    public const COMBININGCHAR = "\u{0300}-\u{0345}"; // Combining diacritical marks.
     
     /**
      * The "Extender" character class.
      */
-    const EXTENDER = "\u{00B7}". // Latin-1: Middle dot.
+    public const EXTENDER = "\u{00B7}". // Latin-1: Middle dot.
         "\u{02D0}". // Spacing modifier letter: Triangular colon.
         "\u{02D1}". // Spacing modifier letter: Half triangular colon.
         "\u{0387}". // Greek: Ano Teleia.

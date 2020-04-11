@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -30,7 +31,7 @@ class AllSchemaElementBuilderTest extends AbstractAllSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -56,7 +57,7 @@ class AllSchemaElementBuilderTest extends AbstractAllSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -67,7 +68,7 @@ class AllSchemaElementBuilderTest extends AbstractAllSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -79,7 +80,7 @@ class AllSchemaElementBuilderTest extends AbstractAllSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -96,7 +97,8 @@ class AllSchemaElementBuilderTest extends AbstractAllSchemaElementBuilderTestCas
      */
     public function testBuildMaxOccursAttributeCreatesAttrWhenAllAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildMaxOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -121,7 +123,8 @@ class AllSchemaElementBuilderTest extends AbstractAllSchemaElementBuilderTestCas
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenAllAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "1".', $value));
         
@@ -142,7 +145,8 @@ class AllSchemaElementBuilderTest extends AbstractAllSchemaElementBuilderTestCas
     public function testBuildMinOccursAttributeCreatesAttrWhenAllAndValueIsValid(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMinOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -167,7 +171,8 @@ class AllSchemaElementBuilderTest extends AbstractAllSchemaElementBuilderTestCas
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenAllAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "0" or "1".', $value));
         

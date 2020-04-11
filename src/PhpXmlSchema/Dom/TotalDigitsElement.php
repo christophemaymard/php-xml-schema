@@ -33,7 +33,7 @@ class TotalDigitsElement extends AbstractFixedFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_TOTALDIGITS;
     }
@@ -41,7 +41,7 @@ class TotalDigitsElement extends AbstractFixedFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'totalDigits';
     }
@@ -51,7 +51,7 @@ class TotalDigitsElement extends AbstractFixedFacetElement
      * 
      * @return  PositiveIntegerType|NULL    The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getValue()
+    public function getValue(): ?PositiveIntegerType
     {
         return $this->valueAttr;
     }
@@ -61,7 +61,7 @@ class TotalDigitsElement extends AbstractFixedFacetElement
      * 
      * @param   PositiveIntegerType $value  The value to set.
      */
-    public function setValue(PositiveIntegerType $value)
+    public function setValue(PositiveIntegerType $value): void
     {
         $this->valueAttr = $value;
     }
@@ -71,7 +71,7 @@ class TotalDigitsElement extends AbstractFixedFacetElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasValue():bool
+    public function hasValue(): bool
     {
         return $this->valueAttr !== NULL;
     }

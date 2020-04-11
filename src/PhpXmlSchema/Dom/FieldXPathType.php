@@ -31,7 +31,7 @@ class FieldXPathType
      * 
      * Path ::= ('.//')? ( Step '/' )* ( Step | ( ( '@' | 'attribute::' ) NameTest ) )
      */
-    const PATH = '('.
+    private const PATH = '('.
         '(\\.//)?'.
         '('.self::STEP.'/)*'.
         '(('.self::STEP.')|((@|attribute::)'.self::NAMETEST.'))'.
@@ -42,7 +42,7 @@ class FieldXPathType
      * 
      * Step ::= '.' | ( ('child::')? NameTest )
      */
-    const STEP = '((\\.)|((child::)?'.self::NAMETEST.'))';
+    private const STEP = '((\\.)|((child::)?'.self::NAMETEST.'))';
     
     
     /**
@@ -50,12 +50,12 @@ class FieldXPathType
      * 
      * NameTest ::= QName | '*' | NCName ':' '*'
      */
-    const NAMETEST = '('.'(('.self::QNAME.')|(('.NCNameType::PATTERN.':)?\\*)))';
+    private const NAMETEST = '('.'(('.self::QNAME.')|(('.NCNameType::PATTERN.':)?\\*)))';
     
     /**
      * The "QName" pattern (it must be used with the u modifier).
      */
-    const QNAME = NCNameType::PATTERN.':'.NCNameType::PATTERN;
+    private const QNAME = NCNameType::PATTERN.':'.NCNameType::PATTERN;
     
     /**
      * The XPath expression for a "field" element.
@@ -80,7 +80,7 @@ class FieldXPathType
      * 
      * @throws  InvalidValueException   When the XPath expression is invalid for a "field" element.
      */
-    private function setXPath(string $xpath)
+    private function setXPath(string $xpath): void
     {
         if (!\preg_match('`^'.self::PATH.'(\\|'.self::PATH.')*$`u', $xpath)) {
             throw new InvalidValueException(sprintf('"%s" is an invalid XPath expression for a "field" element.', $xpath));
@@ -94,7 +94,7 @@ class FieldXPathType
      * 
      * @return  string
      */
-    public function getXPath():string
+    public function getXPath(): string
     {
         return $this->xpath;
     }

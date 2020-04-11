@@ -20,19 +20,19 @@ interface ModelGroupElementInterface extends AnnotatedElementInterface
      * 
      * @param   ElementElement  $element    The element to add.
      */
-    public function addElementElement(ElementElement $element);
+    public function addElementElement(ElementElement $element): void;
     
     /**
      * Returns all the "element" child elements.
      * 
      * @return  ElementElement[]    An indexed array of ElementElement instances.
      */
-    public function getElementElements():array;
+    public function getElementElements(): array;
     
     /**
      * Returns all the particle child elements.
      * 
      * @return  ParticleElementInterface[]  An indexed array of ParticleElementInterface instances.
      */
-    public function getParticleElements():array;
+    public function getParticleElements(): array;
 }

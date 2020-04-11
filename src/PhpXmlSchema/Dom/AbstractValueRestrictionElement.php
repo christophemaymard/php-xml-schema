@@ -30,7 +30,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getBase()
+    public function getBase(): ?QNameType
     {
         return $this->baseAttr;
     }
@@ -40,7 +40,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setBase(QNameType $value)
+    public function setBase(QNameType $value): void
     {
         $this->baseAttr = $value;
     }
@@ -50,7 +50,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasBase():bool
+    public function hasBase(): bool
     {
         return $this->baseAttr !== NULL;
     }
@@ -58,7 +58,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addMinExclusiveElement(MinExclusiveElement $element)
+    public function addMinExclusiveElement(MinExclusiveElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -66,7 +66,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getMinExclusiveElements():array
+    public function getMinExclusiveElements(): array
     {
         return $this->getChildElementsByType(2, MinExclusiveElement::class);
     }
@@ -74,7 +74,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addMinInclusiveElement(MinInclusiveElement $element)
+    public function addMinInclusiveElement(MinInclusiveElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -82,7 +82,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getMinInclusiveElements():array
+    public function getMinInclusiveElements(): array
     {
         return $this->getChildElementsByType(2, MinInclusiveElement::class);
     }
@@ -90,7 +90,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addMaxExclusiveElement(MaxExclusiveElement $element)
+    public function addMaxExclusiveElement(MaxExclusiveElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -98,7 +98,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getMaxExclusiveElements():array
+    public function getMaxExclusiveElements(): array
     {
         return $this->getChildElementsByType(2, MaxExclusiveElement::class);
     }
@@ -106,7 +106,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addMaxInclusiveElement(MaxInclusiveElement $element)
+    public function addMaxInclusiveElement(MaxInclusiveElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -114,7 +114,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getMaxInclusiveElements():array
+    public function getMaxInclusiveElements(): array
     {
         return $this->getChildElementsByType(2, MaxInclusiveElement::class);
     }
@@ -122,7 +122,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addTotalDigitsElement(TotalDigitsElement $element)
+    public function addTotalDigitsElement(TotalDigitsElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -130,7 +130,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getTotalDigitsElements():array
+    public function getTotalDigitsElements(): array
     {
         return $this->getChildElementsByType(2, TotalDigitsElement::class);
     }
@@ -138,7 +138,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addFractionDigitsElement(FractionDigitsElement $element)
+    public function addFractionDigitsElement(FractionDigitsElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -146,7 +146,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getFractionDigitsElements():array
+    public function getFractionDigitsElements(): array
     {
         return $this->getChildElementsByType(2, FractionDigitsElement::class);
     }
@@ -154,7 +154,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addLengthElement(LengthElement $element)
+    public function addLengthElement(LengthElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -162,7 +162,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getLengthElements():array
+    public function getLengthElements(): array
     {
         return $this->getChildElementsByType(2, LengthElement::class);
     }
@@ -170,7 +170,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addMinLengthElement(MinLengthElement $element)
+    public function addMinLengthElement(MinLengthElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -178,7 +178,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getMinLengthElements():array
+    public function getMinLengthElements(): array
     {
         return $this->getChildElementsByType(2, MinLengthElement::class);
     }
@@ -186,7 +186,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addMaxLengthElement(MaxLengthElement $element)
+    public function addMaxLengthElement(MaxLengthElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -194,7 +194,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getMaxLengthElements():array
+    public function getMaxLengthElements(): array
     {
         return $this->getChildElementsByType(2, MaxLengthElement::class);
     }
@@ -202,7 +202,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addEnumerationElement(EnumerationElement $element)
+    public function addEnumerationElement(EnumerationElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -210,7 +210,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getEnumerationElements():array
+    public function getEnumerationElements(): array
     {
         return $this->getChildElementsByType(2, EnumerationElement::class);
     }
@@ -218,7 +218,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addWhiteSpaceElement(WhiteSpaceElement $element)
+    public function addWhiteSpaceElement(WhiteSpaceElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -226,7 +226,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getWhiteSpaceElements():array
+    public function getWhiteSpaceElements(): array
     {
         return $this->getChildElementsByType(2, WhiteSpaceElement::class);
     }
@@ -234,7 +234,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function addPatternElement(PatternElement $element)
+    public function addPatternElement(PatternElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -242,7 +242,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getPatternElements():array
+    public function getPatternElements(): array
     {
         return $this->getChildElementsByType(2, PatternElement::class);
     }
@@ -250,7 +250,7 @@ abstract class AbstractValueRestrictionElement extends AbstractSimpleTypedElemen
     /**
      * {@inheritDoc}
      */
-    public function getFacetElements():array
+    public function getFacetElements(): array
     {
         return $this->getChildElementsByType(2, FacetElementInterface::class);
     }

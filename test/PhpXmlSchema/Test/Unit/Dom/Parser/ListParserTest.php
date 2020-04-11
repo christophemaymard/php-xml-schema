@@ -24,7 +24,7 @@ class ListParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'list';
     }
@@ -35,7 +35,7 @@ class ListParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('list_0006.xsd'));
         
@@ -79,7 +79,7 @@ class ListParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -122,7 +122,8 @@ class ListParserTest extends AbstractParserTestCase
     public function testParseProcessItemTypeAttributeWhenPrefixAbsentAndNoDefaultNamespace(
         string $fileName, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -168,7 +169,8 @@ class ListParserTest extends AbstractParserTestCase
         array $decls, 
         string $namespace, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations($decls, $sch);
@@ -199,7 +201,7 @@ class ListParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -239,7 +241,7 @@ class ListParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSimpleType()
+    public function testParseProcessSimpleType(): void
     {
         $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
         
@@ -283,7 +285,7 @@ class ListParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -319,7 +321,7 @@ class ListParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNoNamespaceItemTypeAttributes():array
+    public function getValidNoNamespaceItemTypeAttributes(): array
     {
         return [
             'Local part starts with _' => [
@@ -362,7 +364,7 @@ class ListParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidItemTypeAttributes():array
+    public function getValidItemTypeAttributes(): array
     {
         return [
             'Prefix (absent) and bound to default namespace' => [

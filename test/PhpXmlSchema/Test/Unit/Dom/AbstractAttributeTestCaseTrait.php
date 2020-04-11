@@ -25,7 +25,7 @@ trait AbstractAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasAbstract()
+    public function testHasAbstract(): void
     {
         self::assertFalse($this->sut->hasAbstract(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait AbstractAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetAbstract()
+    public function testGetAbstract(): void
     {
         self::assertNull($this->sut->getAbstract(), 'The attribute has not been set.');
         

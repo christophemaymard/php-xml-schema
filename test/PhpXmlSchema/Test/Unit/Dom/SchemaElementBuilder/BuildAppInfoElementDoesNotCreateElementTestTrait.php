@@ -27,7 +27,7 @@ trait BuildAppInfoElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildAppInfoElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildAppInfoElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildAppInfoElement();
         $sch = $this->sut->getSchema();

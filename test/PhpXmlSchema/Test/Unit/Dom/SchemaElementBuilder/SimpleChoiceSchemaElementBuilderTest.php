@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 
@@ -28,7 +29,7 @@ class SimpleChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElementBu
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -44,7 +45,7 @@ class SimpleChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElementBu
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getGroupElements()[0]
             ->getModelGroupElement();
@@ -53,7 +54,7 @@ class SimpleChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElementBu
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildGroupElement();
@@ -63,7 +64,7 @@ class SimpleChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElementBu
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }

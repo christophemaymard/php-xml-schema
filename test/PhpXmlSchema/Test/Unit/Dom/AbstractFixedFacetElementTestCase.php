@@ -22,7 +22,7 @@ abstract class AbstractFixedFacetElementTestCase extends AbstractAnnotatedElemen
      * 
      * @group   attribute
      */
-    public function testHasFixed()
+    public function testHasFixed(): void
     {
         self::assertFalse($this->sut->hasFixed(), 'The attribute has not been set.');
         
@@ -37,7 +37,7 @@ abstract class AbstractFixedFacetElementTestCase extends AbstractAnnotatedElemen
      * 
      * @group   attribute
      */
-    public function testGetFixed()
+    public function testGetFixed(): void
     {
         self::assertNull($this->sut->getFixed(), 'The attribute has not been set.');
         

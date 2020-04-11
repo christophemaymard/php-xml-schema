@@ -25,7 +25,7 @@ trait BuildNillableAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildNillableAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildNillableAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildNillableAttribute('foo');
         $this->sut->buildNillableAttribute('true');

@@ -19,7 +19,7 @@ trait BooleanTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidBooleanTypeValues():array
+    public function getValidBooleanTypeValues(): array
     {
         return [
             'true (string)' => [ 
@@ -62,7 +62,7 @@ trait BooleanTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidBooleanTypeValues():array
+    public function getInvalidBooleanTypeValues(): array
     {
         return [
             'true (uppercase)' => [ 

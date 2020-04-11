@@ -20,7 +20,7 @@ trait NonNegativeIntegerLimitTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidNonNegativeIntegerLimitTypeValues():array
+    public function getInvalidNonNegativeIntegerLimitTypeValues(): array
     {
         return [
             'unbounded surrounded by white spaces' => [
@@ -35,7 +35,7 @@ trait NonNegativeIntegerLimitTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidOneNonNegativeIntegerLimitTypeValues():array
+    public function getValidOneNonNegativeIntegerLimitTypeValues(): array
     {
         return [
             '1' => [ 
@@ -61,7 +61,7 @@ trait NonNegativeIntegerLimitTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidOneNonNegativeIntegerLimitTypeValues():array
+    public function getInvalidOneNonNegativeIntegerLimitTypeValues(): array
     {
         return [
             'unbounded' => [ 

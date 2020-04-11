@@ -23,7 +23,7 @@ class AnnotationElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_ANNOTATION;
     }
@@ -31,7 +31,7 @@ class AnnotationElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'annotation';
     }
@@ -41,7 +41,7 @@ class AnnotationElement extends AbstractCompositeElement
      * 
      * @param   AppInfoElement  $element    The element to add.
      */
-    public function addAppInfoElement(AppInfoElement $element)
+    public function addAppInfoElement(AppInfoElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -51,7 +51,7 @@ class AnnotationElement extends AbstractCompositeElement
      * 
      * @return  AppInfoElement[]    An indexed array of AppInfoElement instances.
      */
-    public function getAppInfoElements():array
+    public function getAppInfoElements(): array
     {
         return $this->getChildElementsByType(0, AppInfoElement::class);
     }
@@ -61,7 +61,7 @@ class AnnotationElement extends AbstractCompositeElement
      * 
      * @param   DocumentationElement    $element    The element to add.
      */
-    public function addDocumentationElement(DocumentationElement $element)
+    public function addDocumentationElement(DocumentationElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -71,7 +71,7 @@ class AnnotationElement extends AbstractCompositeElement
      * 
      * @return  DocumentationElement[]  An indexed array of DocumentationElement instances.
      */
-    public function getDocumentationElements():array
+    public function getDocumentationElements(): array
     {
         return $this->getChildElementsByType(0, DocumentationElement::class);
     }

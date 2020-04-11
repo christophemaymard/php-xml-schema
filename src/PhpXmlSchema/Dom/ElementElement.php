@@ -119,7 +119,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_ELEMENT;
     }
@@ -127,7 +127,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'element';
     }
@@ -137,7 +137,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getNillable()
+    public function getNillable(): ?bool
     {
         return $this->nillableAttr;
     }
@@ -147,7 +147,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   bool    $value  The value to set.
      */
-    public function setNillable(bool $value)
+    public function setNillable(bool $value): void
     {
         $this->nillableAttr = $value;
     }
@@ -157,7 +157,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasNillable():bool
+    public function hasNillable(): bool
     {
         return $this->nillableAttr !== NULL;
     }
@@ -167,7 +167,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getAbstract()
+    public function getAbstract(): ?bool
     {
         return $this->abstractAttr;
     }
@@ -177,7 +177,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   bool    $value  The value to set.
      */
-    public function setAbstract(bool $value)
+    public function setAbstract(bool $value): void
     {
         $this->abstractAttr = $value;
     }
@@ -187,7 +187,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasAbstract():bool
+    public function hasAbstract(): bool
     {
         return $this->abstractAttr !== NULL;
     }
@@ -197,7 +197,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getBlock()
+    public function getBlock(): ?DerivationType
     {
         return $this->blockAttr;
     }
@@ -207,7 +207,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   DerivationType  $value  The value to set.
      */
-    public function setBlock(DerivationType $value)
+    public function setBlock(DerivationType $value): void
     {
         $this->blockAttr = $value;
     }
@@ -217,7 +217,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasBlock():bool
+    public function hasBlock(): bool
     {
         return $this->blockAttr !== NULL;
     }
@@ -227,7 +227,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getDefault()
+    public function getDefault(): ?StringType
     {
         return $this->defaultAttr;
     }
@@ -237,7 +237,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   StringType  $value  The value to set.
      */
-    public function setDefault(StringType $value)
+    public function setDefault(StringType $value): void
     {
         $this->defaultAttr = $value;
     }
@@ -247,7 +247,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasDefault():bool
+    public function hasDefault(): bool
     {
         return $this->defaultAttr !== NULL;
     }
@@ -257,7 +257,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getFinal()
+    public function getFinal(): ?DerivationType
     {
         return $this->finalAttr;
     }
@@ -267,7 +267,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   DerivationType  $value  The value to set.
      */
-    public function setFinal(DerivationType $value)
+    public function setFinal(DerivationType $value): void
     {
         $this->finalAttr = $value;
     }
@@ -277,7 +277,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasFinal():bool
+    public function hasFinal(): bool
     {
         return $this->finalAttr !== NULL;
     }
@@ -287,7 +287,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getFixed()
+    public function getFixed(): ?StringType
     {
         return $this->fixedAttr;
     }
@@ -297,7 +297,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   StringType  $value  The value to set.
      */
-    public function setFixed(StringType $value)
+    public function setFixed(StringType $value): void
     {
         $this->fixedAttr = $value;
     }
@@ -307,7 +307,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasFixed():bool
+    public function hasFixed(): bool
     {
         return $this->fixedAttr !== NULL;
     }
@@ -317,7 +317,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  FormType|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getForm()
+    public function getForm(): ?FormType
     {
         return $this->formAttr;
     }
@@ -327,7 +327,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   FormType    $value  The value to set.
      */
-    public function setForm(FormType $value)
+    public function setForm(FormType $value): void
     {
         $this->formAttr = $value;
     }
@@ -337,7 +337,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasForm():bool
+    public function hasForm(): bool
     {
         return $this->formAttr !== NULL;
     }
@@ -345,7 +345,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
-    public function getMaxOccurs()
+    public function getMaxOccurs(): ?NonNegativeIntegerLimitType
     {
         return $this->maxOccursAttr;
     }
@@ -353,7 +353,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
-    public function setMaxOccurs(NonNegativeIntegerLimitType $value)
+    public function setMaxOccurs(NonNegativeIntegerLimitType $value): void
     {
         $this->maxOccursAttr = $value;
     }
@@ -361,7 +361,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
-    public function hasMaxOccurs():bool
+    public function hasMaxOccurs(): bool
     {
         return $this->maxOccursAttr !== NULL;
     }
@@ -369,7 +369,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
-    public function getMinOccurs()
+    public function getMinOccurs(): ?NonNegativeIntegerType
     {
         return $this->minOccursAttr;
     }
@@ -377,7 +377,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
-    public function setMinOccurs(NonNegativeIntegerType $value)
+    public function setMinOccurs(NonNegativeIntegerType $value): void
     {
         $this->minOccursAttr = $value;
     }
@@ -385,7 +385,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
     /**
      * {@inheritDoc}
      */
-    public function hasMinOccurs():bool
+    public function hasMinOccurs(): bool
     {
         return $this->minOccursAttr !== NULL;
     }
@@ -395,7 +395,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getName()
+    public function getName(): ?NCNameType
     {
         return $this->nameAttr;
     }
@@ -405,7 +405,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   NCNameType  $value  The value to set.
      */
-    public function setName(NCNameType $value)
+    public function setName(NCNameType $value): void
     {
         $this->nameAttr = $value;
     }
@@ -415,7 +415,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasName():bool
+    public function hasName(): bool
     {
         return $this->nameAttr !== NULL;
     }
@@ -425,7 +425,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getRef()
+    public function getRef(): ?QNameType
     {
         return $this->refAttr;
     }
@@ -435,7 +435,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setRef(QNameType $value)
+    public function setRef(QNameType $value): void
     {
         $this->refAttr = $value;
     }
@@ -445,7 +445,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasRef():bool
+    public function hasRef(): bool
     {
         return $this->refAttr !== NULL;
     }
@@ -455,7 +455,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getSubstitutionGroup()
+    public function getSubstitutionGroup(): ?QNameType
     {
         return $this->substitutionGroupAttr;
     }
@@ -465,7 +465,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setSubstitutionGroup(QNameType $value)
+    public function setSubstitutionGroup(QNameType $value): void
     {
         $this->substitutionGroupAttr = $value;
     }
@@ -475,7 +475,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasSubstitutionGroup():bool
+    public function hasSubstitutionGroup(): bool
     {
         return $this->substitutionGroupAttr !== NULL;
     }
@@ -485,7 +485,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getType()
+    public function getType(): ?QNameType
     {
         return $this->typeAttr;
     }
@@ -495,7 +495,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setType(QNameType $value)
+    public function setType(QNameType $value): void
     {
         $this->typeAttr = $value;
     }
@@ -505,7 +505,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasType():bool
+    public function hasType(): bool
     {
         return $this->typeAttr !== NULL;
     }
@@ -515,7 +515,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  TypeElementInterface|NULL   The instance of the element if it has been set, otherwise NULL.
      */
-    public function getTypeElement()
+    public function getTypeElement(): ?TypeElementInterface
     {
         return $this->getChildElement(1);
     }
@@ -525,7 +525,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   TypeElementInterface    $element    The element to set.
      */
-    public function setTypeElement(TypeElementInterface $element)
+    public function setTypeElement(TypeElementInterface $element): void
     {
         $this->setChildElement(1, $element);
     }
@@ -535,7 +535,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasTypeElement():bool
+    public function hasTypeElement(): bool
     {
         return $this->isChildElementSet(1);
     }
@@ -545,7 +545,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   UniqueElement   $element    The element to add.
      */
-    public function addUniqueElement(UniqueElement $element)
+    public function addUniqueElement(UniqueElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -555,7 +555,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  UniqueElement[] An indexed array of UniqueElement instances.
      */
-    public function getUniqueElements():array
+    public function getUniqueElements(): array
     {
         return $this->getChildElementsByType(2, UniqueElement::class);
     }
@@ -565,7 +565,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   KeyElement  $element    The element to add.
      */
-    public function addKeyElement(KeyElement $element)
+    public function addKeyElement(KeyElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -575,7 +575,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  KeyElement[]    An indexed array of KeyElement instances.
      */
-    public function getKeyElements():array
+    public function getKeyElements(): array
     {
         return $this->getChildElementsByType(2, KeyElement::class);
     }
@@ -585,7 +585,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @param   KeyRefElement   $element    The element to add.
      */
-    public function addKeyRefElement(KeyRefElement $element)
+    public function addKeyRefElement(KeyRefElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -595,7 +595,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  KeyRefElement[] An indexed array of KeyRefElement instances.
      */
-    public function getKeyRefElements():array
+    public function getKeyRefElements(): array
     {
         return $this->getChildElementsByType(2, KeyRefElement::class);
     }
@@ -605,7 +605,7 @@ class ElementElement extends AbstractAnnotatedElement implements ParticleElement
      * 
      * @return  IdentityConstraintElementInterface[]    An indexed array of IdentityConstraintElementInterface instances.
      */
-    public function getIdentityConstraintElements():array
+    public function getIdentityConstraintElements(): array
     {
         return $this->getChildElementsByType(2, IdentityConstraintElementInterface::class);
     }

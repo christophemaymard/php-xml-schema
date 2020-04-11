@@ -39,7 +39,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_SIMPLETYPE;
     }
@@ -47,7 +47,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'simpleType';
     }
@@ -57,7 +57,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getFinal()
+    public function getFinal(): ?DerivationType
     {
         return $this->finalAttr;
     }
@@ -67,7 +67,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @param   DerivationType  $value  The value to set.
      */
-    public function setFinal(DerivationType $value)
+    public function setFinal(DerivationType $value): void
     {
         $this->finalAttr = $value;
     }
@@ -77,7 +77,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasFinal():bool
+    public function hasFinal(): bool
     {
         return $this->finalAttr !== NULL;
     }
@@ -87,7 +87,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getName()
+    public function getName(): ?NCNameType
     {
         return $this->nameAttr;
     }
@@ -97,7 +97,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @param   NCNameType  $value  The value to set.
      */
-    public function setName(NCNameType $value)
+    public function setName(NCNameType $value): void
     {
         $this->nameAttr = $value;
     }
@@ -107,7 +107,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasName():bool
+    public function hasName(): bool
     {
         return $this->nameAttr !== NULL;
     }
@@ -117,7 +117,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @return  SimpleTypeDerivationElementInterface|NULL   The instance of the element if it has been set, otherwise NULL.
      */
-    public function getDerivationElement()
+    public function getDerivationElement(): ?SimpleTypeDerivationElementInterface
     {
         return $this->getChildElement(1);
     }
@@ -127,7 +127,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @param   SimpleTypeDerivationElementInterface    $element    The element to set.
      */
-    public function setDerivationElement(SimpleTypeDerivationElementInterface $element)
+    public function setDerivationElement(SimpleTypeDerivationElementInterface $element): void
     {
         $this->setChildElement(1, $element);
     }
@@ -137,7 +137,7 @@ class SimpleTypeElement extends AbstractAnnotatedElement implements TypeElementI
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasDerivationElement():bool
+    public function hasDerivationElement(): bool
     {
         return $this->isChildElementSet(1);
     }

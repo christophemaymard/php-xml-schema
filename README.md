@@ -1,11 +1,11 @@
 # PhpXmlSchema
 
-## Requirements
+[![Latest Release](https://img.shields.io/packagist/v/cmaymard/php-xml-schema?label=Release&style=plastic)](https://packagist.org/packages/cmaymard/php-xml-schema)
+[![PHP Version](https://img.shields.io/packagist/php-v/cmaymard/php-xml-schema?color=informational&label=PHP&style=plastic)](https://www.php.net/)
+[![PHP Extensions](https://img.shields.io/static/v1?label=PHP%20ext&message=GMP&color=informational&style=plastic)](https://www.php.net/)
+[![License](https://img.shields.io/github/license/christophemaymard/php-xml-schema?label=License&style=plastic)](LICENSE)
 
-PhpXmlSchema requires:
-* **PHP version**: 7.0 or higher
-* **PHP extensions**:
-  * GMP
+Provides support to parse and create an in-memory representation of a XML Schema document.
 
 ## Installation
 

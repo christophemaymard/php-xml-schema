@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -108,7 +109,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -121,7 +122,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -147,7 +148,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertFractionDigitsElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -155,7 +156,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeElements()[0]
             ->getSimpleTypeElement()
@@ -166,7 +167,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
@@ -178,7 +179,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -197,7 +198,8 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     public function testBuildFixedAttributeCreatesAttrWhenFractionDigitsAndValueIsValid(
         string $value, 
         bool $bool
-    ) {
+    ): void
+    {
         $this->sut->buildFixedAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -222,7 +224,8 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      */
     public function testBuildFixedAttributeThrowsExceptionWhenFractionDigitsAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
@@ -243,7 +246,8 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     public function testBuildIdAttributeCreatesAttrWhenFractionDigitsAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -270,7 +274,8 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     public function testBuildIdAttributeThrowsExceptionWhenFractionDigitsAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -294,7 +299,8 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     public function testBuildValueAttributeCreatesAttrWhenFractionDigitsAndValueIsValid(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildValueAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -319,7 +325,8 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      */
     public function testBuildValueAttributeThrowsExceptionWhenFractionDigitsAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid nonNegativeInteger datatype.', 
@@ -336,7 +343,7 @@ class FractionDigitsSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenFractionDigits()
+    public function testBuildAnnotationElementCreateEltWhenFractionDigits(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

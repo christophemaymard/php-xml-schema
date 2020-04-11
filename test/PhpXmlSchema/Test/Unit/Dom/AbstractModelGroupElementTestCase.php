@@ -24,7 +24,7 @@ abstract class AbstractModelGroupElementTestCase extends AbstractAnnotatedElemen
      * - an empty array when no ElementElement element has been added
      * - an indexed array of all added ElementElement elements
      */
-    abstract public function testGetElementElements();
+    abstract public function testGetElementElements(): void;
     
     /**
      * Tests that getParticleElements() returns:
@@ -33,7 +33,7 @@ abstract class AbstractModelGroupElementTestCase extends AbstractAnnotatedElemen
      * 
      * @group   content
      */
-    public function testGetParticleElements()
+    public function testGetParticleElements(): void
     {
         self::assertSame([], $this->sut->getParticleElements(), 'No element has been added.');
         
@@ -46,7 +46,7 @@ abstract class AbstractModelGroupElementTestCase extends AbstractAnnotatedElemen
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         self::assertSame($this->fillSutContainer1(), $this->sut->getElements(), 'Elements in container 1.');
     }
@@ -57,12 +57,12 @@ abstract class AbstractModelGroupElementTestCase extends AbstractAnnotatedElemen
      * - elements from container 0 (annotation?)
      * - elements from container 1
      */
-    abstract public function testGetElementsReturnsElementsOrderedByContainer01();
+    abstract public function testGetElementsReturnsElementsOrderedByContainer01(): void;
     
     /**
      * Fills the container 1 of the SUT with a set of elements.
      * 
      * @return  ProphecySubjectInterface[]  An indexed array of all the created elements.
      */
-    abstract protected function fillSutContainer1():array;
+    abstract protected function fillSutContainer1(): array;
 }

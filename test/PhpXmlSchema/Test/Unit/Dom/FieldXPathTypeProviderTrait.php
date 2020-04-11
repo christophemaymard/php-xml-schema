@@ -20,7 +20,7 @@ trait FieldXPathTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidFieldXPathTypeValues():array
+    public function getValidFieldXPathTypeValues(): array
     {
         $datasets = [];
         
@@ -77,7 +77,7 @@ trait FieldXPathTypeProviderTrait
      * @param   int $firstSuffix
      * @return  array[]
      */
-    private function getValidPathValues(int $firstSuffix):array
+    private function getValidPathValues(int $firstSuffix): array
     {
         $datasets = [];
         $steps1 = $this->getValidStepValues((string)$firstSuffix);
@@ -131,7 +131,7 @@ trait FieldXPathTypeProviderTrait
      * @param   string  $suffix
      * @return  array[]
      */
-    private function getValidStepValues(string $suffix):array
+    private function getValidStepValues(string $suffix): array
     {
         return [
             '.' => [
@@ -155,7 +155,7 @@ trait FieldXPathTypeProviderTrait
      * @param   string  $suffix
      * @return  array[]
      */
-    private function getValidNameTestValues(string $suffix):array
+    private function getValidNameTestValues(string $suffix): array
     {
         return [
             'QName' => [
@@ -175,7 +175,7 @@ trait FieldXPathTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidFieldXPathTypeValues():array
+    public function getInvalidFieldXPathTypeValues(): array
     {
         return [
             'Empty string' => [

@@ -25,7 +25,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * 
      * @group   content
      */
-    public function testHasSelectorElement()
+    public function testHasSelectorElement(): void
     {
         self::assertFalse($this->sut->hasSelectorElement(), 'No element has been set.');
         
@@ -40,7 +40,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * 
      * @group   content
      */
-    public function testGetSelectorElement()
+    public function testGetSelectorElement(): void
     {
         self::assertNull($this->sut->getSelectorElement(), 'No element has been set.');
         
@@ -59,7 +59,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createSelectorElementHasParentFalse1TimeMock();
@@ -74,7 +74,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * 
      * @group   content
      */
-    public function testGetFieldElements()
+    public function testGetFieldElements(): void
     {
         $elements = [];
         
@@ -95,7 +95,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer2()
+    public function testGetElementsReturnsElementsOfContainer2(): void
     {
         $children = [];
         $children[] = $this->createFieldElementHasParentFalse1TimeMock();
@@ -114,7 +114,7 @@ abstract class AbstractIdentityConstraintElementTestCase extends AbstractAnnotat
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer012()
+    public function testGetElementsReturnsElementsOrderedByContainer012(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

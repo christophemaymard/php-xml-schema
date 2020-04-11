@@ -30,7 +30,7 @@ class FieldElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_FIELD;
     }
@@ -38,7 +38,7 @@ class FieldElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'field';
     }
@@ -48,7 +48,7 @@ class FieldElement extends AbstractAnnotatedElement
      * 
      * @return  FieldXPathType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getXPath()
+    public function getXPath(): ?FieldXPathType
     {
         return $this->xpathAttr;
     }
@@ -58,7 +58,7 @@ class FieldElement extends AbstractAnnotatedElement
      * 
      * @param   FieldXPathType  $value  The value to set.
      */
-    public function setXPath(FieldXPathType $value)
+    public function setXPath(FieldXPathType $value): void
     {
         $this->xpathAttr = $value;
     }
@@ -68,7 +68,7 @@ class FieldElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasXPath():bool
+    public function hasXPath(): bool
     {
         return $this->xpathAttr !== NULL;
     }

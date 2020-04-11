@@ -55,7 +55,7 @@ class NamespaceListType
      * 
      * @return  NamespaceListType   A new instance of NamespaceListType.
      */
-    public static function createAny():self
+    public static function createAny(): self
     {
         $nsl = new self();
         $nsl->any = TRUE;
@@ -69,7 +69,7 @@ class NamespaceListType
      * 
      * @return  NamespaceListType   A new instance of NamespaceListType.
      */
-    public static function createOther():self
+    public static function createOther(): self
     {
         $nsl = new self();
         $nsl->other = TRUE;
@@ -88,7 +88,7 @@ class NamespaceListType
      * @param   AnyUriType[]    $namespaces         An indexed array of URI references of namespaces that can be present (can be empty).
      * @return  NamespaceListType   A new instance of NamespaceListType.
      */
-    public static function create(bool $targetNamespace, bool $local, array $namespaces)
+    public static function create(bool $targetNamespace, bool $local, array $namespaces): self
     {
         $nsl = new self();
         $nsl->targetNamespace = $targetNamespace;
@@ -106,7 +106,7 @@ class NamespaceListType
      * 
      * @return  bool    TRUE if any namespace can be present, otherwise FALSE.
      */
-    public function hasAny():bool
+    public function hasAny(): bool
     {
         return $this->any;
     }
@@ -117,7 +117,7 @@ class NamespaceListType
      * 
      * @return  bool    TRUE if any namespace that is not the target namespace can be present, otherwise FALSE.
      */
-    public function hasOther():bool
+    public function hasOther(): bool
     {
         return $this->other;
     }
@@ -127,7 +127,7 @@ class NamespaceListType
      * 
      * @return  bool    TRUE if the target namespace can be present, otherwise FALSE.
      */
-    public function hasTargetNamespace():bool
+    public function hasTargetNamespace(): bool
     {
         return $this->targetNamespace;
     }
@@ -138,7 +138,7 @@ class NamespaceListType
      * 
      * @return  bool    TRUE if entities that are not qualified with a namespace can be present, otherwise FALSE.
      */
-    public function hasLocal():bool
+    public function hasLocal(): bool
     {
         return $this->local;
     }
@@ -149,7 +149,7 @@ class NamespaceListType
      * 
      * @param   AnyUriType  $namespace  The URI reference of namespace to add.
      */
-    private function addNamespace(AnyUriType $namespace)
+    private function addNamespace(AnyUriType $namespace): void
     {
         $this->namespaces[] = $namespace;
     }
@@ -159,7 +159,7 @@ class NamespaceListType
      * 
      * @return  AnyUriType[]    An indexed array of AnyUriType instances.
      */
-    public function getNamespaces():array
+    public function getNamespaces(): array
     {
         return $this->namespaces;
     }

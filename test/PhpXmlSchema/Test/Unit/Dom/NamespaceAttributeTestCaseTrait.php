@@ -25,7 +25,7 @@ trait NamespaceAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasNamespace()
+    public function testHasNamespace(): void
     {
         self::assertFalse($this->sut->hasNamespace(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait NamespaceAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetNamespace()
+    public function testGetNamespace(): void
     {
         self::assertNull($this->sut->getNamespace(), 'The attribute has not been set.');
         

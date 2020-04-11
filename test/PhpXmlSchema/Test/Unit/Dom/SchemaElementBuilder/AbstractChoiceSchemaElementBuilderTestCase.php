@@ -98,7 +98,7 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         static::assertAncestorsNotChanged($sch);
         
@@ -111,7 +111,7 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertChoiceElementHasNoAttribute(static::getCurrentElement($sch));
     }
@@ -130,7 +130,8 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
     public function testBuildIdAttributeCreatesAttrWhenChoiceAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -157,7 +158,8 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
     public function testBuildIdAttributeThrowsExceptionWhenChoiceAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -174,7 +176,7 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenChoice()
+    public function testBuildAnnotationElementCreateEltWhenChoice(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -199,7 +201,7 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
      * @group   content
      * @group   element
      */
-    public function testBuildElementElementCreateEltWhenChoice()
+    public function testBuildElementElementCreateEltWhenChoice(): void
     {
         $this->sut->buildElementElement();
         $this->sut->endElement();
@@ -231,7 +233,7 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
      * @group   content
      * @group   element
      */
-    public function testBuildGroupElementCreateEltWhenChoice()
+    public function testBuildGroupElementCreateEltWhenChoice(): void
     {
         $this->sut->buildGroupElement();
         $this->sut->endElement();
@@ -263,7 +265,7 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
      * @group   content
      * @group   element
      */
-    public function testBuildChoiceElementCreateEltWhenChoice()
+    public function testBuildChoiceElementCreateEltWhenChoice(): void
     {
         $this->sut->buildChoiceElement();
         $this->sut->endElement();
@@ -295,7 +297,7 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
      * @group   content
      * @group   element
      */
-    public function testBuildSequenceElementCreateEltWhenChoice()
+    public function testBuildSequenceElementCreateEltWhenChoice(): void
     {
         $this->sut->buildSequenceElement();
         $this->sut->endElement();
@@ -327,7 +329,7 @@ abstract class AbstractChoiceSchemaElementBuilderTestCase extends AbstractSchema
      * @group   content
      * @group   element
      */
-    public function testBuildAnyElementCreateEltWhenChoice()
+    public function testBuildAnyElementCreateEltWhenChoice(): void
     {
         $this->sut->buildAnyElement();
         $this->sut->endElement();

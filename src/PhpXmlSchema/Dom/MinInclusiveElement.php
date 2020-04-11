@@ -25,7 +25,7 @@ class MinInclusiveElement extends AbstractAnyFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_MININCLUSIVE;
     }
@@ -33,7 +33,7 @@ class MinInclusiveElement extends AbstractAnyFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'minInclusive';
     }

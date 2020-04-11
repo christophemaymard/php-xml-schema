@@ -24,7 +24,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * 
      * @group   content
      */
-    public function testGetElementElements()
+    public function testGetElementElements(): void
     {
         $elements = [];
         
@@ -56,7 +56,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * 
      * @group   content
      */
-    public function testGetGroupElements()
+    public function testGetGroupElements(): void
     {
         $elements = [];
         
@@ -88,7 +88,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * 
      * @group   content
      */
-    public function testGetChoiceElements()
+    public function testGetChoiceElements(): void
     {
         $elements = [];
         
@@ -120,7 +120,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * 
      * @group   content
      */
-    public function testGetSequenceElements()
+    public function testGetSequenceElements(): void
     {
         $elements = [];
         
@@ -152,7 +152,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * 
      * @group   content
      */
-    public function testGetAnyElements()
+    public function testGetAnyElements(): void
     {
         $elements = [];
         
@@ -184,7 +184,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
+    public function testGetElementsReturnsElementsOrderedByContainer01(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
@@ -223,7 +223,7 @@ abstract class AbstractExplicitModelGroupElementTestCase extends AbstractModelGr
      * 
      * @return  ProphecySubjectInterface[]  An indexed array of all the created elements.
      */
-    protected function fillSutContainer1():array
+    protected function fillSutContainer1(): array
     {
         $elements = [];
         $elements[] = $this->createElementElementHasParentFalse1TimeMock();

@@ -21,7 +21,7 @@ abstract class AbstractLeafElementTestCase extends AbstractAbstractElementTestCa
      * 
      * @group   content
      */
-    public function testGetContent()
+    public function testGetContent(): void
     {
         self::assertSame('', $this->sut->getContent(), 'No content has been set.');
         

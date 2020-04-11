@@ -26,7 +26,7 @@ trait AttributeNamingElementTestCaseTrait
      * 
      * @group   content
      */
-    public function testGetAttributeElements()
+    public function testGetAttributeElements(): void
     {
         $elements = [];
         
@@ -55,7 +55,7 @@ trait AttributeNamingElementTestCaseTrait
      * 
      * @group   content
      */
-    public function testGetAttributeGroupElements()
+    public function testGetAttributeGroupElements(): void
     {
         $elements = [];
         
@@ -83,7 +83,7 @@ trait AttributeNamingElementTestCaseTrait
      * 
      * @group   content
      */
-    public function testGetAttributeDeclarationElements()
+    public function testGetAttributeDeclarationElements(): void
     {
         self::assertSame([], $this->sut->getAttributeDeclarationElements(), 'No element has been added.');
         
@@ -96,7 +96,7 @@ trait AttributeNamingElementTestCaseTrait
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer3()
+    public function testGetElementsReturnsElementsOfContainer3(): void
     {
         self::assertSame($this->fillSutContainer3(), $this->sut->getElements(), 'Elements in container 3.');
     }
@@ -108,7 +108,7 @@ trait AttributeNamingElementTestCaseTrait
      * 
      * @group   content
      */
-    public function testHasAnyAttributeElement()
+    public function testHasAnyAttributeElement(): void
     {
         self::assertFalse($this->sut->hasAnyAttributeElement(), 'No element has been set.');
         
@@ -123,7 +123,7 @@ trait AttributeNamingElementTestCaseTrait
      * 
      * @group   content
      */
-    public function testGetAnyAttributeElement()
+    public function testGetAnyAttributeElement(): void
     {
         self::assertNull($this->sut->getAnyAttributeElement(), 'No element has been set.');
         
@@ -142,7 +142,7 @@ trait AttributeNamingElementTestCaseTrait
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer4()
+    public function testGetElementsReturnsElementsOfContainer4(): void
     {
         $children = [];
         $children[] = $this->createAnyAttributeElementHasParentFalse1TimeMock();
@@ -156,7 +156,7 @@ trait AttributeNamingElementTestCaseTrait
      * 
      * @return  ProphecySubjectInterface[]  An indexed array of all the created elements.
      */
-    private function fillSutContainer3():array
+    private function fillSutContainer3(): array
     {
         $elements = [];
         $elements[] = $this->createAttributeElementHasParentFalse1TimeMock();

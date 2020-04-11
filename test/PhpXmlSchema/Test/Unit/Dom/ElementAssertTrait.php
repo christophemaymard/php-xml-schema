@@ -69,7 +69,7 @@ trait ElementAssertTrait
      * @param   string[]            $decls  
      * @param   ElementInterface    $sut    The element to test.
      */
-    public static function assertElementNamespaceDeclarations(array $decls, ElementInterface $sut)
+    public static function assertElementNamespaceDeclarations(array $decls, ElementInterface $sut): void
     {
         self::assertArraySubset($decls, $sut->getNamespaceDeclarations(), TRUE);
         self::assertCount(0, \array_diff_assoc($sut->getNamespaceDeclarations(), $decls));
@@ -80,7 +80,7 @@ trait ElementAssertTrait
      * 
      * @param   SchemaElement   $sut    The element to test.
      */
-    public static function assertSchemaElementHasNoAttribute(SchemaElement $sut)
+    public static function assertSchemaElementHasNoAttribute(SchemaElement $sut): void
     {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
@@ -100,7 +100,8 @@ trait ElementAssertTrait
      */
     public static function assertSchemaElementHasOnlyAttributeFormDefaultAttribute(
         SchemaElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
         self::assertFalse($sut->hasElementFormDefault());
@@ -129,7 +130,8 @@ trait ElementAssertTrait
         bool $ext, 
         bool $sub, 
         SchemaElement $sch
-    ) {
+    ): void
+    {
         $sut = $sch->getBlockDefault();
         self::assertSame($ext, $sut->byExtension());
         self::assertFalse($sut->byList());
@@ -146,7 +148,8 @@ trait ElementAssertTrait
      */
     public static function assertSchemaElementHasOnlyBlockDefaultAttribute(
         SchemaElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertTrue($sut->hasBlockDefault());
         self::assertFalse($sut->hasElementFormDefault());
@@ -165,7 +168,8 @@ trait ElementAssertTrait
      */
     public static function assertSchemaElementHasOnlyElementFormDefaultAttribute(
         SchemaElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
         self::assertTrue($sut->hasElementFormDefault());
@@ -196,7 +200,8 @@ trait ElementAssertTrait
         bool $lst, 
         bool $unn, 
         SchemaElement $sch
-    ) {
+    ): void
+    {
         $sut = $sch->getFinalDefault();
         self::assertSame($ext, $sut->byExtension());
         self::assertSame($res, $sut->byRestriction());
@@ -213,7 +218,8 @@ trait ElementAssertTrait
      */
     public static function assertSchemaElementHasOnlyFinalDefaultAttribute(
         SchemaElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
         self::assertFalse($sut->hasElementFormDefault());
@@ -232,7 +238,8 @@ trait ElementAssertTrait
      */
     public static function assertSchemaElementHasOnlyIdAttribute(
         SchemaElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
         self::assertFalse($sut->hasElementFormDefault());
@@ -251,7 +258,8 @@ trait ElementAssertTrait
      */
     public static function assertSchemaElementHasOnlyTargetNamespaceAttribute(
         SchemaElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
         self::assertFalse($sut->hasElementFormDefault());
@@ -270,7 +278,8 @@ trait ElementAssertTrait
      */
     public static function assertSchemaElementHasOnlyVersionAttribute(
         SchemaElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
         self::assertFalse($sut->hasElementFormDefault());
@@ -289,7 +298,8 @@ trait ElementAssertTrait
      */
     public static function assertSchemaElementHasOnlyLangAttribute(
         SchemaElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAttributeFormDefault());
         self::assertFalse($sut->hasBlockDefault());
         self::assertFalse($sut->hasElementFormDefault());
@@ -305,7 +315,7 @@ trait ElementAssertTrait
      * 
      * @param   AnnotationElement   $sut    The element to test.
      */
-    public static function assertAnnotationElementHasNoAttribute(AnnotationElement $sut)
+    public static function assertAnnotationElementHasNoAttribute(AnnotationElement $sut): void
     {
         self::assertFalse($sut->hasId());
     }
@@ -318,7 +328,8 @@ trait ElementAssertTrait
      */
     public static function assertAnnotationElementHasOnlyIdAttribute(
         AnnotationElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
     }
     
@@ -327,7 +338,7 @@ trait ElementAssertTrait
      * 
      * @param   AppInfoElement  $sut    The element to test.
      */
-    public static function assertAppInfoElementHasNoAttribute(AppInfoElement $sut)
+    public static function assertAppInfoElementHasNoAttribute(AppInfoElement $sut): void
     {
         self::assertFalse($sut->hasSource());
     }
@@ -340,7 +351,8 @@ trait ElementAssertTrait
      */
     public static function assertAppInfoElementHasOnlySourceAttribute(
         AppInfoElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasSource());
     }
     
@@ -351,7 +363,8 @@ trait ElementAssertTrait
      */
     public static function assertDocumentationElementHasNoAttribute(
         DocumentationElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasSource());
         self::assertFalse($sut->hasLang());
     }
@@ -364,7 +377,8 @@ trait ElementAssertTrait
      */
     public static function assertDocumentationElementHasOnlySourceAttribute(
         DocumentationElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasSource());
         self::assertFalse($sut->hasLang());
     }
@@ -377,7 +391,8 @@ trait ElementAssertTrait
      */
     public static function assertDocumentationElementHasOnlyLangAttribute(
         DocumentationElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasSource());
         self::assertTrue($sut->hasLang());
     }
@@ -389,7 +404,8 @@ trait ElementAssertTrait
      */
     public static function assertImportElementHasNoAttribute(
         ImportElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasSchemaLocation());
@@ -403,7 +419,8 @@ trait ElementAssertTrait
      */
     public static function assertImportElementHasOnlyIdAttribute(
         ImportElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasSchemaLocation());
@@ -417,7 +434,8 @@ trait ElementAssertTrait
      */
     public static function assertImportElementHasOnlyNamespaceAttribute(
         ImportElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasNamespace());
         self::assertFalse($sut->hasSchemaLocation());
@@ -431,7 +449,8 @@ trait ElementAssertTrait
      */
     public static function assertImportElementHasOnlySchemaLocationAttribute(
         ImportElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasNamespace());
         self::assertTrue($sut->hasSchemaLocation());
@@ -444,7 +463,8 @@ trait ElementAssertTrait
      */
     public static function assertIncludeElementHasNoAttribute(
         IncludeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasSchemaLocation());
     }
@@ -457,7 +477,8 @@ trait ElementAssertTrait
      */
     public static function assertIncludeElementHasOnlyIdAttribute(
         IncludeElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasSchemaLocation());
     }
@@ -470,7 +491,8 @@ trait ElementAssertTrait
      */
     public static function assertIncludeElementHasOnlySchemaLocationAttribute(
         IncludeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasSchemaLocation());
     }
@@ -482,7 +504,8 @@ trait ElementAssertTrait
      */
     public static function assertNotationElementHasNoAttribute(
         NotationElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasPublic());
@@ -497,7 +520,8 @@ trait ElementAssertTrait
      */
     public static function assertNotationElementHasOnlyIdAttribute(
         NotationElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasPublic());
@@ -512,7 +536,8 @@ trait ElementAssertTrait
      */
     public static function assertNotationElementHasOnlyNameAttribute(
         NotationElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasName());
         self::assertFalse($sut->hasPublic());
@@ -527,7 +552,8 @@ trait ElementAssertTrait
      */
     public static function assertNotationElementHasOnlyPublicAttribute(
         NotationElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertTrue($sut->hasPublic());
@@ -542,7 +568,8 @@ trait ElementAssertTrait
      */
     public static function assertNotationElementHasOnlySystemAttribute(
         NotationElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasPublic());
@@ -556,7 +583,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasNoAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasDefault());
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasForm());
@@ -575,7 +603,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasOnlyDefaultAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasDefault());
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasForm());
@@ -594,7 +623,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasOnlyFixedAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasDefault());
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasForm());
@@ -613,7 +643,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasOnlyFormAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasDefault());
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasForm());
@@ -632,7 +663,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasOnlyIdAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasDefault());
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasForm());
@@ -651,7 +683,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasOnlyNameAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasDefault());
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasForm());
@@ -670,7 +703,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasOnlyRefAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasDefault());
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasForm());
@@ -689,7 +723,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasOnlyTypeAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasDefault());
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasForm());
@@ -708,7 +743,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeElementHasOnlyUseAttribute(
         AttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasDefault());
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasForm());
@@ -726,7 +762,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleTypeElementHasNoAttribute(
         SimpleTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFinal());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
@@ -740,7 +777,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleTypeElementHasOnlyFinalAttribute(
         SimpleTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFinal());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
@@ -764,7 +802,8 @@ trait ElementAssertTrait
         bool $union, 
         bool $res, 
         SimpleTypeElement $st
-    ) {
+    ): void
+    {
         $sut = $st->getFinal();
         self::assertSame($res, $sut->byRestriction());
         self::assertFalse($sut->byExtension());
@@ -781,7 +820,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleTypeElementHasOnlyIdAttribute(
         SimpleTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFinal());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasName());
@@ -795,7 +835,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleTypeElementHasOnlyNameAttribute(
         SimpleTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFinal());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasName());
@@ -809,7 +850,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleTypeRestrictionElementHasNoAttribute(
         SimpleTypeRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -822,7 +864,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleTypeRestrictionElementHasOnlyBaseAttribute(
         SimpleTypeRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -835,7 +878,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleTypeRestrictionElementHasOnlyIdAttribute(
         SimpleTypeRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
     }
@@ -847,7 +891,8 @@ trait ElementAssertTrait
      */
     public static function assertMinExclusiveElementHasNoAttribute(
         MinExclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -861,7 +906,8 @@ trait ElementAssertTrait
      */
     public static function assertMinExclusiveElementHasOnlyFixedAttribute(
         MinExclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -875,7 +921,8 @@ trait ElementAssertTrait
      */
     public static function assertMinExclusiveElementHasOnlyIdAttribute(
         MinExclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -889,7 +936,8 @@ trait ElementAssertTrait
      */
     public static function assertMinExclusiveElementHasOnlyValueAttribute(
         MinExclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -902,7 +950,8 @@ trait ElementAssertTrait
      */
     public static function assertMinInclusiveElementHasNoAttribute(
         MinInclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -916,7 +965,8 @@ trait ElementAssertTrait
      */
     public static function assertMinInclusiveElementHasOnlyFixedAttribute(
         MinInclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -930,7 +980,8 @@ trait ElementAssertTrait
      */
     public static function assertMinInclusiveElementHasOnlyIdAttribute(
         MinInclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -944,7 +995,8 @@ trait ElementAssertTrait
      */
     public static function assertMinInclusiveElementHasOnlyValueAttribute(
         MinInclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -957,7 +1009,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxExclusiveElementHasNoAttribute(
         MaxExclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -971,7 +1024,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxExclusiveElementHasOnlyFixedAttribute(
         MaxExclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -985,7 +1039,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxExclusiveElementHasOnlyIdAttribute(
         MaxExclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -999,7 +1054,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxExclusiveElementHasOnlyValueAttribute(
         MaxExclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -1012,7 +1068,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxInclusiveElementHasNoAttribute(
         MaxInclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1026,7 +1083,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxInclusiveElementHasOnlyFixedAttribute(
         MaxInclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1040,7 +1098,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxInclusiveElementHasOnlyIdAttribute(
         MaxInclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1054,7 +1113,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxInclusiveElementHasOnlyValueAttribute(
         MaxInclusiveElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -1067,7 +1127,8 @@ trait ElementAssertTrait
      */
     public static function assertTotalDigitsElementHasNoAttribute(
         TotalDigitsElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1081,7 +1142,8 @@ trait ElementAssertTrait
      */
     public static function assertTotalDigitsElementHasOnlyFixedAttribute(
         TotalDigitsElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1095,7 +1157,8 @@ trait ElementAssertTrait
      */
     public static function assertTotalDigitsElementHasOnlyIdAttribute(
         TotalDigitsElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1109,7 +1172,8 @@ trait ElementAssertTrait
      */
     public static function assertTotalDigitsElementHasOnlyValueAttribute(
         TotalDigitsElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -1122,7 +1186,8 @@ trait ElementAssertTrait
      */
     public static function assertFractionDigitsElementHasNoAttribute(
         FractionDigitsElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1136,7 +1201,8 @@ trait ElementAssertTrait
      */
     public static function assertFractionDigitsElementHasOnlyFixedAttribute(
         FractionDigitsElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1150,7 +1216,8 @@ trait ElementAssertTrait
      */
     public static function assertFractionDigitsElementHasOnlyIdAttribute(
         FractionDigitsElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1164,7 +1231,8 @@ trait ElementAssertTrait
      */
     public static function assertFractionDigitsElementHasOnlyValueAttribute(
         FractionDigitsElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -1177,7 +1245,8 @@ trait ElementAssertTrait
      */
     public static function assertLengthElementHasNoAttribute(
         LengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1191,7 +1260,8 @@ trait ElementAssertTrait
      */
     public static function assertLengthElementHasOnlyFixedAttribute(
         LengthElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1205,7 +1275,8 @@ trait ElementAssertTrait
      */
     public static function assertLengthElementHasOnlyIdAttribute(
         LengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1219,7 +1290,8 @@ trait ElementAssertTrait
      */
     public static function assertLengthElementHasOnlyValueAttribute(
         LengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -1232,7 +1304,8 @@ trait ElementAssertTrait
      */
     public static function assertMinLengthElementHasNoAttribute(
         MinLengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1246,7 +1319,8 @@ trait ElementAssertTrait
      */
     public static function assertMinLengthElementHasOnlyFixedAttribute(
         MinLengthElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1260,7 +1334,8 @@ trait ElementAssertTrait
      */
     public static function assertMinLengthElementHasOnlyIdAttribute(
         MinLengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1274,7 +1349,8 @@ trait ElementAssertTrait
      */
     public static function assertMinLengthElementHasOnlyValueAttribute(
         MinLengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -1287,7 +1363,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxLengthElementHasNoAttribute(
         MaxLengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1301,7 +1378,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxLengthElementHasOnlyFixedAttribute(
         MaxLengthElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1315,7 +1393,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxLengthElementHasOnlyIdAttribute(
         MaxLengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1329,7 +1408,8 @@ trait ElementAssertTrait
      */
     public static function assertMaxLengthElementHasOnlyValueAttribute(
         MaxLengthElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -1342,7 +1422,8 @@ trait ElementAssertTrait
      */
     public static function assertEnumerationElementHasNoAttribute(
         EnumerationElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
@@ -1355,7 +1436,8 @@ trait ElementAssertTrait
      */
     public static function assertEnumerationElementHasOnlyIdAttribute(
         EnumerationElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
@@ -1368,7 +1450,8 @@ trait ElementAssertTrait
      */
     public static function assertEnumerationElementHasOnlyValueAttribute(
         EnumerationElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
     }
@@ -1380,7 +1463,8 @@ trait ElementAssertTrait
      */
     public static function assertWhiteSpaceElementHasNoAttribute(
         WhiteSpaceElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1394,7 +1478,8 @@ trait ElementAssertTrait
      */
     public static function assertWhiteSpaceElementHasOnlyFixedAttribute(
         WhiteSpaceElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1408,7 +1493,8 @@ trait ElementAssertTrait
      */
     public static function assertWhiteSpaceElementHasOnlyIdAttribute(
         WhiteSpaceElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
@@ -1422,7 +1508,8 @@ trait ElementAssertTrait
      */
     public static function assertWhiteSpaceElementHasOnlyValueAttribute(
         WhiteSpaceElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasFixed());
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
@@ -1435,7 +1522,8 @@ trait ElementAssertTrait
      */
     public static function assertPatternElementHasNoAttribute(
         PatternElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
@@ -1448,7 +1536,8 @@ trait ElementAssertTrait
      */
     public static function assertPatternElementHasOnlyIdAttribute(
         PatternElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasValue());
     }
@@ -1461,7 +1550,8 @@ trait ElementAssertTrait
      */
     public static function assertPatternElementHasOnlyValueAttribute(
         PatternElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasValue());
     }
@@ -1473,7 +1563,8 @@ trait ElementAssertTrait
      */
     public static function assertListElementHasNoAttribute(
         ListElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasItemType());
     }
@@ -1486,7 +1577,8 @@ trait ElementAssertTrait
      */
     public static function assertListElementHasOnlyIdAttribute(
         ListElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasItemType());
     }
@@ -1499,7 +1591,8 @@ trait ElementAssertTrait
      */
     public static function assertListElementHasOnlyItemTypeAttribute(
         ListElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasItemType());
     }
@@ -1511,7 +1604,8 @@ trait ElementAssertTrait
      */
     public static function assertUnionElementHasNoAttribute(
         UnionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMemberTypes());
     }
@@ -1523,7 +1617,8 @@ trait ElementAssertTrait
      */
     public static function assertUnionElementHasOnlyIdAttribute(
         UnionElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasMemberTypes());
     }
@@ -1536,7 +1631,8 @@ trait ElementAssertTrait
      */
     public static function assertUnionElementHasOnlyMemberTypesAttribute(
         UnionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMemberTypes());
     }
@@ -1548,7 +1644,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeGroupElementHasNoAttribute(
         AttributeGroupElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasRef());
@@ -1562,7 +1659,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeGroupElementHasOnlyIdAttribute(
         AttributeGroupElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasRef());
@@ -1576,7 +1674,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeGroupElementHasOnlyNameAttribute(
         AttributeGroupElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasName());
         self::assertFalse($sut->hasRef());
@@ -1590,7 +1689,8 @@ trait ElementAssertTrait
      */
     public static function assertAttributeGroupElementHasOnlyRefAttribute(
         AttributeGroupElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertTrue($sut->hasRef());
@@ -1603,7 +1703,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyAttributeElementHasNoAttribute(
         AnyAttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasProcessContents());
@@ -1617,7 +1718,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyAttributeElementHasOnlyIdAttribute(
         AnyAttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasNamespace());
         self::assertFalse($sut->hasProcessContents());
@@ -1631,7 +1733,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyAttributeElementHasOnlyNamespaceAttribute(
         AnyAttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasNamespace());
         self::assertFalse($sut->hasProcessContents());
@@ -1659,7 +1762,8 @@ trait ElementAssertTrait
         bool $local, 
         array $uris, 
         AnyAttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertSame($any, $sut->getNamespace()->hasAny());
         self::assertSame($other, $sut->getNamespace()->hasOther());
         self::assertSame($targetNs, $sut->getNamespace()->hasTargetNamespace());
@@ -1682,7 +1786,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyAttributeElementHasOnlyProcessContentsAttribute(
         AnyAttributeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasNamespace());
         self::assertTrue($sut->hasProcessContents());
@@ -1695,7 +1800,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexTypeElementHasNoAttribute(
         ComplexTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasFinal());
@@ -1712,7 +1818,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexTypeElementHasOnlyAbstractAttribute(
         ComplexTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasFinal());
@@ -1729,7 +1836,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexTypeElementHasOnlyBlockAttribute(
         ComplexTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertTrue($sut->hasBlock());
         self::assertFalse($sut->hasFinal());
@@ -1754,7 +1862,8 @@ trait ElementAssertTrait
         bool $ext, 
         bool $res, 
         ComplexTypeElement $elt
-    ) {
+    ): void
+    {
         $sut = $elt->getBlock();
         self::assertSame($res, $sut->byRestriction());
         self::assertSame($ext, $sut->byExtension());
@@ -1771,7 +1880,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexTypeElementHasOnlyFinalAttribute(
         ComplexTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertTrue($sut->hasFinal());
@@ -1796,7 +1906,8 @@ trait ElementAssertTrait
         bool $ext, 
         bool $res, 
         ComplexTypeElement $elt
-    ) {
+    ): void
+    {
         $sut = $elt->getFinal();
         self::assertSame($res, $sut->byRestriction());
         self::assertSame($ext, $sut->byExtension());
@@ -1813,7 +1924,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexTypeElementHasOnlyIdAttribute(
         ComplexTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasFinal());
@@ -1830,7 +1942,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexTypeElementHasOnlyMixedAttribute(
         ComplexTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasFinal());
@@ -1847,7 +1960,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexTypeElementHasOnlyNameAttribute(
         ComplexTypeElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasFinal());
@@ -1863,7 +1977,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleContentElementHasNoAttribute(
         SimpleContentElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
     }
     
@@ -1875,7 +1990,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleContentElementHasOnlyIdAttribute(
         SimpleContentElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
     }
     
@@ -1887,7 +2003,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleContentRestrictionElementHasNoAttribute(
         SimpleContentRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -1900,7 +2017,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleContentRestrictionElementHasOnlyBaseAttribute(
         SimpleContentRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -1913,7 +2031,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleContentRestrictionElementHasOnlyIdAttribute(
         SimpleContentRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
     }
@@ -1926,7 +2045,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleContentExtensionElementHasNoAttribute(
         SimpleContentExtensionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -1939,7 +2059,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleContentExtensionElementHasOnlyBaseAttribute(
         SimpleContentExtensionElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -1952,7 +2073,8 @@ trait ElementAssertTrait
      */
     public static function assertSimpleContentExtensionElementHasOnlyIdAttribute(
         SimpleContentExtensionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
     }
@@ -1964,7 +2086,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentElementHasNoAttribute(
         ComplexContentElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMixed());
     }
@@ -1977,7 +2100,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentElementHasOnlyIdAttribute(
         ComplexContentElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasMixed());
     }
@@ -1990,7 +2114,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentElementHasOnlyMixedAttribute(
         ComplexContentElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMixed());
     }
@@ -2003,7 +2128,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentRestrictionElementHasNoAttribute(
         ComplexContentRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -2016,7 +2142,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentRestrictionElementHasOnlyBaseAttribute(
         ComplexContentRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -2029,7 +2156,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentRestrictionElementHasOnlyIdAttribute(
         ComplexContentRestrictionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
     }
@@ -2070,7 +2198,8 @@ trait ElementAssertTrait
      */
     public static function assertGroupElementHasOnlyMaxOccursAttribute(
         GroupElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2086,7 +2215,8 @@ trait ElementAssertTrait
      */
     public static function assertGroupElementHasOnlyMinOccursAttribute(
         GroupElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertTrue($sut->hasMinOccurs());
@@ -2102,7 +2232,8 @@ trait ElementAssertTrait
      */
     public static function assertGroupElementHasOnlyNameAttribute(
         GroupElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2118,7 +2249,8 @@ trait ElementAssertTrait
      */
     public static function assertGroupElementHasOnlyRefAttribute(
         GroupElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2145,7 +2277,8 @@ trait ElementAssertTrait
      */
     public static function assertAllElementHasOnlyIdAttribute(
         AllElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2159,7 +2292,8 @@ trait ElementAssertTrait
      */
     public static function assertAllElementHasOnlyMaxOccursAttribute(
         AllElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2173,7 +2307,8 @@ trait ElementAssertTrait
      */
     public static function assertAllElementHasOnlyMinOccursAttribute(
         AllElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertTrue($sut->hasMinOccurs());
@@ -2186,7 +2321,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasNoAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2211,7 +2347,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyAbstractAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2236,7 +2373,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyBlockAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertTrue($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2271,7 +2409,8 @@ trait ElementAssertTrait
         bool $ext, 
         bool $sub, 
         ElementElement $elt
-    ) {
+    ): void
+    {
         $sut = $elt->getBlock();
         self::assertSame($res, $sut->byRestriction());
         self::assertSame($ext, $sut->byExtension());
@@ -2288,7 +2427,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyDefaultAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertTrue($sut->hasDefault());
@@ -2313,7 +2453,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyFinalAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2346,7 +2487,8 @@ trait ElementAssertTrait
         bool $ext, 
         bool $res, 
         ElementElement $elt
-    ) {
+    ): void
+    {
         $sut = $elt->getFinal();
         self::assertSame($res, $sut->byRestriction());
         self::assertSame($ext, $sut->byExtension());
@@ -2363,7 +2505,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyFixedAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2388,7 +2531,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyFormAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2413,7 +2557,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyIdAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2438,7 +2583,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyMaxOccursAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2463,7 +2609,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyMinOccursAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2488,7 +2635,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyNameAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2513,7 +2661,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyNillableAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2538,7 +2687,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyRefAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2563,7 +2713,8 @@ trait ElementAssertTrait
      */
     public static function assertElementElementHasOnlyTypeAttribute(
         ElementElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasAbstract());
         self::assertFalse($sut->hasBlock());
         self::assertFalse($sut->hasDefault());
@@ -2600,7 +2751,8 @@ trait ElementAssertTrait
      */
     public static function assertChoiceElementHasOnlyIdAttribute(
         ChoiceElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2614,7 +2766,8 @@ trait ElementAssertTrait
      */
     public static function assertChoiceElementHasOnlyMaxOccursAttribute(
         ChoiceElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2628,7 +2781,8 @@ trait ElementAssertTrait
      */
     public static function assertChoiceElementHasOnlyMinOccursAttribute(
         ChoiceElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertTrue($sut->hasMinOccurs());
@@ -2653,7 +2807,8 @@ trait ElementAssertTrait
      */
     public static function assertUniqueElementHasOnlyIdAttribute(
         UniqueElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasName());
     }
@@ -2666,7 +2821,8 @@ trait ElementAssertTrait
      */
     public static function assertUniqueElementHasOnlyNameAttribute(
         UniqueElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasName());
     }
@@ -2678,7 +2834,8 @@ trait ElementAssertTrait
      */
     public static function assertSelectorElementHasNoAttribute(
         SelectorElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasXPath());
     }
@@ -2691,7 +2848,8 @@ trait ElementAssertTrait
      */
     public static function assertSelectorElementHasOnlyIdAttribute(
         SelectorElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasXPath());
     }
@@ -2704,7 +2862,8 @@ trait ElementAssertTrait
      */
     public static function assertSelectorElementHasOnlyXPathAttribute(
         SelectorElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasXPath());
     }
@@ -2727,7 +2886,8 @@ trait ElementAssertTrait
      */
     public static function assertFieldElementHasOnlyIdAttribute(
         FieldElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasXPath());
     }
@@ -2740,7 +2900,8 @@ trait ElementAssertTrait
      */
     public static function assertFieldElementHasOnlyXPathAttribute(
         FieldElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasXPath());
     }
@@ -2763,7 +2924,8 @@ trait ElementAssertTrait
      */
     public static function assertKeyElementHasOnlyIdAttribute(
         KeyElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasName());
     }
@@ -2775,7 +2937,8 @@ trait ElementAssertTrait
      */
     public static function assertKeyElementHasOnlyNameAttribute(
         KeyElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasName());
     }
@@ -2800,7 +2963,8 @@ trait ElementAssertTrait
      */
     public static function assertKeyRefElementHasOnlyIdAttribute(
         KeyRefElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertFalse($sut->hasRefer());
@@ -2814,7 +2978,8 @@ trait ElementAssertTrait
      */
     public static function assertKeyRefElementHasOnlyNameAttribute(
         KeyRefElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasName());
         self::assertFalse($sut->hasRefer());
@@ -2828,7 +2993,8 @@ trait ElementAssertTrait
      */
     public static function assertKeyRefElementHasOnlyReferAttribute(
         KeyRefElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasName());
         self::assertTrue($sut->hasRefer());
@@ -2841,7 +3007,8 @@ trait ElementAssertTrait
      */
     public static function assertSequenceElementHasNoAttribute(
         SequenceElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2855,7 +3022,8 @@ trait ElementAssertTrait
      */
     public static function assertSequenceElementHasOnlyIdAttribute(
         SequenceElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2869,7 +3037,8 @@ trait ElementAssertTrait
      */
     public static function assertSequenceElementHasOnlyMaxOccursAttribute(
         SequenceElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2883,7 +3052,8 @@ trait ElementAssertTrait
      */
     public static function assertSequenceElementHasOnlyMinOccursAttribute(
         SequenceElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertTrue($sut->hasMinOccurs());
@@ -2896,7 +3066,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyElementHasNoAttribute(
         AnyElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2926,7 +3097,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyElementHasOnlyMaxOccursAttribute(
         AnyElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertTrue($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2942,7 +3114,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyElementHasOnlyMinOccursAttribute(
         AnyElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertTrue($sut->hasMinOccurs());
@@ -2958,7 +3131,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyElementHasOnlyNamespaceAttribute(
         AnyElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -2988,7 +3162,8 @@ trait ElementAssertTrait
         bool $local, 
         array $uris, 
         AnyElement $sut
-    ) {
+    ): void
+    {
         self::assertSame($any, $sut->getNamespace()->hasAny());
         self::assertSame($other, $sut->getNamespace()->hasOther());
         self::assertSame($targetNs, $sut->getNamespace()->hasTargetNamespace());
@@ -3011,7 +3186,8 @@ trait ElementAssertTrait
      */
     public static function assertAnyElementHasOnlyProcessContentsAttribute(
         AnyElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasId());
         self::assertFalse($sut->hasMaxOccurs());
         self::assertFalse($sut->hasMinOccurs());
@@ -3027,7 +3203,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentExtensionElementHasNoAttribute(
         ComplexContentExtensionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -3040,7 +3217,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentExtensionElementHasOnlyBaseAttribute(
         ComplexContentExtensionElement $sut
-    ) {
+    ): void
+    {
         self::assertTrue($sut->hasBase());
         self::assertFalse($sut->hasId());
     }
@@ -3053,7 +3231,8 @@ trait ElementAssertTrait
      */
     public static function assertComplexContentExtensionElementHasOnlyIdAttribute(
         ComplexContentExtensionElement $sut
-    ) {
+    ): void
+    {
         self::assertFalse($sut->hasBase());
         self::assertTrue($sut->hasId());
     }

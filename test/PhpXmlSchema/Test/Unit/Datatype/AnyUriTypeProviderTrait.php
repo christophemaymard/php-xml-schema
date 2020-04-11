@@ -19,7 +19,7 @@ trait AnyUriTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidAnyUriTypeValues():array
+    public function getValidAnyUriTypeValues(): array
     {
         return [
             'http://example.org' => [ 
@@ -34,7 +34,7 @@ trait AnyUriTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidAnyUriTypeWSValues():array
+    public function getValidAnyUriTypeWSValues(): array
     {
         return [
             '  http://example.org  ' => [ 
@@ -49,7 +49,7 @@ trait AnyUriTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidAnyUriTypeValues():array
+    public function getInvalidAnyUriTypeValues(): array
     {
         return [
             // Scheme.

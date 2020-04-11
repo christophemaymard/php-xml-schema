@@ -35,7 +35,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
     /**
      * {@inheritDoc}
      */
-    public function getId()
+    public function getId(): ?IDType
     {
         return $this->idAttr;
     }
@@ -43,7 +43,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
     /**
      * {@inheritDoc}
      */
-    public function setId(IDType $value)
+    public function setId(IDType $value): void
     {
         $this->idAttr = $value;
     }
@@ -51,7 +51,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
     /**
      * {@inheritDoc}
      */
-    public function hasId():bool
+    public function hasId(): bool
     {
         return $this->idAttr !== NULL;
     }
@@ -64,7 +64,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
      * @param   int                 $index      The index of the container.
      * @param   AbstractElement     $element    The element to add.
      */
-    protected function addChildElement(int $index, AbstractElement $element)
+    protected function addChildElement(int $index, AbstractElement $element): void
     {
         $element->setParent($this);
         
@@ -90,7 +90,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
      * @param   string  $type   The class or the interface name that the elements must match.
      * @return  ElementInterface[]
      */
-    protected function getChildElementsByType(int $index, string $type):array
+    protected function getChildElementsByType(int $index, string $type): array
     {
         return $this->hasContainer($index) ?
             \array_values(\array_filter($this->sequence[$index], function($element) use ($type) {
@@ -107,7 +107,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
      * @param   int $index  The index of the container.
      * @return  ElementInterface|NULL   The instance of the element, otherwise NULL.
      */
-    protected function getChildElement(int $index)
+    protected function getChildElement(int $index): ?ElementInterface
     {
         return $this->hasContainer($index) ? $this->sequence[$index] : NULL;
     }
@@ -120,7 +120,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
      * @param   int                 $index      The index of the container.
      * @param   AbstractElement     $element    The element to set.
      */
-    protected function setChildElement(int $index, AbstractElement $element)
+    protected function setChildElement(int $index, AbstractElement $element): void
     {
         $element->setParent($this);
         
@@ -142,7 +142,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
      * @param   int $index  The index of the container.
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    protected function isChildElementSet(int $index):bool
+    protected function isChildElementSet(int $index): bool
     {
         return $this->hasContainer($index) && $this->sequence[$index] instanceof ElementInterface;
     }
@@ -154,7 +154,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
      * @param   int $index  The index of the container.
      * @return  bool    TRUE if a container is present, otherwise FALSE.
      */
-    private function hasContainer(int $index):bool
+    private function hasContainer(int $index): bool
     {
         return \array_key_exists($index, $this->sequence);
     }
@@ -162,7 +162,7 @@ abstract class AbstractCompositeElement extends AbstractElement implements Compo
     /**
      * {@inheritDoc}
      */
-    public function getElements():array
+    public function getElements(): array
     {
         $children = [];
         

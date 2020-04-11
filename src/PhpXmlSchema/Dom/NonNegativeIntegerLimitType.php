@@ -37,7 +37,7 @@ class NonNegativeIntegerLimitType
      * 
      * @return  NonNegativeIntegerType|NULL The instance of the limit if it has been set, otherwise NULL.
      */
-    public function getLimit()
+    public function getLimit(): ?NonNegativeIntegerType
     {
         return $this->limit;
     }
@@ -47,7 +47,7 @@ class NonNegativeIntegerLimitType
      * 
      * @return  bool    TRUE if the limit is unlimited, otherwise FALSE.
      */
-    public function isUnlimited():bool
+    public function isUnlimited(): bool
     {
         return $this->limit === NULL;
     }

@@ -26,7 +26,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_SIMPLECONTENT_RESTRICTION;
     }
@@ -34,7 +34,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'restriction';
     }
@@ -42,7 +42,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function addAttributeElement(AttributeElement $element)
+    public function addAttributeElement(AttributeElement $element): void
     {
         $this->addChildElement(3, $element);
     }
@@ -50,7 +50,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function getAttributeElements():array
+    public function getAttributeElements(): array
     {
         return $this->getChildElementsByType(3, AttributeElement::class);
     }
@@ -58,7 +58,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function addAttributeGroupElement(AttributeGroupElement $element)
+    public function addAttributeGroupElement(AttributeGroupElement $element): void
     {
         $this->addChildElement(3, $element);
     }
@@ -66,7 +66,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function getAttributeGroupElements():array
+    public function getAttributeGroupElements(): array
     {
         return $this->getChildElementsByType(3, AttributeGroupElement::class);
     }
@@ -74,7 +74,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function getAttributeDeclarationElements():array
+    public function getAttributeDeclarationElements(): array
     {
         return $this->getChildElementsByType(3, AttributeDeclarationElementInterface::class);
     }
@@ -82,7 +82,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function getAnyAttributeElement()
+    public function getAnyAttributeElement(): ?AnyAttributeElement
     {
         return $this->getChildElement(4);
     }
@@ -90,7 +90,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function setAnyAttributeElement(AnyAttributeElement $element)
+    public function setAnyAttributeElement(AnyAttributeElement $element): void
     {
         $this->setChildElement(4, $element);
     }
@@ -98,7 +98,7 @@ class SimpleContentRestrictionElement extends AbstractValueRestrictionElement im
     /**
      * {@inheritDoc}
      */
-    public function hasAnyAttributeElement():bool
+    public function hasAnyAttributeElement(): bool
     {
         return $this->isChildElementSet(4);
     }

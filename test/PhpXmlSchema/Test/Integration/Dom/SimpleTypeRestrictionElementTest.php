@@ -24,7 +24,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SimpleTypeRestrictionElement();
     }
@@ -32,7 +32,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_SIMPLETYPE_RESTRICTION, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeRestrictionElementWhenAddedToSimpleTypeElement()
+    public function testSimpleTypeRestrictionElementWhenAddedToSimpleTypeElement(): void
     {
         $parent = new SimpleTypeElement();
         $parent->setDerivationElement($this->sut);
@@ -57,7 +57,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleTypeRestrictionElementWithParentThrowsExceptionWhenSimpleTypeElementSetDerivationElement()
+    public function testSimpleTypeRestrictionElementWithParentThrowsExceptionWhenSimpleTypeElementSetDerivationElement(): void
     {
         $parent1 = new SimpleTypeElement();
         $parent1->setDerivationElement($this->sut);
@@ -75,7 +75,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeElement()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeElement(): void
     {
         $parent = new SimpleTypeElement();
         $parent->setDerivationElement($this->sut);

@@ -26,7 +26,7 @@ abstract class AbstractFixedFacetElement extends AbstractAnnotatedElement implem
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getFixed()
+    public function getFixed(): ?bool
     {
         return $this->fixedAttr;
     }
@@ -36,7 +36,7 @@ abstract class AbstractFixedFacetElement extends AbstractAnnotatedElement implem
      * 
      * @param   bool    $value  The value to set.
      */
-    public function setFixed(bool $value)
+    public function setFixed(bool $value): void
     {
         $this->fixedAttr = $value;
     }
@@ -46,7 +46,7 @@ abstract class AbstractFixedFacetElement extends AbstractAnnotatedElement implem
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasFixed():bool
+    public function hasFixed(): bool
     {
         return $this->fixedAttr !== NULL;
     }

@@ -31,26 +31,26 @@ class SelectorXPathType
      * 
      * Path ::= ('.//')? Step ( '/' Step )*
      */
-    const PATH = '((\\.//)?'.self::STEP.'(/'.self::STEP.')*)';
+    private const PATH = '((\\.//)?'.self::STEP.'(/'.self::STEP.')*)';
     
     /**
      * The "Step" pattern (it must be used with the u modifier).
      * 
      * Step ::= '.' | NameTest
      */
-    const STEP = '((\\.)|'.self::NAMETEST.')';
+    private const STEP = '((\\.)|'.self::NAMETEST.')';
     
     /**
      * The "NameTest" pattern (it must be used with the u modifier).
      * 
      * NameTest ::= ('child::')? (QName | '*' | NCName ':' '*')
      */
-    const NAMETEST = '((child::)?'.'(('.self::QNAME.')|(('.NCNameType::PATTERN.':)?\\*)))';
+    private const NAMETEST = '((child::)?'.'(('.self::QNAME.')|(('.NCNameType::PATTERN.':)?\\*)))';
     
     /**
      * The "QName" pattern (it must be used with the u modifier).
      */
-    const QNAME = NCNameType::PATTERN.':'.NCNameType::PATTERN;
+    private const QNAME = NCNameType::PATTERN.':'.NCNameType::PATTERN;
     
     /**
      * The XPath expression for a "selector" element.
@@ -75,7 +75,7 @@ class SelectorXPathType
      * 
      * @throws  InvalidValueException   When the XPath expression is invalid for a "selector" element.
      */
-    private function setXPath(string $xpath)
+    private function setXPath(string $xpath): void
     {
         if (!\preg_match('`^'.self::PATH.'(\\|'.self::PATH.')*$`u', $xpath)) {
             throw new InvalidValueException(sprintf('"%s" is an invalid XPath expression for a "selector" element.', $xpath));
@@ -89,7 +89,7 @@ class SelectorXPathType
      * 
      * @return  string
      */
-    public function getXPath():string
+    public function getXPath(): string
     {
         return $this->xpath;
     }

@@ -24,7 +24,7 @@ class DocumentationElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new DocumentationElement();
     }
@@ -32,7 +32,7 @@ class DocumentationElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_DOCUMENTATION, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class DocumentationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testDocumentationElementWhenAddedToAnnotationElement()
+    public function testDocumentationElementWhenAddedToAnnotationElement(): void
     {
         $parent = new AnnotationElement();
         $parent->addDocumentationElement($this->sut);
@@ -57,7 +57,7 @@ class DocumentationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testDocumentationElementWithParentThrowsExceptionWhenAnnotationElementAddDocumentationElement()
+    public function testDocumentationElementWithParentThrowsExceptionWhenAnnotationElementAddDocumentationElement(): void
     {
         $parent1 = new AnnotationElement();
         $parent1->addDocumentationElement($this->sut);
@@ -75,7 +75,7 @@ class DocumentationElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToAnnotationElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToAnnotationElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new AnnotationElement();
         $parent->addDocumentationElement($this->sut);

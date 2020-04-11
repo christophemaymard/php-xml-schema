@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -103,7 +104,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -116,7 +117,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -167,7 +168,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertUniqueElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -175,7 +176,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -191,7 +192,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -208,7 +209,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -220,7 +221,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildSelectorElementCreateEltWhenUnique()
+    public function testBuildSelectorElementCreateEltWhenUnique(): void
     {
         $this->sut->buildSelectorElement();
         $sch = $this->sut->getSchema();
@@ -245,7 +246,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildFieldElementCreateEltWhenUnique()
+    public function testBuildFieldElementCreateEltWhenUnique(): void
     {
         $this->sut->buildFieldElement();
         $this->sut->endElement();
@@ -284,7 +285,8 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildIdAttributeCreatesAttrWhenUniqueAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -311,7 +313,8 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildIdAttributeThrowsExceptionWhenUniqueAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -335,7 +338,8 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildNameAttributeCreatesAttrWhenUniqueAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -362,7 +366,8 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildNameAttributeThrowsExceptionWhenUniqueAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 
@@ -379,7 +384,7 @@ class UniqueSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenUnique()
+    public function testBuildAnnotationElementCreateEltWhenUnique(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

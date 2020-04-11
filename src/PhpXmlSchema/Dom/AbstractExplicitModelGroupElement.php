@@ -25,7 +25,7 @@ abstract class AbstractExplicitModelGroupElement extends AbstractModelGroupEleme
      * 
      * @param   GroupElement    $element    The element to add.
      */
-    public function addGroupElement(GroupElement $element)
+    public function addGroupElement(GroupElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -35,7 +35,7 @@ abstract class AbstractExplicitModelGroupElement extends AbstractModelGroupEleme
      * 
      * @return  GroupElement[]  An indexed array of GroupElement instances.
      */
-    public function getGroupElements():array
+    public function getGroupElements(): array
     {
         return $this->getChildElementsByType(1, GroupElement::class);
     }
@@ -45,7 +45,7 @@ abstract class AbstractExplicitModelGroupElement extends AbstractModelGroupEleme
      * 
      * @param   ChoiceElement   $element    The element to add.
      */
-    public function addChoiceElement(ChoiceElement $element)
+    public function addChoiceElement(ChoiceElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -55,7 +55,7 @@ abstract class AbstractExplicitModelGroupElement extends AbstractModelGroupEleme
      * 
      * @return  ChoiceElement[] An indexed array of ChoiceElement instances.
      */
-    public function getChoiceElements():array
+    public function getChoiceElements(): array
     {
         return $this->getChildElementsByType(1, ChoiceElement::class);
     }
@@ -65,7 +65,7 @@ abstract class AbstractExplicitModelGroupElement extends AbstractModelGroupEleme
      * 
      * @param   SequenceElement $element    The element to add.
      */
-    public function addSequenceElement(SequenceElement $element)
+    public function addSequenceElement(SequenceElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -75,7 +75,7 @@ abstract class AbstractExplicitModelGroupElement extends AbstractModelGroupEleme
      * 
      * @return  SequenceElement[]   An indexed array of SequenceElement instances.
      */
-    public function getSequenceElements():array
+    public function getSequenceElements(): array
     {
         return $this->getChildElementsByType(1, SequenceElement::class);
     }
@@ -85,7 +85,7 @@ abstract class AbstractExplicitModelGroupElement extends AbstractModelGroupEleme
      * 
      * @param   AnyElement  $element    The element to add.
      */
-    public function addAnyElement(AnyElement $element)
+    public function addAnyElement(AnyElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -95,7 +95,7 @@ abstract class AbstractExplicitModelGroupElement extends AbstractModelGroupEleme
      * 
      * @return  AnyElement[]    An indexed array of AnyElement instances.
      */
-    public function getAnyElements():array
+    public function getAnyElements(): array
     {
         return $this->getChildElementsByType(1, AnyElement::class);
     }

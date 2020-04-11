@@ -25,7 +25,7 @@ trait BuildReferAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildReferAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildReferAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildReferAttribute('foo:bar');
         $this->sut->buildReferAttribute('foo');

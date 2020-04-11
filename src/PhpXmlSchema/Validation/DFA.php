@@ -54,7 +54,7 @@ class DFA
      * @param   int $symbol     The symbol of the transition.
      * @param   int $nextState  The next state to associate with.
      */
-    public function addTransition(int $state, int $symbol, int $nextState)
+    public function addTransition(int $state, int $symbol, int $nextState): void
     {
         $this->transitions[$state][$symbol] = $nextState;
     }
@@ -64,7 +64,7 @@ class DFA
      * 
      * @param   int $state  The state to add.
      */
-    public function addFinalState(int $state)
+    public function addFinalState(int $state): void
     {
         $this->finalStates[] = $state;
     }
@@ -78,7 +78,7 @@ class DFA
      * 
      * @param   int $symbol The symbol to add.
      */
-    public function addSymbol(int $symbol)
+    public function addSymbol(int $symbol): void
     {
         $this->currentState = ($this->acceptSymbol($symbol)) ? 
             $this->transitions[$this->currentState][$symbol] : 
@@ -92,7 +92,7 @@ class DFA
      * @param   int $symbol The symbol to check.
      * @return  bool    TRUE if the symbol is accpeted in the current state, otherwis FALSE.
      */
-    public function acceptSymbol(int $symbol):bool
+    public function acceptSymbol(int $symbol): bool
     {
         return isset($this->transitions[$this->currentState][$symbol]);
     }
@@ -105,7 +105,7 @@ class DFA
      * 
      * @return  int[]   An indexed array of accpeted symbols.
      */
-    public function getAcceptedSymbols():array
+    public function getAcceptedSymbols(): array
     {
         return (isset($this->transitions[$this->currentState])) ? 
             \array_keys($this->transitions[$this->currentState]) : 
@@ -117,7 +117,7 @@ class DFA
      * 
      * @return  int|NULL    The value of the current state, otherwise NULL if it has been invalidated.
      */
-    public function getCurrentState()
+    public function getCurrentState(): ?int
     {
         return $this->currentState;
     }
@@ -127,7 +127,7 @@ class DFA
      * 
      * @return  bool    TRUE if the current state is a final state, otherwise FALSE.
      */
-    public function isValid():bool
+    public function isValid(): bool
     {
         return \in_array($this->currentState, $this->finalStates, TRUE);
     }

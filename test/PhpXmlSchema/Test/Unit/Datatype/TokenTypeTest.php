@@ -35,7 +35,8 @@ class TokenTypeTest extends TestCase
     public function test__constructStoresValueWhenItIsValid(
         string $value, 
         string $token
-    ) {
+    ): void
+    {
         $sut = new TokenType($value);
         self::assertSame($token, $sut->getToken());
     }
@@ -52,7 +53,8 @@ class TokenTypeTest extends TestCase
     public function test__constructThrowsExceptionWhenValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid token datatype.', 

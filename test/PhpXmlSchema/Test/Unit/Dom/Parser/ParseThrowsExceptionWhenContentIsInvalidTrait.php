@@ -35,7 +35,8 @@ trait ParseThrowsExceptionWhenContentIsInvalidTrait
         string $fileName, 
         string $exception, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException($exception);
         $this->expectExceptionMessage($message);
         
@@ -47,7 +48,7 @@ trait ParseThrowsExceptionWhenContentIsInvalidTrait
      * 
      * @return  array[]
      */
-    public function getInvalidContents():array
+    public function getInvalidContents(): array
     {
         return $this->createDataSets('content');
     }

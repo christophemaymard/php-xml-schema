@@ -24,7 +24,7 @@ class ComplexContentExtensionElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ComplexContentExtensionElement();
     }
@@ -32,7 +32,7 @@ class ComplexContentExtensionElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_COMPLEXCONTENT_EXTENSION, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class ComplexContentExtensionElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexContentExtensionElementWhenAddedToComplexContentElement()
+    public function testComplexContentExtensionElementWhenAddedToComplexContentElement(): void
     {
         $parent = new ComplexContentElement();
         $parent->setDerivationElement($this->sut);
@@ -57,7 +57,7 @@ class ComplexContentExtensionElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexContentExtensionElementWithParentThrowsExceptionWhenComplexContentElementSetDerivationElement()
+    public function testComplexContentExtensionElementWithParentThrowsExceptionWhenComplexContentElementSetDerivationElement(): void
     {
         $parent1 = new ComplexContentElement();
         $parent1->setDerivationElement($this->sut);
@@ -75,7 +75,7 @@ class ComplexContentExtensionElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToComplexContentElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToComplexContentElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ComplexContentElement();
         $parent->setDerivationElement($this->sut);

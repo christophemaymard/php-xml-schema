@@ -67,7 +67,7 @@ class DerivationType
      * 
      * @return  bool    TRUE if one of the derivations is "restriction", otherwise FALSE.
      */
-    public function byRestriction():bool
+    public function byRestriction(): bool
     {
         return $this->restriction;
     }
@@ -77,7 +77,7 @@ class DerivationType
      * 
      * @return  bool    TRUE if one of the derivations is "extension", otherwise FALSE.
      */
-    public function byExtension():bool
+    public function byExtension(): bool
     {
         return $this->extension;
     }
@@ -87,7 +87,7 @@ class DerivationType
      * 
      * @return  bool    TRUE if one of the derivations is "substitution", otherwise FALSE.
      */
-    public function bySubstitution():bool
+    public function bySubstitution(): bool
     {
         return $this->substitution;
     }
@@ -97,7 +97,7 @@ class DerivationType
      * 
      * @return  bool    TRUE if one of the derivations is "list", otherwise FALSE.
      */
-    public function byList():bool
+    public function byList(): bool
     {
         return $this->list;
     }
@@ -107,7 +107,7 @@ class DerivationType
      * 
      * @return  bool    TRUE if one of the derivations is "union", otherwise FALSE.
      */
-    public function byUnion():bool
+    public function byUnion(): bool
     {
         return $this->union;
     }

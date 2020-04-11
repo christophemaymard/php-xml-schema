@@ -22,7 +22,7 @@ class KeyElementTest extends AbstractIdentityConstraintElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new KeyElement();
     }
@@ -30,7 +30,7 @@ class KeyElementTest extends AbstractIdentityConstraintElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('key', $this->sut->getLocalName());
     }

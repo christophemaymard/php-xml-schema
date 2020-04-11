@@ -95,7 +95,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $scheme The scheme to set.
      */
-    public function setScheme(string $scheme)
+    public function setScheme(string $scheme): void
     {
         $this->scheme = $scheme;
     }
@@ -105,7 +105,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $userInfo   The user-information to set.
      */
-    public function setUserInfo(string $userInfo)
+    public function setUserInfo(string $userInfo): void
     {
         $this->userInfo = $userInfo;
     }
@@ -115,7 +115,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $comment    The comment to set.
      */
-    public function setUserInfoComment(string $comment)
+    public function setUserInfoComment(string $comment): void
     {
         $this->userInfoComment = $comment;
     }
@@ -125,7 +125,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $host   The host to set.
      */
-    public function setHost(string $host)
+    public function setHost(string $host): void
     {
         $this->host = $host;
     }
@@ -135,7 +135,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $comment    The comment to set.
      */
-    public function setHostComment(string $comment)
+    public function setHostComment(string $comment): void
     {
         $this->hostComment = $comment;
     }
@@ -145,7 +145,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $port   The port to set.
      */
-    public function setPort(string $port)
+    public function setPort(string $port): void
     {
         $this->port = $port;
     }
@@ -155,7 +155,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $comment    The comment to set.
      */
-    public function setPortComment(string $comment)
+    public function setPortComment(string $comment): void
     {
         $this->portComment = $comment;
     }
@@ -165,7 +165,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $path   The path to set.
      */
-    public function setPath(string $path)
+    public function setPath(string $path): void
     {
         $this->path = $path;
     }
@@ -175,7 +175,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $comment    The comment to set.
      */
-    public function setPathComment(string $comment)
+    public function setPathComment(string $comment): void
     {
         $this->pathComment = $comment;
     }
@@ -185,7 +185,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $query  The query to set.
      */
-    public function setQuery(string $query)
+    public function setQuery(string $query): void
     {
         $this->query = $query;
     }
@@ -195,7 +195,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $comment    The comment to set.
      */
-    public function setQueryComment(string $comment)
+    public function setQueryComment(string $comment): void
     {
         $this->queryComment = $comment;
     }
@@ -205,7 +205,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $fragment   The fragment to set.
      */
-    public function setFragment(string $fragment)
+    public function setFragment(string $fragment): void
     {
         $this->fragment = $fragment;
     }
@@ -215,7 +215,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @param   string  $comment    The comment to set.
      */
-    public function setFragmentComment(string $comment)
+    public function setFragmentComment(string $comment): void
     {
         $this->fragmentComment = $comment;
     }
@@ -225,7 +225,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @return  array
      */
-    public function getComponents():array
+    public function getComponents(): array
     {
         return [
             $this->getUri(),
@@ -245,7 +245,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @return  string
      */
-    public function getName():string
+    public function getName(): string
     {
         $name = ($this->scheme === NULL) ? 'Relative URI' : 'URI';
         $name .= ': ';
@@ -328,7 +328,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @return  string
      */
-    public function getUri():string
+    public function getUri(): string
     {
         $uri = '';
         
@@ -360,7 +360,7 @@ class AnyUriTypeComponentBuilder
      * 
      * @return  string|NULL
      */
-    private function getAuthority()
+    private function getAuthority(): ?string
     {
         $authority = NULL;
         

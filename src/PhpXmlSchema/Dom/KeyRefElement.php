@@ -33,7 +33,7 @@ class KeyRefElement extends AbstractIdentityConstraintElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_KEYREF;
     }
@@ -41,7 +41,7 @@ class KeyRefElement extends AbstractIdentityConstraintElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'keyref';
     }
@@ -51,7 +51,7 @@ class KeyRefElement extends AbstractIdentityConstraintElement
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getRefer()
+    public function getRefer(): ?QNameType
     {
         return $this->referAttr;
     }
@@ -61,7 +61,7 @@ class KeyRefElement extends AbstractIdentityConstraintElement
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setRefer(QNameType $value)
+    public function setRefer(QNameType $value): void
     {
         $this->referAttr = $value;
     }
@@ -71,7 +71,7 @@ class KeyRefElement extends AbstractIdentityConstraintElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasRefer():bool
+    public function hasRefer(): bool
     {
         return $this->referAttr !== NULL;
     }

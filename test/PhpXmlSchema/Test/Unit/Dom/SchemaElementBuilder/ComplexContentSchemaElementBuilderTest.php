@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -105,7 +106,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -118,7 +119,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -134,7 +135,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertComplexContentElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -142,7 +143,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement();
@@ -151,7 +152,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -161,7 +162,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -180,7 +181,8 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     public function testBuildIdAttributeCreatesAttrWhenComplexContentAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -207,7 +209,8 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     public function testBuildIdAttributeThrowsExceptionWhenComplexContentAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -231,7 +234,8 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
     public function testBuildMixedAttributeCreatesAttrWhenComplexContentAndValueIsValid(
         string $value, 
         bool $bool
-    ) {
+    ): void
+    {
         $this->sut->buildMixedAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -256,7 +260,8 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      */
     public function testBuildMixedAttributeThrowsExceptionWhenComplexContentAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
@@ -270,7 +275,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenComplexContent()
+    public function testBuildAnnotationElementCreateEltWhenComplexContent(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -295,7 +300,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * @group   content
      * @group   element
      */
-    public function testBuildRestrictionElementCreateEltWhenComplexContent()
+    public function testBuildRestrictionElementCreateEltWhenComplexContent(): void
     {
         $this->sut->buildRestrictionElement();
         $sch = $this->sut->getSchema();
@@ -320,7 +325,7 @@ class ComplexContentSchemaElementBuilderTest extends AbstractSchemaElementBuilde
      * @group   content
      * @group   element
      */
-    public function testBuildExtensionElementCreateEltWhenComplexContent()
+    public function testBuildExtensionElementCreateEltWhenComplexContent(): void
     {
         $this->sut->buildExtensionElement();
         $sch = $this->sut->getSchema();

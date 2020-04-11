@@ -41,7 +41,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -49,7 +49,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
     /**
      * Tests that getLocalName() returns a specific string.
      */
-    abstract public function testGetLocalNameReturnsSpecificString();
+    abstract public function testGetLocalNameReturnsSpecificString(): void;
     
     /**
      * Tests that bindNamespace() throws an exception when the 'xml' prefix 
@@ -60,7 +60,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testBindNamespaceThrowsExceptionWhenBindingXmlPrefixToNamespaceOtherXml10()
+    public function testBindNamespaceThrowsExceptionWhenBindingXmlPrefixToNamespaceOtherXml10(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('"xml" prefix can be bound only to '.
@@ -78,7 +78,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXml10()
+    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXml10(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('"foo" prefix cannot be bound to '.
@@ -96,7 +96,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testBindNamespaceThrowsExceptionWhenPrefixIsXmlns()
+    public function testBindNamespaceThrowsExceptionWhenPrefixIsXmlns(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('"xmlns" prefix is reserved.');
@@ -113,7 +113,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXmlns10()
+    public function testBindNamespaceThrowsExceptionWhenBindingOtherPrefixToNamespaceXmlns10(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('"foo" prefix cannot be bound to '.
@@ -131,7 +131,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testLookupNamespaceReturnsNullWhenPrefixNotBoundToNamespace()
+    public function testLookupNamespaceReturnsNullWhenPrefixNotBoundToNamespace(): void
     {
         self::assertNull($this->sut->lookupNamespace('foo'));
     }
@@ -145,7 +145,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testLookupNamespaceReturnsXml10NamespaceWhenPrefixIsXmlAndNotBoundToNamespace()
+    public function testLookupNamespaceReturnsXml10NamespaceWhenPrefixIsXmlAndNotBoundToNamespace(): void
     {
         self::assertSame('http://www.w3.org/XML/1998/namespace', $this->sut->lookupNamespace('xml'));
     }
@@ -159,7 +159,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testLookupNamespaceReturnsStringWhenPrefixNotBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenPrefixNotBoundToNamespace(): void
     {
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
         self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
@@ -174,7 +174,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testBindNamespaceUpdatesNamespaceWhenPrefixBoundMultipleNamespaces()
+    public function testBindNamespaceUpdatesNamespaceWhenPrefixBoundMultipleNamespaces(): void
     {
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
         $this->sut->bindNamespace('foo', 'http://example.org/newfoo');
@@ -190,7 +190,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * @group   element
      * @group   dom
      */
-    public function testGetNamespaceDeclarationsReturnsArrayOfStrings()
+    public function testGetNamespaceDeclarationsReturnsArrayOfStrings(): void
     {
         $decls = [];
         self::assertElementNamespaceDeclarations($decls, $this->sut);
@@ -217,7 +217,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createDerivationTypeDummy():ProphecySubjectInterface
+    protected function createDerivationTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(DerivationType::class)->reveal();
     }
@@ -227,7 +227,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createFieldXPathTypeDummy():ProphecySubjectInterface
+    protected function createFieldXPathTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(FieldXPathType::class)->reveal();
     }
@@ -237,7 +237,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createFormTypeDummy():ProphecySubjectInterface
+    protected function createFormTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(FormType::class)->reveal();
     }
@@ -248,7 +248,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createNamespaceListTypeDummy():ProphecySubjectInterface
+    protected function createNamespaceListTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(NamespaceListType::class)->reveal();
     }
@@ -259,7 +259,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createNonNegativeIntegerLimitTypeDummy():ProphecySubjectInterface
+    protected function createNonNegativeIntegerLimitTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(NonNegativeIntegerLimitType::class)->reveal();
     }
@@ -269,7 +269,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createProcessingModeTypeDummy():ProphecySubjectInterface
+    protected function createProcessingModeTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(ProcessingModeType::class)->reveal();
     }
@@ -279,7 +279,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createSelectorXPathTypeDummy():ProphecySubjectInterface
+    protected function createSelectorXPathTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(SelectorXPathType::class)->reveal();
     }
@@ -289,7 +289,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createUseTypeDummy():ProphecySubjectInterface
+    protected function createUseTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(UseType::class)->reveal();
     }
@@ -299,7 +299,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createWhiteSpaceTypeDummy():ProphecySubjectInterface
+    protected function createWhiteSpaceTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(WhiteSpaceType::class)->reveal();
     }

@@ -27,7 +27,7 @@ class FormTypeTest extends TestCase
      * 
      * @param   FormType    $sut
      */
-    private static function assertFormQualified(FormType $sut)
+    private static function assertFormQualified(FormType $sut): void
     {
         self::assertTrue($sut->isQualified());
         self::assertFalse($sut->isUnqualified());
@@ -39,7 +39,7 @@ class FormTypeTest extends TestCase
      * 
      * @param   FormType    $sut
      */
-    private static function assertFormUnqualified(FormType $sut)
+    private static function assertFormUnqualified(FormType $sut): void
     {
         self::assertTrue($sut->isUnqualified());
         self::assertFalse($sut->isQualified());
@@ -49,7 +49,7 @@ class FormTypeTest extends TestCase
      * Tests that isQualified() returns TRUE and isUnqualified() returns 
      * FALSE when the specified form is "qualified".
      */
-    public function testIsQualifiedReturnsTrueWhenFormQualified()
+    public function testIsQualifiedReturnsTrueWhenFormQualified(): void
     {
         $sut = new FormType(1);
         self::assertFormQualified($sut);
@@ -59,7 +59,7 @@ class FormTypeTest extends TestCase
      * Tests that isUnqualified() returns TRUE and isQualified() returns 
      * FALSE when the specified form is "unqualified".
      */
-    public function testIsUnqualifiedReturnsTrueWhenFormUnqualified()
+    public function testIsUnqualifiedReturnsTrueWhenFormUnqualified(): void
     {
         $sut = new FormType(2);
         self::assertFormUnqualified($sut);
@@ -69,7 +69,7 @@ class FormTypeTest extends TestCase
      * Tests that __construct() throws an exception when the specified form 
      * is invalid.
      */
-    public function test__constructThrowsExceptionWhenFormIsInvalid()
+    public function test__constructThrowsExceptionWhenFormIsInvalid(): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('"3" is an invalid form.');
@@ -81,7 +81,7 @@ class FormTypeTest extends TestCase
      * Tests that createQualified() creates a new instance of FormType 
      * configured in "qualified" form.
      */
-    public function testCreateQualifiedReturnsInstanceFormQualified()
+    public function testCreateQualifiedReturnsInstanceFormQualified(): void
     {
         $sut = FormType::createQualified();
         self::assertFormQualified($sut);
@@ -90,7 +90,7 @@ class FormTypeTest extends TestCase
     /**
      * Tests that createQualified() creates a new instance.
      */
-    public function testCreateQualifiedReturnsNewInstance()
+    public function testCreateQualifiedReturnsNewInstance(): void
     {
         $sut1 = FormType::createQualified();
         $sut2 = FormType::createQualified();
@@ -101,7 +101,7 @@ class FormTypeTest extends TestCase
      * Tests that createUnqualified() creates a new instance of FormType 
      * configured in "unqualified" form.
      */
-    public function testCreateUnqualifiedReturnsInstanceFormUnqualified()
+    public function testCreateUnqualifiedReturnsInstanceFormUnqualified(): void
     {
         $sut = FormType::createUnqualified();
         self::assertFormUnqualified($sut);
@@ -110,7 +110,7 @@ class FormTypeTest extends TestCase
     /**
      * Tests that createUnqualified() creates a new instance.
      */
-    public function testCreateUnqualifiedReturnsNewInstance()
+    public function testCreateUnqualifiedReturnsNewInstance(): void
     {
         $sut1 = FormType::createUnqualified();
         $sut2 = FormType::createUnqualified();

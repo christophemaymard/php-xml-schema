@@ -25,7 +25,7 @@ class MinLengthElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new MinLengthElement();
     }
@@ -33,7 +33,7 @@ class MinLengthElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_MINLENGTH, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class MinLengthElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMinLengthElementWhenAddedToSimpleContentRestrictionElement()
+    public function testMinLengthElementWhenAddedToSimpleContentRestrictionElement(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addMinLengthElement($this->sut);
@@ -58,7 +58,7 @@ class MinLengthElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMinLengthElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMinLengthElement()
+    public function testMinLengthElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMinLengthElement(): void
     {
         $parent1 = new SimpleContentRestrictionElement();
         $parent1->addMinLengthElement($this->sut);
@@ -74,7 +74,7 @@ class MinLengthElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMinLengthElementWhenAddedToSimpleTypeRestrictionElement()
+    public function testMinLengthElementWhenAddedToSimpleTypeRestrictionElement(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addMinLengthElement($this->sut);
@@ -88,7 +88,7 @@ class MinLengthElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMinLengthElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMinLengthElement()
+    public function testMinLengthElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMinLengthElement(): void
     {
         $parent1 = new SimpleTypeRestrictionElement();
         $parent1->addMinLengthElement($this->sut);
@@ -106,7 +106,7 @@ class MinLengthElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addMinLengthElement($this->sut);
@@ -122,7 +122,7 @@ class MinLengthElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addMinLengthElement($this->sut);

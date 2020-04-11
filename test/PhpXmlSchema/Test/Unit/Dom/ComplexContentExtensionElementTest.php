@@ -25,7 +25,7 @@ class ComplexContentExtensionElementTest extends AbstractTypeNamingElementTestCa
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ComplexContentExtensionElement();
     }
@@ -33,7 +33,7 @@ class ComplexContentExtensionElementTest extends AbstractTypeNamingElementTestCa
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('extension', $this->sut->getLocalName());
     }

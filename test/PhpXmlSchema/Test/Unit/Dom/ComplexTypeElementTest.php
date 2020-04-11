@@ -29,7 +29,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ComplexTypeElement();
     }
@@ -37,7 +37,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('complexType', $this->sut->getLocalName());
     }
@@ -49,7 +49,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
      * 
      * @group   content
      */
-    public function testHasContentElement()
+    public function testHasContentElement(): void
     {
         self::assertFalse($this->sut->hasContentElement(), 'No element has been set.');
         
@@ -64,7 +64,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
      * 
      * @group   content
      */
-    public function testGetContentElement()
+    public function testGetContentElement(): void
     {
         self::assertNull($this->sut->getContentElement(), 'No element has been set.');
         
@@ -83,7 +83,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createComplexContentElementHasParentFalse1TimeMock();
@@ -102,7 +102,7 @@ class ComplexTypeElementTest extends AbstractAbstractTypeNamingElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01234()
+    public function testGetElementsReturnsElementsOrderedByContainer01234(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

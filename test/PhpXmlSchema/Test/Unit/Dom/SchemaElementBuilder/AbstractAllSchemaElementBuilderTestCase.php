@@ -102,7 +102,7 @@ abstract class AbstractAllSchemaElementBuilderTestCase extends AbstractSchemaEle
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         static::assertAncestorsNotChanged($sch);
         
@@ -115,7 +115,7 @@ abstract class AbstractAllSchemaElementBuilderTestCase extends AbstractSchemaEle
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertAllElementHasNoAttribute(static::getCurrentElement($sch));
     }
@@ -134,7 +134,8 @@ abstract class AbstractAllSchemaElementBuilderTestCase extends AbstractSchemaEle
     public function testBuildIdAttributeCreatesAttrWhenAllAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -161,7 +162,8 @@ abstract class AbstractAllSchemaElementBuilderTestCase extends AbstractSchemaEle
     public function testBuildIdAttributeThrowsExceptionWhenAllAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -178,7 +180,7 @@ abstract class AbstractAllSchemaElementBuilderTestCase extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenAll()
+    public function testBuildAnnotationElementCreateEltWhenAll(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -203,7 +205,7 @@ abstract class AbstractAllSchemaElementBuilderTestCase extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildElementElementCreateEltWhenAll()
+    public function testBuildElementElementCreateEltWhenAll(): void
     {
         $this->sut->buildElementElement();
         $this->sut->endElement();

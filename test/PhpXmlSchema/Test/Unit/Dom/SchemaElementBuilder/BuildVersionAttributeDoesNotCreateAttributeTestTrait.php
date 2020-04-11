@@ -26,7 +26,7 @@ trait BuildVersionAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildVersionAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildVersionAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildVersionAttribute("\u{001F}");
         $this->sut->buildVersionAttribute('version');

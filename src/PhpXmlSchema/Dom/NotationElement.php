@@ -48,7 +48,7 @@ class NotationElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_NOTATION;
     }
@@ -56,7 +56,7 @@ class NotationElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'notation';
     }
@@ -66,7 +66,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getName()
+    public function getName(): ?NCNameType
     {
         return $this->nameAttr;
     }
@@ -76,7 +76,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @param   NCNameType  $value  The value to set.
      */
-    public function setName(NCNameType $value)
+    public function setName(NCNameType $value): void
     {
         $this->nameAttr = $value;
     }
@@ -86,7 +86,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasName():bool
+    public function hasName(): bool
     {
         return $this->nameAttr !== NULL;
     }
@@ -96,7 +96,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @return  TokenType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getPublic()
+    public function getPublic(): ?TokenType
     {
         return $this->publicAttr;
     }
@@ -106,7 +106,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @param   TokenType   $value  The value to set.
      */
-    public function setPublic(TokenType $value)
+    public function setPublic(TokenType $value): void
     {
         $this->publicAttr = $value;
     }
@@ -116,7 +116,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasPublic():bool
+    public function hasPublic(): bool
     {
         return $this->publicAttr !== NULL;
     }
@@ -126,7 +126,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getSystem()
+    public function getSystem(): ?AnyUriType
     {
         return $this->systemAttr;
     }
@@ -136,7 +136,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @param   AnyUriType  $value  The value to set.
      */
-    public function setSystem(AnyUriType $value)
+    public function setSystem(AnyUriType $value): void
     {
         $this->systemAttr = $value;
     }
@@ -146,7 +146,7 @@ class NotationElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasSystem():bool
+    public function hasSystem(): bool
     {
         return $this->systemAttr !== NULL;
     }

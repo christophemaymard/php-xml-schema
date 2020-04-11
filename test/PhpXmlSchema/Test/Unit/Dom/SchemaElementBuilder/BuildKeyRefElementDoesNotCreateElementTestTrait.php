@@ -26,7 +26,7 @@ trait BuildKeyRefElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildKeyRefElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildKeyRefElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildKeyRefElement();
         $sch = $this->sut->getSchema();

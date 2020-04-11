@@ -20,7 +20,7 @@ trait NamespaceListTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidNamespaceListTypeValues():array
+    public function getValidNamespaceListTypeValues(): array
     {
         // [ $value, $any, $other, $targetNamespace, $local, $uris, ]
         return [
@@ -173,7 +173,7 @@ trait NamespaceListTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidNamespaceListTypeValues():array
+    public function getInvalidNamespaceListTypeValues(): array
     {
         return [
             '##any surrounded by white spaces' => [

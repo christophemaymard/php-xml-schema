@@ -25,7 +25,7 @@ class MaxLengthElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new MaxLengthElement();
     }
@@ -33,7 +33,7 @@ class MaxLengthElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_MAXLENGTH, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class MaxLengthElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMaxLengthElementWhenAddedToSimpleContentRestrictionElement()
+    public function testMaxLengthElementWhenAddedToSimpleContentRestrictionElement(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addMaxLengthElement($this->sut);
@@ -58,7 +58,7 @@ class MaxLengthElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMaxLengthElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMaxLengthElement()
+    public function testMaxLengthElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMaxLengthElement(): void
     {
         $parent1 = new SimpleContentRestrictionElement();
         $parent1->addMaxLengthElement($this->sut);
@@ -74,7 +74,7 @@ class MaxLengthElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMaxLengthElementWhenAddedToSimpleTypeRestrictionElement()
+    public function testMaxLengthElementWhenAddedToSimpleTypeRestrictionElement(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addMaxLengthElement($this->sut);
@@ -88,7 +88,7 @@ class MaxLengthElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMaxLengthElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMaxLengthElement()
+    public function testMaxLengthElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMaxLengthElement(): void
     {
         $parent1 = new SimpleTypeRestrictionElement();
         $parent1->addMaxLengthElement($this->sut);
@@ -106,7 +106,7 @@ class MaxLengthElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addMaxLengthElement($this->sut);
@@ -122,7 +122,7 @@ class MaxLengthElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addMaxLengthElement($this->sut);

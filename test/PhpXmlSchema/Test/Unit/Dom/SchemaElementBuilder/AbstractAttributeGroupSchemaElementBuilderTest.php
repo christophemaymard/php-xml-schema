@@ -100,7 +100,7 @@ abstract class AbstractAttributeGroupSchemaElementBuilderTestCase extends Abstra
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         static::assertAncestorsNotChanged($sch);
         
@@ -113,7 +113,7 @@ abstract class AbstractAttributeGroupSchemaElementBuilderTestCase extends Abstra
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertAttributeGroupElementHasNoAttribute(static::getCurrentElement($sch));
     }
@@ -132,7 +132,8 @@ abstract class AbstractAttributeGroupSchemaElementBuilderTestCase extends Abstra
     public function testBuildIdAttributeCreatesAttrWhenAttributeGroupAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -159,7 +160,8 @@ abstract class AbstractAttributeGroupSchemaElementBuilderTestCase extends Abstra
     public function testBuildIdAttributeThrowsExceptionWhenAttributeGroupAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -176,7 +178,7 @@ abstract class AbstractAttributeGroupSchemaElementBuilderTestCase extends Abstra
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenAttributeGroup()
+    public function testBuildAnnotationElementCreateEltWhenAttributeGroup(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

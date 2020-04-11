@@ -26,7 +26,7 @@ trait BuildLangAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildLangAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildLangAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildLangAttribute(':');
         $this->sut->buildLangAttribute('fr-fr');

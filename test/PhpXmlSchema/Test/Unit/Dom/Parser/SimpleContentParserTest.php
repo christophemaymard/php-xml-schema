@@ -24,7 +24,7 @@ class SimpleContentParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'sc';
     }
@@ -35,7 +35,7 @@ class SimpleContentParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('simpleContent_0006.xsd'));
         
@@ -79,7 +79,7 @@ class SimpleContentParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -115,7 +115,7 @@ class SimpleContentParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -156,7 +156,7 @@ class SimpleContentParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessRestrictionElement()
+    public function testParseProcessRestrictionElement(): void
     {
         $sch = $this->sut->parse($this->getXs('restriction_0002.xsd'));
         
@@ -191,7 +191,7 @@ class SimpleContentParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessExtensionElement()
+    public function testParseProcessExtensionElement(): void
     {
         $sch = $this->sut->parse($this->getXs('extension_0002.xsd'));
         
@@ -225,7 +225,7 @@ class SimpleContentParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

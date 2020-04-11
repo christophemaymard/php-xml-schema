@@ -30,7 +30,7 @@ class SpecificationTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new Specification(9);
     }
@@ -38,7 +38,7 @@ class SpecificationTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -46,7 +46,7 @@ class SpecificationTest extends TestCase
     /**
      * Tests that hasInitialState() returns a boolean.
      */
-    public function testHasInitialStateReturnsBool()
+    public function testHasInitialStateReturnsBool(): void
     {
         self::assertFalse($this->sut->hasInitialState());
         
@@ -58,7 +58,7 @@ class SpecificationTest extends TestCase
      * Tests that getInitialState() returns the initial state that has been 
      * set.
      */
-    public function testGetInitialStateReturnsInt()
+    public function testGetInitialStateReturnsInt(): void
     {
         $this->sut->setInitialState(10);
         self::assertSame(10, $this->sut->getInitialState());
@@ -71,7 +71,7 @@ class SpecificationTest extends TestCase
      * Tests that getInitialState() throws an exception when no initial state 
      * has been set.
      */
-    public function testGetInitialStateThrowsExceptionWhenNotSet()
+    public function testGetInitialStateThrowsExceptionWhenNotSet(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('There is no initial state for the context ID 9.');
@@ -82,7 +82,7 @@ class SpecificationTest extends TestCase
     /**
      * Tests that hasTransitionElementName() returns a boolean.
      */
-    public function testHasTransitionElementNameReturnsBool()
+    public function testHasTransitionElementNameReturnsBool(): void
     {
         self::assertFalse($this->sut->hasTransitionElementName(1, 0));
         
@@ -95,7 +95,7 @@ class SpecificationTest extends TestCase
      * Tests that getTransitionElementName() returns the name that is 
      * associated with a state and a symbol.
      */
-    public function testGetTransitionElementNameReturnsString()
+    public function testGetTransitionElementNameReturnsString(): void
     {
         $this->sut->setTransitionElementName(1, 2, 'foo');
         self::assertSame('foo', $this->sut->getTransitionElementName(1, 2));
@@ -111,7 +111,7 @@ class SpecificationTest extends TestCase
      * Tests that getTransitionElementName() throws an exception when no name 
      * is associated with the transition.
      */
-    public function testGetTransitionElementNameThrowsExceptionWhenNotSet()
+    public function testGetTransitionElementNameThrowsExceptionWhenNotSet(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('There is no name associated with the '.
@@ -124,7 +124,7 @@ class SpecificationTest extends TestCase
      * Tests that findTransitionElementNameSymbol() returns NULL when no 
      * transition with the state is associated with the name.
      */
-    public function testFindTransitionElementNameSymbolReturnsNull()
+    public function testFindTransitionElementNameSymbolReturnsNull(): void
     {
         self::assertNull($this->sut->findTransitionElementNameSymbol(0, 'foo'));
     }
@@ -133,7 +133,7 @@ class SpecificationTest extends TestCase
      * Tests that findTransitionElementNameSymbol() returns the first 
      * integer when a transition with the state is associated with the name.
      */
-    public function testFindTransitionElementNameSymbolReturnsInt()
+    public function testFindTransitionElementNameSymbolReturnsInt(): void
     {
         $this->sut->setTransitionElementName(0, 2, 'foo');
         self::assertSame(2, $this->sut->findTransitionElementNameSymbol(0, 'foo'));
@@ -147,7 +147,7 @@ class SpecificationTest extends TestCase
     /**
      * Tests that getTransitionElementNames() returns an array of strings.
      */
-    public function testGetTransitionElementNamesReturnsArrayOfStrings()
+    public function testGetTransitionElementNamesReturnsArrayOfStrings(): void
     {
         self::assertSame([], $this->sut->getTransitionElementNames(0));
         
@@ -161,7 +161,7 @@ class SpecificationTest extends TestCase
     /**
      * Tests that hasTransitionElementBuilder() returns a boolean.
      */
-    public function testHasTransitionElementBuilderReturnsBool()
+    public function testHasTransitionElementBuilderReturnsBool(): void
     {
         self::assertFalse($this->sut->hasTransitionElementBuilder(0, 1));
         
@@ -173,7 +173,7 @@ class SpecificationTest extends TestCase
      * Tests that getTransitionElementBuilder() returns the method name that 
      * is associated with a state and a symbol.
      */
-    public function testGetTransitionElementBuilderReturnsString()
+    public function testGetTransitionElementBuilderReturnsString(): void
     {
         $this->sut->setTransitionElementBuilder(3, 4, 'buildFoo');
         self::assertSame('buildFoo', $this->sut->getTransitionElementBuilder(3, 4));
@@ -189,7 +189,7 @@ class SpecificationTest extends TestCase
      * Tests that getTransitionElementBuilder() throws an exception when no 
      * method name is associated with the transition.
      */
-    public function testGetTransitionElementBuilderThrowsExceptionWhenNotSet()
+    public function testGetTransitionElementBuilderThrowsExceptionWhenNotSet(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('There is no method name associated with '.
@@ -201,7 +201,7 @@ class SpecificationTest extends TestCase
     /**
      * Tests that hasTransitionNextState() returns a boolean.
      */
-    public function testHasTransitionNextStateReturnsBool()
+    public function testHasTransitionNextStateReturnsBool(): void
     {
         self::assertFalse($this->sut->hasTransitionNextState(0, 1));
         
@@ -213,7 +213,7 @@ class SpecificationTest extends TestCase
      * Tests that getTransitionNextState() returns the next state that is 
      * associated with a state and a symbol.
      */
-    public function testGetTransitionNextStateReturnsInt()
+    public function testGetTransitionNextStateReturnsInt(): void
     {
         $this->sut->setTransitionNextState(0, 1, 2);
         self::assertSame(2, $this->sut->getTransitionNextState(0, 1));
@@ -229,7 +229,7 @@ class SpecificationTest extends TestCase
      * Tests that getTransitionNextState() throws an exception when no next 
      * state is associated with the transition.
      */
-    public function testGetTransitionNextStateThrowsExceptionWhenNotSet()
+    public function testGetTransitionNextStateThrowsExceptionWhenNotSet(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('There is no next state associated with '.
@@ -241,7 +241,7 @@ class SpecificationTest extends TestCase
     /**
      * Tests that getNextStateTransitions() returns an array of array.
      */
-    public function testGetNextStateTransitionsReturnsArray()
+    public function testGetNextStateTransitionsReturnsArray(): void
     {
         self::assertSame([], $this->sut->getNextStateTransitions());
         
@@ -266,7 +266,7 @@ class SpecificationTest extends TestCase
     /**
      * Tests that hasAttributeBuilder() returns a boolean.
      */
-    public function testHasAttributeBuilderReturnsBool()
+    public function testHasAttributeBuilderReturnsBool(): void
     {
         self::assertFalse($this->sut->hasAttributeBuilder('foo', ''));
         
@@ -278,7 +278,7 @@ class SpecificationTest extends TestCase
      * Tests that getAttributeBuilder() returns the method name that 
      * is associated with an attribute.
      */
-    public function testGetAttributeBuilderReturnsString()
+    public function testGetAttributeBuilderReturnsString(): void
     {
         $this->sut->setAttributeBuilder('foo', '', 'buildFooAttribute');
         self::assertSame(
@@ -303,7 +303,7 @@ class SpecificationTest extends TestCase
      * Tests that getAttributeBuilder() throws an exception when no 
      * method name is associated with the attribute.
      */
-    public function testGetAttributeBuilderThrowsExceptionWhenNotSet()
+    public function testGetAttributeBuilderThrowsExceptionWhenNotSet(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('There is no method name associated with '.
@@ -316,7 +316,7 @@ class SpecificationTest extends TestCase
      * Tests that getFinalStates() returns the final states that have been 
      * added.
      */
-    public function testGetFinalStatesReturnsArrayOfInt()
+    public function testGetFinalStatesReturnsArrayOfInt(): void
     {
         self::assertSame([], $this->sut->getFinalStates());
         

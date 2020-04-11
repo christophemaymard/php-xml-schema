@@ -26,7 +26,7 @@ trait BuildSourceAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildSourceAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildSourceAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildSourceAttribute(':');
         $this->sut->buildSourceAttribute('http://example.org/source');

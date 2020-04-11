@@ -25,7 +25,7 @@ trait BuildUseAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildUseAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildUseAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildUseAttribute('foo');
         $this->sut->buildUseAttribute('optional');

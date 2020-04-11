@@ -26,7 +26,7 @@ trait BuildIdAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildIdAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildIdAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildIdAttribute('foo:bar');
         $this->sut->buildIdAttribute('foo');

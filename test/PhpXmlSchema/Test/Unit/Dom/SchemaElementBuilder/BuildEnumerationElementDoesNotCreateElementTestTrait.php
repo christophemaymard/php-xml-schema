@@ -26,7 +26,7 @@ trait BuildEnumerationElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildEnumerationElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildEnumerationElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildEnumerationElement();
         $sch = $this->sut->getSchema();

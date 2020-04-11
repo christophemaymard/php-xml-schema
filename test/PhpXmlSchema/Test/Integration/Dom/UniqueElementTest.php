@@ -24,7 +24,7 @@ class UniqueElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new UniqueElement();
     }
@@ -32,7 +32,7 @@ class UniqueElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_UNIQUE, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class UniqueElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testUniqueElementWhenAddedToElementElement()
+    public function testUniqueElementWhenAddedToElementElement(): void
     {
         $parent = new ElementElement();
         $parent->addUniqueElement($this->sut);
@@ -57,7 +57,7 @@ class UniqueElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testUniqueElementWithParentThrowsExceptionWhenElementElementAddUniqueElement()
+    public function testUniqueElementWithParentThrowsExceptionWhenElementElementAddUniqueElement(): void
     {
         $parent1 = new ElementElement();
         $parent1->addUniqueElement($this->sut);
@@ -75,7 +75,7 @@ class UniqueElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToElementElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToElementElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ElementElement();
         $parent->addUniqueElement($this->sut);

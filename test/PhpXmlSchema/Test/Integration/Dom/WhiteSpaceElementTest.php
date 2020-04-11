@@ -25,7 +25,7 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new WhiteSpaceElement();
     }
@@ -33,7 +33,7 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_WHITESPACE, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testWhiteSpaceElementWhenAddedToSimpleContentRestrictionElement()
+    public function testWhiteSpaceElementWhenAddedToSimpleContentRestrictionElement(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addWhiteSpaceElement($this->sut);
@@ -58,7 +58,7 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testWhiteSpaceElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddWhiteSpaceElement()
+    public function testWhiteSpaceElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddWhiteSpaceElement(): void
     {
         $parent1 = new SimpleContentRestrictionElement();
         $parent1->addWhiteSpaceElement($this->sut);
@@ -74,7 +74,7 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testWhiteSpaceElementWhenAddedToSimpleTypeRestrictionElement()
+    public function testWhiteSpaceElementWhenAddedToSimpleTypeRestrictionElement(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addWhiteSpaceElement($this->sut);
@@ -88,7 +88,7 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testWhiteSpaceElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddWhiteSpaceElement()
+    public function testWhiteSpaceElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddWhiteSpaceElement(): void
     {
         $parent1 = new SimpleTypeRestrictionElement();
         $parent1->addWhiteSpaceElement($this->sut);
@@ -106,7 +106,7 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addWhiteSpaceElement($this->sut);
@@ -122,7 +122,7 @@ class WhiteSpaceElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addWhiteSpaceElement($this->sut);

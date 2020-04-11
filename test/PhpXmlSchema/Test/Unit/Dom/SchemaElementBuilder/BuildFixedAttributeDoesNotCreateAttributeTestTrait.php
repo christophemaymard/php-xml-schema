@@ -26,7 +26,7 @@ trait BuildFixedAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildFixedAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildFixedAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         // string
         $this->sut->buildFixedAttribute("\u{0000}");

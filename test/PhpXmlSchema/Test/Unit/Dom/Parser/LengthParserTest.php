@@ -24,7 +24,7 @@ class LengthParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'length';
     }
@@ -35,7 +35,7 @@ class LengthParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('length_0006.xsd'));
         
@@ -84,7 +84,7 @@ class LengthParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidFixedAttributes
      */
-    public function testParseProcessFixedAttribute(string $fileName, bool $bool)
+    public function testParseProcessFixedAttribute(string $fileName, bool $bool): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -128,7 +128,7 @@ class LengthParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -172,7 +172,7 @@ class LengthParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidValueAttributes
      */
-    public function testParseProcessValueAttribute(string $fileName, \GMP $nni)
+    public function testParseProcessValueAttribute(string $fileName, \GMP $nni): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -213,7 +213,7 @@ class LengthParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -257,7 +257,7 @@ class LengthParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidFixedAttributes():array
+    public function getValidFixedAttributes(): array
     {
         return [
             'true (string)' => [
@@ -300,7 +300,7 @@ class LengthParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -335,7 +335,7 @@ class LengthParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidValueAttributes():array
+    public function getValidValueAttributes(): array
     {
         return [
             '0' => [

@@ -20,7 +20,7 @@ trait ProcessingModeTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidProcessingModeTypeValues():array
+    public function getValidProcessingModeTypeValues(): array
     {
         // [ $value, $lax, $skip, $strict, ]
         return [
@@ -41,7 +41,7 @@ trait ProcessingModeTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidProcessingModeTypeValues():array
+    public function getInvalidProcessingModeTypeValues(): array
     {
         return [
             'Empty string' => [

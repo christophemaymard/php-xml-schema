@@ -35,7 +35,7 @@ abstract class AbstractSchemaElementBuilderTestCase extends TestCase
      * 
      * @param   SchemaElement   $sch    The element to assert.
      */
-    abstract public static function assertSchemaElementNotChanged(SchemaElement $sch);
+    abstract public static function assertSchemaElementNotChanged(SchemaElement $sch): void;
     
     /**
      * Asserts that the ancestors of the current element did not change since 
@@ -43,14 +43,14 @@ abstract class AbstractSchemaElementBuilderTestCase extends TestCase
      * 
      * @param   SchemaElement   $sch    The "schema" element of the current element to assert.
      */
-    abstract public static function assertAncestorsNotChanged(SchemaElement $sch);
+    abstract public static function assertAncestorsNotChanged(SchemaElement $sch): void;
     
     /**
      * Asserts that the current element has no attribute.
      * 
      * @param   SchemaElement   $sch    The "schema" element of the current element
      */
-    abstract public static function assertCurrentElementHasNotAttribute(SchemaElement $sch);
+    abstract public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void;
     
     /**
      * Asserts that the current element has no attribute.
@@ -58,5 +58,5 @@ abstract class AbstractSchemaElementBuilderTestCase extends TestCase
      * @param   SchemaElement   $sch    The "schema" element of the current element
      * @return  ElementInterface|NULL
      */
-    abstract protected static function getCurrentElement(SchemaElement $sch);
+    abstract protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface;
 }

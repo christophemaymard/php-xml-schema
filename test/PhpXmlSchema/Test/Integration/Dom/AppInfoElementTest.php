@@ -24,7 +24,7 @@ class AppInfoElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AppInfoElement();
     }
@@ -32,7 +32,7 @@ class AppInfoElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_APPINFO, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class AppInfoElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAppInfoElementWhenAddedToAnnotationElement()
+    public function testAppInfoElementWhenAddedToAnnotationElement(): void
     {
         $parent = new AnnotationElement();
         $parent->addAppInfoElement($this->sut);
@@ -57,7 +57,7 @@ class AppInfoElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAppInfoElementWithParentThrowsExceptionWhenAnnotationElementAddAppInfoElement()
+    public function testAppInfoElementWithParentThrowsExceptionWhenAnnotationElementAddAppInfoElement(): void
     {
         $parent1 = new AnnotationElement();
         $parent1->addAppInfoElement($this->sut);
@@ -75,7 +75,7 @@ class AppInfoElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToAnnotationElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToAnnotationElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new AnnotationElement();
         $parent->addAppInfoElement($this->sut);

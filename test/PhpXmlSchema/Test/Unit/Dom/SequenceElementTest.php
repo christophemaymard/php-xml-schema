@@ -23,7 +23,7 @@ class SequenceElementTest extends AbstractExplicitModelGroupElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SequenceElement();
     }
@@ -31,7 +31,7 @@ class SequenceElementTest extends AbstractExplicitModelGroupElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('sequence', $this->sut->getLocalName());
     }

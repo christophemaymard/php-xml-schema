@@ -23,7 +23,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new UnionElement();
     }
@@ -31,7 +31,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('union', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasMemberTypes()
+    public function testHasMemberTypes(): void
     {
         self::assertFalse($this->sut->hasMemberTypes(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetMemberTypes()
+    public function testGetMemberTypes(): void
     {
         $qnames = [];
         
@@ -80,7 +80,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetSimpleTypeElements()
+    public function testGetSimpleTypeElements(): void
     {
         $elements = [];
         
@@ -101,7 +101,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();
@@ -119,7 +119,7 @@ class UnionElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
+    public function testGetElementsReturnsElementsOrderedByContainer01(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

@@ -23,7 +23,7 @@ class KeyRefElementTest extends AbstractIdentityConstraintElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new KeyRefElement();
     }
@@ -31,7 +31,7 @@ class KeyRefElementTest extends AbstractIdentityConstraintElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('keyref', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class KeyRefElementTest extends AbstractIdentityConstraintElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasRefer()
+    public function testHasRefer(): void
     {
         self::assertFalse($this->sut->hasRefer(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class KeyRefElementTest extends AbstractIdentityConstraintElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetRefer()
+    public function testGetRefer(): void
     {
         self::assertNull($this->sut->getRefer(), 'The attribute has not been set.');
         

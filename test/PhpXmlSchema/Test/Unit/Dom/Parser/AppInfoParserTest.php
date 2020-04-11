@@ -23,7 +23,7 @@ class AppInfoParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'appinfo';
     }
@@ -34,7 +34,7 @@ class AppInfoParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('appinfo_0005.xsd'));
         
@@ -69,7 +69,7 @@ class AppInfoParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessSourceAttribute()
+    public function testParseProcessSourceAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('appinfo_src_0001.xsd'));
         
@@ -100,7 +100,7 @@ class AppInfoParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessContent()
+    public function testParseProcessContent(): void
     {
         $sch = $this->sut->parse($this->getXs('appinfo_0004.xsd'));
         

@@ -27,7 +27,7 @@ class NCNameType
     /**
      * The "NCName" pattern (it must be used with the u modifier).
      */
-    const PATTERN = '[_'.XmlCharClass::LETTER.']['.XmlCharClass::NCNAMECHAR.']*';
+    public const PATTERN = '[_'.XmlCharClass::LETTER.']['.XmlCharClass::NCNAMECHAR.']*';
     
     /**
      * The Non-Colonized name.
@@ -52,7 +52,7 @@ class NCNameType
      * 
      * @throws  InvalidValueException   When the Non-Colonized name is invalid.
      */
-    private function setNCName(string $ncName)
+    private function setNCName(string $ncName): void
     {
         if (!\preg_match('`^'.self::PATTERN.'$`u', $ncName)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid NCName datatype.', $ncName));
@@ -66,7 +66,7 @@ class NCNameType
      * 
      * @return  string
      */
-    public function getNCName():string
+    public function getNCName(): string
     {
         return $this->ncName;
     }

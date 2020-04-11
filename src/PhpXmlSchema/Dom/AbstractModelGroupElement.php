@@ -36,7 +36,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function getMaxOccurs()
+    public function getMaxOccurs(): ?NonNegativeIntegerLimitType
     {
         return $this->maxOccursAttr;
     }
@@ -44,7 +44,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function setMaxOccurs(NonNegativeIntegerLimitType $value)
+    public function setMaxOccurs(NonNegativeIntegerLimitType $value): void
     {
         $this->maxOccursAttr = $value;
     }
@@ -52,7 +52,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function hasMaxOccurs():bool
+    public function hasMaxOccurs(): bool
     {
         return $this->maxOccursAttr !== NULL;
     }
@@ -60,7 +60,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function getMinOccurs()
+    public function getMinOccurs(): ?NonNegativeIntegerType
     {
         return $this->minOccursAttr;
     }
@@ -68,7 +68,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function setMinOccurs(NonNegativeIntegerType $value)
+    public function setMinOccurs(NonNegativeIntegerType $value): void
     {
         $this->minOccursAttr = $value;
     }
@@ -76,7 +76,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function hasMinOccurs():bool
+    public function hasMinOccurs(): bool
     {
         return $this->minOccursAttr !== NULL;
     }
@@ -84,7 +84,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function addElementElement(ElementElement $element)
+    public function addElementElement(ElementElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -92,7 +92,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function getElementElements():array
+    public function getElementElements(): array
     {
         return $this->getChildElementsByType(1, ElementElement::class);
     }
@@ -100,7 +100,7 @@ abstract class AbstractModelGroupElement extends AbstractAnnotatedElement implem
     /**
      * {@inheritDoc}
      */
-    public function getParticleElements():array
+    public function getParticleElements(): array
     {
         return $this->getChildElementsByType(1, ParticleElementInterface::class);
     }

@@ -24,7 +24,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'named_ag';
     }
@@ -35,7 +35,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('attributeGroup_0006.xsd'));
         
@@ -69,7 +69,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -98,7 +98,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidNameAttributes
      */
-    public function testParseProcessNameAttribute(string $fileName, string $name)
+    public function testParseProcessNameAttribute(string $fileName, string $name): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -124,7 +124,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -154,7 +154,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeElement()
+    public function testParseProcessAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attribute_0002.xsd'));
         
@@ -190,7 +190,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeGroupElement()
+    public function testParseProcessAttributeGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attributeGroupRef_0002.xsd'));
         
@@ -225,7 +225,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnyAttributeElement()
+    public function testParseProcessAnyAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('anyAttribute_0002.xsd'));
         
@@ -254,7 +254,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -289,7 +289,7 @@ class NamedAttributeGroupParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNameAttributes():array
+    public function getValidNameAttributes(): array
     {
         return [
             'Starts with _' => [

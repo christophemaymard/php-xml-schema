@@ -53,7 +53,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_ANY;
     }
@@ -61,7 +61,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'any';
     }
@@ -69,7 +69,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
-    public function getMaxOccurs()
+    public function getMaxOccurs(): ?NonNegativeIntegerLimitType
     {
         return $this->maxOccursAttr;
     }
@@ -77,7 +77,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
-    public function setMaxOccurs(NonNegativeIntegerLimitType $value)
+    public function setMaxOccurs(NonNegativeIntegerLimitType $value): void
     {
         $this->maxOccursAttr = $value;
     }
@@ -85,7 +85,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
-    public function hasMaxOccurs():bool
+    public function hasMaxOccurs(): bool
     {
         return $this->maxOccursAttr !== NULL;
     }
@@ -93,7 +93,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
-    public function getMinOccurs()
+    public function getMinOccurs(): ?NonNegativeIntegerType
     {
         return $this->minOccursAttr;
     }
@@ -101,7 +101,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
-    public function setMinOccurs(NonNegativeIntegerType $value)
+    public function setMinOccurs(NonNegativeIntegerType $value): void
     {
         $this->minOccursAttr = $value;
     }
@@ -109,7 +109,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
     /**
      * {@inheritDoc}
      */
-    public function hasMinOccurs():bool
+    public function hasMinOccurs(): bool
     {
         return $this->minOccursAttr !== NULL;
     }
@@ -119,7 +119,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
      * 
      * @return  NamespaceListType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getNamespace()
+    public function getNamespace(): ?NamespaceListType
     {
         return $this->namespaceAttr;
     }
@@ -129,7 +129,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
      * 
      * @param   NamespaceListType   $value  The value to set.
      */
-    public function setNamespace(NamespaceListType $value)
+    public function setNamespace(NamespaceListType $value): void
     {
         $this->namespaceAttr = $value;
     }
@@ -139,7 +139,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasNamespace():bool
+    public function hasNamespace(): bool
     {
         return $this->namespaceAttr !== NULL;
     }
@@ -149,7 +149,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
      * 
      * @return  ProcessingModeType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getProcessContents()
+    public function getProcessContents(): ?ProcessingModeType
     {
         return $this->processContentsAttr;
     }
@@ -159,7 +159,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
      * 
      * @param   ProcessingModeType  $value  The value to set.
      */
-    public function setProcessContents(ProcessingModeType $value)
+    public function setProcessContents(ProcessingModeType $value): void
     {
         $this->processContentsAttr = $value;
     }
@@ -169,7 +169,7 @@ class AnyElement extends AbstractAnnotatedElement implements ParticleElementInte
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasProcessContents():bool
+    public function hasProcessContents(): bool
     {
         return $this->processContentsAttr !== NULL;
     }

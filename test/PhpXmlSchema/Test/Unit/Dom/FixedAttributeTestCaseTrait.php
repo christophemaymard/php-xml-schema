@@ -25,7 +25,7 @@ trait FixedAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasFixed()
+    public function testHasFixed(): void
     {
         self::assertFalse($this->sut->hasFixed(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait FixedAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetFixed()
+    public function testGetFixed(): void
     {
         self::assertNull($this->sut->getFixed(), 'The attribute has not been set.');
         

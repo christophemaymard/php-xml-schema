@@ -26,7 +26,7 @@ class NonNegativeIntegerLimitTypeTest extends TestCase
     /**
      * Tests that __construct() stores an unlimited limit.
      */
-    public function test_constructStoresUnlimitedWhenNoArgument()
+    public function test_constructStoresUnlimitedWhenNoArgument(): void
     {
         $sut = new  NonNegativeIntegerLimitType();
         self::assertNull($sut->getLimit());
@@ -36,7 +36,7 @@ class NonNegativeIntegerLimitTypeTest extends TestCase
     /**
      * Tests that __construct() stores a non-negative integer limit.
      */
-    public function test__constructStoresNonNegativeIntegerLimit()
+    public function test__constructStoresNonNegativeIntegerLimit(): void
     {
         $nni = $this->createNonNegativeIntegerTypeDummy();
         $sut = new  NonNegativeIntegerLimitType($nni);
@@ -50,7 +50,7 @@ class NonNegativeIntegerLimitTypeTest extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    private function createNonNegativeIntegerTypeDummy():ProphecySubjectInterface
+    private function createNonNegativeIntegerTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(NonNegativeIntegerType::class)->reveal();
     }

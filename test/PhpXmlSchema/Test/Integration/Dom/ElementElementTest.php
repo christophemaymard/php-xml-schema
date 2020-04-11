@@ -27,7 +27,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ElementElement();
     }
@@ -35,7 +35,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_ELEMENT, $this->sut->getElementId());
     }
@@ -46,7 +46,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testElementElementWhenAddedToAllElement()
+    public function testElementElementWhenAddedToAllElement(): void
     {
         $parent = new AllElement();
         $parent->addElementElement($this->sut);
@@ -60,7 +60,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testElementElementWithParentThrowsExceptionWhenAllElementAddElementElement()
+    public function testElementElementWithParentThrowsExceptionWhenAllElementAddElementElement(): void
     {
         $parent1 = new AllElement();
         $parent1->addElementElement($this->sut);
@@ -76,7 +76,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testElementElementWhenAddedToChoiceElement()
+    public function testElementElementWhenAddedToChoiceElement(): void
     {
         $parent = new ChoiceElement();
         $parent->addElementElement($this->sut);
@@ -90,7 +90,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testElementElementWithParentThrowsExceptionWhenChoiceElementAddElementElement()
+    public function testElementElementWithParentThrowsExceptionWhenChoiceElementAddElementElement(): void
     {
         $parent1 = new ChoiceElement();
         $parent1->addElementElement($this->sut);
@@ -106,7 +106,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testElementElementWhenAddedToSchemaElement()
+    public function testElementElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addElementElement($this->sut);
@@ -120,7 +120,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testElementElementWithParentThrowsExceptionWhenSchemaElementAddElementElement()
+    public function testElementElementWithParentThrowsExceptionWhenSchemaElementAddElementElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addElementElement($this->sut);
@@ -136,7 +136,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testElementElementWhenAddedToSequenceElement()
+    public function testElementElementWhenAddedToSequenceElement(): void
     {
         $parent = new SequenceElement();
         $parent->addElementElement($this->sut);
@@ -150,7 +150,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testElementElementWithParentThrowsExceptionWhenSequenceElementAddElementElement()
+    public function testElementElementWithParentThrowsExceptionWhenSequenceElementAddElementElement(): void
     {
         $parent1 = new SequenceElement();
         $parent1->addElementElement($this->sut);
@@ -168,7 +168,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToAllElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToAllElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new AllElement();
         $parent->addElementElement($this->sut);
@@ -184,7 +184,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToChoiceElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToChoiceElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ChoiceElement();
         $parent->addElementElement($this->sut);
@@ -200,7 +200,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addElementElement($this->sut);
@@ -216,7 +216,7 @@ class ElementElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSequenceElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSequenceElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SequenceElement();
         $parent->addElementElement($this->sut);

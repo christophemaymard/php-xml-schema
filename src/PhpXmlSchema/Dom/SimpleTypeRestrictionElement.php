@@ -25,7 +25,7 @@ class SimpleTypeRestrictionElement extends AbstractValueRestrictionElement imple
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_SIMPLETYPE_RESTRICTION;
     }
@@ -33,7 +33,7 @@ class SimpleTypeRestrictionElement extends AbstractValueRestrictionElement imple
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'restriction';
     }

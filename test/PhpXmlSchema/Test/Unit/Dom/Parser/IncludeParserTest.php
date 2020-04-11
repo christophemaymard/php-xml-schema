@@ -24,7 +24,7 @@ class IncludeParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'include';
     }
@@ -35,7 +35,7 @@ class IncludeParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('include_0006.xsd'));
         
@@ -69,7 +69,7 @@ class IncludeParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -94,7 +94,7 @@ class IncludeParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessSchemaLocationAttribute()
+    public function testParseProcessSchemaLocationAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('include_schloc_0001.xsd'));
         
@@ -120,7 +120,7 @@ class IncludeParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -149,7 +149,7 @@ class IncludeParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

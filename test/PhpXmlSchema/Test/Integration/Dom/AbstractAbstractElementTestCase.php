@@ -39,7 +39,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * Tests that getElementId() returns an integer that matches a specific 
      * constant of the {@see PhpXmlSchema\Dom\ElementId} class.
      */
-    abstract public function testGetElementIdReturnsSpecificElementIdConstant();
+    abstract public function testGetElementIdReturnsSpecificElementIdConstant(): void;
     
     /**
      * Tests that hasParent() returns FALSE and getParent() returns NULL when 
@@ -47,7 +47,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @group   content
      */
-    public function testHasParentGetParentWhenElementInstantiated()
+    public function testHasParentGetParentWhenElementInstantiated(): void
     {
         self::assertFalse($this->sut->hasParent());
         self::assertNull($this->sut->getParent());
@@ -65,7 +65,8 @@ abstract class AbstractAbstractElementTestCase extends TestCase
     protected function expectInvalidOperationExceptionChildOfAnotherElement(
         ElementInterface $childElement,
         ElementInterface $parentElement
-    ){
+    ): void
+    {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage(\sprintf(
             'The "%s" element cannot be added to the "%s" element because it already belongs to another element.',
@@ -79,7 +80,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  array[]
      */
-    public function getAllAttributeNamingElementValues():array
+    public function getAllAttributeNamingElementValues(): array
     {
         $datasets = [];
         
@@ -95,7 +96,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  array[]
      */
-    public function getAllAttributeNamingElementParentValues():array
+    public function getAllAttributeNamingElementParentValues(): array
     {
         $datasets = [];
         
@@ -115,7 +116,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  AttributeNamingElementInterface[]
      */
-    private function getAllAttributeNamingElements():array
+    private function getAllAttributeNamingElements(): array
     {
         return [
             new AttributeGroupElement(),
@@ -132,7 +133,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  array[]
      */
-    public function getAllTypeNamingElementValues():array
+    public function getAllTypeNamingElementValues(): array
     {
         $datasets = [];
         
@@ -148,7 +149,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  array[]
      */
-    public function getAllTypeNamingElementParentValues():array
+    public function getAllTypeNamingElementParentValues(): array
     {
         $datasets = [];
         
@@ -168,7 +169,7 @@ abstract class AbstractAbstractElementTestCase extends TestCase
      * 
      * @return  TypeNamingElementInterface[]
      */
-    private function getAllTypeNamingElements():array
+    private function getAllTypeNamingElements(): array
     {
         return [
             new ComplexContentExtensionElement(),

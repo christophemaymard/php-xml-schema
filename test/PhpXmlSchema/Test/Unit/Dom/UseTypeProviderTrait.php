@@ -19,7 +19,7 @@ trait UseTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidUseTypeValues():array
+    public function getValidUseTypeValues(): array
     {
         // [ $value, $optional, $prohibited, $required, ]
         return [
@@ -40,7 +40,7 @@ trait UseTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidUseTypeValues():array
+    public function getInvalidUseTypeValues(): array
     {
         return [
             'Empty string' => [

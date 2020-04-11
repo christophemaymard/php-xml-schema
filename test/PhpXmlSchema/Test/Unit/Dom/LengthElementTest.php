@@ -23,7 +23,7 @@ class LengthElementTest extends AbstractNumericFacetElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new LengthElement();
     }
@@ -31,7 +31,7 @@ class LengthElementTest extends AbstractNumericFacetElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('length', $this->sut->getLocalName());
     }

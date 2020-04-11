@@ -31,7 +31,7 @@ class StringTypeTest extends TestCase
      * 
      * @dataProvider    getValidStringTypeValues
      */
-    public function test__constructStoresValueWhenItIsValid(string $value)
+    public function test__constructStoresValueWhenItIsValid(string $value): void
     {
         $sut = new StringType($value);
         self::assertSame($value, $sut->getString());
@@ -45,7 +45,7 @@ class StringTypeTest extends TestCase
      * 
      * @dataProvider    getInvalidStringTypeValues
      */
-    public function test__constructThrowsExceptionWhenValueIsInvalid(string $value)
+    public function test__constructThrowsExceptionWhenValueIsInvalid(string $value): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid string datatype.', $value));

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -31,7 +32,7 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -47,7 +48,7 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeGroupElements()[0]
             ->getAttributeElements()[0];
@@ -56,7 +57,7 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeGroupElement();
@@ -66,7 +67,7 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -87,7 +88,8 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
         string $value, 
         bool $qual, 
         bool $unqual
-    ) {
+    ): void
+    {
         $this->sut->buildFormAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -114,7 +116,8 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
      */
     public function testBuildFormAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(
             '"'.$value.'" is an invalid formChoice type, expected "qualified" or "unqualified".'
@@ -138,7 +141,8 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
     public function testBuildRefAttributeCreatesAttrWhenAttributeAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildRefAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -168,7 +172,8 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
     public function testBuildRefAttributeCreatesAttrWhenAttributeAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildAttributeGroupElement();
@@ -209,7 +214,8 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
     public function testBuildRefAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -225,7 +231,7 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildRefAttributeCreatesAttrWhenAttributeAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildRefAttributeCreatesAttrWhenAttributeAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -261,7 +267,7 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildRefAttributeThrowsExceptionWhenAttributeAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildRefAttributeThrowsExceptionWhenAttributeAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -285,7 +291,8 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
     public function testBuildTypeAttributeCreatesAttrWhenAttributeAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildAttributeGroupElement();
@@ -320,7 +327,7 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildTypeAttributeCreatesAttrWhenAttributeAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildTypeAttributeCreatesAttrWhenAttributeAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -365,7 +372,8 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
         bool $opt, 
         bool $proh, 
         bool $req
-    ) {
+    ): void
+    {
         $this->sut->buildUseAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -393,7 +401,8 @@ class AttributeSchemaElementBuilderTest extends AbstractAttributeSchemaElementBu
      */
     public function testBuildUseAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid use type, expected "optional", "prohibited" '.

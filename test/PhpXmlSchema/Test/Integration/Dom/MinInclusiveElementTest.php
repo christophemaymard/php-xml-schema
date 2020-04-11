@@ -25,7 +25,7 @@ class MinInclusiveElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new MinInclusiveElement();
     }
@@ -33,7 +33,7 @@ class MinInclusiveElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_MININCLUSIVE, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class MinInclusiveElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMinInclusiveElementWhenAddedToSimpleContentRestrictionElement()
+    public function testMinInclusiveElementWhenAddedToSimpleContentRestrictionElement(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addMinInclusiveElement($this->sut);
@@ -58,7 +58,7 @@ class MinInclusiveElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMinInclusiveElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMinInclusiveElement()
+    public function testMinInclusiveElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMinInclusiveElement(): void
     {
         $parent1 = new SimpleContentRestrictionElement();
         $parent1->addMinInclusiveElement($this->sut);
@@ -74,7 +74,7 @@ class MinInclusiveElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMinInclusiveElementWhenAddedToSimpleTypeRestrictionElement()
+    public function testMinInclusiveElementWhenAddedToSimpleTypeRestrictionElement(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addMinInclusiveElement($this->sut);
@@ -88,7 +88,7 @@ class MinInclusiveElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMinInclusiveElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMinInclusiveElement()
+    public function testMinInclusiveElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMinInclusiveElement(): void
     {
         $parent1 = new SimpleTypeRestrictionElement();
         $parent1->addMinInclusiveElement($this->sut);
@@ -106,7 +106,7 @@ class MinInclusiveElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addMinInclusiveElement($this->sut);
@@ -122,7 +122,7 @@ class MinInclusiveElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addMinInclusiveElement($this->sut);

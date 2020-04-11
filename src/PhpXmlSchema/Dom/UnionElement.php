@@ -32,7 +32,7 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_UNION;
     }
@@ -40,7 +40,7 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'union';
     }
@@ -50,7 +50,7 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function addMemberType(QNameType $value)
+    public function addMemberType(QNameType $value): void
     {
         $this->memberTypesAttr[] = $value;
     }
@@ -60,7 +60,7 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
      * 
      * @return  QNameType[] An indexed array of QName instances.
      */
-    public function getMemberTypes():array
+    public function getMemberTypes(): array
     {
         return $this->memberTypesAttr;
     }
@@ -70,7 +70,7 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasMemberTypes():bool
+    public function hasMemberTypes(): bool
     {
         return !empty($this->memberTypesAttr);
     }
@@ -80,7 +80,7 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
      * 
      * @param   SimpleTypeElement   $element    The element to add.
      */
-    public function addSimpleTypeElement(SimpleTypeElement $element)
+    public function addSimpleTypeElement(SimpleTypeElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -90,7 +90,7 @@ class UnionElement extends AbstractAnnotatedElement implements SimpleTypeDerivat
      * 
      * @return  SimpleTypeElement[] An indexed array of SimpleTypeElement instances.
      */
-    public function getSimpleTypeElements():array
+    public function getSimpleTypeElements(): array
     {
         return $this->getChildElementsByType(1, SimpleTypeElement::class);
     }

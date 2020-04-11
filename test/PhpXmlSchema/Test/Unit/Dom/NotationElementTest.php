@@ -25,7 +25,7 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new NotationElement();
     }
@@ -33,7 +33,7 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('notation', $this->sut->getLocalName());
     }
@@ -45,7 +45,7 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasPublic()
+    public function testHasPublic(): void
     {
         self::assertFalse($this->sut->hasPublic(), 'The attribute has not been set.');
         
@@ -60,7 +60,7 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetPublic()
+    public function testGetPublic(): void
     {
         self::assertNull($this->sut->getPublic(), 'The attribute has not been set.');
         
@@ -80,7 +80,7 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasSystem()
+    public function testHasSystem(): void
     {
         self::assertFalse($this->sut->hasSystem(), 'The attribute has not been set.');
         
@@ -95,7 +95,7 @@ class NotationElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetSystem()
+    public function testGetSystem(): void
     {
         self::assertNull($this->sut->getSystem(), 'The attribute has not been set.');
         

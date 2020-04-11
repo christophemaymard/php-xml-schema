@@ -25,7 +25,7 @@ class MinLengthElement extends AbstractNumericFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_MINLENGTH;
     }
@@ -33,7 +33,7 @@ class MinLengthElement extends AbstractNumericFacetElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'minLength';
     }

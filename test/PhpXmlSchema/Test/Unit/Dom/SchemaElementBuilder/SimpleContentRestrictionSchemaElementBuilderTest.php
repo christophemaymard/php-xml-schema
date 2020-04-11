@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -93,7 +94,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -106,7 +107,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -127,7 +128,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertSimpleContentRestrictionElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -135,7 +136,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -145,7 +146,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -156,7 +157,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -178,7 +179,8 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     public function testBuildBaseAttributeCreatesAttrWhenSimpleContentRestrictionAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildBaseAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -209,7 +211,8 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     public function testBuildBaseAttributeCreatesAttrWhenSimpleContentRestrictionAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildComplexTypeElement();
@@ -256,7 +259,8 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     public function testBuildBaseAttributeThrowsExceptionWhenSimpleContentRestrictionAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -273,7 +277,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildBaseAttributeCreatesAttrWhenSimpleContentRestrictionAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildBaseAttributeCreatesAttrWhenSimpleContentRestrictionAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -316,7 +320,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildBaseAttributeThrowsExceptionWhenSimpleContentRestrictionAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildBaseAttributeThrowsExceptionWhenSimpleContentRestrictionAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -339,7 +343,8 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     public function testBuildIdAttributeCreatesAttrWhenSimpleContentRestrictionAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -367,7 +372,8 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
     public function testBuildIdAttributeThrowsExceptionWhenSimpleContentRestrictionAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -384,7 +390,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildAnnotationElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -409,7 +415,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildSimpleTypeElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildSimpleTypeElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildSimpleTypeElement();
         $sch = $this->sut->getSchema();
@@ -434,7 +440,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildMinExclusiveElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildMinExclusiveElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildMinExclusiveElement();
         $this->sut->endElement();
@@ -466,7 +472,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildMinInclusiveElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildMinInclusiveElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildMinInclusiveElement();
         $this->sut->endElement();
@@ -498,7 +504,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildMaxExclusiveElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildMaxExclusiveElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildMaxExclusiveElement();
         $this->sut->endElement();
@@ -530,7 +536,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildMaxInclusiveElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildMaxInclusiveElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildMaxInclusiveElement();
         $this->sut->endElement();
@@ -562,7 +568,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildTotalDigitsElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildTotalDigitsElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildTotalDigitsElement();
         $this->sut->endElement();
@@ -594,7 +600,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildFractionDigitsElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildFractionDigitsElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildFractionDigitsElement();
         $this->sut->endElement();
@@ -626,7 +632,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildLengthElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildLengthElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildLengthElement();
         $this->sut->endElement();
@@ -658,7 +664,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildMinLengthElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildMinLengthElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildMinLengthElement();
         $this->sut->endElement();
@@ -690,7 +696,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildMaxLengthElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildMaxLengthElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildMaxLengthElement();
         $this->sut->endElement();
@@ -722,7 +728,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildEnumerationElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildEnumerationElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildEnumerationElement();
         $this->sut->endElement();
@@ -754,7 +760,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildWhiteSpaceElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildWhiteSpaceElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildWhiteSpaceElement();
         $this->sut->endElement();
@@ -786,7 +792,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildPatternElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildPatternElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildPatternElement();
         $this->sut->endElement();
@@ -818,7 +824,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildAttributeElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildAttributeElement();
         $this->sut->endElement();
@@ -850,7 +856,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeGroupElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildAttributeGroupElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildAttributeGroupElement();
         $this->sut->endElement();
@@ -882,7 +888,7 @@ class SimpleContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEle
      * @group   content
      * @group   element
      */
-    public function testBuildAnyAttributeElementCreateEltWhenSimpleContentRestriction()
+    public function testBuildAnyAttributeElementCreateEltWhenSimpleContentRestriction(): void
     {
         $this->sut->buildAnyAttributeElement();
         $sch = $this->sut->getSchema();

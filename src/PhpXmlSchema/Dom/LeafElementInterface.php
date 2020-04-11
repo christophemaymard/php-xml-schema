@@ -19,12 +19,12 @@ interface LeafElementInterface extends ElementInterface
      * 
      * @return  string
      */
-    public function getContent():string;
+    public function getContent(): string;
     
     /**
      * Sets the content of this element.
      * 
      * @param   string  $content    The content to set.
      */
-    public function setContent(string $content);    
+    public function setContent(string $content): void;    
 }

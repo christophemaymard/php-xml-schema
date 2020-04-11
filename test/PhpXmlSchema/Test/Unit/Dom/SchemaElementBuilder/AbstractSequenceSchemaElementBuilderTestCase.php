@@ -98,7 +98,7 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         static::assertAncestorsNotChanged($sch);
         
@@ -111,7 +111,7 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertSequenceElementHasNoAttribute(static::getCurrentElement($sch));
     }
@@ -130,7 +130,8 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
     public function testBuildIdAttributeCreatesAttrWhenSequenceAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -157,7 +158,8 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
     public function testBuildIdAttributeThrowsExceptionWhenSequenceAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -174,7 +176,7 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenSequence()
+    public function testBuildAnnotationElementCreateEltWhenSequence(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -199,7 +201,7 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
      * @group   content
      * @group   element
      */
-    public function testBuildElementElementCreateEltWhenSequence()
+    public function testBuildElementElementCreateEltWhenSequence(): void
     {
         $this->sut->buildElementElement();
         $this->sut->endElement();
@@ -231,7 +233,7 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
      * @group   content
      * @group   element
      */
-    public function testBuildGroupElementCreateEltWhenSequence()
+    public function testBuildGroupElementCreateEltWhenSequence(): void
     {
         $this->sut->buildGroupElement();
         $this->sut->endElement();
@@ -263,7 +265,7 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
      * @group   content
      * @group   element
      */
-    public function testBuildChoiceElementCreateEltWhenSequence()
+    public function testBuildChoiceElementCreateEltWhenSequence(): void
     {
         $this->sut->buildChoiceElement();
         $this->sut->endElement();
@@ -295,7 +297,7 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
      * @group   content
      * @group   element
      */
-    public function testBuildSequenceElementCreateEltWhenSequence()
+    public function testBuildSequenceElementCreateEltWhenSequence(): void
     {
         $this->sut->buildSequenceElement();
         $this->sut->endElement();
@@ -327,7 +329,7 @@ abstract class AbstractSequenceSchemaElementBuilderTestCase extends AbstractSche
      * @group   content
      * @group   element
      */
-    public function testBuildAnyElementCreateEltWhenSequence()
+    public function testBuildAnyElementCreateEltWhenSequence(): void
     {
         $this->sut->buildAnyElement();
         $this->sut->endElement();

@@ -20,19 +20,19 @@ interface AnnotatedElementInterface extends CompositeElementInterface
      * 
      * @return  AnnotationElement|NULL  The instance of the element if it has been set, otherwise NULL.
      */
-    public function getAnnotationElement();
+    public function getAnnotationElement(): ?AnnotationElement;
     
     /**
      * Sets the "annotation" element.
      * 
      * @param   AnnotationElement   $element    The element to set.
      */
-    public function setAnnotationElement(AnnotationElement $element);
+    public function setAnnotationElement(AnnotationElement $element): void;
     
     /**
      * Indicates whether an "annotation" element has been set.
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasAnnotationElement():bool;
+    public function hasAnnotationElement(): bool;
 }

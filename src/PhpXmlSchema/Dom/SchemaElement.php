@@ -76,7 +76,7 @@ class SchemaElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_SCHEMA;
     }
@@ -84,7 +84,7 @@ class SchemaElement extends AbstractCompositeElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'schema';
     }
@@ -94,7 +94,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  FormType|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getAttributeFormDefault()
+    public function getAttributeFormDefault(): ?FormType
     {
         return $this->attributeFormDefaultAttr;
     }
@@ -104,7 +104,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   FormType    $value  The value to set.
      */
-    public function setAttributeFormDefault(FormType $value)
+    public function setAttributeFormDefault(FormType $value): void
     {
         $this->attributeFormDefaultAttr = $value;
     }
@@ -114,7 +114,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasAttributeFormDefault():bool
+    public function hasAttributeFormDefault(): bool
     {
         return $this->attributeFormDefaultAttr !== NULL;
     }
@@ -124,7 +124,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getBlockDefault()
+    public function getBlockDefault(): ?DerivationType
     {
         return $this->blockDefaultAttr;
     }
@@ -134,7 +134,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   DerivationType  $value  The value to set.
      */
-    public function setBlockDefault(DerivationType $value)
+    public function setBlockDefault(DerivationType $value): void
     {
         $this->blockDefaultAttr = $value;
     }
@@ -144,7 +144,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasBlockDefault():bool
+    public function hasBlockDefault(): bool
     {
         return $this->blockDefaultAttr !== NULL;
     }
@@ -154,7 +154,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  FormType|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getElementFormDefault()
+    public function getElementFormDefault(): ?FormType
     {
         return $this->elementFormDefaultAttr;
     }
@@ -164,7 +164,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   FormType    $value  The value to set.
      */
-    public function setElementFormDefault(FormType $value)
+    public function setElementFormDefault(FormType $value): void
     {
         $this->elementFormDefaultAttr = $value;
     }
@@ -174,7 +174,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasElementFormDefault():bool
+    public function hasElementFormDefault(): bool
     {
         return $this->elementFormDefaultAttr !== NULL;
     }
@@ -184,7 +184,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  DerivationType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getFinalDefault()
+    public function getFinalDefault(): ?DerivationType
     {
         return $this->finalDefaultAttr;
     }
@@ -194,7 +194,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   DerivationType  $value  The value to set.
      */
-    public function setFinalDefault(DerivationType $value)
+    public function setFinalDefault(DerivationType $value): void
     {
         $this->finalDefaultAttr = $value;
     }
@@ -204,7 +204,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasFinalDefault():bool
+    public function hasFinalDefault(): bool
     {
         return $this->finalDefaultAttr !== NULL;
     }
@@ -214,7 +214,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  LanguageType|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getLang()
+    public function getLang(): ?LanguageType
     {
         return $this->langAttr;
     }
@@ -224,7 +224,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   LanguageType    $value  The value to set.
      */
-    public function setLang(LanguageType $value)
+    public function setLang(LanguageType $value): void
     {
         $this->langAttr = $value;
     }
@@ -234,7 +234,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasLang():bool
+    public function hasLang(): bool
     {
         return $this->langAttr !== NULL;
     }
@@ -244,7 +244,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getTargetNamespace()
+    public function getTargetNamespace(): ?AnyUriType
     {
         return $this->targetNamespaceAttr;
     }
@@ -254,7 +254,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   AnyUriType  $value  The value to set.
      */
-    public function setTargetNamespace(AnyUriType $value)
+    public function setTargetNamespace(AnyUriType $value): void
     {
         $this->targetNamespaceAttr = $value;
     }
@@ -264,7 +264,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasTargetNamespace():bool
+    public function hasTargetNamespace(): bool
     {
         return $this->targetNamespaceAttr !== NULL;
     }
@@ -274,7 +274,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  TokenType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getVersion()
+    public function getVersion(): ?TokenType
     {
         return $this->versionAttr;
     }
@@ -284,7 +284,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   TokenType   $value  The value to set.
      */
-    public function setVersion(TokenType $value)
+    public function setVersion(TokenType $value): void
     {
         $this->versionAttr = $value;
     }
@@ -294,7 +294,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasVersion():bool
+    public function hasVersion(): bool
     {
         return $this->versionAttr !== NULL;
     }
@@ -304,7 +304,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   IncludeElement  $element    The element to add.
      */
-    public function addIncludeElement(IncludeElement $element)
+    public function addIncludeElement(IncludeElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -314,7 +314,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  IncludeElement[]    An indexed array of IncludeElement instances.
      */
-    public function getIncludeElements():array
+    public function getIncludeElements(): array
     {
         return $this->getChildElementsByType(0, IncludeElement::class);
     }
@@ -324,7 +324,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   ImportElement   $element    The element to add.
      */
-    public function addImportElement(ImportElement $element)
+    public function addImportElement(ImportElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -334,7 +334,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  ImportElement[] An indexed array of ImportElement instances.
      */
-    public function getImportElements():array
+    public function getImportElements(): array
     {
         return $this->getChildElementsByType(0, ImportElement::class);
     }
@@ -344,7 +344,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   RedefineElement $element    The element to add.
      */
-    public function addRedefineElement(RedefineElement $element)
+    public function addRedefineElement(RedefineElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -354,7 +354,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  RedefineElement[]   An indexed array of RedefineElement instances.
      */
-    public function getRedefineElements():array
+    public function getRedefineElements(): array
     {
         return $this->getChildElementsByType(0, RedefineElement::class);
     }
@@ -364,7 +364,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   AnnotationElement   $element    The element to add.
      */
-    public function addCompositionAnnotationElement(AnnotationElement $element)
+    public function addCompositionAnnotationElement(AnnotationElement $element): void
     {
         $this->addChildElement(0, $element);
     }
@@ -374,7 +374,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  AnnotationElement[] An indexed array of AnnotationElement instances.
      */
-    public function getCompositionAnnotationElements():array
+    public function getCompositionAnnotationElements(): array
     {
         return $this->getChildElementsByType(0, AnnotationElement::class);
     }
@@ -384,7 +384,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   SimpleTypeElement   $element    The element to add.
      */
-    public function addSimpleTypeElement(SimpleTypeElement $element)
+    public function addSimpleTypeElement(SimpleTypeElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -394,7 +394,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  SimpleTypeElement[] An indexed array of SimpleTypeElement instances.
      */
-    public function getSimpleTypeElements():array
+    public function getSimpleTypeElements(): array
     {
         return $this->getChildElementsByType(1, SimpleTypeElement::class);
     }
@@ -404,7 +404,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   ComplexTypeElement  $element    The element to add.
      */
-    public function addComplexTypeElement(ComplexTypeElement $element)
+    public function addComplexTypeElement(ComplexTypeElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -414,7 +414,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  ComplexTypeElement[]    An indexed array of ComplexTypeElement instances.
      */
-    public function getComplexTypeElements():array
+    public function getComplexTypeElements(): array
     {
         return $this->getChildElementsByType(1, ComplexTypeElement::class);
     }
@@ -424,7 +424,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   GroupElement    $element    The element to add.
      */
-    public function addGroupElement(GroupElement $element)
+    public function addGroupElement(GroupElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -434,7 +434,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  GroupElement[]  An indexed array of GroupElement instances.
      */
-    public function getGroupElements():array
+    public function getGroupElements(): array
     {
         return $this->getChildElementsByType(1, GroupElement::class);
     }
@@ -444,7 +444,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   AttributeGroupElement   $element    The element to add.
      */
-    public function addAttributeGroupElement(AttributeGroupElement $element)
+    public function addAttributeGroupElement(AttributeGroupElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -454,7 +454,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  AttributeGroupElement[] An indexed array of AttributeGroupElement instances.
      */
-    public function getAttributeGroupElements():array
+    public function getAttributeGroupElements(): array
     {
         return $this->getChildElementsByType(1, AttributeGroupElement::class);
     }
@@ -464,7 +464,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   ElementElement  $element    The element to add.
      */
-    public function addElementElement(ElementElement $element)
+    public function addElementElement(ElementElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -474,7 +474,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  ElementElement[]    An indexed array of ElementElement instances.
      */
-    public function getElementElements():array
+    public function getElementElements(): array
     {
         return $this->getChildElementsByType(1, ElementElement::class);
     }
@@ -484,7 +484,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   AttributeElement    $element    The element to add.
      */
-    public function addAttributeElement(AttributeElement $element)
+    public function addAttributeElement(AttributeElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -494,7 +494,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  AttributeElement[]  An indexed array of AttributeElement instances.
      */
-    public function getAttributeElements():array
+    public function getAttributeElements(): array
     {
         return $this->getChildElementsByType(1, AttributeElement::class);
     }
@@ -504,7 +504,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   NotationElement $element    The element to add.
      */
-    public function addNotationElement(NotationElement $element)
+    public function addNotationElement(NotationElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -514,7 +514,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  NotationElement[]   An indexed array of NotationElement instances.
      */
-    public function getNotationElements():array
+    public function getNotationElements(): array
     {
         return $this->getChildElementsByType(1, NotationElement::class);
     }
@@ -524,7 +524,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @param   AnnotationElement   $element    The element to add.
      */
-    public function addDefinitionAnnotationElement(AnnotationElement $element)
+    public function addDefinitionAnnotationElement(AnnotationElement $element): void
     {
         $this->addChildElement(1, $element);
     }
@@ -534,7 +534,7 @@ class SchemaElement extends AbstractCompositeElement
      * 
      * @return  AnnotationElement[] An indexed array of AnnotationElement instances.
      */
-    public function getDefinitionAnnotationElements():array
+    public function getDefinitionAnnotationElements(): array
     {
         return $this->getChildElementsByType(1, AnnotationElement::class);
     }

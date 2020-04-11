@@ -26,7 +26,7 @@ class LanguageTypeTest extends TestCase
      * Tests that __construct() stores the primary subtag when it is valid 
      * and an empty array for the subtags.
      */
-    public function test__constructStoresPrimarySubtagAndEmptySubtagsWhenValid()
+    public function test__constructStoresPrimarySubtagAndEmptySubtagsWhenValid(): void
     {
         $sut = new LanguageType('foo');
         self::assertSame('foo', $sut->getPrimarySubtag());
@@ -37,7 +37,7 @@ class LanguageTypeTest extends TestCase
      * Tests that __construct() stores the primary subtag and the subtags 
      * when they are valid.
      */
-    public function test__constructStoresPrimarySubtagAndSubtagsWhenValid()
+    public function test__constructStoresPrimarySubtagAndSubtagsWhenValid(): void
     {
         $subtags = ['bar0', 'baz9'];
         $sut = new LanguageType('foo', $subtags);
@@ -53,7 +53,7 @@ class LanguageTypeTest extends TestCase
      * 
      * @dataProvider    getInvalidPrimarySubtags
      */
-    public function test__constructThrowsExceptionWhenPrimarySubtagIsInvalid(string $primary)
+    public function test__constructThrowsExceptionWhenPrimarySubtagIsInvalid(string $primary): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid primary subtag.', $primary));
@@ -70,7 +70,7 @@ class LanguageTypeTest extends TestCase
      * 
      * @dataProvider    getInvalidSubtags
      */
-    public function test__constructThrowsExceptionWhenOneSubtagIsInvalid(array $subtags, string $invalidSubtag)
+    public function test__constructThrowsExceptionWhenOneSubtagIsInvalid(array $subtags, string $invalidSubtag): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid subtag.', $invalidSubtag));
@@ -83,7 +83,7 @@ class LanguageTypeTest extends TestCase
      * the specified primary subtag and one of the specified subtags are 
      * invalid.
      */
-    public function test__constructThrowsExceptionWhenPrimarySubtagAndSubtagInvalid()
+    public function test__constructThrowsExceptionWhenPrimarySubtagAndSubtagInvalid(): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('"foo9" is an invalid primary subtag.');
@@ -96,7 +96,7 @@ class LanguageTypeTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getInvalidPrimarySubtags():array
+    public function getInvalidPrimarySubtags(): array
     {
         return [
             'Empty string' => [ '' ],
@@ -110,7 +110,7 @@ class LanguageTypeTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getInvalidSubtags():array
+    public function getInvalidSubtags(): array
     {
         return [
             'Empty string' => [ [ '' ], '' ],

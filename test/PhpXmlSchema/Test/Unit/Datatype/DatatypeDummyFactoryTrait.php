@@ -33,7 +33,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createAnyUriTypeDummy():ProphecySubjectInterface
+    protected function createAnyUriTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(AnyUriType::class)->reveal();
     }
@@ -43,7 +43,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createIDTypeDummy():ProphecySubjectInterface
+    protected function createIDTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(IDType::class)->reveal();
     }
@@ -53,7 +53,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createLanguageTypeDummy():ProphecySubjectInterface
+    protected function createLanguageTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(LanguageType::class)->reveal();
     }
@@ -63,7 +63,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createNCNameTypeDummy():ProphecySubjectInterface
+    protected function createNCNameTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(NCNameType::class)->reveal();
     }
@@ -74,7 +74,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createNonNegativeIntegerTypeDummy():ProphecySubjectInterface
+    protected function createNonNegativeIntegerTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(NonNegativeIntegerType::class)->reveal();
     }
@@ -85,7 +85,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createPositiveIntegerTypeDummy():ProphecySubjectInterface
+    protected function createPositiveIntegerTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(PositiveIntegerType::class)->reveal();
     }
@@ -95,7 +95,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createQNameTypeDummy():ProphecySubjectInterface
+    protected function createQNameTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(QNameType::class)->reveal();
     }
@@ -105,7 +105,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createStringTypeDummy():ProphecySubjectInterface
+    protected function createStringTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(StringType::class)->reveal();
     }
@@ -115,7 +115,7 @@ trait DatatypeDummyFactoryTrait
      * 
      * @return  ProphecySubjectInterface
      */
-    protected function createTokenTypeDummy():ProphecySubjectInterface
+    protected function createTokenTypeDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(TokenType::class)->reveal();
     }

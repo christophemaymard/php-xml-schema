@@ -27,7 +27,7 @@ trait BuildFractionDigitsElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildFractionDigitsElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildFractionDigitsElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildFractionDigitsElement();
         $sch = $this->sut->getSchema();

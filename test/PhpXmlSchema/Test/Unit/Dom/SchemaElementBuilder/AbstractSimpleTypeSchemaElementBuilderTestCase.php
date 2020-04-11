@@ -100,7 +100,7 @@ abstract class AbstractSimpleTypeSchemaElementBuilderTestCase extends AbstractSc
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         static::assertAncestorsNotChanged($sch);
         
@@ -113,7 +113,7 @@ abstract class AbstractSimpleTypeSchemaElementBuilderTestCase extends AbstractSc
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertSimpleTypeElementHasNoAttribute(static::getCurrentElement($sch));
     }
@@ -132,7 +132,8 @@ abstract class AbstractSimpleTypeSchemaElementBuilderTestCase extends AbstractSc
     public function testBuildIdAttributeCreatesAttrWhenSimpleTypeAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -159,7 +160,8 @@ abstract class AbstractSimpleTypeSchemaElementBuilderTestCase extends AbstractSc
     public function testBuildIdAttributeThrowsExceptionWhenSimpleTypeAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -176,7 +178,7 @@ abstract class AbstractSimpleTypeSchemaElementBuilderTestCase extends AbstractSc
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenSimpleType()
+    public function testBuildAnnotationElementCreateEltWhenSimpleType(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -201,7 +203,7 @@ abstract class AbstractSimpleTypeSchemaElementBuilderTestCase extends AbstractSc
      * @group   content
      * @group   element
      */
-    public function testBuildRestrictionElementCreateEltWhenSimpleType()
+    public function testBuildRestrictionElementCreateEltWhenSimpleType(): void
     {
         $this->sut->buildRestrictionElement();
         $sch = $this->sut->getSchema();
@@ -226,7 +228,7 @@ abstract class AbstractSimpleTypeSchemaElementBuilderTestCase extends AbstractSc
      * @group   content
      * @group   element
      */
-    public function testBuildListElementCreateEltWhenSimpleType()
+    public function testBuildListElementCreateEltWhenSimpleType(): void
     {
         $this->sut->buildListElement();
         $sch = $this->sut->getSchema();
@@ -251,7 +253,7 @@ abstract class AbstractSimpleTypeSchemaElementBuilderTestCase extends AbstractSc
      * @group   content
      * @group   element
      */
-    public function testBuildUnionElementCreateEltWhenSimpleType()
+    public function testBuildUnionElementCreateEltWhenSimpleType(): void
     {
         $this->sut->buildUnionElement();
         $sch = $this->sut->getSchema();

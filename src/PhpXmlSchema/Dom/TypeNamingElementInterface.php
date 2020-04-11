@@ -25,19 +25,19 @@ interface TypeNamingElementInterface extends AttributeNamingElementInterface
      * 
      * @return  TypeDefinitionParticleElementInterface|NULL The instance of the element if it has been set, otherwise NULL.
      */
-    public function getTypeDefinitionParticleElement();
+    public function getTypeDefinitionParticleElement(): ?TypeDefinitionParticleElementInterface;
     
     /**
      * Sets the type definition particle element.
      * 
      * @param   TypeDefinitionParticleElementInterface  $element    The element to set.
      */
-    public function setTypeDefinitionParticleElement(TypeDefinitionParticleElementInterface $element);
+    public function setTypeDefinitionParticleElement(TypeDefinitionParticleElementInterface $element): void;
     
     /**
      * Indicates whether a type definition particle element has been set.
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasTypeDefinitionParticleElement():bool;
+    public function hasTypeDefinitionParticleElement(): bool;
 }

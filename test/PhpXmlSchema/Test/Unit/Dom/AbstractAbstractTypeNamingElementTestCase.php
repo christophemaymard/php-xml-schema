@@ -22,7 +22,7 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
      * 
      * @group   content
      */
-    public function testHasTypeDefinitionParticleElement()
+    public function testHasTypeDefinitionParticleElement(): void
     {
         self::assertFalse($this->sut->hasTypeDefinitionParticleElement(), 'No element has been set.');
         
@@ -37,7 +37,7 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
      * 
      * @group   content
      */
-    public function testGetTypeDefinitionParticleElement()
+    public function testGetTypeDefinitionParticleElement(): void
     {
         self::assertNull($this->sut->getTypeDefinitionParticleElement(), 'No element has been set.');
         
@@ -64,7 +64,7 @@ abstract class AbstractAbstractTypeNamingElementTestCase extends AbstractAbstrac
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer2()
+    public function testGetElementsReturnsElementsOfContainer2(): void
     {
         $children = [];
         $children[] = $this->createChoiceElementHasParentFalse1TimeMock();

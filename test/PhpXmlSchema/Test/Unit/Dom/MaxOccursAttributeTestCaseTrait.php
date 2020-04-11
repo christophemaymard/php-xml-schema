@@ -25,7 +25,7 @@ trait MaxOccursAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasMaxOccurs()
+    public function testHasMaxOccurs(): void
     {
         self::assertFalse($this->sut->hasMaxOccurs(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait MaxOccursAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetMaxOccurs()
+    public function testGetMaxOccurs(): void
     {
         self::assertNull($this->sut->getMaxOccurs(), 'The attribute has not been set.');
         

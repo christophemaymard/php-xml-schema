@@ -28,7 +28,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new GroupElement();
     }
@@ -36,7 +36,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_GROUP, $this->sut->getElementId());
     }
@@ -47,7 +47,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testGroupElementWhenAddedToChoiceElement()
+    public function testGroupElementWhenAddedToChoiceElement(): void
     {
         $parent = new ChoiceElement();
         $parent->addGroupElement($this->sut);
@@ -61,7 +61,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testGroupElementWithParentThrowsExceptionWhenChoiceElementAddGroupElement()
+    public function testGroupElementWithParentThrowsExceptionWhenChoiceElementAddGroupElement(): void
     {
         $parent1 = new ChoiceElement();
         $parent1->addGroupElement($this->sut);
@@ -77,7 +77,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testGroupElementWhenAddedToRedefineElement()
+    public function testGroupElementWhenAddedToRedefineElement(): void
     {
         $parent = new RedefineElement();
         $parent->addGroupElement($this->sut);
@@ -91,7 +91,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testGroupElementWithParentThrowsExceptionWhenRedefineElementAddGroupElement()
+    public function testGroupElementWithParentThrowsExceptionWhenRedefineElementAddGroupElement(): void
     {
         $parent1 = new RedefineElement();
         $parent1->addGroupElement($this->sut);
@@ -107,7 +107,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testGroupElementWhenAddedToSchemaElement()
+    public function testGroupElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addGroupElement($this->sut);
@@ -121,7 +121,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testGroupElementWithParentThrowsExceptionWhenSchemaElementAddGroupElement()
+    public function testGroupElementWithParentThrowsExceptionWhenSchemaElementAddGroupElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addGroupElement($this->sut);
@@ -137,7 +137,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testGroupElementWhenAddedToSequenceElement()
+    public function testGroupElementWhenAddedToSequenceElement(): void
     {
         $parent = new SequenceElement();
         $parent->addGroupElement($this->sut);
@@ -151,7 +151,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testGroupElementWithParentThrowsExceptionWhenSequenceElementAddGroupElement()
+    public function testGroupElementWithParentThrowsExceptionWhenSequenceElementAddGroupElement(): void
     {
         $parent1 = new SequenceElement();
         $parent1->addGroupElement($this->sut);
@@ -173,7 +173,8 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      */
     public function testGroupElementWhenAddedToTypeNamingElement(
         TypeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setTypeDefinitionParticleElement($this->sut);
         self::assertTrue($this->sut->hasParent());
         self::assertSame($parent, $this->sut->getParent());
@@ -193,7 +194,8 @@ class GroupElementTest extends AbstractAbstractElementTestCase
     public function testGroupElementWithParentThrowsExceptionWhenTypeNamingElementSetTypeDefinitionParticleElement(
         TypeNamingElementInterface $parent1,
         TypeNamingElementInterface $parent2
-    ) {
+    ): void
+    {
         $parent1->setTypeDefinitionParticleElement($this->sut);
         
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
@@ -208,7 +210,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToChoiceElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToChoiceElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ChoiceElement();
         $parent->addGroupElement($this->sut);
@@ -224,7 +226,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new RedefineElement();
         $parent->addGroupElement($this->sut);
@@ -240,7 +242,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addGroupElement($this->sut);
@@ -256,7 +258,7 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSequenceElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSequenceElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SequenceElement();
         $parent->addGroupElement($this->sut);
@@ -277,7 +279,8 @@ class GroupElementTest extends AbstractAbstractElementTestCase
      */
     public function testLookupNamespaceReturnsStringWhenAddedToTypeNamingElementAndParentPrefixBoundToNamespace(
         TypeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setTypeDefinitionParticleElement($this->sut);
         $parent->bindNamespace('foo', 'http://example.org/foo');
         self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));

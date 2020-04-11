@@ -22,26 +22,26 @@ interface CompositeElementInterface extends ElementInterface
      * 
      * @return  IDType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getId();
+    public function getId(): ?IDType;
     
     /**
      * Sets the value of the "id" attribute.
      * 
      * @param   IDType  $value  The value to set.
      */
-    public function setId(IDType $value);
+    public function setId(IDType $value): void;
     
     /**
      * Indicates whether the "id" attribute has been set.
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasId():bool;
+    public function hasId(): bool;
     
     /**
      * Returns all the child elements that belong to this element.
      * 
      * @return  ElementInterface[]
      */
-    public function getElements():array;
+    public function getElements(): array;
 }

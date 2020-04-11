@@ -27,7 +27,7 @@ trait BuildMinInclusiveElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildMinInclusiveElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildMinInclusiveElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildMinInclusiveElement();
         $sch = $this->sut->getSchema();

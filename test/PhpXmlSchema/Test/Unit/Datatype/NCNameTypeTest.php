@@ -32,7 +32,7 @@ class NCNameTypeTest extends TestCase
      * 
      * @dataProvider    getInvalidNCNameTypeValues
      */
-    public function test__constructThrowsExceptionWhenNCNameIsInvalid(string $name)
+    public function test__constructThrowsExceptionWhenNCNameIsInvalid(string $name): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid NCName datatype.', $name));
@@ -47,7 +47,7 @@ class NCNameTypeTest extends TestCase
      * 
      * @dataProvider    getValidNCNameTypeValues
      */
-    public function test__constructStoresNCNameWhenItIsValid(string $name)
+    public function test__constructStoresNCNameWhenItIsValid(string $name): void
     {
         $sut = new NCNameType($name);
         self::assertSame($name, $sut->getNCName());

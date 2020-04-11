@@ -32,7 +32,7 @@ abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElemen
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getName()
+    public function getName(): ?NCNameType
     {
         return $this->nameAttr;
     }
@@ -42,7 +42,7 @@ abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElemen
      * 
      * @param   NCNameType  $value  The value to set.
      */
-    public function setName(NCNameType $value)
+    public function setName(NCNameType $value): void
     {
         $this->nameAttr = $value;
     }
@@ -52,7 +52,7 @@ abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElemen
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasName():bool
+    public function hasName(): bool
     {
         return $this->nameAttr !== NULL;
     }
@@ -60,7 +60,7 @@ abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElemen
     /**
      * {@inheritDoc}
      */
-    public function getSelectorElement()
+    public function getSelectorElement(): ?SelectorElement
     {
         return $this->getChildElement(1);
     }
@@ -68,7 +68,7 @@ abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElemen
     /**
      * {@inheritDoc}
      */
-    public function setSelectorElement(SelectorElement $element)
+    public function setSelectorElement(SelectorElement $element): void
     {
         $this->setChildElement(1, $element);
     }
@@ -76,7 +76,7 @@ abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElemen
     /**
      * {@inheritDoc}
      */
-    public function hasSelectorElement():bool
+    public function hasSelectorElement(): bool
     {
         return $this->isChildElementSet(1);
     }
@@ -84,7 +84,7 @@ abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElemen
     /**
      * {@inheritDoc}
      */
-    public function addFieldElement(FieldElement $element)
+    public function addFieldElement(FieldElement $element): void
     {
         $this->addChildElement(2, $element);
     }
@@ -92,7 +92,7 @@ abstract class AbstractIdentityConstraintElement extends AbstractAnnotatedElemen
     /**
      * {@inheritDoc}
      */
-    public function getFieldElements():array
+    public function getFieldElements(): array
     {
         return $this->getChildElementsByType(2, FieldElement::class);
     }

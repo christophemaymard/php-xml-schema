@@ -93,7 +93,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         static::assertAncestorsNotChanged($sch);
         
@@ -106,7 +106,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertComplexTypeElementHasNoAttribute(static::getCurrentElement($sch));
     }
@@ -125,7 +125,8 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
     public function testBuildIdAttributeCreatesAttrWhenComplexTypeAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -152,7 +153,8 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
     public function testBuildIdAttributeThrowsExceptionWhenComplexTypeAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -176,7 +178,8 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
     public function testBuildMixedAttributeCreatesAttrWhenComplexTypeAndValueIsValid(
         string $value, 
         bool $bool
-    ) {
+    ): void
+    {
         $this->sut->buildMixedAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -201,7 +204,8 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      */
     public function testBuildMixedAttributeThrowsExceptionWhenComplexTypeAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
@@ -215,7 +219,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenComplexType()
+    public function testBuildAnnotationElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -240,7 +244,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildSimpleContentElementCreateEltWhenComplexType()
+    public function testBuildSimpleContentElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildSimpleContentElement();
         $sch = $this->sut->getSchema();
@@ -265,7 +269,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildComplexContentElementCreateEltWhenComplexType()
+    public function testBuildComplexContentElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildComplexContentElement();
         $sch = $this->sut->getSchema();
@@ -290,7 +294,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildGroupElementCreateEltWhenComplexType()
+    public function testBuildGroupElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildGroupElement();
         $sch = $this->sut->getSchema();
@@ -315,7 +319,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildAllElementCreateEltWhenComplexType()
+    public function testBuildAllElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildAllElement();
         $sch = $this->sut->getSchema();
@@ -340,7 +344,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildChoiceElementCreateEltWhenComplexType()
+    public function testBuildChoiceElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildChoiceElement();
         $sch = $this->sut->getSchema();
@@ -365,7 +369,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildSequenceElementCreateEltWhenComplexType()
+    public function testBuildSequenceElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildSequenceElement();
         $sch = $this->sut->getSchema();
@@ -390,7 +394,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeElementCreateEltWhenComplexType()
+    public function testBuildAttributeElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildAttributeElement();
         $this->sut->endElement();
@@ -422,7 +426,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeGroupElementCreateEltWhenComplexType()
+    public function testBuildAttributeGroupElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildAttributeGroupElement();
         $this->sut->endElement();
@@ -454,7 +458,7 @@ abstract class AbstractComplexTypeSchemaElementBuilderTestCase extends AbstractS
      * @group   content
      * @group   element
      */
-    public function testBuildAnyAttributeElementCreateEltWhenComplexType()
+    public function testBuildAnyAttributeElementCreateEltWhenComplexType(): void
     {
         $this->sut->buildAnyAttributeElement();
         $sch = $this->sut->getSchema();

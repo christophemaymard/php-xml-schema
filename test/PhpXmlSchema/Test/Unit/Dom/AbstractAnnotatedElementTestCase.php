@@ -22,7 +22,7 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
      * 
      * @group   content
      */
-    public function testHasAnnotationElement()
+    public function testHasAnnotationElement(): void
     {
         self::assertFalse($this->sut->hasAnnotationElement(), 'No element has been set.');
         
@@ -37,7 +37,7 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
      * 
      * @group   content
      */
-    public function testGetAnnotationElement()
+    public function testGetAnnotationElement(): void
     {
         self::assertNull($this->sut->getAnnotationElement(), 'No element has been set.');
         
@@ -56,7 +56,7 @@ abstract class AbstractAnnotatedElementTestCase extends AbstractCompositeElement
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer0()
+    public function testGetElementsReturnsElementsOfContainer0(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

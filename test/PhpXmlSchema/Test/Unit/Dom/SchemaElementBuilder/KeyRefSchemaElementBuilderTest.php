@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -105,7 +106,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -118,7 +119,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -169,7 +170,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertKeyRefElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -177,7 +178,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -193,7 +194,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -210,7 +211,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -222,7 +223,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildSelectorElementCreateEltWhenKeyRef()
+    public function testBuildSelectorElementCreateEltWhenKeyRef(): void
     {
         $this->sut->buildSelectorElement();
         $sch = $this->sut->getSchema();
@@ -247,7 +248,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildFieldElementCreateEltWhenKeyRef()
+    public function testBuildFieldElementCreateEltWhenKeyRef(): void
     {
         $this->sut->buildFieldElement();
         $this->sut->endElement();
@@ -286,7 +287,8 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildIdAttributeCreatesAttrWhenKeyRefAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -313,7 +315,8 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildIdAttributeThrowsExceptionWhenKeyRefAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -337,7 +340,8 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildNameAttributeCreatesAttrWhenKeyRefAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -364,7 +368,8 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildNameAttributeThrowsExceptionWhenKeyRefAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 
@@ -390,7 +395,8 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildReferAttributeCreatesAttrWhenKeyRefAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildReferAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -420,7 +426,8 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildReferAttributeCreatesAttrWhenKeyRefAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildComplexTypeElement();
@@ -502,7 +509,8 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildReferAttributeThrowsExceptionWhenKeyRefAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -518,7 +526,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildReferAttributeCreatesAttrWhenKeyRefAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildReferAttributeCreatesAttrWhenKeyRefAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -597,7 +605,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildReferAttributeThrowsExceptionWhenKeyRefAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildReferAttributeThrowsExceptionWhenKeyRefAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -612,7 +620,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenKeyRef()
+    public function testBuildAnnotationElementCreateEltWhenKeyRef(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

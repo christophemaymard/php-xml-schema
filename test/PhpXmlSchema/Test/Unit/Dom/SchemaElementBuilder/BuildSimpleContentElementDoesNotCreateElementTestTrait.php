@@ -26,7 +26,7 @@ trait BuildSimpleContentElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildSimpleContentElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildSimpleContentElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildSimpleContentElement();
         $sch = $this->sut->getSchema();

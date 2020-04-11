@@ -24,7 +24,7 @@ class UnionElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new UnionElement();
     }
@@ -32,7 +32,7 @@ class UnionElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_UNION, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class UnionElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testUnionElementWhenAddedToSimpleTypeElement()
+    public function testUnionElementWhenAddedToSimpleTypeElement(): void
     {
         $parent = new SimpleTypeElement();
         $parent->setDerivationElement($this->sut);
@@ -57,7 +57,7 @@ class UnionElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testUnionElementWithParentThrowsExceptionWhenSimpleTypeElementSetDerivationElement()
+    public function testUnionElementWithParentThrowsExceptionWhenSimpleTypeElementSetDerivationElement(): void
     {
         $parent1 = new SimpleTypeElement();
         $parent1->setDerivationElement($this->sut);
@@ -75,7 +75,7 @@ class UnionElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeElement();
         $parent->setDerivationElement($this->sut);

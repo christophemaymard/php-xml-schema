@@ -20,7 +20,7 @@ trait NonNegativeIntegerTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidNonNegativeIntegerTypeValues():array
+    public function getValidNonNegativeIntegerTypeValues(): array
     {
         return [
             '0' => [ 
@@ -63,7 +63,7 @@ trait NonNegativeIntegerTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidNonNegativeIntegerTypeValues():array
+    public function getInvalidNonNegativeIntegerTypeValues(): array
     {
         return [
             'Negative integer' => [ 
@@ -78,7 +78,7 @@ trait NonNegativeIntegerTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidZeroOrOneNonNegativeIntegerTypeValues():array
+    public function getValidZeroOrOneNonNegativeIntegerTypeValues(): array
     {
         return [
             '0' => [ 
@@ -130,7 +130,7 @@ trait NonNegativeIntegerTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidZeroOrOneNonNegativeIntegerTypeValues():array
+    public function getInvalidZeroOrOneNonNegativeIntegerTypeValues(): array
     {
         return [
             'Non-negative integer other than 0 or 1' => [ 

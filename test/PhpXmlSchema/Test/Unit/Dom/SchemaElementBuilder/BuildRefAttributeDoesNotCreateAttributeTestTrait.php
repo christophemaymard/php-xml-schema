@@ -25,7 +25,7 @@ trait BuildRefAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildRefAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildRefAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildRefAttribute('foo:bar');
         $this->sut->buildRefAttribute('foo');

@@ -24,7 +24,7 @@ class NotationElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new NotationElement();
     }
@@ -32,7 +32,7 @@ class NotationElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_NOTATION, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class NotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testNotationElementWhenAddedToSchemaElement()
+    public function testNotationElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addNotationElement($this->sut);
@@ -57,7 +57,7 @@ class NotationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testNotationElementWithParentThrowsExceptionWhenSchemaElementAddNotationElement()
+    public function testNotationElementWithParentThrowsExceptionWhenSchemaElementAddNotationElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addNotationElement($this->sut);
@@ -75,7 +75,7 @@ class NotationElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addNotationElement($this->sut);

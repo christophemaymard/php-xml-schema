@@ -31,7 +31,7 @@ class FieldXPathTypeTest extends TestCase
      * 
      * @dataProvider    getValidFieldXPathTypeValues
      */
-    public function test__constructStoresExpressionWhenItIsValid(string $expr)
+    public function test__constructStoresExpressionWhenItIsValid(string $expr): void
     {
         $sut =  new FieldXPathType($expr);
         self::assertSame($expr, $sut->getXPath());
@@ -45,7 +45,7 @@ class FieldXPathTypeTest extends TestCase
      * 
      * @dataProvider    getInvalidFieldXPathTypeValues
      */
-    public function test__constructThrowsExceptionWhenExpressionIsInvalid(string $expr)
+    public function test__constructThrowsExceptionWhenExpressionIsInvalid(string $expr): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(

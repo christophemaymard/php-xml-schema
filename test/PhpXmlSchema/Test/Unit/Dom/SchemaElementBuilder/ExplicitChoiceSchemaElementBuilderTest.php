@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -30,7 +31,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -71,7 +72,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -85,7 +86,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -100,7 +101,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -116,7 +117,7 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitChoiceAndValueIsUnbounded()
+    public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitChoiceAndValueIsUnbounded(): void
     {
         $this->sut->buildMaxOccursAttribute('unbounded');
         $sch = $this->sut->getSchema();
@@ -145,7 +146,8 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
     public function testBuildMaxOccursAttributeCreatesAttrWhenExplicitChoiceAndValueIsNonNegativeInteger(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMaxOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -172,7 +174,8 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenExplicitChoiceAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
         
@@ -194,7 +197,8 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
     public function testBuildMinOccursAttributeCreatesAttrWhenExplicitChoiceAndValueIsValid(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMinOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -220,7 +224,8 @@ class ExplicitChoiceSchemaElementBuilderTest extends AbstractChoiceSchemaElement
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenExplicitChoiceAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid nonNegativeInteger datatype.', 

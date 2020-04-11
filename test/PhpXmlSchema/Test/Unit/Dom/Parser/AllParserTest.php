@@ -24,7 +24,7 @@ class AllParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'all_all';
     }
@@ -35,7 +35,7 @@ class AllParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('all_0006.xsd'));
         
@@ -84,7 +84,7 @@ class AllParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -127,7 +127,7 @@ class AllParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidMaxOccursAttributes
      */
-    public function testParseProcessMaxOccursAttribute(string $fileName)
+    public function testParseProcessMaxOccursAttribute(string $fileName): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -171,7 +171,7 @@ class AllParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidMinOccursAttributes
      */
-    public function testParseProcessMinOccursAttribute(string $fileName, \GMP $nni)
+    public function testParseProcessMinOccursAttribute(string $fileName, \GMP $nni): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -212,7 +212,7 @@ class AllParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -257,7 +257,7 @@ class AllParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessElementElement()
+    public function testParseProcessElementElement(): void
     {
         $sch = $this->sut->parse($this->getXs('element_0002.xsd'));
         
@@ -306,7 +306,7 @@ class AllParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -341,7 +341,7 @@ class AllParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidMaxOccursAttributes():array
+    public function getValidMaxOccursAttributes(): array
     {
         return [
             '1' => [
@@ -367,7 +367,7 @@ class AllParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidMinOccursAttributes():array
+    public function getValidMinOccursAttributes(): array
     {
         return [
             '0' => [

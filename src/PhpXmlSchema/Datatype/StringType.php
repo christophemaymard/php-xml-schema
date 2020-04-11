@@ -41,7 +41,7 @@ class StringType
      * 
      * @throws  InvalidValueException   When the value is an invalid string datatype.
      */
-    private function setValue(string $value)
+    private function setValue(string $value): void
     {
         if (!\preg_match('`^['.XmlCharClass::CHAR.']*$`u', $value)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid string datatype.', $value));
@@ -55,7 +55,7 @@ class StringType
      * 
      * @return  string
      */
-    public function getString():string
+    public function getString(): string
     {
         return $this->value;
     }

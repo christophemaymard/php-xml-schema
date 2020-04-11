@@ -25,7 +25,7 @@ trait AnySimpleTypeValueAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasValue()
+    public function testHasValue(): void
     {
         self::assertFalse($this->sut->hasValue(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait AnySimpleTypeValueAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetValue()
+    public function testGetValue(): void
     {
         self::assertNull($this->sut->getValue(), 'The attribute has not been set.');
         

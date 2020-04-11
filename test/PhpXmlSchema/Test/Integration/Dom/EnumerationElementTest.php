@@ -25,7 +25,7 @@ class EnumerationElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new EnumerationElement();
     }
@@ -33,7 +33,7 @@ class EnumerationElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_ENUMERATION, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class EnumerationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testEnumerationElementWhenAddedToSimpleContentRestrictionElement()
+    public function testEnumerationElementWhenAddedToSimpleContentRestrictionElement(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addEnumerationElement($this->sut);
@@ -58,7 +58,7 @@ class EnumerationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testEnumerationElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddEnumerationElement()
+    public function testEnumerationElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddEnumerationElement(): void
     {
         $parent1 = new SimpleContentRestrictionElement();
         $parent1->addEnumerationElement($this->sut);
@@ -74,7 +74,7 @@ class EnumerationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testEnumerationElementWhenAddedToSimpleTypeRestrictionElement()
+    public function testEnumerationElementWhenAddedToSimpleTypeRestrictionElement(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addEnumerationElement($this->sut);
@@ -88,7 +88,7 @@ class EnumerationElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testEnumerationElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddEnumerationElement()
+    public function testEnumerationElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddEnumerationElement(): void
     {
         $parent1 = new SimpleTypeRestrictionElement();
         $parent1->addEnumerationElement($this->sut);
@@ -106,7 +106,7 @@ class EnumerationElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addEnumerationElement($this->sut);
@@ -122,7 +122,7 @@ class EnumerationElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addEnumerationElement($this->sut);

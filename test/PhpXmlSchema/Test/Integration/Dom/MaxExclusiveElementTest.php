@@ -25,7 +25,7 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new MaxExclusiveElement();
     }
@@ -33,7 +33,7 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_MAXEXCLUSIVE, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMaxExclusiveElementWhenAddedToSimpleContentRestrictionElement()
+    public function testMaxExclusiveElementWhenAddedToSimpleContentRestrictionElement(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addMaxExclusiveElement($this->sut);
@@ -58,7 +58,7 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMaxExclusiveElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMaxExclusiveElement()
+    public function testMaxExclusiveElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddMaxExclusiveElement(): void
     {
         $parent1 = new SimpleContentRestrictionElement();
         $parent1->addMaxExclusiveElement($this->sut);
@@ -74,7 +74,7 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMaxExclusiveElementWhenAddedToSimpleTypeRestrictionElement()
+    public function testMaxExclusiveElementWhenAddedToSimpleTypeRestrictionElement(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addMaxExclusiveElement($this->sut);
@@ -88,7 +88,7 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testMaxExclusiveElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMaxExclusiveElement()
+    public function testMaxExclusiveElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddMaxExclusiveElement(): void
     {
         $parent1 = new SimpleTypeRestrictionElement();
         $parent1->addMaxExclusiveElement($this->sut);
@@ -106,7 +106,7 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addMaxExclusiveElement($this->sut);
@@ -122,7 +122,7 @@ class MaxExclusiveElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addMaxExclusiveElement($this->sut);

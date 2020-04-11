@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -104,7 +105,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -117,7 +118,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -148,7 +149,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertElementElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -156,7 +157,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -168,7 +169,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -181,7 +182,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -205,7 +206,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         bool $res, 
         bool $ext, 
         bool $sub
-    ) {
+    ): void
+    {
         $this->sut->buildBlockAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -231,7 +233,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildBlockAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid blockSet type, expected "#all" or a list of '.
@@ -255,7 +258,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildDefaultAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -281,7 +285,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildDefaultAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid string datatype.', 
@@ -304,7 +309,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildFixedAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildFixedAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -330,7 +336,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildFixedAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid string datatype.', 
@@ -356,7 +363,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         string $value, 
         bool $qual, 
         bool $unqual
-    ) {
+    ): void
+    {
         $this->sut->buildFormAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -383,7 +391,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildFormAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid formChoice type, expected "qualified" or "unqualified".', 
@@ -406,7 +415,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildIdAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -434,7 +444,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildIdAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -459,7 +470,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildMaxOccursAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMaxOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -485,7 +497,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "0" or "1".', $value));
         
@@ -507,7 +520,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildMinOccursAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMinOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -533,7 +547,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is invalid, expected "0" or "1".', $value));
         
@@ -554,7 +569,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildNameAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -582,7 +598,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildNameAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 
@@ -607,7 +624,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildNillableAttributeCreatesAttrWhenNarrowElementAndValueIsValid(
         string $value, 
         bool $bool
-    ) {
+    ): void
+    {
         $this->sut->buildNillableAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -633,7 +651,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      */
     public function testBuildNillableAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
@@ -656,7 +675,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildRefAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildRefAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -686,7 +706,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildRefAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildComplexTypeElement();
@@ -745,7 +766,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildRefAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -761,7 +783,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildRefAttributeCreatesAttrWhenNarrowElementAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildRefAttributeCreatesAttrWhenNarrowElementAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -815,7 +837,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildRefAttributeThrowsExceptionWhenNarrowElementAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildRefAttributeThrowsExceptionWhenNarrowElementAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -839,7 +861,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildTypeAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -869,7 +892,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildComplexTypeElement();
@@ -928,7 +952,8 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildTypeAttributeThrowsExceptionWhenNarrowElementAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -944,7 +969,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildTypeAttributeCreatesAttrWhenNarrowElementAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -998,7 +1023,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildTypeAttributeThrowsExceptionWhenNarrowElementAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildTypeAttributeThrowsExceptionWhenNarrowElementAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -1013,7 +1038,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenNarrowElement()
+    public function testBuildAnnotationElementCreateEltWhenNarrowElement(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -1038,7 +1063,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   content
      * @group   element
      */
-    public function testBuildSimpleTypeElementCreateEltWhenNarrowElement()
+    public function testBuildSimpleTypeElementCreateEltWhenNarrowElement(): void
     {
         $this->sut->buildSimpleTypeElement();
         $sch = $this->sut->getSchema();
@@ -1063,7 +1088,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   content
      * @group   element
      */
-    public function testBuildComplexTypeElementCreateEltWhenNarrowElement()
+    public function testBuildComplexTypeElementCreateEltWhenNarrowElement(): void
     {
         $this->sut->buildComplexTypeElement();
         $sch = $this->sut->getSchema();
@@ -1088,7 +1113,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   content
      * @group   element
      */
-    public function testBuildUniqueElementCreateEltWhenNarrowElement()
+    public function testBuildUniqueElementCreateEltWhenNarrowElement(): void
     {
         $this->sut->buildUniqueElement();
         $this->sut->endElement();
@@ -1120,7 +1145,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   content
      * @group   element
      */
-    public function testBuildKeyElementCreateEltWhenNarrowElement()
+    public function testBuildKeyElementCreateEltWhenNarrowElement(): void
     {
         $this->sut->buildKeyElement();
         $this->sut->endElement();
@@ -1152,7 +1177,7 @@ class NarrowElementSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   content
      * @group   element
      */
-    public function testBuildKeyRefElementCreateEltWhenNarrowElement()
+    public function testBuildKeyRefElementCreateEltWhenNarrowElement(): void
     {
         $this->sut->buildKeyRefElement();
         $this->sut->endElement();

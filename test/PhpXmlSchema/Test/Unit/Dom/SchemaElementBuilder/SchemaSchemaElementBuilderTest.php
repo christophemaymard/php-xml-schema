@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -99,7 +100,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -109,14 +110,14 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
     }
     
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertSchemaElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -124,7 +125,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch;
     }
@@ -132,7 +133,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
     }
@@ -140,7 +141,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -149,7 +150,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * Tests that getSchema() returns the same instance of SchemaElement when 
      * instantiated.
      */
-    public function testGetSchemaReturnsSameInstanceOfEmptySchemaElementWhenInstantiated()
+    public function testGetSchemaReturnsSameInstanceOfEmptySchemaElementWhenInstantiated(): void
     {
         $sch1 = $this->sut->getSchema();
         
@@ -164,7 +165,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * Tests that buildSchemaElement() creates an empty "schema" element and 
      * replaces the current one that is being built.
      */
-    public function testBuildSchemaElementCreateNewInstanceOfEmptySchemaElement()
+    public function testBuildSchemaElementCreateNewInstanceOfEmptySchemaElement(): void
     {
         $sch1 = $this->sut->getSchema();
         $this->sut->buildSchemaElement();
@@ -193,7 +194,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         string $value, 
         bool $qual, 
         bool $unqual
-    ) {
+    ): void
+    {
         $this->sut->buildAttributeFormDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -217,7 +219,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      */
     public function testBuildAttributeFormDefaultAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(
             '"'.$value.'" is an invalid formChoice type, expected "qualified" or "unqualified".'
@@ -243,7 +246,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         bool $res, 
         bool $ext, 
         bool $sub
-    ) {
+    ): void
+    {
         $this->sut->buildBlockDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -265,7 +269,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      */
     public function testBuildBlockDefaultAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid blockSet type, expected "#all" or a list of '.
@@ -293,7 +298,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         string $value, 
         bool $qual, 
         bool $unqual
-    ) {
+    ): void
+    {
         $this->sut->buildElementFormDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -316,7 +322,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      */
     public function testBuildElementFormDefaultAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(
             '"'.$value.'" is an invalid formChoice type, expected "qualified" or "unqualified".'
@@ -345,7 +352,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         bool $res, 
         bool $lst, 
         bool $unn
-    ) {
+    ): void
+    {
         $this->sut->buildFinalDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -367,7 +375,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      */
     public function testBuildFinalDefaultAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid fullDerivationSet type, expected "#all" or '.
@@ -392,7 +401,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildIdAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -416,7 +426,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildIdAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -441,7 +452,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildTargetNamespaceAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value, 
         string $uri
-    ) {
+    ): void
+    {
         $this->sut->buildTargetNamespaceAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -465,7 +477,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildTargetNamespaceAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -486,7 +499,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildVersionAttributeCreatesAttrWhenSchemaAndValueIsValid(
         string $value, 
         string $version
-    ) {
+    ): void
+    {
         $this->sut->buildVersionAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -510,7 +524,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildVersionAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid token datatype.', 
@@ -535,7 +550,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
         string $value, 
         string $primary,
         array $subtags
-    ) {
+    ): void
+    {
         $this->sut->buildLangAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -560,7 +576,8 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     public function testBuildLangAttributeThrowsExceptionWhenSchemaAndValueIsInvalid(
         string $value,
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -574,7 +591,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildCompositionAnnotationElementCreateEltWhenSchema()
+    public function testBuildCompositionAnnotationElementCreateEltWhenSchema(): void
     {
         $this->sut->buildCompositionAnnotationElement();
         $this->sut->endElement();
@@ -604,7 +621,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildImportElementCreateEltWhenSchema()
+    public function testBuildImportElementCreateEltWhenSchema(): void
     {
         $this->sut->buildImportElement();
         $this->sut->endElement();
@@ -634,7 +651,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildIncludeElementCreateEltWhenSchema()
+    public function testBuildIncludeElementCreateEltWhenSchema(): void
     {
         $this->sut->buildIncludeElement();
         $this->sut->endElement();
@@ -664,7 +681,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildNotationElementCreateEltWhenSchema()
+    public function testBuildNotationElementCreateEltWhenSchema(): void
     {
         $this->sut->buildNotationElement();
         $this->sut->endElement();
@@ -694,7 +711,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildDefinitionAnnotationElementCreateEltWhenSchema()
+    public function testBuildDefinitionAnnotationElementCreateEltWhenSchema(): void
     {
         $this->sut->buildDefinitionAnnotationElement();
         $this->sut->endElement();
@@ -724,7 +741,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeElementCreateEltWhenSchema()
+    public function testBuildAttributeElementCreateEltWhenSchema(): void
     {
         $this->sut->buildAttributeElement();
         $this->sut->endElement();
@@ -754,7 +771,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildSimpleTypeElementCreateEltWhenSchema()
+    public function testBuildSimpleTypeElementCreateEltWhenSchema(): void
     {
         $this->sut->buildSimpleTypeElement();
         $this->sut->endElement();
@@ -783,7 +800,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeGroupElementCreateEltWhenSchema()
+    public function testBuildAttributeGroupElementCreateEltWhenSchema(): void
     {
         $this->sut->buildAttributeGroupElement();
         $this->sut->endElement();
@@ -812,7 +829,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildComplexTypeElementCreateEltWhenSchema()
+    public function testBuildComplexTypeElementCreateEltWhenSchema(): void
     {
         $this->sut->buildComplexTypeElement();
         $this->sut->endElement();
@@ -841,7 +858,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildGroupElementCreateEltWhenSchema()
+    public function testBuildGroupElementCreateEltWhenSchema(): void
     {
         $this->sut->buildGroupElement();
         $this->sut->endElement();
@@ -870,7 +887,7 @@ class SchemaSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
      * @group   content
      * @group   element
      */
-    public function testBuildElementElementCreateEltWhenSchema()
+    public function testBuildElementElementCreateEltWhenSchema(): void
     {
         $this->sut->buildElementElement();
         $this->sut->endElement();

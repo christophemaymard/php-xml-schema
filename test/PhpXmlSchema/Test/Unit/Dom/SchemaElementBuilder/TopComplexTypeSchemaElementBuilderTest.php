@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -29,7 +30,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -40,7 +41,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0];
     }
@@ -48,7 +49,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -57,7 +58,7 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -77,7 +78,8 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
     public function testBuildAbstractAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
         string $value, 
         bool $bool
-    ) {
+    ): void
+    {
         $this->sut->buildAbstractAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -103,7 +105,8 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
      */
     public function testBuildAbstractAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
@@ -127,7 +130,8 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
         string $value, 
         bool $ext, 
         bool $res
-    ) {
+    ): void
+    {
         $this->sut->buildBlockAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -153,7 +157,8 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
      */
     public function testBuildBlockAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid derivationSet type, expected "#all" or a '.
@@ -181,7 +186,8 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
         string $value, 
         bool $ext, 
         bool $res
-    ) {
+    ): void
+    {
         $this->sut->buildFinalAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -207,7 +213,8 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
      */
     public function testBuildFinalAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid derivationSet type, expected "#all" or a '.
@@ -233,7 +240,8 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
     public function testBuildNameAttributeCreatesAttrWhenTopComplexTypeAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -261,7 +269,8 @@ class TopComplexTypeSchemaElementBuilderTest extends AbstractComplexTypeSchemaEl
     public function testBuildNameAttributeThrowsExceptionWhenTopComplexTypeAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 

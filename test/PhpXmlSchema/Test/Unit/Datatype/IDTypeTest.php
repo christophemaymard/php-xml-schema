@@ -32,7 +32,7 @@ class IDTypeTest extends TestCase
      * 
      * @dataProvider    getInvalidNCNameTypeValues
      */
-    public function test__constructThrowsExceptionWhenIDIsInvalid(string $id)
+    public function test__constructThrowsExceptionWhenIDIsInvalid(string $id): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid ID datatype.', $id));
@@ -47,7 +47,7 @@ class IDTypeTest extends TestCase
      * 
      * @dataProvider    getValidNCNameTypeValues
      */
-    public function test__constructStoresIDWhenItIsValid(string $id)
+    public function test__constructStoresIDWhenItIsValid(string $id): void
     {
         $sut = new IDType($id);
         self::assertSame($id, $sut->getId());

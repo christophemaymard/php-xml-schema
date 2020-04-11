@@ -23,7 +23,7 @@ abstract class AbstractSimpleTypedElementTestCase extends AbstractAbstractSimple
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
+    public function testGetElementsReturnsElementsOrderedByContainer01(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

@@ -26,7 +26,7 @@ class SimpleContentRestrictionElementTest extends AbstractAbstractValueRestricti
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SimpleContentRestrictionElement();
     }
@@ -34,7 +34,7 @@ class SimpleContentRestrictionElementTest extends AbstractAbstractValueRestricti
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('restriction', $this->sut->getLocalName());
     }
@@ -50,7 +50,7 @@ class SimpleContentRestrictionElementTest extends AbstractAbstractValueRestricti
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01234()
+    public function testGetElementsReturnsElementsOrderedByContainer01234(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

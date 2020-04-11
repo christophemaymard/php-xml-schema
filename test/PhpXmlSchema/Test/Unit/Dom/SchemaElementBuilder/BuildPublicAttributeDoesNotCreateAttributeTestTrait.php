@@ -26,7 +26,7 @@ trait BuildPublicAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildPublicAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildPublicAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildPublicAttribute("\u{001F}");
         $this->sut->buildPublicAttribute('public');

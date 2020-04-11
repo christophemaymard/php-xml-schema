@@ -23,7 +23,7 @@ class ListElementTest extends AbstractSimpleTypedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ListElement();
     }
@@ -31,7 +31,7 @@ class ListElementTest extends AbstractSimpleTypedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('list', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class ListElementTest extends AbstractSimpleTypedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasItemType()
+    public function testHasItemType(): void
     {
         self::assertFalse($this->sut->hasItemType(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class ListElementTest extends AbstractSimpleTypedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetItemType()
+    public function testGetItemType(): void
     {
         self::assertNull($this->sut->getItemType(), 'The attribute has not been set.');
         

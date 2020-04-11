@@ -19,17 +19,17 @@ class UseType
     /**
      * The use is optional.
      */
-    const OPTIONAL = 1;
+    public const OPTIONAL = 1;
     
     /**
      * The use is prohibited.
      */
-    const PROHIBITED = 2;
+    public const PROHIBITED = 2;
     
     /**
      * The use is required.
      */
-    const REQUIRED = 3;
+    public const REQUIRED = 3;
     
     /**
      * The use.
@@ -42,7 +42,7 @@ class UseType
      * 
      * @return  UseType A new instance of UseType.
      */
-    public static function createOptional():self
+    public static function createOptional(): self
     {
         return new self(self::OPTIONAL);
     }
@@ -52,7 +52,7 @@ class UseType
      * 
      * @return  UseType A new instance of UseType.
      */
-    public static function createProhibited():self
+    public static function createProhibited(): self
     {
         return new self(self::PROHIBITED);
     }
@@ -62,7 +62,7 @@ class UseType
      * 
      * @return  UseType A new instance of UseType.
      */
-    public static function createRequired():self
+    public static function createRequired(): self
     {
         return new self(self::REQUIRED);
     }
@@ -84,7 +84,7 @@ class UseType
      * 
      * @throws  InvalidValueException   When the use is an invalid value.
      */
-    private function setUse(int $use)
+    private function setUse(int $use): void
     {
         if ($use != self::OPTIONAL && $use != self::PROHIBITED && $use != self::REQUIRED) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid use.', $use));
@@ -98,7 +98,7 @@ class UseType
      * 
      * @return  bool    TRUE if the use is "optional", otherwise FALSE.
      */
-    public function isOptional():bool
+    public function isOptional(): bool
     {
         return $this->use == self::OPTIONAL;
     }
@@ -108,7 +108,7 @@ class UseType
      * 
      * @return  bool    TRUE if the use is "prohibited", otherwise FALSE.
      */
-    public function isProhibited():bool
+    public function isProhibited(): bool
     {
         return $this->use == self::PROHIBITED;
     }
@@ -118,7 +118,7 @@ class UseType
      * 
      * @return  bool    TRUE if the use is "required", otherwise FALSE.
      */
-    public function isRequired():bool
+    public function isRequired(): bool
     {
         return $this->use == self::REQUIRED;
     }

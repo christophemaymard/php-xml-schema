@@ -24,7 +24,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'cc_extension';
     }
@@ -35,7 +35,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('extension_0006.xsd'));
         
@@ -83,7 +83,8 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
     public function testParseProcessBaseAttributeWhenPrefixAbsentAndNoDefaultNamespace(
         string $fileName, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -129,7 +130,8 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
         array $decls, 
         string $namespace, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations($decls, $sch);
@@ -163,7 +165,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -199,7 +201,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -239,7 +241,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessGroupElement()
+    public function testParseProcessGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('group_0002.xsd'));
         
@@ -279,7 +281,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAllElement()
+    public function testParseProcessAllElement(): void
     {
         $sch = $this->sut->parse($this->getXs('all_0002.xsd'));
         
@@ -319,7 +321,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessChoiceElement()
+    public function testParseProcessChoiceElement(): void
     {
         $sch = $this->sut->parse($this->getXs('choice_0002.xsd'));
         
@@ -359,7 +361,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSequenceElement()
+    public function testParseProcessSequenceElement(): void
     {
         $sch = $this->sut->parse($this->getXs('sequence_0002.xsd'));
         
@@ -399,7 +401,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeElement()
+    public function testParseProcessAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attribute_0002.xsd'));
         
@@ -445,7 +447,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeGroupElement()
+    public function testParseProcessAttributeGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attributeGroup_0002.xsd'));
         
@@ -490,7 +492,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnyAttributeElement()
+    public function testParseProcessAnyAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('anyAttribute_0002.xsd'));
         
@@ -530,7 +532,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNoNamespaceBaseAttributes():array
+    public function getValidNoNamespaceBaseAttributes(): array
     {
         return [
             'Local part starts with _' => [
@@ -573,7 +575,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidBaseAttributes():array
+    public function getValidBaseAttributes(): array
     {
         return [
             'Prefix (absent) and bound to default namespace' => [
@@ -719,7 +721,7 @@ class ComplexContentExtensionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

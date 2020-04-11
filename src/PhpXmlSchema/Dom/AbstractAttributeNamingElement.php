@@ -21,7 +21,7 @@ abstract class AbstractAttributeNamingElement extends AbstractAnnotatedElement i
     /**
      * {@inheritDoc}
      */
-    public function addAttributeElement(AttributeElement $element)
+    public function addAttributeElement(AttributeElement $element): void
     {
         $this->addChildElement(3, $element);
     }
@@ -29,7 +29,7 @@ abstract class AbstractAttributeNamingElement extends AbstractAnnotatedElement i
     /**
      * {@inheritDoc}
      */
-    public function getAttributeElements():array
+    public function getAttributeElements(): array
     {
         return $this->getChildElementsByType(3, AttributeElement::class);
     }
@@ -37,7 +37,7 @@ abstract class AbstractAttributeNamingElement extends AbstractAnnotatedElement i
     /**
      * {@inheritDoc}
      */
-    public function addAttributeGroupElement(AttributeGroupElement $element)
+    public function addAttributeGroupElement(AttributeGroupElement $element): void
     {
         $this->addChildElement(3, $element);
     }
@@ -45,7 +45,7 @@ abstract class AbstractAttributeNamingElement extends AbstractAnnotatedElement i
     /**
      * {@inheritDoc}
      */
-    public function getAttributeGroupElements():array
+    public function getAttributeGroupElements(): array
     {
         return $this->getChildElementsByType(3, AttributeGroupElement::class);
     }
@@ -53,7 +53,7 @@ abstract class AbstractAttributeNamingElement extends AbstractAnnotatedElement i
     /**
      * {@inheritDoc}
      */
-    public function getAttributeDeclarationElements():array
+    public function getAttributeDeclarationElements(): array
     {
         return $this->getChildElementsByType(3, AttributeDeclarationElementInterface::class);
     }
@@ -61,7 +61,7 @@ abstract class AbstractAttributeNamingElement extends AbstractAnnotatedElement i
     /**
      * {@inheritDoc}
      */
-    public function getAnyAttributeElement()
+    public function getAnyAttributeElement(): ?AnyAttributeElement
     {
         return $this->getChildElement(4);
     }
@@ -69,7 +69,7 @@ abstract class AbstractAttributeNamingElement extends AbstractAnnotatedElement i
     /**
      * {@inheritDoc}
      */
-    public function setAnyAttributeElement(AnyAttributeElement $element)
+    public function setAnyAttributeElement(AnyAttributeElement $element): void
     {
         $this->setChildElement(4, $element);
     }
@@ -77,7 +77,7 @@ abstract class AbstractAttributeNamingElement extends AbstractAnnotatedElement i
     /**
      * {@inheritDoc}
      */
-    public function hasAnyAttributeElement():bool
+    public function hasAnyAttributeElement(): bool
     {
         return $this->isChildElementSet(4);
     }

@@ -24,7 +24,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'sc_extension';
     }
@@ -35,7 +35,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('extension_0006.xsd'));
         
@@ -83,7 +83,8 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
     public function testParseProcessBaseAttributeWhenPrefixAbsentAndNoDefaultNamespace(
         string $fileName, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -129,7 +130,8 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
         array $decls, 
         string $namespace, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations($decls, $sch);
@@ -163,7 +165,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -199,7 +201,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -239,7 +241,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeElement()
+    public function testParseProcessAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attribute_0002.xsd'));
         
@@ -285,7 +287,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAttributeGroupElement()
+    public function testParseProcessAttributeGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('attributeGroup_0002.xsd'));
         
@@ -330,7 +332,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnyAttributeElement()
+    public function testParseProcessAnyAttributeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('anyAttribute_0002.xsd'));
         
@@ -370,7 +372,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNoNamespaceBaseAttributes():array
+    public function getValidNoNamespaceBaseAttributes(): array
     {
         return [
             'Local part starts with _' => [
@@ -413,7 +415,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidBaseAttributes():array
+    public function getValidBaseAttributes(): array
     {
         return [
             'Prefix (absent) and bound to default namespace' => [
@@ -559,7 +561,7 @@ class SimpleContentExtensionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

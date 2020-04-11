@@ -24,7 +24,7 @@ class MessageTest extends TestCase
      * Tests that unexpectedElement() returns a message with "none" when no 
      * element is expected.
      */
-    public function testUnexpectedElementReturnsNoneWhenExpectNoElement()
+    public function testUnexpectedElementReturnsNoneWhenExpectNoElement(): void
     {
         self::assertSame(
             'The "foo" element (from bar namespace) is unexpected, expected: none.', 
@@ -37,7 +37,7 @@ class MessageTest extends TestCase
      * Tests that unexpectedElement() returns a message with 1 element name 
      * when 1 element is expected.
      */
-    public function testUnexpectedElementReturns1ElementWhenExpect1Element()
+    public function testUnexpectedElementReturns1ElementWhenExpect1Element(): void
     {
         self::assertSame(
             'The "foo" element (from bar namespace) is unexpected, expected: "baz".', 
@@ -50,7 +50,7 @@ class MessageTest extends TestCase
      * Tests that unexpectedElement() returns a message with 2 element names 
      * that are separated by "or" when 2 elements are expected.
      */
-    public function testUnexpectedElementReturns1ElementOr1ElementWhenExpect2Elements()
+    public function testUnexpectedElementReturns1ElementOr1ElementWhenExpect2Elements(): void
     {
         self::assertSame(
             'The "foo" element (from bar namespace) is unexpected, expected: "baz" or "qux".', 
@@ -64,7 +64,7 @@ class MessageTest extends TestCase
      * that are separated by a comma (for the first and the second) and by 
      * "or" (for the second and the third) when 3 elements are expected.
      */
-    public function testUnexpectedElementReturns1ElementComma1ElementOr1ElementWhenExpect3Elements()
+    public function testUnexpectedElementReturns1ElementComma1ElementOr1ElementWhenExpect3Elements(): void
     {
         self::assertSame(
             'The "foo" element (from bar namespace) is unexpected, expected: "baz", "qux" or "quux".', 
@@ -77,7 +77,7 @@ class MessageTest extends TestCase
      * Tests that unexpectedElement() returns a message with "no" namespace 
      * when the unexpected element has an empty namespace.
      */
-    public function testUnexpectedElementReturnsNoNamespaceWhenNamespaceIsEmptyString()
+    public function testUnexpectedElementReturnsNoNamespaceWhenNamespaceIsEmptyString(): void
     {
         self::assertSame(
             'The "foo" element (from no namespace) is unexpected, expected: "baz", "qux" or "quux".', 
@@ -90,7 +90,7 @@ class MessageTest extends TestCase
      * Tests that unsupportedAttribute() returns a message with the local 
      * name and the namespace of the unsupported attribute.
      */
-    public function testUnsupportedAttributeReturnsNameAndNamespace()
+    public function testUnsupportedAttributeReturnsNameAndNamespace(): void
     {
         self::assertSame(
             'The "foo" attribute (from bar namespace) is not supported.', 
@@ -103,7 +103,7 @@ class MessageTest extends TestCase
      * Tests that unsupportedAttribute() returns a message with "no" namespace 
      * when the unsupported attribute has an empty namespace.
      */
-    public function testUnsupportedAttributeReturnsNoNamespaceWhenNamespaceIsEmptyString()
+    public function testUnsupportedAttributeReturnsNoNamespaceWhenNamespaceIsEmptyString(): void
     {
         self::assertSame(
             'The "foo" attribute (from no namespace) is not supported.', 

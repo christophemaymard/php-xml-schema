@@ -23,7 +23,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new DocumentationElement();
     }
@@ -31,7 +31,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('documentation', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasLang()
+    public function testHasLang(): void
     {
         self::assertFalse($this->sut->hasLang(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetLang()
+    public function testGetLang(): void
     {
         self::assertNull($this->sut->getLang(), 'The attribute has not been set.');
         
@@ -78,7 +78,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasSource()
+    public function testHasSource(): void
     {
         self::assertFalse($this->sut->hasSource(), 'The attribute has not been set.');
         
@@ -93,7 +93,7 @@ class DocumentationElementTest extends AbstractLeafElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetSource()
+    public function testGetSource(): void
     {
         self::assertNull($this->sut->getSource(), 'The attribute has not been set.');
         

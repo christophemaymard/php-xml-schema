@@ -25,7 +25,7 @@ trait BuildMemberTypesAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildMemberTypesAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildMemberTypesAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildMemberTypesAttribute('foo:bar');
         $this->sut->buildMemberTypesAttribute('foo bar baz');

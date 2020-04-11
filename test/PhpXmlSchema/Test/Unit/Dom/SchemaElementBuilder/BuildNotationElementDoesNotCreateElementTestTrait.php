@@ -27,7 +27,7 @@ trait BuildNotationElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildNotationElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildNotationElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildNotationElement();
         $sch = $this->sut->getSchema();

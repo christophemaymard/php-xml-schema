@@ -25,7 +25,7 @@ trait BuildXPathAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildXPathAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildXPathAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         // "selector" xpath.
         $this->sut->buildXPathAttribute('');

@@ -22,7 +22,7 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
      * 
      * @group   content
      */
-    public function testHasSimpleTypeElement()
+    public function testHasSimpleTypeElement(): void
     {
         self::assertFalse($this->sut->hasSimpleTypeElement(), 'No element has been set.');
         
@@ -37,7 +37,7 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
      * 
      * @group   content
      */
-    public function testGetSimpleTypeElement()
+    public function testGetSimpleTypeElement(): void
     {
         self::assertNull($this->sut->getSimpleTypeElement(), 'No element has been set.');
         
@@ -56,7 +56,7 @@ abstract class AbstractAbstractSimpleTypedElementTestCase extends AbstractAnnota
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createSimpleTypeElementHasParentFalse1TimeMock();

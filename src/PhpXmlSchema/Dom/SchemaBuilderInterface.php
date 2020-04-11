@@ -28,7 +28,7 @@ interface SchemaBuilderInterface
      * @throws  InvalidOperationException   When the prefix is 'xmlns'.
      * @throws  InvalidOperationException   When the prefix, other than 'xmlns', is bound to the XML NS 1.0 namespace.
      */
-    public function bindNamespace(string $prefix, string $namespace);
+    public function bindNamespace(string $prefix, string $namespace): void;
     
     /**
      * Builds an "abstract" attribute in the current element.
@@ -40,7 +40,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildAbstractAttribute(string $value);
+    public function buildAbstractAttribute(string $value): void;
     
     /**
      * Builds an "attributeFormDefault" attribute in the current element.
@@ -52,7 +52,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildAttributeFormDefaultAttribute(string $value);
+    public function buildAttributeFormDefaultAttribute(string $value): void;
     
     /**
      * Builds a "base" attribute in the current element.
@@ -65,7 +65,7 @@ interface SchemaBuilderInterface
      * @throws  InvalidValueException       When the current element supports the attribute and the value is invalid.
      * @throws  InvalidOperationException   When the current element supports the attribute and the prefix is not bound to a namespace.
      */
-    public function buildBaseAttribute(string $value);
+    public function buildBaseAttribute(string $value): void;
     
     /**
      * Builds a "block" attribute in the current element.
@@ -77,7 +77,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildBlockAttribute(string $value);
+    public function buildBlockAttribute(string $value): void;
     
     /**
      * Builds a "blockDefault" attribute in the current element.
@@ -89,7 +89,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildBlockDefaultAttribute(string $value);
+    public function buildBlockDefaultAttribute(string $value): void;
     
     /**
      * Builds a "default" attribute in the current element.
@@ -101,7 +101,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildDefaultAttribute(string $value);
+    public function buildDefaultAttribute(string $value): void;
     
     /**
      * Builds an "elementFormDefault" attribute in the current element.
@@ -113,7 +113,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildElementFormDefaultAttribute(string $value);
+    public function buildElementFormDefaultAttribute(string $value): void;
     
     /**
      * Builds a "final" attribute in the current element.
@@ -125,7 +125,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildFinalAttribute(string $value);
+    public function buildFinalAttribute(string $value): void;
     
     /**
      * Builds a "finalDefault" attribute in the current element.
@@ -137,7 +137,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildFinalDefaultAttribute(string $value);
+    public function buildFinalDefaultAttribute(string $value): void;
     
     /**
      * Builds a "fixed" attribute in the current element.
@@ -149,7 +149,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildFixedAttribute(string $value);
+    public function buildFixedAttribute(string $value): void;
     
     /**
      * Builds a "form" attribute in the current element.
@@ -161,7 +161,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildFormAttribute(string $value);
+    public function buildFormAttribute(string $value): void;
     
     /**
      * Builds an "id" attribute in the current element.
@@ -173,7 +173,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildIdAttribute(string $value);
+    public function buildIdAttribute(string $value): void;
     
     /**
      * Builds an "itemType" attribute in the current element.
@@ -186,7 +186,7 @@ interface SchemaBuilderInterface
      * @throws  InvalidValueException       When the current element supports the attribute and the value is invalid.
      * @throws  InvalidOperationException   When the current element supports the attribute and the prefix is not bound to a namespace.
      */
-    public function buildItemTypeAttribute(string $value);
+    public function buildItemTypeAttribute(string $value): void;
     
     /**
      * Builds a "maxOccurs" attribute in the current element.
@@ -198,7 +198,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildMaxOccursAttribute(string $value);
+    public function buildMaxOccursAttribute(string $value): void;
     
     /**
      * Builds a "memberTypes" attribute in the current element.
@@ -211,7 +211,7 @@ interface SchemaBuilderInterface
      * @throws  InvalidValueException       When the current element supports the attribute and the value is invalid.
      * @throws  InvalidOperationException   When the current element supports the attribute and the prefix is not bound to a namespace.
      */
-    public function buildMemberTypesAttribute(string $value);
+    public function buildMemberTypesAttribute(string $value): void;
     
     /**
      * Builds a "minOccurs" attribute in the current element.
@@ -223,7 +223,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildMinOccursAttribute(string $value);
+    public function buildMinOccursAttribute(string $value): void;
     
     /**
      * Builds a "mixed" attribute in the current element.
@@ -235,7 +235,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildMixedAttribute(string $value);
+    public function buildMixedAttribute(string $value): void;
     
     /**
      * Builds a "name" attribute in the current element.
@@ -247,7 +247,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildNameAttribute(string $value);
+    public function buildNameAttribute(string $value): void;
     
     /**
      * Builds a "namespace" attribute in the current element.
@@ -259,7 +259,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildNamespaceAttribute(string $value);
+    public function buildNamespaceAttribute(string $value): void;
     
     /**
      * Builds a "nillable" attribute in the current element.
@@ -271,7 +271,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildNillableAttribute(string $value);
+    public function buildNillableAttribute(string $value): void;
     
     /**
      * Builds a "processContents" attribute in the current element.
@@ -283,7 +283,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildProcessContentsAttribute(string $value);
+    public function buildProcessContentsAttribute(string $value): void;
     
     /**
      * Builds a "public" attribute in the current element.
@@ -295,7 +295,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildPublicAttribute(string $value);
+    public function buildPublicAttribute(string $value): void;
     
     /**
      * Builds a "ref" attribute in the current element.
@@ -308,7 +308,7 @@ interface SchemaBuilderInterface
      * @throws  InvalidValueException       When the current element supports the attribute and the value is invalid.
      * @throws  InvalidOperationException   When the current element supports the attribute and the prefix is not bound to a namespace.
      */
-    public function buildRefAttribute(string $value);
+    public function buildRefAttribute(string $value): void;
     
     /**
      * Builds a "refer" attribute in the current element.
@@ -321,7 +321,7 @@ interface SchemaBuilderInterface
      * @throws  InvalidValueException       When the current element supports the attribute and the value is invalid.
      * @throws  InvalidOperationException   When the current element supports the attribute and the prefix is not bound to a namespace.
      */
-    public function buildReferAttribute(string $value);
+    public function buildReferAttribute(string $value): void;
     
     /**
      * Builds a "schemaLocation" attribute in the current element.
@@ -333,7 +333,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildSchemaLocationAttribute(string $value);
+    public function buildSchemaLocationAttribute(string $value): void;
     
     /**
      * Builds a "source" attribute in the current element.
@@ -345,7 +345,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildSourceAttribute(string $value);
+    public function buildSourceAttribute(string $value): void;
     
     /**
      * Builds a "system" attribute in the current element.
@@ -357,7 +357,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildSystemAttribute(string $value);
+    public function buildSystemAttribute(string $value): void;
     
     /**
      * Builds a "targetNamespace" attribute in the current element.
@@ -369,7 +369,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildTargetNamespaceAttribute(string $value);
+    public function buildTargetNamespaceAttribute(string $value): void;
     
     /**
      * Builds a "type" attribute in the current element.
@@ -382,7 +382,7 @@ interface SchemaBuilderInterface
      * @throws  InvalidValueException       When the current element supports the attribute and the value is invalid.
      * @throws  InvalidOperationException   When the current element supports the attribute and the prefix is not bound to a namespace.
      */
-    public function buildTypeAttribute(string $value);
+    public function buildTypeAttribute(string $value): void;
     
     /**
      * Builds an "use" attribute in the current element.
@@ -394,7 +394,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildUseAttribute(string $value);
+    public function buildUseAttribute(string $value): void;
     
     /**
      * Builds a "value" attribute in the current element.
@@ -406,7 +406,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildValueAttribute(string $value);
+    public function buildValueAttribute(string $value): void;
     
     /**
      * Builds a "version" attribute in the current element.
@@ -418,7 +418,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildVersionAttribute(string $value);
+    public function buildVersionAttribute(string $value): void;
     
     /**
      * Builds a "xpath" attribute in the current element.
@@ -430,7 +430,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildXPathAttribute(string $value);
+    public function buildXPathAttribute(string $value): void;
     
     /**
      * Builds a "xml:lang" attribute in the current element.
@@ -442,7 +442,7 @@ interface SchemaBuilderInterface
      * 
      * @throws  InvalidValueException   When the current element supports the attribute and the value is invalid.
      */
-    public function buildLangAttribute(string $value);
+    public function buildLangAttribute(string $value): void;
     
     /**
      * Builds an "all" element.
@@ -452,7 +452,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildAllElement();
+    public function buildAllElement(): void;
     
     /**
      * Builds an "annotation" element.
@@ -462,7 +462,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildAnnotationElement();
+    public function buildAnnotationElement(): void;
     
     /**
      * Builds an "annotation" element (composition).
@@ -472,7 +472,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildCompositionAnnotationElement();
+    public function buildCompositionAnnotationElement(): void;
     
     /**
      * Builds an "annotation" element (definition).
@@ -482,7 +482,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildDefinitionAnnotationElement();
+    public function buildDefinitionAnnotationElement(): void;
     
     /**
      * Builds an "any" element.
@@ -492,7 +492,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildAnyElement();
+    public function buildAnyElement(): void;
     
     /**
      * Builds an "anyAttribute" element.
@@ -502,7 +502,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildAnyAttributeElement();
+    public function buildAnyAttributeElement(): void;
     
     /**
      * Builds an "appinfo" element.
@@ -512,7 +512,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildAppInfoElement();
+    public function buildAppInfoElement(): void;
     
     /**
      * Builds an "attribute" element.
@@ -522,7 +522,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildAttributeElement();
+    public function buildAttributeElement(): void;
     
     /**
      * Builds an "attributeGroup" element.
@@ -532,7 +532,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildAttributeGroupElement();
+    public function buildAttributeGroupElement(): void;
     
     /**
      * Builds a "choice" element.
@@ -542,7 +542,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildChoiceElement();
+    public function buildChoiceElement(): void;
     
     /**
      * Builds a "complexContent" element.
@@ -552,7 +552,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildComplexContentElement();
+    public function buildComplexContentElement(): void;
     
     /**
      * Builds a "complexType" element.
@@ -562,7 +562,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildComplexTypeElement();
+    public function buildComplexTypeElement(): void;
     
     /**
      * Builds a "documentation" element.
@@ -572,7 +572,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildDocumentationElement();
+    public function buildDocumentationElement(): void;
     
     /**
      * Builds an "element" element.
@@ -582,7 +582,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildElementElement();
+    public function buildElementElement(): void;
     
     /**
      * Builds an "enumeration" element.
@@ -592,7 +592,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildEnumerationElement();
+    public function buildEnumerationElement(): void;
     
     /**
      * Builds an "extension" element.
@@ -602,7 +602,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildExtensionElement();
+    public function buildExtensionElement(): void;
     
     /**
      * Builds a "field" element.
@@ -612,7 +612,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildFieldElement();
+    public function buildFieldElement(): void;
     
     /**
      * Builds a "fractionDigits" element.
@@ -622,7 +622,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildFractionDigitsElement();
+    public function buildFractionDigitsElement(): void;
     
     /**
      * Builds a "group" element.
@@ -632,7 +632,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildGroupElement();
+    public function buildGroupElement(): void;
     
     /**
      * Builds an "import" element.
@@ -642,7 +642,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildImportElement();
+    public function buildImportElement(): void;
     
     /**
      * Builds an "include" element.
@@ -652,7 +652,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildIncludeElement();
+    public function buildIncludeElement(): void;
     
     /**
      * Builds a "key" element.
@@ -662,7 +662,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildKeyElement();
+    public function buildKeyElement(): void;
     
     /**
      * Builds a "keyref" element.
@@ -672,7 +672,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildKeyRefElement();
+    public function buildKeyRefElement(): void;
     
     /**
      * Builds a "length" element.
@@ -682,7 +682,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildLengthElement();
+    public function buildLengthElement(): void;
     
     /**
      * Builds a "list" element.
@@ -692,7 +692,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildListElement();
+    public function buildListElement(): void;
     
     /**
      * Builds a "maxExclusive" element.
@@ -702,7 +702,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildMaxExclusiveElement();
+    public function buildMaxExclusiveElement(): void;
     
     /**
      * Builds a "maxInclusive" element.
@@ -712,7 +712,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildMaxInclusiveElement();
+    public function buildMaxInclusiveElement(): void;
     
     /**
      * Builds a "maxLength" element.
@@ -722,7 +722,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildMaxLengthElement();
+    public function buildMaxLengthElement(): void;
     
     /**
      * Builds a "minExclusive" element.
@@ -732,7 +732,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildMinExclusiveElement();
+    public function buildMinExclusiveElement(): void;
     
     /**
      * Builds a "minInclusive" element.
@@ -742,7 +742,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildMinInclusiveElement();
+    public function buildMinInclusiveElement(): void;
     
     /**
      * Builds a "minLength" element.
@@ -752,7 +752,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildMinLengthElement();
+    public function buildMinLengthElement(): void;
     
     /**
      * Builds a "notation" element.
@@ -762,7 +762,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildNotationElement();
+    public function buildNotationElement(): void;
     
     /**
      * Builds a "pattern" element.
@@ -772,7 +772,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildPatternElement();
+    public function buildPatternElement(): void;
     
     /**
      * Builds a "restriction" element.
@@ -782,7 +782,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildRestrictionElement();
+    public function buildRestrictionElement(): void;
     
     /**
      * Builds a "selector" element.
@@ -792,7 +792,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildSelectorElement();
+    public function buildSelectorElement(): void;
     
     /**
      * Builds a "sequence" element.
@@ -802,7 +802,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildSequenceElement();
+    public function buildSequenceElement(): void;
     
     /**
      * Builds a "simpleContent" element.
@@ -812,7 +812,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildSimpleContentElement();
+    public function buildSimpleContentElement(): void;
     
     /**
      * Builds a "simpleType" element.
@@ -822,7 +822,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildSimpleTypeElement();
+    public function buildSimpleTypeElement(): void;
     
     /**
      * Builds a "totalDigits" element.
@@ -832,7 +832,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildTotalDigitsElement();
+    public function buildTotalDigitsElement(): void;
     
     /**
      * Builds an "union" element.
@@ -842,7 +842,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildUnionElement();
+    public function buildUnionElement(): void;
     
     /**
      * Builds an "unique" element.
@@ -852,7 +852,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildUniqueElement();
+    public function buildUniqueElement(): void;
     
     /**
      * Builds a "whiteSpace" element.
@@ -862,7 +862,7 @@ interface SchemaBuilderInterface
      * - the created instance is added or set to the current element, and 
      * - the created instance becomes the current element.
      */
-    public function buildWhiteSpaceElement();
+    public function buildWhiteSpaceElement(): void;
     
     /**
      * Builds a "schema" element.
@@ -870,7 +870,7 @@ interface SchemaBuilderInterface
      * A new instance is created that replaces the "schema" element and the 
      * current element that is being built.
      */
-    public function buildSchemaElement();
+    public function buildSchemaElement(): void;
     
     /**
      * Builds the content of a leaf element.
@@ -881,7 +881,7 @@ interface SchemaBuilderInterface
      * 
      * @param   string  $content    The content to set in the element.
      */
-    public function buildLeafElementContent(string $content);
+    public function buildLeafElementContent(string $content): void;
     
     /**
      * Updates the current element with the parent element of the current 
@@ -890,5 +890,5 @@ interface SchemaBuilderInterface
      * If the current element is a "schema" element then the new current 
      * element is NULL and no more attributes and/or elements can be built.
      */
-    public function endElement();
+    public function endElement(): void;
 }

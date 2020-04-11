@@ -24,7 +24,7 @@ class IncludeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new IncludeElement();
     }
@@ -32,7 +32,7 @@ class IncludeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_INCLUDE, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class IncludeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testIncludeElementWhenAddedToSchemaElement()
+    public function testIncludeElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addIncludeElement($this->sut);
@@ -57,7 +57,7 @@ class IncludeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testIncludeElementWithParentThrowsExceptionWhenSchemaElementAddIncludeElement()
+    public function testIncludeElementWithParentThrowsExceptionWhenSchemaElementAddIncludeElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addIncludeElement($this->sut);
@@ -75,7 +75,7 @@ class IncludeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addIncludeElement($this->sut);

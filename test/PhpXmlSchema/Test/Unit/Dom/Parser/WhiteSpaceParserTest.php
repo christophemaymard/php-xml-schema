@@ -24,7 +24,7 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'whiteSpace';
     }
@@ -35,7 +35,7 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('whiteSpace_0006.xsd'));
         
@@ -84,7 +84,7 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidFixedAttributes
      */
-    public function testParseProcessFixedAttribute(string $fileName, bool $bool)
+    public function testParseProcessFixedAttribute(string $fileName, bool $bool): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -128,7 +128,7 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -179,7 +179,8 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
         bool $coll,
         bool $pres,
         bool $rep
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -221,7 +222,7 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -265,7 +266,7 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidFixedAttributes():array
+    public function getValidFixedAttributes(): array
     {
         return [
             'true (string)' => [
@@ -308,7 +309,7 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -343,7 +344,7 @@ class WhiteSpaceParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidValueAttributes():array
+    public function getValidValueAttributes(): array
     {
         return [
             'collapse' => [

@@ -26,7 +26,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new FieldElement();
     }
@@ -34,7 +34,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_FIELD, $this->sut->getElementId());
     }
@@ -45,7 +45,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFieldElementWhenAddedToKeyElement()
+    public function testFieldElementWhenAddedToKeyElement(): void
     {
         $parent = new KeyElement();
         $parent->addFieldElement($this->sut);
@@ -59,7 +59,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFieldElementWithParentThrowsExceptionWhenKeyElementAddFieldElement()
+    public function testFieldElementWithParentThrowsExceptionWhenKeyElementAddFieldElement(): void
     {
         $parent1 = new KeyElement();
         $parent1->addFieldElement($this->sut);
@@ -75,7 +75,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFieldElementWhenAddedToKeyRefElement()
+    public function testFieldElementWhenAddedToKeyRefElement(): void
     {
         $parent = new KeyRefElement();
         $parent->addFieldElement($this->sut);
@@ -89,7 +89,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFieldElementWithParentThrowsExceptionWhenKeyRefElementAddFieldElement()
+    public function testFieldElementWithParentThrowsExceptionWhenKeyRefElementAddFieldElement(): void
     {
         $parent1 = new KeyRefElement();
         $parent1->addFieldElement($this->sut);
@@ -105,7 +105,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFieldElementWhenAddedToUniqueElement()
+    public function testFieldElementWhenAddedToUniqueElement(): void
     {
         $parent = new UniqueElement();
         $parent->addFieldElement($this->sut);
@@ -119,7 +119,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFieldElementWithParentThrowsExceptionWhenUniqueElementAddFieldElement()
+    public function testFieldElementWithParentThrowsExceptionWhenUniqueElementAddFieldElement(): void
     {
         $parent1 = new UniqueElement();
         $parent1->addFieldElement($this->sut);
@@ -137,7 +137,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToKeyElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToKeyElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new KeyElement();
         $parent->addFieldElement($this->sut);
@@ -153,7 +153,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToKeyRefElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToKeyRefElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new KeyRefElement();
         $parent->addFieldElement($this->sut);
@@ -169,7 +169,7 @@ class FieldElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToUniqueElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToUniqueElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new UniqueElement();
         $parent->addFieldElement($this->sut);

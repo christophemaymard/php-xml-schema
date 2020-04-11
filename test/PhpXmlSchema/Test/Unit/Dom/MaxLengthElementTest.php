@@ -23,7 +23,7 @@ class MaxLengthElementTest extends AbstractNumericFacetElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new MaxLengthElement();
     }
@@ -31,7 +31,7 @@ class MaxLengthElementTest extends AbstractNumericFacetElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('maxLength', $this->sut->getLocalName());
     }

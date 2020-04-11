@@ -57,7 +57,7 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_GROUP;
     }
@@ -65,7 +65,7 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'group';
     }
@@ -73,7 +73,7 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
-    public function getMaxOccurs()
+    public function getMaxOccurs(): ?NonNegativeIntegerLimitType
     {
         return $this->maxOccursAttr;
     }
@@ -81,7 +81,7 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
-    public function setMaxOccurs(NonNegativeIntegerLimitType $value)
+    public function setMaxOccurs(NonNegativeIntegerLimitType $value): void
     {
         $this->maxOccursAttr = $value;
     }
@@ -89,7 +89,7 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
-    public function hasMaxOccurs():bool
+    public function hasMaxOccurs(): bool
     {
         return $this->maxOccursAttr !== NULL;
     }
@@ -97,7 +97,7 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
-    public function getMinOccurs()
+    public function getMinOccurs(): ?NonNegativeIntegerType
     {
         return $this->minOccursAttr;
     }
@@ -105,7 +105,7 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
-    public function setMinOccurs(NonNegativeIntegerType $value)
+    public function setMinOccurs(NonNegativeIntegerType $value): void
     {
         $this->minOccursAttr = $value;
     }
@@ -113,7 +113,7 @@ class GroupElement extends AbstractAnnotatedElement implements
     /**
      * {@inheritDoc}
      */
-    public function hasMinOccurs():bool
+    public function hasMinOccurs(): bool
     {
         return $this->minOccursAttr !== NULL;
     }
@@ -123,7 +123,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getName()
+    public function getName(): ?NCNameType
     {
         return $this->nameAttr;
     }
@@ -133,7 +133,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @param   NCNameType  $value  The value to set.
      */
-    public function setName(NCNameType $value)
+    public function setName(NCNameType $value): void
     {
         $this->nameAttr = $value;
     }
@@ -143,7 +143,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasName():bool
+    public function hasName(): bool
     {
         return $this->nameAttr !== NULL;
     }
@@ -153,7 +153,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getRef()
+    public function getRef(): ?QNameType
     {
         return $this->refAttr;
     }
@@ -163,7 +163,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setRef(QNameType $value)
+    public function setRef(QNameType $value): void
     {
         $this->refAttr = $value;
     }
@@ -173,7 +173,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasRef():bool
+    public function hasRef(): bool
     {
         return $this->refAttr !== NULL;
     }
@@ -183,7 +183,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @return  ModelGroupElementInterface|NULL The instance of the element if it has been set, otherwise NULL.
      */
-    public function getModelGroupElement()
+    public function getModelGroupElement(): ?ModelGroupElementInterface
     {
         return $this->getChildElement(1);
     }
@@ -193,7 +193,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @param   ModelGroupElementInterface  $element    The element to set.
      */
-    public function setModelGroupElement(ModelGroupElementInterface $element)
+    public function setModelGroupElement(ModelGroupElementInterface $element): void
     {
         $this->setChildElement(1, $element);
     }
@@ -203,7 +203,7 @@ class GroupElement extends AbstractAnnotatedElement implements
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasModelGroupElement():bool
+    public function hasModelGroupElement(): bool
     {
         return $this->isChildElementSet(1);
     }

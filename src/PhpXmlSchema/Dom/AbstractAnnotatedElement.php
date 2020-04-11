@@ -18,7 +18,7 @@ abstract class AbstractAnnotatedElement extends AbstractCompositeElement impleme
     /**
      * {@inheritDoc}
      */
-    public function getAnnotationElement()
+    public function getAnnotationElement(): ?AnnotationElement
     {
         return $this->getChildElement(0);
     }
@@ -26,7 +26,7 @@ abstract class AbstractAnnotatedElement extends AbstractCompositeElement impleme
     /**
      * {@inheritDoc}
      */
-    public function setAnnotationElement(AnnotationElement $element)
+    public function setAnnotationElement(AnnotationElement $element): void
     {
         $this->setChildElement(0, $element);
     }
@@ -34,7 +34,7 @@ abstract class AbstractAnnotatedElement extends AbstractCompositeElement impleme
     /**
      * {@inheritDoc}
      */
-    public function hasAnnotationElement():bool
+    public function hasAnnotationElement(): bool
     {
         return $this->isChildElementSet(0);
     }

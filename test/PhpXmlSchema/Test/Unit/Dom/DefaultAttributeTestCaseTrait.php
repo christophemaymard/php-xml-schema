@@ -25,7 +25,7 @@ trait DefaultAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasDefault()
+    public function testHasDefault(): void
     {
         self::assertFalse($this->sut->hasDefault(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait DefaultAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetDefault()
+    public function testGetDefault(): void
     {
         self::assertNull($this->sut->getDefault(), 'The attribute has not been set.');
         

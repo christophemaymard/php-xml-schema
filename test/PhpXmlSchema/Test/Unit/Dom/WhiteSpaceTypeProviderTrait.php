@@ -19,7 +19,7 @@ trait WhiteSpaceTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidWhiteSpaceTypeValues():array
+    public function getValidWhiteSpaceTypeValues(): array
     {
         return [
             'collapse' => [ 
@@ -48,7 +48,7 @@ trait WhiteSpaceTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidWhiteSpaceTypeValues():array
+    public function getInvalidWhiteSpaceTypeValues(): array
     {
         return [
             'Empty string' => [ 

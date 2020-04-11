@@ -25,7 +25,7 @@ class ComplexContentRestrictionElementTest extends AbstractTypeNamingElementTest
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ComplexContentRestrictionElement();
     }
@@ -33,7 +33,7 @@ class ComplexContentRestrictionElementTest extends AbstractTypeNamingElementTest
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('restriction', $this->sut->getLocalName());
     }

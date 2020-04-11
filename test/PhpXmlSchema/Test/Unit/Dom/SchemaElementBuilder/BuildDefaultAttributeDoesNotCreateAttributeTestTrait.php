@@ -26,7 +26,7 @@ trait BuildDefaultAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildDefaultAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildDefaultAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildDefaultAttribute("\u{0000}");
         $this->sut->buildDefaultAttribute('foo');

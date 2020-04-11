@@ -23,7 +23,7 @@ class DocumentationParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'documentation';
     }
@@ -34,7 +34,7 @@ class DocumentationParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('documentation_0005.xsd'));
         
@@ -69,7 +69,7 @@ class DocumentationParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessSourceAttribute()
+    public function testParseProcessSourceAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('documentation_src_0001.xsd'));
         
@@ -108,7 +108,8 @@ class DocumentationParserTest extends AbstractParserTestCase
         string $fileName, 
         string $prim, 
         array $subtags
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -139,7 +140,7 @@ class DocumentationParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessContent()
+    public function testParseProcessContent(): void
     {
         $sch = $this->sut->parse($this->getXs('documentation_0004.xsd'));
         
@@ -173,7 +174,7 @@ class DocumentationParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidLangAttributes():array
+    public function getValidLangAttributes(): array
     {
         return [
             'Primary subtag of 1 character' => [

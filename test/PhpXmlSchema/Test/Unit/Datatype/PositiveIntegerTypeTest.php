@@ -25,7 +25,7 @@ class PositiveIntegerTypeTest extends TestCase
     /**
      * Tests that __construct() stores the value when it is valid.
      */
-    public function test__constructStoresValueWhenItIsValid()
+    public function test__constructStoresValueWhenItIsValid(): void
     {
         $value = \gmp_init(1);
         $sut = new PositiveIntegerType($value);
@@ -40,7 +40,7 @@ class PositiveIntegerTypeTest extends TestCase
      * 
      * @dataProvider    getInvalidValues
      */
-    public function test__constructThrowsExceptionWhenValueIsInvalid(\GMP $value)
+    public function test__constructThrowsExceptionWhenValueIsInvalid(\GMP $value): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid positiveInteger datatype.', $value));
@@ -53,7 +53,7 @@ class PositiveIntegerTypeTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getInvalidValues():array
+    public function getInvalidValues(): array
     {
         $datasets = [];
         

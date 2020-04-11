@@ -23,7 +23,7 @@ class ChoiceElementTest extends AbstractExplicitModelGroupElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ChoiceElement();
     }
@@ -31,7 +31,7 @@ class ChoiceElementTest extends AbstractExplicitModelGroupElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('choice', $this->sut->getLocalName());
     }

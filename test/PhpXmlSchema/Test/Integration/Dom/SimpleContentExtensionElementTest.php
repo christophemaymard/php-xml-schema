@@ -24,7 +24,7 @@ class SimpleContentExtensionElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SimpleContentExtensionElement();
     }
@@ -32,7 +32,7 @@ class SimpleContentExtensionElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_SIMPLECONTENT_EXTENSION, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class SimpleContentExtensionElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleContentExtensionElementWhenAddedToSimpleContentElement()
+    public function testSimpleContentExtensionElementWhenAddedToSimpleContentElement(): void
     {
         $parent = new SimpleContentElement();
         $parent->setDerivationElement($this->sut);
@@ -57,7 +57,7 @@ class SimpleContentExtensionElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testSimpleContentExtensionElementWithParentThrowsExceptionWhenSimpleContentElementSetDerivationElement()
+    public function testSimpleContentExtensionElementWithParentThrowsExceptionWhenSimpleContentElementSetDerivationElement(): void
     {
         $parent1 = new SimpleContentElement();
         $parent1->setDerivationElement($this->sut);
@@ -75,7 +75,7 @@ class SimpleContentExtensionElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentElement();
         $parent->setDerivationElement($this->sut);

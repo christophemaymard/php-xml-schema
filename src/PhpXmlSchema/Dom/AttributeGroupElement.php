@@ -40,7 +40,7 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_ATTRIBUTEGROUP;
     }
@@ -48,7 +48,7 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'attributeGroup';
     }
@@ -58,7 +58,7 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
      * 
      * @return  NCNameType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getName()
+    public function getName(): ?NCNameType
     {
         return $this->nameAttr;
     }
@@ -68,7 +68,7 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
      * 
      * @param   NCNameType  $value  The value to set.
      */
-    public function setName(NCNameType $value)
+    public function setName(NCNameType $value): void
     {
         $this->nameAttr = $value;
     }
@@ -78,7 +78,7 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasName():bool
+    public function hasName(): bool
     {
         return $this->nameAttr !== NULL;
     }
@@ -88,7 +88,7 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getRef()
+    public function getRef(): ?QNameType
     {
         return $this->refAttr;
     }
@@ -98,7 +98,7 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setRef(QNameType $value)
+    public function setRef(QNameType $value): void
     {
         $this->refAttr = $value;
     }
@@ -108,7 +108,7 @@ class AttributeGroupElement extends AbstractAttributeNamingElement implements At
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasRef():bool
+    public function hasRef(): bool
     {
         return $this->refAttr !== NULL;
     }

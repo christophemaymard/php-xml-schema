@@ -24,7 +24,7 @@ class UniqueParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'unique';
     }
@@ -35,7 +35,7 @@ class UniqueParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('unique_0006.xsd'));
         
@@ -116,7 +116,7 @@ class UniqueParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSelectorElement()
+    public function testParseProcessSelectorElement(): void
     {
         $sch = $this->sut->parse($this->getXs('selector_0002.xsd'));
         
@@ -191,7 +191,7 @@ class UniqueParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessFieldElement()
+    public function testParseProcessFieldElement(): void
     {
         $sch = $this->sut->parse($this->getXs('field_0002.xsd'));
         
@@ -274,7 +274,7 @@ class UniqueParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -353,7 +353,7 @@ class UniqueParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidNameAttributes
      */
-    public function testParseProcessNameAttribute(string $fileName, string $name)
+    public function testParseProcessNameAttribute(string $fileName, string $name): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -429,7 +429,7 @@ class UniqueParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -508,7 +508,7 @@ class UniqueParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -543,7 +543,7 @@ class UniqueParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNameAttributes():array
+    public function getValidNameAttributes(): array
     {
         return [
             'Starts with _' => [

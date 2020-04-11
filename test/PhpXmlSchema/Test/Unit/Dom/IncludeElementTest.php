@@ -23,7 +23,7 @@ class IncludeElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new IncludeElement();
     }
@@ -31,7 +31,7 @@ class IncludeElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('include', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class IncludeElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasSchemaLocation()
+    public function testHasSchemaLocation(): void
     {
         self::assertFalse($this->sut->hasSchemaLocation(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class IncludeElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetSchemaLocation()
+    public function testGetSchemaLocation(): void
     {
         self::assertNull($this->sut->getSchemaLocation(), 'The attribute has not been set.');
         

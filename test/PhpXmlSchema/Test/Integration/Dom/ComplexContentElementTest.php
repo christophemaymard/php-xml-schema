@@ -24,7 +24,7 @@ class ComplexContentElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ComplexContentElement();
     }
@@ -32,7 +32,7 @@ class ComplexContentElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_COMPLEXCONTENT, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class ComplexContentElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexContentElementWhenAddedToComplexTypeElement()
+    public function testComplexContentElementWhenAddedToComplexTypeElement(): void
     {
         $parent = new ComplexTypeElement();
         $parent->setContentElement($this->sut);
@@ -57,7 +57,7 @@ class ComplexContentElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexContentElementWithParentThrowsExceptionWhenComplexTypeElementSetContentElement()
+    public function testComplexContentElementWithParentThrowsExceptionWhenComplexTypeElementSetContentElement(): void
     {
         $parent1 = new ComplexTypeElement();
         $parent1->setContentElement($this->sut);
@@ -75,7 +75,7 @@ class ComplexContentElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToComplexTypeElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToComplexTypeElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ComplexTypeElement();
         $parent->setContentElement($this->sut);

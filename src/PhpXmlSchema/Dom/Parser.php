@@ -54,7 +54,7 @@ class Parser
      * @param   string  $src    The source to parse.
      * @return  SchemaElement   A new instance that represents the XML Schema document.
      */
-    public function parse(string $src):SchemaElement
+    public function parse(string $src): SchemaElement
     {
         $this->initParser($src);
         
@@ -72,7 +72,7 @@ class Parser
      * 
      * @throws  InvalidValueException   When the root element does not belong to the XML Schema 1.0 namespace.
      */
-    private function initParser(string $src)
+    private function initParser(string $src): void
     {
         $this->xt = new XmlTraverser($src);
         
@@ -96,7 +96,7 @@ class Parser
      * 
      * @throws  InvalidOperationException   When the node is not allowed.
      */
-    private function parseNode()
+    private function parseNode(): void
     {
         if ($this->xt->isElementNode()) {
             $this->parseElementNode();
@@ -115,7 +115,7 @@ class Parser
      * 
      * @return  bool    TRUE if a node has been found, otherwise FALSE.
      */
-    private function findNextNode():bool
+    private function findNextNode(): bool
     {
         if ($this->xt->isElementNode()) {
             if ($this->ctx->isComposite() && $this->xt->moveToFirstChildNode()) {
@@ -148,7 +148,7 @@ class Parser
      * 
      * @throws  InvalidOperationException   When the content is invalid.
      */
-    private function finishParsingElement()
+    private function finishParsingElement(): void
     {
         $this->builder->endElement();
         
@@ -164,7 +164,7 @@ class Parser
      * 
      * @throws  InvalidOperationException   When an element is unexpected.
      */
-    private function parseElementNode()
+    private function parseElementNode(): void
     {
         if ($this->xt->getNamespace() != XmlNamespace::XML_SCHEMA_1_0 || 
             !$this->ctx->isElementAccepted($this->xt->getLocalName())) {
@@ -209,7 +209,7 @@ class Parser
      * @throws  InvalidValueException       When the attribute is supported and the value is invalid.
      * @throws  InvalidOperationException   When the attribute is supported and the value is invalid.
      */
-    private function parseAttributeNode()
+    private function parseAttributeNode(): void
     {
         $localName = $this->xt->getLocalName();
         $namespace = $this->xt->getNamespace();

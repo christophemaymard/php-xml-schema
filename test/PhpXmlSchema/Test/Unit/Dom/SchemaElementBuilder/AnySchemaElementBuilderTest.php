@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -110,7 +111,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -123,7 +124,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -174,7 +175,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertAnyElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -182,7 +183,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -198,7 +199,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -215,7 +216,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -234,7 +235,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildIdAttributeCreatesAttrWhenAnyAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -261,7 +263,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildIdAttributeThrowsExceptionWhenAnyAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -281,7 +284,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildMaxOccursAttributeCreatesAttrWhenAnyAndValueIsUnbounded()
+    public function testBuildMaxOccursAttributeCreatesAttrWhenAnyAndValueIsUnbounded(): void
     {
         $this->sut->buildMaxOccursAttribute('unbounded');
         $sch = $this->sut->getSchema();
@@ -310,7 +313,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildMaxOccursAttributeCreatesAttrWhenAnyAndValueIsNonNegativeInteger(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMaxOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -336,7 +340,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenAnyAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
         
@@ -357,7 +362,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     public function testBuildMinOccursAttributeCreatesAttrWhenAnyAndValueIsValid(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMinOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -382,7 +388,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenAnyAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid nonNegativeInteger datatype.', 
@@ -414,7 +421,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         bool $targetNs, 
         bool $local, 
         array $uris
-    ) {
+    ): void
+    {
         $this->sut->buildNamespaceAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -446,7 +454,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public function testBuildNamespaceAttributeThrowsExceptionWhenAnyAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid namespace list.', $value));
         
@@ -471,7 +480,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
         bool $lax, 
         bool $skip, 
         bool $strict
-    ) {
+    ): void
+    {
         $this->sut->buildProcessContentsAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -498,7 +508,8 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      */
     public function testBuildProcessContentsAttributeThrowsExceptionWhenAnyAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid mode of content processing, expected "lax", '.
@@ -516,7 +527,7 @@ class AnySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenAny()
+    public function testBuildAnnotationElementCreateEltWhenAny(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

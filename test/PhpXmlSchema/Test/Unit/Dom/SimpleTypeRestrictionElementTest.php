@@ -23,7 +23,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractValueRestrictionE
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SimpleTypeRestrictionElement();
     }
@@ -31,7 +31,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractValueRestrictionE
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('restriction', $this->sut->getLocalName());
     }
@@ -45,7 +45,7 @@ class SimpleTypeRestrictionElementTest extends AbstractAbstractValueRestrictionE
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer012()
+    public function testGetElementsReturnsElementsOrderedByContainer012(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

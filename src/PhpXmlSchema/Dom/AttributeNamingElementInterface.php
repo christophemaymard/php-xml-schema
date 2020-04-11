@@ -22,54 +22,54 @@ interface AttributeNamingElementInterface
      * 
      * @param   AttributeElement    $element    The element to add.
      */
-    public function addAttributeElement(AttributeElement $element);
+    public function addAttributeElement(AttributeElement $element): void;
     
     /**
      * Returns all the "attribute" child elements.
      * 
      * @return  AttributeElement[]  An indexed array of AttributeElement instances.
      */
-    public function getAttributeElements():array;
+    public function getAttributeElements(): array;
     
     /**
      * Adds an "attributeGroup" element to this element.
      * 
      * @param   AttributeGroupElement   $element    The element to add.
      */
-    public function addAttributeGroupElement(AttributeGroupElement $element);
+    public function addAttributeGroupElement(AttributeGroupElement $element): void;
     
     /**
      * Returns all the "attributeGroup" child elements.
      * 
      * @return  AttributeGroupElement[] An indexed array of AttributeGroupElement instances.
      */
-    public function getAttributeGroupElements():array;
+    public function getAttributeGroupElements(): array;
     
     /**
      * Returns all the attribute declaration child elements.
      * 
      * @return  AttributeDeclarationElementInterface[]  An indexed array of AttributeDeclarationElementInterface instances.
      */
-    public function getAttributeDeclarationElements():array;
+    public function getAttributeDeclarationElements(): array;
     
     /**
      * Returns the "anyAttribute" element.
      * 
      * @return  AnyAttributeElement|NULL    The instance of the element if it has been set, otherwise NULL.
      */
-    public function getAnyAttributeElement();
+    public function getAnyAttributeElement(): ?AnyAttributeElement;
     
     /**
      * Sets the "anyAttribute" element.
      * 
      * @param   AnyAttributeElement $element    The element to set.
      */
-    public function setAnyAttributeElement(AnyAttributeElement $element);
+    public function setAnyAttributeElement(AnyAttributeElement $element): void;
     
     /**
      * Indicates whether an "anyAttribute" element has been set.
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasAnyAttributeElement():bool;
+    public function hasAnyAttributeElement(): bool;
 }

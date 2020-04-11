@@ -24,7 +24,7 @@ class RedefineElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new RedefineElement();
     }
@@ -32,7 +32,7 @@ class RedefineElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_REDEFINE, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class RedefineElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testRedefineElementWhenAddedToSchemaElement()
+    public function testRedefineElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addRedefineElement($this->sut);
@@ -57,7 +57,7 @@ class RedefineElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testRedefineElementWithParentThrowsExceptionWhenSchemaElementAddRedefineElement()
+    public function testRedefineElementWithParentThrowsExceptionWhenSchemaElementAddRedefineElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addRedefineElement($this->sut);
@@ -75,7 +75,7 @@ class RedefineElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addRedefineElement($this->sut);

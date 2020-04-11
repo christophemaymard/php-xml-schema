@@ -27,7 +27,7 @@ trait BuildTotalDigitsElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildTotalDigitsElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildTotalDigitsElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildTotalDigitsElement();
         $sch = $this->sut->getSchema();

@@ -24,7 +24,7 @@ class MinExclusiveParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'minExclusive';
     }
@@ -35,7 +35,7 @@ class MinExclusiveParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('minExclusive_0006.xsd'));
         
@@ -84,7 +84,7 @@ class MinExclusiveParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidFixedAttributes
      */
-    public function testParseProcessFixedAttribute(string $fileName, bool $bool)
+    public function testParseProcessFixedAttribute(string $fileName, bool $bool): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -128,7 +128,7 @@ class MinExclusiveParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -168,7 +168,7 @@ class MinExclusiveParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessValueAttribute()
+    public function testParseProcessValueAttribute(): void
     {
         $sch = $this->sut->parse($this->getXs('minExclusive_value_0001.xsd'));
         
@@ -209,7 +209,7 @@ class MinExclusiveParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -253,7 +253,7 @@ class MinExclusiveParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidFixedAttributes():array
+    public function getValidFixedAttributes(): array
     {
         return [
             'true (string)' => [
@@ -296,7 +296,7 @@ class MinExclusiveParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

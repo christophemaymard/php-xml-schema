@@ -24,7 +24,7 @@ class AnyAttributeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AnyAttributeElement();
     }
@@ -32,7 +32,7 @@ class AnyAttributeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_ANYATTRIBUTE, $this->sut->getElementId());
     }
@@ -49,7 +49,8 @@ class AnyAttributeElementTest extends AbstractAbstractElementTestCase
      */
     public function testAnyAttributeElementWhenAddedToAttributeNamingElement(
         AttributeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setAnyAttributeElement($this->sut);
         self::assertTrue($this->sut->hasParent());
         self::assertSame($parent, $this->sut->getParent());
@@ -69,7 +70,8 @@ class AnyAttributeElementTest extends AbstractAbstractElementTestCase
     public function testAnyAttributeElementWithParentThrowsExceptionWhenAttributeNamingElementSetAnyAttributeElement(
         AttributeNamingElementInterface $parent1,
         AttributeNamingElementInterface $parent2
-    ) {
+    ): void
+    {
         $parent1->setAnyAttributeElement($this->sut);
         
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
@@ -89,7 +91,8 @@ class AnyAttributeElementTest extends AbstractAbstractElementTestCase
      */
     public function testLookupNamespaceReturnsStringWhenAddedToAttributeNamingElementAndParentPrefixBoundToNamespace(
         AttributeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setAnyAttributeElement($this->sut);
         $parent->bindNamespace('foo', 'http://example.org/foo');
         self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));

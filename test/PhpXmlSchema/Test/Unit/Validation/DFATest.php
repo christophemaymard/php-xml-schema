@@ -24,7 +24,7 @@ class DFATest extends TestCase
      * Tests that __construct() initializes the current state with the 
      * initial state.
      */
-    public function test__constructInitializeCurrentStateWithInitialState()
+    public function test__constructInitializeCurrentStateWithInitialState(): void
     {
         $sut = new DFA(-1);
         self::assertSame(-1, $sut->getCurrentState());
@@ -34,7 +34,7 @@ class DFATest extends TestCase
      * Tests that getCurrentState() returns NULL when adding a symbol whereas 
      * there is no defined transition.
      */
-    public function testGetCurrentStateReturnsNullWhenAddingSymbolWithNoTransition()
+    public function testGetCurrentStateReturnsNullWhenAddingSymbolWithNoTransition(): void
     {
         $sut = new DFA(-1);
         $sut->addSymbol(0);
@@ -45,7 +45,7 @@ class DFATest extends TestCase
      * Tests that getCurrentState() returns the next state of the transition 
      * that matches the current state and the adding symbol.
      */
-    public function testGetCurrentStateReturnsIntWhenAddingSymbolMatchesTransitionStateSymbol()
+    public function testGetCurrentStateReturnsIntWhenAddingSymbolMatchesTransitionStateSymbol(): void
     {
         $sut = new DFA(-1);
         $sut->addTransition(-1, 100, 1);
@@ -57,7 +57,7 @@ class DFATest extends TestCase
      * Tests that addTransition() updates the next state of the transition 
      * that matches the state and the symbol.
      */
-    public function testAddTransitionUpdatesTransitionNextStateWhenAddingTransitionWithSameStateSameSymbolAndOtherNextState()
+    public function testAddTransitionUpdatesTransitionNextStateWhenAddingTransitionWithSameStateSameSymbolAndOtherNextState(): void
     {
         $sut = new DFA(0);
         $sut->addTransition(0, 100, 1);
@@ -71,7 +71,7 @@ class DFATest extends TestCase
      * - the current state is valid and there is no matching transition, or
      * - the current state is invalidated
      */
-    public function testGetCurrentStateReturnsNullWhenAddingSymbolDoesNotMatchTransition()
+    public function testGetCurrentStateReturnsNullWhenAddingSymbolDoesNotMatchTransition(): void
     {
         $sut = new DFA(0);
         $sut->addTransition(0, 100, 1);
@@ -85,7 +85,7 @@ class DFATest extends TestCase
      * Tests that acceptSymbol() returns TRUE when there is, at least, 
      * 1 transition defined with the current state.
      */
-    public function testAcceptSymbolReturnsTrue()
+    public function testAcceptSymbolReturnsTrue(): void
     {
         $sut = new DFA(0);
         $sut->addTransition(0, 100, 1);
@@ -103,7 +103,7 @@ class DFATest extends TestCase
      * - there is a transition with the current state but not the symbol, or
      * - the current state is invalidated
      */
-    public function testAcceptSymbolReturnsFalse()
+    public function testAcceptSymbolReturnsFalse(): void
     {
         $sut = new DFA(0);
         self::assertFalse($sut->acceptSymbol(200), 'No transition.');
@@ -118,7 +118,7 @@ class DFATest extends TestCase
      * - there is no defined transition with the current state, or
      * - the current state is invalidated
      */
-    public function testGetAcceptedSymbolsReturnsEmptyArray()
+    public function testGetAcceptedSymbolsReturnsEmptyArray(): void
     {
         $sut = new DFA(0);
         self::assertSame([], $sut->getAcceptedSymbols(), 'No transition.');
@@ -130,7 +130,7 @@ class DFATest extends TestCase
      * Tests that getAcceptedSymbols() returns an indexed array of integers 
      * when there is, at least, 1 transition defined with the current state.
      */
-    public function testGetAcceptedSymbolsReturnsIndexedArrayIntegers()
+    public function testGetAcceptedSymbolsReturnsIndexedArrayIntegers(): void
     {
         $sut = new DFA(0);
         $sut->addTransition(0, 10, 1);
@@ -148,7 +148,7 @@ class DFATest extends TestCase
      * - the current state is not part of the final state set, or
      * - the current state is invalidated
      */
-    public function testIsValidReturnsFalseWhenCurrentStateDoesNotMatchFinalState()
+    public function testIsValidReturnsFalseWhenCurrentStateDoesNotMatchFinalState(): void
     {
         $sut = new DFA(0);
         self::assertFalse($sut->isValid(), 'Final state set empty.');
@@ -164,7 +164,7 @@ class DFATest extends TestCase
      * Tests that isValid() returns TRUE when the current state is part of 
      * the final state set.
      */
-    public function testIsValidReturnsTrueWhenCurrentStateMatchesFinalState()
+    public function testIsValidReturnsTrueWhenCurrentStateMatchesFinalState(): void
     {
         $sut = new DFA(0);
         $sut->addFinalState(0);

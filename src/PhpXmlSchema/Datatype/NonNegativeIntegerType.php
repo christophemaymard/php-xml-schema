@@ -41,7 +41,7 @@ class NonNegativeIntegerType
      * 
      * @throws  InvalidValueException   When the value is an invalid nonNegativeInteger datatype.
      */
-    private function setValue(\GMP $value)
+    private function setValue(\GMP $value): void
     {
         if ($value < 0) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid nonNegativeInteger datatype.', $value));
@@ -55,7 +55,7 @@ class NonNegativeIntegerType
      * 
      * @return  \GMP
      */
-    public function getNonNegativeInteger():\GMP
+    public function getNonNegativeInteger(): \GMP
     {
         return $this->value;
     }

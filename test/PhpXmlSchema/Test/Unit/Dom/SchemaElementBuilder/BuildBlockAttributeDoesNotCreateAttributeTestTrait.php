@@ -25,7 +25,7 @@ trait BuildBlockAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildBlockAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildBlockAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildBlockAttribute('foo');
         $this->sut->buildBlockAttribute('extension');

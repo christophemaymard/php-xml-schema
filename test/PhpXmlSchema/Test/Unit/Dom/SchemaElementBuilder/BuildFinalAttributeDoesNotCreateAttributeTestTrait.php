@@ -25,7 +25,7 @@ trait BuildFinalAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildFinalAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildFinalAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         $this->sut->buildFinalAttribute('foo');
         $this->sut->buildFinalAttribute('restriction');

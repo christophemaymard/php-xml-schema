@@ -23,17 +23,17 @@ class WhiteSpaceType
      * 
      * Leading and trailing #x20s are removed.
      */
-    const COLLAPSE = 1;
+    public const COLLAPSE = 1;
     
     /**
      * No normalization is done.
      */
-    const PRESERVE = 2;
+    public const PRESERVE = 2;
     
     /**
      * All occurrences of #x9, #xA and #xD are replaced with #x20.
      */
-    const REPLACE = 3;
+    public const REPLACE = 3;
     
     /**
      * The white space.
@@ -46,7 +46,7 @@ class WhiteSpaceType
      * 
      * @return  WhiteSpaceType  A new instance of WhiteSpaceType.
      */
-    public static function createCollapse():self
+    public static function createCollapse(): self
     {
         return new self(self::COLLAPSE);
     }
@@ -56,7 +56,7 @@ class WhiteSpaceType
      * 
      * @return  WhiteSpaceType  A new instance of WhiteSpaceType.
      */
-    public static function createPreserve():self
+    public static function createPreserve(): self
     {
         return new self(self::PRESERVE);
     }
@@ -66,7 +66,7 @@ class WhiteSpaceType
      * 
      * @return  WhiteSpaceType  A new instance of WhiteSpaceType.
      */
-    public static function createReplace():self
+    public static function createReplace(): self
     {
         return new self(self::REPLACE);
     }
@@ -88,7 +88,7 @@ class WhiteSpaceType
      * 
      * @throws  InvalidValueException   When the white space is an invalid value.
      */
-    private function setWhiteSpace(int $ws)
+    private function setWhiteSpace(int $ws): void
     {
         if ($ws != self::COLLAPSE && $ws != self::PRESERVE && $ws != self::REPLACE) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid white space.', $ws));
@@ -102,7 +102,7 @@ class WhiteSpaceType
      * 
      * @return  bool    TRUE if the white space is "collapse", otherwise FALSE.
      */
-    public function isCollapse():bool
+    public function isCollapse(): bool
     {
         return $this->ws == self::COLLAPSE;
     }
@@ -112,7 +112,7 @@ class WhiteSpaceType
      * 
      * @return  bool    TRUE if the white space is "preserve", otherwise FALSE.
      */
-    public function isPreserve():bool
+    public function isPreserve(): bool
     {
         return $this->ws == self::PRESERVE;
     }
@@ -122,7 +122,7 @@ class WhiteSpaceType
      * 
      * @return  bool    TRUE if the white space is "replace", otherwise FALSE.
      */
-    public function isReplace():bool
+    public function isReplace(): bool
     {
         return $this->ws == self::REPLACE;
     }

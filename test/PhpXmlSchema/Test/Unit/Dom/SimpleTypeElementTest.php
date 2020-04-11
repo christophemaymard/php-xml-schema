@@ -26,7 +26,7 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SimpleTypeElement();
     }
@@ -34,7 +34,7 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('simpleType', $this->sut->getLocalName());
     }
@@ -46,7 +46,7 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testHasDerivationElement()
+    public function testHasDerivationElement(): void
     {
         self::assertFalse($this->sut->hasDerivationElement(), 'No element has been set.');
         
@@ -61,7 +61,7 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetDerivationElement()
+    public function testGetDerivationElement(): void
     {
         self::assertNull($this->sut->getDerivationElement(), 'No element has been set.');
         
@@ -84,7 +84,7 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createListElementHasParentFalse1TimeMock();
@@ -100,7 +100,7 @@ class SimpleTypeElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
+    public function testGetElementsReturnsElementsOrderedByContainer01(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

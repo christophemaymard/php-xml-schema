@@ -20,7 +20,7 @@ trait PositiveIntegerTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidPositiveIntegerTypeValues():array
+    public function getValidPositiveIntegerTypeValues(): array
     {
         return [
             '1' => [ 
@@ -55,7 +55,7 @@ trait PositiveIntegerTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidPositiveIntegerTypeValues():array
+    public function getInvalidPositiveIntegerTypeValues(): array
     {
         return [
             '0' => [ 

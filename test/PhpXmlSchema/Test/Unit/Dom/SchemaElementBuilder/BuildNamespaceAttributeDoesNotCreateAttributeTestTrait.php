@@ -26,7 +26,7 @@ trait BuildNamespaceAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildNamespaceAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildNamespaceAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         // anyURI
         $this->sut->buildNamespaceAttribute(':');

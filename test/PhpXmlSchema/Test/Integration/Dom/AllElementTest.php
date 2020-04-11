@@ -25,7 +25,7 @@ class AllElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AllElement();
     }
@@ -33,7 +33,7 @@ class AllElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_ALL, $this->sut->getElementId());
     }
@@ -50,7 +50,8 @@ class AllElementTest extends AbstractAbstractElementTestCase
      */
     public function testAllElementWhenAddedToTypeNamingElement(
         TypeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setTypeDefinitionParticleElement($this->sut);
         self::assertTrue($this->sut->hasParent());
         self::assertSame($parent, $this->sut->getParent());
@@ -70,7 +71,8 @@ class AllElementTest extends AbstractAbstractElementTestCase
     public function testAllElementWithParentThrowsExceptionWhenTypeNamingElementSetTypeDefinitionParticleElement(
         TypeNamingElementInterface $parent1,
         TypeNamingElementInterface $parent2
-    ) {
+    ): void
+    {
         $parent1->setTypeDefinitionParticleElement($this->sut);
         
         $this->expectInvalidOperationExceptionChildOfAnotherElement($this->sut, $parent2);
@@ -83,7 +85,7 @@ class AllElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAllElementWhenAddedToGroupElement()
+    public function testAllElementWhenAddedToGroupElement(): void
     {
         $parent = new GroupElement();
         $parent->setModelGroupElement($this->sut);
@@ -97,7 +99,7 @@ class AllElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAllElementWithParentThrowsExceptionWhenGroupElementSetModelGroupElement()
+    public function testAllElementWithParentThrowsExceptionWhenGroupElementSetModelGroupElement(): void
     {
         $parent1 = new GroupElement();
         $parent1->setModelGroupElement($this->sut);
@@ -120,7 +122,8 @@ class AllElementTest extends AbstractAbstractElementTestCase
      */
     public function testLookupNamespaceReturnsStringWhenAddedToTypeNamingElementAndParentPrefixBoundToNamespace(
         TypeNamingElementInterface $parent
-    ) {
+    ): void
+    {
         $parent->setTypeDefinitionParticleElement($this->sut);
         $parent->bindNamespace('foo', 'http://example.org/foo');
         self::assertSame('http://example.org/foo', $this->sut->lookupNamespace('foo'));
@@ -134,7 +137,7 @@ class AllElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToGroupElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToGroupElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new GroupElement();
         $parent->setModelGroupElement($this->sut);

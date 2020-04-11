@@ -23,7 +23,7 @@ class TokenType
      * 
      * Char ::= [#x21-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
      */
-    const CHAR = "\u{0021}-\u{D7FF}\u{E000}-\u{FFFD}\u{10000}-\u{10FFFF}";
+    private const CHAR = "\u{0021}-\u{D7FF}\u{E000}-\u{FFFD}\u{10000}-\u{10FFFF}";
     
     /**
      * The value.
@@ -48,7 +48,7 @@ class TokenType
      * 
      * @throws  InvalidValueException   When the value is an invalid token datatype.
      */
-    private function setValue(string $value)
+    private function setValue(string $value): void
     {
         if ($value != '' && !\preg_match('`^(['.self::CHAR.']+( ['.self::CHAR.']+)*)$`u', $value)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid token datatype.', $value));
@@ -62,7 +62,7 @@ class TokenType
      * 
      * @return  string
      */
-    public function getToken():string
+    public function getToken(): string
     {
         return $this->value;
     }

@@ -26,7 +26,7 @@ class QNameTest extends TestCase
     /**
      * Tests that __construct() stores the local part.
      */
-    public function test__constructStoresLocalPart()
+    public function test__constructStoresLocalPart(): void
     {
         $localPart = $this->createNCNameTypeDummy();
         $sut = new QNameType($localPart);
@@ -38,7 +38,7 @@ class QNameTest extends TestCase
      * Tests that hasNamespace() returns FALSE when no namespace has been 
      * stored.
      */
-    public function testHasNamespaceReturnsFalseWhenNoNamespaceStored()
+    public function testHasNamespaceReturnsFalseWhenNoNamespaceStored(): void
     {
         $sut = new QNameType($this->createNCNameTypeDummy());
         self::assertFalse($sut->hasNamespace());
@@ -47,7 +47,7 @@ class QNameTest extends TestCase
     /**
      * Tests that __construct() stores the local part and the namespace.
      */
-    public function test__constructStoresLocalPartAndNamespace()
+    public function test__constructStoresLocalPartAndNamespace(): void
     {
         $localPart = $this->createNCNameTypeDummy();
         $namespace = $this->createAnyUriTypeDummy();
@@ -60,7 +60,7 @@ class QNameTest extends TestCase
      * Tests that hasNamespace() returns TRUE when a namespace has been 
      * stored.
      */
-    public function testHasNamespaceReturnsTrueWhenNamespaceStored()
+    public function testHasNamespaceReturnsTrueWhenNamespaceStored(): void
     {
         $sut = new QNameType(
             $this->createNCNameTypeDummy(), 

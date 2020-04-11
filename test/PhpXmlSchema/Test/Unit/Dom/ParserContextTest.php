@@ -30,7 +30,7 @@ class ParserContextTest extends TestCase
      * Tests that isComposite() returns FALSE when the context is for a leaf 
      * element.
      */
-    public function testIsCompositeReturnsFalseWhenLEC()
+    public function testIsCompositeReturnsFalseWhenLEC(): void
     {
         $specMock = $this->createLESpecificationProphecy()->reveal();
         
@@ -42,7 +42,7 @@ class ParserContextTest extends TestCase
      * Tests that isComposite() returns TRUE when the context is for a 
      * composite element.
      */
-    public function testIsCompositeReturnsTrueWhenCEC()
+    public function testIsCompositeReturnsTrueWhenCEC(): void
     {
         $specMock = $this->createCESpecificationProphecy(0)->reveal();
         
@@ -54,7 +54,7 @@ class ParserContextTest extends TestCase
      * Tests that isElementAccepted() returns FALSE when the defined context 
      * is for leaf element.
      */
-    public function testIsElementAcceptedReturnsFalseWhenLEC()
+    public function testIsElementAcceptedReturnsFalseWhenLEC(): void
     {
         $specMock = $this->createLESpecificationProphecy()->reveal();
         
@@ -67,7 +67,7 @@ class ParserContextTest extends TestCase
      * - the defined context is for a composite element, and 
      * - findTransitionElementNameSymbol() returns NULL.
      */
-    public function testIsElementAcceptedReturnsFalseWhenCECFindTransitionElementNameSymbolReturnsNull()
+    public function testIsElementAcceptedReturnsFalseWhenCECFindTransitionElementNameSymbolReturnsNull(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(0);
         $specProphecy->findTransitionElementNameSymbol(0, 'foo')->willReturn(NULL)->shouldBeCalled();
@@ -82,7 +82,7 @@ class ParserContextTest extends TestCase
      * - the defined context is for a composite element, and 
      * - findTransitionElementNameSymbol() returns an integer.
      */
-    public function testIsElementAcceptedReturnsTrueWhenCECFindTransitionElementNameSymbolReturnsInt()
+    public function testIsElementAcceptedReturnsTrueWhenCECFindTransitionElementNameSymbolReturnsInt(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(0);
         $specProphecy->findTransitionElementNameSymbol(0, 'foo')->willReturn(TRUE)->shouldBeCalled();
@@ -96,7 +96,7 @@ class ParserContextTest extends TestCase
      * Tests that getAcceptedElements() returns an empty array when the 
      * defined context is for leaf element.
      */
-    public function testGetAcceptedElementsReturnsEmptyArrayWhenLEC()
+    public function testGetAcceptedElementsReturnsEmptyArrayWhenLEC(): void
     {
         $specMock = $this->createLESpecificationProphecy()->reveal();
         
@@ -109,7 +109,7 @@ class ParserContextTest extends TestCase
      * - the defined context is for a composite element, and 
      * - findTransitionElementNameSymbol() returns NULL.
      */
-    public function testGetAcceptedElementsReturnsArrayOfStrings()
+    public function testGetAcceptedElementsReturnsArrayOfStrings(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(0);
         $specProphecy->getTransitionElementNames(0)->willReturn([ 'foo', 'bar', ])->shouldBeCalled();
@@ -127,7 +127,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testCreateElementThrowsExceptionWhenLEC()
+    public function testCreateElementThrowsExceptionWhenLEC(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" element cannot be created '.
@@ -149,7 +149,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testCreateElementThrowsExceptionWhenCECElementNotAccepted()
+    public function testCreateElementThrowsExceptionWhenCECElementNotAccepted(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" element cannot be created '.
@@ -177,7 +177,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testCreateElementThrowsExceptionWhenCECNoElementBuilder()
+    public function testCreateElementThrowsExceptionWhenCECNoElementBuilder(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" element cannot be created '.
@@ -209,7 +209,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testCreateElementThrowsExceptionWhenCECNotCallable()
+    public function testCreateElementThrowsExceptionWhenCECNotCallable(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" element cannot be created '.
@@ -244,7 +244,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testCreateElementReturnsInt()
+    public function testCreateElementReturnsInt(): void
     {
         $sym = 10;
         $name = 'schema';
@@ -295,7 +295,7 @@ class ParserContextTest extends TestCase
      * Tests that isAttributeSupported() returns FALSE when the attribute is 
      * not associated with a builder.
      */
-    public function testIsAttributeSupportedReturnsFalseWhenNoAttributeBuilder()
+    public function testIsAttributeSupportedReturnsFalseWhenNoAttributeBuilder(): void
     {
         $specProphecy = $this->createLESpecificationProphecy();
         $specProphecy->hasAttributeBuilder('foo', '')
@@ -311,7 +311,7 @@ class ParserContextTest extends TestCase
      * Tests that isAttributeSupported() returns TRUE when the attribute is 
      * associated with a builder.
      */
-    public function testIsAttributeSupportedReturnsTrueWhenAttributeBuilderSet()
+    public function testIsAttributeSupportedReturnsTrueWhenAttributeBuilderSet(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(0);
         $specProphecy->hasAttributeBuilder('foo', '')
@@ -327,7 +327,7 @@ class ParserContextTest extends TestCase
      * Tests that createAttribute() throws an exception when the element is 
      * not supported.
      */
-    public function testCreateAttributeThrowsExceptionWhenAttributeNotSupported()
+    public function testCreateAttributeThrowsExceptionWhenAttributeNotSupported(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The attribute with the local name '.
@@ -350,7 +350,7 @@ class ParserContextTest extends TestCase
      * Tests that createAttribute() throws an exception the method is not 
      * part of the builder instance.
      */
-    public function testCreateAttributeThrowsExceptionWhenNotCallable()
+    public function testCreateAttributeThrowsExceptionWhenNotCallable(): void
     {
         // 'The "%s" element cannot be created because the "%s" method is not part of the builder instance.'
         $this->expectException(InvalidOperationException::class);
@@ -376,7 +376,7 @@ class ParserContextTest extends TestCase
     /**
      * Tests that createAttribute() calls a method of the builder instance.
      */
-    public function testCreateAttributeCallsMethod()
+    public function testCreateAttributeCallsMethod(): void
     {
         $specProphecy = $this->createLESpecificationProphecy();
         $specProphecy->hasAttributeBuilder('attributeFormDefault', '')
@@ -400,7 +400,7 @@ class ParserContextTest extends TestCase
      * Tests that isContentValid() returns TRUE when the defined context is 
      * for leaf element.
      */
-    public function testIsContentValidReturnsTrueWhenLEC()
+    public function testIsContentValidReturnsTrueWhenLEC(): void
     {
         $specProphecy = $this->createLESpecificationProphecy();
         $specMock = $specProphecy->reveal();
@@ -418,7 +418,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testIsContentValidReturnsFalseWhenCECNoFinalState()
+    public function testIsContentValidReturnsFalseWhenCECNoFinalState(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(0);
         $specMock = $specProphecy->reveal();
@@ -437,7 +437,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testIsContentValidReturnsFalseWhenCECInitialStateNotInFinalStates()
+    public function testIsContentValidReturnsFalseWhenCECInitialStateNotInFinalStates(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(0, [ 1, ]);
         $specMock = $specProphecy->reveal();
@@ -456,7 +456,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testIsContentValidReturnsTrueWhenCECInitialStateInFinalStates()
+    public function testIsContentValidReturnsTrueWhenCECInitialStateInFinalStates(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(0, [ 0, ]);
         $specMock = $specProphecy->reveal();
@@ -475,7 +475,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testIsContentValidReturnsFalseWhenCECCreateElementAndCurrentStateNotInFinalStates()
+    public function testIsContentValidReturnsFalseWhenCECCreateElementAndCurrentStateNotInFinalStates(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(
             0,
@@ -514,7 +514,7 @@ class ParserContextTest extends TestCase
      * @group   content
      * @group   fa
      */
-    public function testIsContentValidReturnsTrueWhenCECCreateElementAndCurrentStateInFinalStates()
+    public function testIsContentValidReturnsTrueWhenCECCreateElementAndCurrentStateInFinalStates(): void
     {
         $specProphecy = $this->createCESpecificationProphecy(
             0,
@@ -550,7 +550,7 @@ class ParserContextTest extends TestCase
      * 
      * @return  ObjectProphecy
      */
-    private function createLESpecificationProphecy():ObjectProphecy
+    private function createLESpecificationProphecy(): ObjectProphecy
     {
         $prophecy = $this->prophesize(Specification::class);
         $prophecy->hasInitialState()->willReturn(FALSE)->shouldBeCalled();
@@ -578,7 +578,8 @@ class ParserContextTest extends TestCase
         array $finalStates = [], 
         array $transitions = [], 
         array $transitionNextStates = []
-    ):ObjectProphecy {
+    ): ObjectProphecy
+    {
         $prophecy = $this->prophesize(Specification::class);
         $prophecy->hasInitialState()->willReturn(TRUE)->shouldBeCalled();
         $prophecy->getInitialState()->willReturn($initialState)->shouldBeCalled();
@@ -602,7 +603,7 @@ class ParserContextTest extends TestCase
      * 
      * @return  ProphecySubjectInterface
      */
-    private function createSchemaBuilderInterfaceDummy():ProphecySubjectInterface
+    private function createSchemaBuilderInterfaceDummy(): ProphecySubjectInterface
     {
         return $this->prophesize(SchemaBuilderInterface::class)->reveal();
     }
@@ -617,93 +618,93 @@ class ParserContextTest extends TestCase
      * 
      * @return  SchemaBuilderInterface
      */
-    private function createSchemaBuilderConcreteDummy():SchemaBuilderInterface
+    private function createSchemaBuilderConcreteDummy(): SchemaBuilderInterface
     {
         return new class() implements SchemaBuilderInterface
         {
-            public function bindNamespace(string $prefix, string $namespace) {}
-            public function buildAbstractAttribute(string $value) {}
-            public function buildAttributeFormDefaultAttribute(string $value) {}
-            public function buildBaseAttribute(string $value) {}
-            public function buildBlockAttribute(string $value) {}
-            public function buildBlockDefaultAttribute(string $value) {}
-            public function buildDefaultAttribute(string $value) {}
-            public function buildElementFormDefaultAttribute(string $value) {}
-            public function buildFinalAttribute(string $value) {}
-            public function buildFinalDefaultAttribute(string $value) {}
-            public function buildFixedAttribute(string $value) {}
-            public function buildFormAttribute(string $value) {}
-            public function buildIdAttribute(string $value) {}
-            public function buildItemTypeAttribute(string $value) {}
-            public function buildMaxOccursAttribute(string $value) {}
-            public function buildMemberTypesAttribute(string $value) {}
-            public function buildMinOccursAttribute(string $value) {}
-            public function buildMixedAttribute(string $value) {}
-            public function buildNameAttribute(string $value) {}
-            public function buildNamespaceAttribute(string $value) {}
-            public function buildNillableAttribute(string $value) {}
-            public function buildProcessContentsAttribute(string $value) {}
-            public function buildPublicAttribute(string $value) {}
-            public function buildRefAttribute(string $value) {}
-            public function buildReferAttribute(string $value) {}
-            public function buildSchemaLocationAttribute(string $value) {}
-            public function buildSourceAttribute(string $value) {}
-            public function buildSystemAttribute(string $value) {}
-            public function buildTargetNamespaceAttribute(string $value) {}
-            public function buildTypeAttribute(string $value) {}
-            public function buildUseAttribute(string $value) {}
-            public function buildValueAttribute(string $value) {}
-            public function buildVersionAttribute(string $value) {}
-            public function buildXPathAttribute(string $value) {}
-            public function buildLangAttribute(string $value) {}
+            public function bindNamespace(string $prefix, string $namespace): void {}
+            public function buildAbstractAttribute(string $value): void {}
+            public function buildAttributeFormDefaultAttribute(string $value): void {}
+            public function buildBaseAttribute(string $value): void {}
+            public function buildBlockAttribute(string $value): void {}
+            public function buildBlockDefaultAttribute(string $value): void {}
+            public function buildDefaultAttribute(string $value): void {}
+            public function buildElementFormDefaultAttribute(string $value): void {}
+            public function buildFinalAttribute(string $value): void {}
+            public function buildFinalDefaultAttribute(string $value): void {}
+            public function buildFixedAttribute(string $value): void {}
+            public function buildFormAttribute(string $value): void {}
+            public function buildIdAttribute(string $value): void {}
+            public function buildItemTypeAttribute(string $value): void {}
+            public function buildMaxOccursAttribute(string $value): void {}
+            public function buildMemberTypesAttribute(string $value): void {}
+            public function buildMinOccursAttribute(string $value): void {}
+            public function buildMixedAttribute(string $value): void {}
+            public function buildNameAttribute(string $value): void {}
+            public function buildNamespaceAttribute(string $value): void {}
+            public function buildNillableAttribute(string $value): void {}
+            public function buildProcessContentsAttribute(string $value): void {}
+            public function buildPublicAttribute(string $value): void {}
+            public function buildRefAttribute(string $value): void {}
+            public function buildReferAttribute(string $value): void {}
+            public function buildSchemaLocationAttribute(string $value): void {}
+            public function buildSourceAttribute(string $value): void {}
+            public function buildSystemAttribute(string $value): void {}
+            public function buildTargetNamespaceAttribute(string $value): void {}
+            public function buildTypeAttribute(string $value): void {}
+            public function buildUseAttribute(string $value): void {}
+            public function buildValueAttribute(string $value): void {}
+            public function buildVersionAttribute(string $value): void {}
+            public function buildXPathAttribute(string $value): void {}
+            public function buildLangAttribute(string $value): void {}
             
-            public function buildAllElement() {}
-            public function buildAnnotationElement() {}
-            public function buildCompositionAnnotationElement() {}
-            public function buildDefinitionAnnotationElement() {}
-            public function buildAnyElement() {}
-            public function buildAnyAttributeElement() {}
-            public function buildAppInfoElement() {}
-            public function buildAttributeElement() {}
-            public function buildAttributeGroupElement() {}
-            public function buildChoiceElement() {}
-            public function buildComplexContentElement() {}
-            public function buildComplexTypeElement() {}
-            public function buildDocumentationElement() {}
-            public function buildElementElement() {}
-            public function buildEnumerationElement() {}
-            public function buildExtensionElement() {}
-            public function buildFieldElement() {}
-            public function buildFractionDigitsElement() {}
-            public function buildGroupElement() {}
-            public function buildImportElement() {}
-            public function buildIncludeElement() {}
-            public function buildKeyElement() {}
-            public function buildKeyRefElement() {}
-            public function buildLengthElement() {}
-            public function buildListElement() {}
-            public function buildMaxExclusiveElement() {}
-            public function buildMaxInclusiveElement() {}
-            public function buildMaxLengthElement() {}
-            public function buildMinExclusiveElement() {}
-            public function buildMinInclusiveElement() {}
-            public function buildMinLengthElement() {}
-            public function buildNotationElement() {}
-            public function buildPatternElement() {}
-            public function buildRestrictionElement() {}
-            public function buildSelectorElement() {}
-            public function buildSequenceElement() {}
-            public function buildSimpleContentElement() {}
-            public function buildSimpleTypeElement() {}
-            public function buildTotalDigitsElement() {}
-            public function buildUnionElement() {}
-            public function buildUniqueElement() {}
-            public function buildWhiteSpaceElement() {}
-            public function buildSchemaElement() {}
+            public function buildAllElement(): void {}
+            public function buildAnnotationElement(): void {}
+            public function buildCompositionAnnotationElement(): void {}
+            public function buildDefinitionAnnotationElement(): void {}
+            public function buildAnyElement(): void {}
+            public function buildAnyAttributeElement(): void {}
+            public function buildAppInfoElement(): void {}
+            public function buildAttributeElement(): void {}
+            public function buildAttributeGroupElement(): void {}
+            public function buildChoiceElement(): void {}
+            public function buildComplexContentElement(): void {}
+            public function buildComplexTypeElement(): void {}
+            public function buildDocumentationElement(): void {}
+            public function buildElementElement(): void {}
+            public function buildEnumerationElement(): void {}
+            public function buildExtensionElement(): void {}
+            public function buildFieldElement(): void {}
+            public function buildFractionDigitsElement(): void {}
+            public function buildGroupElement(): void {}
+            public function buildImportElement(): void {}
+            public function buildIncludeElement(): void {}
+            public function buildKeyElement(): void {}
+            public function buildKeyRefElement(): void {}
+            public function buildLengthElement(): void {}
+            public function buildListElement(): void {}
+            public function buildMaxExclusiveElement(): void {}
+            public function buildMaxInclusiveElement(): void {}
+            public function buildMaxLengthElement(): void {}
+            public function buildMinExclusiveElement(): void {}
+            public function buildMinInclusiveElement(): void {}
+            public function buildMinLengthElement(): void {}
+            public function buildNotationElement(): void {}
+            public function buildPatternElement(): void {}
+            public function buildRestrictionElement(): void {}
+            public function buildSelectorElement(): void {}
+            public function buildSequenceElement(): void {}
+            public function buildSimpleContentElement(): void {}
+            public function buildSimpleTypeElement(): void {}
+            public function buildTotalDigitsElement(): void {}
+            public function buildUnionElement(): void {}
+            public function buildUniqueElement(): void {}
+            public function buildWhiteSpaceElement(): void {}
+            public function buildSchemaElement(): void {}
             
-            public function buildLeafElementContent(string $content) {}
+            public function buildLeafElementContent(string $content): void {}
             
-            public function endElement() {}
+            public function endElement(): void {}
         };
     }
 }

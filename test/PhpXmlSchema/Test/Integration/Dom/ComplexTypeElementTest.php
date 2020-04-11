@@ -26,7 +26,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ComplexTypeElement();
     }
@@ -34,7 +34,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_COMPLEXTYPE, $this->sut->getElementId());
     }
@@ -45,7 +45,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexTypeElementWhenAddedToElementElement()
+    public function testComplexTypeElementWhenAddedToElementElement(): void
     {
         $parent = new ElementElement();
         $parent->setTypeElement($this->sut);
@@ -59,7 +59,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexTypeElementWithParentThrowsExceptionWhenElementElementSetTypeElement()
+    public function testComplexTypeElementWithParentThrowsExceptionWhenElementElementSetTypeElement(): void
     {
         $parent1 = new ElementElement();
         $parent1->setTypeElement($this->sut);
@@ -75,7 +75,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexTypeElementWhenAddedToRedefineElement()
+    public function testComplexTypeElementWhenAddedToRedefineElement(): void
     {
         $parent = new RedefineElement();
         $parent->addComplexTypeElement($this->sut);
@@ -89,7 +89,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexTypeElementWithParentThrowsExceptionWhenRedefineElementAddComplexTypeElement()
+    public function testComplexTypeElementWithParentThrowsExceptionWhenRedefineElementAddComplexTypeElement(): void
     {
         $parent1 = new RedefineElement();
         $parent1->addComplexTypeElement($this->sut);
@@ -105,7 +105,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexTypeElementWhenAddedToSchemaElement()
+    public function testComplexTypeElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addComplexTypeElement($this->sut);
@@ -119,7 +119,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testComplexTypeElementWithParentThrowsExceptionWhenSchemaElementAddComplexTypeElement()
+    public function testComplexTypeElementWithParentThrowsExceptionWhenSchemaElementAddComplexTypeElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addComplexTypeElement($this->sut);
@@ -137,7 +137,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToElementElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToElementElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ElementElement();
         $parent->setTypeElement($this->sut);
@@ -153,7 +153,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToRedefineElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new RedefineElement();
         $parent->addComplexTypeElement($this->sut);
@@ -169,7 +169,7 @@ class ComplexTypeElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addComplexTypeElement($this->sut);

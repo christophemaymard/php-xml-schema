@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -107,7 +108,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -120,7 +121,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -131,7 +132,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertIncludeElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -139,7 +140,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getIncludeElements()[0];
     }
@@ -147,7 +148,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildIncludeElement();
@@ -156,7 +157,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -175,7 +176,8 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public function testBuildIdAttributeCreatesAttrWhenIncludeAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -202,7 +204,8 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public function testBuildIdAttributeThrowsExceptionWhenIncludeAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -227,7 +230,8 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public function testBuildSchemaLocationAttributeCreatesAttrWhenIncludeAndValueIsValid(
         string $value, 
         string $uri
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaLocationAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -254,7 +258,8 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
     public function testBuildSchemaLocationAttributeThrowsExceptionWhenIncludeAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -268,7 +273,7 @@ class IncludeSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCa
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenInclude()
+    public function testBuildAnnotationElementCreateEltWhenInclude(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

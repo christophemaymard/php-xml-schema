@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -106,7 +107,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -119,7 +120,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -145,7 +146,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertMinInclusiveElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -153,7 +154,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeElements()[0]
             ->getSimpleTypeElement()
@@ -164,7 +165,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeElement();
@@ -176,7 +177,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -195,7 +196,8 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     public function testBuildFixedAttributeCreatesAttrWhenMinInclusiveAndValueIsValid(
         string $value, 
         bool $bool
-    ) {
+    ): void
+    {
         $this->sut->buildFixedAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -220,7 +222,8 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      */
     public function testBuildFixedAttributeThrowsExceptionWhenMinInclusiveAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
@@ -241,7 +244,8 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     public function testBuildIdAttributeCreatesAttrWhenMinInclusiveAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -268,7 +272,8 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     public function testBuildIdAttributeThrowsExceptionWhenMinInclusiveAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -285,7 +290,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildValueAttributeCreatesAttrWhenMinInclusiveAndValueIsValid()
+    public function testBuildValueAttributeCreatesAttrWhenMinInclusiveAndValueIsValid(): void
     {
         $this->sut->buildValueAttribute('foo');
         $sch = $this->sut->getSchema();
@@ -306,7 +311,7 @@ class MinInclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenMinInclusive()
+    public function testBuildAnnotationElementCreateEltWhenMinInclusive(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

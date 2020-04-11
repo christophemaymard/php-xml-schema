@@ -32,7 +32,7 @@ class ListElement extends AbstractSimpleTypedElement implements SimpleTypeDeriva
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_LIST;
     }
@@ -40,7 +40,7 @@ class ListElement extends AbstractSimpleTypedElement implements SimpleTypeDeriva
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'list';
     }
@@ -50,7 +50,7 @@ class ListElement extends AbstractSimpleTypedElement implements SimpleTypeDeriva
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getItemType()
+    public function getItemType(): ?QNameType
     {
         return $this->itemTypeAttr;
     }
@@ -60,7 +60,7 @@ class ListElement extends AbstractSimpleTypedElement implements SimpleTypeDeriva
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setItemType(QNameType $value)
+    public function setItemType(QNameType $value): void
     {
         $this->itemTypeAttr = $value;
     }
@@ -70,7 +70,7 @@ class ListElement extends AbstractSimpleTypedElement implements SimpleTypeDeriva
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasItemType():bool
+    public function hasItemType(): bool
     {
         return $this->itemTypeAttr !== NULL;
     }

@@ -24,7 +24,7 @@ class ImportElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ImportElement();
     }
@@ -32,7 +32,7 @@ class ImportElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_IMPORT, $this->sut->getElementId());
     }
@@ -43,7 +43,7 @@ class ImportElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testImportElementWhenAddedToSchemaElement()
+    public function testImportElementWhenAddedToSchemaElement(): void
     {
         $parent = new SchemaElement();
         $parent->addImportElement($this->sut);
@@ -57,7 +57,7 @@ class ImportElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testImportElementWithParentThrowsExceptionWhenSchemaElementAddImportElement()
+    public function testImportElementWithParentThrowsExceptionWhenSchemaElementAddImportElement(): void
     {
         $parent1 = new SchemaElement();
         $parent1->addImportElement($this->sut);
@@ -75,7 +75,7 @@ class ImportElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSchemaElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SchemaElement();
         $parent->addImportElement($this->sut);

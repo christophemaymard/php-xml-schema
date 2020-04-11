@@ -28,7 +28,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AttributeElement();
     }
@@ -36,7 +36,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('attribute', $this->sut->getLocalName());
     }
@@ -48,7 +48,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasForm()
+    public function testHasForm(): void
     {
         self::assertFalse($this->sut->hasForm(), 'The attribute has not been set.');
         
@@ -63,7 +63,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetForm()
+    public function testGetForm(): void
     {
         self::assertNull($this->sut->getForm(), 'The attribute has not been set.');
         
@@ -83,7 +83,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasType()
+    public function testHasType(): void
     {
         self::assertFalse($this->sut->hasType(), 'The attribute has not been set.');
         
@@ -98,7 +98,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         self::assertNull($this->sut->getType(), 'The attribute has not been set.');
         
@@ -118,7 +118,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasUse()
+    public function testHasUse(): void
     {
         self::assertFalse($this->sut->hasUse(), 'The attribute has not been set.');
         
@@ -133,7 +133,7 @@ class AttributeElementTest extends AbstractSimpleTypedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetUse()
+    public function testGetUse(): void
     {
         self::assertNull($this->sut->getUse(), 'The attribute has not been set.');
         

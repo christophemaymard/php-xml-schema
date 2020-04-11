@@ -19,7 +19,7 @@ trait FormChoiceTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidFormChoiceTypeValues():array
+    public function getValidFormChoiceTypeValues(): array
     {
         return [
             'qualified' => [
@@ -36,7 +36,7 @@ trait FormChoiceTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidFormChoiceTypeValues():array
+    public function getInvalidFormChoiceTypeValues(): array
     {
         return [
             'Empty string' => [

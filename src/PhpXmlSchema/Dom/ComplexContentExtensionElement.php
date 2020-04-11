@@ -34,7 +34,7 @@ class ComplexContentExtensionElement extends AbstractTypeNamingElement implement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_COMPLEXCONTENT_EXTENSION;
     }
@@ -42,7 +42,7 @@ class ComplexContentExtensionElement extends AbstractTypeNamingElement implement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'extension';
     }
@@ -52,7 +52,7 @@ class ComplexContentExtensionElement extends AbstractTypeNamingElement implement
      * 
      * @return  QNameType|NULL  The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getBase()
+    public function getBase(): ?QNameType
     {
         return $this->baseAttr;
     }
@@ -62,7 +62,7 @@ class ComplexContentExtensionElement extends AbstractTypeNamingElement implement
      * 
      * @param   QNameType   $value  The value to set.
      */
-    public function setBase(QNameType $value)
+    public function setBase(QNameType $value): void
     {
         $this->baseAttr = $value;
     }
@@ -72,7 +72,7 @@ class ComplexContentExtensionElement extends AbstractTypeNamingElement implement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasBase():bool
+    public function hasBase(): bool
     {
         return $this->baseAttr !== NULL;
     }

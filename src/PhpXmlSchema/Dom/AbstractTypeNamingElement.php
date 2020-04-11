@@ -24,7 +24,7 @@ abstract class AbstractTypeNamingElement extends AbstractAttributeNamingElement 
     /**
      * {@inheritDoc}
      */
-    public function getTypeDefinitionParticleElement()
+    public function getTypeDefinitionParticleElement(): ?TypeDefinitionParticleElementInterface
     {
         return $this->getChildElement(2);
     }
@@ -32,7 +32,7 @@ abstract class AbstractTypeNamingElement extends AbstractAttributeNamingElement 
     /**
      * {@inheritDoc}
      */
-    public function setTypeDefinitionParticleElement(TypeDefinitionParticleElementInterface $element)
+    public function setTypeDefinitionParticleElement(TypeDefinitionParticleElementInterface $element): void
     {
         $this->setChildElement(2, $element);
     }
@@ -40,7 +40,7 @@ abstract class AbstractTypeNamingElement extends AbstractAttributeNamingElement 
     /**
      * {@inheritDoc}
      */
-    public function hasTypeDefinitionParticleElement():bool
+    public function hasTypeDefinitionParticleElement(): bool
     {
         return $this->isChildElementSet(2);
     }

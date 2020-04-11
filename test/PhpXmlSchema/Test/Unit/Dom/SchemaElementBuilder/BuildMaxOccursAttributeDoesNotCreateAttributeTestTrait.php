@@ -25,7 +25,7 @@ trait BuildMaxOccursAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildMaxOccursAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildMaxOccursAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         // nonNegativeInteger or unbounded
         $this->sut->buildMaxOccursAttribute('foo');

@@ -25,7 +25,7 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ComplexContentElement();
     }
@@ -33,7 +33,7 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('complexContent', $this->sut->getLocalName());
     }
@@ -45,7 +45,7 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testHasDerivationElement()
+    public function testHasDerivationElement(): void
     {
         self::assertFalse($this->sut->hasDerivationElement(), 'No element has been set.');
         
@@ -60,7 +60,7 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetDerivationElement()
+    public function testGetDerivationElement(): void
     {
         self::assertNull($this->sut->getDerivationElement(), 'No element has been set.');
         
@@ -79,7 +79,7 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createComplexContentExtensionElementHasParentFalse1TimeMock();
@@ -95,7 +95,7 @@ class ComplexContentElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer01()
+    public function testGetElementsReturnsElementsOrderedByContainer01(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

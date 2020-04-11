@@ -25,7 +25,7 @@ trait MixedAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasMixed()
+    public function testHasMixed(): void
     {
         self::assertFalse($this->sut->hasMixed(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait MixedAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetMixed()
+    public function testGetMixed(): void
     {
         self::assertNull($this->sut->getMixed(), 'The attribute has not been set.');
         

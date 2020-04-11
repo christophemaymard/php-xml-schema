@@ -24,7 +24,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'narrow_elt';
     }
@@ -35,7 +35,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('element_0006.xsd'));
         
@@ -96,7 +96,8 @@ class NarrowElementParserTest extends AbstractParserTestCase
         bool $res, 
         bool $ext, 
         bool $sub
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -147,7 +148,8 @@ class NarrowElementParserTest extends AbstractParserTestCase
     public function testParseProcessDefaultAttribute(
         string $fileName, 
         string $string
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -198,7 +200,8 @@ class NarrowElementParserTest extends AbstractParserTestCase
     public function testParseProcessFixedAttribute(
         string $fileName, 
         string $string
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -251,7 +254,8 @@ class NarrowElementParserTest extends AbstractParserTestCase
         string $fileName,
         bool $qual, 
         bool $unqual
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -300,7 +304,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -349,7 +353,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidMaxOccursAttributes
      */
-    public function testParseProcessMaxOccursAttribute(string $fileName, \GMP $nni)
+    public function testParseProcessMaxOccursAttribute(string $fileName, \GMP $nni): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -398,7 +402,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidMinOccursAttributes
      */
-    public function testParseProcessMinOccursAttribute(string $fileName, \GMP $nni)
+    public function testParseProcessMinOccursAttribute(string $fileName, \GMP $nni): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -447,7 +451,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidNameAttributes
      */
-    public function testParseProcessNameAttribute(string $fileName, string $name)
+    public function testParseProcessNameAttribute(string $fileName, string $name): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -496,7 +500,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidNillableAttributes
      */
-    public function testParseProcessNillableAttribute(string $fileName, bool $bool)
+    public function testParseProcessNillableAttribute(string $fileName, bool $bool): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -549,7 +553,8 @@ class NarrowElementParserTest extends AbstractParserTestCase
     public function testParseProcessRefAttributeWhenPrefixAbsentAndNoDefaultNamespace(
         string $fileName, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -605,7 +610,8 @@ class NarrowElementParserTest extends AbstractParserTestCase
         array $decls, 
         string $namespace, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations($decls, $sch);
@@ -653,7 +659,8 @@ class NarrowElementParserTest extends AbstractParserTestCase
     public function testParseProcessTypeAttributeWhenPrefixAbsentAndNoDefaultNamespace(
         string $fileName, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -709,7 +716,8 @@ class NarrowElementParserTest extends AbstractParserTestCase
         array $decls, 
         string $namespace, 
         string $localPart
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations($decls, $sch);
@@ -750,7 +758,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -800,7 +808,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSimpleTypeElement()
+    public function testParseProcessSimpleTypeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
         
@@ -855,7 +863,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessComplexTypeElement()
+    public function testParseProcessComplexTypeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('complexType_0002.xsd'));
         
@@ -905,7 +913,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessUniqueElement()
+    public function testParseProcessUniqueElement(): void
     {
         $sch = $this->sut->parse($this->getXs('unique_0002.xsd'));
         
@@ -980,7 +988,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessKeyElement()
+    public function testParseProcessKeyElement(): void
     {
         $sch = $this->sut->parse($this->getXs('key_0002.xsd'));
         
@@ -1055,7 +1063,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessKeyRefElement()
+    public function testParseProcessKeyRefElement(): void
     {
         $sch = $this->sut->parse($this->getXs('keyref_0002.xsd'));
         
@@ -1129,7 +1137,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidBlockAttributes():array
+    public function getValidBlockAttributes(): array
     {
         // [ $fileName, $restriction, $extension, $substitution, ]
         return [
@@ -1180,7 +1188,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidDefaultAttributes():array
+    public function getValidDefaultAttributes(): array
     {
         return [
             'Empty string' => [
@@ -1207,7 +1215,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidFixedAttributes():array
+    public function getValidFixedAttributes(): array
     {
         return [
             'Empty string' => [
@@ -1234,7 +1242,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidFormAttributes():array
+    public function getValidFormAttributes(): array
     {
         // [ $fileName, $qualified, $unqualified, ]
         return [
@@ -1252,7 +1260,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -1287,7 +1295,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidMaxOccursAttributes():array
+    public function getValidMaxOccursAttributes(): array
     {
         return [
             '0' => [
@@ -1338,7 +1346,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidMinOccursAttributes():array
+    public function getValidMinOccursAttributes(): array
     {
         return [
             '0' => [
@@ -1389,7 +1397,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNameAttributes():array
+    public function getValidNameAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -1424,7 +1432,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNillableAttributes():array
+    public function getValidNillableAttributes(): array
     {
         return [
             'true (string)' => [
@@ -1468,7 +1476,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNoNamespaceRefAttributes():array
+    public function getValidNoNamespaceRefAttributes(): array
     {
         return [
             'Local part starts with _' => [
@@ -1511,7 +1519,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidRefAttributes():array
+    public function getValidRefAttributes(): array
     {
         return [
             'Prefix (absent) and bound to default namespace' => [
@@ -1658,7 +1666,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNoNamespaceTypeAttributes():array
+    public function getValidNoNamespaceTypeAttributes(): array
     {
         return [
             'Local part starts with _' => [
@@ -1701,7 +1709,7 @@ class NarrowElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidTypeAttributes():array
+    public function getValidTypeAttributes(): array
     {
         return [
             'Prefix (absent) and bound to default namespace' => [

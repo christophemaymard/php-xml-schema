@@ -33,7 +33,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new ElementElement();
     }
@@ -41,7 +41,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('element', $this->sut->getLocalName());
     }
@@ -53,7 +53,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasForm()
+    public function testHasForm(): void
     {
         self::assertFalse($this->sut->hasForm(), 'The attribute has not been set.');
         
@@ -68,7 +68,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetForm()
+    public function testGetForm(): void
     {
         self::assertNull($this->sut->getForm(), 'The attribute has not been set.');
         
@@ -88,7 +88,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasSubstitutionGroup()
+    public function testHasSubstitutionGroup(): void
     {
         self::assertFalse($this->sut->hasSubstitutionGroup(), 'The attribute has not been set.');
         
@@ -103,7 +103,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetSubstitutionGroup()
+    public function testGetSubstitutionGroup(): void
     {
         self::assertNull($this->sut->getSubstitutionGroup(), 'The attribute has not been set.');
         
@@ -123,7 +123,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasType()
+    public function testHasType(): void
     {
         self::assertFalse($this->sut->hasType(), 'The attribute has not been set.');
         
@@ -138,7 +138,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         self::assertNull($this->sut->getType(), 'The attribute has not been set.');
         
@@ -158,7 +158,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testHasTypeElement()
+    public function testHasTypeElement(): void
     {
         self::assertFalse($this->sut->hasTypeElement(), 'No element has been set.');
         
@@ -173,7 +173,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetTypeElement()
+    public function testGetTypeElement(): void
     {
         self::assertNull($this->sut->getTypeElement(), 'No element has been set.');
         
@@ -192,7 +192,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer1()
+    public function testGetElementsReturnsElementsOfContainer1(): void
     {
         $children = [];
         $children[] = $this->createComplexTypeElementHasParentFalse1TimeMock();
@@ -208,7 +208,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetUniqueElements()
+    public function testGetUniqueElements(): void
     {
         $elements = [];
         
@@ -238,7 +238,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetKeyElements()
+    public function testGetKeyElements(): void
     {
         $elements = [];
         
@@ -268,7 +268,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetKeyRefElements()
+    public function testGetKeyRefElements(): void
     {
         $elements = [];
         
@@ -297,7 +297,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetIdentityConstraintElements()
+    public function testGetIdentityConstraintElements(): void
     {
         $elements = [];
         
@@ -324,7 +324,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer2()
+    public function testGetElementsReturnsElementsOfContainer2(): void
     {
         $children = [];
         $children[] = $this->createUniqueElementHasParentFalse1TimeMock();
@@ -351,7 +351,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOrderedByContainer012()
+    public function testGetElementsReturnsElementsOrderedByContainer012(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();
@@ -387,7 +387,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasNillable()
+    public function testHasNillable(): void
     {
         self::assertFalse($this->sut->hasNillable(), 'The attribute has not been set.');
         
@@ -402,7 +402,7 @@ class ElementElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetNillable()
+    public function testGetNillable(): void
     {
         self::assertNull($this->sut->getNillable(), 'The attribute has not been set.');
         

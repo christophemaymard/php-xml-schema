@@ -24,7 +24,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'exp_choice';
     }
@@ -35,7 +35,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('choice_0006.xsd'));
         
@@ -99,7 +99,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -155,7 +155,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * 
      * @group   attribute
      */
-    public function testParseProcessMaxOccursAttributeWhenValueIsUnbounded()
+    public function testParseProcessMaxOccursAttributeWhenValueIsUnbounded(): void
     {
         $sch = $this->sut->parse($this->getXs('choice_maxOccurs_0001.xsd'));
         
@@ -214,7 +214,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidMaxOccursAttributes
      */
-    public function testParseProcessMaxOccursAttribute(string $fileName, \GMP $nni)
+    public function testParseProcessMaxOccursAttribute(string $fileName, \GMP $nni): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -273,7 +273,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidMinOccursAttributes
      */
-    public function testParseProcessMinOccursAttribute(string $fileName, \GMP $nni)
+    public function testParseProcessMinOccursAttribute(string $fileName, \GMP $nni): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -329,7 +329,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -389,7 +389,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessElementElement()
+    public function testParseProcessElementElement(): void
     {
         $sch = $this->sut->parse($this->getXs('element_0002.xsd'));
         
@@ -454,7 +454,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessGroupElement()
+    public function testParseProcessGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('group_0002.xsd'));
         
@@ -519,7 +519,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessChoiceElement()
+    public function testParseProcessChoiceElement(): void
     {
         $sch = $this->sut->parse($this->getXs('choice_explicit_0002.xsd'));
         
@@ -584,7 +584,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSequenceElement()
+    public function testParseProcessSequenceElement(): void
     {
         $sch = $this->sut->parse($this->getXs('sequence_0002.xsd'));
         
@@ -649,7 +649,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnyElement()
+    public function testParseProcessAnyElement(): void
     {
         $sch = $this->sut->parse($this->getXs('any_0002.xsd'));
         
@@ -713,7 +713,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -748,7 +748,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidMaxOccursAttributes():array
+    public function getValidMaxOccursAttributes(): array
     {
         return [
             '0' => [
@@ -791,7 +791,7 @@ class ExplicitChoiceParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidMinOccursAttributes():array
+    public function getValidMinOccursAttributes(): array
     {
         return [
             '0' => [

@@ -34,7 +34,8 @@ trait ParseThrowsExceptionWhenAttributeValueIsInvalidTrait
         string $fileName, 
         string $exception, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException($exception);
         $this->expectExceptionMessage($message);
         
@@ -46,7 +47,7 @@ trait ParseThrowsExceptionWhenAttributeValueIsInvalidTrait
      * 
      * @return  array[]
      */
-    public function getInvalidAttributeValues():array
+    public function getInvalidAttributeValues(): array
     {
         return $this->createDataSets('attribute');
     }

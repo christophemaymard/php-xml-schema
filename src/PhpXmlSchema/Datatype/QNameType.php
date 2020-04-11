@@ -45,7 +45,7 @@ class QNameType
      * 
      * @return  NCNameType  The instance of the local part.
      */
-    public function getLocalPart():NCNameType
+    public function getLocalPart(): NCNameType
     {
         return $this->localPart;
     }
@@ -55,7 +55,7 @@ class QNameType
      * 
      * @return  AnyUriType|NULL The instance of the namespace, otherwise NULL.
      */
-    public function getNamespace()
+    public function getNamespace(): ?AnyUriType
     {
         return $this->namespace;
     }
@@ -65,7 +65,7 @@ class QNameType
      * 
      * @return  bool    TRUE if the qualified name has a namespace, otherwise FALSE.
      */
-    public function hasNamespace():bool
+    public function hasNamespace(): bool
     {
         return $this->namespace !== NULL;
     }

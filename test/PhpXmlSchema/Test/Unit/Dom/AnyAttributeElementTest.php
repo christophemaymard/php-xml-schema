@@ -25,7 +25,7 @@ class AnyAttributeElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AnyAttributeElement();
     }
@@ -33,7 +33,7 @@ class AnyAttributeElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('anyAttribute', $this->sut->getLocalName());
     }
@@ -45,7 +45,7 @@ class AnyAttributeElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasProcessContents()
+    public function testHasProcessContents(): void
     {
         self::assertFalse($this->sut->hasProcessContents(), 'The attribute has not been set.');
         
@@ -60,7 +60,7 @@ class AnyAttributeElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetProcessContents()
+    public function testGetProcessContents(): void
     {
         self::assertNull($this->sut->getProcessContents(), 'The attribute has not been set.');
         

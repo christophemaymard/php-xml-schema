@@ -26,7 +26,7 @@ trait BuildValueAttributeDoesNotCreateAttributeTestTrait
      * 
      * @group   attribute
      */
-    public function testBuildValueAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr()
+    public function testBuildValueAttributeDoesNotCreateAttrWhenCEDoesNotSupportAttr(): void
     {
         // anySimpleType
         $this->sut->buildValueAttribute('value');

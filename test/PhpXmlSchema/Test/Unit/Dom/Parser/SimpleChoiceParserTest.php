@@ -24,7 +24,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'simple_choice';
     }
@@ -35,7 +35,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('choice_0006.xsd'));
         
@@ -74,7 +74,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -105,7 +105,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -140,7 +140,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessElementElement()
+    public function testParseProcessElementElement(): void
     {
         $sch = $this->sut->parse($this->getXs('element_0002.xsd'));
         
@@ -180,7 +180,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessGroupElement()
+    public function testParseProcessGroupElement(): void
     {
         $sch = $this->sut->parse($this->getXs('group_0002.xsd'));
         
@@ -220,7 +220,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessChoiceElement()
+    public function testParseProcessChoiceElement(): void
     {
         $sch = $this->sut->parse($this->getXs('choice_explicit_0002.xsd'));
         
@@ -260,7 +260,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSequenceElement()
+    public function testParseProcessSequenceElement(): void
     {
         $sch = $this->sut->parse($this->getXs('sequence_0002.xsd'));
         
@@ -300,7 +300,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnyElement()
+    public function testParseProcessAnyElement(): void
     {
         $sch = $this->sut->parse($this->getXs('any_0002.xsd'));
         
@@ -339,7 +339,7 @@ class SimpleChoiceParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [

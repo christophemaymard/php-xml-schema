@@ -26,7 +26,7 @@ trait BuildUnionElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildUnionElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildUnionElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildUnionElement();
         $sch = $this->sut->getSchema();

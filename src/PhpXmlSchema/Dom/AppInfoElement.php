@@ -31,7 +31,7 @@ class AppInfoElement extends AbstractLeafElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_APPINFO;
     }
@@ -39,7 +39,7 @@ class AppInfoElement extends AbstractLeafElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'appinfo';
     }
@@ -49,7 +49,7 @@ class AppInfoElement extends AbstractLeafElement
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getSource()
+    public function getSource(): ?AnyUriType
     {
         return $this->sourceAttr;
     }
@@ -59,7 +59,7 @@ class AppInfoElement extends AbstractLeafElement
      * 
      * @param   AnyUriType  $value  The value to set.
      */
-    public function setSource(AnyUriType $value)
+    public function setSource(AnyUriType $value): void
     {
         $this->sourceAttr = $value;
     }
@@ -69,7 +69,7 @@ class AppInfoElement extends AbstractLeafElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasSource():bool
+    public function hasSource(): bool
     {
         return $this->sourceAttr !== NULL;
     }

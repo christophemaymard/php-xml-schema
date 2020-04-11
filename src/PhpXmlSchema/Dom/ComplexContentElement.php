@@ -30,7 +30,7 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_COMPLEXCONTENT;
     }
@@ -38,7 +38,7 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'complexContent';
     }
@@ -48,7 +48,7 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
      * 
      * @return  bool|NULL   The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getMixed()
+    public function getMixed(): ?bool
     {
         return $this->mixedAttr;
     }
@@ -58,7 +58,7 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
      * 
      * @param   bool    $value  The value to set.
      */
-    public function setMixed(bool $value)
+    public function setMixed(bool $value): void
     {
         $this->mixedAttr = $value;
     }
@@ -68,7 +68,7 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasMixed():bool
+    public function hasMixed(): bool
     {
         return $this->mixedAttr !== NULL;
     }
@@ -78,7 +78,7 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
      * 
      * @return  ComplexContentDerivationElementInterface|NULL   The instance of the element if it has been set, otherwise NULL.
      */
-    public function getDerivationElement()
+    public function getDerivationElement(): ?ComplexContentDerivationElementInterface
     {
         return $this->getChildElement(1);
     }
@@ -88,7 +88,7 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
      * 
      * @param   ComplexContentDerivationElementInterface    $element    The element to set.
      */
-    public function setDerivationElement(ComplexContentDerivationElementInterface $element)
+    public function setDerivationElement(ComplexContentDerivationElementInterface $element): void
     {
         $this->setChildElement(1, $element);
     }
@@ -98,7 +98,7 @@ class ComplexContentElement extends AbstractAnnotatedElement implements ContentE
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasDerivationElement():bool
+    public function hasDerivationElement(): bool
     {
         return $this->isChildElementSet(1);
     }

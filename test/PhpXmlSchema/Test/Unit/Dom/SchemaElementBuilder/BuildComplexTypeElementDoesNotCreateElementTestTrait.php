@@ -26,7 +26,7 @@ trait BuildComplexTypeElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildComplexTypeElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildComplexTypeElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildComplexTypeElement();
         $sch = $this->sut->getSchema();

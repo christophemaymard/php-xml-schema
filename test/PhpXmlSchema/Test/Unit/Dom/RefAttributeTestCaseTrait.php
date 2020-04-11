@@ -24,7 +24,7 @@ trait RefAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasRef()
+    public function testHasRef(): void
     {
         self::assertFalse($this->sut->hasRef(), 'The attribute has not been set.');
         
@@ -39,7 +39,7 @@ trait RefAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetRef()
+    public function testGetRef(): void
     {
         self::assertNull($this->sut->getRef(), 'The attribute has not been set.');
         

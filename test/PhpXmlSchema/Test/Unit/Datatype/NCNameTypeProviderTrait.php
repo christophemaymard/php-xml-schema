@@ -19,7 +19,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  string[]
      */
-    private static function getValidBaseChars():array
+    private static function getValidBaseChars(): array
     {
         return [
             'Latin: uppercase alphabet (first)' => "A",
@@ -36,7 +36,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  string[]
      */
-    private static function getValidIdeographicChars():array
+    private static function getValidIdeographicChars(): array
     {
         return [
             'CJK: Unified ideograph (first)' => "\u{4E00}",
@@ -54,7 +54,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  string[]
      */
-    private static function getValidDigitChars():array
+    private static function getValidDigitChars(): array
     {
         return [
             'Latin: ASCII digits (first)' => "\u{0030}",
@@ -110,7 +110,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  string[]
      */
-    private static function getValidCombiningChars():array
+    private static function getValidCombiningChars(): array
     {
         return [
             'Combining diacritical marks (first)' => "\u{0300}",
@@ -124,7 +124,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  string[]
      */
-    private static function getValidExtenderChars():array
+    private static function getValidExtenderChars(): array
     {
         return [
             'Latin-1: Middle dot' => "\u{00B7}",
@@ -150,7 +150,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidNCNameTypeValues():array
+    public function getValidNCNameTypeValues(): array
     {
         $datasets = [];
         $datasets['Start with an underscore.'] = [ '_', ];
@@ -221,7 +221,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getValidNCNameTypeWSValues():array
+    public function getValidNCNameTypeWSValues(): array
     {
         return [
             'Starts with _' => [ 
@@ -263,7 +263,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidNCNameTypeValues():array
+    public function getInvalidNCNameTypeValues(): array
     {
         $datasets = [];
         
@@ -286,7 +286,7 @@ trait NCNameTypeProviderTrait
      * 
      * @return  array[]
      */
-    public function getInvalidNCNameTypeWSValues():array
+    public function getInvalidNCNameTypeWSValues(): array
     {
         return [
             'Empty string' => [

@@ -23,7 +23,7 @@ class Message
      * @param   string[]    $names  The local names of the expected elements.
      * @return  string
      */
-    public static function unexpectedElement(string $name, string $ns, array $names):string
+    public static function unexpectedElement(string $name, string $ns, array $names): string
     {
         if (empty($names)) {
             $expectedElements = 'none';
@@ -46,7 +46,7 @@ class Message
      * @param   string  $ns     The namespace of the unsupported attribute.
      * @return  string
      */
-    public static function unsupportedAttribute(string $name, string $ns):string
+    public static function unsupportedAttribute(string $name, string $ns): string
     {
         return \sprintf(
             'The "%s" attribute (from %s namespace) is not supported.',
@@ -63,7 +63,7 @@ class Message
      * @param   string[]    $items  The items used to format a list.
      * @return  string
      */
-    private static function formatCommaOrList(array $items)
+    private static function formatCommaOrList(array $items): string
     {
         $last = '"'.\array_pop($items).'"';
         

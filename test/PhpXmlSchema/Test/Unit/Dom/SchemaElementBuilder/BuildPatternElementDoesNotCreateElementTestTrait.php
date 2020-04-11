@@ -26,7 +26,7 @@ trait BuildPatternElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildPatternElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildPatternElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildPatternElement();
         $sch = $this->sut->getSchema();

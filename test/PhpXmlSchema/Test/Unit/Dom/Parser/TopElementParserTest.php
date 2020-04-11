@@ -24,7 +24,7 @@ class TopElementParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'top_elt';
     }
@@ -35,7 +35,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('element_0006.xsd'));
         
@@ -69,7 +69,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidAbstractAttributes
      */
-    public function testParseProcessAbstractAttribute(string $fileName, bool $bool)
+    public function testParseProcessAbstractAttribute(string $fileName, bool $bool): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -105,7 +105,8 @@ class TopElementParserTest extends AbstractParserTestCase
         bool $res, 
         bool $ext, 
         bool $sub
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -136,7 +137,8 @@ class TopElementParserTest extends AbstractParserTestCase
     public function testParseProcessDefaultAttribute(
         string $fileName, 
         string $string
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -169,7 +171,8 @@ class TopElementParserTest extends AbstractParserTestCase
         string $fileName,
         bool $ext, 
         bool $res
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -200,7 +203,8 @@ class TopElementParserTest extends AbstractParserTestCase
     public function testParseProcessFixedAttribute(
         string $fileName, 
         string $string
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -228,7 +232,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -257,7 +261,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidNameAttributes
      */
-    public function testParseProcessNameAttribute(string $fileName, string $name)
+    public function testParseProcessNameAttribute(string $fileName, string $name): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -286,7 +290,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidNillableAttributes
      */
-    public function testParseProcessNillableAttribute(string $fileName, bool $bool)
+    public function testParseProcessNillableAttribute(string $fileName, bool $bool): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -311,7 +315,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidAbstractAttributes():array
+    public function getValidAbstractAttributes(): array
     {
         return [
             'true (string)' => [
@@ -354,7 +358,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidBlockAttributes():array
+    public function getValidBlockAttributes(): array
     {
         // [ $fileName, $restriction, $extension, $substitution, ]
         return [
@@ -405,7 +409,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidDefaultAttributes():array
+    public function getValidDefaultAttributes(): array
     {
         return [
             'Empty string' => [
@@ -432,7 +436,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidFinalAttributes():array
+    public function getValidFinalAttributes(): array
     {
         // [ $fileName, $extension, $restriction, ]
         return [
@@ -468,7 +472,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidFixedAttributes():array
+    public function getValidFixedAttributes(): array
     {
         return [
             'Empty string' => [
@@ -495,7 +499,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -530,7 +534,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNameAttributes():array
+    public function getValidNameAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -565,7 +569,7 @@ class TopElementParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNillableAttributes():array
+    public function getValidNillableAttributes(): array
     {
         return [
             'true (string)' => [

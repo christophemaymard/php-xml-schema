@@ -25,7 +25,7 @@ class AnyElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new AnyElement();
     }
@@ -33,7 +33,7 @@ class AnyElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_ANY, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class AnyElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAnyElementWhenAddedToChoiceElement()
+    public function testAnyElementWhenAddedToChoiceElement(): void
     {
         $parent = new ChoiceElement();
         $parent->addAnyElement($this->sut);
@@ -58,7 +58,7 @@ class AnyElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAnyElementWithParentThrowsExceptionWhenChoiceElementAddAnyElement()
+    public function testAnyElementWithParentThrowsExceptionWhenChoiceElementAddAnyElement(): void
     {
         $parent1 = new ChoiceElement();
         $parent1->addAnyElement($this->sut);
@@ -74,7 +74,7 @@ class AnyElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAnyElementWhenAddedToSequenceElement()
+    public function testAnyElementWhenAddedToSequenceElement(): void
     {
         $parent = new SequenceElement();
         $parent->addAnyElement($this->sut);
@@ -88,7 +88,7 @@ class AnyElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testAnyElementWithParentThrowsExceptionWhenSequenceElementAddAnyElement()
+    public function testAnyElementWithParentThrowsExceptionWhenSequenceElementAddAnyElement(): void
     {
         $parent1 = new SequenceElement();
         $parent1->addAnyElement($this->sut);
@@ -106,7 +106,7 @@ class AnyElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToChoiceElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToChoiceElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new ChoiceElement();
         $parent->addAnyElement($this->sut);
@@ -122,7 +122,7 @@ class AnyElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSequenceElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSequenceElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SequenceElement();
         $parent->addAnyElement($this->sut);

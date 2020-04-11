@@ -24,7 +24,7 @@ class UnionParserTest extends AbstractParserTestCase
     /**
      * {@inheritDoc}
      */
-    protected function getContextName():string
+    protected function getContextName(): string
     {
         return 'union';
     }
@@ -35,7 +35,7 @@ class UnionParserTest extends AbstractParserTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testParseProcessNamespaceDeclarations()
+    public function testParseProcessNamespaceDeclarations(): void
     {
         $sch = $this->sut->parse($this->getXs('union_0006.xsd'));
         
@@ -79,7 +79,7 @@ class UnionParserTest extends AbstractParserTestCase
      * @group           attribute
      * @dataProvider    getValidIdAttributes
      */
-    public function testParseProcessIdAttribute(string $fileName, string $id)
+    public function testParseProcessIdAttribute(string $fileName, string $id): void
     {
         $sch = $this->sut->parse($this->getXs($fileName));
         
@@ -122,7 +122,8 @@ class UnionParserTest extends AbstractParserTestCase
     public function testParseProcessMemberTypesAttributeWhenPrefixAbsentAndNoDefaultNamespace(
         string $fileName, 
         array $localParts
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations(
@@ -172,7 +173,8 @@ class UnionParserTest extends AbstractParserTestCase
         string $fileName, 
         array $decls, 
         array $qnames
-    ) {
+    ): void
+    {
         $sch = $this->sut->parse($this->getXs($fileName));
         
         self::assertElementNamespaceDeclarations($decls, $sch);
@@ -209,7 +211,7 @@ class UnionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessAnnotationElement()
+    public function testParseProcessAnnotationElement(): void
     {
         $sch = $this->sut->parse($this->getXs('annotation_0002.xsd'));
         
@@ -249,7 +251,7 @@ class UnionParserTest extends AbstractParserTestCase
      * @group   content
      * @group   element
      */
-    public function testParseProcessSimpleTypeElement()
+    public function testParseProcessSimpleTypeElement(): void
     {
         $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
         
@@ -303,7 +305,7 @@ class UnionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidIdAttributes():array
+    public function getValidIdAttributes(): array
     {
         return [
             'Starts with _' => [
@@ -339,7 +341,7 @@ class UnionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidNoNamespaceMemberTypesAttributes():array
+    public function getValidNoNamespaceMemberTypesAttributes(): array
     {
         return [
             'QName 1 (no prefix, local part starts with _)' => [
@@ -441,7 +443,7 @@ class UnionParserTest extends AbstractParserTestCase
      * 
      * @return  array[]
      */
-    public function getValidMemberTypesAttributes():array
+    public function getValidMemberTypesAttributes(): array
     {
         return [
             'QName 1 (no prefix, local part starts with _)' => [

@@ -25,7 +25,7 @@ trait FinalAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasFinal()
+    public function testHasFinal(): void
     {
         self::assertFalse($this->sut->hasFinal(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait FinalAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetFinal()
+    public function testGetFinal(): void
     {
         self::assertNull($this->sut->getFinal(), 'The attribute has not been set.');
         

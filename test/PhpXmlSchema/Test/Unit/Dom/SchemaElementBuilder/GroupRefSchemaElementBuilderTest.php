@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
@@ -110,7 +111,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -123,7 +124,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -149,7 +150,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertGroupElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -157,7 +158,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getComplexTypeElements()[0]
             ->getContentElement()
@@ -168,7 +169,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildComplexTypeElement();
@@ -180,7 +181,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -199,7 +200,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildIdAttributeCreatesAttrWhenGroupRefAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -226,7 +228,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildIdAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -247,7 +250,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildMaxOccursAttributeCreatesAttrWhenGroupRefAndValueIsUnbounded()
+    public function testBuildMaxOccursAttributeCreatesAttrWhenGroupRefAndValueIsUnbounded(): void
     {
         $this->sut->buildMaxOccursAttribute('unbounded');
         $sch = $this->sut->getSchema();
@@ -276,7 +279,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildMaxOccursAttributeCreatesAttrWhenGroupRefAndValueIsNonNegativeInteger(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMaxOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -303,7 +307,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      */
     public function testBuildMaxOccursAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid non-negative integer limit type.', $value));
         
@@ -325,7 +330,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildMinOccursAttributeCreatesAttrWhenGroupRefAndValueIsValid(
         string $value, 
         \GMP $nni
-    ) {
+    ): void
+    {
         $this->sut->buildMinOccursAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -351,7 +357,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      */
     public function testBuildMinOccursAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid nonNegativeInteger datatype.', 
@@ -377,7 +384,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildRefAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -407,7 +415,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidQNameLocalPartAndDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('', 'http://example.org');
         $this->sut->buildComplexTypeElement();
@@ -460,7 +469,8 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
     public function testBuildRefAttributeThrowsExceptionWhenGroupRefAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -476,7 +486,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidAndPrefixAssociatedNamespace()
+    public function testBuildRefAttributeCreatesAttrWhenGroupRefAndValueIsValidAndPrefixAssociatedNamespace(): void
     {
         $this->sut->buildSchemaElement();
         $this->sut->bindNamespace('foo', 'http://example.org/foo');
@@ -524,7 +534,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildRefAttributeThrowsExceptionWhenGroupRefAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildRefAttributeThrowsExceptionWhenGroupRefAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -539,7 +549,7 @@ class GroupRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestC
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenGroupRef()
+    public function testBuildAnnotationElementCreateEltWhenGroupRef(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

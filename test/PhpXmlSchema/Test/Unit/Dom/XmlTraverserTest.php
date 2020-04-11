@@ -30,7 +30,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @dataProvider    getInvalidXmlSources
      */
-    public function test__constructThrowsExceptionWhenSourceInvalid(string $src)
+    public function test__constructThrowsExceptionWhenSourceInvalid(string $src): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('The source is an invalid XML.');
@@ -46,7 +46,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @dataProvider    getDocFirstChildNodeLocalNameXmlSources
      */
-    public function testGetLocalNameWhenCursorOnDocFirstChildNode(string $src, string $localName)
+    public function testGetLocalNameWhenCursorOnDocFirstChildNode(string $src, string $localName): void
     {
         $sut = new XmlTraverser($src);
         self::assertSame($localName, $sut->getLocalName());
@@ -62,7 +62,7 @@ class XmlTraverserTest extends TestCase
      * @group           namespace
      * @dataProvider    getDocFirstChildNodeNamespaceXmlSources
      */
-    public function testGetNamespaceWhenCursorOnDocFirstChildNode(string $src, string $namespace)
+    public function testGetNamespaceWhenCursorOnDocFirstChildNode(string $src, string $namespace): void
     {
         $sut = new XmlTraverser($src);
         self::assertSame($namespace, $sut->getNamespace());
@@ -77,7 +77,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @dataProvider    getDocFirstChildNodeValueXmlSources
      */
-    public function testGetValueWhenCursorOnDocFirstChildNode(string $src, string $value)
+    public function testGetValueWhenCursorOnDocFirstChildNode(string $src, string $value): void
     {
         $sut = new XmlTraverser($src);
         self::assertSame($value, $sut->getValue());
@@ -88,7 +88,7 @@ class XmlTraverserTest extends TestCase
      * cursor when the cursor is positioned on an element node that has no 
      * attribute.
      */
-    public function testMoveToFirstAttributeReturnsFalseAndDoesNotMoveCursorWhenCursorOnElementNodeWithNoAttribute()
+    public function testMoveToFirstAttributeReturnsFalseAndDoesNotMoveCursorWhenCursorOnElementNodeWithNoAttribute(): void
     {
         $sut = new XmlTraverser($this->getXml('firstattribute_0001.xml'));
         
@@ -114,7 +114,7 @@ class XmlTraverserTest extends TestCase
      * when the cursor is positioned on an element node that has at least 
      * 1 attribute.
      */
-    public function testMoveToFirstAttributeReturnsTrueAndMovesCursorWhenCursorOnElementNodeWith1Attribute()
+    public function testMoveToFirstAttributeReturnsTrueAndMovesCursorWhenCursorOnElementNodeWith1Attribute(): void
     {
         $sut = new XmlTraverser($this->getXml('firstattribute_0002.xml'));
         
@@ -135,7 +135,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToFirstAttribute() returns FALSE and does not move the 
      * cursor when the cursor is positioned on a comment node.
      */
-    public function testMoveToFirstAttributeReturnsFalseAndDoesNotMoveCursorWhenCursorOnCommentNode()
+    public function testMoveToFirstAttributeReturnsFalseAndDoesNotMoveCursorWhenCursorOnCommentNode(): void
     {
         $sut = new XmlTraverser($this->getXml('firstattribute_0003.xml'));
         
@@ -161,7 +161,7 @@ class XmlTraverserTest extends TestCase
      * cursor when the cursor is positioned on the first attribute node of an 
      * element that has 1 attribute.
      */
-    public function testMoveToNextAttributeReturnsFalseAndDoesNotMoveCursorWhenCursorOnFirstAttributeNodeWithNoMoreAttribute()
+    public function testMoveToNextAttributeReturnsFalseAndDoesNotMoveCursorWhenCursorOnFirstAttributeNodeWithNoMoreAttribute(): void
     {
         $sut = new XmlTraverser($this->getXml('nextattribute_0001.xml'));
         $sut->moveToFirstAttribute();
@@ -188,7 +188,7 @@ class XmlTraverserTest extends TestCase
      * when the cursor is positioned on the first attribute node of an 
      * element node that has more than 1 attribute node.
      */
-    public function testMoveToNextAttributeReturnsTrueAndMovesCursorWhenCursorOnFirstAttributeNodeWithMoreAttribute()
+    public function testMoveToNextAttributeReturnsTrueAndMovesCursorWhenCursorOnFirstAttributeNodeWithMoreAttribute(): void
     {
         $sut = new XmlTraverser($this->getXml('nextattribute_0002.xml'));
         $sut->moveToFirstAttribute();
@@ -210,7 +210,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToNextAttribute() returns FALSE and does not move the 
      * cursor when the cursor is positioned on a comment node.
      */
-    public function testMoveToNextAttributeReturnsFalseAndDoesNotMoveCursorWhenCursorOnCommentNode()
+    public function testMoveToNextAttributeReturnsFalseAndDoesNotMoveCursorWhenCursorOnCommentNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextattribute_0003.xml'));
         
@@ -236,7 +236,7 @@ class XmlTraverserTest extends TestCase
      * cursor when the cursor is positioned on an element node that has no 
      * child node.
      */
-    public function testMoveToFirstChildNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnElementNodeWhithNoChildNode()
+    public function testMoveToFirstChildNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnElementNodeWhithNoChildNode(): void
     {
         $sut = new XmlTraverser($this->getXml('firstchildnode_0001.xml'));
         
@@ -262,7 +262,7 @@ class XmlTraverserTest extends TestCase
      * when the cursor is positioned on an element node that has at least 
      * 1 child node.
      */
-    public function testMoveToFirstChildNodeReturnsTrueAndMovesCursorWhenCursorOnElementNodeWhithChildNode()
+    public function testMoveToFirstChildNodeReturnsTrueAndMovesCursorWhenCursorOnElementNodeWhithChildNode(): void
     {
         $sut = new XmlTraverser($this->getXml('firstchildnode_0002.xml'));
         
@@ -286,7 +286,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToFirstChildNode() returns TRUE and moves the cursor 
      * when the cursor is positioned on an attribute node. 
      */
-    public function testMoveToFirstChildNodeReturnsTrueAndMovesCursorWhenCursorOnAttributeNode()
+    public function testMoveToFirstChildNodeReturnsTrueAndMovesCursorWhenCursorOnAttributeNode(): void
     {
         $sut = new XmlTraverser($this->getXml('firstchildnode_0003.xml'));
         $sut->moveToFirstAttribute();
@@ -308,7 +308,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToFirstChildNode() returns FALSE and does not move the 
      * cursor when the cursor is positioned on a comment node.
      */
-    public function testMoveToFirstChildNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnCommentNode()
+    public function testMoveToFirstChildNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnCommentNode(): void
     {
         $sut = new XmlTraverser($this->getXml('firstchildnode_0004.xml'));
         
@@ -334,7 +334,7 @@ class XmlTraverserTest extends TestCase
      * when the cursor is positioned on an element node that has no next 
      * sibling node.
      */
-    public function testMoveToNextNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnElementNodeWithNoNextSiblingNode()
+    public function testMoveToNextNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnElementNodeWithNoNextSiblingNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextnode_0001.xml'));
         
@@ -359,7 +359,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToNextNode() returns TRUE and moves the cursor when the 
      * cursor is positioned on an element node that has a next sibling node.
      */
-    public function testMoveToNextNodeReturnsTrueAndMovesCursorWhenCursorOnElementNodeWithNextSiblingNode()
+    public function testMoveToNextNodeReturnsTrueAndMovesCursorWhenCursorOnElementNodeWithNextSiblingNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextnode_0002.xml'));
         $sut->moveToFirstChildNode();
@@ -382,7 +382,7 @@ class XmlTraverserTest extends TestCase
      * when the cursor is positioned on a comment node that has no next 
      * sibling node.
      */
-    public function testMoveToNextNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnCommentNodeWithNoNextSiblingNode()
+    public function testMoveToNextNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnCommentNodeWithNoNextSiblingNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextnode_0003.xml'));
         $sut->moveToFirstChildNode();
@@ -408,7 +408,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToNextNode() returns TRUE and moves the cursor when the 
      * cursor is positioned on a comment node that has a next sibling node.
      */
-    public function testMoveToNextNodeReturnsTrueAndMovesCursorWhenCursorOnCommentNodeWithNextSiblingNode()
+    public function testMoveToNextNodeReturnsTrueAndMovesCursorWhenCursorOnCommentNodeWithNextSiblingNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextnode_0004.xml'));
         
@@ -430,7 +430,7 @@ class XmlTraverserTest extends TestCase
      * when the cursor is positioned on the first attribute node of an 
      * element that has 1 attribute.
      */
-    public function testMoveToNextNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnAttributeNodeWithNoOtherAttributeNode()
+    public function testMoveToNextNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnAttributeNodeWithNoOtherAttributeNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextnode_0005.xml'));
         $sut->moveToFirstAttribute();
@@ -457,7 +457,7 @@ class XmlTraverserTest extends TestCase
      * cursor is positioned on the first attribute node of an element that 
      * has more than 1 attribute.
      */
-    public function testMoveToNextNodeReturnsTrueAndMovesCursorWhenCursorOnAttributeNodeWithOtherAttributeNode()
+    public function testMoveToNextNodeReturnsTrueAndMovesCursorWhenCursorOnAttributeNodeWithOtherAttributeNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextnode_0006.xml'));
         $sut->moveToFirstAttribute();
@@ -480,7 +480,7 @@ class XmlTraverserTest extends TestCase
      * when the cursor is positioned on a text node that has no next 
      * sibling node.
      */
-    public function testMoveToNextNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnTextNodeWithNoNextSiblingNode()
+    public function testMoveToNextNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnTextNodeWithNoNextSiblingNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextnode_0007.xml'));
         $sut->moveToFirstChildNode();
@@ -506,7 +506,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToNextNode() returns TRUE and moves the cursor when the 
      * cursor is positioned on a text node that has a next sibling node.
      */
-    public function testMoveToNextNodeReturnsTrueAndMovesCursorWhenCursorOnTextNodeWithNextSiblingNode()
+    public function testMoveToNextNodeReturnsTrueAndMovesCursorWhenCursorOnTextNodeWithNextSiblingNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nextnode_0008.xml'));
         $sut->moveToFirstChildNode();
@@ -528,7 +528,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToParentNode() returns TRUE and moves the cursor when 
      * the cursor is positioned on a document child node.
      */
-    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnDocumentChildNode()
+    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnDocumentChildNode(): void
     {
         $sut = new XmlTraverser($this->getXml('parentnode_0001.xml'));
         
@@ -549,7 +549,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToParentNode() returns FALSE and does not move the 
      * cursor when the cursor is positioned on the document node.
      */
-    public function testMoveToParentNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnDocumentNode()
+    public function testMoveToParentNodeReturnsFalseAndDoesNotMoveCursorWhenCursorOnDocumentNode(): void
     {
         $sut = new XmlTraverser($this->getXml('parentnode_0002.xml'));
         $sut->moveToParentNode();
@@ -575,7 +575,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToParentNode() returns TRUE and moves the cursor when 
      * the cursor is positioned on an attribute node.
      */
-    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnAttributeNode()
+    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnAttributeNode(): void
     {
         $sut = new XmlTraverser($this->getXml('parentnode_0003.xml'));
         $sut->moveToFirstAttribute();
@@ -598,7 +598,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToParentNode() returns TRUE and moves the cursor when 
      * the cursor is positioned on an element node.
      */
-    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnElementNode()
+    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnElementNode(): void
     {
         $sut = new XmlTraverser($this->getXml('parentnode_0004.xml'));
         $sut->moveToFirstChildNode();
@@ -621,7 +621,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToParentNode() returns TRUE and moves the cursor when 
      * the cursor is positioned on a comment node.
      */
-    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnCommentNode()
+    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnCommentNode(): void
     {
         $sut = new XmlTraverser($this->getXml('parentnode_0005.xml'));
         $sut->moveToFirstChildNode();
@@ -644,7 +644,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToParentNode() returns TRUE and moves the cursor when 
      * the cursor is positioned on a text node.
      */
-    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnTextNode()
+    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnTextNode(): void
     {
         $sut = new XmlTraverser($this->getXml('parentnode_0006.xml'));
         $sut->moveToFirstChildNode();
@@ -667,7 +667,7 @@ class XmlTraverserTest extends TestCase
      * Tests that moveToParentNode() returns TRUE and moves the cursor when 
      * the cursor is positioned on a white space node.
      */
-    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnWhiteSpaceNode()
+    public function testMoveToParentNodeReturnsTrueAndMovesCursorWhenCursorOnWhiteSpaceNode(): void
     {
         $sut = new XmlTraverser($this->getXml('parentnode_0007.xml'));
         $sut->moveToFirstChildNode();
@@ -689,7 +689,7 @@ class XmlTraverserTest extends TestCase
      * Tests that isCommentNode() returns TRUE when the cursor is positioned 
      * on a comment node.
      */
-    public function testIsCommentNodeReturnsTrueWhenCursorOnCommentNode()
+    public function testIsCommentNodeReturnsTrueWhenCursorOnCommentNode(): void
     {
         $sut = new XmlTraverser($this->getXml('iscomment_0001.xml'));
         self::assertTrue($sut->isCommentNode());
@@ -702,7 +702,7 @@ class XmlTraverserTest extends TestCase
      * Tests that isCommentNode() returns FALSE when the cursor is positioned 
      * on a node that is not a comment node.
      */
-    public function testIsCommentNodeReturnsFalseWhenCursorOnNodeNotCommentNode()
+    public function testIsCommentNodeReturnsFalseWhenCursorOnNodeNotCommentNode(): void
     {
         $sut = new XmlTraverser($this->getXml('iscomment_0002.xml'));
         self::assertFalse($sut->isCommentNode());
@@ -712,7 +712,7 @@ class XmlTraverserTest extends TestCase
      * Tests that isElementNode() returns TRUE when the cursor is positioned 
      * on an element node.
      */
-    public function testIsElementNodeReturnsTrueWhenCursorOnElementNode()
+    public function testIsElementNodeReturnsTrueWhenCursorOnElementNode(): void
     {
         $sut = new XmlTraverser($this->getXml('iselement_0001.xml'));
         self::assertTrue($sut->isElementNode());
@@ -725,7 +725,7 @@ class XmlTraverserTest extends TestCase
      * Tests that isElementNode() returns FALSE when the cursor is positioned 
      * on a node that is not an element node.
      */
-    public function testIsElementNodeReturnsFalseWhenCursorOnNodeNotElementNode()
+    public function testIsElementNodeReturnsFalseWhenCursorOnNodeNotElementNode(): void
     {
         $sut = new XmlTraverser($this->getXml('iselement_0002.xml'));
         self::assertFalse($sut->isElementNode());
@@ -735,7 +735,7 @@ class XmlTraverserTest extends TestCase
      * Tests that isTextNode() returns TRUE when the cursor is positioned on 
      * a text node.
      */
-    public function testIsTextNodeReturnsTrueWhenCursorOnTextNode()
+    public function testIsTextNodeReturnsTrueWhenCursorOnTextNode(): void
     {
         $sut = new XmlTraverser($this->getXml('istext_0001.xml'));
         $sut->moveToFirstChildNode();
@@ -749,7 +749,7 @@ class XmlTraverserTest extends TestCase
      * Tests that isTextNode() returns FALSE when the cursor is positioned on 
      * a node that is not a text node.
      */
-    public function testIsTextNodeReturnsFalseWhenCursorOnNodeNotTextNode()
+    public function testIsTextNodeReturnsFalseWhenCursorOnNodeNotTextNode(): void
     {
         $sut = new XmlTraverser($this->getXml('istext_0002.xml'));
         self::assertFalse($sut->isTextNode());
@@ -759,7 +759,7 @@ class XmlTraverserTest extends TestCase
      * Tests that isWhiteSpaceNode() and isTextNode() return TRUE  when the 
      * cursor is positioned on a white space node.
      */
-    public function testIsWhiteSpaceNodeIsTextNodeReturnTrueWhenCursorOnWhiteSpaceNode()
+    public function testIsWhiteSpaceNodeIsTextNodeReturnTrueWhenCursorOnWhiteSpaceNode(): void
     {
         $sut = new XmlTraverser($this->getXml('iswhitespace_0001.xml'));
         $sut->moveToFirstChildNode();
@@ -773,7 +773,7 @@ class XmlTraverserTest extends TestCase
      * Tests that isWhiteSpaceNode() returns FALSE when the cursor is 
      * positioned on a node that is not a white space node.
      */
-    public function testIsWhiteSpaceNodeReturnsFalseWhenCursorOnNodeNotWhiteSpaceNode()
+    public function testIsWhiteSpaceNodeReturnsFalseWhenCursorOnNodeNotWhiteSpaceNode(): void
     {
         $sut = new XmlTraverser($this->getXml('iswhitespace_0002.xml'));
         $sut->moveToFirstChildNode();
@@ -786,7 +786,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @group   namespace
      */
-    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnCommentNode()
+    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnCommentNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nsdecl_0001.xml'));
         self::assertTrue($sut->isCommentNode());
@@ -799,7 +799,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @group   namespace
      */
-    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnTextNode()
+    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnTextNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nsdecl_0002.xml'));
         $sut->moveToFirstChildNode();
@@ -815,7 +815,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @group   namespace
      */
-    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnWhiteSpaceNode()
+    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnWhiteSpaceNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nsdecl_0003.xml'));
         $sut->moveToFirstChildNode();
@@ -831,7 +831,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @group   namespace
      */
-    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnAttributeNode()
+    public function testGetNamespaceDeclarationsReturnsEmptyArrayWhenCursorOnAttributeNode(): void
     {
         $sut = new XmlTraverser($this->getXml('nsdecl_0004.xml'));
         
@@ -852,7 +852,8 @@ class XmlTraverserTest extends TestCase
     public function testGetNamespaceDeclarationsReturnsArrayOfStringsWhenCursorOnRootElement(
         string $fileName, 
         array $decls
-    ) {
+    ): void
+    {
         $sut = new XmlTraverser($this->getXml($fileName));
         
         self::assertTrue($sut->isElementNode());
@@ -873,7 +874,8 @@ class XmlTraverserTest extends TestCase
     public function testGetNamespaceDeclarationsReturnsArrayOfStringsWhenCursorOnChildElement(
         string $fileName, 
         array $decls
-    ) {
+    ): void
+    {
         $sut = new XmlTraverser($this->getXml($fileName));
         $sut->moveToFirstChildNode();
         
@@ -887,7 +889,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getInvalidXmlSources():array
+    public function getInvalidXmlSources(): array
     {
         return [
             'Empty string' => [ $this->getXml('xmlerr_0001.xml'), ], 
@@ -903,7 +905,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getDocFirstChildNodeLocalNameXmlSources():array
+    public function getDocFirstChildNodeLocalNameXmlSources(): array
     {
         return [
             'Element node' => [ 
@@ -930,7 +932,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getDocFirstChildNodeNamespaceXmlSources():array
+    public function getDocFirstChildNodeNamespaceXmlSources(): array
     {
         return [
             'Element node' => [ 
@@ -957,7 +959,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getDocFirstChildNodeValueXmlSources():array
+    public function getDocFirstChildNodeValueXmlSources(): array
     {
         return [
             'Element node with empty content' => [ 
@@ -985,7 +987,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getRootElementNamespaceDeclarations():array
+    public function getRootElementNamespaceDeclarations(): array
     {
         return [
             'No declaration' => [
@@ -1022,7 +1024,7 @@ class XmlTraverserTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getChildElementNamespaceDeclarations():array
+    public function getChildElementNamespaceDeclarations(): array
     {
         return [
             'No declaration' => [
@@ -1059,7 +1061,7 @@ class XmlTraverserTest extends TestCase
      * @param   string  $fileName
      * @return  string
      */
-    private function getXml(string $fileName):string
+    private function getXml(string $fileName): string
     {
         return \file_get_contents(__DIR__.'/../../../../../res/test/unit/xmltraverser/'.$fileName);
     }

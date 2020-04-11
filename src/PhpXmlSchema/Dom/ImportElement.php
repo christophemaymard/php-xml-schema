@@ -39,7 +39,7 @@ class ImportElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_IMPORT;
     }
@@ -47,7 +47,7 @@ class ImportElement extends AbstractAnnotatedElement
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'import';
     }
@@ -57,7 +57,7 @@ class ImportElement extends AbstractAnnotatedElement
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getNamespace()
+    public function getNamespace(): ?AnyUriType
     {
         return $this->namespaceAttr;
     }
@@ -67,7 +67,7 @@ class ImportElement extends AbstractAnnotatedElement
      * 
      * @param   AnyUriType  $value  The value to set.
      */
-    public function setNamespace(AnyUriType $value)
+    public function setNamespace(AnyUriType $value): void
     {
         $this->namespaceAttr = $value;
     }
@@ -77,7 +77,7 @@ class ImportElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasNamespace():bool
+    public function hasNamespace(): bool
     {
         return $this->namespaceAttr !== NULL;
     }
@@ -87,7 +87,7 @@ class ImportElement extends AbstractAnnotatedElement
      * 
      * @return  AnyUriType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getSchemaLocation()
+    public function getSchemaLocation(): ?AnyUriType
     {
         return $this->schemaLocationAttr;
     }
@@ -97,7 +97,7 @@ class ImportElement extends AbstractAnnotatedElement
      * 
      * @param   AnyUriType  $value  The value to set.
      */
-    public function setSchemaLocation(AnyUriType $value)
+    public function setSchemaLocation(AnyUriType $value): void
     {
         $this->schemaLocationAttr = $value;
     }
@@ -107,7 +107,7 @@ class ImportElement extends AbstractAnnotatedElement
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasSchemaLocation():bool
+    public function hasSchemaLocation(): bool
     {
         return $this->schemaLocationAttr !== NULL;
     }

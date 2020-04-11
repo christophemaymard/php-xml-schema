@@ -23,7 +23,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new RedefineElement();
     }
@@ -31,7 +31,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('redefine', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasSchemaLocation()
+    public function testHasSchemaLocation(): void
     {
         self::assertFalse($this->sut->hasSchemaLocation(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetSchemaLocation()
+    public function testGetSchemaLocation(): void
     {
         self::assertNull($this->sut->getSchemaLocation(), 'The attribute has not been set.');
         
@@ -79,7 +79,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetAnnotationElements()
+    public function testGetAnnotationElements(): void
     {
         $elements = [];
         
@@ -111,7 +111,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetSimpleTypeElements()
+    public function testGetSimpleTypeElements(): void
     {
         $elements = [];
         
@@ -143,7 +143,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetComplexTypeElements()
+    public function testGetComplexTypeElements(): void
     {
         $elements = [];
         
@@ -175,7 +175,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetGroupElements()
+    public function testGetGroupElements(): void
     {
         $elements = [];
         
@@ -207,7 +207,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetAttributeGroupElements()
+    public function testGetAttributeGroupElements(): void
     {
         $elements = [];
         
@@ -237,7 +237,7 @@ class RedefineElementTest extends AbstractCompositeElementTestCase
      * 
      * @group   content
      */
-    public function testGetElementsReturnsElementsOfContainer0()
+    public function testGetElementsReturnsElementsOfContainer0(): void
     {
         $children = [];
         $children[] = $this->createAnnotationElementHasParentFalse1TimeMock();

@@ -27,7 +27,7 @@ trait BuildLeafElementContentDoesNotCreateContentTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildLeafElementContentDoesNotCreateContentWhenCEIsNotLeafElement()
+    public function testBuildLeafElementContentDoesNotCreateContentWhenCEIsNotLeafElement(): void
     {
         $this->sut->buildLeafElementContent('foo bar baz content');
         $sch = $this->sut->getSchema();

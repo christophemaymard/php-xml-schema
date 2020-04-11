@@ -23,7 +23,7 @@ class SelectorElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SelectorElement();
     }
@@ -31,7 +31,7 @@ class SelectorElementTest extends AbstractAnnotatedElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetLocalNameReturnsSpecificString()
+    public function testGetLocalNameReturnsSpecificString(): void
     {
         self::assertSame('selector', $this->sut->getLocalName());
     }
@@ -43,7 +43,7 @@ class SelectorElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testHasXPath()
+    public function testHasXPath(): void
     {
         self::assertFalse($this->sut->hasXPath(), 'The attribute has not been set.');
         
@@ -58,7 +58,7 @@ class SelectorElementTest extends AbstractAnnotatedElementTestCase
      * 
      * @group   attribute
      */
-    public function testGetXPath()
+    public function testGetXPath(): void
     {
         self::assertNull($this->sut->getXPath(), 'The attribute has not been set.');
         

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -28,7 +29,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -39,7 +40,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getAttributeGroupElements()[0];
     }
@@ -47,7 +48,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildAttributeGroupElement();
@@ -56,7 +57,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -76,7 +77,8 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
     public function testBuildNameAttributeCreatesAttrWhenNamedAttributeGroupAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -104,7 +106,8 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
     public function testBuildNameAttributeThrowsExceptionWhenNamedAttributeGroupAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 
@@ -121,7 +124,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeElementCreateEltWhenNamedAttributeGroup()
+    public function testBuildAttributeElementCreateEltWhenNamedAttributeGroup(): void
     {
         $this->sut->buildAttributeElement();
         $this->sut->endElement();
@@ -153,7 +156,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
      * @group   content
      * @group   element
      */
-    public function testBuildAttributeGroupElementCreateEltWhenNamedAttributeGroup()
+    public function testBuildAttributeGroupElementCreateEltWhenNamedAttributeGroup(): void
     {
         $this->sut->buildAttributeGroupElement();
         $this->sut->endElement();
@@ -185,7 +188,7 @@ class NamedAttributeGroupSchemaElementBuilderTest extends AbstractAttributeGroup
      * @group   content
      * @group   element
      */
-    public function testBuildAnyAttributeElementCreateEltWhenNamedAttributeGroup()
+    public function testBuildAnyAttributeElementCreateEltWhenNamedAttributeGroup(): void
     {
         $this->sut->buildAnyAttributeElement();
         $sch = $this->sut->getSchema();

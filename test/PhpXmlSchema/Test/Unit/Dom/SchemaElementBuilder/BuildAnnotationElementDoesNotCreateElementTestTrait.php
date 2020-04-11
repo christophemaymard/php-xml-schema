@@ -27,7 +27,7 @@ trait BuildAnnotationElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildAnnotationElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();

@@ -7,6 +7,7 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
+use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
@@ -107,7 +108,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         self::assertAncestorsNotChanged($sch);
         
@@ -120,7 +121,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    public static function assertAncestorsNotChanged(SchemaElement $sch)
+    public static function assertAncestorsNotChanged(SchemaElement $sch): void
     {
         self::assertElementNamespaceDeclarations([], $sch);
         self::assertSchemaElementHasNoAttribute($sch);
@@ -136,7 +137,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertDocumentationElementHasNoAttribute(self::getCurrentElement($sch));
     }
@@ -144,7 +145,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    protected static function getCurrentElement(SchemaElement $sch)
+    protected static function getCurrentElement(SchemaElement $sch): ?ElementInterface
     {
         return $sch->getCompositionAnnotationElements()[0]
             ->getDocumentationElements()[0];
@@ -153,7 +154,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SchemaElementBuilder();
         $this->sut->buildCompositionAnnotationElement();
@@ -163,7 +164,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -183,7 +184,8 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildSourceAttributeCreatesAttrWhenDocumentationAndValueIsValid(
         string $value, 
         string $uri
-    ) {
+    ): void
+    {
         $this->sut->buildSourceAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -210,7 +212,8 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildSourceAttributeThrowsExceptionWhenDocumentationAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -232,7 +235,8 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
         string $value, 
         string $primary,
         array $subtags
-    ) {
+    ): void
+    {
         $this->sut->buildLangAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -260,7 +264,8 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
     public function testBuildLangAttributeThrowsExceptionWhenDocumentationAndValueIsInvalid(
         string $value,
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -274,7 +279,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   content
      * @group   element
      */
-    public function testbuildLeafElementContentCreatesContentWhenDocumentation()
+    public function testbuildLeafElementContentCreatesContentWhenDocumentation(): void
     {
         $this->sut->buildLeafElementContent('foo bar baz content');
         $sch = $this->sut->getSchema();
@@ -294,7 +299,7 @@ class DocumentationSchemaElementBuilderTest extends AbstractSchemaElementBuilder
      * @group   content
      * @group   element
      */
-    public function testbuildLeafElementContentUpdatesContentWhenDocumentation()
+    public function testbuildLeafElementContentUpdatesContentWhenDocumentation(): void
     {
         $this->sut->buildLeafElementContent('foo');
         $this->sut->buildLeafElementContent('bar');

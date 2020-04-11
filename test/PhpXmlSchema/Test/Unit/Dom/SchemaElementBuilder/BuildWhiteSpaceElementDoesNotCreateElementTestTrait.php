@@ -26,7 +26,7 @@ trait BuildWhiteSpaceElementDoesNotCreateElementTestTrait
      * @group   content
      * @group   element
      */
-    public function testBuildWhiteSpaceElementDoesNotCreateEltWhenCEDoesNotSupportElt()
+    public function testBuildWhiteSpaceElementDoesNotCreateEltWhenCEDoesNotSupportElt(): void
     {
         $this->sut->buildWhiteSpaceElement();
         $sch = $this->sut->getSchema();

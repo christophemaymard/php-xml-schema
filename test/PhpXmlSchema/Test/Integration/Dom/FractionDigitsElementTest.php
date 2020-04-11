@@ -25,7 +25,7 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new FractionDigitsElement();
     }
@@ -33,7 +33,7 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
     /**
      * {@inheritDoc}
      */
-    public function testGetElementIdReturnsSpecificElementIdConstant()
+    public function testGetElementIdReturnsSpecificElementIdConstant(): void
     {
         self::assertSame(ElementId::ELT_FRACTIONDIGITS, $this->sut->getElementId());
     }
@@ -44,7 +44,7 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFractionDigitsElementWhenAddedToSimpleContentRestrictionElement()
+    public function testFractionDigitsElementWhenAddedToSimpleContentRestrictionElement(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addFractionDigitsElement($this->sut);
@@ -58,7 +58,7 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFractionDigitsElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddFractionDigitsElement()
+    public function testFractionDigitsElementWithParentThrowsExceptionWhenSimpleContentRestrictionElementAddFractionDigitsElement(): void
     {
         $parent1 = new SimpleContentRestrictionElement();
         $parent1->addFractionDigitsElement($this->sut);
@@ -74,7 +74,7 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFractionDigitsElementWhenAddedToSimpleTypeRestrictionElement()
+    public function testFractionDigitsElementWhenAddedToSimpleTypeRestrictionElement(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addFractionDigitsElement($this->sut);
@@ -88,7 +88,7 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
      * 
      * @group   content
      */
-    public function testFractionDigitsElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddFractionDigitsElement()
+    public function testFractionDigitsElementWithParentThrowsExceptionWhenSimpleTypeRestrictionElementAddFractionDigitsElement(): void
     {
         $parent1 = new SimpleTypeRestrictionElement();
         $parent1->addFractionDigitsElement($this->sut);
@@ -106,7 +106,7 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleContentRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleContentRestrictionElement();
         $parent->addFractionDigitsElement($this->sut);
@@ -122,7 +122,7 @@ class FractionDigitsElementTest extends AbstractAbstractElementTestCase
      * @group   namespace
      * @group   xml
      */
-    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace()
+    public function testLookupNamespaceReturnsStringWhenAddedToSimpleTypeRestrictionElementAndParentPrefixBoundToNamespace(): void
     {
         $parent = new SimpleTypeRestrictionElement();
         $parent->addFractionDigitsElement($this->sut);

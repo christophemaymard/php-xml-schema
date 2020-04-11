@@ -30,7 +30,7 @@ class SpecificationFactoryTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = new SpecificationFactory();
     }
@@ -38,7 +38,7 @@ class SpecificationFactoryTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sut = NULL;
     }
@@ -47,7 +47,7 @@ class SpecificationFactoryTest extends TestCase
      * Tests that create() throws an exception when the context ID has no 
      * initial state.
      */
-    public function testCreateThrowsExceptionWhenInitialStateNotSet()
+    public function testCreateThrowsExceptionWhenInitialStateNotSet(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The specification cannot be created '.
@@ -65,7 +65,7 @@ class SpecificationFactoryTest extends TestCase
      * 
      * @dataProvider    getInitialStates
      */
-    public function testCreateGetInitialStateReturnsInt(int $cid, int $state)
+    public function testCreateGetInitialStateReturnsInt(int $cid, int $state): void
     {
         $spec = $this->sut->create($cid);
         self::assertSame($state, $spec->getInitialState());
@@ -80,7 +80,7 @@ class SpecificationFactoryTest extends TestCase
      * 
      * @dataProvider    getFinalStates
      */
-    public function testCreateGetFinalStatesReturnsArrayOfInt(int $cid, array $states)
+    public function testCreateGetFinalStatesReturnsArrayOfInt(int $cid, array $states): void
     {
         $spec = $this->sut->create($cid);
         self::assertSame($states, $spec->getFinalStates());
@@ -103,7 +103,8 @@ class SpecificationFactoryTest extends TestCase
         int $state, 
         int $sym, 
         string $name
-    ) {
+    ): void
+    {
         $spec = $this->sut->create($cid);
         self::assertSame($name, $spec->getTransitionElementName($state, $sym));
     }
@@ -125,7 +126,8 @@ class SpecificationFactoryTest extends TestCase
         int $state, 
         int $sym, 
         string $method
-    ) {
+    ): void
+    {
         $spec = $this->sut->create($cid);
         self::assertSame($method, $spec->getTransitionElementBuilder($state, $sym));
     }
@@ -147,7 +149,8 @@ class SpecificationFactoryTest extends TestCase
         int $state, 
         int $sym, 
         int $nextState
-    ) {
+    ): void
+    {
         $spec = $this->sut->create($cid);
         self::assertSame($nextState, $spec->getTransitionNextState($state, $sym));
     }
@@ -168,7 +171,8 @@ class SpecificationFactoryTest extends TestCase
         string $name, 
         string $ns, 
         string $method
-    ) {
+    ): void
+    {
         $spec = $this->sut->create($cid);
         self::assertSame($method, $spec->getAttributeBuilder($name, $ns));
     }
@@ -178,7 +182,7 @@ class SpecificationFactoryTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getInitialStates():array
+    public function getInitialStates(): array
     {
         return [
             [ 0, 0, ], // ELT_ROOT
@@ -242,7 +246,7 @@ class SpecificationFactoryTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getFinalStates():array
+    public function getFinalStates(): array
     {
         return [
             [ 0, [ 1, ], ], // ELT_ROOT
@@ -307,7 +311,7 @@ class SpecificationFactoryTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getTransitionElementNames():array
+    public function getTransitionElementNames(): array
     {
         return [
             // Context: ELT_ROOT
@@ -733,7 +737,7 @@ class SpecificationFactoryTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getTransitionElementBuilders():array
+    public function getTransitionElementBuilders(): array
     {
         return [
             // Context: ELT_ROOT
@@ -1159,7 +1163,7 @@ class SpecificationFactoryTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getTransitionNextStates():array
+    public function getTransitionNextStates(): array
     {
         return [
             // Context: ELT_ROOT
@@ -1584,7 +1588,7 @@ class SpecificationFactoryTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getAttributeBuilders():array
+    public function getAttributeBuilders(): array
     {
         return [
             // Context: ELT_SCHEMA

@@ -29,7 +29,7 @@ class NonNegativeIntegerTypeTest extends TestCase
      * 
      * @dataProvider    getValidValues
      */
-    public function test__constructStoresValueWhenItIsValid(\GMP $value)
+    public function test__constructStoresValueWhenItIsValid(\GMP $value): void
     {
         $sut = new NonNegativeIntegerType($value);
         self::assertSame($value, $sut->getNonNegativeInteger());
@@ -39,7 +39,7 @@ class NonNegativeIntegerTypeTest extends TestCase
      * Tests that __construct() throws an exception when the specified value 
      * is invalid.
      */
-    public function test__constructThrowsExceptionWhenValueIsInvalid()
+    public function test__constructThrowsExceptionWhenValueIsInvalid(): void
     {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage('"-1" is an invalid nonNegativeInteger datatype.');
@@ -52,7 +52,7 @@ class NonNegativeIntegerTypeTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getValidValues():array
+    public function getValidValues(): array
     {
         $datasets = [];
         

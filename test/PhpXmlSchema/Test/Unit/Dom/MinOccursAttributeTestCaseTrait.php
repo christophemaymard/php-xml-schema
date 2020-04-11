@@ -25,7 +25,7 @@ trait MinOccursAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testHasMinOccurs()
+    public function testHasMinOccurs(): void
     {
         self::assertFalse($this->sut->hasMinOccurs(), 'The attribute has not been set.');
         
@@ -40,7 +40,7 @@ trait MinOccursAttributeTestCaseTrait
      * 
      * @group   attribute
      */
-    public function testGetMinOccurs()
+    public function testGetMinOccurs(): void
     {
         self::assertNull($this->sut->getMinOccurs(), 'The attribute has not been set.');
         

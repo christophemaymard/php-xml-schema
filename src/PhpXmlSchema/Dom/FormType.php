@@ -19,12 +19,12 @@ class FormType
     /**
      * Required to be qualified with a namespace prefix.
      */
-    const QUALIFIED = 1;
+    public const QUALIFIED = 1;
     
     /**
      * Not required to be qualified with a namespace prefix.
      */
-    const UNQUALIFIED = 2;
+    public const UNQUALIFIED = 2;
     
     /**
      * The form.
@@ -37,7 +37,7 @@ class FormType
      * 
      * @return  FormType    A new instance of FormType.
      */
-    public static function createQualified():self
+    public static function createQualified(): self
     {
         return new self(self::QUALIFIED);
     }
@@ -47,7 +47,7 @@ class FormType
      * 
      * @return  FormType    A new instance of FormType.
      */
-    public static function createUnqualified():self
+    public static function createUnqualified(): self
     {
         return new self(self::UNQUALIFIED);
     }
@@ -69,7 +69,7 @@ class FormType
      * 
      * @throws  InvalidValueException   When the form is an invalid value.
      */
-    private function setForm(int $form)
+    private function setForm(int $form): void
     {
         if ($form != self::QUALIFIED && $form != self::UNQUALIFIED) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid form.', $form));
@@ -83,7 +83,7 @@ class FormType
      * 
      * @return  bool    TRUE if the form is "qualified", otherwise FALSE.
      */
-    public function isQualified():bool
+    public function isQualified(): bool
     {
         return $this->form == self::QUALIFIED;
     }
@@ -93,7 +93,7 @@ class FormType
      * 
      * @return  bool    TRUE if the form is "unqualified", otherwise FALSE.
      */
-    public function isUnqualified():bool
+    public function isUnqualified(): bool
     {
         return $this->form == self::UNQUALIFIED;
     }

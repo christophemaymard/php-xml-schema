@@ -47,7 +47,7 @@ class IDType
      * 
      * @throws  InvalidValueException   When the value is an invalid ID datatype.
      */
-    private function setId(string $id)
+    private function setId(string $id): void
     {
         if (!\preg_match('`^'.NCNameType::PATTERN.'$`u', $id)) {
             throw new InvalidValueException(\sprintf('"%s" is an invalid ID datatype.', $id));
@@ -61,7 +61,7 @@ class IDType
      * 
      * @return  string
      */
-    public function getId():string
+    public function getId(): string
     {
         return $this->id;
     }

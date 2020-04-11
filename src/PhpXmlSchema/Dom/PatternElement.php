@@ -32,7 +32,7 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_PATTERN;
     }
@@ -40,7 +40,7 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'pattern';
     }
@@ -50,7 +50,7 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
      * 
      * @return  StringType|NULL The value of the attribute if it has been set, otherwise NULL.
      */
-    public function getValue()
+    public function getValue(): ?StringType
     {
         return $this->valueAttr;
     }
@@ -60,7 +60,7 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
      * 
      * @param   StringType  $value  The value to set.
      */
-    public function setValue(StringType $value)
+    public function setValue(StringType $value): void
     {
         $this->valueAttr = $value;
     }
@@ -70,7 +70,7 @@ class PatternElement extends AbstractAnnotatedElement implements FacetElementInt
      * 
      * @return  bool    TRUE if the attribute has been set, otherwise FALSE.
      */
-    public function hasValue():bool
+    public function hasValue(): bool
     {
         return $this->valueAttr !== NULL;
     }

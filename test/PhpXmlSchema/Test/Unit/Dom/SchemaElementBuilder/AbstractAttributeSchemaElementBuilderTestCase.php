@@ -102,7 +102,7 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
     /**
      * {@inheritDoc}
      */
-    public static function assertSchemaElementNotChanged(SchemaElement $sch)
+    public static function assertSchemaElementNotChanged(SchemaElement $sch): void
     {
         static::assertAncestorsNotChanged($sch);
         
@@ -115,7 +115,7 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
     /**
      * {@inheritDoc}
      */
-    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch)
+    public static function assertCurrentElementHasNotAttribute(SchemaElement $sch): void
     {
         self::assertAttributeElementHasNoAttribute(static::getCurrentElement($sch));
     }
@@ -132,7 +132,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
      */
     public function testBuildDefaultAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildDefaultAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -157,7 +158,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
      */
     public function testBuildDefaultAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid string datatype.', 
@@ -179,7 +181,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
      */
     public function testBuildFixedAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value
-    ) {
+    ): void
+    {
         $this->sut->buildFixedAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -204,7 +207,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
      */
     public function testBuildFixedAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid string datatype.', 
@@ -228,7 +232,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
     public function testBuildIdAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value, 
         string $id
-    ) {
+    ): void
+    {
         $this->sut->buildIdAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -255,7 +260,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
     public function testBuildIdAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid ID datatype.', 
@@ -279,7 +285,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
     public function testBuildNameAttributeCreatesAttrWhenAttributeAndValueIsValid(
         string $value, 
         string $name
-    ) {
+    ): void
+    {
         $this->sut->buildNameAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -306,7 +313,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
     public function testBuildNameAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value, 
         string $mValue
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage(\sprintf(
             '"%s" is an invalid NCName datatype.', 
@@ -332,7 +340,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
     public function testBuildTypeAttributeCreatesAttrWhenAttributeAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
         string $value, 
         string $localPart
-    ) {
+    ): void
+    {
         $this->sut->buildTypeAttribute($value);
         $sch = $this->sut->getSchema();
         
@@ -360,7 +369,8 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
     public function testBuildTypeAttributeThrowsExceptionWhenAttributeAndValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         
@@ -376,7 +386,7 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
      * @group   attribute
      * @group   parsing
      */
-    public function testBuildTypeAttributeThrowsExceptionWhenAttributeAndValueIsValidAndPrefixNotAssociatedNamespace()
+    public function testBuildTypeAttributeThrowsExceptionWhenAttributeAndValueIsValidAndPrefixNotAssociatedNamespace(): void
     {
         $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
@@ -391,7 +401,7 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
      * @group   content
      * @group   element
      */
-    public function testBuildAnnotationElementCreateEltWhenAttribute()
+    public function testBuildAnnotationElementCreateEltWhenAttribute(): void
     {
         $this->sut->buildAnnotationElement();
         $sch = $this->sut->getSchema();
@@ -416,7 +426,7 @@ abstract class AbstractAttributeSchemaElementBuilderTestCase extends AbstractSch
      * @group   content
      * @group   element
      */
-    public function testBuildSimpleTypeElementCreateEltWhenAttribute()
+    public function testBuildSimpleTypeElementCreateEltWhenAttribute(): void
     {
         $this->sut->buildSimpleTypeElement();
         $sch = $this->sut->getSchema();

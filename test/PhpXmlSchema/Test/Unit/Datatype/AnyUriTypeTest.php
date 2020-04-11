@@ -136,7 +136,8 @@ class AnyUriTypeTest extends TestCase
     public function test__constructThrowsExceptionWhenValueIsInvalid(
         string $value, 
         string $message
-    ) {
+    ): void
+    {
         $this->expectException(InvalidValueException::class);
         $this->expectExceptionMessage($message);
         $sut = new AnyUriType($value);
@@ -149,7 +150,7 @@ class AnyUriTypeTest extends TestCase
      * 
      * @dataProvider    getValidUris
      */
-    public function test__constructStoresUriWhenItIsValid(string $uri)
+    public function test__constructStoresUriWhenItIsValid(string $uri): void
     {
         $sut = new AnyUriType($uri);
         self::assertSame($uri, $sut->getAnyUri());
@@ -181,7 +182,8 @@ class AnyUriTypeTest extends TestCase
         $path, 
         $query, 
         $fragment
-    ) {
+    ): void
+    {
         $sut = new AnyUriType($uri);
         self::assertSame($scheme, $sut->getScheme(), 'Scheme component.');
         self::assertSame($authority, $sut->getAuthority(), 'Authority component.');
@@ -201,7 +203,7 @@ class AnyUriTypeTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getValidUris():array
+    public function getValidUris(): array
     {
         $datasets = [];
         
@@ -217,7 +219,7 @@ class AnyUriTypeTest extends TestCase
      * 
      * @return  array[]
      */
-    public function getValidUriComponents():array
+    public function getValidUriComponents(): array
     {
         $schemes = \array_merge([ NULL, ], self::$schemes);
         $userInfos = \array_merge([ NULL, ], self::$userInfos);
@@ -255,7 +257,8 @@ class AnyUriTypeTest extends TestCase
         array $hosts,
         array $ports,
         array $paths
-    ):array {
+    ): array
+    {
         $datasets =[];
         
         $queries = \array_merge([ NULL, ], self::$queries);

@@ -34,7 +34,7 @@ abstract class AbstractElement implements ElementInterface
     /**
      * {@inheritDoc}
      */
-    public function getParent()
+    public function getParent(): ?ElementInterface
     {
         return $this->parent;
     }
@@ -46,7 +46,7 @@ abstract class AbstractElement implements ElementInterface
      * 
      * @throws  InvalidOperationException   When the element already belongs to another element.
      */
-    protected function setParent(ElementInterface $element)
+    protected function setParent(ElementInterface $element): void
     {
         if ($this->hasParent()) {
             throw new InvalidOperationException(\sprintf(
@@ -62,7 +62,7 @@ abstract class AbstractElement implements ElementInterface
     /**
      * {@inheritDoc}
      */
-    public function hasParent():bool
+    public function hasParent(): bool
     {
         return $this->parent !== NULL;
     }
@@ -70,7 +70,7 @@ abstract class AbstractElement implements ElementInterface
     /**
      * {@inheritDoc}
      */
-    public function bindNamespace(string $prefix, string $namespace)
+    public function bindNamespace(string $prefix, string $namespace): void
     {
         if ($prefix == XmlNamespace::XML_1_0_PREFIX && $namespace != XmlNamespace::XML_1_0) {
             throw new InvalidOperationException(\sprintf(
@@ -103,7 +103,7 @@ abstract class AbstractElement implements ElementInterface
     /**
      * {@inheritDoc}
      */
-    public function lookupNamespace(string $prefix)
+    public function lookupNamespace(string $prefix): ?string
     {
         $ns = NULL;
         
@@ -121,7 +121,7 @@ abstract class AbstractElement implements ElementInterface
     /**
      * {@inheritDoc}
      */
-    public function getNamespaceDeclarations():array
+    public function getNamespaceDeclarations(): array
     {
         return $this->nsBinding;
     }

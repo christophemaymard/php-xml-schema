@@ -23,7 +23,7 @@ class SimpleContentElement extends AbstractAnnotatedElement implements ContentEl
     /**
      * {@inheritDoc}
      */
-    public function getElementId():int
+    public function getElementId(): int
     {
         return ElementId::ELT_SIMPLECONTENT;
     }
@@ -31,7 +31,7 @@ class SimpleContentElement extends AbstractAnnotatedElement implements ContentEl
     /**
      * {@inheritDoc}
      */
-    public function getLocalName():string
+    public function getLocalName(): string
     {
         return 'simpleContent';
     }
@@ -41,7 +41,7 @@ class SimpleContentElement extends AbstractAnnotatedElement implements ContentEl
      * 
      * @return  SimpleContentDerivationElementInterface|NULL    The instance of the element if it has been set, otherwise NULL.
      */
-    public function getDerivationElement()
+    public function getDerivationElement(): ?SimpleContentDerivationElementInterface
     {
         return $this->getChildElement(1);
     }
@@ -51,7 +51,7 @@ class SimpleContentElement extends AbstractAnnotatedElement implements ContentEl
      * 
      * @param   SimpleContentDerivationElementInterface $element    The element to set.
      */
-    public function setDerivationElement(SimpleContentDerivationElementInterface $element)
+    public function setDerivationElement(SimpleContentDerivationElementInterface $element): void
     {
         $this->setChildElement(1, $element);
     }
@@ -61,7 +61,7 @@ class SimpleContentElement extends AbstractAnnotatedElement implements ContentEl
      * 
      * @return  bool    TRUE if an element has been set, otherwise FALSE.
      */
-    public function hasDerivationElement():bool
+    public function hasDerivationElement(): bool
     {
         return $this->isChildElementSet(1);
     }
