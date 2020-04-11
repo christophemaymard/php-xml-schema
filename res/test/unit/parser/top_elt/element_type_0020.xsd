@@ -1,0 +1,4 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f00="http://example.org">
+  <xs:element type="f00:baz">
+  </xs:element>
+</xs:schema>

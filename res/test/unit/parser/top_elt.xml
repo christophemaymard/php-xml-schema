@@ -397,6 +397,139 @@
       <message>The "substitutionGroup" attribute is invalid: The "foo" prefix is not bound to a namespace.</message>
     </schema>
   </test>
+  <!-- element::type -->
+  <test group="attribute" name="[element][attribute::type] Prefix (absent), local part (empty string)">
+    <schema fileName="element_type_0024.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (absent), local part (only white spaces)">
+    <schema fileName="element_type_0025.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (absent), local part (separated by white spaces)">
+    <schema fileName="element_type_0026.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (absent), local part (starts with digit)">
+    <schema fileName="element_type_0027.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (absent), local part (starts with .)">
+    <schema fileName="element_type_0028.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (absent), local part (starts with -)">
+    <schema fileName="element_type_0029.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (absent), local part (contains invalid character)">
+    <schema fileName="element_type_0030.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (empty string), local part (valid)">
+    <schema fileName="element_type_0031.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (only white spaces), local part (valid)">
+    <schema fileName="element_type_0032.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (separated by white spaces), local part (valid)">
+    <schema fileName="element_type_0033.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (starts with digit), local part (valid)">
+    <schema fileName="element_type_0034.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (starts with .), local part (valid)">
+    <schema fileName="element_type_0035.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (starts with -), local part (valid)">
+    <schema fileName="element_type_0036.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (contains invalid character), local part (valid)">
+    <schema fileName="element_type_0037.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (valid), local part (empty string)">
+    <schema fileName="element_type_0038.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (valid), local part (only white spaces)">
+    <schema fileName="element_type_0039.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (valid), local part (separated by white spaces)">
+    <schema fileName="element_type_0040.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "foo bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (valid), local part (starts with digit)">
+    <schema fileName="element_type_0041.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "8foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (valid), local part (starts with .)">
+    <schema fileName="element_type_0042.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: ".foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (valid), local part (starts with -)">
+    <schema fileName="element_type_0043.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "-foo" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix (valid), local part (contains invalid character)">
+    <schema fileName="element_type_0044.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidValueException</exception>
+      <message>The "type" attribute is invalid: "foo+bar" is an invalid NCName datatype.</message>
+    </schema>
+  </test>
+  <test group="attribute" name="[element][attribute::type] Prefix not bound to namespace">
+    <schema fileName="element_type_0045.xsd">
+      <exception>\PhpXmlSchema\Exception\InvalidOperationException</exception>
+      <message>The "type" attribute is invalid: The "foo" prefix is not bound to a namespace.</message>
+    </schema>
+  </test>
   <!-- TEMPLATE
   <test group="attribute|content" name="">
     <schema fileName=".xsd">

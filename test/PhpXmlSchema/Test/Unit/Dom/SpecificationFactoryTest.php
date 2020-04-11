@@ -1814,6 +1814,7 @@ class SpecificationFactoryTest extends TestCase
             [ 54, 'name', '', 'buildNameAttribute', ], 
             [ 54, 'nillable', '', 'buildNillableAttribute', ], 
             [ 54, 'substitutionGroup', '', 'buildSubstitutionGroupAttribute', ], 
+            [ 54, 'type', '', 'buildTypeAttribute', ], 
         ];
     }
 }
