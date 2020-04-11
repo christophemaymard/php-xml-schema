@@ -477,6 +477,41 @@ class TopElementParserTest extends AbstractParserTestCase
     }
     
     /**
+     * Tests that parse() processes "simpleType" element (localSimpleType).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testParseProcessSimpleTypeElement(): void
+    {
+        $sch = $this->sut->parse($this->getXs('simpleType_0002.xsd'));
+        
+        self::assertElementNamespaceDeclarations(
+            [
+                'xs' => 'http://www.w3.org/2001/XMLSchema', 
+            ], 
+            $sch
+        );
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        
+        $elt = $sch->getElementElements()[0];
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(1, $elt->getElements());
+        
+        $st = $elt->getTypeElement();
+        self::assertElementNamespaceDeclarations([], $st);
+        self::assertSimpleTypeElementHasNoAttribute($st);
+        self::assertCount(1, $st->getElements());
+        
+        $res = $st->getDerivationElement();
+        self::assertElementNamespaceDeclarations([], $res);
+        self::assertSimpleTypeRestrictionElementHasNoAttribute($res);
+        self::assertSame([], $res->getElements());
+    }
+    
+    /**
      * Returns a set of valid "abstract" attributes.
      * 
      * @return  array[]
