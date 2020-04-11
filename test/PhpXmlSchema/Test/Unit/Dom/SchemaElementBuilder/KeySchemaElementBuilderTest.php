@@ -100,6 +100,7 @@ class KeySchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCase
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     use BuildSequenceElementDoesNotCreateElementTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
+    use BuildSubstitutionGroupAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

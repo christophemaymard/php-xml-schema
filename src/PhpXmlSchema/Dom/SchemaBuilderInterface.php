@@ -348,6 +348,19 @@ interface SchemaBuilderInterface
     public function buildSourceAttribute(string $value): void;
     
     /**
+     * Builds a "substitutionGroup" attribute in the current element.
+     * 
+     * If the current element does not support the attribute then it is not 
+     * built.
+     * 
+     * @param   string  $value  The value of the attribute.
+     * 
+     * @throws  InvalidValueException       When the current element supports the attribute and the value is invalid.
+     * @throws  InvalidOperationException   When the current element supports the attribute and the prefix is not bound to a namespace.
+     */
+    public function buildSubstitutionGroupAttribute(string $value): void;
+    
+    /**
      * Builds a "system" attribute in the current element.
      * 
      * If the current element does not support the attribute then it is not 

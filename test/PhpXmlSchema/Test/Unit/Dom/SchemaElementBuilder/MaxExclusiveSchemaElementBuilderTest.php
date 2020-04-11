@@ -103,6 +103,7 @@ class MaxExclusiveSchemaElementBuilderTest extends AbstractSchemaElementBuilderT
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     use BuildSequenceElementDoesNotCreateElementTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
+    use BuildSubstitutionGroupAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

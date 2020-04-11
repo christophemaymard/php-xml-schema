@@ -99,6 +99,7 @@ class NamedGroupSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
+    use BuildSubstitutionGroupAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

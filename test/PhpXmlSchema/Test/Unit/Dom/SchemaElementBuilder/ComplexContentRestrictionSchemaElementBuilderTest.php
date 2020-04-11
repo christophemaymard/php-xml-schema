@@ -99,6 +99,7 @@ class ComplexContentRestrictionSchemaElementBuilderTest extends AbstractSchemaEl
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
+    use BuildSubstitutionGroupAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

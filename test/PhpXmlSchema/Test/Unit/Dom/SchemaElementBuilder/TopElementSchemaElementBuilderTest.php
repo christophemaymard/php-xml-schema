@@ -10,9 +10,11 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Unit\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
+use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
@@ -30,6 +32,7 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BooleanTypeProviderTrait;
     use DerivationTypeProviderTrait;
     use NCNameTypeProviderTrait;
+    use QNameTypeProviderTrait;
     use StringTypeProviderTrait;
     
     use BindNamespaceTestTrait;
@@ -585,5 +588,146 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         $this->expectExceptionMessage(\sprintf('"%s" is an invalid boolean datatype.', $value));
         
         $this->sut->buildNillableAttribute($value);
+    }
+    
+    /**
+     * Tests that buildSubstitutionGroupAttribute() creates the attribute 
+     * when:
+     * - the current element is the "element" element (topLevelElement), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - no default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidLocalPartQNameTypeValues
+     */
+    public function testBuildSubstitutionGroupAttributeCreatesAttrWhenTopElementAndValueIsValidQNameLocalPartAndNoDefaultNamespace(
+        string $value, 
+        string $localPart
+    ): void
+    {
+        $this->sut->buildSubstitutionGroupAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlySubstitutionGroupAttribute($elt);
+        self::assertSame($localPart, $elt->getSubstitutionGroup()->getLocalPart()->getNCName());
+        self::assertFalse($elt->getSubstitutionGroup()->hasNamespace());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildSubstitutionGroupAttribute() creates the attribute 
+     * when:
+     * - the current element is the "element" element (topLevelElement), and 
+     * - the value is a valid QName (local part without prefix), and 
+     * - default namespace.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $localPart  The expected value for the local part.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getValidLocalPartQNameTypeValues
+     */
+    public function testBuildSubstitutionGroupAttributeCreatesAttrWhenTopElementAndValueIsValidQNameLocalPartAndDefaultNamespace(
+        string $value, 
+        string $localPart
+    ): void
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('', 'http://example.org');
+        $this->sut->buildElementElement();
+        $this->sut->buildSubstitutionGroupAttribute($value);
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['' => 'http://example.org' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getElementElements());
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlySubstitutionGroupAttribute($elt);
+        self::assertSame($localPart, $elt->getSubstitutionGroup()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org', $elt->getSubstitutionGroup()->getNamespace()->getAnyUri());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildSubstitutionGroupAttribute() throws an exception when 
+     * the current element is the "element" element (topLevelElement) and the 
+     * value is an invalid QName.
+     * 
+     * @param   string  $value      The value to test.
+     * @param   string  $message    The expected exception message.
+     * 
+     * @group           attribute
+     * @group           parsing
+     * @dataProvider    getInvalidQNameTypeValues
+     */
+    public function testBuildSubstitutionGroupAttributeThrowsExceptionWhenTopElementAndValueIsInvalid(
+        string $value, 
+        string $message
+    ): void
+    {
+        $this->expectException(InvalidValueException::class);
+        $this->expectExceptionMessage($message);
+        
+        $this->sut->buildSubstitutionGroupAttribute($value);
+    }
+    
+    /**
+     * Tests that buildSubstitutionGroupAttribute() creates the attribute 
+     * when:
+     * - the current element is the "element" element (topLevelElement), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildSubstitutionGroupAttributeCreatesAttrWhenTopElementAndValueIsValidAndPrefixAssociatedNamespace(): void
+    {
+        $this->sut->buildSchemaElement();
+        $this->sut->bindNamespace('foo', 'http://example.org/foo');
+        $this->sut->buildElementElement();
+        $this->sut->buildSubstitutionGroupAttribute('foo:bar');
+        $sch = $this->sut->getSchema();
+        
+        self::assertElementNamespaceDeclarations(['foo' => 'http://example.org/foo' ], $sch);
+        self::assertSchemaElementHasNoAttribute($sch);
+        self::assertCount(1, $sch->getElements());
+        self::assertCount(1, $sch->getElementElements());
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasOnlySubstitutionGroupAttribute($elt);
+        self::assertSame('bar', $elt->getSubstitutionGroup()->getLocalPart()->getNCName());
+        self::assertSame('http://example.org/foo', $elt->getSubstitutionGroup()->getNamespace()->getAnyUri());
+        self::assertSame([], $elt->getElements());
+    }
+    
+    /**
+     * Tests that buildSubstitutionGroupAttribute() throws an exception when:
+     * - the current element is the "element" element (topLevelElement), and 
+     * - the value is a valid QName (local part with prefix), and 
+     * - the prefix is not associated to a namespace.
+     * 
+     * @group   attribute
+     * @group   parsing
+     */
+    public function testBuildSubstitutionGroupAttributeThrowsExceptionWhenTopElementAndValueIsValidAndPrefixNotAssociatedNamespace(): void
+    {
+        $this->expectException(InvalidOperationException::class);
+        $this->expectExceptionMessage('The "foo" prefix is not bound to a namespace.');
+        
+        $this->sut->buildSubstitutionGroupAttribute('foo:bar');
     }
 }

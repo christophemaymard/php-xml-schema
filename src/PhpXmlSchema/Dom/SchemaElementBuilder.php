@@ -578,6 +578,17 @@ class SchemaElementBuilder implements SchemaBuilderInterface
     /**
      * {@inheritDoc}
      */
+    public function buildSubstitutionGroupAttribute(string $value): void
+    {
+        if ($this->currentElement instanceof ElementElement && 
+            $this->currentElement->getParent() instanceof SchemaElement) {
+            $this->currentElement->setSubstitutionGroup($this->parseQName($value));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function buildSystemAttribute(string $value): void
     {
         if ($this->currentElement instanceof NotationElement) {

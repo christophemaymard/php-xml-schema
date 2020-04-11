@@ -102,6 +102,7 @@ class KeyRefSchemaElementBuilderTest extends AbstractSchemaElementBuilderTestCas
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildSequenceElementDoesNotCreateElementTestTrait;
     use BuildAnyElementDoesNotCreateElementTestTrait;
+    use BuildSubstitutionGroupAttributeDoesNotCreateAttributeTestTrait;
     
     /**
      * {@inheritDoc}

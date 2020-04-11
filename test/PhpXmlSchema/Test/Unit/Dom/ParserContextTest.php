@@ -652,6 +652,7 @@ class ParserContextTest extends TestCase
             public function buildReferAttribute(string $value): void {}
             public function buildSchemaLocationAttribute(string $value): void {}
             public function buildSourceAttribute(string $value): void {}
+            public function buildSubstitutionGroupAttribute(string $value): void {}
             public function buildSystemAttribute(string $value): void {}
             public function buildTargetNamespaceAttribute(string $value): void {}
             public function buildTypeAttribute(string $value): void {}
