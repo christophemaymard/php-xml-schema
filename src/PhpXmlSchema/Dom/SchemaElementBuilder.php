@@ -1465,8 +1465,7 @@ class SchemaElementBuilder implements SchemaBuilderInterface
      */
     public function buildUniqueElement(): void
     {
-        if ($this->currentElement instanceof ElementElement && 
-            !$this->currentElement->getParent() instanceof SchemaElement) {
+        if ($this->currentElement instanceof ElementElement) {
             $elt = new UniqueElement();
             $this->currentElement->addUniqueElement($elt);
             $this->currentElement = $elt;
