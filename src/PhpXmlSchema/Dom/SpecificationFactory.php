@@ -620,12 +620,15 @@ class SpecificationFactory
             [ 0, ContextId::ELT_LOCAL_COMPLEXTYPE, 'complexType', ], 
             [ 0, ContextId::ELT_UNIQUE, 'unique', ], 
             [ 0, ContextId::ELT_KEY, 'key', ], 
+            [ 0, ContextId::ELT_KEYREF, 'keyref', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'simpleType', ], 
             [ 1, ContextId::ELT_LOCAL_COMPLEXTYPE, 'complexType', ], 
             [ 1, ContextId::ELT_UNIQUE, 'unique', ], 
             [ 1, ContextId::ELT_KEY, 'key', ], 
+            [ 1, ContextId::ELT_KEYREF, 'keyref', ], 
             [ 2, ContextId::ELT_UNIQUE, 'unique', ], 
             [ 2, ContextId::ELT_KEY, 'key', ], 
+            [ 2, ContextId::ELT_KEYREF, 'keyref', ], 
         ], 
     ];
     
@@ -1107,12 +1110,15 @@ class SpecificationFactory
             [ 0, ContextId::ELT_LOCAL_COMPLEXTYPE, 'buildComplexTypeElement', ], 
             [ 0, ContextId::ELT_UNIQUE, 'buildUniqueElement', ], 
             [ 0, ContextId::ELT_KEY, 'buildKeyElement', ], 
+            [ 0, ContextId::ELT_KEYREF, 'buildKeyRefElement', ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 'buildSimpleTypeElement', ], 
             [ 1, ContextId::ELT_LOCAL_COMPLEXTYPE, 'buildComplexTypeElement', ], 
             [ 1, ContextId::ELT_UNIQUE, 'buildUniqueElement', ], 
             [ 1, ContextId::ELT_KEY, 'buildKeyElement', ], 
+            [ 1, ContextId::ELT_KEYREF, 'buildKeyRefElement', ], 
             [ 2, ContextId::ELT_UNIQUE, 'buildUniqueElement', ], 
             [ 2, ContextId::ELT_KEY, 'buildKeyElement', ], 
+            [ 2, ContextId::ELT_KEYREF, 'buildKeyRefElement', ], 
         ], 
     ];
     
@@ -1593,12 +1599,15 @@ class SpecificationFactory
             [ 0, ContextId::ELT_LOCAL_COMPLEXTYPE, 2, ], 
             [ 0, ContextId::ELT_UNIQUE, 2, ], 
             [ 0, ContextId::ELT_KEY, 2, ], 
+            [ 0, ContextId::ELT_KEYREF, 2, ], 
             [ 1, ContextId::ELT_LOCAL_SIMPLETYPE, 2, ], 
             [ 1, ContextId::ELT_LOCAL_COMPLEXTYPE, 2, ], 
             [ 1, ContextId::ELT_UNIQUE, 2, ], 
             [ 1, ContextId::ELT_KEY, 2, ], 
+            [ 1, ContextId::ELT_KEYREF, 2, ], 
             [ 2, ContextId::ELT_UNIQUE, 2, ], 
             [ 2, ContextId::ELT_KEY, 2, ], 
+            [ 2, ContextId::ELT_KEYREF, 2, ], 
         ], 
     ];
     

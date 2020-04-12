@@ -1,0 +1,12 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element>
+    <xs:keyref>
+      <xs:selector></xs:selector>
+      <xs:field></xs:field>
+    </xs:keyref>
+    <xs:keyref>
+      <xs:selector></xs:selector>
+      <xs:field></xs:field>
+    </xs:keyref>
+  </xs:element>
+</xs:schema>
