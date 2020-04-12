@@ -1,0 +1,12 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element>
+    <xs:unique>
+      <xs:selector></xs:selector>
+      <xs:field></xs:field>
+    </xs:unique>
+    <xs:unique>
+      <xs:selector></xs:selector>
+      <xs:field></xs:field>
+    </xs:unique>
+  </xs:element>
+</xs:schema>
