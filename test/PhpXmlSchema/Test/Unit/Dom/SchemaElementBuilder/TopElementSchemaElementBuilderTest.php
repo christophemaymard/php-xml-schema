@@ -96,7 +96,6 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
     use BuildSelectorElementDoesNotCreateElementTestTrait;
     use BuildFieldElementDoesNotCreateElementTestTrait;
     use BuildXPathAttributeDoesNotCreateAttributeTestTrait;
-    use BuildKeyElementDoesNotCreateElementTestTrait;
     use BuildKeyRefElementDoesNotCreateElementTestTrait;
     use BuildReferAttributeDoesNotCreateAttributeTestTrait;
     use BuildSequenceElementDoesNotCreateElementTestTrait;
@@ -970,5 +969,37 @@ class TopElementSchemaElementBuilderTest extends AbstractSchemaElementBuilderTes
         self::assertElementNamespaceDeclarations([], $uniques[1]);
         self::assertUniqueElementHasNoAttribute($uniques[1]);
         self::assertSame([], $uniques[1]->getElements());
+    }
+    
+    /**
+     * Tests that buildKeyElement() creates the element when the current 
+     * element is the "element" element (topLevelElement).
+     * 
+     * @group   content
+     * @group   element
+     */
+    public function testBuildKeyElementCreateEltWhenTopElement(): void
+    {
+        $this->sut->buildKeyElement();
+        $this->sut->endElement();
+        $this->sut->buildKeyElement();
+        $sch = $this->sut->getSchema();
+        
+        self::assertAncestorsNotChanged($sch);
+        
+        $elt = self::getCurrentElement($sch);
+        self::assertElementNamespaceDeclarations([], $elt);
+        self::assertElementElementHasNoAttribute($elt);
+        self::assertCount(2, $elt->getElements());
+        
+        $keys = $elt->getKeyElements();
+        
+        self::assertElementNamespaceDeclarations([], $keys[0]);
+        self::assertKeyElementHasNoAttribute($keys[0]);
+        self::assertSame([], $keys[0]->getElements());
+        
+        self::assertElementNamespaceDeclarations([], $keys[1]);
+        self::assertKeyElementHasNoAttribute($keys[1]);
+        self::assertSame([], $keys[1]->getElements());
     }
 }
