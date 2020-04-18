@@ -9,8 +9,8 @@ namespace PhpXmlSchema\Test\Integration\Dom\Parser;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\Parser;
+use PhpXmlSchema\Test\Dom\ElementAssertTrait;
 use PhpXmlSchema\Test\Dom\XmlAssertTrait;
-use PhpXmlSchema\Test\Unit\Dom\ElementAssertTrait;
 
 /**
  * Represents the base class to unit test the {@see PhpXmlSchema\Dom\Parser} 

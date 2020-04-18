@@ -11,8 +11,8 @@ use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
+use PhpXmlSchema\Test\Dom\ElementAssertTrait;
 use PhpXmlSchema\Test\Dom\XmlAssertTrait;
-use PhpXmlSchema\Test\Unit\Dom\ElementAssertTrait;
 
 /**
  * Represents the base class to unit test the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 

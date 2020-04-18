@@ -19,6 +19,7 @@ use PhpXmlSchema\Dom\SelectorXPathType;
 use PhpXmlSchema\Dom\UseType;
 use PhpXmlSchema\Dom\WhiteSpaceType;
 use PhpXmlSchema\Exception\InvalidOperationException;
+use PhpXmlSchema\Test\Dom\ElementAssertTrait;
 use PhpXmlSchema\Test\Dom\XmlAssertTrait;
 use PhpXmlSchema\Test\Datatype\DatatypeDummyFactoryTrait;
 use Prophecy\PhpUnit\ProphecyTrait;
