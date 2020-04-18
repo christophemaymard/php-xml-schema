@@ -7,6 +7,8 @@
  */
 namespace PhpXmlSchema\Test\Unit\Dom;
 
+use PhpXmlSchema\Test\Dom\ElementMockFactoryTrait;
+
 /**
  * Represents the base class for all the composite element test cases.
  * 

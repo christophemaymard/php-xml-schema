@@ -5,7 +5,7 @@
  * @copyright   2018-2020, Christophe Maymard <christophe.maymard@hotmail.com>
  * @license     http://opensource.org/licenses/MIT  MIT
  */
-namespace PhpXmlSchema\Test\Unit\Dom;
+namespace PhpXmlSchema\Test\Dom;
 
 use PhpXmlSchema\Dom\AllElement;
 use PhpXmlSchema\Dom\AnnotationElement;
