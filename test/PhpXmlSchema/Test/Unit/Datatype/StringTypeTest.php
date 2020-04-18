@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Datatype;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\StringType;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Datatype\StringTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Datatype\StringType} 

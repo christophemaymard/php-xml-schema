@@ -13,7 +13,7 @@ use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\QNameTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
+use PhpXmlSchema\Test\Datatype\StringTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
 
 /**

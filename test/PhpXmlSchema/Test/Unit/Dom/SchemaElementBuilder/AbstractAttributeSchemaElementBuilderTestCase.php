@@ -12,7 +12,7 @@ use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\QNameTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
+use PhpXmlSchema\Test\Datatype\StringTypeProviderTrait;
 
 /**
  * Represents the base class to unit test the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
