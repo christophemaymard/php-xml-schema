@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\SelectorXPathType;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Dom\SelectorXPathTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SelectorXPathType} 
