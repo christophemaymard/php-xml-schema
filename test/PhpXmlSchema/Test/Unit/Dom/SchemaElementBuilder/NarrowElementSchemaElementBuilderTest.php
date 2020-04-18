@@ -13,7 +13,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\NonNegativeIntegerTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\FormChoiceTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 

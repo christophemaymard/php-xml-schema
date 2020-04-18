@@ -12,7 +12,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
-use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\FormChoiceTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\UseTypeProviderTrait;
 
 /**

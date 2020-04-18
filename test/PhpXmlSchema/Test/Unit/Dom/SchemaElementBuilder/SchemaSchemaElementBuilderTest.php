@@ -16,7 +16,7 @@ use PhpXmlSchema\Test\Datatype\LanguageTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\TokenTypeProviderTrait;
 use PhpXmlSchema\Test\Dom\DerivationTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\FormChoiceTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\FormChoiceTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
