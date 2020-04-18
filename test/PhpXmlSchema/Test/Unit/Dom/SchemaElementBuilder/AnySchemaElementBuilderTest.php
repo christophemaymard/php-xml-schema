@@ -13,7 +13,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\NonNegativeIntegerTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\NamespaceListTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\NamespaceListTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\ProcessingModeTypeProviderTrait;
 

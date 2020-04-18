@@ -12,7 +12,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\NamespaceListTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\NamespaceListTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\ProcessingModeTypeProviderTrait;
 
 /**
