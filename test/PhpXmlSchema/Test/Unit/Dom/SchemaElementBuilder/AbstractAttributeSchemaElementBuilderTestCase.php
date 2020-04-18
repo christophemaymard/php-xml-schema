@@ -11,7 +11,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Datatype\QNameTypeProviderTrait;
+use PhpXmlSchema\Test\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\StringTypeProviderTrait;
 
 /**
