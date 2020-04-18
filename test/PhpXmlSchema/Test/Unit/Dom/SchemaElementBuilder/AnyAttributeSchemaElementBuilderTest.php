@@ -13,7 +13,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Dom\NamespaceListTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\ProcessingModeTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\ProcessingModeTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 

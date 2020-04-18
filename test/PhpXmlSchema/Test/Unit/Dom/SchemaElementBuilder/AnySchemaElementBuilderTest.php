@@ -15,7 +15,7 @@ use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Dom\NamespaceListTypeProviderTrait;
 use PhpXmlSchema\Test\Dom\NonNegativeIntegerLimitTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\ProcessingModeTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\ProcessingModeTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
