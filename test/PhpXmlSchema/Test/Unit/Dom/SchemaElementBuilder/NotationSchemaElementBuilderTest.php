@@ -12,7 +12,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\AnyUriTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
+use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Datatype\TokenTypeProviderTrait;
 
 /**

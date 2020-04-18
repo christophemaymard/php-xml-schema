@@ -9,7 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Dom\SchemaElementBuilder;
 
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Exception\InvalidValueException;
-use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
+use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 
 /**
  * Represents the base class to unit test the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 

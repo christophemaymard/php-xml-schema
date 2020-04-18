@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Datatype;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\IDType;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Datatype\IDType} 

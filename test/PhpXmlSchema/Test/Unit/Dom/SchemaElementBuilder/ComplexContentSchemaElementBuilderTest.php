@@ -12,7 +12,7 @@ use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\BooleanTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Datatype\NCNameTypeProviderTrait;
+use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
