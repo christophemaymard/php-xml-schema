@@ -11,7 +11,7 @@ use PhpXmlSchema\Dom\ElementInterface;
 use PhpXmlSchema\Dom\SchemaElement;
 use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
-use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\DerivationTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 

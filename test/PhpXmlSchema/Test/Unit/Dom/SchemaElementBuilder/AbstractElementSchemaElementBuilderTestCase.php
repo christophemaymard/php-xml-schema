@@ -14,7 +14,7 @@ use PhpXmlSchema\Test\Datatype\BooleanTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\QNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\StringTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\DerivationTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\DerivationTypeProviderTrait;
 
 /**
  * Represents the base class to unit test the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
