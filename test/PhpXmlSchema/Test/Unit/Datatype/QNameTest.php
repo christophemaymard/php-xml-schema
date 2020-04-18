@@ -9,6 +9,7 @@ namespace PhpXmlSchema\Test\Unit\Datatype;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\QNameType;
+use PhpXmlSchema\Test\Datatype\DatatypeDummyFactoryTrait;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**

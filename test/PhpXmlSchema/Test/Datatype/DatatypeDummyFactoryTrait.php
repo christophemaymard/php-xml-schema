@@ -5,7 +5,7 @@
  * @copyright   2018-2020, Christophe Maymard <christophe.maymard@hotmail.com>
  * @license     http://opensource.org/licenses/MIT  MIT
  */
-namespace PhpXmlSchema\Test\Unit\Datatype;
+namespace PhpXmlSchema\Test\Datatype;
 
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Datatype\IDType;

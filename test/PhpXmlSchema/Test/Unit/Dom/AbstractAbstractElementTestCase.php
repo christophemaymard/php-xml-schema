@@ -20,7 +20,7 @@ use PhpXmlSchema\Dom\UseType;
 use PhpXmlSchema\Dom\WhiteSpaceType;
 use PhpXmlSchema\Exception\InvalidOperationException;
 use PhpXmlSchema\Test\Dom\XmlAssertTrait;
-use PhpXmlSchema\Test\Unit\Datatype\DatatypeDummyFactoryTrait;
+use PhpXmlSchema\Test\Datatype\DatatypeDummyFactoryTrait;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 
