@@ -14,7 +14,7 @@ use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Dom\NamespaceListTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 use PhpXmlSchema\Test\Unit\Dom\ProcessingModeTypeProviderTrait;
 
 /**

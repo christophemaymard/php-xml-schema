@@ -15,7 +15,7 @@ use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\NonNegativeIntegerTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\QNameTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Dom\NonNegativeIntegerLimitTypeProviderTrait;
+use PhpXmlSchema\Test\Dom\NonNegativeIntegerLimitTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
