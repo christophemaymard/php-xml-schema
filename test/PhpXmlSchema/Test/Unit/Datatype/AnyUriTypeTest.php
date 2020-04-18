@@ -10,6 +10,7 @@ namespace PhpXmlSchema\Test\Unit\Datatype;
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Datatype\AnyUriType;
 use PhpXmlSchema\Exception\InvalidValueException;
+use PhpXmlSchema\Test\Datatype\AnyUriTypeComponentBuilder;
 use PhpXmlSchema\Test\Datatype\AnyUriTypeProviderTrait;
 
 /**
