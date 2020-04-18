@@ -13,7 +13,7 @@ use PhpXmlSchema\Dom\SchemaElementBuilder;
 use PhpXmlSchema\Exception\InvalidValueException;
 use PhpXmlSchema\Test\Datatype\AnyUriTypeProviderTrait;
 use PhpXmlSchema\Test\Datatype\NCNameTypeProviderTrait;
-use PhpXmlSchema\Test\Unit\Datatype\TokenTypeProviderTrait;
+use PhpXmlSchema\Test\Datatype\TokenTypeProviderTrait;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\SchemaElementBuilder} 
