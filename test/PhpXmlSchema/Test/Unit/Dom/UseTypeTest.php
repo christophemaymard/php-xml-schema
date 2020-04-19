@@ -9,7 +9,6 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\UseType;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\UseType} class.
@@ -61,45 +60,13 @@ class UseTypeTest extends TestCase
     }
     
     /**
-     * Tests that isOptional() returns TRUE, isProhibited() and isRequired() 
-     * return FALSE when the specified use is "optional".
+     * Tests that __construct() throws an exception.
      */
-    public function testIsOptionalReturnsTrueWhenUseOptional(): void
+    public function test__constructThrowsException(): void
     {
-        $sut = new UseType(1);
-        self::assertUseOptional($sut);
-    }
-    
-    /**
-     * Tests that isProhibited() returns TRUE, isOptional() and isRequired() 
-     * return FALSE when the specified use is "prohibited".
-     */
-    public function testIsProhibitedReturnsTrueWhenUseProhibited(): void
-    {
-        $sut = new UseType(2);
-        self::assertUseProhibited($sut);
-    }
-    
-    /**
-     * Tests that isRequired() returns TRUE, isOptional() and isProhibited() 
-     * return FALSE when the specified use is "required".
-     */
-    public function testIsRequiredReturnsTrueWhenUseRequired(): void
-    {
-        $sut = new UseType(3);
-        self::assertUseRequired($sut);
-    }
-    
-    /**
-     * Tests that __construct() throws an exception when the specified use is 
-     * invalid.
-     */
-    public function test__constructThrowsExceptionWhenUseIsInvalid(): void
-    {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage('"4" is an invalid use.');
-        
-        $sut = new UseType(4);
+        $this->expectException(\Throwable::class);
+        $this->expectExceptionMessageMatches('`private `');
+        $sut = new UseType();
     }
     
     /**

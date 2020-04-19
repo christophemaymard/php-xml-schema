@@ -7,8 +7,6 @@
  */
 namespace PhpXmlSchema\Dom;
 
-use PhpXmlSchema\Exception\InvalidValueException;
-
 /**
  * Represents the type for an use.
  * 
@@ -19,17 +17,17 @@ class UseType
     /**
      * The use is optional.
      */
-    public const OPTIONAL = 1;
+    private const OPTIONAL = 1;
     
     /**
      * The use is prohibited.
      */
-    public const PROHIBITED = 2;
+    private const PROHIBITED = 2;
     
     /**
      * The use is required.
      */
-    public const REQUIRED = 3;
+    private const REQUIRED = 3;
     
     /**
      * The use.
@@ -44,7 +42,10 @@ class UseType
      */
     public static function createOptional(): self
     {
-        return new self(self::OPTIONAL);
+        $type = new self();
+        $type->use = self::OPTIONAL;
+        
+        return $type;
     }
     
     /**
@@ -54,7 +55,10 @@ class UseType
      */
     public static function createProhibited(): self
     {
-        return new self(self::PROHIBITED);
+        $type = new self();
+        $type->use = self::PROHIBITED;
+        
+        return $type;
     }
     
     /**
@@ -64,33 +68,17 @@ class UseType
      */
     public static function createRequired(): self
     {
-        return new self(self::REQUIRED);
-    }
-    
-    /**
-     * Constructor.
-     * 
-     * @param   int $use    The use to set.
-     */
-    public function __construct(int $use)
-    {
-        $this->setUse($use);
-    }
-    
-    /**
-     * Sets the use.
-     * 
-     * @param   int $use    The use to set.
-     * 
-     * @throws  InvalidValueException   When the use is an invalid value.
-     */
-    private function setUse(int $use): void
-    {
-        if ($use != self::OPTIONAL && $use != self::PROHIBITED && $use != self::REQUIRED) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid use.', $use));
-        }
+        $type = new self();
+        $type->use = self::REQUIRED;
         
-        $this->use = $use;
+        return $type;
+    }
+    
+    /**
+     * Private constructor.
+     */
+    private function __construct()
+    {
     }
     
     /**
