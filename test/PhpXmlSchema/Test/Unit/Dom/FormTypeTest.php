@@ -9,7 +9,6 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\FormType;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\FormType} class.
@@ -46,35 +45,13 @@ class FormTypeTest extends TestCase
     }
     
     /**
-     * Tests that isQualified() returns TRUE and isUnqualified() returns 
-     * FALSE when the specified form is "qualified".
+     * Tests that __construct() throws an exception.
      */
-    public function testIsQualifiedReturnsTrueWhenFormQualified(): void
+    public function test__constructThrowsException(): void
     {
-        $sut = new FormType(1);
-        self::assertFormQualified($sut);
-    }
-    
-    /**
-     * Tests that isUnqualified() returns TRUE and isQualified() returns 
-     * FALSE when the specified form is "unqualified".
-     */
-    public function testIsUnqualifiedReturnsTrueWhenFormUnqualified(): void
-    {
-        $sut = new FormType(2);
-        self::assertFormUnqualified($sut);
-    }
-    
-    /**
-     * Tests that __construct() throws an exception when the specified form 
-     * is invalid.
-     */
-    public function test__constructThrowsExceptionWhenFormIsInvalid(): void
-    {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage('"3" is an invalid form.');
-        
-        $sut = new FormType(3);
+        $this->expectException(\Throwable::class);
+        $this->expectExceptionMessageMatches('`private `');
+        $sut = new FormType();
     }
     
     /**

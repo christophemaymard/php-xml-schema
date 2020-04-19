@@ -7,8 +7,6 @@
  */
 namespace PhpXmlSchema\Dom;
 
-use PhpXmlSchema\Exception\InvalidValueException;
-
 /**
  * Represents the type for a form.
  * 
@@ -19,12 +17,12 @@ class FormType
     /**
      * Required to be qualified with a namespace prefix.
      */
-    public const QUALIFIED = 1;
+    private const QUALIFIED = 1;
     
     /**
      * Not required to be qualified with a namespace prefix.
      */
-    public const UNQUALIFIED = 2;
+    private const UNQUALIFIED = 2;
     
     /**
      * The form.
@@ -39,7 +37,10 @@ class FormType
      */
     public static function createQualified(): self
     {
-        return new self(self::QUALIFIED);
+        $type = new self();
+        $type->form = self::QUALIFIED;
+        
+        return $type;
     }
     
     /**
@@ -49,33 +50,17 @@ class FormType
      */
     public static function createUnqualified(): self
     {
-        return new self(self::UNQUALIFIED);
-    }
-    
-    /**
-     * Constructor.
-     * 
-     * @param   int $form   The form to set.
-     */
-    public function __construct(int $form)
-    {
-        $this->setForm($form);
-    }
-    
-    /**
-     * Sets the form.
-     * 
-     * @param   int $form   The form to set.
-     * 
-     * @throws  InvalidValueException   When the form is an invalid value.
-     */
-    private function setForm(int $form): void
-    {
-        if ($form != self::QUALIFIED && $form != self::UNQUALIFIED) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid form.', $form));
-        }
+        $type = new self();
+        $type->form = self::UNQUALIFIED;
         
-        $this->form = $form;
+        return $type;
+    }
+    
+    /**
+     * Private constructor.
+     */
+    private function __construct()
+    {
     }
     
     /**
