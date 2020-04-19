@@ -9,7 +9,6 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\WhiteSpaceType;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\WhiteSpaceType} 
@@ -62,45 +61,13 @@ class WhiteSpaceTypeTest extends TestCase
     }
     
     /**
-     * Tests that isCollapse() returns TRUE, isPreserve() and isReplace() 
-     * return FALSE when the specified white space is "collapse".
+     * Tests that __construct() throws an exception.
      */
-    public function testIsCollapseReturnsTrueWhenWhiteSpaceCollapse(): void
+    public function test__constructThrowsException(): void
     {
-        $sut = new WhiteSpaceType(1);
-        self::assertWhiteSpaceCollapse($sut);
-    }
-    
-    /**
-     * Tests that isPreserve() returns TRUE, isCollapse() and isReplace() 
-     * return FALSE when the specified white space is "preserve".
-     */
-    public function testIsPreserveReturnsTrueWhenWhiteSpacePreserve(): void
-    {
-        $sut = new WhiteSpaceType(2);
-        self::assertWhiteSpacePreserve($sut);
-    }
-    
-    /**
-     * Tests that isReplace() returns TRUE, isCollapse() and isPreserve() 
-     * return FALSE when the specified white space is "replace".
-     */
-    public function testIsReplaceReturnsTrueWhenWhiteSpaceReplace(): void
-    {
-        $sut = new WhiteSpaceType(3);
-        self::assertWhiteSpaceReplace($sut);
-    }
-    
-    /**
-     * Tests that __construct() throws an exception when the specified white 
-     * space is invalid.
-     */
-    public function test__constructThrowsExceptionWhenWhiteSpaceIsInvalid(): void
-    {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage('"4" is an invalid white space.');
-        
-        $sut = new WhiteSpaceType(4);
+        $this->expectException(\Throwable::class);
+        $this->expectExceptionMessageMatches('`private `');
+        $sut = new WhiteSpaceType();
     }
     
     /**

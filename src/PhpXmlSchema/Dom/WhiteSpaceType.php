@@ -7,8 +7,6 @@
  */
 namespace PhpXmlSchema\Dom;
 
-use PhpXmlSchema\Exception\InvalidValueException;
-
 /**
  * Represents the type for a white space.
  * 
@@ -23,17 +21,17 @@ class WhiteSpaceType
      * 
      * Leading and trailing #x20s are removed.
      */
-    public const COLLAPSE = 1;
+    private const COLLAPSE = 1;
     
     /**
      * No normalization is done.
      */
-    public const PRESERVE = 2;
+    private const PRESERVE = 2;
     
     /**
      * All occurrences of #x9, #xA and #xD are replaced with #x20.
      */
-    public const REPLACE = 3;
+    private const REPLACE = 3;
     
     /**
      * The white space.
@@ -48,7 +46,10 @@ class WhiteSpaceType
      */
     public static function createCollapse(): self
     {
-        return new self(self::COLLAPSE);
+        $type = new self();
+        $type->ws = self::COLLAPSE;
+        
+        return $type;
     }
     
     /**
@@ -58,7 +59,10 @@ class WhiteSpaceType
      */
     public static function createPreserve(): self
     {
-        return new self(self::PRESERVE);
+        $type = new self();
+        $type->ws = self::PRESERVE;
+        
+        return $type;
     }
     
     /**
@@ -68,33 +72,17 @@ class WhiteSpaceType
      */
     public static function createReplace(): self
     {
-        return new self(self::REPLACE);
-    }
-    
-    /**
-     * Constructor.
-     * 
-     * @param   int $ws The white space to set.
-     */
-    public function __construct(int $ws)
-    {
-        $this->setWhiteSpace($ws);
-    }
-    
-    /**
-     * Sets the white space.
-     * 
-     * @param   int $ws The white space to set.
-     * 
-     * @throws  InvalidValueException   When the white space is an invalid value.
-     */
-    private function setWhiteSpace(int $ws): void
-    {
-        if ($ws != self::COLLAPSE && $ws != self::PRESERVE && $ws != self::REPLACE) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid white space.', $ws));
-        }
+        $type = new self();
+        $type->ws = self::REPLACE;
         
-        $this->ws = $ws;
+        return $type;
+    }
+    
+    /**
+     * Private constructor.
+     */
+    private function __construct()
+    {
     }
     
     /**
