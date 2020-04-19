@@ -7,8 +7,6 @@
  */
 namespace PhpXmlSchema\Dom;
 
-use PhpXmlSchema\Exception\InvalidValueException;
-
 /**
  * Represents the type for the mode of content processing.
  * 
@@ -21,19 +19,19 @@ class ProcessingModeType
      * obtain schema information, but it will not signal errors for those it 
      * cannot obtain any schema information.
      */
-    public const LAX = 1;
+    private const LAX = 1;
     
     /**
      * XML processor does not attempt to validate any elements from the 
      * specified namespaces.
      */
-    public const SKIP = 2;
+    private const SKIP = 2;
     
     /**
      * XML processor must obtain the schema associated with the required 
      * namespaces and validate the elements.
      */
-    public const STRICT = 3;
+    private const STRICT = 3;
     
     /**
      * The mode of the content processing.
@@ -48,7 +46,10 @@ class ProcessingModeType
      */
     public static function createLax(): self
     {
-        return new self(self::LAX);
+        $type = new self();
+        $type->mode = self::LAX;
+        
+        return $type;
     }
     
     /**
@@ -58,7 +59,10 @@ class ProcessingModeType
      */
     public static function createSkip(): self
     {
-        return new self(self::SKIP);
+        $type = new self();
+        $type->mode = self::SKIP;
+        
+        return $type;
     }
     
     /**
@@ -68,33 +72,17 @@ class ProcessingModeType
      */
     public static function createStrict(): self
     {
-        return new self(self::STRICT);
-    }
-    
-    /**
-     * Constructor.
-     * 
-     * @param   int $mode   The mode of the content processing to set.
-     */
-    public function __construct(int $mode)
-    {
-        $this->setMode($mode);
-    }
-    
-    /**
-     * Sets the mode of the content processing.
-     * 
-     * @param   int $mode   The mode of the content processing to set.
-     * 
-     * @throws  InvalidValueException   When the mode of the content processing is an invalid value.
-     */
-    private function setMode(int $mode): void
-    {
-        if ($mode != self::LAX && $mode != self::SKIP && $mode != self::STRICT) {
-            throw new InvalidValueException(\sprintf('"%s" is an invalid mode of content processing.', $mode));
-        }
+        $type = new self();
+        $type->mode = self::STRICT;
         
-        $this->mode = $mode;
+        return $type;
+    }
+    
+    /**
+     * Private constructor.
+     */
+    private function __construct()
+    {
     }
     
     /**

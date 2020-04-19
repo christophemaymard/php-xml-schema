@@ -9,7 +9,6 @@ namespace PhpXmlSchema\Test\Unit\Dom;
 
 use PHPUnit\Framework\TestCase;
 use PhpXmlSchema\Dom\ProcessingModeType;
-use PhpXmlSchema\Exception\InvalidValueException;
 
 /**
  * Represents the unit tests for the {@see PhpXmlSchema\Dom\ProcessingModeType} 
@@ -62,45 +61,13 @@ class ProcessingModeTypeTest extends TestCase
     }
     
     /**
-     * Tests that isLax() returns TRUE, isSkip() and isStrict() return FALSE 
-     * when the specified mode is "lax".
+     * Tests that __construct() throws an exception.
      */
-    public function testIsLaxReturnsTrueWhenModeLax(): void
+    public function test__constructThrowsException(): void
     {
-        $sut = new ProcessingModeType(1);
-        self::assertProcessingModeLax($sut);
-    }
-    
-    /**
-     * Tests that isSkip() returns TRUE, isLax() and isStrict() return FALSE 
-     * when the specified mode is "skip".
-     */
-    public function testIsSkipReturnsTrueWhenModeSkip(): void
-    {
-        $sut = new ProcessingModeType(2);
-        self::assertProcessingModeSkip($sut);
-    }
-    
-    /**
-     * Tests that isStrict() returns TRUE, isLax() and isSkip() return FALSE 
-     * when the specified mode is "strict".
-     */
-    public function testIsStrictReturnsTrueWhenModeStrict(): void
-    {
-        $sut = new ProcessingModeType(3);
-        self::assertProcessingModeStrict($sut);
-    }
-    
-    /**
-     * Tests that __construct() throws an exception when the specified mode 
-     * is invalid.
-     */
-    public function test__constructThrowsExceptionWhenModeIsInvalid(): void
-    {
-        $this->expectException(InvalidValueException::class);
-        $this->expectExceptionMessage('"4" is an invalid mode of content processing.');
-        
-        $sut = new ProcessingModeType(4);
+        $this->expectException(\Throwable::class);
+        $this->expectExceptionMessageMatches('`private `');
+        $sut = new ProcessingModeType();
     }
     
     /**
